@@ -1,60 +1,74 @@
-# DHMS v2 Cross-Model + Statistical Significance System
+# DHMS Product Diagnosis v1.3
+
+DHMS is a perturbation-based LLM memory/context stability tester with diagnosis-driven reports.
+
+## What DHMS Tests
+
+DHMS runs controlled memory and context perturbations, then reports product-facing diagnosis signals:
+
+* memory perturbation
+* context perturbation
+* mock-vs-real divergence
+* regime behavior drift
+* expected-property violations
+* style/format drift
+
+## Current Status
+
+* Product Diagnosis v1.3 is sealed.
+* DeepSeek `deepseek:flash` is live-verified.
+* OpenAI, Claude, Qwen, Kimi, Gemini, and Mistral are adapter-ready via BYOK.
+* Agent Harness v1 has not started yet.
+* GitHub checkpoint tag: `v0.1.3-product-diagnosis`.
+
+## Quickstart
+
+Mock demo:
+
+```bash
+python3 cli.py test --input "Does this agent stay consistent?" --models mock --n 1 --report --output reports/demo_mock_single
+```
+
+DeepSeek demo, if `DEEPSEEK_API_KEY` is configured:
+
+```bash
+python3 cli.py test --input-file examples/agent_memory_case.txt --models mock,deepseek:flash --n 1 --report --output reports/public_demo_deepseek_flash
+```
+
+LLM core suite:
+
+```bash
+python3 cli.py test-suite --suite cases/llm_core --models mock --n 1 --report --output reports/public_demo_llm_core_mock
+```
+
+## Diagnosis Caveats
+
+* High drift is not automatically provider failure.
+* Expected-property violation is stronger evidence than mock-real divergence alone.
+* `n=1` is preliminary and cannot establish general stochastic stability.
+* Recommendations are rule-based and evidence-backed, not LLM-generated.
+
+## Documentation
+
+* [Product README](README_PRODUCT.md)
+* [Public demo package](docs/public_demo_package.md)
+* [Diagnosis layer v1.3](docs/diagnosis_layer_v1_3.md)
+* [Top critical case explanations](docs/top_critical_case_explanations.md)
+* [Release checkpoint devlog](docs/devlog/2026-06-20-dhms-product-diagnosis-v1-3.md)
+
+## Architecture / Historical Engine Layer
 
 DHMS is organized as a strict layered system:
 
-Spec -> Contract -> Binding -> Engine
-
-The engine layer is executable, but it does not redefine DHMS memory, perturbation, regime, or metric semantics. Every run passes through the binding layer before execution.
-
-## Structure
-
-- `spec/`: DHMS Isolation Spec v1. Do not modify from the engine layer.
-- `contract/`: DHMS Contract Layer v1. Do not modify from the engine layer.
-- `binding/`: DHMS Engine Binding Layer v1. All runs must pass `bind_run()`.
-- `engine/v0/`: minimal execution pipeline and JSON formatter.
-- `engine/v1/`: measurement aggregation and repeated-trial orchestration.
-- `engine/cross_model/`: model registry, routing, and aligned cross-model execution.
-- `engine/statistics/`: significance, confidence, and model comparison helpers.
-- `engine/v2_cross_model/`: v2 orchestration and CLI entry point.
-
-## Run
-
-Single-model measurement:
-
-```bash
-python3 cli.py run --mode B --input "text" --n 5
+```text
+spec -> contract -> binding -> engine -> product diagnosis
 ```
 
-Cross-model measurement:
+* `spec/`, `contract/`, and `binding/` define the protected semantic boundary.
+* V1 handles measurement aggregation and repeated-trial orchestration.
+* V2 adds cross-model execution and statistical comparison.
+* V2.5 adds the real-provider bridge and provider:model routing without overriding V2 metrics.
+* Product Diagnosis v1.3 adds taxonomy, expected-property checks, rule-based recommendations, and public reports.
+* Future Agent Harness v1 will be a later layer and is not part of this checkpoint.
 
-```bash
-python3 cli.py run --mode B --input "text" --models mock,external
-```
-
-The CLI also accepts:
-
-```bash
-python3 cli.py dhms run --mode C --input "text" --n 3 --models mock,external
-```
-
-## Output
-
-The JSON output includes:
-
-- `per_run_results`
-- `per_model_results`
-- `aggregated_metrics`
-- `cross_model_comparison`
-- `statistical_significance_summary`
-- `effect_size_report`
-- `regime_consistency_report`
-
-Metric names remain unchanged: `stability`, `sensitivity`, `specificity`, `isolation_strength`.
-
-## Models
-
-Supported model names:
-
-- `mock`: deterministic local model.
-- `external`: OpenAI / DeepSeek-compatible API path when `DHMS_ENABLE_EXTERNAL_API=1` and an API key are available; otherwise deterministic fallback.
-- `fallback`: deterministic local fallback model.
+Metric names remain unchanged: `stability`, `sensitivity`, `specificity`, and `isolation_strength`.

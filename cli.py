@@ -206,11 +206,12 @@ def suite_console_summary(result) -> str:
 
 def agent_console_summary(result) -> str:
     lines = [
-        "DHMS Agent Harness Phase 1 Report",
+        "DHMS Agent Harness Phase 2 Trace Diagnosis Report",
         f"Adapter: {result['adapter']}",
         f"Mode: {result['mode']}",
         f"Trials: {result['trial_count']}",
         f"Dry run: {str(result['dry_run']).lower()}",
+        f"Primary diagnosis: {result.get('diagnosis_summary', {}).get('primary_issue', 'not_available')}",
         f"Tool calls: {result['tool_call_count']}",
         f"Memory reads: {result['memory_read_count']}",
         f"Side effects blocked: {result['side_effects_blocked_count']}",

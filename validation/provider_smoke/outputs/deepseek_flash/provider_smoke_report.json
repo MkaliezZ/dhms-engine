@@ -1,0 +1,20 @@
+{
+  "api_key_present": true,
+  "drift_analysis_present": true,
+  "failure_modes": [],
+  "fallback_used": false,
+  "max_real_api_calls": 3,
+  "noise_estimation_present": true,
+  "provider": "deepseek",
+  "real_api_used": true,
+  "recommendation": "Provider live smoke passed.",
+  "requested_alias": "flash",
+  "requested_model": "flash",
+  "requested_model_spec": "deepseek:flash",
+  "resolved_model_id": "deepseek-v4-flash",
+  "response_snippet": "This is a smoke test confirming that the assistant is operational and ready to respond.",
+  "status": "PASS",
+  "timestamp": "2026-06-19T12:40:13+00:00",
+  "total_real_api_calls": 3,
+  "v2_metrics_overridden": false
+}

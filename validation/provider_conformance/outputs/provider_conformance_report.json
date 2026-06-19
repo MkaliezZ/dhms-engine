@@ -1,0 +1,133 @@
+{
+  "checks": [
+    {
+      "extra": {},
+      "name": "registry loads all providers",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "provider:model parsing",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "provider aliases",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "model aliases",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "direct model passthrough",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "parse_api_names",
+      "passed": true
+    },
+    {
+      "extra": {
+        "missing": []
+      },
+      "name": "deepseek adapter contract",
+      "passed": true
+    },
+    {
+      "extra": {
+        "missing": []
+      },
+      "name": "openai adapter contract",
+      "passed": true
+    },
+    {
+      "extra": {
+        "missing": []
+      },
+      "name": "anthropic adapter contract",
+      "passed": true
+    },
+    {
+      "extra": {
+        "missing": []
+      },
+      "name": "qwen adapter contract",
+      "passed": true
+    },
+    {
+      "extra": {
+        "missing": []
+      },
+      "name": "kimi adapter contract",
+      "passed": true
+    },
+    {
+      "extra": {
+        "missing": []
+      },
+      "name": "gemini adapter contract",
+      "passed": true
+    },
+    {
+      "extra": {
+        "missing": []
+      },
+      "name": "mistral adapter contract",
+      "passed": true
+    },
+    {
+      "extra": {
+        "missing": []
+      },
+      "name": "fallback adapter contract",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "DeepSeek import backward compatibility",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "chat parser",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "OpenAI responses parser",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "Anthropic parser",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "Gemini parser",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "Mistral string parser",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "Mistral list parser",
+      "passed": true
+    },
+    {
+      "extra": {},
+      "name": "unavailable alias explicit",
+      "passed": true
+    }
+  ],
+  "status": "PASS",
+  "timestamp": "2026-06-19T15:54:20+00:00",
+  "validation_name": "DHMS Provider Static Conformance"
+}

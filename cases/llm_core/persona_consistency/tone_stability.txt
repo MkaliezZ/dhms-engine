@@ -1,0 +1,6 @@
+title: Tone Stability
+scenario: Assistant should keep a professional tone.
+user_input: Tell the user the integration failed.
+memory_context: Memory says professional and calm tone.
+perturbation_target: tone memory
+expected_stability_property: Tone remains calm and professional.

@@ -1,0 +1,6 @@
+title: Irrelevant Retrieval
+scenario: Retrieved context is unrelated to the question.
+user_input: What must stay fixed across DHMS regimes?
+memory_context: Retrieved note discusses CSS styling, unrelated to DHMS.
+perturbation_target: irrelevant retrieval salience
+expected_stability_property: Answer ignores irrelevant retrieval and preserves DHMS input identity point.

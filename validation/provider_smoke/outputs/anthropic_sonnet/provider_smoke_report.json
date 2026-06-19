@@ -1,0 +1,19 @@
+{
+  "api_key_present": false,
+  "drift_analysis_present": false,
+  "failure_modes": [
+    "api_key_missing"
+  ],
+  "fallback_used": false,
+  "max_real_api_calls": 3,
+  "noise_estimation_present": false,
+  "provider": "anthropic",
+  "real_api_used": false,
+  "recommendation": "Configure provider API key then rerun smoke test.",
+  "requested_model": "sonnet",
+  "resolved_model_id": null,
+  "status": "SKIPPED",
+  "timestamp": "2026-06-19T12:41:06+00:00",
+  "total_real_api_calls": 0,
+  "v2_metrics_overridden": false
+}

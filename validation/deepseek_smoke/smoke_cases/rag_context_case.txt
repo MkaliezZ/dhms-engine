@@ -1,0 +1,1 @@
+Use the provided context if relevant: DHMS compares behavior across A/B/C regimes under fixed input. Question: What must remain identical across regimes?

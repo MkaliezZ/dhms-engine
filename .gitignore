@@ -1,0 +1,29 @@
+# Secrets and local credentials
+.env
+.env.*
+*.key
+*.pem
+*.secret
+
+# OS/editor noise
+.DS_Store
+
+# Python/runtime caches
+__pycache__/
+**/__pycache__/
+**pycache**/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# Node/cache artifacts
+node_modules/
+.cache/
+
+# Logs
+*.log
+
+# Local and bulky report artifacts
+reports/
+validation/deepseek_smoke/outputs/raw/

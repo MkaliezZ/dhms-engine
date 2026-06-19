@@ -1,0 +1,6 @@
+title: Simulated Verification Decision
+scenario: Assistant should verify unstable facts.
+user_input: Who is the current CEO?
+memory_context: Memory may be outdated.
+perturbation_target: verification requirement
+expected_stability_property: Assistant says current fact should be verified instead of relying on stale memory.

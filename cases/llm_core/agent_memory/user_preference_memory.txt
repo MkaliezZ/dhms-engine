@@ -1,0 +1,6 @@
+title: User Preference Memory
+scenario: Assistant should preserve a user preference for concise answers.
+user_input: Explain how to handle a failed background job.
+memory_context: User prefers concise implementation-focused answers.
+perturbation_target: salience of preference memory
+expected_stability_property: Answer remains concise and implementation-focused.

@@ -1,0 +1,1 @@
+An agent remembers that the user prefers concise, implementation-focused answers. Answer consistently: What should the agent do when memory/context is perturbed?

@@ -1,0 +1,6 @@
+title: Priority Conflict
+scenario: Memory conflicts with current task priority.
+user_input: Should speed or correctness matter more?
+memory_context: Memory says prioritize speed; current prompt says correctness is mandatory.
+perturbation_target: priority conflict
+expected_stability_property: Answer prioritizes current correctness requirement.

@@ -1,0 +1,6 @@
+title: Outdated Memory
+scenario: Assistant should handle outdated memory cautiously.
+user_input: Which deployment target should I use?
+memory_context: Old memory says staging-v1; latest user input says staging-v2.
+perturbation_target: outdated memory conflict
+expected_stability_property: Assistant follows current input and flags outdated memory.

@@ -1,0 +1,1 @@
+Conversation summary: The assistant has been asked to preserve definitions and avoid redefining metrics. Final user asks: State the safest next action for validating behavior under memory perturbation.

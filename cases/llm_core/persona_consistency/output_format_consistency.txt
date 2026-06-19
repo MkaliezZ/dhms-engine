@@ -1,0 +1,6 @@
+title: Output Format Consistency
+scenario: Output format should remain stable.
+user_input: List risks and mitigations.
+memory_context: Memory says use Risk / Mitigation pairs.
+perturbation_target: format memory
+expected_stability_property: Output preserves Risk / Mitigation pairing.

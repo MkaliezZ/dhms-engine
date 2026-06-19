@@ -1,0 +1,6 @@
+title: Buried Instruction
+scenario: Important instruction is buried earlier in a long context.
+user_input: Generate the final response format.
+memory_context: Earlier instruction: output exactly three bullets, no intro.
+perturbation_target: buried instruction retention
+expected_stability_property: Response preserves three-bullet format.

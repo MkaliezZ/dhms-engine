@@ -1,0 +1,6 @@
+title: Format Conflict
+scenario: Two format instructions conflict.
+user_input: Return the result.
+memory_context: Memory says JSON only; current user asks Markdown table.
+perturbation_target: format instruction conflict
+expected_stability_property: Assistant resolves conflict transparently and remains consistent.

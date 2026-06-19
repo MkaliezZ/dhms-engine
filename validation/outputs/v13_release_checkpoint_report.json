@@ -1,0 +1,57 @@
+{
+  "commands_run": [
+    "PYTHONPYCACHEPREFIX=/tmp/dhms_engine_pycache python3 -m py_compile $(find . -name \"*.py\" -not -path \"./.venv/*\")",
+    "python3 cli.py test --input \"Does this agent stay consistent?\" --models mock --n 1 --report --output reports/release_v13_mock_single",
+    "python3 cli.py test-suite --suite cases/llm_core --models mock --n 1 --report --output reports/release_v13_llm_core_mock",
+    "python3 validation/run_diagnosis_v13_validation.py",
+    "python3 cli.py providers models deepseek"
+  ],
+  "deepseek_real_api_demo": "SKIPPED: DEEPSEEK_API_KEY may be present, but no paid real API demo was run automatically",
+  "diagnosis_validation_status": "PASS",
+  "gitignore_status": "PASS: .gitignore exists and excludes secrets, caches, reports, raw API outputs, and local noise",
+  "key_leakage_scan_result": "PASS: no likely secret values or private key markers found in scanned project files",
+  "mock_report_paths": [
+    "reports/release_v13_mock_single/dhms_product_report.json",
+    "reports/release_v13_mock_single/dhms_product_report.md",
+    "reports/release_v13_mock_single/dhms_product_report.html",
+    "reports/release_v13_llm_core_mock/suite_report.json",
+    "reports/release_v13_llm_core_mock/suite_report.md",
+    "reports/release_v13_llm_core_mock/suite_report.html"
+  ],
+  "parse_check_result": "PASS",
+  "protected_directory_hash_result": "PASS: protected directory hashes match the pre-release checkpoint baseline captured before edits",
+  "protected_directory_hashes_current": [
+    "cc03d3547c567c6b9f384e5bd0944e34426ca38676e3f636a2216fa346bcfc89  spec/DHMS Isolation Spec v1.md",
+    "df70900a36cef261faefc0b1b63f4e0096ba6d4612c1747f07b30b71149a7a04  contract/DHMS Contract Layer v1.md",
+    "aab6dfe171f351cdd6503b8d037b7c012cf19a9522f244fe78bc1e645ad911ee  binding/binding_layer.py",
+    "ae2937653e736e5ee80ab73433dae018b7cf406d7102bc7a9ce89446bb471dbb  binding/execution_gate.py",
+    "0ffc701f69c74e01f82c19042d1ab2e524c73ebe1da651b55ef4e2cd3bc2913d  binding/metric_lock.py",
+    "e6e8402240e07dc7c1257265f1650293f97489fb8e69d493913915a51e4b1916  binding/perturbation_guard.py",
+    "5e08ee6005f6757fbe87628fd5fb8d19099be91bc59c59b5125d38709a2aa622  binding/regime_validator.py",
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  engine/v1/__init__.py",
+    "8997a60944bb514c3d30bc1bedf14db15ea8479547fa351e8e71ef9bfb310828  engine/v1/engine_runner.py",
+    "c0b034744d9bfe76482e78dac03b26a30ac8f9aaa5109b3300960c8a3a56d1e3  engine/v1/experiment_orchestrator.py",
+    "71354159c27348243249f57ed0330204e8acfe5b015c87778fd7ff9ce28e6e31  engine/v1/measurement_engine.py",
+    "3e532657f7f908b186244b498ae9154a555138d45a7e4a358e5d2a8177e73ff6  engine/v1/result_summarizer.py",
+    "f5ac7c9ad31b55ee1434b3b6342cdeaf5b72b898e055a0790948cf947175bed3  engine/v1/statistical_analyzer.py",
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  engine/v2_cross_model/__init__.py",
+    "a6867b9ed6f2c8e3866d1063ec358be0e47a71e9611d3082d5287c5a7ac6d4f5  engine/v2_cross_model/engine_runner.py",
+    "bda4a508fd48a824c5052ce3f3a2ae4afde5efbcd58820bf71d092df666c933d  engine/v2_cross_model/v2_orchestrator.py",
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  engine/cross_model/__init__.py",
+    "5b1c5faaeabd93a58305bd268c67c9caf45a7d580e6f28dd648106ac510ab3e0  engine/cross_model/cross_model_runner.py",
+    "82d78d8304b1fb3403a3d49e8a73206d470a9b1d3e477a00d9dbe44493fc3657  engine/cross_model/model_registry.py",
+    "9e85a2f2ef108cca7f4f1e4e0bdaa1dafebe4de32a11133c06a808ffb52fe5e6  engine/cross_model/model_router.py",
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  engine/statistics/__init__.py",
+    "c6461436a2b3b3bd2eae95ac91ca8cad5df4abf300ca66d5df4475f2f5bfa9e7  engine/statistics/confidence_analyzer.py",
+    "53ae7eb2a15df4ba7c9c8ff57a3e2b46178a0ba62d8200e60e0fef007eba11c0  engine/statistics/model_comparison.py",
+    "23b7e48adf173022178aa6273461d08478a5c4aff5a5c6f3eaab29bdc546f0fb  engine/statistics/significance_test.py"
+  ],
+  "provider_model_syntax_status": "PASS: deepseek aliases default, flash, pro resolved",
+  "remaining_caveats": [
+    "The repository was initialized during this checkpoint because the project directory was not previously a git repository.",
+    "Local report directories are intentionally ignored by .gitignore; release validation report summaries under validation/outputs are versionable."
+  ],
+  "status": "PASS",
+  "task": "DHMS Product Diagnosis v1.3 Release Checkpoint / Seal-off",
+  "v2_metrics_overridden_status": "PASS: v2_metrics_overridden=false in validation outputs; no true override detected"
+}

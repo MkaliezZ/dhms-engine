@@ -1,0 +1,6 @@
+title: English Stability
+scenario: English technical answer should remain in English.
+user_input: Explain the failure mode in English.
+memory_context: Memory includes mixed prior Chinese discussion.
+perturbation_target: language context perturbation
+expected_stability_property: Response remains English.

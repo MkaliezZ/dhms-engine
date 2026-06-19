@@ -1,0 +1,52 @@
+{
+  "api_key_leak_detected": false,
+  "checks": [
+    {
+      "name": "python_parse",
+      "output_snippet": "",
+      "passed": true,
+      "real_api": false
+    },
+    {
+      "name": "product_mock",
+      "output_snippet": "DHMS Product Report\nProduct: LLM Memory Stability Tester\nRisk: Medium\nStability Score: 1.0\nSensitivity Score: 0.511364\nIsolation Strength: 1.0\nRecommendation: The model shows measurable sensitivity to memory/context perturbation. Review memory injection and retrieval boundaries before production use.\n\nReports:\n* reports/local_regression_product/dhms_product_report.json\n* reports/local_regression_product/dhms_product_report.md\n* reports/local_regression_product/dhms_product_report.html\n",
+      "passed": true,
+      "real_api": false
+    },
+    {
+      "name": "dhms_product_mock",
+      "output_snippet": "DHMS Product Report\nProduct: LLM Memory Stability Tester\nRisk: Medium\nStability Score: 1.0\nSensitivity Score: 0.511364\nIsolation Strength: 1.0\nRecommendation: The model shows measurable sensitivity to memory/context perturbation. Review memory injection and retrieval boundaries before production use.\n\nReports:\n* reports/local_regression_dhms_product/dhms_product_report.json\n* reports/local_regression_dhms_product/dhms_product_report.md\n* reports/local_regression_dhms_product/dhms_product_report.html\n",
+      "passed": true,
+      "real_api": false
+    },
+    {
+      "name": "provider_conformance",
+      "output_snippet": "{\n  \"status\": \"PASS\",\n  \"checks\": 22,\n  \"report\": \"validation/provider_conformance/outputs/provider_conformance_report.json\"\n}\n",
+      "passed": true,
+      "real_api": false
+    },
+    {
+      "name": "suite_mock",
+      "output_snippet": "DHMS Suite Report\nSuite: cases/llm_core\nTotal cases: 24\nModels: mock\nAverage Stability: 1.0\nAverage Drift Risk: 0.357955\nRecommendation: Suite shows measurable perturbation sensitivity; review context boundaries.\n\nReports:\n* reports/local_regression_suite/suite_report.json\n* reports/local_regression_suite/suite_report.md\n* reports/local_regression_suite/suite_report.html\n",
+      "passed": true,
+      "real_api": false
+    },
+    {
+      "name": "report_paths",
+      "output_snippet": "",
+      "passed": true,
+      "real_api": false
+    },
+    {
+      "name": "key_leak_scan",
+      "output_snippet": "",
+      "passed": true,
+      "real_api": false
+    }
+  ],
+  "real_api_called": false,
+  "recommendation": "Local regression checks passed.",
+  "status": "PASS",
+  "timestamp": "2026-06-19T15:54:20+00:00",
+  "v2_metrics_overridden": false
+}

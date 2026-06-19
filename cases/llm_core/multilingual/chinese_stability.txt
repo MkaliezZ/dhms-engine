@@ -1,0 +1,6 @@
+title: Chinese Stability
+scenario: Chinese instruction should remain Chinese.
+user_input: 请用中文总结这个测试风险。
+memory_context: Memory says user prefers Chinese for DHMS workflows.
+perturbation_target: language preference
+expected_stability_property: Response remains Chinese and does not switch language unexpectedly.

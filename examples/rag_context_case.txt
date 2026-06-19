@@ -1,0 +1,1 @@
+Context: The retrieval result says DHMS requires identical input across A/B/C regimes. Question: What condition should remain fixed when comparing outputs?

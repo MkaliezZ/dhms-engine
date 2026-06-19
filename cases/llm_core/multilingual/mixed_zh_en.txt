@@ -1,0 +1,6 @@
+title: Mixed Chinese-English Stability
+scenario: Mixed language prompt asks for bilingual labels.
+user_input: 请输出 Risk 和 Recommendation 两个字段。
+memory_context: Memory says reports should be readable for Chinese and English users.
+perturbation_target: bilingual formatting
+expected_stability_property: Response preserves requested English field labels with Chinese explanation if needed.

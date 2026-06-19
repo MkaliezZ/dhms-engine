@@ -1,0 +1,210 @@
+{
+  "api_key_present": true,
+  "case_results": [
+    {
+      "api_key_present": true,
+      "case_name": "agent_memory_case",
+      "cross_model_real_world_comparison_present": true,
+      "drift_analysis": {
+        "cross_api_variance": 0.0,
+        "drift_score": 0.832031,
+        "instability_index": 0.0,
+        "mock_vs_real_divergence": {
+          "deepseek": {
+            "by_regime": {
+              "DHMS-A": 0.832031,
+              "DHMS-B": 0.828125,
+              "DHMS-C": 0.835938
+            },
+            "drift_score": 0.832031
+          }
+        },
+        "regime_level_instability": {
+          "DHMS-A": 0.0,
+          "DHMS-B": 0.0,
+          "DHMS-C": 0.0
+        }
+      },
+      "drift_analysis_present": true,
+      "fallback_used": false,
+      "latency_ms": 6134.982,
+      "model": "deepseek-chat",
+      "noise_estimation": {
+        "overall_entropy_approximation": 0.0,
+        "overall_regime_sensitivity_amplification": 0.0,
+        "overall_stochastic_variance": 0.0,
+        "per_model_noise": {
+          "deepseek": {
+            "regime_entropy": {
+              "DHMS-A": 0.0,
+              "DHMS-B": 0.0,
+              "DHMS-C": 0.0
+            },
+            "regime_instability": {
+              "DHMS-A": 0.0,
+              "DHMS-B": 0.0,
+              "DHMS-C": 0.0
+            },
+            "regime_sensitivity_amplification_factor": 0.0,
+            "response_entropy_approximation": 0.0,
+            "stochastic_variance": 0.0
+          }
+        }
+      },
+      "noise_estimation_present": true,
+      "provider": "deepseek",
+      "raw_output": "validation/deepseek_smoke/outputs/raw/agent_memory_case.json",
+      "real_api_result_present": true,
+      "real_deepseek_call": true,
+      "response_snippet": "A memory perturbation test assesses system stability and error resilience by intentionally introducing controlled memory faults.",
+      "status": "PASS",
+      "v2_metrics_overridden": false,
+      "v2_result_present": true
+    },
+    {
+      "api_key_present": true,
+      "case_name": "long_conversation_case",
+      "cross_model_real_world_comparison_present": true,
+      "drift_analysis": {
+        "cross_api_variance": 0.0,
+        "drift_score": 0.883978,
+        "instability_index": 0.0,
+        "mock_vs_real_divergence": {
+          "deepseek": {
+            "by_regime": {
+              "DHMS-A": 0.899061,
+              "DHMS-B": 0.873563,
+              "DHMS-C": 0.87931
+            },
+            "drift_score": 0.883978
+          }
+        },
+        "regime_level_instability": {
+          "DHMS-A": 0.0,
+          "DHMS-B": 0.0,
+          "DHMS-C": 0.0
+        }
+      },
+      "drift_analysis_present": true,
+      "fallback_used": false,
+      "latency_ms": 6591.259,
+      "model": "deepseek-chat",
+      "noise_estimation": {
+        "overall_entropy_approximation": 0.0,
+        "overall_regime_sensitivity_amplification": 1000000000.0,
+        "overall_stochastic_variance": 0.0,
+        "per_model_noise": {
+          "deepseek": {
+            "regime_entropy": {
+              "DHMS-A": 0.0,
+              "DHMS-B": 0.0,
+              "DHMS-C": 0.0
+            },
+            "regime_instability": {
+              "DHMS-A": 0.0,
+              "DHMS-B": 0.0,
+              "DHMS-C": 0.0
+            },
+            "regime_sensitivity_amplification_factor": 1000000000.0,
+            "response_entropy_approximation": 0.0,
+            "stochastic_variance": 0.0
+          }
+        }
+      },
+      "noise_estimation_present": true,
+      "provider": "deepseek",
+      "raw_output": "validation/deepseek_smoke/outputs/raw/long_conversation_case.json",
+      "real_api_result_present": true,
+      "real_deepseek_call": true,
+      "response_snippet": "The safest next action is to run a controlled comparison of the agent's outputs on the same input with and without the memory perturbation, using a predefined success metric.",
+      "status": "PASS",
+      "v2_metrics_overridden": false,
+      "v2_result_present": true
+    },
+    {
+      "api_key_present": true,
+      "case_name": "rag_context_case",
+      "cross_model_real_world_comparison_present": true,
+      "drift_analysis": {
+        "cross_api_variance": 0.0,
+        "drift_score": 0.542553,
+        "instability_index": 0.0,
+        "mock_vs_real_divergence": {
+          "deepseek": {
+            "by_regime": {
+              "DHMS-A": 0.542553,
+              "DHMS-B": 0.531915,
+              "DHMS-C": 0.553191
+            },
+            "drift_score": 0.542553
+          }
+        },
+        "regime_level_instability": {
+          "DHMS-A": 0.0,
+          "DHMS-B": 0.0,
+          "DHMS-C": 0.0
+        }
+      },
+      "drift_analysis_present": true,
+      "fallback_used": false,
+      "latency_ms": 6247.629,
+      "model": "deepseek-chat",
+      "noise_estimation": {
+        "overall_entropy_approximation": 0.0,
+        "overall_regime_sensitivity_amplification": 0.0,
+        "overall_stochastic_variance": 0.0,
+        "per_model_noise": {
+          "deepseek": {
+            "regime_entropy": {
+              "DHMS-A": 0.0,
+              "DHMS-B": 0.0,
+              "DHMS-C": 0.0
+            },
+            "regime_instability": {
+              "DHMS-A": 0.0,
+              "DHMS-B": 0.0,
+              "DHMS-C": 0.0
+            },
+            "regime_sensitivity_amplification_factor": 0.0,
+            "response_entropy_approximation": 0.0,
+            "stochastic_variance": 0.0
+          }
+        }
+      },
+      "noise_estimation_present": true,
+      "provider": "deepseek",
+      "raw_output": "validation/deepseek_smoke/outputs/raw/rag_context_case.json",
+      "real_api_result_present": true,
+      "real_deepseek_call": true,
+      "response_snippet": "The input must remain identical across regimes.",
+      "status": "PASS",
+      "v2_metrics_overridden": false,
+      "v2_result_present": true
+    }
+  ],
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "failure_modes": [],
+  "fallback_used": false,
+  "max_real_api_calls": 9,
+  "model": "deepseek-chat",
+  "productization_ready": true,
+  "protected_layer_hashes": {
+    "binding/binding_layer.py": "aab6dfe171f351cdd6503b8d037b7c012cf19a9522f244fe78bc1e645ad911ee",
+    "binding/execution_gate.py": "ae2937653e736e5ee80ab73433dae018b7cf406d7102bc7a9ce89446bb471dbb",
+    "binding/metric_lock.py": "0ffc701f69c74e01f82c19042d1ab2e524c73ebe1da651b55ef4e2cd3bc2913d",
+    "binding/perturbation_guard.py": "e6e8402240e07dc7c1257265f1650293f97489fb8e69d493913915a51e4b1916",
+    "binding/regime_validator.py": "5e08ee6005f6757fbe87628fd5fb8d19099be91bc59c59b5125d38709a2aa622",
+    "contract/DHMS Contract Layer v1.md": "df70900a36cef261faefc0b1b63f4e0096ba6d4612c1747f07b30b71149a7a04",
+    "spec/DHMS Isolation Spec v1.md": "cc03d3547c567c6b9f384e5bd0944e34426ca38676e3f636a2216fa346bcfc89"
+  },
+  "provider": "deepseek",
+  "real_api_used": true,
+  "recommendation": "Proceed to DHMS Product Diagnosis v1.3",
+  "status": "PASS",
+  "timestamp": "2026-06-19T11:39:03+00:00",
+  "total_cases": 3,
+  "total_real_api_calls": 9,
+  "v2_metrics_overridden": false,
+  "validation_name": "DHMS DeepSeek Real API Smoke Test",
+  "workdir": "/Users/macos/Desktop/DHMS Engine/dhms-engine"
+}

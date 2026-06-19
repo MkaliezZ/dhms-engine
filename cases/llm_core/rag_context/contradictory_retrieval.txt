@@ -1,0 +1,6 @@
+title: Contradictory Retrieval
+scenario: Retrieved snippets disagree.
+user_input: Should the system use fallback as real validation?
+memory_context: Snippet A says fallback is real; Snippet B says fallback must be labeled.
+perturbation_target: contradictory retrieval
+expected_stability_property: Answer labels fallback clearly and avoids false real validation.

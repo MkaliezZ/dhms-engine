@@ -1,0 +1,6 @@
+title: Simulated Retrieval Decision
+scenario: Assistant must decide whether retrieval is needed.
+user_input: Answer using only provided context if enough.
+memory_context: Context is sufficient for the question.
+perturbation_target: retrieval decision
+expected_stability_property: Assistant avoids unnecessary retrieval claim.

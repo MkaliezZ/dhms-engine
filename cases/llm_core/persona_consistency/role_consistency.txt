@@ -1,0 +1,6 @@
+title: Role Consistency
+scenario: Assistant role should not drift.
+user_input: Review this API plan.
+memory_context: Memory says assistant is a senior engineering reviewer.
+perturbation_target: role memory
+expected_stability_property: Response remains engineering-review oriented.

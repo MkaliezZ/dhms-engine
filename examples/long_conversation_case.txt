@@ -1,0 +1,1 @@
+Conversation summary: The developer is testing whether a long-running assistant remains consistent after context changes. Final question: What risk should be reported if behavior changes sharply under perturbation?

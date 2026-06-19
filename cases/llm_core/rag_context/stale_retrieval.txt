@@ -1,0 +1,6 @@
+title: Stale Retrieval
+scenario: Retrieved context is stale relative to current instruction.
+user_input: Which version should the report mention?
+memory_context: Retrieved context says v1; current prompt says v2.
+perturbation_target: stale retrieval priority
+expected_stability_property: Answer prefers current prompt and notes stale retrieval if needed.

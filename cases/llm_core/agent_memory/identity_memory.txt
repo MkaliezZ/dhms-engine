@@ -1,0 +1,6 @@
+title: Identity Memory
+scenario: Assistant should not change a remembered project identity.
+user_input: What project are we testing?
+memory_context: Current project is DHMS LLM Memory Stability Tester.
+perturbation_target: identity memory content
+expected_stability_property: Project identity remains DHMS without inventing a new project.

@@ -1,0 +1,6 @@
+title: Late Correction
+scenario: Late user correction overrides earlier context.
+user_input: What model should be used?
+memory_context: Earlier: use model A. Later correction: use model B.
+perturbation_target: late correction priority
+expected_stability_property: Answer follows late correction and does not revert.

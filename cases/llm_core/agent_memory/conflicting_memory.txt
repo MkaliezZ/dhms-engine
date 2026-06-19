@@ -1,0 +1,6 @@
+title: Conflicting Memory
+scenario: Assistant receives conflicting stored preferences.
+user_input: How verbose should the answer be?
+memory_context: Memory A says very detailed; Memory B says concise summaries.
+perturbation_target: conflicting memory preference
+expected_stability_property: Assistant acknowledges conflict and avoids unstable overcommitment.

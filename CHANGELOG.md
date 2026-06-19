@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — Agent Harness v1
+
+* Phase 1: mock dry-run skeleton and trace contract.
+* Phase 2: trace diagnosis layer and rule-based trace recommendations.
+* Next: Phase 3 command adapter / BYOA local agent protocol.
+
 ## v0.1.3-product-diagnosis - 2026-06-20
 
 * Sealed DHMS Product Diagnosis v1.3 as the stable checkpoint before Agent Harness v1.

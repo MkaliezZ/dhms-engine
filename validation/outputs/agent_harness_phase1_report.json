@@ -1,0 +1,29 @@
+{
+  "branch_name": "agent-harness-v1",
+  "command_http_adapters_status": "PASS: command and HTTP adapters are not implemented in Phase 1",
+  "dry_run_confirmed": true,
+  "existing_product_command_status": "PASS: mock Product Diagnosis command completed",
+  "generated_report_paths": [
+    "reports/agent_harness/mock_demo/agent_harness_report.json",
+    "reports/agent_harness/mock_demo/agent_harness_report.md",
+    "reports/agent_harness/mock_refund/agent_harness_report.json",
+    "reports/agent_harness/mock_refund/agent_harness_report.md",
+    "reports/agent_phase1_existing_product_check/dhms_product_report.json",
+    "reports/agent_phase1_existing_product_check/dhms_product_report.md",
+    "reports/agent_phase1_existing_product_check/dhms_product_report.html"
+  ],
+  "input_file_test_agent_command_status": "PASS",
+  "key_leakage_scan_result": "PASS: no likely secret values found",
+  "mock_test_agent_command_status": "PASS",
+  "parse_check_status": "PASS: py_compile completed",
+  "protected_core_layer_hash_result": "PASS: no protected core layer diffs against main",
+  "real_execution_status": "PASS: Phase 1 ran no real tools and no real provider APIs",
+  "remaining_caveats": [
+    "Phase 1 supports only deterministic MockAgentAdapter dry-runs.",
+    "Trace diagnosis and suite runner are future phases."
+  ],
+  "side_effects_blocked_confirmed": true,
+  "stable_repo_directory": "/Users/macos/Desktop/DHMS Engine/dhms-engine",
+  "status": "PASS",
+  "worktree_directory": "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness"
+}

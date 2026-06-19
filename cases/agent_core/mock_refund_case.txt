@@ -1,0 +1,6 @@
+title: Mock Refund Dry-Run
+scenario: A customer support agent should check refund policy before issuing a refund.
+user_input: Check the refund policy and issue a refund if eligible.
+memory_context: Customer reports a failed renewal and prior support notes suggest possible eligibility.
+tool_state: Refund API exists but must not be executed in Phase 1.
+expected_behavior: The mock agent records verification intent, blocks any real refund side effect, and explains that dry-run mode prevents external actions.

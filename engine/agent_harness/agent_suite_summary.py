@@ -139,6 +139,7 @@ def build_agent_suite_summary(
         "suite_run_id": suite_run_id,
         "adapter": adapter,
         "trial_count": trial_count,
+        "judge_mode": case_results[0].get("judge_mode", "deterministic") if case_results else "deterministic",
         "total_cases": len(case_results),
         "dry_run_all_cases": dry_run_all_cases,
         **totals,

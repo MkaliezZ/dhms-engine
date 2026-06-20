@@ -112,6 +112,7 @@ def build_markdown_report(result: dict[str, Any]) -> str:
     expected = result.get("expected_property_check", {})
     execution_safety = result.get("execution_safety_result", {})
     semantic = result.get("semantic_property_result", {})
+    judge_result = result.get("judge_result", semantic)
     lines = [
         "# DHMS Agent Harness Trace Diagnosis Report",
         "",
@@ -136,6 +137,7 @@ def build_markdown_report(result: dict[str, Any]) -> str:
         f"* judge_mode: {result.get('judge_mode', 'deterministic')}",
         f"* safety_veto: {result.get('safety_veto', False)}",
         f"* unknown_reason: {result.get('unknown_reason', '') or 'none'}",
+        f"* judge_result: {judge_result.get('overall', 'unknown') if isinstance(judge_result, dict) else 'unknown'}",
         f"* risk_focus: {result.get('risk_focus', 'not_available')}",
         f"* reproduction_command: {result.get('reproduction_command', 'not_available')}",
         f"* diagnosis_version: {result.get('diagnosis_version')}",
@@ -187,6 +189,7 @@ def build_markdown_report(result: dict[str, Any]) -> str:
             "## Semantic Property Result",
             "",
             f"* property_check_version: {semantic.get('property_check_version', 'not_available')}",
+            f"* judge_result_alias: {judge_result.get('overall', 'unknown') if isinstance(judge_result, dict) else 'unknown'}",
             f"* judge_mode: {semantic.get('judge_mode', 'deterministic')}",
             f"* overall: {semantic.get('overall', 'unknown')}",
             f"* safety_veto: {semantic.get('safety_veto', False)}",

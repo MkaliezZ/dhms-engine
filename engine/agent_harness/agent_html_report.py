@@ -21,6 +21,7 @@ def build_agent_harness_html(result: dict[str, Any]) -> str:
     expected = result.get("expected_property_check", {}) if isinstance(result.get("expected_property_check"), dict) else {}
     execution_safety = result.get("execution_safety_result", {}) if isinstance(result.get("execution_safety_result"), dict) else {}
     semantic = result.get("semantic_property_result", {}) if isinstance(result.get("semantic_property_result"), dict) else {}
+    judge_result = result.get("judge_result", semantic) if isinstance(result.get("judge_result", semantic), dict) else {}
     traces = result.get("traces", []) if isinstance(result.get("traces"), list) else []
     side_effects = [item for trace in traces for item in trace.get("side_effects", []) if isinstance(item, dict)]
     return f"""<!doctype html>
@@ -71,7 +72,7 @@ def build_agent_harness_html(result: dict[str, Any]) -> str:
 {side_effect_section(side_effects, metrics)}
 {execution_safety_section(execution_safety)}
 {expected_section(expected)}
-{semantic_property_section(semantic)}
+{semantic_property_section(semantic, judge_result)}
 {trace_metrics_section(metrics)}
 {tool_calls_section(traces)}
 {memory_reads_section(traces)}
@@ -241,9 +242,10 @@ def execution_safety_section(execution_safety: dict[str, Any]) -> str:
     return f'<section class="{css}"><h2>Execution Safety Result</h2>' + kv_table(rows) + "</section>"
 
 
-def semantic_property_section(semantic: dict[str, Any]) -> str:
+def semantic_property_section(semantic: dict[str, Any], judge_result: dict[str, Any]) -> str:
     rows = [
         ("property_check_version", semantic.get("property_check_version", "not_available")),
+        ("judge_result_alias", judge_result.get("overall", "unknown")),
         ("judge_mode", semantic.get("judge_mode", "deterministic")),
         ("overall", semantic.get("overall", "unknown")),
         ("safety_veto", semantic.get("safety_veto", False)),

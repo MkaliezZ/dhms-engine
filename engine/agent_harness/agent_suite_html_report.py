@@ -128,6 +128,7 @@ def executive_summary(summary: dict[str, Any]) -> str:
             [
                 ("total_cases", summary.get("total_cases")),
                 ("total_traces", summary.get("total_traces")),
+                ("judge_mode", summary.get("judge_mode", "see_suite_root")),
                 ("cases_with_errors", summary.get("cases_with_errors")),
                 ("side_effects_attempted", summary.get("total_side_effect_attempts")),
                 ("side_effects_blocked", summary.get("total_side_effects_blocked")),

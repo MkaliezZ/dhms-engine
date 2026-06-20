@@ -228,6 +228,8 @@ Phase 5.93 implementation notes:
 
 * Expected constraints are declarative case metadata.
 * `semantic_property_result` is separate from `execution_safety_result`.
+* `judge_result` is a compatibility alias for `semantic_property_result`; it
+  does not mean an external LLM Judge ran.
 * `expected_property_check` remains as a compatibility view.
 * `observable_response` / `model_response_preview` preserve safe visible model
   response text for deterministic semantic checks.

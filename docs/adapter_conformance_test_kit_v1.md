@@ -55,7 +55,8 @@ The test kit checks:
 * JSON / Markdown / HTML reportability
 
 Phase 5.93 reports may also include `execution_safety_result`,
-`semantic_property_result`, `judge_mode`, `safety_veto`, and `unknown_reason`.
+`semantic_property_result`, `judge_result`, `judge_mode`, `safety_veto`, and
+`unknown_reason`.
 These fields distinguish dry-run execution safety from expected-property
 semantics. Adapter conformance still remains separate from suite validation and
 does not certify production behavior.

@@ -125,6 +125,7 @@ def diagnose_agent_harness_result(result: dict) -> dict:
         "trace_metrics": trace_metrics,
         "execution_safety_result": execution_safety_result,
         "semantic_property_result": semantic_property_result,
+        "judge_result": semantic_property_result,
         "expected_property_check": expected_property_check,
         "judge_mode": semantic_property_result.get("judge_mode", "deterministic"),
         "safety_veto": semantic_property_result.get("safety_veto", False),

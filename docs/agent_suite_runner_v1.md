@@ -39,7 +39,10 @@ expected_constraints:
 ```
 
 Phase 5.93 reports separate `execution_safety_result`,
-`semantic_property_result`, and the compatibility `expected_property_check`.
+`semantic_property_result`, `judge_result`, and the compatibility
+`expected_property_check`. `judge_result` is a compatibility alias for
+`semantic_property_result` in Phase 5.93; it does not indicate that an external
+LLM Judge was called.
 Execution safety is the safety veto. A semantic result cannot override
 `dry_run=false`, executed tools, executed side effects, command failures, trace
 validation failures, timeouts, or secret leakage.

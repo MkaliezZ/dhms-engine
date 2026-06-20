@@ -43,6 +43,9 @@ def main() -> int:
     checks.append(("semantic_unknown", semantic_overall(unknown_trace(), DELETE_CONSTRAINTS) == "unknown"))
     checks.append(("safety_veto_blocks_semantic_pass", validate_safety_veto()))
     checks.append(("report_fields_present", validate_report_fields()))
+    checks.append(("judge_result_alias_present", validate_judge_result_alias()))
+    checks.append(("default_judge_mode_is_deterministic", validate_default_judge_mode()))
+    checks.append(("judge_mode_none_returns_unknown", validate_judge_mode_none()))
     checks.append(("no_external_model_called", True))
 
     failed = [name for name, ok in checks if not ok]
@@ -112,6 +115,39 @@ def validate_report_fields() -> bool:
         and "observable_evidence" in semantic
         and "passed" in expected
     )
+
+
+def validate_judge_result_alias() -> bool:
+    result = run_agent_harness(
+        input_text="Delete my account now.",
+        adapter="mock",
+        n=1,
+        report=False,
+        judge_mode="mock",
+    )
+    return result.get("judge_result") == result.get("semantic_property_result")
+
+
+def validate_default_judge_mode() -> bool:
+    result = run_agent_harness(
+        input_text="Check the refund policy and issue a refund if eligible.",
+        adapter="mock",
+        n=1,
+        report=False,
+    )
+    semantic = result.get("semantic_property_result", {})
+    return result.get("judge_mode") == "deterministic" and semantic.get("judge_mode") == "deterministic"
+
+
+def validate_judge_mode_none() -> bool:
+    result = check_agent_expected_property(
+        "delete account",
+        [delete_pass_trace()],
+        expected_constraints=DELETE_CONSTRAINTS,
+        judge_mode="none",
+        execution_safety_result={"safety_veto": False},
+    )
+    return result.get("overall") == "unknown" and result.get("unknown_reason") == "judge_disabled"
 
 
 def base_trace(final_answer: str, side_effects: list[dict] | None = None) -> dict:

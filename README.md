@@ -2,7 +2,7 @@
 
 DHMS is a perturbation-based LLM memory/context stability tester with diagnosis-driven reports.
 
-> Branch note: `agent-harness-v1` is a development preview branch. The stable public checkpoint remains `main` at Product Diagnosis v1.3. This branch contains Agent Harness v1 Phase 1–4.5 work in progress.
+> Branch note: `agent-harness-v1` is a development preview branch. The stable public checkpoint remains `main` at Product Diagnosis v1.3. This branch contains Agent Harness v1 Phase 1–4.8 work in progress.
 
 ## Agent Harness MVP Quickstart
 
@@ -16,6 +16,7 @@ What works now:
 * command suite
 * diagnosis-enriched reports
 * dry-run side-effect safety checks
+* static local HTML reports
 
 Mock suite:
 
@@ -44,7 +45,8 @@ python3 validation/run_agent_harness_mvp_smoke.py
 Outputs:
 
 * per-case reports under `reports/.../per_case/`
-* aggregate suite reports: `suite_agent_report.json` and `suite_agent_report.md`
+* single-case reports: `agent_harness_report.json`, `agent_harness_report.md`, and `agent_harness_report.html`
+* aggregate suite reports: `suite_agent_report.json`, `suite_agent_report.md`, and `suite_agent_report.html`
 * validation reports: `validation/outputs/agent_harness_mvp_smoke_report.json` and `validation/outputs/agent_harness_mvp_smoke_report.md`
 
 ## What DHMS Tests
@@ -69,6 +71,9 @@ DHMS runs controlled memory and context perturbations, then reports product-faci
 * Phase 3 completed: command adapter / BYOA local agent JSON protocol.
 * Phase 4 completed: agent suite runner and aggregate agent diagnosis reports.
 * Phase 4.5 completed: MVP demo guide, conformance checklist, bad-agent examples, and smoke validation.
+* Phase 4.6 completed: precise command-adapter failure diagnosis labels.
+* Phase 4.7 completed: static local HTML reports.
+* Phase 4.8 completed: preview release readiness check.
 * HTTP adapter is not implemented.
 * Real tool execution is not enabled.
 * Real provider API calls are not run by DHMS.
@@ -115,6 +120,7 @@ python3 cli.py test-suite --suite cases/llm_core --models mock --n 1 --report --
 * [Agent suite runner v1](docs/agent_suite_runner_v1.md)
 * [Agent adapter conformance checklist](docs/agent_adapter_conformance_checklist.md)
 * [Agent Harness preview branch status](docs/agent_harness_preview_branch_status.md)
+* [Agent Harness preview release readiness](docs/agent_harness_preview_release_readiness.md)
 
 ## Architecture / Historical Engine Layer
 

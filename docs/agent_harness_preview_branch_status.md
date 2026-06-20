@@ -12,6 +12,9 @@
 * Phase 3 command adapter
 * Phase 4 suite runner
 * Phase 4.5 demo/conformance polish
+* Phase 4.6 command failure diagnosis labels
+* Phase 4.7 static HTML reports
+* Phase 4.8 preview release readiness check
 
 ## Not Implemented
 
@@ -27,3 +30,9 @@
 * side effects are trace evidence only
 * DHMS does not grant permission to execute external actions
 * no real provider APIs are called by DHMS
+
+## Current Report Formats
+
+* JSON
+* Markdown
+* static local HTML

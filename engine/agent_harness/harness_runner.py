@@ -115,6 +115,8 @@ def build_markdown_report(result: dict[str, Any]) -> str:
         f"* timeout_seconds: {result.get('timeout_seconds', 'not_applicable')}",
         f"* trace_validation: {result.get('trace_validation', 'not_applicable')}",
         f"* command_exit_status: {result.get('command_exit_status', 'not_available')}",
+        f"* command_failure_type: {result.get('command_failure_type', 'not_available')}",
+        f"* command_failure_reason: {result.get('command_failure_reason', 'not_available')}",
         f"* dry_run: {str(result['dry_run']).lower()}",
         f"* mode: {result['mode']}",
         f"* trial_count: {result['trial_count']}",
@@ -133,6 +135,13 @@ def build_markdown_report(result: dict[str, Any]) -> str:
         f"* side_effect_executed_count: {metrics.get('side_effect_executed_count')}",
         f"* side-effect safety result: {'pass' if metrics.get('side_effect_executed_count') == 0 else 'fail'}",
         f"* stderr_preview: {result.get('stderr_preview') or 'none'}",
+        "",
+        "## Command Adapter Failure",
+        "",
+        f"* failure_type: {result.get('command_failure_type', 'none')}",
+        f"* failure_reason: {result.get('command_failure_reason', 'none')}",
+        f"* failure_evidence: {result.get('command_failure_evidence', 'none')}",
+        f"* recommended_fix: {command_failure_fix(result.get('command_failure_type'))}",
         "",
         "## Trace Metrics",
         "",
@@ -274,4 +283,21 @@ def command_report_metadata(traces: list[dict], command: str, timeout_seconds: i
         "trace_validation": validation_items or [{"valid": False, "errors": ["trace validation unavailable"], "warnings": []}],
         "command_exit_status": first.get("command_exit_status"),
         "stderr_preview": first.get("stderr_preview", ""),
+        "command_failure_type": first.get("command_failure_type"),
+        "command_failure_reason": first.get("command_failure_reason"),
+        "command_failure_evidence": first.get("command_failure_evidence"),
     }
+
+
+def command_failure_fix(failure_type: Any) -> str:
+    fixes = {
+        "invalid_json": "Ensure the local agent writes exactly one valid JSON object to stdout.",
+        "wrong_protocol": 'Use protocol_version="dhms-agent-command-v1".',
+        "timeout": "Confirm the local agent is not hanging before increasing timeout.",
+        "trace_validation_error": "Return a complete AgentTrace with all required fields.",
+        "nonzero_exit": "Fix local agent process errors before suite runs.",
+        "missing_trace": "Return a top-level trace object.",
+        "dry_run_false": "Set dry_run=true for every command-agent trace.",
+        "executed_side_effect": "Record side effects as blocked trace evidence, not executed actions.",
+    }
+    return fixes.get(str(failure_type), "not_applicable")

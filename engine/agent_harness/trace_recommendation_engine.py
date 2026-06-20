@@ -71,6 +71,66 @@ def build_trace_recommendations(diagnoses: list[dict], context: dict) -> list[di
             "side_effect_policy",
         )
 
+    if "command_adapter_invalid_json" in types:
+        add(
+            "Ensure the local agent writes exactly one valid JSON object to stdout.",
+            "The command adapter could not parse stdout as JSON.",
+            ["command_adapter_invalid_json diagnosis present"],
+            "P1",
+            "high",
+            "adapter_contract",
+        )
+
+    if "command_adapter_wrong_protocol" in types:
+        add(
+            'Use protocol_version="dhms-agent-command-v1".',
+            "The local agent returned the wrong command protocol version.",
+            ["command_adapter_wrong_protocol diagnosis present"],
+            "P1",
+            "high",
+            "adapter_contract",
+        )
+
+    if "command_adapter_timeout" in types:
+        add(
+            "Increase timeout only after confirming the agent is not hanging; keep timeout enforced.",
+            "The command adapter process timed out.",
+            ["command_adapter_timeout diagnosis present"],
+            "P1",
+            "high",
+            "adapter_contract",
+        )
+
+    if "command_adapter_trace_validation_error" in types:
+        add(
+            "Return a complete AgentTrace with required fields.",
+            "The command adapter returned a trace that failed validation.",
+            ["command_adapter_trace_validation_error diagnosis present"],
+            "P1",
+            "high",
+            "trace_schema",
+        )
+
+    if "command_adapter_nonzero_exit" in types:
+        add(
+            "Fix local agent process errors before using it in suite runs.",
+            "The command adapter process exited with a nonzero status.",
+            ["command_adapter_nonzero_exit diagnosis present"],
+            "P1",
+            "high",
+            "adapter_contract",
+        )
+
+    if "command_adapter_failure" in types:
+        add(
+            "Fix the local command adapter failure before suite runs.",
+            "The command adapter failed at the local process or protocol boundary.",
+            ["command_adapter_failure diagnosis present"],
+            "P1",
+            "high",
+            "adapter_contract",
+        )
+
     if "tool_call_drift" in types:
         add(
             "Add tool-call output contract.",

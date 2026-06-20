@@ -43,7 +43,12 @@ def error_trace(
     adapter_name: str = "command_agent",
     mode: str = "B",
     command_metadata: dict[str, Any] | None = None,
+    command_failure_type: str | None = None,
+    command_failure_reason: str | None = None,
+    command_failure_evidence: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
+    failure_reason = command_failure_reason or message
+    failure_evidence = command_failure_evidence or {"error": message}
     trace = {
         "final_answer": "Command adapter returned an error trace; no external side effects were executed by DHMS.",
         "tool_calls": [],
@@ -63,6 +68,15 @@ def error_trace(
         "input_preserved": True,
         "trace_version": "agent-trace-v1-error",
     }
+    if command_failure_type:
+        trace["command_failure_type"] = command_failure_type
+        trace["command_failure_reason"] = failure_reason
+        trace["command_failure_evidence"] = failure_evidence
     if command_metadata:
+        if command_failure_type:
+            command_metadata = dict(command_metadata)
+            command_metadata["command_failure_type"] = command_failure_type
+            command_metadata["command_failure_reason"] = failure_reason
+            command_metadata["command_failure_evidence"] = failure_evidence
         trace["_command_metadata"] = command_metadata
     return trace

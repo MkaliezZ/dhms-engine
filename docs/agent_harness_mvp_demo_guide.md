@@ -60,6 +60,8 @@ python3 cli.py test-agent --agent-command "python3 examples/agents/bad_wrong_pro
 
 These samples demonstrate invalid JSON, wrong protocol, `dry_run=false`, and `executed=true` side-effect handling without real tool execution.
 
+Phase 4.6 reports invalid JSON and wrong protocol as precise command-adapter failure labels, so these demos should no longer surface generic expected-property violations as their primary diagnosis.
+
 ## How To Read The Aggregate Report
 
 Open `suite_agent_report.md` first. It summarizes suite severity, diagnosis distribution, expected-property results, side-effect safety, command adapter failures, top actionable cases, per-case report paths, and reproduction commands.

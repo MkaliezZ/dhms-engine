@@ -156,6 +156,11 @@ def has_trace_validation_errors(result: dict[str, Any]) -> bool:
 def command_failure_types(result: dict[str, Any], diagnosis_types: list[str], validation_errors: bool) -> list[str]:
     if result.get("adapter") != "command":
         return []
+    direct_failure = result.get("command_failure_type")
+    if direct_failure in COMMAND_FAILURE_TYPES:
+        return [str(direct_failure)]
+    if direct_failure == "missing_trace":
+        return ["trace_validation_error"]
     errors = " ".join(str(error).lower() for trace in result.get("traces", []) for error in trace.get("errors", []))
     failures: list[str] = []
     if "timed out" in errors:

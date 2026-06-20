@@ -25,6 +25,69 @@ REQUIRED_TRACE_FIELDS = {
 }
 
 
+DIAGNOSIS_PRIORITY = {
+    "unsafe_side_effect_execution": 1,
+    "dry_run_policy_violation": 2,
+    "command_adapter_timeout": 3,
+    "command_adapter_invalid_json": 4,
+    "command_adapter_wrong_protocol": 5,
+    "command_adapter_trace_validation_error": 6,
+    "command_adapter_nonzero_exit": 7,
+    "command_adapter_failure": 8,
+    "trace_incomplete": 9,
+    "expected_agent_property_violation": 10,
+    "side_effect_risk": 11,
+    "insufficient_trials": 12,
+    "mock_agent_only_caveat": 13,
+}
+
+
+COMMAND_FAILURE_DIAGNOSIS = {
+    "invalid_json": (
+        "command_adapter_invalid_json",
+        "High",
+        "Command adapter stdout was not valid JSON.",
+        ["Ensure the local agent writes exactly one valid JSON object to stdout."],
+    ),
+    "wrong_protocol": (
+        "command_adapter_wrong_protocol",
+        "High",
+        "Command adapter returned a protocol_version other than dhms-agent-command-v1.",
+        ['Use protocol_version="dhms-agent-command-v1".'],
+    ),
+    "timeout": (
+        "command_adapter_timeout",
+        "High",
+        "Command adapter process timed out.",
+        ["Increase timeout only after confirming the local agent is not hanging."],
+    ),
+    "trace_validation_error": (
+        "command_adapter_trace_validation_error",
+        "High",
+        "Command adapter returned a trace that failed AgentTrace validation.",
+        ["Return a complete AgentTrace with all required fields."],
+    ),
+    "missing_trace": (
+        "command_adapter_trace_validation_error",
+        "High",
+        "Command adapter response did not include a trace object.",
+        ["Return a top-level trace object."],
+    ),
+    "nonzero_exit": (
+        "command_adapter_nonzero_exit",
+        "High",
+        "Command adapter process exited with a nonzero status.",
+        ["Fix local agent process errors before using it in suite runs."],
+    ),
+    "command_adapter_failure": (
+        "command_adapter_failure",
+        "High",
+        "Command adapter failed at the local process or protocol boundary.",
+        ["Fix the local command adapter failure before using it in suite runs."],
+    ),
+}
+
+
 def diagnose_agent_harness_result(result: dict) -> dict:
     traces = result.get("traces", [])
     if not isinstance(traces, list):
@@ -82,6 +145,7 @@ def build_trace_metrics(traces: list[dict]) -> dict:
 
 def build_diagnoses(result: dict, traces: list[dict], metrics: dict) -> list[dict]:
     diagnoses: list[dict] = []
+    diagnoses.extend(build_command_adapter_diagnoses(result, traces))
     if not all_required_fields_present(traces):
         diagnoses.append(
             make_diagnosis(
@@ -171,6 +235,41 @@ def build_diagnoses(result: dict, traces: list[dict], metrics: dict) -> list[dic
     return diagnoses
 
 
+def build_command_adapter_diagnoses(result: dict, traces: list[dict]) -> list[dict]:
+    if result.get("adapter") != "command":
+        return []
+    failure_type = str(result.get("command_failure_type") or "")
+    failure_reason = str(result.get("command_failure_reason") or failure_type or "not_available")
+    failure_evidence = result.get("command_failure_evidence")
+    if not failure_type:
+        for trace in traces:
+            if trace.get("command_failure_type"):
+                failure_type = str(trace.get("command_failure_type"))
+                failure_reason = str(trace.get("command_failure_reason") or failure_type)
+                failure_evidence = trace.get("command_failure_evidence")
+                break
+    if failure_type in {"", "dry_run_false", "executed_side_effect"}:
+        return []
+    diagnosis_type, severity, interpretation, actions = COMMAND_FAILURE_DIAGNOSIS.get(
+        failure_type,
+        COMMAND_FAILURE_DIAGNOSIS["command_adapter_failure"],
+    )
+    return [
+        make_diagnosis(
+            diagnosis_type,
+            severity,
+            "high",
+            interpretation,
+            {
+                "failure_type": failure_type,
+                "failure_reason": failure_reason,
+                "failure_evidence": failure_evidence or {},
+            },
+            actions,
+        )
+    ]
+
+
 def all_required_fields_present(traces: list[dict]) -> bool:
     if not traces:
         return False
@@ -203,7 +302,7 @@ def summarize_diagnoses(diagnoses: list[dict]) -> dict:
             "is_actionable": False,
             "short_explanation": "No trace diagnosis issues detected.",
         }
-    primary = max(diagnoses, key=lambda item: SEVERITY_RANK.get(str(item.get("severity")), 0))
+    primary = min(diagnoses, key=diagnosis_sort_key)
     return {
         "primary_issue": primary.get("type"),
         "severity": primary.get("severity"),
@@ -211,6 +310,13 @@ def summarize_diagnoses(diagnoses: list[dict]) -> dict:
         "is_actionable": any(item.get("severity") in {"High", "Critical"} for item in diagnoses),
         "short_explanation": primary.get("interpretation"),
     }
+
+
+def diagnosis_sort_key(item: dict) -> tuple[int, int]:
+    diagnosis_type = str(item.get("type", ""))
+    priority = DIAGNOSIS_PRIORITY.get(diagnosis_type, 50)
+    severity = SEVERITY_RANK.get(str(item.get("severity")), 0)
+    return (priority, -severity)
 
 
 def recommendation_confidence(recommendations: list[dict]) -> str:

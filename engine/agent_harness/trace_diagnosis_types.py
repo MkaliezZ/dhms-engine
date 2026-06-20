@@ -19,6 +19,12 @@ TRACE_DIAGNOSIS_TYPES = {
     "insufficient_trials": "n is too low for strong trace stability claims.",
     "expected_agent_property_violation": "Agent trace violates the case expected behavior.",
     "mock_agent_only_caveat": "Phase 2 uses deterministic mock agent only; no real agent reliability claim.",
+    "command_adapter_failure": "Command adapter failed at the local process or protocol boundary.",
+    "command_adapter_invalid_json": "Command adapter stdout was not valid JSON.",
+    "command_adapter_wrong_protocol": "Command adapter returned the wrong protocol version.",
+    "command_adapter_timeout": "Command adapter process timed out.",
+    "command_adapter_nonzero_exit": "Command adapter process exited with a nonzero status.",
+    "command_adapter_trace_validation_error": "Command adapter returned an invalid AgentTrace.",
 }
 
 

@@ -33,9 +33,21 @@ class CommandAgentAdapter:
         try:
             args = shlex.split(self.command)
         except ValueError as exc:
-            return error_trace(f"invalid command: {exc}", mode=request.mode, command_metadata=metadata)
+            return error_trace(
+                f"invalid command: {exc}",
+                mode=request.mode,
+                command_metadata=metadata,
+                command_failure_type="command_adapter_failure",
+                command_failure_reason="invalid_command",
+            )
         if not args:
-            return error_trace("empty command", mode=request.mode, command_metadata=metadata)
+            return error_trace(
+                "empty command",
+                mode=request.mode,
+                command_metadata=metadata,
+                command_failure_type="command_adapter_failure",
+                command_failure_reason="empty_command",
+            )
 
         payload = build_protocol_request(request)
         try:
@@ -51,9 +63,23 @@ class CommandAgentAdapter:
             )
         except subprocess.TimeoutExpired as exc:
             metadata["stderr_preview"] = stderr_preview(exc.stderr or "")
-            return error_trace("command timed out", mode=request.mode, command_metadata=metadata)
+            return error_trace(
+                "command timed out",
+                mode=request.mode,
+                command_metadata=metadata,
+                command_failure_type="timeout",
+                command_failure_reason="timeout",
+                command_failure_evidence={"timeout_seconds": self.timeout_seconds},
+            )
         except OSError as exc:
-            return error_trace(f"command launch failed: {type(exc).__name__}", mode=request.mode, command_metadata=metadata)
+            return error_trace(
+                f"command launch failed: {type(exc).__name__}",
+                mode=request.mode,
+                command_metadata=metadata,
+                command_failure_type="command_adapter_failure",
+                command_failure_reason="launch_failed",
+                command_failure_evidence={"exception_type": type(exc).__name__},
+            )
 
         metadata["command_exit_status"] = completed.returncode
         metadata["stderr_preview"] = stderr_preview(completed.stderr or "")
@@ -62,22 +88,52 @@ class CommandAgentAdapter:
                 f"command exited with status {completed.returncode}",
                 mode=request.mode,
                 command_metadata=metadata,
+                command_failure_type="nonzero_exit",
+                command_failure_reason="nonzero_exit",
+                command_failure_evidence={"command_exit_status": completed.returncode},
             )
 
         try:
             response = json.loads(completed.stdout)
         except json.JSONDecodeError:
-            return error_trace("command stdout was not valid JSON", mode=request.mode, command_metadata=metadata)
+            return error_trace(
+                "command stdout was not valid JSON",
+                mode=request.mode,
+                command_metadata=metadata,
+                command_failure_type="invalid_json",
+                command_failure_reason="invalid_json",
+            )
         if response.get("protocol_version") != DHMS_AGENT_PROTOCOL_VERSION:
-            return error_trace("wrong protocol_version", mode=request.mode, command_metadata=metadata)
+            return error_trace(
+                "wrong protocol_version",
+                mode=request.mode,
+                command_metadata=metadata,
+                command_failure_type="wrong_protocol",
+                command_failure_reason="wrong_protocol",
+                command_failure_evidence={"expected_protocol_version": DHMS_AGENT_PROTOCOL_VERSION},
+            )
         trace = response.get("trace")
         if not isinstance(trace, dict):
-            return error_trace("response missing trace object", mode=request.mode, command_metadata=metadata)
+            return error_trace(
+                "response missing trace object",
+                mode=request.mode,
+                command_metadata=metadata,
+                command_failure_type="missing_trace",
+                command_failure_reason="missing_trace",
+            )
 
         trace.setdefault("mode", request.mode)
         validation = validate_agent_trace(trace)
+        if not validation["valid"]:
+            metadata["command_failure_type"] = command_failure_type_from_validation(validation)
+            metadata["command_failure_reason"] = metadata["command_failure_type"]
+            metadata["command_failure_evidence"] = {"trace_validation_errors": validation["errors"]}
         trace["_command_metadata"] = metadata
         trace["_trace_validation"] = validation
+        if not validation["valid"]:
+            trace["command_failure_type"] = metadata["command_failure_type"]
+            trace["command_failure_reason"] = metadata["command_failure_reason"]
+            trace["command_failure_evidence"] = metadata["command_failure_evidence"]
         if not validation["valid"]:
             trace.setdefault("errors", [])
             trace["errors"] = list(trace.get("errors", [])) + validation["errors"]
@@ -87,3 +143,12 @@ class CommandAgentAdapter:
 def command_metadata_from_trace(trace: dict[str, Any]) -> dict[str, Any]:
     meta = trace.get("_command_metadata")
     return meta if isinstance(meta, dict) else {}
+
+
+def command_failure_type_from_validation(validation: dict[str, Any]) -> str:
+    errors = " ".join(str(error).lower() for error in validation.get("errors", []))
+    if "dry_run" in errors:
+        return "dry_run_false"
+    if "executed" in errors:
+        return "executed_side_effect"
+    return "trace_validation_error"

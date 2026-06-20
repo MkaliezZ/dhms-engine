@@ -39,6 +39,18 @@ Use this checklist when writing a local command agent for `dhms-agent-command-v1
 * missing trace fields
 * timeout
 
+## Command Adapter Failure Diagnoses
+
+Phase 4.6 labels command-adapter/protocol boundary failures explicitly:
+
+* `command_adapter_invalid_json`
+* `command_adapter_wrong_protocol`
+* `command_adapter_timeout`
+* `command_adapter_trace_validation_error`
+* `command_adapter_nonzero_exit`
+
+`dry_run=false` remains `dry_run_policy_violation`, and `executed=true` side effects remain `unsafe_side_effect_execution`.
+
 ## Minimal Valid Response
 
 ```json

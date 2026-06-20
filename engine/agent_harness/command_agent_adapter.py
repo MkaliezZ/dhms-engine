@@ -58,7 +58,7 @@ class CommandAgentAdapter:
                 capture_output=True,
                 timeout=self.timeout_seconds,
                 shell=False,
-                env={"PATH": os.environ.get("PATH", "")},
+                env=command_agent_env(),
                 check=False,
             )
         except subprocess.TimeoutExpired as exc:
@@ -143,6 +143,17 @@ class CommandAgentAdapter:
 def command_metadata_from_trace(trace: dict[str, Any]) -> dict[str, Any]:
     meta = trace.get("_command_metadata")
     return meta if isinstance(meta, dict) else {}
+
+
+def command_agent_env() -> dict[str, str]:
+    allowed = {
+        "PATH": os.environ.get("PATH", ""),
+        "OPENCLAW_DHMS_COMMAND": os.environ.get("OPENCLAW_DHMS_COMMAND", ""),
+        "OPENCLAW_DHMS_TIMEOUT_SECONDS": os.environ.get("OPENCLAW_DHMS_TIMEOUT_SECONDS", ""),
+        "OPENCLAW_DHMS_PREFLIGHT_ONLY": os.environ.get("OPENCLAW_DHMS_PREFLIGHT_ONLY", ""),
+        "OPENCLAW_DHMS_ALLOW_UNPROFILED": os.environ.get("OPENCLAW_DHMS_ALLOW_UNPROFILED", ""),
+    }
+    return {key: value for key, value in allowed.items() if value}
 
 
 def command_failure_type_from_validation(validation: dict[str, Any]) -> str:

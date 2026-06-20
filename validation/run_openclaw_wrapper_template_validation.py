@@ -17,6 +17,7 @@ REPORT_JSON = OUTPUT_DIR / "openclaw_wrapper_template_validation_report.json"
 REPORT_MD = OUTPUT_DIR / "openclaw_wrapper_template_validation_report.md"
 WRAPPER = ROOT / "examples" / "agents" / "openclaw_deepseek_v4_wrapper.py"
 DOCS = ROOT / "docs" / "openclaw_deepseek_v4_wrapper.md"
+COMMAND_ADAPTER = ROOT / "engine" / "agent_harness" / "command_agent_adapter.py"
 PREVIEW_TAG = "v0.2.0-agent-harness-preview"
 PREVIEW_COMMIT = "c65f8a4266eadfcf9ac61f77c88470c8c282469e"
 PROTECTED_PATHS = [
@@ -40,6 +41,9 @@ MISSING_COMMAND_REQUEST = {
         "metadata": {},
     },
 }
+SAFE_OPENCLAW_COMMAND = "/Users/macos/.npm-global/bin/openclaw --profile dhms-pilot agent --json --model deepseek/deepseek-v4-flash"
+UNSAFE_DELIVER_COMMAND = SAFE_OPENCLAW_COMMAND + " --deliver"
+MISSING_PROFILE_COMMAND = "/Users/macos/.npm-global/bin/openclaw agent --json --model deepseek/deepseek-v4-flash"
 SECRET_PATTERNS = (
     re.compile(r"sk-[A-Za-z0-9_-]{12,}"),
     re.compile(r"\b[A-Z0-9_]*(?:API_KEY|SECRET|TOKEN)\s*=\s*[^\s\"'`]+"),
@@ -53,9 +57,16 @@ def main() -> int:
     missing_payload = parse_json(command_named(commands, "missing_command_stdin").get("stdout", ""))
     missing_trace = missing_payload.get("trace") if isinstance(missing_payload.get("trace"), dict) else {}
     missing_report = load_json(ROOT / "reports" / "adapter_conformance" / "openclaw_deepseek_v4_missing_command" / "adapter_conformance_report.json")
-    sample_report = load_json(ROOT / "reports" / "adapter_conformance" / "sample_json_agent_phase55_check" / "adapter_conformance_report.json")
+    preflight_payload = parse_json(command_named(commands, "preflight_stdin").get("stdout", ""))
+    preflight_trace = preflight_payload.get("trace") if isinstance(preflight_payload.get("trace"), dict) else {}
+    unsafe_payload = parse_json(command_named(commands, "unsafe_deliver_stdin").get("stdout", ""))
+    unsafe_trace = unsafe_payload.get("trace") if isinstance(unsafe_payload.get("trace"), dict) else {}
+    missing_profile_payload = parse_json(command_named(commands, "missing_profile_stdin").get("stdout", ""))
+    missing_profile_trace = missing_profile_payload.get("trace") if isinstance(missing_profile_payload.get("trace"), dict) else {}
+    preflight_report = load_json(ROOT / "reports" / "adapter_conformance" / "openclaw_deepseek_v4_preflight" / "adapter_conformance_report.json")
+    sample_report = load_json(ROOT / "reports" / "adapter_conformance" / "sample_json_agent_phase56_check" / "adapter_conformance_report.json")
     protected_changes = git_output(["diff", "--name-only", "main", "--", *PROTECTED_PATHS]).splitlines()
-    key_hits = secret_scan([WRAPPER, DOCS, Path(__file__), REPORT_JSON, REPORT_MD])
+    key_hits = secret_scan([WRAPPER, DOCS, COMMAND_ADAPTER, Path(__file__), REPORT_JSON, REPORT_MD])
     source = WRAPPER.read_text(encoding="utf-8") if WRAPPER.exists() else ""
 
     report: dict[str, Any] = {
@@ -75,6 +86,25 @@ def main() -> int:
         "missing_command_error_type_present": status_bool(has_error_type(missing_trace, "missing_openclaw_command")),
         "missing_command_dry_run_true": status_bool(missing_trace.get("dry_run") is True),
         "missing_command_no_executed_true": status_bool(not contains_executed_true(missing_trace)),
+        "preflight_stdin_status": status_bool(
+            command_ok(commands, "preflight_stdin")
+            and preflight_payload.get("protocol_version") == "dhms-agent-command-v1"
+            and preflight_trace.get("final_answer") == "OpenClaw DHMS wrapper preflight completed."
+            and preflight_trace.get("dry_run") is True
+            and not contains_executed_true(preflight_trace)
+        ),
+        "unsafe_command_rejection_status": status_bool(
+            command_ok(commands, "unsafe_deliver_stdin")
+            and has_error_type(unsafe_trace, "unsafe_openclaw_command")
+            and unsafe_trace.get("dry_run") is True
+            and not contains_executed_true(unsafe_trace)
+        ),
+        "missing_profile_rejection_status": status_bool(
+            command_ok(commands, "missing_profile_stdin")
+            and has_error_type(missing_profile_trace, "missing_isolated_profile")
+            and missing_profile_trace.get("dry_run") is True
+            and not contains_executed_true(missing_profile_trace)
+        ),
         "forbidden_source_patterns": forbidden_source_patterns(source),
         "phase5_missing_command_conformance": {
             "command_status": command_status(commands, "conformance_missing_command"),
@@ -82,6 +112,16 @@ def main() -> int:
             "blocking_failures": missing_report.get("blocking_failures", []),
             "safe_failure_expected": True,
         },
+        "phase5_preflight_conformance": {
+            "command_status": command_status(commands, "conformance_preflight"),
+            "overall_status": preflight_report.get("overall_status", "missing"),
+            "readiness_score": preflight_report.get("adapter_readiness_score", 0),
+            "blocking_failures": preflight_report.get("blocking_failures", []),
+        },
+        "phase5_preflight_conformance_status": status_bool(
+            command_ok(commands, "conformance_preflight")
+            and preflight_report.get("overall_status") in {"PASS", "WARN"}
+        ),
         "sample_json_agent_conformance_status": status_bool(
             command_ok(commands, "conformance_sample")
             and sample_report.get("overall_status") == "PASS"
@@ -106,7 +146,10 @@ def main() -> int:
             "missing_command_conformance_json": "reports/adapter_conformance/openclaw_deepseek_v4_missing_command/adapter_conformance_report.json",
             "missing_command_conformance_markdown": "reports/adapter_conformance/openclaw_deepseek_v4_missing_command/adapter_conformance_report.md",
             "missing_command_conformance_html": "reports/adapter_conformance/openclaw_deepseek_v4_missing_command/adapter_conformance_report.html",
-            "sample_conformance_json": "reports/adapter_conformance/sample_json_agent_phase55_check/adapter_conformance_report.json",
+            "preflight_conformance_json": "reports/adapter_conformance/openclaw_deepseek_v4_preflight/adapter_conformance_report.json",
+            "preflight_conformance_markdown": "reports/adapter_conformance/openclaw_deepseek_v4_preflight/adapter_conformance_report.md",
+            "preflight_conformance_html": "reports/adapter_conformance/openclaw_deepseek_v4_preflight/adapter_conformance_report.html",
+            "sample_conformance_json": "reports/adapter_conformance/sample_json_agent_phase56_check/adapter_conformance_report.json",
         },
     }
     report["status"] = "PASS" if all_checks_pass(report) else "FAIL"
@@ -120,6 +163,9 @@ def run_commands() -> list[dict[str, Any]]:
     specs = {
         "py_compile_wrapper": ["python3", "-m", "py_compile", str(WRAPPER.relative_to(ROOT))],
         "missing_command_stdin": ["python3", str(WRAPPER.relative_to(ROOT))],
+        "preflight_stdin": ["python3", str(WRAPPER.relative_to(ROOT))],
+        "unsafe_deliver_stdin": ["python3", str(WRAPPER.relative_to(ROOT))],
+        "missing_profile_stdin": ["python3", str(WRAPPER.relative_to(ROOT))],
         "conformance_missing_command": [
             "python3",
             "cli.py",
@@ -130,6 +176,16 @@ def run_commands() -> list[dict[str, Any]]:
             "--output",
             "reports/adapter_conformance/openclaw_deepseek_v4_missing_command",
         ],
+        "conformance_preflight": [
+            "python3",
+            "cli.py",
+            "check-agent-adapter",
+            "--agent-command",
+            "python3 examples/agents/openclaw_deepseek_v4_wrapper.py",
+            "--report",
+            "--output",
+            "reports/adapter_conformance/openclaw_deepseek_v4_preflight",
+        ],
         "conformance_sample": [
             "python3",
             "cli.py",
@@ -138,7 +194,7 @@ def run_commands() -> list[dict[str, Any]]:
             "python3 examples/agents/sample_json_agent.py",
             "--report",
             "--output",
-            "reports/adapter_conformance/sample_json_agent_phase55_check",
+            "reports/adapter_conformance/sample_json_agent_phase56_check",
         ],
     }
     return [run_command(name, command) for name, command in specs.items()]
@@ -147,7 +203,16 @@ def run_commands() -> list[dict[str, Any]]:
 def run_command(name: str, command: list[str]) -> dict[str, Any]:
     env = os.environ.copy()
     env.pop("OPENCLAW_DHMS_COMMAND", None)
-    input_text = json.dumps(MISSING_COMMAND_REQUEST) if name == "missing_command_stdin" else None
+    env.pop("OPENCLAW_DHMS_PREFLIGHT_ONLY", None)
+    env.pop("OPENCLAW_DHMS_ALLOW_UNPROFILED", None)
+    if name in {"preflight_stdin", "conformance_preflight"}:
+        env["OPENCLAW_DHMS_COMMAND"] = SAFE_OPENCLAW_COMMAND
+        env["OPENCLAW_DHMS_PREFLIGHT_ONLY"] = "1"
+    elif name == "unsafe_deliver_stdin":
+        env["OPENCLAW_DHMS_COMMAND"] = UNSAFE_DELIVER_COMMAND
+    elif name == "missing_profile_stdin":
+        env["OPENCLAW_DHMS_COMMAND"] = MISSING_PROFILE_COMMAND
+    input_text = json.dumps(MISSING_COMMAND_REQUEST) if name.endswith("_stdin") else None
     completed = subprocess.run(
         command,
         cwd=ROOT,
@@ -270,6 +335,10 @@ def build_markdown(report: dict[str, Any]) -> str:
         f"- Py compile: {report['py_compile_status']}",
         f"- Missing-command stdin test: {report['missing_command_stdin_status']}",
         f"- Missing-command conformance status: {report['phase5_missing_command_conformance']['overall_status']}",
+        f"- Preflight stdin test: {report['preflight_stdin_status']}",
+        f"- Unsafe command rejection: {report['unsafe_command_rejection_status']}",
+        f"- Missing profile rejection: {report['missing_profile_rejection_status']}",
+        f"- Preflight conformance status: {report['phase5_preflight_conformance']['overall_status']}",
         f"- Sample conformance: {report['sample_json_agent_conformance_status']}",
         f"- Preview tag unchanged: {report['preview_tag_status']}",
         f"- Protected core layers unchanged: {report['protected_core_layer_hash_result']['status']}",

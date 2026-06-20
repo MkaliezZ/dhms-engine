@@ -9,7 +9,10 @@
     "missing_command_conformance_html": "reports/adapter_conformance/openclaw_deepseek_v4_missing_command/adapter_conformance_report.html",
     "missing_command_conformance_json": "reports/adapter_conformance/openclaw_deepseek_v4_missing_command/adapter_conformance_report.json",
     "missing_command_conformance_markdown": "reports/adapter_conformance/openclaw_deepseek_v4_missing_command/adapter_conformance_report.md",
-    "sample_conformance_json": "reports/adapter_conformance/sample_json_agent_phase55_check/adapter_conformance_report.json",
+    "preflight_conformance_html": "reports/adapter_conformance/openclaw_deepseek_v4_preflight/adapter_conformance_report.html",
+    "preflight_conformance_json": "reports/adapter_conformance/openclaw_deepseek_v4_preflight/adapter_conformance_report.json",
+    "preflight_conformance_markdown": "reports/adapter_conformance/openclaw_deepseek_v4_preflight/adapter_conformance_report.md",
+    "sample_conformance_json": "reports/adapter_conformance/sample_json_agent_phase56_check/adapter_conformance_report.json",
     "validation_json": "validation/outputs/openclaw_wrapper_template_validation_report.json",
     "validation_markdown": "validation/outputs/openclaw_wrapper_template_validation_report.md"
   },
@@ -21,6 +24,7 @@
   "missing_command_error_type_present": "PASS",
   "missing_command_no_executed_true": "PASS",
   "missing_command_stdin_status": "PASS",
+  "missing_profile_rejection_status": "PASS",
   "no_deepseek_api_called": "PASS",
   "no_real_external_tool_executed": "PASS",
   "no_real_openclaw_run": "PASS",
@@ -32,6 +36,14 @@
     "overall_status": "FAIL",
     "safe_failure_expected": true
   },
+  "phase5_preflight_conformance": {
+    "blocking_failures": [],
+    "command_status": "PASS",
+    "overall_status": "PASS",
+    "readiness_score": 100
+  },
+  "phase5_preflight_conformance_status": "PASS",
+  "preflight_stdin_status": "PASS",
   "preview_tag_status": "PASS",
   "protected_core_layer_hash_result": {
     "changed_paths": [],
@@ -41,5 +53,6 @@
   "sample_json_agent_conformance_status": "PASS",
   "sample_json_agent_readiness_score": 100,
   "status": "PASS",
+  "unsafe_command_rejection_status": "PASS",
   "wrapper_file_exists": "PASS"
 }

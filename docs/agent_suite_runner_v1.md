@@ -133,3 +133,7 @@ Phase 5.94 single real semantic probe evidence is recorded in
 ran one OpenClaw + DeepSeek wrapper case only, did not use a real LLM Judge, and
 reported an honest semantic `unknown` when observable response signal was not
 preserved.
+
+Phase 5.94R added local wrapper extraction fixtures only. It did not run another
+real OpenClaw case. The next live check should remain an exactly-one real
+extraction probe after a fresh safety recheck.

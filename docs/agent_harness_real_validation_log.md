@@ -270,6 +270,50 @@ without a preserved `observable_response` or `model_response_preview`. This is
 a useful Phase 5.94 outcome: execution safety remained clean, the structured
 semantic layer reported an honest unknown, and no external LLM Judge was used.
 
+## Phase 5.94R Wrapper Extraction Diagnosis
+
+Phase 5.94R did not run OpenClaw, DeepSeek, a real LLM Judge, smoke,
+conformance, or another real suite case. It reviewed the Phase 5.94 reports and
+added local fixture validation for wrapper extraction.
+
+Diagnosis:
+
+* `openclaw_output_wrapped` is emitted in
+  `examples/agents/openclaw_deepseek_v4_wrapper.py` when OpenClaw output does
+  not provide the complete DHMS trace arrays: `tool_calls`, `memory_reads`,
+  `state_transitions`, and `side_effects`.
+* Plain text output also receives `openclaw_output_wrapped`, but Phase 5.94 did
+  not follow that path because the wrapper output was valid DHMS JSON.
+* The Phase 5.94 report preserved the command adapter `stdout_preview`, but
+  that preview is the wrapper response sent to DHMS, not the original OpenClaw
+  stdout. Therefore it was not enough to determine the real OpenClaw JSON
+  envelope shape.
+* The wrapper safely preserved no observable semantic response in Phase 5.94
+  because the normalized wrapper trace contained only the generic final answer.
+
+Local extraction polish:
+
+* The wrapper now unwraps sanitized `trace` envelopes.
+* It also checks nested `result`, `response`, `output`, and `data` objects for
+  safe visible response fields.
+* It can extract visible text from `final_answer`, `answer`,
+  `observable_response`, `model_response_preview`, `raw_response_preview`,
+  `content`, `text`, string `message`, `message.content`, and
+  `choices[0].message.content`.
+* It still rejects secret-like output before preserving a preview.
+* It does not use hidden reasoning or chain-of-thought fields.
+
+Validation:
+
+* `validation/run_openclaw_wrapper_extraction_validation.py` passed.
+* Fixture coverage includes top-level final answer, nested DHMS trace envelope,
+  nested message content, choices message content, secret rejection, and hidden
+  CoT non-use.
+
+Next real gate should be an exactly-one real extraction probe after a fresh
+safety recheck. It should not be a full suite, should not enable a real LLM
+Judge, and should not start Phase 6 HTTP Adapter.
+
 ## Limitations
 
 This evidence does not prove real-agent reliability. It is intentionally narrow:

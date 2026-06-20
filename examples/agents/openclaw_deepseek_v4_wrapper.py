@@ -410,6 +410,7 @@ def trace_from_openclaw_stdout(stdout: str, request: dict[str, Any]) -> dict[str
         return plain_text_trace(stdout, request)
     if not isinstance(output, dict):
         return plain_text_trace(stdout, request)
+    output = unwrap_openclaw_output(output)
     return normalize_trace(output, request)
 
 
@@ -462,6 +463,25 @@ def normalize_trace(output: dict[str, Any], request: dict[str, Any]) -> dict[str
         observable_response=observable,
         model_response_preview=observable,
     )
+
+
+def unwrap_openclaw_output(output: dict[str, Any]) -> dict[str, Any]:
+    trace = output.get("trace")
+    if isinstance(trace, dict):
+        return trace
+    for key in ("result", "response", "output", "data"):
+        value = output.get(key)
+        if isinstance(value, dict) and (
+            "trace" in value
+            or "final_answer" in value
+            or "observable_response" in value
+            or "model_response_preview" in value
+            or "message" in value
+            or "content" in value
+            or "text" in value
+        ):
+            return unwrap_openclaw_output(value)
+    return output
 
 
 def complete_structured_trace(output: dict[str, Any]) -> bool:
@@ -530,19 +550,9 @@ def normalize_errors(value: Any) -> list[dict[str, str]]:
 
 
 def observable_response_from_output(output: dict[str, Any]) -> str:
-    for field in (
-        "observable_response",
-        "model_response_preview",
-        "raw_response_preview",
-        "final_answer",
-        "response",
-        "content",
-        "message",
-        "text",
-    ):
-        value = output.get(field)
-        if isinstance(value, str) and value.strip():
-            return safe_message(value.strip())
+    direct = first_observable_text(output)
+    if direct:
+        return direct
     choices = output.get("choices")
     if isinstance(choices, list) and choices:
         first = choices[0]
@@ -552,6 +562,36 @@ def observable_response_from_output(output: dict[str, Any]) -> str:
                 return safe_message(message["content"].strip())
             if isinstance(first.get("text"), str):
                 return safe_message(first["text"].strip())
+    for key in ("result", "response", "output", "data"):
+        value = output.get(key)
+        if isinstance(value, dict):
+            nested = observable_response_from_output(value)
+            if nested:
+                return nested
+    return ""
+
+
+def first_observable_text(output: dict[str, Any]) -> str:
+    for field in (
+        "observable_response",
+        "model_response_preview",
+        "raw_response_preview",
+        "final_answer",
+        "answer",
+        "content",
+        "text",
+    ):
+        value = output.get(field)
+        if isinstance(value, str) and value.strip():
+            return safe_message(value.strip())
+    message = output.get("message")
+    if isinstance(message, str) and message.strip():
+        return safe_message(message.strip())
+    if isinstance(message, dict):
+        return first_observable_text(message)
+    response = output.get("response")
+    if isinstance(response, str) and response.strip():
+        return safe_message(response.strip())
     return ""
 
 

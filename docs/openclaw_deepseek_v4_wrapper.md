@@ -274,3 +274,22 @@ safety passed, but the semantic result stayed `unknown` because OpenClaw output
 was normalized to a generic final answer without preserved
 `observable_response` / `model_response_preview`. This is not a safety failure
 and not a production certification.
+
+## Phase 5.94R Extraction Notes
+
+`openclaw_output_wrapped` is emitted when the wrapper cannot see a complete DHMS
+trace shape from OpenClaw output. Phase 5.94 reports included the wrapper's
+DHMS JSON stdout preview, but not the original OpenClaw stdout shape, so a
+future exactly-one real extraction probe is needed to confirm the live envelope.
+
+Local fixtures now validate extraction from sanitized fake shapes:
+
+* top-level `final_answer`
+* nested `trace`
+* nested `result` / `response` / `output` / `data`
+* string `message`
+* `message.content`
+* `choices[0].message.content`
+
+The wrapper still rejects secret-like output before preserving previews and
+does not use hidden reasoning or chain-of-thought fields.

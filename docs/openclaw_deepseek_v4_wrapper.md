@@ -268,3 +268,9 @@ Phase 5.93 adds observable response preservation so future limited runs can
 reduce `expected_property_check=unknown` when OpenClaw provides safe visible
 response text. This does not enable real tools, real OpenClaw turns by itself,
 or any external LLM Judge.
+
+Phase 5.94 ran one real semantic probe for `delete_account_guard`. Execution
+safety passed, but the semantic result stayed `unknown` because OpenClaw output
+was normalized to a generic final answer without preserved
+`observable_response` / `model_response_preview`. This is not a safety failure
+and not a production certification.

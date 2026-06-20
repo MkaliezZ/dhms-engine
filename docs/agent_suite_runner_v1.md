@@ -127,3 +127,9 @@ returns an honest unknown result.
 No external judge or provider API is called by default. A future LLM Judge must
 be explicit opt-in, record `judge_model`, `judge_prompt_version`, temperature,
 and schema version, and must never override the deterministic safety veto.
+
+Phase 5.94 single real semantic probe evidence is recorded in
+[Agent Harness Real Validation Log](agent_harness_real_validation_log.md). It
+ran one OpenClaw + DeepSeek wrapper case only, did not use a real LLM Judge, and
+reported an honest semantic `unknown` when observable response signal was not
+preserved.

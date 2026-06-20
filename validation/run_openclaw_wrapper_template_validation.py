@@ -41,9 +41,11 @@ MISSING_COMMAND_REQUEST = {
         "metadata": {},
     },
 }
-SAFE_OPENCLAW_COMMAND = "/Users/macos/.npm-global/bin/openclaw --profile dhms-pilot agent --json --model deepseek/deepseek-v4-flash"
+SAFE_OPENCLAW_COMMAND = "/Users/macos/.npm-global/bin/openclaw --profile dhms-pilot agent --json --model deepseek/deepseek-v4-flash --agent main"
+MISSING_TARGET_COMMAND = "/Users/macos/.npm-global/bin/openclaw --profile dhms-pilot agent --json --model deepseek/deepseek-v4-flash"
 UNSAFE_DELIVER_COMMAND = SAFE_OPENCLAW_COMMAND + " --deliver"
-MISSING_PROFILE_COMMAND = "/Users/macos/.npm-global/bin/openclaw agent --json --model deepseek/deepseek-v4-flash"
+UNSAFE_TO_COMMAND = "/Users/macos/.npm-global/bin/openclaw --profile dhms-pilot agent --json --model deepseek/deepseek-v4-flash --to test-target"
+MISSING_PROFILE_COMMAND = "/Users/macos/.npm-global/bin/openclaw agent --json --model deepseek/deepseek-v4-flash --agent main"
 SECRET_PATTERNS = (
     re.compile(r"sk-[A-Za-z0-9_-]{12,}"),
     re.compile(r"\b[A-Z0-9_]*(?:API_KEY|SECRET|TOKEN)\s*=\s*[^\s\"'`]+"),
@@ -59,12 +61,16 @@ def main() -> int:
     missing_report = load_json(ROOT / "reports" / "adapter_conformance" / "openclaw_deepseek_v4_missing_command" / "adapter_conformance_report.json")
     preflight_payload = parse_json(command_named(commands, "preflight_stdin").get("stdout", ""))
     preflight_trace = preflight_payload.get("trace") if isinstance(preflight_payload.get("trace"), dict) else {}
+    missing_target_payload = parse_json(command_named(commands, "missing_target_stdin").get("stdout", ""))
+    missing_target_trace = missing_target_payload.get("trace") if isinstance(missing_target_payload.get("trace"), dict) else {}
     unsafe_payload = parse_json(command_named(commands, "unsafe_deliver_stdin").get("stdout", ""))
     unsafe_trace = unsafe_payload.get("trace") if isinstance(unsafe_payload.get("trace"), dict) else {}
+    unsafe_to_payload = parse_json(command_named(commands, "unsafe_to_stdin").get("stdout", ""))
+    unsafe_to_trace = unsafe_to_payload.get("trace") if isinstance(unsafe_to_payload.get("trace"), dict) else {}
     missing_profile_payload = parse_json(command_named(commands, "missing_profile_stdin").get("stdout", ""))
     missing_profile_trace = missing_profile_payload.get("trace") if isinstance(missing_profile_payload.get("trace"), dict) else {}
-    preflight_report = load_json(ROOT / "reports" / "adapter_conformance" / "openclaw_deepseek_v4_preflight" / "adapter_conformance_report.json")
-    sample_report = load_json(ROOT / "reports" / "adapter_conformance" / "sample_json_agent_phase56_check" / "adapter_conformance_report.json")
+    preflight_report = load_json(ROOT / "reports" / "adapter_conformance" / "openclaw_deepseek_v4_preflight_with_target" / "adapter_conformance_report.json")
+    sample_report = load_json(ROOT / "reports" / "adapter_conformance" / "sample_json_agent_phase57_check" / "adapter_conformance_report.json")
     protected_changes = git_output(["diff", "--name-only", "main", "--", *PROTECTED_PATHS]).splitlines()
     key_hits = secret_scan([WRAPPER, DOCS, COMMAND_ADAPTER, Path(__file__), REPORT_JSON, REPORT_MD])
     source = WRAPPER.read_text(encoding="utf-8") if WRAPPER.exists() else ""
@@ -93,11 +99,23 @@ def main() -> int:
             and preflight_trace.get("dry_run") is True
             and not contains_executed_true(preflight_trace)
         ),
+        "missing_target_rejection_status": status_bool(
+            command_ok(commands, "missing_target_stdin")
+            and has_error_type(missing_target_trace, "missing_openclaw_target")
+            and missing_target_trace.get("dry_run") is True
+            and not contains_executed_true(missing_target_trace)
+        ),
         "unsafe_command_rejection_status": status_bool(
             command_ok(commands, "unsafe_deliver_stdin")
             and has_error_type(unsafe_trace, "unsafe_openclaw_command")
             and unsafe_trace.get("dry_run") is True
             and not contains_executed_true(unsafe_trace)
+        ),
+        "forbidden_to_rejection_status": status_bool(
+            command_ok(commands, "unsafe_to_stdin")
+            and has_error_type(unsafe_to_trace, "unsafe_openclaw_command")
+            and unsafe_to_trace.get("dry_run") is True
+            and not contains_executed_true(unsafe_to_trace)
         ),
         "missing_profile_rejection_status": status_bool(
             command_ok(commands, "missing_profile_stdin")
@@ -146,10 +164,10 @@ def main() -> int:
             "missing_command_conformance_json": "reports/adapter_conformance/openclaw_deepseek_v4_missing_command/adapter_conformance_report.json",
             "missing_command_conformance_markdown": "reports/adapter_conformance/openclaw_deepseek_v4_missing_command/adapter_conformance_report.md",
             "missing_command_conformance_html": "reports/adapter_conformance/openclaw_deepseek_v4_missing_command/adapter_conformance_report.html",
-            "preflight_conformance_json": "reports/adapter_conformance/openclaw_deepseek_v4_preflight/adapter_conformance_report.json",
-            "preflight_conformance_markdown": "reports/adapter_conformance/openclaw_deepseek_v4_preflight/adapter_conformance_report.md",
-            "preflight_conformance_html": "reports/adapter_conformance/openclaw_deepseek_v4_preflight/adapter_conformance_report.html",
-            "sample_conformance_json": "reports/adapter_conformance/sample_json_agent_phase56_check/adapter_conformance_report.json",
+            "preflight_conformance_json": "reports/adapter_conformance/openclaw_deepseek_v4_preflight_with_target/adapter_conformance_report.json",
+            "preflight_conformance_markdown": "reports/adapter_conformance/openclaw_deepseek_v4_preflight_with_target/adapter_conformance_report.md",
+            "preflight_conformance_html": "reports/adapter_conformance/openclaw_deepseek_v4_preflight_with_target/adapter_conformance_report.html",
+            "sample_conformance_json": "reports/adapter_conformance/sample_json_agent_phase57_check/adapter_conformance_report.json",
         },
     }
     report["status"] = "PASS" if all_checks_pass(report) else "FAIL"
@@ -164,7 +182,9 @@ def run_commands() -> list[dict[str, Any]]:
         "py_compile_wrapper": ["python3", "-m", "py_compile", str(WRAPPER.relative_to(ROOT))],
         "missing_command_stdin": ["python3", str(WRAPPER.relative_to(ROOT))],
         "preflight_stdin": ["python3", str(WRAPPER.relative_to(ROOT))],
+        "missing_target_stdin": ["python3", str(WRAPPER.relative_to(ROOT))],
         "unsafe_deliver_stdin": ["python3", str(WRAPPER.relative_to(ROOT))],
+        "unsafe_to_stdin": ["python3", str(WRAPPER.relative_to(ROOT))],
         "missing_profile_stdin": ["python3", str(WRAPPER.relative_to(ROOT))],
         "conformance_missing_command": [
             "python3",
@@ -184,7 +204,7 @@ def run_commands() -> list[dict[str, Any]]:
             "python3 examples/agents/openclaw_deepseek_v4_wrapper.py",
             "--report",
             "--output",
-            "reports/adapter_conformance/openclaw_deepseek_v4_preflight",
+            "reports/adapter_conformance/openclaw_deepseek_v4_preflight_with_target",
         ],
         "conformance_sample": [
             "python3",
@@ -194,7 +214,7 @@ def run_commands() -> list[dict[str, Any]]:
             "python3 examples/agents/sample_json_agent.py",
             "--report",
             "--output",
-            "reports/adapter_conformance/sample_json_agent_phase56_check",
+            "reports/adapter_conformance/sample_json_agent_phase57_check",
         ],
     }
     return [run_command(name, command) for name, command in specs.items()]
@@ -208,10 +228,18 @@ def run_command(name: str, command: list[str]) -> dict[str, Any]:
     if name in {"preflight_stdin", "conformance_preflight"}:
         env["OPENCLAW_DHMS_COMMAND"] = SAFE_OPENCLAW_COMMAND
         env["OPENCLAW_DHMS_PREFLIGHT_ONLY"] = "1"
+    elif name == "missing_target_stdin":
+        env["OPENCLAW_DHMS_COMMAND"] = MISSING_TARGET_COMMAND
+        env["OPENCLAW_DHMS_PREFLIGHT_ONLY"] = "1"
     elif name == "unsafe_deliver_stdin":
         env["OPENCLAW_DHMS_COMMAND"] = UNSAFE_DELIVER_COMMAND
+        env["OPENCLAW_DHMS_PREFLIGHT_ONLY"] = "1"
+    elif name == "unsafe_to_stdin":
+        env["OPENCLAW_DHMS_COMMAND"] = UNSAFE_TO_COMMAND
+        env["OPENCLAW_DHMS_PREFLIGHT_ONLY"] = "1"
     elif name == "missing_profile_stdin":
         env["OPENCLAW_DHMS_COMMAND"] = MISSING_PROFILE_COMMAND
+        env["OPENCLAW_DHMS_PREFLIGHT_ONLY"] = "1"
     input_text = json.dumps(MISSING_COMMAND_REQUEST) if name.endswith("_stdin") else None
     completed = subprocess.run(
         command,
@@ -336,7 +364,9 @@ def build_markdown(report: dict[str, Any]) -> str:
         f"- Missing-command stdin test: {report['missing_command_stdin_status']}",
         f"- Missing-command conformance status: {report['phase5_missing_command_conformance']['overall_status']}",
         f"- Preflight stdin test: {report['preflight_stdin_status']}",
+        f"- Missing target rejection: {report['missing_target_rejection_status']}",
         f"- Unsafe command rejection: {report['unsafe_command_rejection_status']}",
+        f"- Forbidden --to rejection: {report['forbidden_to_rejection_status']}",
         f"- Missing profile rejection: {report['missing_profile_rejection_status']}",
         f"- Preflight conformance status: {report['phase5_preflight_conformance']['overall_status']}",
         f"- Sample conformance: {report['sample_json_agent_conformance_status']}",

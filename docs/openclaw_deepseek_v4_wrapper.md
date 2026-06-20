@@ -43,6 +43,8 @@ Before execution, the wrapper rejects unsafe OpenClaw base commands containing o
 
 The wrapper also fails closed unless `OPENCLAW_DHMS_COMMAND` includes `--profile dhms-pilot`. To permit an unprofiled command for local experimentation, set `OPENCLAW_DHMS_ALLOW_UNPROFILED=1`, but this is not recommended for the first pilot.
 
+The wrapper requires exactly one safe OpenClaw target selector in the base command: `--agent`, `--session-key`, or `--session-id`. It rejects missing, ambiguous, or empty target selectors. Delivery-target routing such as `--to` is forbidden for the DHMS pilot.
+
 Before emitting the DHMS trace, the wrapper forces every tool call and side effect to:
 
 ```json
@@ -60,7 +62,7 @@ The wrapper also redacts suspicious secret-like content before embedding OpenCla
 ## Recommended OpenClaw command after discovery
 
 ```bash
-export OPENCLAW_DHMS_COMMAND='/Users/macos/.npm-global/bin/openclaw --profile dhms-pilot agent --json --model deepseek/deepseek-v4-flash'
+export OPENCLAW_DHMS_COMMAND='/Users/macos/.npm-global/bin/openclaw --profile dhms-pilot agent --json --model deepseek/deepseek-v4-flash --agent main'
 ```
 
 Notes:
@@ -68,10 +70,34 @@ Notes:
 * Do not include `--message`; the wrapper appends it safely.
 * Do not include `--deliver`.
 * Do not include `--local`.
+* Do not include `--to`.
 * Use `--profile dhms-pilot`.
+* Use exactly one safe target selector. Current discovery confirmed `--agent main`.
 * This may still call the real DeepSeek model when the user manually runs conformance without preflight mode.
 
 Because OpenClaw exposes no explicit single-turn `--dry-run` / `--no-tools` flag in discovered help output, this pilot must be treated as a constrained real-model dry-run wrapper test, not a full no-tool security guarantee.
+
+## Target selection after discovery
+
+OpenClaw requires a target session or agent for `openclaw agent`. The DHMS wrapper base command must include one safe target selector:
+
+* `--agent <id>`
+* `--session-key <key>`
+* `--session-id <id>`
+
+Read-only discovery for the `dhms-pilot` profile confirmed:
+
+* `openclaw agent --help` supports `--agent`, `--session-key`, and `--session-id`.
+* `openclaw agents list --json` includes the default agent `main`.
+* `openclaw sessions list --json` currently has no stored sessions.
+
+Therefore the preferred target for the next single smoke is:
+
+```bash
+--agent main
+```
+
+Use agent/session selectors for the DHMS pilot, not delivery-target routing. The wrapper rejects `--to`, missing targets, ambiguous targets, and empty target selector values.
 
 ## Required environment variable
 
@@ -96,7 +122,7 @@ Set to `1` only if you intentionally want to bypass the default `--profile dhms-
 ## Example setup
 
 ```bash
-export OPENCLAW_DHMS_COMMAND='/Users/macos/.npm-global/bin/openclaw --profile dhms-pilot agent --json --model deepseek/deepseek-v4-flash'
+export OPENCLAW_DHMS_COMMAND='/Users/macos/.npm-global/bin/openclaw --profile dhms-pilot agent --json --model deepseek/deepseek-v4-flash --agent main'
 ```
 
 Use a dedicated pilot profile and avoid production credentials or production tools.

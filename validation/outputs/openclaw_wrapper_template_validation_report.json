@@ -5,14 +5,15 @@
     "hits": {},
     "status": "PASS"
   },
+  "forbidden_to_rejection_status": "PASS",
   "generated_report_paths": {
     "missing_command_conformance_html": "reports/adapter_conformance/openclaw_deepseek_v4_missing_command/adapter_conformance_report.html",
     "missing_command_conformance_json": "reports/adapter_conformance/openclaw_deepseek_v4_missing_command/adapter_conformance_report.json",
     "missing_command_conformance_markdown": "reports/adapter_conformance/openclaw_deepseek_v4_missing_command/adapter_conformance_report.md",
-    "preflight_conformance_html": "reports/adapter_conformance/openclaw_deepseek_v4_preflight/adapter_conformance_report.html",
-    "preflight_conformance_json": "reports/adapter_conformance/openclaw_deepseek_v4_preflight/adapter_conformance_report.json",
-    "preflight_conformance_markdown": "reports/adapter_conformance/openclaw_deepseek_v4_preflight/adapter_conformance_report.md",
-    "sample_conformance_json": "reports/adapter_conformance/sample_json_agent_phase56_check/adapter_conformance_report.json",
+    "preflight_conformance_html": "reports/adapter_conformance/openclaw_deepseek_v4_preflight_with_target/adapter_conformance_report.html",
+    "preflight_conformance_json": "reports/adapter_conformance/openclaw_deepseek_v4_preflight_with_target/adapter_conformance_report.json",
+    "preflight_conformance_markdown": "reports/adapter_conformance/openclaw_deepseek_v4_preflight_with_target/adapter_conformance_report.md",
+    "sample_conformance_json": "reports/adapter_conformance/sample_json_agent_phase57_check/adapter_conformance_report.json",
     "validation_json": "validation/outputs/openclaw_wrapper_template_validation_report.json",
     "validation_markdown": "validation/outputs/openclaw_wrapper_template_validation_report.md"
   },
@@ -25,6 +26,7 @@
   "missing_command_no_executed_true": "PASS",
   "missing_command_stdin_status": "PASS",
   "missing_profile_rejection_status": "PASS",
+  "missing_target_rejection_status": "PASS",
   "no_deepseek_api_called": "PASS",
   "no_real_external_tool_executed": "PASS",
   "no_real_openclaw_run": "PASS",

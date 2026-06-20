@@ -8,7 +8,9 @@
 - Missing-command stdin test: PASS
 - Missing-command conformance status: FAIL
 - Preflight stdin test: PASS
+- Missing target rejection: PASS
 - Unsafe command rejection: PASS
+- Forbidden --to rejection: PASS
 - Missing profile rejection: PASS
 - Preflight conformance status: PASS
 - Sample conformance: PASS

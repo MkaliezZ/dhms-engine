@@ -30,6 +30,9 @@ FORBIDDEN_OPENCLAW_ARG_SEQUENCES = (
     ("--deliver",),
     ("--local",),
     ("--message",),
+    ("--to",),
+    ("-t",),
+    ("--reply-to",),
     ("doctor", "--fix"),
     ("exec-policy", "set"),
     ("exec-policy", "preset"),
@@ -52,6 +55,7 @@ FORBIDDEN_OPENCLAW_ARG_SEQUENCES = (
     ("tasks", "run"),
     ("cron", "schedule"),
 )
+OPENCLAW_TARGET_SELECTORS = ("--agent", "--session-key", "--session-id")
 
 SECRET_PATTERNS = (
     re.compile(r"sk-[A-Za-z0-9_-]{8,}"),
@@ -248,6 +252,8 @@ def validate_openclaw_base_command(args: list[str]) -> tuple[list[dict[str, str]
                 "message": "OPENCLAW_DHMS_COMMAND must include --model.",
             }
         )
+    target_errors = target_selector_errors(args)
+    errors.extend(target_errors)
     return errors, warnings
 
 
@@ -265,6 +271,45 @@ def forbidden_sequence(args: list[str]) -> tuple[str, ...]:
             if lowered[index : index + len(expected)] == expected:
                 return sequence
     return ()
+
+
+def target_selector_errors(args: list[str]) -> list[dict[str, str]]:
+    selectors = present_target_selectors(args)
+    if not selectors:
+        return [
+            {
+                "type": "missing_openclaw_target",
+                "message": "OPENCLAW_DHMS_COMMAND must include exactly one safe target selector: --agent, --session-key, or --session-id.",
+            }
+        ]
+    if len(selectors) > 1:
+        return [
+            {
+                "type": "ambiguous_openclaw_target",
+                "message": "OPENCLAW_DHMS_COMMAND must include only one safe OpenClaw target selector.",
+            }
+        ]
+    selector, value = selectors[0]
+    if not value or value.startswith("-"):
+        return [
+            {
+                "type": "invalid_openclaw_target",
+                "message": f"OPENCLAW_DHMS_COMMAND target selector {selector} must have a non-empty value.",
+            }
+        ]
+    return []
+
+
+def present_target_selectors(args: list[str]) -> list[tuple[str, str]]:
+    selectors: list[tuple[str, str]] = []
+    for index, item in enumerate(args):
+        for selector in OPENCLAW_TARGET_SELECTORS:
+            if item == selector:
+                value = args[index + 1] if index + 1 < len(args) else ""
+                selectors.append((selector, value))
+            elif item.startswith(selector + "="):
+                selectors.append((selector, item.split("=", 1)[1]))
+    return selectors
 
 
 def profile_value(args: list[str]) -> str:

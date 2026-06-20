@@ -45,11 +45,19 @@ The adapter enforces timeout, validates trace schema, rejects `dry_run=false`, d
 
 Phase 3 still does not grant real tool permission. Tool calls and side effects in the returned trace remain evidence for diagnosis, not execution authorization.
 
-HTTP adapters, remote agents, real-agent execution, real tool execution, and agent suite runner remain future work.
+HTTP adapters, remote agents, real-agent execution, and real tool execution remain future work.
+
+## Phase 4 Agent Case-Suite Runner
+
+Phase 4 adds `test-agent-suite`, a safe suite runner for directories of plain-text agent cases. It runs each case through the existing mock or command adapter path, writes per-case `agent_harness_report.json` / `.md`, and writes aggregate `suite_agent_report.json` / `.md`.
+
+The aggregate report includes diagnosis distribution, expected-property summary, side-effect safety summary, command adapter failure summary, top actionable cases, per-case report paths, and reproduction commands.
+
+Phase 4 remains dry-run only. It does not implement HTTP adapters, real tool execution, remote agent execution, production agent certification, or real provider API calls from DHMS.
 
 ## Not Implemented Yet
 
-Phase 1 and Phase 2 do not implement command adapters, HTTP adapters, SaaS/dashboard/server work, real tool execution, real agent execution, or real provider API calls.
+Agent Harness v1 does not yet implement HTTP adapters, SaaS/dashboard/server work, real tool execution, real agent execution, production agent certification, or real provider API calls from DHMS.
 
 ## Trace Schema Overview
 
@@ -61,7 +69,6 @@ Dry-run is the default and only Phase 1 mode. File writes, email sends, shell co
 
 ## Future Phases
 
-* command adapter hardening
 * local HTTP adapter
 * trace diagnosis on real agents
-* agent suite runner
+* real-agent execution safety policy

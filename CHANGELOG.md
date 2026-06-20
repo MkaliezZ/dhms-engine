@@ -5,6 +5,7 @@
 * Phase 1: mock dry-run skeleton and trace contract.
 * Phase 2: trace diagnosis layer and rule-based trace recommendations.
 * Phase 3: command adapter and BYOA local agent JSON protocol.
+* Phase 4: agent case-suite runner and aggregate agent diagnosis reports.
 * Next: command adapter hardening, HTTP adapter planning, and trace diagnosis on real agents.
 
 ## v0.1.3-product-diagnosis - 2026-06-20

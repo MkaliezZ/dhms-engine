@@ -154,7 +154,7 @@ def build_diagnoses(result: dict, traces: list[dict], metrics: dict) -> list[dic
                 "mock_agent_only_caveat",
                 "Low",
                 "high",
-                "Phase 2 uses deterministic mock agent only; no real agent reliability claim is made.",
+                "Mock adapter is deterministic; no real agent reliability claim is made.",
                 {"adapter": result.get("adapter")},
                 ["Treat results as mock dry-run validation only."],
             )

@@ -29,6 +29,7 @@ for path in PATHS:
 from engine_runner import run  # noqa: E402
 from output_formatter import format_output  # noqa: E402
 from agent_harness.harness_runner import run_agent_harness  # noqa: E402
+from agent_harness.agent_suite_runner import run_agent_suite  # noqa: E402
 from product_runner import run_product_test  # noqa: E402
 from suite_runner import run_suite  # noqa: E402
 from provider_status import format_status_table, models_for, provider_statuses  # noqa: E402
@@ -74,6 +75,17 @@ def build_parser() -> argparse.ArgumentParser:
     agent_parser.add_argument("--report", action="store_true")
     agent_parser.add_argument("--output", default="reports/agent_harness/latest")
     agent_parser.add_argument("--timeout-seconds", type=int, default=10)
+
+    agent_suite_parser = subparsers.add_parser("test-agent-suite")
+    agent_suite_parser.add_argument("--suite", required=True)
+    agent_suite_adapter_group = agent_suite_parser.add_mutually_exclusive_group()
+    agent_suite_adapter_group.add_argument("--mock-agent", action="store_true")
+    agent_suite_adapter_group.add_argument("--agent-command")
+    agent_suite_parser.add_argument("--n", type=int, default=1)
+    agent_suite_parser.add_argument("--mode", default="B", choices=["A", "B", "C"])
+    agent_suite_parser.add_argument("--report", action="store_true")
+    agent_suite_parser.add_argument("--output", default="reports/agent_harness_suite/latest")
+    agent_suite_parser.add_argument("--timeout-seconds", type=int, default=10)
 
     subparsers.add_parser("doctor")
 
@@ -142,6 +154,30 @@ def main(argv: Optional[List[str]] = None) -> int:
             print(agent_console_summary(result))
         else:
             print(json.dumps(result, indent=2, sort_keys=True))
+        return 0
+    if args.command == "test-agent-suite":
+        if not args.mock_agent and not args.agent_command:
+            print("Agent Harness suite requires --mock-agent or --agent-command. HTTP adapters will be added later.")
+            return 1
+        if args.n < 1:
+            parser.error("--n must be >= 1")
+        if args.timeout_seconds < 1:
+            parser.error("--timeout-seconds must be >= 1")
+        adapter = "command" if args.agent_command else "mock"
+        result = run_agent_suite(
+            suite=args.suite,
+            adapter=adapter,
+            agent_command=args.agent_command,
+            n=args.n,
+            mode=args.mode,
+            report=args.report,
+            output=args.output,
+            timeout_seconds=args.timeout_seconds,
+        )
+        if args.report:
+            print(agent_suite_console_summary(result))
+        else:
+            print(json.dumps(result["summary"], indent=2, sort_keys=True))
         return 0
     if not args.input_text and not args.input_file:
         parser.error("test requires either --input or --input-file")
@@ -214,7 +250,7 @@ def suite_console_summary(result) -> str:
 
 def agent_console_summary(result) -> str:
     lines = [
-        "DHMS Agent Harness Phase 3 Report",
+        "DHMS Agent Harness Report",
         f"Adapter: {result['adapter']}",
         f"Command: {result.get('agent_command', 'not_applicable')}",
         f"Mode: {result['mode']}",
@@ -224,6 +260,28 @@ def agent_console_summary(result) -> str:
         f"Tool calls: {result['tool_call_count']}",
         f"Memory reads: {result['memory_read_count']}",
         f"Side effects blocked: {result['side_effects_blocked_count']}",
+        "",
+        "Reports:",
+    ]
+    for path in result.get("report_paths", {}).values():
+        lines.append(f"* {path}")
+    return "\n".join(lines)
+
+
+def agent_suite_console_summary(result) -> str:
+    summary = result["summary"]
+    lines = [
+        "DHMS Agent Harness Suite Report",
+        f"Suite: {result['suite_name']}",
+        f"Run: {result['suite_run_id']}",
+        f"Adapter: {result['adapter']}",
+        f"Cases: {summary['total_cases']}",
+        f"Trials: {result['trial_count']}",
+        f"Dry run all cases: {str(summary['dry_run_all_cases']).lower()}",
+        f"Side effects blocked: {summary['total_side_effects_blocked']}",
+        f"Side effects executed: {summary['total_side_effects_executed']}",
+        f"Suite severity: {summary['suite_severity']}",
+        f"Recommendation: {summary['suite_recommendation']}",
         "",
         "Reports:",
     ]

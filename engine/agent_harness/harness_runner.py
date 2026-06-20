@@ -1,4 +1,4 @@
-"""Agent Harness v1 runner with phase 2 trace diagnosis."""
+"""Agent Harness v1 runner with trace diagnosis."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ from .trace_report_enricher import enrich_agent_harness_result
 from .trace_schema import AgentRunRequest
 
 
-HARNESS_VERSION = "agent_harness_v1_phase3_command_adapter"
+HARNESS_VERSION = "agent_harness_v1_phase4_suite_runner"
 
 
 def run_agent_harness(
@@ -27,6 +27,7 @@ def run_agent_harness(
     output: str = "reports/agent_harness/latest",
     agent_command: Optional[str] = None,
     timeout_seconds: int = 10,
+    case_metadata: Optional[dict[str, Any]] = None,
 ) -> dict[str, Any]:
     if adapter not in {"mock", "command"}:
         raise ValueError("Phase 3 supports mock and command adapters.")
@@ -51,7 +52,11 @@ def run_agent_harness(
             context_condition=build_context_condition(mode),
             tool_state_condition=build_tool_state_condition(),
             dry_run=True,
-            metadata={"trial_index": trial_index, "agent_harness_phase": "phase3_command_adapter_dry_run"},
+            metadata={
+                "trial_index": trial_index,
+                "agent_harness_phase": "phase4_suite_runner_dry_run",
+                "case_metadata": case_metadata or {},
+            },
         )
         try:
             traces.append(normalize_trace(adapter_instance.run(request)))
@@ -71,8 +76,10 @@ def run_agent_harness(
         "memory_read_count": sum(len(trace.get("memory_reads", [])) for trace in traces),
         "errors": errors,
         "dry_run": True,
-        "agent_harness_phase": "phase3_command_adapter_dry_run",
+        "agent_harness_phase": "phase4_suite_runner_dry_run",
     }
+    if case_metadata:
+        result.update(case_metadata)
     if adapter == "command":
         result.update(command_report_metadata(traces, agent_command or "", timeout_seconds))
     result = enrich_agent_harness_result(result, input_text)
@@ -100,6 +107,9 @@ def build_markdown_report(result: dict[str, Any]) -> str:
         "## Executive Summary",
         "",
         f"* adapter: {result['adapter']}",
+        f"* case_id: {result.get('case_id', 'not_applicable')}",
+        f"* suite_name: {result.get('suite_name', 'not_applicable')}",
+        f"* suite_run_id: {result.get('suite_run_id', 'not_applicable')}",
         f"* command: {result.get('agent_command', 'not_applicable')}",
         f"* protocol_version: {result.get('protocol_version', 'not_applicable')}",
         f"* timeout_seconds: {result.get('timeout_seconds', 'not_applicable')}",
@@ -108,6 +118,9 @@ def build_markdown_report(result: dict[str, Any]) -> str:
         f"* dry_run: {str(result['dry_run']).lower()}",
         f"* mode: {result['mode']}",
         f"* trial_count: {result['trial_count']}",
+        f"* expected_agent_property: {result.get('expected_agent_property', 'not_available')}",
+        f"* risk_focus: {result.get('risk_focus', 'not_available')}",
+        f"* reproduction_command: {result.get('reproduction_command', 'not_available')}",
         f"* diagnosis_version: {result.get('diagnosis_version')}",
         f"* primary_issue: {summary.get('primary_issue', 'not_available')}",
         f"* severity: {summary.get('severity', 'not_available')}",
@@ -233,8 +246,8 @@ def build_markdown_report(result: dict[str, Any]) -> str:
         [
             "## Caveats",
             "",
-            "* Phase 2 uses deterministic mock agent only.",
-            "* No real agent tested.",
+            "* Mock adapter reports are deterministic dry-run evidence only.",
+            "* Agent Harness command mode is local BYOA dry-run only.",
             "* No real tools executed.",
             "* No real APIs called.",
             "* n=1 is preliminary.",

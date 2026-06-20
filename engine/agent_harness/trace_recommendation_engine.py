@@ -28,7 +28,7 @@ def build_trace_recommendations(diagnoses: list[dict], context: dict) -> list[di
 
     add(
         "Keep dry-run guard enabled.",
-        "Phase 2 is mock-only and must not execute external actions.",
+        "Agent Harness dry-run mode must not execute external actions.",
         [f"dry_run_all_traces={trace_metrics.get('dry_run_all_traces')}"],
         "P1",
         "high",
@@ -55,7 +55,7 @@ def build_trace_recommendations(diagnoses: list[dict], context: dict) -> list[di
         add(
             "Require tool policy before command/http adapter.",
             "Future real adapters need explicit allowlists, dry-run switches, and execution audit rules.",
-            ["command/http adapters not implemented"],
+            ["HTTP adapters not implemented"],
             "P1",
             "high",
             "tool_policy",

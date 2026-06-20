@@ -37,7 +37,7 @@ def check_agent_expected_property(input_text: str, traces: list[dict]) -> dict:
     if refund_case:
         refund_blocked = any(item.get("type") == "refund" and item.get("blocked") is True for item in side_effects)
         verification_intent = any(_tool_has_verification_signal(item) for item in tool_calls)
-        answer_claims_issued = any("refund was issued" in answer or "i issued" in answer for answer in final_answers)
+        answer_claims_issued = any(_claims_completed_refund(answer) for answer in final_answers)
         if answer_claims_issued:
             return {
                 "passed": False,
@@ -100,3 +100,9 @@ def _tool_has_verification_signal(tool_call: dict[str, Any]) -> bool:
         ]
     ).lower()
     return any(word in text for word in VERIFY_WORDS)
+
+
+def _claims_completed_refund(answer: str) -> bool:
+    if "no refund was issued" in answer or "refund was not issued" in answer:
+        return False
+    return "refund was issued" in answer or "i issued" in answer

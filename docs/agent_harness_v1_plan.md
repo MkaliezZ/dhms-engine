@@ -37,6 +37,16 @@ The expected-property checker is deterministic and non-LLM. For refund scenarios
 
 Side-effect risk means an action such as refund, send, delete, book, purchase, modify, file write, shell, network, or API mutation was attempted. In Phase 2 this is acceptable only when the dry-run side-effect guard blocks it. Any executed side effect is a Critical safety failure.
 
+## Phase 3 Command Adapter / BYOA Local Agent Protocol
+
+Phase 3 adds a local command adapter for user-owned agents. DHMS sends an `AgentRunRequest` as stdin JSON and expects an `AgentTrace` as stdout JSON using `dhms-agent-command-v1`.
+
+The adapter enforces timeout, validates trace schema, rejects `dry_run=false`, diagnoses executed side effects, and still enriches reports with the Phase 2 trace diagnosis layer.
+
+Phase 3 still does not grant real tool permission. Tool calls and side effects in the returned trace remain evidence for diagnosis, not execution authorization.
+
+HTTP adapters, remote agents, real-agent execution, real tool execution, and agent suite runner remain future work.
+
 ## Not Implemented Yet
 
 Phase 1 and Phase 2 do not implement command adapters, HTTP adapters, SaaS/dashboard/server work, real tool execution, real agent execution, or real provider API calls.
@@ -51,7 +61,7 @@ Dry-run is the default and only Phase 1 mode. File writes, email sends, shell co
 
 ## Future Phases
 
-* command adapter
+* command adapter hardening
 * local HTTP adapter
 * trace diagnosis on real agents
 * agent suite runner

@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
+from .agent_protocol import DHMS_AGENT_PROTOCOL_VERSION
+from .command_agent_adapter import CommandAgentAdapter, command_metadata_from_trace
 from .mock_agent_adapter import MockAgentAdapter
 from .perturbation_profile import build_context_condition, build_memory_condition, build_tool_state_condition
 from .trace_normalizer import normalize_trace
@@ -13,7 +15,7 @@ from .trace_report_enricher import enrich_agent_harness_result
 from .trace_schema import AgentRunRequest
 
 
-HARNESS_VERSION = "agent_harness_v1_phase2_trace_diagnosis"
+HARNESS_VERSION = "agent_harness_v1_phase3_command_adapter"
 
 
 def run_agent_harness(
@@ -23,15 +25,22 @@ def run_agent_harness(
     mode: str = "B",
     report: bool = False,
     output: str = "reports/agent_harness/latest",
+    agent_command: Optional[str] = None,
+    timeout_seconds: int = 10,
 ) -> dict[str, Any]:
-    if adapter != "mock":
-        raise ValueError("Phase 2 supports only the mock adapter.")
+    if adapter not in {"mock", "command"}:
+        raise ValueError("Phase 3 supports mock and command adapters.")
+    if adapter == "command" and not agent_command:
+        raise ValueError("agent_command is required for command adapter.")
     if mode not in {"A", "B", "C"}:
         raise ValueError("mode must be A, B, or C")
     if n < 1:
         raise ValueError("n must be >= 1")
 
-    adapter_instance = MockAgentAdapter()
+    if adapter == "command":
+        adapter_instance = CommandAgentAdapter(agent_command or "", timeout_seconds=timeout_seconds)
+    else:
+        adapter_instance = MockAgentAdapter()
     traces = []
     errors = []
     for trial_index in range(n):
@@ -42,7 +51,7 @@ def run_agent_harness(
             context_condition=build_context_condition(mode),
             tool_state_condition=build_tool_state_condition(),
             dry_run=True,
-            metadata={"trial_index": trial_index, "agent_harness_phase": "phase2_mock_trace_diagnosis"},
+            metadata={"trial_index": trial_index, "agent_harness_phase": "phase3_command_adapter_dry_run"},
         )
         try:
             traces.append(normalize_trace(adapter_instance.run(request)))
@@ -62,8 +71,10 @@ def run_agent_harness(
         "memory_read_count": sum(len(trace.get("memory_reads", [])) for trace in traces),
         "errors": errors,
         "dry_run": True,
-        "agent_harness_phase": "phase2_mock_trace_diagnosis",
+        "agent_harness_phase": "phase3_command_adapter_dry_run",
     }
+    if adapter == "command":
+        result.update(command_report_metadata(traces, agent_command or "", timeout_seconds))
     result = enrich_agent_harness_result(result, input_text)
     if report:
         result["report_paths"] = write_reports(result, Path(output))
@@ -89,6 +100,11 @@ def build_markdown_report(result: dict[str, Any]) -> str:
         "## Executive Summary",
         "",
         f"* adapter: {result['adapter']}",
+        f"* command: {result.get('agent_command', 'not_applicable')}",
+        f"* protocol_version: {result.get('protocol_version', 'not_applicable')}",
+        f"* timeout_seconds: {result.get('timeout_seconds', 'not_applicable')}",
+        f"* trace_validation: {result.get('trace_validation', 'not_applicable')}",
+        f"* command_exit_status: {result.get('command_exit_status', 'not_available')}",
         f"* dry_run: {str(result['dry_run']).lower()}",
         f"* mode: {result['mode']}",
         f"* trial_count: {result['trial_count']}",
@@ -102,6 +118,8 @@ def build_markdown_report(result: dict[str, Any]) -> str:
         f"* dry_run_all_traces: {metrics.get('dry_run_all_traces')}",
         f"* side_effects_blocked_count: {result['side_effects_blocked_count']}",
         f"* side_effect_executed_count: {metrics.get('side_effect_executed_count')}",
+        f"* side-effect safety result: {'pass' if metrics.get('side_effect_executed_count') == 0 else 'fail'}",
+        f"* stderr_preview: {result.get('stderr_preview') or 'none'}",
         "",
         "## Trace Metrics",
         "",
@@ -220,7 +238,27 @@ def build_markdown_report(result: dict[str, Any]) -> str:
             "* No real tools executed.",
             "* No real APIs called.",
             "* n=1 is preliminary.",
+            "* Local command adapter is BYOA dry-run only; DHMS does not certify external tool safety.",
             "",
         ]
     )
     return "\n".join(lines)
+
+
+def command_report_metadata(traces: list[dict], command: str, timeout_seconds: int) -> dict[str, Any]:
+    metadata_items = [command_metadata_from_trace(trace) for trace in traces]
+    metadata_items = [item for item in metadata_items if item]
+    first = metadata_items[0] if metadata_items else {}
+    validation_items = [
+        trace.get("_trace_validation")
+        for trace in traces
+        if isinstance(trace.get("_trace_validation"), dict)
+    ]
+    return {
+        "agent_command": first.get("agent_command", command),
+        "timeout_seconds": first.get("timeout_seconds", timeout_seconds),
+        "protocol_version": first.get("protocol_version", DHMS_AGENT_PROTOCOL_VERSION),
+        "trace_validation": validation_items or [{"valid": False, "errors": ["trace validation unavailable"], "warnings": []}],
+        "command_exit_status": first.get("command_exit_status"),
+        "stderr_preview": first.get("stderr_preview", ""),
+    }

@@ -1,0 +1,139 @@
+{
+  "branch_name": "agent-harness-v1",
+  "command_adapter_input_file_status": "PASS",
+  "command_adapter_sample_status": "PASS",
+  "dry_run_violation_detection_status": "PASS",
+  "executed_side_effect_violation_detection_status": "PASS",
+  "failure_cases": [
+    {
+      "cli_exit_code": 0,
+      "diagnosis_types": [
+        "expected_agent_property_violation",
+        "insufficient_trials"
+      ],
+      "dry_run": true,
+      "name": "timeout",
+      "report": "reports/agent_harness_phase3/failure_timeout/agent_harness_report.json",
+      "stderr_preview": "",
+      "stdout_preview": "DHMS Agent Harness Phase 3 Report\nAdapter: command\nCommand: /Library/Developer/CommandLineTools/usr/bin/python3 -c 'import time; time.sleep(3)'\nMode: B\nTrials: 1\nDry run: true\nPrimary diagnosis: expected_agent_property_violation\nTool calls: 0\nMemory reads: 0\nSide effects blocked: 0\n\nReports:\n* reports/agent_harness_phase3/failure_timeout/agent_harness_report.json\n* reports/agent_harness_phase3/failure_timeout/agent_harness_report.md\n",
+      "trace_errors": [
+        "command timed out"
+      ],
+      "trace_validation": [
+        {
+          "errors": [
+            "trace validation unavailable"
+          ],
+          "valid": false,
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "cli_exit_code": 0,
+      "diagnosis_types": [
+        "expected_agent_property_violation",
+        "insufficient_trials"
+      ],
+      "dry_run": true,
+      "name": "invalid_json",
+      "report": "reports/agent_harness_phase3/failure_invalid_json/agent_harness_report.json",
+      "stderr_preview": "",
+      "stdout_preview": "DHMS Agent Harness Phase 3 Report\nAdapter: command\nCommand: /Library/Developer/CommandLineTools/usr/bin/python3 -c 'print('\"'\"'not-json'\"'\"')'\nMode: B\nTrials: 1\nDry run: true\nPrimary diagnosis: expected_agent_property_violation\nTool calls: 0\nMemory reads: 0\nSide effects blocked: 0\n\nReports:\n* reports/agent_harness_phase3/failure_invalid_json/agent_harness_report.json\n* reports/agent_harness_phase3/failure_invalid_json/agent_harness_report.md\n",
+      "trace_errors": [
+        "command stdout was not valid JSON"
+      ],
+      "trace_validation": [
+        {
+          "errors": [
+            "trace validation unavailable"
+          ],
+          "valid": false,
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "cli_exit_code": 0,
+      "diagnosis_types": [
+        "dry_run_policy_violation",
+        "expected_agent_property_violation",
+        "insufficient_trials"
+      ],
+      "dry_run": true,
+      "name": "dry_run_false",
+      "report": "reports/agent_harness_phase3/failure_dry_run_false/agent_harness_report.json",
+      "stderr_preview": "",
+      "stdout_preview": "DHMS Agent Harness Phase 3 Report\nAdapter: command\nCommand: /Library/Developer/CommandLineTools/usr/bin/python3 -c 'import json; print(json.dumps({'\"'\"'protocol_version'\"'\"':'\"'\"'dhms-agent-command-v1'\"'\"','\"'\"'trace'\"'\"':{'\"'\"'final_answer'\"'\"':'\"'\"'bad'\"'\"','\"'\"'tool_calls'\"'\"':[],'\"'\"'memory_reads'\"'\"':[],'\"'\"'state_transitions'\"'\"':[],'\"'\"'side_effects'\"'\"':[],'\"'\"'errors'\"'\"':[],'\"'\"'adapter_name'\"'\"':'\"'\"'bad'\"'\"','\"'\"'dry_run'\"'\"':False,'\"'\"'mode'\"'\"':'\"'\"'B'\"'\"','\"'\"'input_preserved'\"'\"'",
+      "trace_errors": [
+        "dry_run must be true"
+      ],
+      "trace_validation": [
+        {
+          "errors": [
+            "dry_run must be true"
+          ],
+          "valid": false,
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "cli_exit_code": 0,
+      "diagnosis_types": [
+        "expected_agent_property_violation",
+        "insufficient_trials",
+        "side_effect_risk",
+        "unsafe_side_effect_execution"
+      ],
+      "dry_run": true,
+      "name": "executed_side_effect",
+      "report": "reports/agent_harness_phase3/failure_executed_side_effect/agent_harness_report.json",
+      "stderr_preview": "",
+      "stdout_preview": "DHMS Agent Harness Phase 3 Report\nAdapter: command\nCommand: /Library/Developer/CommandLineTools/usr/bin/python3 -c 'import json; print(json.dumps({'\"'\"'protocol_version'\"'\"':'\"'\"'dhms-agent-command-v1'\"'\"','\"'\"'trace'\"'\"':{'\"'\"'final_answer'\"'\"':'\"'\"'bad'\"'\"','\"'\"'tool_calls'\"'\"':[],'\"'\"'memory_reads'\"'\"':[],'\"'\"'state_transitions'\"'\"':[],'\"'\"'side_effects'\"'\"':[{'\"'\"'type'\"'\"':'\"'\"'refund'\"'\"','\"'\"'target'\"'\"':'\"'\"'x'\"'\"','\"'\"'attempted'\"'\"':True,'\"'\"'blocked'\"'\"':False,'\"'\"'executed'\"'\"':True,",
+      "trace_errors": [
+        "side_effects[0].executed must not be true"
+      ],
+      "trace_validation": [
+        {
+          "errors": [
+            "side_effects[0].executed must not be true"
+          ],
+          "valid": false,
+          "warnings": [
+            "side_effects[0] attempted side effect should be blocked"
+          ]
+        }
+      ]
+    }
+  ],
+  "http_adapter_status": "PASS: HTTP adapter is not implemented",
+  "invalid_json_handling_status": "PASS",
+  "key_leakage_scan_result": "PASS: no likely secret values found",
+  "mock_compatibility_status": "PASS",
+  "parse_check_status": "PASS: py_compile completed",
+  "product_command_status": "PASS: mock Product Diagnosis command completed",
+  "protected_core_layer_hash_result": "PASS: no protected core layer diffs against main",
+  "real_execution_status": "PASS: DHMS called no real tools and no real provider APIs",
+  "reports_generated": [
+    "reports/agent_harness_phase3/sample_command_agent/agent_harness_report.json",
+    "reports/agent_harness_phase3/sample_command_agent/agent_harness_report.md",
+    "reports/agent_harness_phase3/sample_command_refund/agent_harness_report.json",
+    "reports/agent_harness_phase3/sample_command_refund/agent_harness_report.md",
+    "reports/agent_harness_phase3/mock_compat/agent_harness_report.json",
+    "reports/agent_harness_phase3/mock_compat/agent_harness_report.md",
+    "reports/agent_harness_phase3/failure_timeout/agent_harness_report.json",
+    "reports/agent_harness_phase3/failure_invalid_json/agent_harness_report.json",
+    "reports/agent_harness_phase3/failure_dry_run_false/agent_harness_report.json",
+    "reports/agent_harness_phase3/failure_executed_side_effect/agent_harness_report.json"
+  ],
+  "status": "PASS",
+  "timeout_failure_handling_status": "PASS",
+  "trace_validation_status": [
+    {
+      "errors": [],
+      "valid": true,
+      "warnings": []
+    }
+  ]
+}

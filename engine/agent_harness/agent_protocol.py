@@ -1,0 +1,68 @@
+"""Agent command protocol helpers for DHMS Agent Harness v1 phase 3."""
+
+from __future__ import annotations
+
+from typing import Any
+
+from .trace_schema import AgentRunRequest, to_jsonable
+
+
+DHMS_AGENT_PROTOCOL_VERSION = "dhms-agent-command-v1"
+STDERR_PREVIEW_LIMIT = 1200
+
+
+def build_protocol_request(request: AgentRunRequest) -> dict[str, Any]:
+    return {
+        "protocol_version": DHMS_AGENT_PROTOCOL_VERSION,
+        "request": to_jsonable(request),
+    }
+
+
+def safe_command_display(command: str) -> str:
+    redacted_markers = ("api_key", "token", "secret", "password")
+    parts = []
+    for part in command.split():
+        lower = part.lower()
+        if any(marker in lower for marker in redacted_markers):
+            parts.append("[REDACTED]")
+        else:
+            parts.append(part)
+    return " ".join(parts)
+
+
+def stderr_preview(stderr: str) -> str:
+    text = stderr.strip()
+    if len(text) <= STDERR_PREVIEW_LIMIT:
+        return text
+    return text[:STDERR_PREVIEW_LIMIT] + "...[truncated]"
+
+
+def error_trace(
+    message: str,
+    *,
+    adapter_name: str = "command_agent",
+    mode: str = "B",
+    command_metadata: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    trace = {
+        "final_answer": "Command adapter returned an error trace; no external side effects were executed by DHMS.",
+        "tool_calls": [],
+        "memory_reads": [],
+        "state_transitions": [
+            {
+                "from_state": "command_adapter_started",
+                "to_state": "error_trace",
+                "reason": message,
+            }
+        ],
+        "side_effects": [],
+        "errors": [message],
+        "adapter_name": adapter_name,
+        "dry_run": True,
+        "mode": mode,
+        "input_preserved": True,
+        "trace_version": "agent-trace-v1-error",
+    }
+    if command_metadata:
+        trace["_command_metadata"] = command_metadata
+    return trace

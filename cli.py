@@ -64,13 +64,16 @@ def build_parser() -> argparse.ArgumentParser:
     suite_parser.add_argument("--diagnose", action="store_true", help="explicitly include diagnosis fields in suite reports")
 
     agent_parser = subparsers.add_parser("test-agent")
-    agent_parser.add_argument("--mock-agent", action="store_true")
+    agent_adapter_group = agent_parser.add_mutually_exclusive_group()
+    agent_adapter_group.add_argument("--mock-agent", action="store_true")
+    agent_adapter_group.add_argument("--agent-command")
     agent_parser.add_argument("--input", dest="input_text")
     agent_parser.add_argument("--input-file")
     agent_parser.add_argument("--n", type=int, default=1)
     agent_parser.add_argument("--mode", default="B", choices=["A", "B", "C"])
     agent_parser.add_argument("--report", action="store_true")
     agent_parser.add_argument("--output", default="reports/agent_harness/latest")
+    agent_parser.add_argument("--timeout-seconds", type=int, default=10)
 
     subparsers.add_parser("doctor")
 
@@ -112,23 +115,28 @@ def main(argv: Optional[List[str]] = None) -> int:
             print(json.dumps(result["summary"], indent=2, sort_keys=True))
         return 0
     if args.command == "test-agent":
-        if not args.mock_agent:
-            print("Phase 1 supports only --mock-agent. Command/HTTP adapters will be added later.")
+        if not args.mock_agent and not args.agent_command:
+            print("Agent Harness requires --mock-agent or --agent-command. HTTP adapters will be added later.")
             return 1
         if not args.input_text and not args.input_file:
             parser.error("test-agent requires either --input or --input-file")
         if args.n < 1:
             parser.error("--n must be >= 1")
+        if args.timeout_seconds < 1:
+            parser.error("--timeout-seconds must be >= 1")
         input_text = args.input_text
         if args.input_file:
             input_text = Path(args.input_file).read_text(encoding="utf-8")
+        adapter = "command" if args.agent_command else "mock"
         result = run_agent_harness(
             input_text=input_text or "",
-            adapter="mock",
+            adapter=adapter,
             n=args.n,
             mode=args.mode,
             report=args.report,
             output=args.output,
+            agent_command=args.agent_command,
+            timeout_seconds=args.timeout_seconds,
         )
         if args.report:
             print(agent_console_summary(result))
@@ -206,8 +214,9 @@ def suite_console_summary(result) -> str:
 
 def agent_console_summary(result) -> str:
     lines = [
-        "DHMS Agent Harness Phase 2 Trace Diagnosis Report",
+        "DHMS Agent Harness Phase 3 Report",
         f"Adapter: {result['adapter']}",
+        f"Command: {result.get('agent_command', 'not_applicable')}",
         f"Mode: {result['mode']}",
         f"Trials: {result['trial_count']}",
         f"Dry run: {str(result['dry_run']).lower()}",

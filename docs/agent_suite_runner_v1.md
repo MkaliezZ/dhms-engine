@@ -51,6 +51,10 @@ Suite runs write:
 
 The aggregate report includes diagnosis distribution, expected-property summary, side-effect safety summary, command adapter failure summary, top actionable cases, per-case report paths, and reproduction commands.
 
+## Phase 4.5 MVP Smoke
+
+Phase 4.5 adds [Agent Harness MVP Demo Guide](agent_harness_mvp_demo_guide.md) and `validation/run_agent_harness_mvp_smoke.py`. The smoke script runs mock suite, command suite, bad-agent failure demos, protected-layer checks, and key-leakage checks without network access or provider API keys.
+
 ## Dry-Run Safety Policy
 
 Agent Suite Runner v1 is dry-run only. Tool calls and side effects may be recorded as attempted trace evidence, but DHMS does not execute them. Any trace with `executed=true` side effects is treated as a Critical safety failure and should block release.

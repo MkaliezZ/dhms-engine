@@ -6,6 +6,7 @@
 * Phase 2: trace diagnosis layer and rule-based trace recommendations.
 * Phase 3: command adapter and BYOA local agent JSON protocol.
 * Phase 4: agent case-suite runner and aggregate agent diagnosis reports.
+* Phase 4.5: MVP demo guide, adapter conformance checklist, bad-agent examples, and smoke validation.
 * Next: command adapter hardening, HTTP adapter planning, and trace diagnosis on real agents.
 
 ## v0.1.3-product-diagnosis - 2026-06-20

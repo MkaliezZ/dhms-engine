@@ -2,7 +2,50 @@
 
 DHMS is a perturbation-based LLM memory/context stability tester with diagnosis-driven reports.
 
-> Branch note: `agent-harness-v1` is a development branch. The stable public checkpoint remains `main` at Product Diagnosis v1.3. This branch contains Agent Harness v1 Phase 1–3 work in progress.
+> Branch note: `agent-harness-v1` is a development preview branch. The stable public checkpoint remains `main` at Product Diagnosis v1.3. This branch contains Agent Harness v1 Phase 1–4.5 work in progress.
+
+## Agent Harness MVP Quickstart
+
+`agent-harness-v1` is a dry-run MVP preview branch. It currently supports mock agents and local command agents that follow `dhms-agent-command-v1`; `main` remains the Product Diagnosis v1.3 stable checkpoint.
+
+What works now:
+
+* mock agent single-case test
+* command agent single-case test
+* mock suite
+* command suite
+* diagnosis-enriched reports
+* dry-run side-effect safety checks
+
+Mock suite:
+
+```bash
+python3 cli.py test-agent-suite --suite cases/agent_core --mock-agent --n 1 --report --output reports/agent_harness_preview/mock_suite
+```
+
+Command suite:
+
+```bash
+python3 cli.py test-agent-suite --suite cases/agent_core --agent-command "python3 examples/agents/sample_json_agent.py" --n 1 --report --output reports/agent_harness_preview/command_suite
+```
+
+Bad-agent dry-run violation demo:
+
+```bash
+python3 cli.py test-agent --agent-command "python3 examples/agents/bad_dry_run_false_agent.py" --input "Check the refund policy and issue a refund if eligible." --n 1 --report --output reports/agent_harness_preview/bad_dry_run_false
+```
+
+Smoke validation:
+
+```bash
+python3 validation/run_agent_harness_mvp_smoke.py
+```
+
+Outputs:
+
+* per-case reports under `reports/.../per_case/`
+* aggregate suite reports: `suite_agent_report.json` and `suite_agent_report.md`
+* validation reports: `validation/outputs/agent_harness_mvp_smoke_report.json` and `validation/outputs/agent_harness_mvp_smoke_report.md`
 
 ## What DHMS Tests
 
@@ -24,6 +67,8 @@ DHMS runs controlled memory and context perturbations, then reports product-faci
 * Phase 1 completed: mock dry-run skeleton and trace contract.
 * Phase 2 completed: trace diagnosis layer.
 * Phase 3 completed: command adapter / BYOA local agent JSON protocol.
+* Phase 4 completed: agent suite runner and aggregate agent diagnosis reports.
+* Phase 4.5 completed: MVP demo guide, conformance checklist, bad-agent examples, and smoke validation.
 * HTTP adapter is not implemented.
 * Real tool execution is not enabled.
 * Real provider API calls are not run by DHMS.
@@ -66,6 +111,10 @@ python3 cli.py test-suite --suite cases/llm_core --models mock --n 1 --report --
 * [Release checkpoint devlog](docs/devlog/2026-06-20-dhms-product-diagnosis-v1-3.md)
 * [Agent Harness v1 plan](docs/agent_harness_v1_plan.md)
 * [Agent command protocol v1](docs/agent_command_protocol_v1.md)
+* [Agent Harness MVP demo guide](docs/agent_harness_mvp_demo_guide.md)
+* [Agent suite runner v1](docs/agent_suite_runner_v1.md)
+* [Agent adapter conformance checklist](docs/agent_adapter_conformance_checklist.md)
+* [Agent Harness preview branch status](docs/agent_harness_preview_branch_status.md)
 
 ## Architecture / Historical Engine Layer
 

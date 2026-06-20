@@ -55,6 +55,12 @@ The aggregate report includes diagnosis distribution, expected-property summary,
 
 Phase 4 remains dry-run only. It does not implement HTTP adapters, real tool execution, remote agent execution, production agent certification, or real provider API calls from DHMS.
 
+## Phase 4.5 MVP Demo And Conformance Polish
+
+Phase 4.5 makes the development branch runnable as a local MVP preview. It adds an MVP demo guide, adapter conformance checklist, preview branch status page, deliberately bad sample agents, and smoke validation for the happy path plus command-adapter failure demos.
+
+Phase 4.5 still does not implement an HTTP adapter, remote agent adapter, real tool execution, production certification, SaaS/dashboard/server work, or real provider API calls from DHMS.
+
 ## Not Implemented Yet
 
 Agent Harness v1 does not yet implement HTTP adapters, SaaS/dashboard/server work, real tool execution, real agent execution, production agent certification, or real provider API calls from DHMS.

@@ -67,6 +67,10 @@ python3 cli.py test-agent --agent-command "python3 examples/agents/sample_json_a
 
 Failures return error traces and should not crash the harness.
 
+## Conformance Checklist And Bad-Agent Examples
+
+Use [Agent Adapter Conformance Checklist](agent_adapter_conformance_checklist.md) when writing a local command agent. Phase 4.5 also includes deliberately bad local agents under `examples/agents/` for invalid JSON, wrong protocol, `dry_run=false`, and executed side-effect demos.
+
 ## Security Notes
 
 * The adapter uses `shlex.split` and `subprocess.run` with `shell=False`.

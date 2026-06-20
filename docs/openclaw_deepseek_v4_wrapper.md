@@ -109,7 +109,7 @@ This must point to the local OpenClaw command the user wants to test manually.
 
 `OPENCLAW_DHMS_TIMEOUT_SECONDS`
 
-Default: `60`
+Default: `8`
 
 `OPENCLAW_DHMS_PREFLIGHT_ONLY`
 
@@ -243,3 +243,9 @@ python3 cli.py test-agent-suite \
 ```
 
 Keep `--max-cases` small for the first real-agent gate, and never include tokens or passwords in `OPENCLAW_DHMS_COMMAND`.
+
+## Real Validation Evidence
+
+Post-preview real OpenClaw + DeepSeek validation evidence is recorded in
+[Agent Harness Real Validation Log](agent_harness_real_validation_log.md). The
+preview tag remains frozen; that log is branch evidence only.

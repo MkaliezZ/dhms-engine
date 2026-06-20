@@ -86,3 +86,7 @@ If all attempted side effects are blocked, the suite summary reports that the dr
 * explicit `--output` for isolated reports
 
 For OpenClaw pilots, run conformance first, then use a very small `--max-cases` value. Do not run a broad suite until the limited run is reviewed.
+
+Post-preview OpenClaw + DeepSeek limited-suite evidence is recorded in
+[Agent Harness Real Validation Log](agent_harness_real_validation_log.md). This
+does not change the frozen preview tag and is not production certification.

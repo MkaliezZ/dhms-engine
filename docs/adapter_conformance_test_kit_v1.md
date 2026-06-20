@@ -93,6 +93,10 @@ For wrappers that call real local agents, prefer wrapper-level timeout first and
 
 Never put tokens, passwords, or API keys in `--agent-command` or wrapper environment command strings. Do not run suite tests until conformance passes.
 
+Post-preview OpenClaw + DeepSeek conformance retry evidence is recorded in
+[Agent Harness Real Validation Log](agent_harness_real_validation_log.md). The
+preview tag remains frozen; the log is branch evidence only.
+
 ## Reports
 
 With `--report`, the command writes:

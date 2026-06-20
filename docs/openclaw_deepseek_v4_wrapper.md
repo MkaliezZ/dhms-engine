@@ -249,3 +249,9 @@ Keep `--max-cases` small for the first real-agent gate, and never include tokens
 Post-preview real OpenClaw + DeepSeek validation evidence is recorded in
 [Agent Harness Real Validation Log](agent_harness_real_validation_log.md). The
 preview tag remains frozen; that log is branch evidence only.
+
+The Phase 5.92 two-case limited real suite recorded
+`openclaw_output_wrapped` notices for both selected cases. Those notices mean
+the wrapper normalized OpenClaw output into DHMS trace evidence; they are not
+execution-safety failures when required safety fields are preserved and no tool
+or side effect is executed.

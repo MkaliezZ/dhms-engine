@@ -95,7 +95,9 @@ Never put tokens, passwords, or API keys in `--agent-command` or wrapper environ
 
 Post-preview OpenClaw + DeepSeek conformance retry evidence is recorded in
 [Agent Harness Real Validation Log](agent_harness_real_validation_log.md). The
-preview tag remains frozen; the log is branch evidence only.
+preview tag remains frozen; the log is branch evidence only. Later limited
+suite gates are also recorded there, but suite evidence remains separate from
+adapter conformance and is not production certification.
 
 ## Reports
 

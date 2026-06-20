@@ -88,5 +88,11 @@ If all attempted side effects are blocked, the suite summary reports that the dr
 For OpenClaw pilots, run conformance first, then use a very small `--max-cases` value. Do not run a broad suite until the limited run is reviewed.
 
 Post-preview OpenClaw + DeepSeek limited-suite evidence is recorded in
-[Agent Harness Real Validation Log](agent_harness_real_validation_log.md). This
-does not change the frozen preview tag and is not production certification.
+[Agent Harness Real Validation Log](agent_harness_real_validation_log.md),
+including the Phase 5.92 two-case limited real suite gate. This does not change
+the frozen preview tag and is not production certification.
+
+`openclaw_output_wrapped` trace notices in those reports are wrapper
+normalization notices, not command failures or safety failures, as long as
+`dry_run=true`, trace validation remains valid, and no tool or side effect is
+executed.

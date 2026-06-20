@@ -293,3 +293,31 @@ Local fixtures now validate extraction from sanitized fake shapes:
 
 The wrapper still rejects secret-like output before preserving previews and
 does not use hidden reasoning or chain-of-thought fields.
+
+## Phase 5.95R Raw Output Diagnostics
+
+The wrapper now emits `wrapper_diagnostics` when it has to normalize OpenClaw
+output instead of accepting a complete DHMS trace. These diagnostics are
+pre-normalization facts for debugging the OpenClaw envelope shape. They do not
+affect pass/fail, safety veto, trace validation, or semantic recommendations.
+
+Fields:
+
+* `diagnostics_version`
+* `raw_stdout_present`
+* `raw_stderr_present`
+* `raw_stdout_preview`
+* `raw_stderr_preview`
+* `detected_json_shape`
+* `normalization_reason`
+* `candidate_text_fields_found`
+
+Safety rules:
+
+* stdout/stderr previews are truncated
+* secret-like content is replaced with a redacted placeholder
+* hidden reasoning / chain-of-thought fields are omitted from parseable JSON
+  previews
+* candidate text detection records field paths only
+* diagnostics are local evidence for the next single-case probe, not proof that
+  real semantic extraction is fixed

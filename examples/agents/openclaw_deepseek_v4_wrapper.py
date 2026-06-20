@@ -22,6 +22,7 @@ ADAPTER_NAME = "openclaw_deepseek_v4"
 TRACE_VERSION = "agent-trace-v1"
 DEFAULT_TIMEOUT_SECONDS = 8
 MAX_PREVIEW_CHARS = 1200
+MAX_DIAGNOSTIC_PREVIEW_CHARS = 600
 DRY_RUN_BLOCK_REASON = "Blocked by DHMS OpenClaw wrapper dry-run policy."
 SAFE_FAILURE_ANSWER = "OpenClaw wrapper could not complete the dry-run request safely."
 RECOMMENDED_OPENCLAW_EXECUTABLE = "/Users/macos/.npm-global/bin/openclaw"
@@ -127,7 +128,7 @@ def main() -> int:
                 )
             )
 
-        trace = trace_from_openclaw_stdout(completed.stdout, request)
+        trace = trace_from_openclaw_stdout(completed.stdout, request, completed.stderr)
         return write_response(trace)
     except subprocess.TimeoutExpired as exc:
         request_mode = request["mode"] if "request" in locals() else "B"
@@ -396,25 +397,38 @@ def build_openclaw_prompt(request: dict[str, Any]) -> str:
     return json.dumps(prompt_payload, sort_keys=True)
 
 
-def trace_from_openclaw_stdout(stdout: str, request: dict[str, Any]) -> dict[str, Any]:
+def trace_from_openclaw_stdout(stdout: str, request: dict[str, Any], stderr: str = "") -> dict[str, Any]:
     if contains_secret_like_text(stdout):
-        return error_trace(
+        trace = error_trace(
             "openclaw_invalid_json",
             "Potential secret-like content was redacted from OpenClaw output.",
             mode=request["mode"],
             reason="OpenClaw output redacted",
         )
+        trace["wrapper_diagnostics"] = wrapper_diagnostics(
+            raw_stdout=stdout,
+            raw_stderr=stderr,
+            parsed_output=None,
+            normalization_reason="secret_like_stdout_redacted",
+        )
+        return trace
     try:
         output = json.loads(stdout or "{}")
     except json.JSONDecodeError:
-        return plain_text_trace(stdout, request)
+        return plain_text_trace(stdout, request, stderr)
     if not isinstance(output, dict):
-        return plain_text_trace(stdout, request)
+        return plain_text_trace(stdout, request, stderr, parsed_output=output)
+    diagnostics = wrapper_diagnostics(
+        raw_stdout=stdout,
+        raw_stderr=stderr,
+        parsed_output=output,
+        normalization_reason="incomplete_structured_trace",
+    )
     output = unwrap_openclaw_output(output)
-    return normalize_trace(output, request)
+    return normalize_trace(output, request, diagnostics=diagnostics)
 
 
-def plain_text_trace(stdout: str, request: dict[str, Any]) -> dict[str, Any]:
+def plain_text_trace(stdout: str, request: dict[str, Any], stderr: str = "", parsed_output: Any = None) -> dict[str, Any]:
     observable = truncate_text(stdout.strip()) or "OpenClaw returned an empty dry-run response."
     return base_trace(
         final_answer=observable,
@@ -435,15 +449,22 @@ def plain_text_trace(stdout: str, request: dict[str, Any]) -> dict[str, Any]:
         ],
         observable_response=observable,
         model_response_preview=observable,
+        wrapper_diagnostics=wrapper_diagnostics(
+            raw_stdout=stdout,
+            raw_stderr=stderr,
+            parsed_output=parsed_output,
+            normalization_reason="plain_text_or_non_object_output",
+        ),
     )
 
 
-def normalize_trace(output: dict[str, Any], request: dict[str, Any]) -> dict[str, Any]:
+def normalize_trace(output: dict[str, Any], request: dict[str, Any], diagnostics: dict[str, Any] | None = None) -> dict[str, Any]:
     errors = normalize_errors(output.get("errors"))
     tool_calls, tool_errors = normalize_tool_calls(output.get("tool_calls"))
     side_effects, side_effect_errors = normalize_side_effects(output.get("side_effects"))
     observable = observable_response_from_output(output)
-    if not complete_structured_trace(output):
+    wrapped = not complete_structured_trace(output)
+    if wrapped:
         errors.append(
             {
                 "type": "openclaw_output_wrapped",
@@ -462,6 +483,7 @@ def normalize_trace(output: dict[str, Any], request: dict[str, Any]) -> dict[str
         errors=errors,
         observable_response=observable,
         model_response_preview=observable,
+        wrapper_diagnostics=diagnostics if wrapped else None,
     )
 
 
@@ -595,6 +617,121 @@ def first_observable_text(output: dict[str, Any]) -> str:
     return ""
 
 
+def wrapper_diagnostics(
+    *,
+    raw_stdout: str,
+    raw_stderr: str,
+    parsed_output: Any,
+    normalization_reason: str,
+) -> dict[str, Any]:
+    return {
+        "diagnostics_version": "openclaw-wrapper-diagnostics-v1",
+        "raw_stdout_present": bool(raw_stdout),
+        "raw_stderr_present": bool(raw_stderr),
+        "raw_stdout_preview": diagnostic_preview(raw_stdout, parsed_output),
+        "raw_stderr_preview": diagnostic_preview(raw_stderr),
+        "detected_json_shape": detected_json_shape(parsed_output),
+        "normalization_reason": normalization_reason,
+        "candidate_text_fields_found": candidate_text_fields(parsed_output),
+    }
+
+
+def diagnostic_preview(text: str, parsed_value: Any = None) -> str:
+    if not text:
+        return ""
+    if contains_secret_like_text(text):
+        return "[redacted: secret-like content detected]"
+    if parsed_value is not None:
+        safe_value = redact_hidden_reasoning(parsed_value)
+        try:
+            return truncate_diagnostic_text(json.dumps(safe_value, sort_keys=True))
+        except TypeError:
+            pass
+    return truncate_diagnostic_text(text.strip())
+
+
+def truncate_diagnostic_text(text: str) -> str:
+    text = str(text).replace("\x00", "")
+    if len(text) <= MAX_DIAGNOSTIC_PREVIEW_CHARS:
+        return text
+    return text[:MAX_DIAGNOSTIC_PREVIEW_CHARS] + "...[truncated]"
+
+
+def detected_json_shape(value: Any) -> dict[str, Any]:
+    if isinstance(value, dict):
+        shape: dict[str, Any] = {
+            "type": "object",
+            "top_level_keys": sorted(str(key) for key in value.keys())[:30],
+        }
+        nested: dict[str, Any] = {}
+        for key in ("trace", "result", "response", "output", "data", "message"):
+            item = value.get(key)
+            if isinstance(item, dict):
+                nested[key] = sorted(str(nested_key) for nested_key in item.keys())[:30]
+            elif isinstance(item, list):
+                nested[key] = "list"
+            elif item is not None:
+                nested[key] = type(item).__name__
+        if nested:
+            shape["nested_keys"] = nested
+        return shape
+    if isinstance(value, list):
+        return {"type": "array", "length": len(value)}
+    if value is None:
+        return {"type": "not_parseable"}
+    return {"type": type(value).__name__}
+
+
+def candidate_text_fields(value: Any, prefix: str = "", depth: int = 0) -> list[str]:
+    if depth > 4:
+        return []
+    fields: list[str] = []
+    if isinstance(value, dict):
+        for key, item in value.items():
+            key_text = str(key)
+            path = f"{prefix}.{key_text}" if prefix else key_text
+            if is_hidden_reasoning_field(key_text):
+                continue
+            if key_text in {
+                "observable_response",
+                "model_response_preview",
+                "raw_response_preview",
+                "final_answer",
+                "answer",
+                "content",
+                "text",
+                "message",
+                "response",
+            } and isinstance(item, str) and item.strip():
+                fields.append(path)
+            elif isinstance(item, (dict, list)):
+                fields.extend(candidate_text_fields(item, path, depth + 1))
+    elif isinstance(value, list):
+        for index, item in enumerate(value[:5]):
+            fields.extend(candidate_text_fields(item, f"{prefix}[{index}]" if prefix else f"[{index}]", depth + 1))
+    return sorted(set(fields))[:30]
+
+
+def redact_hidden_reasoning(value: Any) -> Any:
+    if isinstance(value, dict):
+        redacted: dict[str, Any] = {}
+        for key, item in value.items():
+            key_text = str(key)
+            if is_hidden_reasoning_field(key_text):
+                redacted[key_text] = "[redacted: hidden reasoning omitted]"
+            else:
+                redacted[key_text] = redact_hidden_reasoning(item)
+        return redacted
+    if isinstance(value, list):
+        return [redact_hidden_reasoning(item) for item in value]
+    return value
+
+
+def is_hidden_reasoning_field(key: str) -> bool:
+    lowered = key.lower()
+    return lowered in {"reasoning", "chain_of_thought", "cot", "thoughts", "hidden_reasoning"}
+
+
 def preflight_trace(mode: str, warnings: list[dict[str, str]]) -> dict[str, Any]:
     return base_trace(
         final_answer="OpenClaw DHMS wrapper preflight completed.",
@@ -627,6 +764,7 @@ def base_trace(
     errors: list[Any],
     observable_response: str = "",
     model_response_preview: str = "",
+    wrapper_diagnostics: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     trace = {
         "final_answer": truncate_text(final_answer),
@@ -645,6 +783,8 @@ def base_trace(
         trace["observable_response"] = truncate_text(observable_response)
     if model_response_preview:
         trace["model_response_preview"] = truncate_text(model_response_preview)
+    if wrapper_diagnostics:
+        trace["wrapper_diagnostics"] = wrapper_diagnostics
     return trace
 
 

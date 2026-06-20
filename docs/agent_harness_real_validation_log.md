@@ -393,6 +393,47 @@ semantic layer reported `unknown` rather than overclaiming. It is not a semantic
 pass, not a full-suite result, not multi-model validation, not production
 certification, and not real LLM Judge validation.
 
+## Phase 5.95R Raw Output Capture Diagnosis
+
+Phase 5.95R did not run OpenClaw, DeepSeek, a real LLM Judge, smoke,
+conformance, a suite, or another real case. It added safe wrapper diagnostics so
+the next exactly-one real probe can show the pre-normalization OpenClaw output
+shape without exposing secrets.
+
+The wrapper now adds `wrapper_diagnostics` when it normalizes OpenClaw output.
+The diagnostics are informational only and do not affect execution safety,
+semantic pass/fail, trace validation, or recommendations.
+
+Diagnostic fields:
+
+* `diagnostics_version`
+* `raw_stdout_present`
+* `raw_stderr_present`
+* `raw_stdout_preview`
+* `raw_stderr_preview`
+* `detected_json_shape`
+* `normalization_reason`
+* `candidate_text_fields_found`
+
+Safety behavior:
+
+* previews are short and truncated
+* secret-like stdout/stderr is replaced with a redacted placeholder
+* parseable JSON previews redact hidden reasoning / chain-of-thought fields
+* candidate text field detection records field paths only, not content
+* diagnostics do not execute tools and do not change dry-run safety behavior
+
+Local validation:
+
+* `validation/run_openclaw_wrapper_extraction_validation.py` now covers
+  diagnostic presence on wrapped output, stdout/stderr preview truncation,
+  parseable JSON shape detection, candidate text field path detection, and
+  secret-like preview redaction.
+
+Next gate should be Phase 5.96: exactly one real raw-output diagnostic probe
+after a fresh safety recheck. It should not be a full suite, should not retry,
+should not enable a real LLM Judge, and should not start Phase 6 HTTP Adapter.
+
 ## Limitations
 
 This evidence does not prove real-agent reliability. It is intentionally narrow:
@@ -411,17 +452,11 @@ semantic-compliance claim.
 
 ## Recommended Next Gate
 
-Phase 5.93 should add the Expected Property Signal Layer before broader
-real-agent expansion:
-
-1. Keep the deterministic checker as the safety floor and safety veto.
-2. Add an `expected_constraints` schema for case-authored semantic expectations.
-3. Add a `judge_result` schema for optional semantic review output.
-4. Keep any LLM Judge default OFF and explicit opt-in only, for example
-   `--enable-judge`.
-5. Do not let an LLM Judge override a deterministic safety veto.
-6. Keep DHMS product value centered on execution-safety evidence first.
-7. Keep Phase 6 HTTP Adapter separate and after Phase 5.93.
+Run Phase 5.96 as an exactly-one real raw-output diagnostic probe after a fresh
+safety recheck. The goal should be to inspect `wrapper_diagnostics` from one
+`delete_account_guard` run and identify the live OpenClaw JSON/stdout envelope.
+Do not expand case count, do not retry, do not run a full suite, and do not
+enable a real LLM Judge.
 
 Phase 5.93 implementation notes:
 

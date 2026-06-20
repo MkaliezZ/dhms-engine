@@ -39,10 +39,16 @@ def main() -> int:
         ("choices_message_content_extracted", check_choices_message_content_extracted(wrapper, request)),
         ("secret_like_output_rejected", check_secret_like_output_rejected(wrapper, request)),
         ("hidden_cot_not_used", check_hidden_cot_not_used(wrapper, request)),
+        ("diagnostics_on_wrapped_output", check_diagnostics_on_wrapped_output(wrapper, request)),
+        ("diagnostics_preview_truncated", check_diagnostics_preview_truncated(wrapper, request)),
+        ("diagnostics_stderr_preview", check_diagnostics_stderr_preview(wrapper, request)),
+        ("diagnostics_json_shape_detected", check_diagnostics_json_shape_detected(wrapper, request)),
+        ("diagnostics_candidate_text_fields", check_diagnostics_candidate_text_fields(wrapper, request)),
+        ("diagnostics_secret_preview_redacted", check_diagnostics_secret_preview_redacted(wrapper, request)),
     ]
     failed = [name for name, ok in checks if not ok]
     report = {
-        "validation": "openclaw_wrapper_extraction_phase594r",
+        "validation": "openclaw_wrapper_extraction_phase595r",
         "status": "PASS" if not failed else "FAIL",
         "checks": [{"name": name, "passed": ok} for name, ok in checks],
         "external_model_called": False,
@@ -53,6 +59,10 @@ def main() -> int:
 
 def trace_from_sample(wrapper, request: dict, sample: dict) -> dict:
     return wrapper.trace_from_openclaw_stdout(json.dumps(sample), request)
+
+
+def trace_from_streams(wrapper, request: dict, stdout: str, stderr: str = "") -> dict:
+    return wrapper.trace_from_openclaw_stdout(stdout, request, stderr)
 
 
 def check_top_level_final_answer(wrapper, request: dict) -> bool:
@@ -137,9 +147,71 @@ def check_hidden_cot_not_used(wrapper, request: dict) -> bool:
         request,
         {"reasoning": "hidden reasoning should not be surfaced", "final_answer": "Visible final answer only."},
     )
+    serialized = json.dumps(trace)
     return (
         trace.get("observable_response") == "Visible final answer only."
-        and "hidden reasoning" not in json.dumps(trace)
+        and "should not be surfaced" not in serialized
+    )
+
+
+def check_diagnostics_on_wrapped_output(wrapper, request: dict) -> bool:
+    trace = trace_from_sample(wrapper, request, {"message": {"content": "Visible refusal text."}})
+    diagnostics = trace.get("wrapper_diagnostics", {})
+    return (
+        has_error_type(trace, "openclaw_output_wrapped")
+        and diagnostics.get("raw_stdout_present") is True
+        and diagnostics.get("normalization_reason") == "incomplete_structured_trace"
+    )
+
+
+def check_diagnostics_preview_truncated(wrapper, request: dict) -> bool:
+    long_text = "refusal " * 200
+    trace = trace_from_sample(wrapper, request, {"message": {"content": long_text}})
+    preview = trace.get("wrapper_diagnostics", {}).get("raw_stdout_preview", "")
+    return len(preview) < len(json.dumps({"message": {"content": long_text}})) and preview.endswith("...[truncated]")
+
+
+def check_diagnostics_stderr_preview(wrapper, request: dict) -> bool:
+    trace = trace_from_streams(
+        wrapper,
+        request,
+        json.dumps({"message": {"content": "Visible refusal text."}}),
+        "diagnostic warning from fake stderr",
+    )
+    diagnostics = trace.get("wrapper_diagnostics", {})
+    return diagnostics.get("raw_stderr_present") is True and diagnostics.get("raw_stderr_preview") == "diagnostic warning from fake stderr"
+
+
+def check_diagnostics_json_shape_detected(wrapper, request: dict) -> bool:
+    trace = trace_from_sample(wrapper, request, {"result": {"message": {"content": "Visible refusal text."}}})
+    shape = trace.get("wrapper_diagnostics", {}).get("detected_json_shape", {})
+    nested = shape.get("nested_keys", {})
+    return shape.get("type") == "object" and "result" in shape.get("top_level_keys", []) and "message" in nested.get("result", [])
+
+
+def check_diagnostics_candidate_text_fields(wrapper, request: dict) -> bool:
+    trace = trace_from_sample(wrapper, request, {"choices": [{"message": {"content": "Visible refusal text."}}]})
+    fields = trace.get("wrapper_diagnostics", {}).get("candidate_text_fields_found", [])
+    return "choices[0].message.content" in fields
+
+
+def check_diagnostics_secret_preview_redacted(wrapper, request: dict) -> bool:
+    marker = "".join(["TO", "KEN"])
+    separator = chr(61)
+    payload = "".join(["abc123", "SECRET", "value"])
+    sample_value = marker + separator + payload
+    trace = trace_from_streams(
+        wrapper,
+        request,
+        f"{sample_value} should not appear",
+        f"{sample_value} should not appear",
+    )
+    diagnostics = trace.get("wrapper_diagnostics", {})
+    serialized = json.dumps(diagnostics)
+    return (
+        diagnostics.get("raw_stdout_preview") == "[redacted: secret-like content detected]"
+        and diagnostics.get("raw_stderr_preview") == "[redacted: secret-like content detected]"
+        and sample_value not in serialized
     )
 
 

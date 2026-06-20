@@ -49,6 +49,16 @@ python3 cli.py test-agent-suite --suite cases/agent_core --agent-command "python
 
 This runs the local sample command agent through `dhms-agent-command-v1`. DHMS treats returned tool calls and side effects as trace evidence only.
 
+## Phase 5 Adapter Conformance Test Kit
+
+Before running suite tests against a local wrapper, check protocol safety:
+
+```bash
+python3 cli.py check-agent-adapter --agent-command "python3 examples/agents/sample_json_agent.py" --report --output reports/adapter_conformance/sample_json_agent
+```
+
+This writes JSON, Markdown, and static HTML conformance reports.
+
 ## Bad-Agent Failure Demos
 
 ```bash

@@ -30,6 +30,11 @@
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/binding/regime_validator.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/cli.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/engine/agent_harness/__init__.py",
+        "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/engine/agent_harness/adapter_conformance_cases.py",
+        "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/engine/agent_harness/adapter_conformance_html_report.py",
+        "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/engine/agent_harness/adapter_conformance_report.py",
+        "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/engine/agent_harness/adapter_conformance_runner.py",
+        "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/engine/agent_harness/adapter_conformance_types.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/engine/agent_harness/agent_adapter.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/engine/agent_harness/agent_expected_property_checker.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/engine/agent_harness/agent_html_report.py",
@@ -98,6 +103,8 @@
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/examples/agents/bad_dry_run_false_agent.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/examples/agents/bad_executed_side_effect_agent.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/examples/agents/bad_invalid_json_agent.py",
+        "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/examples/agents/bad_missing_trace_agent.py",
+        "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/examples/agents/bad_timeout_agent.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/examples/agents/bad_wrong_protocol_agent.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/examples/agents/sample_json_agent.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/product/__init__.py",
@@ -131,6 +138,7 @@
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/validation/run_agent_harness_phase47_validation.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/validation/run_agent_harness_phase48_readiness.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/validation/run_agent_harness_phase4_validation.py",
+        "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/validation/run_agent_harness_phase5_conformance_validation.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/validation/run_all_local_checks.py",
         "/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/validation/run_diagnosis_v13_validation.py"
       ],
@@ -215,7 +223,7 @@
       "name": "mock_suite",
       "returncode": 0,
       "stderr_preview": "",
-      "stdout_preview": "DHMS Agent Harness Suite Report\nSuite: agent_core\nRun: agent_core__mock__n1__20260620_204416\nAdapter: mock\nCases: 6\nTrials: 1\nDry run all cases: true\nSide effects blocked: 5\nSide effects executed: 0\nSuite severity: Low\nRecommendation: Dry-run guard is working: all attempted side effects were blocked.\n\nReports:\n* reports/agent_harness_phase48/mock_suite/suite_agent_report.json\n* reports/agent_harness_phase48/mock_suite/suite_agent_report.md\n* reports/agent_harness_phase48/mock_suite/suite_agent_report.html\n"
+      "stdout_preview": "DHMS Agent Harness Suite Report\nSuite: agent_core\nRun: agent_core__mock__n1__20260620_213010\nAdapter: mock\nCases: 6\nTrials: 1\nDry run all cases: true\nSide effects blocked: 5\nSide effects executed: 0\nSuite severity: Low\nRecommendation: Dry-run guard is working: all attempted side effects were blocked.\n\nReports:\n* reports/agent_harness_phase48/mock_suite/suite_agent_report.json\n* reports/agent_harness_phase48/mock_suite/suite_agent_report.md\n* reports/agent_harness_phase48/mock_suite/suite_agent_report.html\n"
     },
     {
       "command": [
@@ -235,7 +243,7 @@
       "name": "command_suite",
       "returncode": 0,
       "stderr_preview": "",
-      "stdout_preview": "DHMS Agent Harness Suite Report\nSuite: agent_core\nRun: agent_core__command__n1__20260620_204419\nAdapter: command\nCases: 6\nTrials: 1\nDry run all cases: true\nSide effects blocked: 6\nSide effects executed: 0\nSuite severity: Low\nRecommendation: Dry-run guard is working: all attempted side effects were blocked.\n\nReports:\n* reports/agent_harness_phase48/command_suite/suite_agent_report.json\n* reports/agent_harness_phase48/command_suite/suite_agent_report.md\n* reports/agent_harness_phase48/command_suite/suite_agent_report.html\n"
+      "stdout_preview": "DHMS Agent Harness Suite Report\nSuite: agent_core\nRun: agent_core__command__n1__20260620_213010\nAdapter: command\nCases: 6\nTrials: 1\nDry run all cases: true\nSide effects blocked: 6\nSide effects executed: 0\nSuite severity: Low\nRecommendation: Dry-run guard is working: all attempted side effects were blocked.\n\nReports:\n* reports/agent_harness_phase48/command_suite/suite_agent_report.json\n* reports/agent_harness_phase48/command_suite/suite_agent_report.md\n* reports/agent_harness_phase48/command_suite/suite_agent_report.html\n"
     },
     {
       "command": [

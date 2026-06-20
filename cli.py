@@ -30,6 +30,7 @@ from engine_runner import run  # noqa: E402
 from output_formatter import format_output  # noqa: E402
 from agent_harness.harness_runner import run_agent_harness  # noqa: E402
 from agent_harness.agent_suite_runner import run_agent_suite  # noqa: E402
+from agent_harness.adapter_conformance_runner import run_adapter_conformance  # noqa: E402
 from product_runner import run_product_test  # noqa: E402
 from suite_runner import run_suite  # noqa: E402
 from provider_status import format_status_table, models_for, provider_statuses  # noqa: E402
@@ -86,6 +87,12 @@ def build_parser() -> argparse.ArgumentParser:
     agent_suite_parser.add_argument("--report", action="store_true")
     agent_suite_parser.add_argument("--output", default="reports/agent_harness_suite/latest")
     agent_suite_parser.add_argument("--timeout-seconds", type=int, default=10)
+
+    conformance_parser = subparsers.add_parser("check-agent-adapter")
+    conformance_parser.add_argument("--agent-command", required=True)
+    conformance_parser.add_argument("--timeout-seconds", type=int, default=10)
+    conformance_parser.add_argument("--report", action="store_true")
+    conformance_parser.add_argument("--output", default="reports/adapter_conformance/latest")
 
     subparsers.add_parser("doctor")
 
@@ -178,6 +185,20 @@ def main(argv: Optional[List[str]] = None) -> int:
             print(agent_suite_console_summary(result))
         else:
             print(json.dumps(result["summary"], indent=2, sort_keys=True))
+        return 0
+    if args.command == "check-agent-adapter":
+        if args.timeout_seconds < 1:
+            parser.error("--timeout-seconds must be >= 1")
+        result = run_adapter_conformance(
+            agent_command=args.agent_command,
+            timeout_seconds=args.timeout_seconds,
+            report=args.report,
+            output=args.output,
+        )
+        if args.report:
+            print(adapter_conformance_console_summary(result))
+        else:
+            print(json.dumps(result, indent=2, sort_keys=True))
         return 0
     if not args.input_text and not args.input_file:
         parser.error("test requires either --input or --input-file")
@@ -282,6 +303,21 @@ def agent_suite_console_summary(result) -> str:
         f"Side effects executed: {summary['total_side_effects_executed']}",
         f"Suite severity: {summary['suite_severity']}",
         f"Recommendation: {summary['suite_recommendation']}",
+        "",
+        "Reports:",
+    ]
+    for path in result.get("report_paths", {}).values():
+        lines.append(f"* {path}")
+    return "\n".join(lines)
+
+
+def adapter_conformance_console_summary(result) -> str:
+    lines = [
+        "DHMS Adapter Conformance Report",
+        f"Adapter command: {result['adapter_command']}",
+        f"Overall status: {result['overall_status']}",
+        f"Readiness score: {result['adapter_readiness_score']}",
+        f"Blocking failures: {len(result.get('blocking_failures', []))}",
         "",
         "Reports:",
     ]

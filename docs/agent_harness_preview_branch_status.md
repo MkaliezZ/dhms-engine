@@ -15,6 +15,7 @@
 * Phase 4.6 command failure diagnosis labels
 * Phase 4.7 static HTML reports
 * Phase 4.8 preview release readiness check
+* Phase 5 adapter conformance test kit
 
 ## Not Implemented
 

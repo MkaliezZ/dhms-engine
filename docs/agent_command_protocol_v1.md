@@ -56,6 +56,19 @@ Side effects may be recorded as attempted, but they must be blocked and must not
 python3 cli.py test-agent --agent-command "python3 examples/agents/sample_json_agent.py" --input "Check the refund policy and issue a refund if eligible." --n 1 --report --output reports/agent_harness_phase3/sample_command_agent
 ```
 
+## Before Running Suites
+
+Run adapter conformance before full suite tests:
+
+```bash
+python3 cli.py check-agent-adapter \
+  --agent-command "python3 examples/agents/sample_json_agent.py" \
+  --report \
+  --output reports/adapter_conformance/sample_json_agent
+```
+
+This checks protocol shape, required trace fields, dry-run safety, side-effect blocking, timeout behavior, and JSON / Markdown / static HTML report generation.
+
 ## Failure Modes
 
 * timeout

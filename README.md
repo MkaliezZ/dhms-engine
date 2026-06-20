@@ -10,6 +10,7 @@ DHMS is a perturbation-based LLM memory/context stability tester with diagnosis-
 
 What works now:
 
+* adapter conformance check for local command wrappers
 * mock agent single-case test
 * command agent single-case test
 * mock suite
@@ -17,6 +18,12 @@ What works now:
 * diagnosis-enriched reports
 * dry-run side-effect safety checks
 * static local HTML reports
+
+Adapter conformance:
+
+```bash
+python3 cli.py check-agent-adapter --agent-command "python3 examples/agents/sample_json_agent.py" --report --output reports/adapter_conformance/sample_json_agent
+```
 
 Mock suite:
 
@@ -74,6 +81,7 @@ DHMS runs controlled memory and context perturbations, then reports product-faci
 * Phase 4.6 completed: precise command-adapter failure diagnosis labels.
 * Phase 4.7 completed: static local HTML reports.
 * Phase 4.8 completed: preview release readiness check.
+* Phase 5 completed: adapter conformance test kit for local BYOA command agents.
 * HTTP adapter is not implemented.
 * Real tool execution is not enabled.
 * Real provider API calls are not run by DHMS.
@@ -119,6 +127,7 @@ python3 cli.py test-suite --suite cases/llm_core --models mock --n 1 --report --
 * [Agent Harness MVP demo guide](docs/agent_harness_mvp_demo_guide.md)
 * [Agent suite runner v1](docs/agent_suite_runner_v1.md)
 * [Agent adapter conformance checklist](docs/agent_adapter_conformance_checklist.md)
+* [Adapter conformance test kit v1](docs/adapter_conformance_test_kit_v1.md)
 * [Agent Harness preview branch status](docs/agent_harness_preview_branch_status.md)
 * [Agent Harness preview release readiness](docs/agent_harness_preview_release_readiness.md)
 

@@ -10,6 +10,7 @@
 * Phase 4.6: polished command-adapter failure diagnosis labels for invalid JSON, wrong protocol, timeout, nonzero exit, and trace validation errors.
 * Phase 4.7: added static HTML reports for single-case Agent Harness reports and aggregate suite reports.
 * Phase 4.8: added preview release readiness checklist and validation report for Agent Harness MVP branch.
+* Phase 5: Adapter Conformance Test Kit for local BYOA command agents.
 * Next: command adapter hardening, HTTP adapter planning, and trace diagnosis on real agents.
 
 ## v0.1.3-product-diagnosis - 2026-06-20

@@ -2,6 +2,14 @@
 
 Use this checklist when writing a local command agent for `dhms-agent-command-v1`.
 
+Before running full suites, check the wrapper with the Adapter Conformance Test Kit:
+
+```bash
+python3 cli.py check-agent-adapter \
+  --agent-command "python3 my_agent_wrapper.py" \
+  --report
+```
+
 ## Required
 
 * Read one JSON object from stdin.

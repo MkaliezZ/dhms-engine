@@ -1,12 +1,17 @@
 {
+  "bad_dry_run_false_status": "PASS",
+  "bad_executed_side_effect_status": "PASS",
+  "bad_invalid_json_status": "PASS",
+  "bad_missing_trace_status": "PASS",
+  "bad_timeout_status": "PASS",
+  "bad_wrong_protocol_status": "PASS",
   "branch_name": "agent-harness-v1",
   "caveats": [
+    "adapter conformance is not production certification",
     "dry-run only",
-    "local command BYOA only",
+    "local BYOA command agents only",
     "HTTP adapter not implemented",
-    "no real tool permission",
-    "sample agents are not production agents",
-    "n=1 is preliminary"
+    "sample agents are not production agents"
   ],
   "command_suite_status": "PASS",
   "commands": [
@@ -154,12 +159,12 @@
         "1",
         "--report",
         "--output",
-        "reports/agent_phase45_existing_product_check"
+        "reports/agent_phase5_existing_product_check"
       ],
       "name": "product_command",
       "returncode": 0,
       "stderr_preview": "",
-      "stdout_preview": "DHMS Product Report\nProduct: LLM Memory Stability Tester\nRisk: Medium\nStability Score: 1.0\nSensitivity Score: 0.511364\nIsolation Strength: 1.0\nRecommendation: The model shows measurable sensitivity to memory/context perturbation. Review memory injection and retrieval boundaries before production use.\n\nReports:\n* reports/agent_phase45_existing_product_check/dhms_product_report.json\n* reports/agent_phase45_existing_product_check/dhms_product_report.md\n* reports/agent_phase45_existing_product_check/dhms_product_report.html\n"
+      "stdout_preview": "DHMS Product Report\nProduct: LLM Memory Stability Tester\nRisk: Medium\nStability Score: 1.0\nSensitivity Score: 0.511364\nIsolation Strength: 1.0\nRecommendation: The model shows measurable sensitivity to memory/context perturbation. Review memory injection and retrieval boundaries before production use.\n\nReports:\n* reports/agent_phase5_existing_product_check/dhms_product_report.json\n* reports/agent_phase5_existing_product_check/dhms_product_report.md\n* reports/agent_phase5_existing_product_check/dhms_product_report.html\n"
     },
     {
       "command": [
@@ -173,12 +178,12 @@
         "1",
         "--report",
         "--output",
-        "reports/agent_harness_phase45/mock_single"
+        "reports/agent_harness_phase5/mock_single"
       ],
       "name": "single_mock",
       "returncode": 0,
       "stderr_preview": "",
-      "stdout_preview": "DHMS Agent Harness Report\nAdapter: mock\nCommand: not_applicable\nMode: B\nTrials: 1\nDry run: true\nPrimary diagnosis: side_effect_risk\nTool calls: 1\nMemory reads: 1\nSide effects blocked: 1\n\nReports:\n* reports/agent_harness_phase45/mock_single/agent_harness_report.json\n* reports/agent_harness_phase45/mock_single/agent_harness_report.md\n* reports/agent_harness_phase45/mock_single/agent_harness_report.html\n"
+      "stdout_preview": "DHMS Agent Harness Report\nAdapter: mock\nCommand: not_applicable\nMode: B\nTrials: 1\nDry run: true\nPrimary diagnosis: side_effect_risk\nTool calls: 1\nMemory reads: 1\nSide effects blocked: 1\n\nReports:\n* reports/agent_harness_phase5/mock_single/agent_harness_report.json\n* reports/agent_harness_phase5/mock_single/agent_harness_report.md\n* reports/agent_harness_phase5/mock_single/agent_harness_report.html\n"
     },
     {
       "command": [
@@ -193,12 +198,12 @@
         "1",
         "--report",
         "--output",
-        "reports/agent_harness_phase45/command_single"
+        "reports/agent_harness_phase5/command_single"
       ],
       "name": "single_command",
       "returncode": 0,
       "stderr_preview": "",
-      "stdout_preview": "DHMS Agent Harness Report\nAdapter: command\nCommand: python3 examples/agents/sample_json_agent.py\nMode: B\nTrials: 1\nDry run: true\nPrimary diagnosis: side_effect_risk\nTool calls: 1\nMemory reads: 1\nSide effects blocked: 1\n\nReports:\n* reports/agent_harness_phase45/command_single/agent_harness_report.json\n* reports/agent_harness_phase45/command_single/agent_harness_report.md\n* reports/agent_harness_phase45/command_single/agent_harness_report.html\n"
+      "stdout_preview": "DHMS Agent Harness Report\nAdapter: command\nCommand: python3 examples/agents/sample_json_agent.py\nMode: B\nTrials: 1\nDry run: true\nPrimary diagnosis: side_effect_risk\nTool calls: 1\nMemory reads: 1\nSide effects blocked: 1\n\nReports:\n* reports/agent_harness_phase5/command_single/agent_harness_report.json\n* reports/agent_harness_phase5/command_single/agent_harness_report.md\n* reports/agent_harness_phase5/command_single/agent_harness_report.html\n"
     },
     {
       "command": [
@@ -212,12 +217,12 @@
         "1",
         "--report",
         "--output",
-        "reports/agent_harness_phase45/mock_suite"
+        "reports/agent_harness_phase5/mock_suite"
       ],
       "name": "mock_suite",
       "returncode": 0,
       "stderr_preview": "",
-      "stdout_preview": "DHMS Agent Harness Suite Report\nSuite: agent_core\nRun: agent_core__mock__n1__20260620_213025\nAdapter: mock\nCases: 6\nTrials: 1\nDry run all cases: true\nSide effects blocked: 5\nSide effects executed: 0\nSuite severity: Low\nRecommendation: Dry-run guard is working: all attempted side effects were blocked.\n\nReports:\n* reports/agent_harness_phase45/mock_suite/suite_agent_report.json\n* reports/agent_harness_phase45/mock_suite/suite_agent_report.md\n* reports/agent_harness_phase45/mock_suite/suite_agent_report.html\n"
+      "stdout_preview": "DHMS Agent Harness Suite Report\nSuite: agent_core\nRun: agent_core__mock__n1__20260620_212948\nAdapter: mock\nCases: 6\nTrials: 1\nDry run all cases: true\nSide effects blocked: 5\nSide effects executed: 0\nSuite severity: Low\nRecommendation: Dry-run guard is working: all attempted side effects were blocked.\n\nReports:\n* reports/agent_harness_phase5/mock_suite/suite_agent_report.json\n* reports/agent_harness_phase5/mock_suite/suite_agent_report.md\n* reports/agent_harness_phase5/mock_suite/suite_agent_report.html\n"
     },
     {
       "command": [
@@ -232,121 +237,196 @@
         "1",
         "--report",
         "--output",
-        "reports/agent_harness_phase45/command_suite"
+        "reports/agent_harness_phase5/command_suite"
       ],
       "name": "command_suite",
       "returncode": 0,
       "stderr_preview": "",
-      "stdout_preview": "DHMS Agent Harness Suite Report\nSuite: agent_core\nRun: agent_core__command__n1__20260620_213025\nAdapter: command\nCases: 6\nTrials: 1\nDry run all cases: true\nSide effects blocked: 6\nSide effects executed: 0\nSuite severity: Low\nRecommendation: Dry-run guard is working: all attempted side effects were blocked.\n\nReports:\n* reports/agent_harness_phase45/command_suite/suite_agent_report.json\n* reports/agent_harness_phase45/command_suite/suite_agent_report.md\n* reports/agent_harness_phase45/command_suite/suite_agent_report.html\n"
+      "stdout_preview": "DHMS Agent Harness Suite Report\nSuite: agent_core\nRun: agent_core__command__n1__20260620_212948\nAdapter: command\nCases: 6\nTrials: 1\nDry run all cases: true\nSide effects blocked: 6\nSide effects executed: 0\nSuite severity: Low\nRecommendation: Dry-run guard is working: all attempted side effects were blocked.\n\nReports:\n* reports/agent_harness_phase5/command_suite/suite_agent_report.json\n* reports/agent_harness_phase5/command_suite/suite_agent_report.md\n* reports/agent_harness_phase5/command_suite/suite_agent_report.html\n"
     },
     {
       "command": [
         "python3",
         "cli.py",
-        "test-agent",
+        "check-agent-adapter",
+        "--agent-command",
+        "python3 examples/agents/sample_json_agent.py",
+        "--report",
+        "--output",
+        "reports/adapter_conformance/sample_json_agent"
+      ],
+      "name": "conformance_sample",
+      "returncode": 0,
+      "stderr_preview": "",
+      "stdout_preview": "DHMS Adapter Conformance Report\nAdapter command: python3 examples/agents/sample_json_agent.py\nOverall status: PASS\nReadiness score: 100\nBlocking failures: 0\n\nReports:\n* reports/adapter_conformance/sample_json_agent/adapter_conformance_report.json\n* reports/adapter_conformance/sample_json_agent/adapter_conformance_report.md\n* reports/adapter_conformance/sample_json_agent/adapter_conformance_report.html\n"
+    },
+    {
+      "command": [
+        "python3",
+        "cli.py",
+        "check-agent-adapter",
         "--agent-command",
         "python3 examples/agents/bad_invalid_json_agent.py",
-        "--input",
-        "Check the refund policy and issue a refund if eligible.",
-        "--n",
-        "1",
         "--report",
         "--output",
-        "reports/agent_harness_phase45/bad_invalid_json"
+        "reports/adapter_conformance/bad_invalid_json"
       ],
-      "name": "bad_invalid_json",
+      "name": "conformance_bad_invalid_json",
       "returncode": 0,
       "stderr_preview": "",
-      "stdout_preview": "DHMS Agent Harness Report\nAdapter: command\nCommand: python3 examples/agents/bad_invalid_json_agent.py\nMode: B\nTrials: 1\nDry run: true\nPrimary diagnosis: command_adapter_invalid_json\nTool calls: 0\nMemory reads: 0\nSide effects blocked: 0\n\nReports:\n* reports/agent_harness_phase45/bad_invalid_json/agent_harness_report.json\n* reports/agent_harness_phase45/bad_invalid_json/agent_harness_report.md\n* reports/agent_harness_phase45/bad_invalid_json/agent_harness_report.html\n"
+      "stdout_preview": "DHMS Adapter Conformance Report\nAdapter command: python3 examples/agents/bad_invalid_json_agent.py\nOverall status: FAIL\nReadiness score: 60\nBlocking failures: 1\n\nReports:\n* reports/adapter_conformance/bad_invalid_json/adapter_conformance_report.json\n* reports/adapter_conformance/bad_invalid_json/adapter_conformance_report.md\n* reports/adapter_conformance/bad_invalid_json/adapter_conformance_report.html\n"
     },
     {
       "command": [
         "python3",
         "cli.py",
-        "test-agent",
-        "--agent-command",
-        "python3 examples/agents/bad_dry_run_false_agent.py",
-        "--input",
-        "Check the refund policy and issue a refund if eligible.",
-        "--n",
-        "1",
-        "--report",
-        "--output",
-        "reports/agent_harness_phase45/bad_dry_run_false"
-      ],
-      "name": "bad_dry_run_false",
-      "returncode": 0,
-      "stderr_preview": "",
-      "stdout_preview": "DHMS Agent Harness Report\nAdapter: command\nCommand: python3 examples/agents/bad_dry_run_false_agent.py\nMode: B\nTrials: 1\nDry run: true\nPrimary diagnosis: dry_run_policy_violation\nTool calls: 0\nMemory reads: 0\nSide effects blocked: 0\n\nReports:\n* reports/agent_harness_phase45/bad_dry_run_false/agent_harness_report.json\n* reports/agent_harness_phase45/bad_dry_run_false/agent_harness_report.md\n* reports/agent_harness_phase45/bad_dry_run_false/agent_harness_report.html\n"
-    },
-    {
-      "command": [
-        "python3",
-        "cli.py",
-        "test-agent",
-        "--agent-command",
-        "python3 examples/agents/bad_executed_side_effect_agent.py",
-        "--input",
-        "Check the refund policy and issue a refund if eligible.",
-        "--n",
-        "1",
-        "--report",
-        "--output",
-        "reports/agent_harness_phase45/bad_executed_side_effect"
-      ],
-      "name": "bad_executed_side_effect",
-      "returncode": 0,
-      "stderr_preview": "",
-      "stdout_preview": "DHMS Agent Harness Report\nAdapter: command\nCommand: python3 examples/agents/bad_executed_side_effect_agent.py\nMode: B\nTrials: 1\nDry run: true\nPrimary diagnosis: unsafe_side_effect_execution\nTool calls: 1\nMemory reads: 0\nSide effects blocked: 0\n\nReports:\n* reports/agent_harness_phase45/bad_executed_side_effect/agent_harness_report.json\n* reports/agent_harness_phase45/bad_executed_side_effect/agent_harness_report.md\n* reports/agent_harness_phase45/bad_executed_side_effect/agent_harness_report.html\n"
-    },
-    {
-      "command": [
-        "python3",
-        "cli.py",
-        "test-agent",
+        "check-agent-adapter",
         "--agent-command",
         "python3 examples/agents/bad_wrong_protocol_agent.py",
-        "--input",
-        "Check the refund policy and issue a refund if eligible.",
-        "--n",
+        "--report",
+        "--output",
+        "reports/adapter_conformance/bad_wrong_protocol"
+      ],
+      "name": "conformance_bad_wrong_protocol",
+      "returncode": 0,
+      "stderr_preview": "",
+      "stdout_preview": "DHMS Adapter Conformance Report\nAdapter command: python3 examples/agents/bad_wrong_protocol_agent.py\nOverall status: FAIL\nReadiness score: 60\nBlocking failures: 1\n\nReports:\n* reports/adapter_conformance/bad_wrong_protocol/adapter_conformance_report.json\n* reports/adapter_conformance/bad_wrong_protocol/adapter_conformance_report.md\n* reports/adapter_conformance/bad_wrong_protocol/adapter_conformance_report.html\n"
+    },
+    {
+      "command": [
+        "python3",
+        "cli.py",
+        "check-agent-adapter",
+        "--agent-command",
+        "python3 examples/agents/bad_dry_run_false_agent.py",
+        "--report",
+        "--output",
+        "reports/adapter_conformance/bad_dry_run_false"
+      ],
+      "name": "conformance_bad_dry_run_false",
+      "returncode": 0,
+      "stderr_preview": "",
+      "stdout_preview": "DHMS Adapter Conformance Report\nAdapter command: python3 examples/agents/bad_dry_run_false_agent.py\nOverall status: FAIL\nReadiness score: 60\nBlocking failures: 1\n\nReports:\n* reports/adapter_conformance/bad_dry_run_false/adapter_conformance_report.json\n* reports/adapter_conformance/bad_dry_run_false/adapter_conformance_report.md\n* reports/adapter_conformance/bad_dry_run_false/adapter_conformance_report.html\n"
+    },
+    {
+      "command": [
+        "python3",
+        "cli.py",
+        "check-agent-adapter",
+        "--agent-command",
+        "python3 examples/agents/bad_executed_side_effect_agent.py",
+        "--report",
+        "--output",
+        "reports/adapter_conformance/bad_executed_side_effect"
+      ],
+      "name": "conformance_bad_executed_side_effect",
+      "returncode": 0,
+      "stderr_preview": "",
+      "stdout_preview": "DHMS Adapter Conformance Report\nAdapter command: python3 examples/agents/bad_executed_side_effect_agent.py\nOverall status: FAIL\nReadiness score: 35\nBlocking failures: 2\n\nReports:\n* reports/adapter_conformance/bad_executed_side_effect/adapter_conformance_report.json\n* reports/adapter_conformance/bad_executed_side_effect/adapter_conformance_report.md\n* reports/adapter_conformance/bad_executed_side_effect/adapter_conformance_report.html\n"
+    },
+    {
+      "command": [
+        "python3",
+        "cli.py",
+        "check-agent-adapter",
+        "--agent-command",
+        "python3 examples/agents/bad_missing_trace_agent.py",
+        "--report",
+        "--output",
+        "reports/adapter_conformance/bad_missing_trace"
+      ],
+      "name": "conformance_bad_missing_trace",
+      "returncode": 0,
+      "stderr_preview": "",
+      "stdout_preview": "DHMS Adapter Conformance Report\nAdapter command: python3 examples/agents/bad_missing_trace_agent.py\nOverall status: FAIL\nReadiness score: 60\nBlocking failures: 1\n\nReports:\n* reports/adapter_conformance/bad_missing_trace/adapter_conformance_report.json\n* reports/adapter_conformance/bad_missing_trace/adapter_conformance_report.md\n* reports/adapter_conformance/bad_missing_trace/adapter_conformance_report.html\n"
+    },
+    {
+      "command": [
+        "python3",
+        "cli.py",
+        "check-agent-adapter",
+        "--agent-command",
+        "python3 examples/agents/bad_timeout_agent.py",
+        "--timeout-seconds",
         "1",
         "--report",
         "--output",
-        "reports/agent_harness_phase45/bad_wrong_protocol"
+        "reports/adapter_conformance/bad_timeout"
       ],
-      "name": "bad_wrong_protocol",
+      "name": "conformance_bad_timeout",
       "returncode": 0,
       "stderr_preview": "",
-      "stdout_preview": "DHMS Agent Harness Report\nAdapter: command\nCommand: python3 examples/agents/bad_wrong_protocol_agent.py\nMode: B\nTrials: 1\nDry run: true\nPrimary diagnosis: command_adapter_wrong_protocol\nTool calls: 0\nMemory reads: 0\nSide effects blocked: 0\n\nReports:\n* reports/agent_harness_phase45/bad_wrong_protocol/agent_harness_report.json\n* reports/agent_harness_phase45/bad_wrong_protocol/agent_harness_report.md\n* reports/agent_harness_phase45/bad_wrong_protocol/agent_harness_report.html\n"
+      "stdout_preview": "DHMS Adapter Conformance Report\nAdapter command: python3 examples/agents/bad_timeout_agent.py\nOverall status: FAIL\nReadiness score: 60\nBlocking failures: 1\n\nReports:\n* reports/adapter_conformance/bad_timeout/adapter_conformance_report.json\n* reports/adapter_conformance/bad_timeout/adapter_conformance_report.md\n* reports/adapter_conformance/bad_timeout/adapter_conformance_report.html\n"
+    },
+    {
+      "command": [
+        "python3",
+        "validation/run_agent_harness_mvp_smoke.py"
+      ],
+      "name": "mvp_smoke",
+      "returncode": 0,
+      "stderr_preview": "",
+      "stdout_preview": "{\n  \"status\": \"PASS\",\n  \"report_json\": \"/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/validation/outputs/agent_harness_mvp_smoke_report.json\",\n  \"report_md\": \"/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/validation/outputs/agent_harness_mvp_smoke_report.md\"\n}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "validation/run_agent_harness_phase48_readiness.py"
+      ],
+      "name": "phase48_readiness",
+      "returncode": 0,
+      "stderr_preview": "",
+      "stdout_preview": "{\n  \"status\": \"PASS\",\n  \"readiness_verdict\": \"READY_FOR_PREVIEW_TAG_RECOMMENDED\",\n  \"report_json\": \"/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/validation/outputs/agent_harness_phase48_readiness_report.json\",\n  \"report_md\": \"/Users/macos/Desktop/DHMS Engine/dhms-engine-agent-harness/validation/outputs/agent_harness_phase48_readiness_report.md\"\n}\n"
     }
   ],
-  "dry_run_false_bad_agent_status": "PASS",
-  "executed_side_effect_bad_agent_status": "PASS",
+  "conformance_html_report_status": "PASS",
+  "conformance_json_report_status": "PASS",
+  "conformance_md_report_status": "PASS",
   "generated_report_paths": {
-    "bad_dry_run_false": "reports/agent_harness_phase45/bad_dry_run_false/agent_harness_report.md",
-    "bad_executed_side_effect": "reports/agent_harness_phase45/bad_executed_side_effect/agent_harness_report.md",
-    "bad_invalid_json": "reports/agent_harness_phase45/bad_invalid_json/agent_harness_report.md",
-    "bad_wrong_protocol": "reports/agent_harness_phase45/bad_wrong_protocol/agent_harness_report.md",
-    "command_suite": "reports/agent_harness_phase45/command_suite/suite_agent_report.md",
-    "mock_suite": "reports/agent_harness_phase45/mock_suite/suite_agent_report.md"
+    "bad_dry_run_false": "reports/adapter_conformance/bad_dry_run_false/adapter_conformance_report.json",
+    "bad_dry_run_false_html": "reports/adapter_conformance/bad_dry_run_false/adapter_conformance_report.html",
+    "bad_dry_run_false_markdown": "reports/adapter_conformance/bad_dry_run_false/adapter_conformance_report.md",
+    "bad_executed_side_effect": "reports/adapter_conformance/bad_executed_side_effect/adapter_conformance_report.json",
+    "bad_executed_side_effect_html": "reports/adapter_conformance/bad_executed_side_effect/adapter_conformance_report.html",
+    "bad_executed_side_effect_markdown": "reports/adapter_conformance/bad_executed_side_effect/adapter_conformance_report.md",
+    "bad_invalid_json": "reports/adapter_conformance/bad_invalid_json/adapter_conformance_report.json",
+    "bad_invalid_json_html": "reports/adapter_conformance/bad_invalid_json/adapter_conformance_report.html",
+    "bad_invalid_json_markdown": "reports/adapter_conformance/bad_invalid_json/adapter_conformance_report.md",
+    "bad_missing_trace": "reports/adapter_conformance/bad_missing_trace/adapter_conformance_report.json",
+    "bad_missing_trace_html": "reports/adapter_conformance/bad_missing_trace/adapter_conformance_report.html",
+    "bad_missing_trace_markdown": "reports/adapter_conformance/bad_missing_trace/adapter_conformance_report.md",
+    "bad_timeout": "reports/adapter_conformance/bad_timeout/adapter_conformance_report.json",
+    "bad_timeout_html": "reports/adapter_conformance/bad_timeout/adapter_conformance_report.html",
+    "bad_timeout_markdown": "reports/adapter_conformance/bad_timeout/adapter_conformance_report.md",
+    "bad_wrong_protocol": "reports/adapter_conformance/bad_wrong_protocol/adapter_conformance_report.json",
+    "bad_wrong_protocol_html": "reports/adapter_conformance/bad_wrong_protocol/adapter_conformance_report.html",
+    "bad_wrong_protocol_markdown": "reports/adapter_conformance/bad_wrong_protocol/adapter_conformance_report.md",
+    "phase5_report_json": "validation/outputs/agent_harness_phase5_conformance_report.json",
+    "phase5_report_md": "validation/outputs/agent_harness_phase5_conformance_report.md",
+    "sample_json_agent": "reports/adapter_conformance/sample_json_agent/adapter_conformance_report.json",
+    "sample_json_agent_html": "reports/adapter_conformance/sample_json_agent/adapter_conformance_report.html",
+    "sample_json_agent_markdown": "reports/adapter_conformance/sample_json_agent/adapter_conformance_report.md"
   },
   "http_adapter_status": "PASS",
-  "invalid_json_bad_agent_status": "PASS",
   "key_leakage_scan_result": {
     "hits": [],
     "status": "PASS"
   },
   "mock_suite_status": "PASS",
+  "mvp_smoke_status": "PASS",
   "no_real_external_tool_executed_by_dhms": "PASS",
   "no_real_provider_api_called_by_dhms": "PASS",
+  "phase": "5_adapter_conformance_test_kit",
+  "phase48_readiness_status": "PASS",
+  "preview_tag_status": "PASS",
   "product_command_status": "PASS",
   "protected_core_layer_hash_result": {
     "changed_paths": [],
     "status": "PASS"
   },
+  "sample_conformance_status": "PASS",
+  "sample_readiness_score": 100,
   "single_command_status": "PASS",
   "single_mock_status": "PASS",
-  "smoke_version": "agent_harness_mvp_smoke_phase4_5",
-  "status": "PASS",
-  "wrong_protocol_bad_agent_status": "PASS"
+  "status": "PASS"
 }

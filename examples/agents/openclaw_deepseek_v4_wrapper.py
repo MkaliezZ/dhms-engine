@@ -20,7 +20,7 @@ from typing import Any
 PROTOCOL_VERSION = "dhms-agent-command-v1"
 ADAPTER_NAME = "openclaw_deepseek_v4"
 TRACE_VERSION = "agent-trace-v1"
-DEFAULT_TIMEOUT_SECONDS = 60
+DEFAULT_TIMEOUT_SECONDS = 8
 MAX_PREVIEW_CHARS = 1200
 DRY_RUN_BLOCK_REASON = "Blocked by DHMS OpenClaw wrapper dry-run policy."
 SAFE_FAILURE_ANSWER = "OpenClaw wrapper could not complete the dry-run request safely."
@@ -130,13 +130,23 @@ def main() -> int:
         trace = trace_from_openclaw_stdout(completed.stdout, request)
         return write_response(trace)
     except subprocess.TimeoutExpired as exc:
+        request_mode = request["mode"] if "request" in locals() else "B"
+        timeout = timeout_seconds()
         return write_response(
             error_trace(
                 "openclaw_timeout",
-                safe_output_message(exc.stderr or "", "OpenClaw dry-run timed out."),
-                reason="OpenClaw command timed out",
+                safe_output_message(exc.stderr or exc.stdout or "", f"OpenClaw dry-run timed out after {timeout} seconds."),
+                mode=request_mode,
+                reason="OpenClaw command timed out before the parent conformance timeout",
                 command_failure_type="timeout",
                 command_failure_reason="openclaw_timeout",
+                command_failure_evidence={
+                    "timeout_source": "wrapper",
+                    "timeout_seconds": timeout,
+                    "stdout_preview": safe_output_message(exc.stdout or "", ""),
+                    "stderr_preview": safe_output_message(exc.stderr or "", ""),
+                },
+                to_state="wrapper_timeout",
             )
         )
     except ValueError as exc:
@@ -567,19 +577,23 @@ def error_trace(
     reason: str = "wrapper error",
     command_failure_type: str | None = None,
     command_failure_reason: str | None = None,
+    command_failure_evidence: dict[str, Any] | None = None,
+    to_state: str = "wrapper_error",
 ) -> dict[str, Any]:
     trace = base_trace(
         final_answer=SAFE_FAILURE_ANSWER,
         mode=mode,
         tool_calls=[],
         memory_reads=[],
-        state_transitions=[{"from_state": "intake", "to_state": "wrapper_error", "reason": safe_message(reason)}],
+        state_transitions=[{"from_state": "intake", "to_state": to_state, "reason": safe_message(reason)}],
         side_effects=[],
         errors=[{"type": error_type, "message": safe_message(message)}],
     )
     if command_failure_type:
         trace["command_failure_type"] = command_failure_type
         trace["command_failure_reason"] = command_failure_reason or error_type
+    if command_failure_evidence:
+        trace["command_failure_evidence"] = command_failure_evidence
     return trace
 
 
@@ -597,7 +611,7 @@ def safe_message(text: str) -> str:
 
 
 def truncate_text(text: str) -> str:
-    text = text.replace("\x00", "")
+    text = str(text).replace("\x00", "")
     if len(text) <= MAX_PREVIEW_CHARS:
         return text
     return text[:MAX_PREVIEW_CHARS] + "...[truncated]"

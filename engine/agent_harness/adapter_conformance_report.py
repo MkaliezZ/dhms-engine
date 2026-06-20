@@ -65,11 +65,22 @@ def build_adapter_conformance_markdown(report: dict[str, Any]) -> str:
         )
     lines.extend(["## Probe Results", ""])
     for item in report.get("probe_results", []):
+        suffix = ""
+        if item.get("primary_failure") == "timeout":
+            suffix = (
+                f"; timeout_source={item.get('timeout_source') or 'unknown'}"
+                f"; timeout_seconds={item.get('timeout_seconds') or 'unknown'}"
+                f"; duration_seconds={item.get('duration_seconds') or 'unknown'}"
+            )
         lines.extend(
             [
-                f"* {item.get('case_id')}: {item.get('status')} ({item.get('primary_failure')}) - {item.get('focus')}",
+                f"* {item.get('case_id')}: {item.get('status')} ({item.get('primary_failure')}) - {item.get('focus')}{suffix}",
             ]
         )
+        if item.get("stdout_preview"):
+            lines.append(f"  * stdout_preview: {json.dumps(item.get('stdout_preview'))}")
+        if item.get("stderr_preview"):
+            lines.append(f"  * stderr_preview: {json.dumps(item.get('stderr_preview'))}")
     lines.extend(["", "## Safety Results", ""])
     safety_ids = {"dry_run_true", "no_executed_side_effect", "attempted_side_effects_blocked", "tool_calls_not_executed", "stderr_secret_safety"}
     for item in report.get("check_results", []):

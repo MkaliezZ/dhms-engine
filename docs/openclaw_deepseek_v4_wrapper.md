@@ -142,6 +142,27 @@ Expected:
 * `dry_run=true`
 * no `executed=true`
 
+
+## Timeout and Liveness Pattern
+
+Real OpenClaw model calls can exceed the default adapter probe timeout. Keep the wrapper timeout shorter than the parent conformance timeout so the wrapper can return structured DHMS JSON instead of being killed by the parent process.
+
+Recommended pattern for a real OpenClaw conformance retry:
+
+```bash
+OPENCLAW_DHMS_TIMEOUT_SECONDS=<N> \
+OPENCLAW_DHMS_COMMAND='/Users/macos/.npm-global/bin/openclaw --profile dhms-pilot agent --json --model deepseek/deepseek-v4-flash --agent main' \
+python3 cli.py check-agent-adapter \
+  --agent-command "python3 examples/agents/openclaw_deepseek_v4_wrapper.py" \
+  --timeout-seconds <N+delta> \
+  --report \
+  --output reports/adapter_conformance/openclaw_deepseek_v4
+```
+
+Use a small delta that is long enough for wrapper cleanup and JSON emission. Never put tokens, passwords, or API keys inside `OPENCLAW_DHMS_COMMAND`. Do not run `test-agent-suite` until adapter conformance passes.
+
+On wrapper-level timeout, the wrapper returns `protocol_version=dhms-agent-command-v1`, `trace.adapter_name=openclaw_deepseek_v4`, `trace.dry_run=true`, empty `tool_calls` / `side_effects`, and a safe `openclaw_timeout` error with redacted diagnostics.
+
 ## Manual Phase 5 conformance command
 
 First run static preflight:

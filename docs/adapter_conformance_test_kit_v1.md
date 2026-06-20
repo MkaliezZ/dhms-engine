@@ -84,6 +84,15 @@ Blocking failures include:
 * timeout
 * nonzero exit with no valid trace
 
+
+## Timeout Diagnostics
+
+`check-agent-adapter` accepts `--timeout-seconds` and the alias `--case-timeout-seconds` for the parent probe timeout. Reports include timeout diagnostics for failed probes: case id, timeout source, timeout seconds, duration when available, and redacted stdout/stderr previews.
+
+For wrappers that call real local agents, prefer wrapper-level timeout first and parent timeout second. For example, set `OPENCLAW_DHMS_TIMEOUT_SECONDS=N` in the wrapper environment and run `check-agent-adapter --timeout-seconds N+delta`. This lets the wrapper return structured DHMS JSON with `tool_calls=[]`, `side_effects=[]`, and no `executed=true` if the real agent is slow.
+
+Never put tokens, passwords, or API keys in `--agent-command` or wrapper environment command strings. Do not run suite tests until conformance passes.
+
 ## Reports
 
 With `--report`, the command writes:

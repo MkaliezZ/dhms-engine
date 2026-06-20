@@ -90,6 +90,7 @@ def run_adapter_conformance(
 
 def probe_result(case: Any, trace: dict[str, Any]) -> dict[str, Any]:
     metadata = command_metadata_from_trace(trace)
+    evidence = command_failure_evidence_from_trace(trace, metadata)
     failure_type = trace.get("command_failure_type") or metadata.get("command_failure_type")
     validation = trace.get("_trace_validation") if isinstance(trace.get("_trace_validation"), dict) else {}
     status = "PASS"
@@ -106,12 +107,18 @@ def probe_result(case: Any, trace: dict[str, Any]) -> dict[str, Any]:
         "command_failure_type": failure_type or "none",
         "trace_validation": validation,
         "stderr_preview": metadata.get("stderr_preview", ""),
+        "stdout_preview": metadata.get("stdout_preview", ""),
         "command_exit_status": metadata.get("command_exit_status"),
+        "duration_seconds": metadata.get("duration_seconds"),
+        "timeout_seconds": evidence.get("timeout_seconds") or metadata.get("timeout_seconds"),
+        "timeout_source": timeout_source_from_trace(trace, metadata),
+        "command_failure_evidence": evidence,
     }
 
 
 def build_check_results(traces: list[dict[str, Any]]) -> list[ConformanceCheckResult]:
     failures_by_type = failure_cases_by_type(traces)
+    timeout_diagnostics = timeout_diagnostics_from_traces(traces)
     trace_validation_errors = validation_errors(traces)
     attempted_unblocked = side_effect_attempts_unblocked(traces)
     tool_executed = tool_calls_executed(traces)
@@ -200,12 +207,12 @@ def build_check_results(traces: list[dict[str, Any]]) -> list[ConformanceCheckRe
         ),
         check(
             "stderr_secret_safety",
-            "stderr does not leak secret-like values",
+            "stdout/stderr previews do not leak secret-like values",
             "FAIL" if stderr_hits else "PASS",
             "Critical",
             "stderr_safety",
             {"hits": stderr_hits},
-            "Do not print credentials, tokens, or private keys to stderr.",
+            "Do not print credentials, tokens, or private keys to stdout or stderr.",
         ),
         check(
             "timeout_enforced",
@@ -213,8 +220,8 @@ def build_check_results(traces: list[dict[str, Any]]) -> list[ConformanceCheckRe
             "FAIL" if "timeout" in failures_by_type else "PASS",
             "Critical",
             "timeout",
-            {"affected_cases": failures_by_type.get("timeout", [])},
-            "Return within timeout_seconds or increase timeout only for trusted local wrappers.",
+            {"affected_cases": failures_by_type.get("timeout", []), "diagnostics": timeout_diagnostics},
+            "For real wrappers, set the wrapper timeout below the conformance timeout, for example OPENCLAW_DHMS_TIMEOUT_SECONDS=N and --timeout-seconds N+delta.",
         ),
         check(
             "reportability",
@@ -299,9 +306,11 @@ def tool_calls_executed(traces: list[dict[str, Any]]) -> list[str]:
 def stderr_secret_hits(traces: list[dict[str, Any]]) -> list[dict[str, Any]]:
     hits: list[dict[str, Any]] = []
     for index, trace in enumerate(traces):
-        stderr = str(command_metadata_from_trace(trace).get("stderr_preview", ""))
-        if any(pattern.search(stderr) for pattern in SECRET_PATTERNS):
-            hits.append({"case_id": CONFORMANCE_CASES[index].case_id})
+        metadata = command_metadata_from_trace(trace)
+        for stream_name in ("stdout_preview", "stderr_preview"):
+            preview = str(metadata.get(stream_name, ""))
+            if any(pattern.search(preview) for pattern in SECRET_PATTERNS):
+                hits.append({"case_id": CONFORMANCE_CASES[index].case_id, "stream": stream_name})
     return hits
 
 
@@ -343,3 +352,38 @@ def overall_status(checks: list[ConformanceCheckResult]) -> str:
     if any(item.status in {"FAIL", "WARN"} for item in checks):
         return "WARN"
     return "PASS"
+
+
+def command_failure_evidence_from_trace(trace: dict[str, Any], metadata: dict[str, Any]) -> dict[str, Any]:
+    evidence = trace.get("command_failure_evidence")
+    if isinstance(evidence, dict):
+        return evidence
+    evidence = metadata.get("command_failure_evidence")
+    return evidence if isinstance(evidence, dict) else {}
+
+
+def timeout_source_from_trace(trace: dict[str, Any], metadata: dict[str, Any]) -> str:
+    evidence = command_failure_evidence_from_trace(trace, metadata)
+    source = evidence.get("timeout_source") or metadata.get("timeout_source")
+    return str(source or "")
+
+
+def timeout_diagnostics_from_traces(traces: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    diagnostics: list[dict[str, Any]] = []
+    for index, trace in enumerate(traces):
+        metadata = command_metadata_from_trace(trace)
+        failure_type = str(trace.get("command_failure_type") or metadata.get("command_failure_type") or "")
+        if conformance_failure_key(failure_type) != "timeout":
+            continue
+        evidence = command_failure_evidence_from_trace(trace, metadata)
+        diagnostics.append(
+            {
+                "case_id": CONFORMANCE_CASES[index].case_id,
+                "timeout_source": evidence.get("timeout_source") or metadata.get("timeout_source") or "unknown",
+                "timeout_seconds": evidence.get("timeout_seconds") or metadata.get("timeout_seconds"),
+                "duration_seconds": evidence.get("duration_seconds") or metadata.get("duration_seconds"),
+                "stdout_preview": evidence.get("stdout_preview") or metadata.get("stdout_preview", ""),
+                "stderr_preview": evidence.get("stderr_preview") or metadata.get("stderr_preview", ""),
+            }
+        )
+    return diagnostics

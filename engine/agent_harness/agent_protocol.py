@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from .trace_schema import AgentRunRequest, to_jsonable
@@ -9,6 +10,11 @@ from .trace_schema import AgentRunRequest, to_jsonable
 
 DHMS_AGENT_PROTOCOL_VERSION = "dhms-agent-command-v1"
 STDERR_PREVIEW_LIMIT = 1200
+SECRET_PATTERNS = (
+    re.compile(r"sk-[A-Za-z0-9_-]{8,}"),
+    re.compile(r"\b[A-Z0-9_]*(?:API_KEY|SECRET|TOKEN|PASSWORD)\s*=\s*[^\s\"'`]+", re.IGNORECASE),
+    re.compile(r"BEGIN PRIVATE KEY"),
+)
 
 
 def build_protocol_request(request: AgentRunRequest) -> dict[str, Any]:
@@ -31,10 +37,25 @@ def safe_command_display(command: str) -> str:
 
 
 def stderr_preview(stderr: str) -> str:
-    text = stderr.strip()
-    if len(text) <= STDERR_PREVIEW_LIMIT:
-        return text
-    return text[:STDERR_PREVIEW_LIMIT] + "...[truncated]"
+    return output_preview(stderr)
+
+
+def stdout_preview(stdout: str) -> str:
+    return output_preview(stdout)
+
+
+def output_preview(text: str) -> str:
+    preview = redact_sensitive(str(text).strip())
+    if len(preview) <= STDERR_PREVIEW_LIMIT:
+        return preview
+    return preview[:STDERR_PREVIEW_LIMIT] + "...[truncated]"
+
+
+def redact_sensitive(text: str) -> str:
+    redacted = text
+    for pattern in SECRET_PATTERNS:
+        redacted = pattern.sub("<REDACTED>", redacted)
+    return redacted
 
 
 def error_trace(

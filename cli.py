@@ -90,7 +90,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     conformance_parser = subparsers.add_parser("check-agent-adapter")
     conformance_parser.add_argument("--agent-command", required=True)
-    conformance_parser.add_argument("--timeout-seconds", type=int, default=10)
+    conformance_parser.add_argument("--timeout-seconds", "--case-timeout-seconds", dest="timeout_seconds", type=int, default=10)
     conformance_parser.add_argument("--report", action="store_true")
     conformance_parser.add_argument("--output", default="reports/adapter_conformance/latest")
 

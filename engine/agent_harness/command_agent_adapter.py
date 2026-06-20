@@ -6,9 +6,10 @@ import json
 import os
 import shlex
 import subprocess
+import time
 from typing import Any
 
-from .agent_protocol import DHMS_AGENT_PROTOCOL_VERSION, build_protocol_request, error_trace, safe_command_display, stderr_preview
+from .agent_protocol import DHMS_AGENT_PROTOCOL_VERSION, build_protocol_request, error_trace, safe_command_display, stderr_preview, stdout_preview
 from .trace_normalizer import normalize_trace
 from .trace_schema import AgentRunRequest
 from .trace_validator import validate_agent_trace
@@ -29,6 +30,9 @@ class CommandAgentAdapter:
             "protocol_version": DHMS_AGENT_PROTOCOL_VERSION,
             "command_exit_status": None,
             "stderr_preview": "",
+            "stdout_preview": "",
+            "duration_seconds": None,
+            "timeout_source": None,
         }
         try:
             args = shlex.split(self.command)
@@ -50,6 +54,7 @@ class CommandAgentAdapter:
             )
 
         payload = build_protocol_request(request)
+        started_at = time.monotonic()
         try:
             completed = subprocess.run(
                 args,
@@ -62,14 +67,24 @@ class CommandAgentAdapter:
                 check=False,
             )
         except subprocess.TimeoutExpired as exc:
+            duration = round(time.monotonic() - started_at, 3)
             metadata["stderr_preview"] = stderr_preview(exc.stderr or "")
+            metadata["stdout_preview"] = stdout_preview(exc.stdout or exc.output or "")
+            metadata["duration_seconds"] = duration
+            metadata["timeout_source"] = "adapter"
             return error_trace(
                 "command timed out",
                 mode=request.mode,
                 command_metadata=metadata,
                 command_failure_type="timeout",
-                command_failure_reason="timeout",
-                command_failure_evidence={"timeout_seconds": self.timeout_seconds},
+                command_failure_reason="adapter_timeout",
+                command_failure_evidence={
+                    "timeout_seconds": self.timeout_seconds,
+                    "timeout_source": "adapter",
+                    "duration_seconds": duration,
+                    "stdout_preview": metadata["stdout_preview"],
+                    "stderr_preview": metadata["stderr_preview"],
+                },
             )
         except OSError as exc:
             return error_trace(
@@ -83,6 +98,8 @@ class CommandAgentAdapter:
 
         metadata["command_exit_status"] = completed.returncode
         metadata["stderr_preview"] = stderr_preview(completed.stderr or "")
+        metadata["stdout_preview"] = stdout_preview(completed.stdout or "")
+        metadata["duration_seconds"] = round(time.monotonic() - started_at, 3)
         if completed.returncode != 0:
             return error_trace(
                 f"command exited with status {completed.returncode}",
@@ -123,6 +140,12 @@ class CommandAgentAdapter:
             )
 
         trace.setdefault("mode", request.mode)
+        if trace.get("command_failure_type") == "timeout":
+            evidence = trace.get("command_failure_evidence") if isinstance(trace.get("command_failure_evidence"), dict) else {}
+            metadata["timeout_source"] = evidence.get("timeout_source", "wrapper")
+            metadata["command_failure_type"] = "timeout"
+            metadata["command_failure_reason"] = trace.get("command_failure_reason", "wrapper_timeout")
+            metadata["command_failure_evidence"] = evidence
         validation = validate_agent_trace(trace)
         if not validation["valid"]:
             metadata["command_failure_type"] = command_failure_type_from_validation(validation)

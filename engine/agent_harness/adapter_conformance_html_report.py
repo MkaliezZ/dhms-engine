@@ -155,9 +155,13 @@ def probe_results_section(items: Any) -> str:
             f"<td>{esc(item.get('status'))}</td>"
             f"<td>{esc(item.get('primary_failure'))}</td>"
             f"<td>{esc(item.get('focus'))}</td>"
+            f"<td>{esc(item.get('timeout_source') or '')}</td>"
+            f"<td>{esc(item.get('timeout_seconds') or '')}</td>"
+            f"<td>{esc(item.get('duration_seconds') or '')}</td>"
+            f"<td>{format_value({'stdout_preview': item.get('stdout_preview', ''), 'stderr_preview': item.get('stderr_preview', '')})}</td>"
             "</tr>"
         )
-    return table_section("Probe Results", ["case_id", "name", "status", "primary_failure", "focus"], rows)
+    return table_section("Probe Results", ["case_id", "name", "status", "primary_failure", "focus", "timeout_source", "timeout_seconds", "duration_seconds", "previews"], rows)
 
 
 def recommendations_section(items: Any) -> str:

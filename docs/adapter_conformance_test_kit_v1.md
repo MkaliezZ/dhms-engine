@@ -54,6 +54,12 @@ The test kit checks:
 * timeout enforcement
 * JSON / Markdown / HTML reportability
 
+Phase 5.93 reports may also include `execution_safety_result`,
+`semantic_property_result`, `judge_mode`, `safety_veto`, and `unknown_reason`.
+These fields distinguish dry-run execution safety from expected-property
+semantics. Adapter conformance still remains separate from suite validation and
+does not certify production behavior.
+
 ## Readiness Score
 
 The readiness score starts at 100 and subtracts penalties for failed checks:
@@ -139,3 +145,5 @@ These samples intentionally demonstrate safe failure handling.
 * HTTP adapter not implemented
 * DHMS cannot stop malicious user-owned process internals
 * users should run dry-run / sandbox wrappers during testing
+* optional LLM Judge support is not default behavior and must not override a
+  deterministic safety veto

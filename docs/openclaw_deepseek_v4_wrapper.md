@@ -31,7 +31,15 @@ When `OPENCLAW_DHMS_COMMAND` is set, the wrapper treats it as the base OpenClaw 
 
 Do not include `--message` in `OPENCLAW_DHMS_COMMAND`; the wrapper appends it safely.
 
-If OpenClaw returns JSON, the wrapper extracts `final_answer`, `tool_calls`, `memory_reads`, `state_transitions`, `side_effects`, and `errors`. If OpenClaw returns plain text, the wrapper wraps it as safe DHMS trace evidence.
+If OpenClaw returns JSON, the wrapper extracts `final_answer`, `tool_calls`,
+`memory_reads`, `state_transitions`, `side_effects`, and `errors`. If OpenClaw
+returns plain text, the wrapper wraps it as safe DHMS trace evidence.
+
+Phase 5.93 also preserves safe observable response text in
+`observable_response` and `model_response_preview` when OpenClaw output includes
+usable final response content. These fields are redacted/truncated previews for
+semantic property checking. They must not contain secrets or hidden
+chain-of-thought, and DHMS does not depend on chain-of-thought.
 
 ## Safety model
 
@@ -255,3 +263,8 @@ The Phase 5.92 two-case limited real suite recorded
 the wrapper normalized OpenClaw output into DHMS trace evidence; they are not
 execution-safety failures when required safety fields are preserved and no tool
 or side effect is executed.
+
+Phase 5.93 adds observable response preservation so future limited runs can
+reduce `expected_property_check=unknown` when OpenClaw provides safe visible
+response text. This does not enable real tools, real OpenClaw turns by itself,
+or any external LLM Judge.

@@ -47,6 +47,10 @@ def build_agent_suite_summary(
         "cases_with_expected_property_passed": 0,
         "cases_with_expected_property_failed": 0,
         "cases_with_expected_property_unknown": 0,
+        "cases_with_semantic_property_passed": 0,
+        "cases_with_semantic_property_failed": 0,
+        "cases_with_semantic_property_unknown": 0,
+        "cases_with_safety_veto": 0,
     }
 
     dry_run_all_cases = True
@@ -73,6 +77,17 @@ def build_agent_suite_summary(
             totals["cases_with_expected_property_failed"] += 1
         else:
             totals["cases_with_expected_property_unknown"] += 1
+
+        semantic = result.get("semantic_property_result", {})
+        semantic_overall = semantic.get("overall") if isinstance(semantic, dict) else "unknown"
+        if semantic_overall == "passed":
+            totals["cases_with_semantic_property_passed"] += 1
+        elif semantic_overall == "failed":
+            totals["cases_with_semantic_property_failed"] += 1
+        else:
+            totals["cases_with_semantic_property_unknown"] += 1
+        if isinstance(semantic, dict) and semantic.get("safety_veto"):
+            totals["cases_with_safety_veto"] += 1
 
         diagnosis_types = []
         for diagnosis in result.get("diagnoses", []):
@@ -189,12 +204,15 @@ def is_actionable(result: dict[str, Any]) -> bool:
 def case_summary(result: dict[str, Any]) -> dict[str, Any]:
     summary = result.get("diagnosis_summary", {}) if isinstance(result.get("diagnosis_summary"), dict) else {}
     expected = result.get("expected_property_check", {}) if isinstance(result.get("expected_property_check"), dict) else {}
+    semantic = result.get("semantic_property_result", {}) if isinstance(result.get("semantic_property_result"), dict) else {}
     return {
         "case_id": result.get("case_id", "unknown"),
         "case_path": result.get("case_path", "not_available"),
         "severity": summary.get("severity", "not_available"),
         "primary_issue": summary.get("primary_issue", "not_available"),
         "expected_property_passed": expected.get("passed", "unknown"),
+        "semantic_property_result": semantic.get("overall", "unknown"),
+        "safety_veto": semantic.get("safety_veto", False),
         "risk_focus": result.get("risk_focus", "not_available"),
         "reproduction_command": result.get("reproduction_command", "not_available"),
         "report_paths": result.get("report_paths", {}),

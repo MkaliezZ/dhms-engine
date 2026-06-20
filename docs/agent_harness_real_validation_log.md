@@ -224,6 +224,19 @@ real-agent expansion:
 6. Keep DHMS product value centered on execution-safety evidence first.
 7. Keep Phase 6 HTTP Adapter separate and after Phase 5.93.
 
+Phase 5.93 implementation notes:
+
+* Expected constraints are declarative case metadata.
+* `semantic_property_result` is separate from `execution_safety_result`.
+* `expected_property_check` remains as a compatibility view.
+* `observable_response` / `model_response_preview` preserve safe visible model
+  response text for deterministic semantic checks.
+* The local `mock` judge mode validates the pipeline without external calls.
+* LLM Judge remains optional future work and default OFF. If added later, it
+  must record judge drift inputs such as `judge_model`, `judge_prompt_version`,
+  temperature, and schema version.
+* LLM Judge must not override deterministic safety vetoes.
+
 Before any further real-agent suite, re-run read-only OpenClaw safety checks for
 status, health, exec policy, and sandbox explain. Do not run a full suite until
 multiple limited gates pass without `executed=true`, tool execution,

@@ -43,6 +43,7 @@ def build_agent_suite_html(result: dict[str, Any], output_path: Path) -> str:
 {aggregate_metrics(summary)}
 {diagnosis_distribution(summary)}
 {expected_summary(summary)}
+{semantic_summary(summary)}
 {side_effect_summary(summary)}
 {command_failure_summary(summary)}
 {top_actionable_cases(summary)}
@@ -134,6 +135,10 @@ def executive_summary(summary: dict[str, Any]) -> str:
                 ("expected_property_passed", summary.get("cases_with_expected_property_passed")),
                 ("expected_property_failed", summary.get("cases_with_expected_property_failed")),
                 ("expected_property_unknown", summary.get("cases_with_expected_property_unknown")),
+                ("semantic_property_passed", summary.get("cases_with_semantic_property_passed")),
+                ("semantic_property_failed", summary.get("cases_with_semantic_property_failed")),
+                ("semantic_property_unknown", summary.get("cases_with_semantic_property_unknown")),
+                ("safety_veto_cases", summary.get("cases_with_safety_veto")),
                 ("command_adapter_failure_count", len(summary.get("command_adapter_failure_cases", []))),
                 ("suite_recommendation", summary.get("suite_recommendation")),
             ]
@@ -165,6 +170,17 @@ def expected_summary(summary: dict[str, Any]) -> str:
             ("passed", summary.get("cases_with_expected_property_passed")),
             ("failed", summary.get("cases_with_expected_property_failed")),
             ("unknown", summary.get("cases_with_expected_property_unknown")),
+        ]
+    ) + "</section>"
+
+
+def semantic_summary(summary: dict[str, Any]) -> str:
+    return '<section class="card"><h2>Semantic Property Summary</h2>' + kv_table(
+        [
+            ("passed", summary.get("cases_with_semantic_property_passed")),
+            ("failed", summary.get("cases_with_semantic_property_failed")),
+            ("unknown", summary.get("cases_with_semantic_property_unknown")),
+            ("safety_veto_cases", summary.get("cases_with_safety_veto")),
         ]
     ) + "</section>"
 
@@ -206,10 +222,11 @@ def top_actionable_cases(summary: dict[str, Any]) -> str:
             "<tr>"
             f"<td>{esc(case.get('case_id'))}</td><td>{esc(case.get('primary_issue'))}</td>"
             f"<td>{esc(case.get('severity'))}</td><td>{esc(case.get('expected_property_passed'))}</td>"
+            f"<td>{esc(case.get('semantic_property_result'))}</td><td>{esc(case.get('safety_veto'))}</td>"
             f"<td>{esc(paths.get('markdown', 'not_available'))}</td>"
             "</tr>"
         )
-    return table_section("Top Actionable Cases", ["case_id", "primary diagnosis", "severity", "expected_property", "per-case report path"], rows)
+    return table_section("Top Actionable Cases", ["case_id", "primary diagnosis", "severity", "expected_property", "semantic_property", "safety_veto", "per-case report path"], rows)
 
 
 def per_case_paths(result: dict[str, Any], output_path: Path) -> str:

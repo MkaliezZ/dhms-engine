@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from .agent_expected_property_checker import check_agent_expected_property
+from .agent_expected_property_checker import build_execution_safety_result, check_agent_expected_property
 from .trace_diagnosis_types import DIAGNOSIS_VERSION, SEVERITY_RANK, make_diagnosis
 from .trace_recommendation_engine import build_trace_recommendations
 
@@ -94,7 +94,16 @@ def diagnose_agent_harness_result(result: dict) -> dict:
         traces = []
     trace_metrics = build_trace_metrics(traces)
     diagnoses = build_diagnoses(result, traces, trace_metrics)
-    expected_property_check = check_agent_expected_property(str(result.get("input_text", "")), traces)
+    execution_safety_result = build_execution_safety_result(result, traces, trace_metrics)
+    semantic_property_result = check_agent_expected_property(
+        str(result.get("input_text", "")),
+        traces,
+        expected_agent_property=str(result.get("expected_agent_property", "")),
+        expected_constraints=result.get("expected_constraints") if isinstance(result.get("expected_constraints"), list) else None,
+        judge_mode=str(result.get("judge_mode", "deterministic")),
+        execution_safety_result=execution_safety_result,
+    )
+    expected_property_check = semantic_property_result
     if expected_property_check.get("passed") is False:
         diagnoses.append(
             make_diagnosis(
@@ -114,7 +123,12 @@ def diagnose_agent_harness_result(result: dict) -> dict:
         "diagnosis_summary": summarize_diagnoses(diagnoses),
         "diagnoses": diagnoses,
         "trace_metrics": trace_metrics,
+        "execution_safety_result": execution_safety_result,
+        "semantic_property_result": semantic_property_result,
         "expected_property_check": expected_property_check,
+        "judge_mode": semantic_property_result.get("judge_mode", "deterministic"),
+        "safety_veto": semantic_property_result.get("safety_veto", False),
+        "unknown_reason": semantic_property_result.get("unknown_reason", ""),
         "recommendation_evidence": recommendation_evidence,
         "recommendation_confidence": recommendation_confidence(recommendation_evidence),
     }

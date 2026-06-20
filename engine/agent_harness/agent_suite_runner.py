@@ -7,6 +7,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Optional
 
+from .agent_expected_property_checker import parse_expected_constraints
 from .agent_suite_report import SUITE_CAVEATS, write_agent_suite_reports
 from .agent_suite_summary import build_agent_suite_summary
 from .harness_runner import run_agent_harness
@@ -20,6 +21,7 @@ FIELD_NAMES = {
     "context",
     "tool_state",
     "expected_agent_property",
+    "expected_constraints",
     "risk_focus",
 }
 
@@ -34,6 +36,7 @@ def run_agent_suite(
     output: str = "reports/agent_harness_suite/latest",
     timeout_seconds: int = 10,
     max_cases: int | None = None,
+    judge_mode: str = "deterministic",
 ) -> dict[str, Any]:
     if adapter not in {"mock", "command"}:
         raise ValueError("Phase 4 supports mock and command adapters.")
@@ -81,6 +84,7 @@ def run_agent_suite(
             report=report,
             output=str(case_output),
             timeout_seconds=timeout_seconds,
+            judge_mode=judge_mode,
         )
         case_result = run_agent_harness(
             input_text=input_text,
@@ -92,6 +96,7 @@ def run_agent_suite(
             agent_command=agent_command,
             timeout_seconds=timeout_seconds,
             case_metadata=metadata,
+            judge_mode=judge_mode,
         )
         case_results.append(case_result)
 
@@ -113,6 +118,7 @@ def run_agent_suite(
         "available_case_count": available_case_count,
         "selected_case_count": len(case_paths),
         "max_cases": max_cases,
+        "judge_mode": judge_mode,
         "summary": summary,
         "case_results": case_results,
         "report_paths": {},
@@ -144,9 +150,13 @@ def parse_agent_case(path: Path) -> dict[str, Any]:
             fields[current_field] = value.strip()
             parsed_any = True
         elif current_field:
-            fields[current_field] = f"{fields[current_field]} {stripped}".strip()
+            if current_field == "expected_constraints":
+                fields[current_field] = f"{fields[current_field]}\n{stripped}".strip()
+            else:
+                fields[current_field] = f"{fields[current_field]} {stripped}".strip()
 
     metadata = {field: fields.get(field, "not_available") for field in sorted(FIELD_NAMES)}
+    metadata["expected_constraints"] = parse_expected_constraints(fields.get("expected_constraints", ""))
     return {
         "raw_text": text,
         "fields": fields,
@@ -165,6 +175,7 @@ def build_case_input(parsed: dict[str, Any]) -> str:
         f"Context: {fields.get('context', 'not_available')}",
         f"Tool state: {fields.get('tool_state', 'not_available')}",
         f"Expected agent property: {fields.get('expected_agent_property', 'not_available')}",
+        f"Expected constraints: {fields.get('expected_constraints', 'not_available')}",
         f"Risk focus: {fields.get('risk_focus', 'not_available')}",
     ]
     return "\n".join(part for part in parts if part)
@@ -185,6 +196,7 @@ def build_case_metadata(
     report: bool,
     output: str,
     timeout_seconds: int,
+    judge_mode: str,
 ) -> dict[str, Any]:
     metadata = parsed.get("metadata", {})
     relative = case_path.relative_to(suite_path)
@@ -197,6 +209,8 @@ def build_case_metadata(
         "case_title": metadata.get("title", "not_available"),
         "case_parse_status": parsed.get("parse_status", "unknown"),
         "expected_agent_property": metadata.get("expected_agent_property", "not_available"),
+        "expected_constraints": metadata.get("expected_constraints", []),
+        "judge_mode": judge_mode,
         "risk_focus": metadata.get("risk_focus", "not_available"),
         "reproduction_command": build_reproduction_command(
             adapter=adapter,

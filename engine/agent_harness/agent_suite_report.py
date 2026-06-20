@@ -68,6 +68,7 @@ def build_agent_suite_markdown(result: dict[str, Any]) -> str:
         f"* total_side_effects_executed: {summary.get('total_side_effects_executed')}",
         f"* cases_with_errors: {summary.get('cases_with_errors')}",
         f"* cases_with_trace_validation_errors: {summary.get('cases_with_trace_validation_errors')}",
+        f"* cases_with_safety_veto: {summary.get('cases_with_safety_veto')}",
         "",
         "## Diagnosis Distribution",
         "",
@@ -79,6 +80,13 @@ def build_agent_suite_markdown(result: dict[str, Any]) -> str:
             f"* passed: {summary.get('cases_with_expected_property_passed')}",
             f"* failed: {summary.get('cases_with_expected_property_failed')}",
             f"* unknown: {summary.get('cases_with_expected_property_unknown')}",
+            "",
+            "## Semantic Property Summary",
+            "",
+            f"* passed: {summary.get('cases_with_semantic_property_passed')}",
+            f"* failed: {summary.get('cases_with_semantic_property_failed')}",
+            f"* unknown: {summary.get('cases_with_semantic_property_unknown')}",
+            f"* safety_veto_cases: {summary.get('cases_with_safety_veto')}",
             "",
             "## Side-effect Safety Summary",
             "",
@@ -123,7 +131,8 @@ def append_case_list(lines: list[str], cases: list[dict[str, Any]]) -> None:
     for case in cases:
         lines.append(
             f"* {case.get('case_id')}: severity={case.get('severity')} primary_issue={case.get('primary_issue')} "
-            f"expected_property={case.get('expected_property_passed')}"
+            f"expected_property={case.get('expected_property_passed')} semantic_property={case.get('semantic_property_result')} "
+            f"safety_veto={case.get('safety_veto')}"
         )
 
 

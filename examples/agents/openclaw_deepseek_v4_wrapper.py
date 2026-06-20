@@ -59,7 +59,7 @@ OPENCLAW_TARGET_SELECTORS = ("--agent", "--session-key", "--session-id")
 
 SECRET_PATTERNS = (
     re.compile(r"sk-[A-Za-z0-9_-]{8,}"),
-    re.compile(r"\b[A-Z0-9_]*(?:API_KEY|SECRET|TOKEN)\s*=\s*[^\s\"'`]+"),
+    re.compile(r"\b[A-Z0-9_]*(?:API_KEY|SECRET|TOKEN|PASSWORD)\s*=\s*[^\s\"'`]+"),
     re.compile(r"BEGIN PRIVATE KEY"),
 )
 
@@ -414,8 +414,9 @@ def trace_from_openclaw_stdout(stdout: str, request: dict[str, Any]) -> dict[str
 
 
 def plain_text_trace(stdout: str, request: dict[str, Any]) -> dict[str, Any]:
+    observable = truncate_text(stdout.strip()) or "OpenClaw returned an empty dry-run response."
     return base_trace(
-        final_answer=truncate_text(stdout.strip()) or "OpenClaw returned an empty dry-run response.",
+        final_answer=observable,
         mode=request["mode"],
         tool_calls=[],
         memory_reads=[],
@@ -431,6 +432,8 @@ def plain_text_trace(stdout: str, request: dict[str, Any]) -> dict[str, Any]:
                 "message": "OpenClaw output did not provide a complete structured trace; wrapper normalized the output.",
             },
         ],
+        observable_response=observable,
+        model_response_preview=observable,
     )
 
 
@@ -438,6 +441,7 @@ def normalize_trace(output: dict[str, Any], request: dict[str, Any]) -> dict[str
     errors = normalize_errors(output.get("errors"))
     tool_calls, tool_errors = normalize_tool_calls(output.get("tool_calls"))
     side_effects, side_effect_errors = normalize_side_effects(output.get("side_effects"))
+    observable = observable_response_from_output(output)
     if not complete_structured_trace(output):
         errors.append(
             {
@@ -448,13 +452,15 @@ def normalize_trace(output: dict[str, Any], request: dict[str, Any]) -> dict[str
     errors.extend(tool_errors)
     errors.extend(side_effect_errors)
     return base_trace(
-        final_answer=str(output.get("final_answer") or "OpenClaw returned a dry-run response."),
+        final_answer=str(output.get("final_answer") or observable or "OpenClaw returned a dry-run response."),
         mode=request["mode"],
         tool_calls=tool_calls,
         memory_reads=list_if_dicts(output.get("memory_reads")),
         state_transitions=normalize_state_transitions(output.get("state_transitions")),
         side_effects=side_effects,
         errors=errors,
+        observable_response=observable,
+        model_response_preview=observable,
     )
 
 
@@ -523,6 +529,32 @@ def normalize_errors(value: Any) -> list[dict[str, str]]:
     return normalized
 
 
+def observable_response_from_output(output: dict[str, Any]) -> str:
+    for field in (
+        "observable_response",
+        "model_response_preview",
+        "raw_response_preview",
+        "final_answer",
+        "response",
+        "content",
+        "message",
+        "text",
+    ):
+        value = output.get(field)
+        if isinstance(value, str) and value.strip():
+            return safe_message(value.strip())
+    choices = output.get("choices")
+    if isinstance(choices, list) and choices:
+        first = choices[0]
+        if isinstance(first, dict):
+            message = first.get("message")
+            if isinstance(message, dict) and isinstance(message.get("content"), str):
+                return safe_message(message["content"].strip())
+            if isinstance(first.get("text"), str):
+                return safe_message(first["text"].strip())
+    return ""
+
+
 def preflight_trace(mode: str, warnings: list[dict[str, str]]) -> dict[str, Any]:
     return base_trace(
         final_answer="OpenClaw DHMS wrapper preflight completed.",
@@ -553,8 +585,10 @@ def base_trace(
     state_transitions: list[dict[str, Any]],
     side_effects: list[dict[str, Any]],
     errors: list[Any],
+    observable_response: str = "",
+    model_response_preview: str = "",
 ) -> dict[str, Any]:
-    return {
+    trace = {
         "final_answer": truncate_text(final_answer),
         "tool_calls": tool_calls,
         "memory_reads": memory_reads,
@@ -567,6 +601,11 @@ def base_trace(
         "input_preserved": True,
         "trace_version": TRACE_VERSION,
     }
+    if observable_response:
+        trace["observable_response"] = truncate_text(observable_response)
+    if model_response_preview:
+        trace["model_response_preview"] = truncate_text(model_response_preview)
+    return trace
 
 
 def error_trace(

@@ -76,6 +76,7 @@ def build_parser() -> argparse.ArgumentParser:
     agent_parser.add_argument("--report", action="store_true")
     agent_parser.add_argument("--output", default="reports/agent_harness/latest")
     agent_parser.add_argument("--timeout-seconds", type=int, default=10)
+    agent_parser.add_argument("--judge-mode", choices=["deterministic", "mock", "none"], default="deterministic")
 
     agent_suite_parser = subparsers.add_parser("test-agent-suite")
     agent_suite_parser.add_argument("--suite", required=True)
@@ -88,6 +89,7 @@ def build_parser() -> argparse.ArgumentParser:
     agent_suite_parser.add_argument("--output", default="reports/agent_harness_suite/latest")
     agent_suite_parser.add_argument("--timeout-seconds", "--case-timeout-seconds", dest="timeout_seconds", type=int, default=10)
     agent_suite_parser.add_argument("--max-cases", "--limit-cases", dest="max_cases", type=int)
+    agent_suite_parser.add_argument("--judge-mode", choices=["deterministic", "mock", "none"], default="deterministic")
 
     conformance_parser = subparsers.add_parser("check-agent-adapter")
     conformance_parser.add_argument("--agent-command", required=True)
@@ -157,6 +159,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             output=args.output,
             agent_command=args.agent_command,
             timeout_seconds=args.timeout_seconds,
+            judge_mode=args.judge_mode,
         )
         if args.report:
             print(agent_console_summary(result))
@@ -184,6 +187,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             output=args.output,
             timeout_seconds=args.timeout_seconds,
             max_cases=args.max_cases,
+            judge_mode=args.judge_mode,
         )
         if args.report:
             print(agent_suite_console_summary(result))

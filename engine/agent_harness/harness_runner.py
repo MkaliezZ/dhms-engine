@@ -29,6 +29,7 @@ def run_agent_harness(
     agent_command: Optional[str] = None,
     timeout_seconds: int = 10,
     case_metadata: Optional[dict[str, Any]] = None,
+    judge_mode: str = "deterministic",
 ) -> dict[str, Any]:
     if adapter not in {"mock", "command"}:
         raise ValueError("Phase 3 supports mock and command adapters.")
@@ -56,6 +57,7 @@ def run_agent_harness(
             metadata={
                 "trial_index": trial_index,
                 "agent_harness_phase": "phase4_suite_runner_dry_run",
+                "judge_mode": judge_mode,
                 "case_metadata": case_metadata or {},
             },
         )
@@ -78,6 +80,7 @@ def run_agent_harness(
         "errors": errors,
         "dry_run": True,
         "agent_harness_phase": "phase4_suite_runner_dry_run",
+        "judge_mode": judge_mode,
     }
     if case_metadata:
         result.update(case_metadata)
@@ -107,6 +110,8 @@ def build_markdown_report(result: dict[str, Any]) -> str:
     summary = result.get("diagnosis_summary", {})
     metrics = result.get("trace_metrics", {})
     expected = result.get("expected_property_check", {})
+    execution_safety = result.get("execution_safety_result", {})
+    semantic = result.get("semantic_property_result", {})
     lines = [
         "# DHMS Agent Harness Trace Diagnosis Report",
         "",
@@ -127,6 +132,10 @@ def build_markdown_report(result: dict[str, Any]) -> str:
         f"* mode: {result['mode']}",
         f"* trial_count: {result['trial_count']}",
         f"* expected_agent_property: {result.get('expected_agent_property', 'not_available')}",
+        f"* expected_constraints: {result.get('expected_constraints', [])}",
+        f"* judge_mode: {result.get('judge_mode', 'deterministic')}",
+        f"* safety_veto: {result.get('safety_veto', False)}",
+        f"* unknown_reason: {result.get('unknown_reason', '') or 'none'}",
         f"* risk_focus: {result.get('risk_focus', 'not_available')}",
         f"* reproduction_command: {result.get('reproduction_command', 'not_available')}",
         f"* diagnosis_version: {result.get('diagnosis_version')}",
@@ -136,6 +145,8 @@ def build_markdown_report(result: dict[str, Any]) -> str:
         "",
         "## Dry-Run Status",
         "",
+        f"* execution_safety_result: {execution_safety.get('overall', 'unknown')}",
+        f"* execution_safety_violations: {execution_safety.get('violations', [])}",
         f"* dry_run_all_traces: {metrics.get('dry_run_all_traces')}",
         f"* side_effects_blocked_count: {result['side_effects_blocked_count']}",
         f"* side_effect_executed_count: {metrics.get('side_effect_executed_count')}",
@@ -170,6 +181,29 @@ def build_markdown_report(result: dict[str, Any]) -> str:
         "Evidence:",
     ]
     lines.extend(f"* {item}" for item in expected.get("evidence", []))
+    lines.extend(
+        [
+            "",
+            "## Semantic Property Result",
+            "",
+            f"* property_check_version: {semantic.get('property_check_version', 'not_available')}",
+            f"* judge_mode: {semantic.get('judge_mode', 'deterministic')}",
+            f"* overall: {semantic.get('overall', 'unknown')}",
+            f"* safety_veto: {semantic.get('safety_veto', False)}",
+            f"* confidence: {semantic.get('confidence', 'low')}",
+            f"* unknown_reason: {semantic.get('unknown_reason', '') or 'none'}",
+            f"* observable_evidence: {semantic.get('observable_evidence', {})}",
+            "",
+            "Constraints:",
+        ]
+    )
+    for item in semantic.get("constraints", []):
+        lines.append(
+            f"* {item.get('status', 'unknown')}: {item.get('constraint')} "
+            f"reason={item.get('reason', 'not_available')} evidence={item.get('evidence', [])}"
+        )
+    if not semantic.get("constraints"):
+        lines.append("* none")
     lines.extend(
         [
             "",

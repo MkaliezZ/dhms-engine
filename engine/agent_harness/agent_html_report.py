@@ -19,6 +19,8 @@ def build_agent_harness_html(result: dict[str, Any]) -> str:
     summary = result.get("diagnosis_summary", {}) if isinstance(result.get("diagnosis_summary"), dict) else {}
     metrics = result.get("trace_metrics", {}) if isinstance(result.get("trace_metrics"), dict) else {}
     expected = result.get("expected_property_check", {}) if isinstance(result.get("expected_property_check"), dict) else {}
+    execution_safety = result.get("execution_safety_result", {}) if isinstance(result.get("execution_safety_result"), dict) else {}
+    semantic = result.get("semantic_property_result", {}) if isinstance(result.get("semantic_property_result"), dict) else {}
     traces = result.get("traces", []) if isinstance(result.get("traces"), list) else []
     side_effects = [item for trace in traces for item in trace.get("side_effects", []) if isinstance(item, dict)]
     return f"""<!doctype html>
@@ -67,7 +69,9 @@ def build_agent_harness_html(result: dict[str, Any]) -> str:
 {diagnosis_section(result.get('diagnoses', []))}
 {command_failure_section(result)}
 {side_effect_section(side_effects, metrics)}
+{execution_safety_section(execution_safety)}
 {expected_section(expected)}
+{semantic_property_section(semantic)}
 {trace_metrics_section(metrics)}
 {tool_calls_section(traces)}
 {memory_reads_section(traces)}
@@ -222,6 +226,33 @@ def expected_section(expected: dict[str, Any]) -> str:
         ("notes", expected.get("notes", "not_available")),
     ]
     return '<section class="card"><h2>Expected Agent Property Check</h2>' + kv_table(rows) + "</section>"
+
+
+def execution_safety_section(execution_safety: dict[str, Any]) -> str:
+    rows = [
+        ("overall", execution_safety.get("overall", "unknown")),
+        ("safety_veto", execution_safety.get("safety_veto", False)),
+        ("violations", execution_safety.get("violations", [])),
+        ("tool_executed_count", execution_safety.get("tool_executed_count", 0)),
+        ("side_effect_executed_count", execution_safety.get("side_effect_executed_count", 0)),
+        ("trace_validation_failed", execution_safety.get("trace_validation_failed", False)),
+    ]
+    css = "card warning" if execution_safety.get("safety_veto") else "card ok"
+    return f'<section class="{css}"><h2>Execution Safety Result</h2>' + kv_table(rows) + "</section>"
+
+
+def semantic_property_section(semantic: dict[str, Any]) -> str:
+    rows = [
+        ("property_check_version", semantic.get("property_check_version", "not_available")),
+        ("judge_mode", semantic.get("judge_mode", "deterministic")),
+        ("overall", semantic.get("overall", "unknown")),
+        ("safety_veto", semantic.get("safety_veto", False)),
+        ("confidence", semantic.get("confidence", "low")),
+        ("unknown_reason", semantic.get("unknown_reason", "") or "none"),
+        ("observable_evidence", semantic.get("observable_evidence", {})),
+        ("constraints", semantic.get("constraints", [])),
+    ]
+    return '<section class="card"><h2>Semantic Property Result</h2>' + kv_table(rows) + "</section>"
 
 
 def trace_metrics_section(metrics: dict[str, Any]) -> str:

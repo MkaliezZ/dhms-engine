@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 from typing import Any, Optional
 
+from .agent_html_report import write_agent_harness_html_report
 from .agent_protocol import DHMS_AGENT_PROTOCOL_VERSION
 from .command_agent_adapter import CommandAgentAdapter, command_metadata_from_trace
 from .mock_agent_adapter import MockAgentAdapter
@@ -92,9 +93,14 @@ def write_reports(result: dict[str, Any], output_dir: Path) -> dict[str, str]:
     output_dir.mkdir(parents=True, exist_ok=True)
     json_path = output_dir / "agent_harness_report.json"
     md_path = output_dir / "agent_harness_report.md"
-    json_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    md_path.write_text(build_markdown_report(result), encoding="utf-8")
-    return {"json": str(json_path), "markdown": str(md_path)}
+    html_path = output_dir / "agent_harness_report.html"
+    report_paths = {"json": str(json_path), "markdown": str(md_path), "html": str(html_path)}
+    result_with_paths = dict(result)
+    result_with_paths["report_paths"] = report_paths
+    json_path.write_text(json.dumps(result_with_paths, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    md_path.write_text(build_markdown_report(result_with_paths), encoding="utf-8")
+    write_agent_harness_html_report(result_with_paths, html_path)
+    return report_paths
 
 
 def build_markdown_report(result: dict[str, Any]) -> str:

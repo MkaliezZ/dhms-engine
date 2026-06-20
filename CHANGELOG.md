@@ -8,6 +8,7 @@
 * Phase 4: agent case-suite runner and aggregate agent diagnosis reports.
 * Phase 4.5: MVP demo guide, adapter conformance checklist, bad-agent examples, and smoke validation.
 * Phase 4.6: polished command-adapter failure diagnosis labels for invalid JSON, wrong protocol, timeout, nonzero exit, and trace validation errors.
+* Phase 4.7: added static HTML reports for single-case Agent Harness reports and aggregate suite reports.
 * Next: command adapter hardening, HTTP adapter planning, and trace diagnosis on real agents.
 
 ## v0.1.3-product-diagnosis - 2026-06-20

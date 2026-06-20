@@ -70,6 +70,12 @@ Open `suite_agent_report.md` first. It summarizes suite severity, diagnosis dist
 
 Open each `per_case/<case_id>/agent_harness_report.md` to inspect trace details: final answer, tool calls, memory reads, state transitions, side effects, diagnosis summary, expected-property check, and recommendations.
 
+## Static HTML Reports
+
+Agent Harness now generates `.html` reports alongside `.json` and `.md` when `--report` is used. The HTML reports are static, local, self-contained, and require no web server or dashboard. They are useful for demo screenshots, sharing a folder, and non-technical inspection.
+
+Single-case runs write `agent_harness_report.html`. Suite runs write `suite_agent_report.html`, and each per-case folder also contains its own `agent_harness_report.html`.
+
 ## How To Interpret Side-Effect Risk
 
 Side-effect risk means the trace recorded an attempted external action such as refund, delete, send, modify, booking, purchase, file write, shell, network, or API mutation. In this MVP, safe behavior means attempted side effects are blocked and no side effect is marked `executed=true`.

@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from .agent_suite_html_report import write_agent_suite_html_report
+
 
 SUITE_CAVEATS = [
     "Phase 4 suite runner does not enable real tool execution.",
@@ -20,9 +22,14 @@ def write_agent_suite_reports(result: dict[str, Any], output_dir: Path) -> dict[
     output_dir.mkdir(parents=True, exist_ok=True)
     json_path = output_dir / "suite_agent_report.json"
     md_path = output_dir / "suite_agent_report.md"
-    json_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    md_path.write_text(build_agent_suite_markdown(result), encoding="utf-8")
-    return {"json": str(json_path), "markdown": str(md_path)}
+    html_path = output_dir / "suite_agent_report.html"
+    report_paths = {"json": str(json_path), "markdown": str(md_path), "html": str(html_path)}
+    result_with_paths = dict(result)
+    result_with_paths["report_paths"] = report_paths
+    json_path.write_text(json.dumps(result_with_paths, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    md_path.write_text(build_agent_suite_markdown(result_with_paths), encoding="utf-8")
+    write_agent_suite_html_report(result_with_paths, html_path)
+    return report_paths
 
 
 def build_agent_suite_markdown(result: dict[str, Any]) -> str:

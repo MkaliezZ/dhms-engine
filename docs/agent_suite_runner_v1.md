@@ -46,8 +46,10 @@ Suite runs write:
 
 * `per_case/<case_id>/agent_harness_report.json`
 * `per_case/<case_id>/agent_harness_report.md`
+* `per_case/<case_id>/agent_harness_report.html`
 * `suite_agent_report.json`
 * `suite_agent_report.md`
+* `suite_agent_report.html`
 
 The aggregate report includes diagnosis distribution, expected-property summary, side-effect safety summary, command adapter failure summary, top actionable cases, per-case report paths, and reproduction commands.
 

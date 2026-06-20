@@ -86,7 +86,8 @@ def build_parser() -> argparse.ArgumentParser:
     agent_suite_parser.add_argument("--mode", default="B", choices=["A", "B", "C"])
     agent_suite_parser.add_argument("--report", action="store_true")
     agent_suite_parser.add_argument("--output", default="reports/agent_harness_suite/latest")
-    agent_suite_parser.add_argument("--timeout-seconds", type=int, default=10)
+    agent_suite_parser.add_argument("--timeout-seconds", "--case-timeout-seconds", dest="timeout_seconds", type=int, default=10)
+    agent_suite_parser.add_argument("--max-cases", "--limit-cases", dest="max_cases", type=int)
 
     conformance_parser = subparsers.add_parser("check-agent-adapter")
     conformance_parser.add_argument("--agent-command", required=True)
@@ -170,6 +171,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             parser.error("--n must be >= 1")
         if args.timeout_seconds < 1:
             parser.error("--timeout-seconds must be >= 1")
+        if args.max_cases is not None and args.max_cases < 1:
+            parser.error("--max-cases/--limit-cases must be >= 1")
         adapter = "command" if args.agent_command else "mock"
         result = run_agent_suite(
             suite=args.suite,
@@ -180,6 +183,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             report=args.report,
             output=args.output,
             timeout_seconds=args.timeout_seconds,
+            max_cases=args.max_cases,
         )
         if args.report:
             print(agent_suite_console_summary(result))

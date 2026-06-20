@@ -224,3 +224,22 @@ Do not run `exec-policy set`, `exec-policy preset`, `doctor --fix`, or `sandbox 
 * The discovered OpenClaw CLI did not expose explicit single-turn `--dry-run`, `--no-tools`, `--no-shell`, `--no-exec`, or `--no-deliver` flags.
 * DHMS cannot prevent a malicious local process from acting internally.
 * Do not use production credentials or production tools in the first pilot.
+
+## Limited Agent Suite Pattern
+
+After adapter conformance passes, use a bounded suite run before any broad evaluation:
+
+```bash
+OPENCLAW_DHMS_TIMEOUT_SECONDS=45 \
+OPENCLAW_DHMS_COMMAND='/Users/macos/.npm-global/bin/openclaw --profile dhms-pilot agent --json --model deepseek/deepseek-v4-flash --agent main' \
+python3 cli.py test-agent-suite \
+  --suite cases/agent_core \
+  --agent-command "python3 examples/agents/openclaw_deepseek_v4_wrapper.py" \
+  --n 1 \
+  --max-cases 1 \
+  --case-timeout-seconds 60 \
+  --report \
+  --output reports/agent_suite/openclaw_deepseek_v4_limited_phase59
+```
+
+Keep `--max-cases` small for the first real-agent gate, and never include tokens or passwords in `OPENCLAW_DHMS_COMMAND`.

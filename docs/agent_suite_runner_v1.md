@@ -76,3 +76,13 @@ If all attempted side effects are blocked, the suite summary reports that the dr
 * HTTP adapter
 * Real tool execution
 * Production agent certification
+
+## Limited Real-Agent Gate
+
+`test-agent-suite` supports bounded pilot runs with:
+
+* `--max-cases N` / `--limit-cases N` to run only the first N sorted suite cases
+* `--timeout-seconds N` / `--case-timeout-seconds N` to bound each case
+* explicit `--output` for isolated reports
+
+For OpenClaw pilots, run conformance first, then use a very small `--max-cases` value. Do not run a broad suite until the limited run is reviewed.

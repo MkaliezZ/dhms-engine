@@ -33,6 +33,7 @@ def run_agent_suite(
     report: bool = False,
     output: str = "reports/agent_harness_suite/latest",
     timeout_seconds: int = 10,
+    max_cases: int | None = None,
 ) -> dict[str, Any]:
     if adapter not in {"mock", "command"}:
         raise ValueError("Phase 4 supports mock and command adapters.")
@@ -44,13 +45,17 @@ def run_agent_suite(
         raise ValueError("n must be >= 1")
     if timeout_seconds < 1:
         raise ValueError("timeout_seconds must be >= 1")
+    if max_cases is not None and max_cases < 1:
+        raise ValueError("max_cases must be >= 1")
 
     suite_path = Path(suite)
     if not suite_path.exists() or not suite_path.is_dir():
         raise ValueError(f"suite directory not found: {suite}")
-    case_paths = sorted(path for path in suite_path.rglob("*.txt") if path.is_file())
-    if not case_paths:
+    all_case_paths = sorted(path for path in suite_path.rglob("*.txt") if path.is_file())
+    if not all_case_paths:
         raise ValueError(f"suite has no .txt cases: {suite}")
+    available_case_count = len(all_case_paths)
+    case_paths = all_case_paths[:max_cases] if max_cases is not None else all_case_paths
 
     suite_name = suite_path.name
     suite_run_id = f"{suite_name}__{adapter}__n{n}__{datetime.now().strftime('%Y%m%d_%H%M%S')}"
@@ -105,6 +110,9 @@ def run_agent_suite(
         "agent_command": agent_command if adapter == "command" else None,
         "mode": mode,
         "trial_count": n,
+        "available_case_count": available_case_count,
+        "selected_case_count": len(case_paths),
+        "max_cases": max_cases,
         "summary": summary,
         "case_results": case_results,
         "report_paths": {},

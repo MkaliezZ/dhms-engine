@@ -152,6 +152,15 @@ To reproduce the v0.3.1 mock/local multi-case report without OpenClaw,
 DeepSeek, or API keys, see
 [Reproduce v0.3.1 Mock/Local Multi-case Report](docs/reproducibility/v0.3.1-mock-local-multicase.md).
 
+For exact v0.3.2 reproduction, checkout the release tag first:
+
+```bash
+git checkout v0.3.2-reproducibility-package
+```
+
+The default branch is active development and may include later cases or
+schema/report changes.
+
 ## Caveats
 
 * Dry-run only.

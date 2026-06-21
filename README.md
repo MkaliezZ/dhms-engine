@@ -1,5 +1,7 @@
 # DHMS Product Diagnosis v1.3
 
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 DHMS is a perturbation-based LLM memory/context stability tester with diagnosis-driven reports.
 
 ## What DHMS Tests
@@ -82,3 +84,5 @@ Metric names remain unchanged: `stability`, `sensitivity`, `specificity`, and `i
 ## License
 
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
+
+Copyright 2026 Huaxinsheng Zhong.

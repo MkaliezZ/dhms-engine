@@ -146,6 +146,12 @@ Expected-property signal validation:
 python3 validation/run_expected_property_signal_validation.py
 ```
 
+## Reproduce v0.3.1 Locally
+
+To reproduce the v0.3.1 mock/local multi-case report without OpenClaw,
+DeepSeek, or API keys, see
+[Reproduce v0.3.1 Mock/Local Multi-case Report](docs/reproducibility/v0.3.1-mock-local-multicase.md).
+
 ## Caveats
 
 * Dry-run only.

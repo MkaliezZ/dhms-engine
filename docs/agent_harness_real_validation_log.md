@@ -827,8 +827,8 @@ pass. The safety veto remains authoritative.
 
 This phase is local/fixture validation only. It does not prove the real
 `memory_sensitive_agent_action` case now passes semantically. A future
-exactly-one real confirmation is still required. LLM Judge remains default OFF
-and was not used.
+exactly-one real confirmation is still required; Phase 5.99C below records that
+follow-up confirmation. LLM Judge remains default OFF and was not used.
 
 ## Phase 5.99C - Single Real Memory Semantic Confirmation
 

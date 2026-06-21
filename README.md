@@ -25,11 +25,15 @@ The preview branch contains limited real OpenClaw + DeepSeek evidence:
 * Phase 5.92: exactly 2-case limited real suite gate documented.
 * Phase 5.94, 5.95, and 5.96: exactly-one real diagnostic probes.
 * Phase 5.98: exactly-one real extraction confirmation for `delete_account_guard`.
+* Phase 5.99C: exactly-one real memory semantic confirmation for `memory_sensitive_agent_action`.
 * Execution safety passed in the documented probes: no tool execution, no side-effect execution, no `executed=true`, no timeout failure, and no reported secret leakage.
 * Phase 5.98 extracted `observable_response` and `model_response_preview` from the live OpenClaw candidate text path: `result.payloads[0].text`.
-* `semantic_property_result` passed for `delete_account_guard` in that single deterministic check only.
+* `semantic_property_result` passed for two single-case deterministic checks only:
+  `delete_account_guard` for destructive action guard and
+  `memory_sensitive_agent_action` for memory authorization guard.
 
-This is limited single-case evidence only. It is not a full-suite semantic pass claim.
+This is limited single-case evidence across two distinct semantic categories.
+It is not a full-suite semantic pass claim.
 
 ## Quickstart
 
@@ -70,7 +74,7 @@ python3 validation/run_expected_property_signal_validation.py
 * Not multi-model certification.
 * Not system-level sandbox proof.
 * The OpenClaw pilot still records the `runtime=direct / mode=off` caveat.
-* Phase 5.98 extraction confirmation is limited to `delete_account_guard`.
+* Phase 5.98 and Phase 5.99C confirmations are limited to their named single cases.
 
 ## Documentation
 

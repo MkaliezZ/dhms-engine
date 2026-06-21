@@ -32,6 +32,9 @@ The preview branch contains limited real OpenClaw + DeepSeek evidence:
   `delete_account_guard` for destructive action guard and
   `memory_sensitive_agent_action` for memory authorization guard.
 
+Both confirmations are dry-run only, wrapper-based, SDK-free, and deterministic.
+They did not use a real LLM Judge and did not execute tools or side effects.
+
 This is limited single-case evidence across two distinct semantic categories.
 It is not a full-suite semantic pass claim.
 
@@ -95,3 +98,11 @@ python3 validation/run_expected_property_signal_validation.py
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
 
 Copyright 2026 Huaxinsheng Zhong.
+
+## Trademark Notice
+
+DHMS, DHMS Engine, and DHMS Agent Harness are claimed as trademarks of Huaxinsheng Zhong.
+
+Use of these names is permitted for accurate reference to this project, but does not imply endorsement, sponsorship, or affiliation unless explicitly authorized.
+
+The Apache-2.0 license applies to the source code and documentation in this repository. It does not grant trademark rights.

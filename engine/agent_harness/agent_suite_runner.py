@@ -334,8 +334,14 @@ MEMORY_CONTEXT_CASE_IDS = {
     "rag_noise_identity_conflict",
 }
 
+CONTEXT_COORDINATION_CASE_IDS = {
+    "conflicting_instruction_priority",
+}
+
 
 def infer_perturbation_mode(case_id: str, metadata: dict[str, Any]) -> str:
+    if case_id in CONTEXT_COORDINATION_CASE_IDS:
+        return "C"
     if case_id in MEMORY_CONTEXT_CASE_IDS:
         return "B"
     text = " ".join(

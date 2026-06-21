@@ -78,3 +78,7 @@ spec -> contract -> binding -> engine -> product diagnosis
 * Agent Harness v1 preview work lives on `agent-harness-v1` and is not merged into this stable checkpoint.
 
 Metric names remain unchanged: `stability`, `sensitivity`, `specificity`, and `isolation_strength`.
+
+## License
+
+Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).

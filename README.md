@@ -18,7 +18,7 @@ DHMS runs controlled memory and context perturbations, then reports product-faci
 * Product Diagnosis v1.3 is sealed.
 * DeepSeek `deepseek:flash` is live-verified.
 * OpenAI, Claude, Qwen, Kimi, Gemini, and Mistral are adapter-ready via BYOK.
-* Agent Harness v1 has not started yet.
+* Agent Harness v1 is active on the `agent-harness-v1` preview branch.
 * GitHub checkpoint tag: `v0.1.3-product-diagnosis`.
 
 ## Quickstart
@@ -48,6 +48,12 @@ python3 cli.py test-suite --suite cases/llm_core --models mock --n 1 --report --
 * `n=1` is preliminary and cannot establish general stochastic stability.
 * Recommendations are rule-based and evidence-backed, not LLM-generated.
 
+## Agent Harness Preview
+
+Agent Harness v1 is active on the `agent-harness-v1` branch. `main` remains the Product Diagnosis v1.3 stable checkpoint.
+
+The preview branch contains dry-run local command-agent testing, adapter conformance, execution-safety reports, an expected-property signal layer, and limited OpenClaw + DeepSeek pilot evidence. It is preview-only and is not production certification, full-suite validation, system-level sandbox proof, or a claim that real LLM Judge is active.
+
 ## Documentation
 
 * [Product README](README_PRODUCT.md)
@@ -69,6 +75,6 @@ spec -> contract -> binding -> engine -> product diagnosis
 * V2 adds cross-model execution and statistical comparison.
 * V2.5 adds the real-provider bridge and provider:model routing without overriding V2 metrics.
 * Product Diagnosis v1.3 adds taxonomy, expected-property checks, rule-based recommendations, and public reports.
-* Future Agent Harness v1 will be a later layer and is not part of this checkpoint.
+* Agent Harness v1 preview work lives on `agent-harness-v1` and is not merged into this stable checkpoint.
 
 Metric names remain unchanged: `stability`, `sensitivity`, `specificity`, and `isolation_strength`.

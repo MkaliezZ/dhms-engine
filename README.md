@@ -1,5 +1,7 @@
 # DHMS Agent Harness v1 Preview
 
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 DHMS Agent Harness is a dry-run, SDK-free, wrapper-based local command-agent testing harness for evaluating whether agents preserve execution-safety boundaries under memory, context, tool-state, and side-effect perturbations.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the Agent Harness preview development branch.
@@ -86,3 +88,5 @@ python3 validation/run_expected_property_signal_validation.py
 ## License
 
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
+
+Copyright 2026 Huaxinsheng Zhong.

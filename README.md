@@ -2,11 +2,55 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-DHMS Agent Harness is a dry-run, SDK-free, wrapper-based local command-agent testing harness for evaluating whether agents preserve execution-safety boundaries under memory, context, tool-state, and side-effect perturbations.
+DHMS is the crash-test protocol for AI Agents before they touch the real world.
+
+DHMS tests whether AI agents remain safe under controlled memory, context,
+tool-state, and side-effect perturbations before they touch real tools,
+accounts, data, or workflows.
+
+Traditional AI evals ask whether a model gives the right answer. DHMS asks
+whether an Agent will cross the line under pressure.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the Agent Harness preview development branch.
 
 Status: DHMS Agent Harness v1 is an evidence-sealed prototype of a deterministic Agent safety evaluation protocol.
+
+## Architecture at a Glance
+
+DHMS is an external crash-test protocol for AI agents. It evaluates whether an
+agent stays safe under controlled perturbations without requiring SDK
+instrumentation or agent code modification.
+
+```mermaid
+flowchart LR
+    A[Target Agent<br/>Existing Local Command Agent<br/>No SDK / No Code Modification]
+    B[DHMS Agent Harness<br/>SDK-free Wrapper-based Evaluation Layer]
+    C[DHMS Perturbation Protocol<br/>A = Action Risk<br/>B = Memory / Context Risk<br/>C = Reserved Coordination]
+    D[Dry-run Safety Boundary<br/>No Real Tool Execution<br/>No Side Effects]
+    E[AgentTrace<br/>Structured Trace / Observable Response / Safety Evidence]
+    F[DHMS Engine<br/>Deterministic Safety Evaluation Core]
+    G[Reports<br/>execution_summary.json<br/>JSON / Markdown / HTML]
+    H[Mock Baseline]
+    I[Real Agent Run]
+    J[Diagnosis Output<br/>Execution Safety<br/>Semantic Property<br/>Safety Veto]
+
+    A --> B
+    B --> C
+    C --> H
+    C --> I
+    H --> D
+    I --> D
+    D --> E
+    E --> F
+    F --> J
+    F --> G
+```
+
+Why this architecture matters:
+
+* Non-invasive — no SDK instrumentation and no agent code changes.
+* Dry-run safe — no real tool execution and no side effects.
+* Auditable — structured AgentTrace plus deterministic JSON / Markdown / HTML reports.
 
 ## Current Capabilities
 
@@ -17,6 +61,7 @@ Status: DHMS Agent Harness v1 is an evidence-sealed prototype of a deterministic
 * Suite runner with aggregate JSON, Markdown, and static HTML reports.
 * Expected-property signal layer with `expected_constraints`.
 * Deterministic safety veto as the default safety floor.
+* A/B/C perturbation taxonomy with stable `execution_summary.json` from v0.3.1.
 * Optional LLM Judge posture: default OFF; no external judge is required.
 * OpenClaw + DeepSeek dry-run pilot evidence documented for limited gates.
 
@@ -53,6 +98,20 @@ The release records two real exactly-one OpenClaw + DeepSeek confirmations:
 Each confirmation is exactly-one per case, dry-run only, wrapper-based, SDK-free,
 and evaluated with deterministic `semantic_property_result`. Neither run used a
 real LLM Judge, executed tools, or executed side effects.
+
+## v0.3.1 Schema & Report Polish
+
+`v0.3.1-schema-report-polish` standardizes the multi-case
+`execution_summary.json` schema and makes suite reports easier to read.
+
+The release includes:
+
+* standardized multi-case `execution_summary.json`
+* A/B/C taxonomy wording freeze
+* improved multi-case Markdown reports
+* preserved `--case` single-case compatibility
+
+No new real OpenClaw or DeepSeek confirmations were run for v0.3.1.
 
 ## What DHMS Is NOT
 
@@ -99,6 +158,7 @@ python3 validation/run_expected_property_signal_validation.py
 * Not production certification.
 * Not multi-model certification.
 * Not system-level sandbox proof.
+* Not real LLM Judge validation.
 * The OpenClaw pilot still records the `runtime=direct / mode=off` caveat.
 * Phase 5.98 and Phase 5.99C confirmations are limited to their named single cases.
 
@@ -110,6 +170,8 @@ python3 validation/run_expected_property_signal_validation.py
 * [Adapter conformance test kit v1](docs/adapter_conformance_test_kit_v1.md)
 * [Agent command protocol v1](docs/agent_command_protocol_v1.md)
 * [Agent Harness v1 plan](docs/agent_harness_v1_plan.md)
+* [v0.2.1 Evidence-Sealed Release](docs/releases/v0.2.1-agent-harness-evidence-seal.md)
+* [v0.3.1 Schema & Report Polish](docs/releases/v0.3.1-schema-report-polish.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

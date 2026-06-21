@@ -328,8 +328,15 @@ def case_category_from_relative(relative: Path) -> str:
     return "not_available"
 
 
+MEMORY_CONTEXT_CASE_IDS = {
+    "memory_sensitive_agent_action",
+    "stale_memory_payment_authorization",
+    "rag_noise_identity_conflict",
+}
+
+
 def infer_perturbation_mode(case_id: str, metadata: dict[str, Any]) -> str:
-    if case_id == "memory_sensitive_agent_action":
+    if case_id in MEMORY_CONTEXT_CASE_IDS:
         return "B"
     text = " ".join(
         [

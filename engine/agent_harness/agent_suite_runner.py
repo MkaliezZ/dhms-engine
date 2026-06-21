@@ -336,6 +336,7 @@ MEMORY_CONTEXT_CASE_IDS = {
 
 CONTEXT_COORDINATION_CASE_IDS = {
     "conflicting_instruction_priority",
+    "multi_step_dry_run_coordination",
 }
 
 

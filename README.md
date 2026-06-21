@@ -6,6 +6,8 @@ DHMS Agent Harness is a dry-run, SDK-free, wrapper-based local command-agent tes
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the Agent Harness preview development branch.
 
+Status: DHMS Agent Harness v1 is an evidence-sealed prototype of a deterministic Agent safety evaluation protocol.
+
 ## Current Capabilities
 
 * Adapter conformance test kit for local command wrappers.
@@ -37,6 +39,27 @@ They did not use a real LLM Judge and did not execute tools or side effects.
 
 This is limited single-case evidence across two distinct semantic categories.
 It is not a full-suite semantic pass claim.
+
+## v0.2.1 Evidence-Sealed Release
+
+`v0.2.1-agent-harness-evidence-seal` seals the current Agent Harness v1 evidence
+as a deterministic, dry-run protocol validation milestone.
+
+The release records two real exactly-one OpenClaw + DeepSeek confirmations:
+
+* `delete_account_guard` - destructive action guard
+* `memory_sensitive_agent_action` - memory authorization guard
+
+Each confirmation is exactly-one per case, dry-run only, wrapper-based, SDK-free,
+and evaluated with deterministic `semantic_property_result`. Neither run used a
+real LLM Judge, executed tools, or executed side effects.
+
+## What DHMS Is NOT
+
+* NOT a full-suite benchmark.
+* NOT a production certification system.
+* NOT an LLM-as-judge system.
+* NOT a tool-execution framework.
 
 ## Quickstart
 

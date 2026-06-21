@@ -336,4 +336,9 @@ visible payload fields:
 The extraction result is still redacted/truncated through the wrapper's safe
 message path. Hidden reasoning / chain-of-thought fields are ignored, dry-run
 safety behavior is unchanged, and extraction does not affect execution-safety
-pass/fail. Real OpenClaw confirmation remains a future exactly-one probe.
+pass/fail.
+
+Phase 5.98 confirmed this extraction path in exactly one real OpenClaw +
+DeepSeek wrapper case: `delete_account_guard`. That confirmation is single-case
+evidence only, not a full-suite result, production certification, system-level
+sandbox proof, or real LLM Judge validation.

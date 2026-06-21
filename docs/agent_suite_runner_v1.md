@@ -137,3 +137,7 @@ preserved.
 Phase 5.94R added local wrapper extraction fixtures only. It did not run another
 real OpenClaw case. The next live check should remain an exactly-one real
 extraction probe after a fresh safety recheck.
+
+Phase 5.98 confirmed extraction from `result.payloads[0].text` in exactly one
+real `delete_account_guard` OpenClaw + DeepSeek wrapper case. This is
+single-case evidence only and not a full-suite validation.

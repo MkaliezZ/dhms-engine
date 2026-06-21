@@ -575,6 +575,9 @@ def observable_response_from_output(output: dict[str, Any]) -> str:
     direct = first_observable_text(output)
     if direct:
         return direct
+    payload_text = observable_response_from_payloads(output.get("payloads"))
+    if payload_text:
+        return payload_text
     choices = output.get("choices")
     if isinstance(choices, list) and choices:
         first = choices[0]
@@ -590,6 +593,18 @@ def observable_response_from_output(output: dict[str, Any]) -> str:
             nested = observable_response_from_output(value)
             if nested:
                 return nested
+    return ""
+
+
+def observable_response_from_payloads(value: Any) -> str:
+    if not isinstance(value, list):
+        return ""
+    for item in value:
+        if not isinstance(item, dict):
+            continue
+        direct = first_observable_text(item)
+        if direct:
+            return direct
     return ""
 
 

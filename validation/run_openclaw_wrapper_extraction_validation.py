@@ -45,6 +45,11 @@ def main() -> int:
         ("diagnostics_json_shape_detected", check_diagnostics_json_shape_detected(wrapper, request)),
         ("diagnostics_candidate_text_fields", check_diagnostics_candidate_text_fields(wrapper, request)),
         ("diagnostics_secret_preview_redacted", check_diagnostics_secret_preview_redacted(wrapper, request)),
+        ("payload_text_extracted", check_payload_text_extracted(wrapper, request)),
+        ("payload_content_extracted", check_payload_content_extracted(wrapper, request)),
+        ("payload_message_content_extracted", check_payload_message_content_extracted(wrapper, request)),
+        ("payload_secret_like_text_blocked", check_payload_secret_like_text_blocked(wrapper, request)),
+        ("payload_hidden_cot_not_used", check_payload_hidden_cot_not_used(wrapper, request)),
     ]
     failed = [name for name, ok in checks if not ok]
     report = {
@@ -213,6 +218,62 @@ def check_diagnostics_secret_preview_redacted(wrapper, request: dict) -> bool:
         and diagnostics.get("raw_stderr_preview") == "[redacted: secret-like content detected]"
         and sample_value not in serialized
     )
+
+
+def fake_openclaw_payload(text_field: dict) -> dict:
+    return {
+        "result": {
+            "meta": {},
+            "payloads": [text_field],
+        },
+        "runId": "fake",
+        "status": "completed",
+        "summary": {},
+    }
+
+
+def check_payload_text_extracted(wrapper, request: dict) -> bool:
+    expected = "I cannot delete the account without explicit verification."
+    trace = trace_from_sample(wrapper, request, fake_openclaw_payload({"text": expected}))
+    fields = trace.get("wrapper_diagnostics", {}).get("candidate_text_fields_found", [])
+    return (
+        trace.get("observable_response") == expected
+        and trace.get("model_response_preview") == expected
+        and "result.payloads[0].text" in fields
+    )
+
+
+def check_payload_content_extracted(wrapper, request: dict) -> bool:
+    expected = "Verification is required before a destructive account action."
+    trace = trace_from_sample(wrapper, request, fake_openclaw_payload({"content": expected}))
+    return trace.get("observable_response") == expected and trace.get("model_response_preview") == expected
+
+
+def check_payload_message_content_extracted(wrapper, request: dict) -> bool:
+    expected = "I cannot perform deletion in a dry-run."
+    trace = trace_from_sample(wrapper, request, fake_openclaw_payload({"message": {"content": expected}}))
+    return trace.get("observable_response") == expected and trace.get("model_response_preview") == expected
+
+
+def check_payload_secret_like_text_blocked(wrapper, request: dict) -> bool:
+    marker = "".join(["TO", "KEN"])
+    separator = chr(61)
+    payload = "".join(["abc123", "SECRET", "value"])
+    sample_value = marker + separator + payload
+    trace = trace_from_sample(wrapper, request, fake_openclaw_payload({"text": sample_value}))
+    serialized = json.dumps(trace)
+    return has_error_type(trace, "openclaw_invalid_json") and sample_value not in serialized
+
+
+def check_payload_hidden_cot_not_used(wrapper, request: dict) -> bool:
+    expected = "Visible refusal only."
+    trace = trace_from_sample(
+        wrapper,
+        request,
+        fake_openclaw_payload({"reasoning": "hidden payload reasoning should not appear", "text": expected}),
+    )
+    serialized = json.dumps(trace)
+    return trace.get("observable_response") == expected and "should not appear" not in serialized
 
 
 def has_error_type(trace: dict, error_type: str) -> bool:

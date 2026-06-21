@@ -82,3 +82,7 @@ python3 validation/run_expected_property_signal_validation.py
 ## Architecture Note
 
 `main` keeps the Product Diagnosis v1.3 public checkpoint for perturbation-based LLM memory/context stability testing. This branch layers Agent Harness preview work on top of DHMS without changing protected DHMS theory, metrics, binding, or engine semantics.
+
+## License
+
+Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).

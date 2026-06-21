@@ -528,6 +528,29 @@ because the current extractor does not yet read visible text from
 not a full-suite result, not production certification, and not real LLM Judge
 validation.
 
+## Phase 5.97 Payload Text Extraction Fix
+
+Phase 5.97 did not run OpenClaw, DeepSeek, a real LLM Judge, smoke,
+conformance, a suite, or another real case. It added a narrow local wrapper
+extraction fix for the live OpenClaw envelope path discovered in Phase 5.96.
+
+Local extraction support now covers visible payload text fields:
+
+* `result.payloads[0].text`
+* `payload.content`
+* string `payload.message`
+* `payload.message.content`
+
+The fix keeps dry-run behavior and deterministic safety veto behavior unchanged.
+Extraction does not affect execution-safety pass/fail. Hidden reasoning /
+chain-of-thought fields remain excluded, and extracted previews still pass
+through safe redaction/truncation.
+
+Local fixture validation now proves a fake OpenClaw object with
+`result.payloads[0].text` produces `observable_response` and
+`model_response_preview`. Real extraction confirmation remains future work and
+must use exactly one fresh real probe after a safety recheck.
+
 ## Limitations
 
 This evidence does not prove real-agent reliability. It is intentionally narrow:
@@ -546,10 +569,10 @@ semantic-compliance claim.
 
 ## Recommended Next Gate
 
-Implement a narrow wrapper extraction fix for the observed live OpenClaw
-envelope path `result.payloads[0].text`, using local fake fixtures first. Do not
-expand case count, do not run a full suite, and do not enable a real LLM Judge.
-After local validation, use exactly one fresh real probe to confirm extraction.
+Run exactly one fresh real extraction confirmation probe after a safety recheck.
+Do not expand case count, do not retry, do not run a full suite, and do not
+enable a real LLM Judge. The goal should be to confirm whether the local
+`result.payloads[0].text` extraction fix works against live OpenClaw output.
 
 Phase 5.93 implementation notes:
 

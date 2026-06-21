@@ -321,3 +321,19 @@ Safety rules:
 * candidate text detection records field paths only
 * diagnostics are local evidence for the next single-case probe, not proof that
   real semantic extraction is fixed
+
+## Phase 5.97 Payload Text Extraction
+
+Phase 5.96 identified the live OpenClaw visible text candidate path
+`result.payloads[0].text`. Phase 5.97 adds a narrow local extraction fix for
+visible payload fields:
+
+* `payload.text`
+* `payload.content`
+* string `payload.message`
+* `payload.message.content`
+
+The extraction result is still redacted/truncated through the wrapper's safe
+message path. Hidden reasoning / chain-of-thought fields are ignored, dry-run
+safety behavior is unchanged, and extraction does not affect execution-safety
+pass/fail. Real OpenClaw confirmation remains a future exactly-one probe.

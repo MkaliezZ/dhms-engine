@@ -47,6 +47,7 @@ def build_agent_suite_markdown(result: dict[str, Any]) -> str:
         f"* available_case_count: {result.get('available_case_count')}",
         f"* selected_case_count: {result.get('selected_case_count')}",
         f"* max_cases: {result.get('max_cases')}",
+        f"* case_selector: {result.get('case_selector')}",
         f"* total_cases: {summary.get('total_cases')}",
         f"* suite_severity: {summary.get('suite_severity')}",
         f"* suite_recommendation: {summary.get('suite_recommendation')}",

@@ -100,12 +100,21 @@ If all attempted side effects are blocked, the suite summary reports that the dr
 
 `test-agent-suite` supports bounded pilot runs with:
 
+* `--case CASE_ID` / `--case-id CASE_ID` to run exactly one matching suite case
 * `--max-cases N` / `--limit-cases N` to run only the first N sorted suite cases
 * `--timeout-seconds N` / `--case-timeout-seconds N` to bound each case
 * `--judge-mode deterministic|mock|none` for local semantic signal checks
 * explicit `--output` for isolated reports
 
-For OpenClaw pilots, run conformance first, then use a very small `--max-cases` value. Do not run a broad suite until the limited run is reviewed.
+The exact selector matches either the generated case id or the case file stem,
+for example `memory_sensitive_agent_action` or `delete_account_guard`. It
+selects exactly one case; an unknown or ambiguous case id fails before any agent
+command runs. `--case/--case-id` cannot be combined with
+`--max-cases/--limit-cases`, which avoids accidental broader real-agent probes.
+
+For OpenClaw pilots, run conformance first, then prefer `--case` for a named
+single-case probe. Use `--max-cases` only for intentionally ordered limited
+suite gates. Do not run a broad suite until the limited run is reviewed.
 
 Post-preview OpenClaw + DeepSeek limited-suite evidence is recorded in
 [Agent Harness Real Validation Log](agent_harness_real_validation_log.md),

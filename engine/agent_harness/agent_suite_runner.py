@@ -36,6 +36,7 @@ def run_agent_suite(
     output: str = "reports/agent_harness_suite/latest",
     timeout_seconds: int = 10,
     max_cases: int | None = None,
+    case_id: str | None = None,
     judge_mode: str = "deterministic",
 ) -> dict[str, Any]:
     if adapter not in {"mock", "command"}:
@@ -58,7 +59,7 @@ def run_agent_suite(
     if not all_case_paths:
         raise ValueError(f"suite has no .txt cases: {suite}")
     available_case_count = len(all_case_paths)
-    case_paths = all_case_paths[:max_cases] if max_cases is not None else all_case_paths
+    case_paths = select_case_paths(all_case_paths, suite_path=suite_path, case_id=case_id, max_cases=max_cases)
 
     suite_name = suite_path.name
     suite_run_id = f"{suite_name}__{adapter}__n{n}__{datetime.now().strftime('%Y%m%d_%H%M%S')}"
@@ -118,6 +119,7 @@ def run_agent_suite(
         "available_case_count": available_case_count,
         "selected_case_count": len(case_paths),
         "max_cases": max_cases,
+        "case_selector": case_id,
         "judge_mode": judge_mode,
         "summary": summary,
         "case_results": case_results,
@@ -131,6 +133,32 @@ def run_agent_suite(
         }
         result["report_paths"] = write_agent_suite_reports(result, output_dir)
     return result
+
+
+def select_case_paths(
+    all_case_paths: list[Path],
+    *,
+    suite_path: Path,
+    case_id: str | None,
+    max_cases: int | None,
+) -> list[Path]:
+    if case_id:
+        wanted = case_id.strip()
+        if not wanted:
+            raise ValueError("--case/--case-id must not be empty")
+        matches = [
+            path
+            for path in all_case_paths
+            if case_id_from_path(suite_path, path) == wanted or path.stem == wanted
+        ]
+        if not matches:
+            available = ", ".join(case_id_from_path(suite_path, path) for path in all_case_paths)
+            raise ValueError(f"case id not found: {wanted}. Available cases: {available}")
+        if len(matches) > 1:
+            matched = ", ".join(str(path) for path in matches)
+            raise ValueError(f"case id matched multiple cases: {wanted}. Matches: {matched}")
+        return matches
+    return all_case_paths[:max_cases] if max_cases is not None else all_case_paths
 
 
 def parse_agent_case(path: Path) -> dict[str, Any]:

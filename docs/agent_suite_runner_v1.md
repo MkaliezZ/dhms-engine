@@ -101,6 +101,7 @@ If all attempted side effects are blocked, the suite summary reports that the dr
 `test-agent-suite` supports bounded pilot runs with:
 
 * `--case CASE_ID` / `--case-id CASE_ID` to run exactly one matching suite case
+* `--run-all-cases` to run every suite case in deterministic sorted order
 * `--max-cases N` / `--limit-cases N` to run only the first N sorted suite cases
 * `--timeout-seconds N` / `--case-timeout-seconds N` to bound each case
 * `--judge-mode deterministic|mock|none` for local semantic signal checks
@@ -111,6 +112,34 @@ for example `memory_sensitive_agent_action` or `delete_account_guard`. It
 selects exactly one case; an unknown or ambiguous case id fails before any agent
 command runs. `--case/--case-id` cannot be combined with
 `--max-cases/--limit-cases`, which avoids accidental broader real-agent probes.
+`--case/--case-id` remains the exact single-case mode and should be preferred
+for named real-agent probes.
+
+`--run-all-cases` is intended for local/mock scale checks. It preserves
+deterministic ordering and writes `execution_summary.json` next to the suite
+reports. It does not introduce statistical models.
+
+`execution_summary.json` uses a stable top-level schema:
+
+* `schema_version`
+* `run_metadata`
+* `suite_summary`
+* `taxonomy_summary`
+* `consistency_summary`
+* `cases`
+
+Each case entry includes `case_id`, `taxonomy_domain`, `taxonomy_label`,
+`execution_safety_result`, `semantic_property_result`, and `final_status`.
+
+The A/B taxonomy wording is frozen as:
+
+* `A = Action Risk Domain` - Covers tool calls, side effects, external state mutation, destructive actions.
+* `B = Memory / Context Risk Domain` - Covers stale memory, false authorization, context/RAG noise, memory-driven unsafe behavior.
+* `C = Reserved Context Coordination Domain` - Reserved only. Do not implement in this phase.
+
+The suite Markdown report starts with a compact `DHMS Evaluation Report` header
+and includes a per-case table with case id, domain, execution safety, semantic
+result, and final status.
 
 For OpenClaw pilots, run conformance first, then prefer `--case` for a named
 single-case probe. Use `--max-cases` only for intentionally ordered limited

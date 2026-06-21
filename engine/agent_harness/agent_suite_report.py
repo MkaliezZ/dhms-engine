@@ -23,7 +23,13 @@ def write_agent_suite_reports(result: dict[str, Any], output_dir: Path) -> dict[
     json_path = output_dir / "suite_agent_report.json"
     md_path = output_dir / "suite_agent_report.md"
     html_path = output_dir / "suite_agent_report.html"
-    report_paths = {"json": str(json_path), "markdown": str(md_path), "html": str(html_path)}
+    execution_summary_path = result.get("execution_summary_path") or str(output_dir / "execution_summary.json")
+    report_paths = {
+        "json": str(json_path),
+        "markdown": str(md_path),
+        "html": str(html_path),
+        "execution_summary": str(execution_summary_path),
+    }
     result_with_paths = dict(result)
     result_with_paths["report_paths"] = report_paths
     json_path.write_text(json.dumps(result_with_paths, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -34,8 +40,15 @@ def write_agent_suite_reports(result: dict[str, Any], output_dir: Path) -> dict[
 
 def build_agent_suite_markdown(result: dict[str, Any]) -> str:
     summary = result.get("summary", {})
+    execution_summary = result.get("execution_summary", {}) if isinstance(result.get("execution_summary"), dict) else {}
     lines = [
-        "# DHMS Agent Harness Suite Diagnosis Report",
+        "# DHMS Evaluation Report",
+        "",
+        "## Suite Header",
+        "",
+        "* Mode: deterministic multi-case execution",
+        "* Taxonomy: A/B perturbation model",
+        "* Execution: dry-run / mock/local unless explicitly real",
         "",
         "## Executive Summary",
         "",
@@ -91,6 +104,16 @@ def build_agent_suite_markdown(result: dict[str, Any]) -> str:
             f"* safety_veto_cases: {summary.get('cases_with_safety_veto')}",
             f"* judge_result: compatibility alias for semantic_property_result",
             "",
+            "## Compact Per-case Summary",
+            "",
+            "| Case | Domain | Execution Safety | Semantic Result | Final Status |",
+            "| --- | --- | --- | --- | --- |",
+        ]
+    )
+    append_compact_case_rows(lines, execution_summary)
+    lines.extend(
+        [
+            "",
             "## Side-effect Safety Summary",
             "",
             f"* side_effect_risk_cases: {len(summary.get('side_effect_risk_cases', []))}",
@@ -137,6 +160,36 @@ def append_case_list(lines: list[str], cases: list[dict[str, Any]]) -> None:
             f"expected_property={case.get('expected_property_passed')} semantic_property={case.get('semantic_property_result')} "
             f"safety_veto={case.get('safety_veto')}"
         )
+
+
+def append_compact_case_rows(lines: list[str], execution_summary: dict[str, Any]) -> None:
+    cases = execution_summary.get("cases", []) if isinstance(execution_summary, dict) else []
+    if not cases:
+        lines.append("| none | not_available | not_available | not_available | not_available |")
+        return
+    for case in cases:
+        if not isinstance(case, dict):
+            continue
+        execution = case.get("execution_safety_result", {}) if isinstance(case.get("execution_safety_result"), dict) else {}
+        semantic = case.get("semantic_property_result", {}) if isinstance(case.get("semantic_property_result"), dict) else {}
+        domain = f"{case.get('taxonomy_domain', 'not_available')} - {case.get('taxonomy_label', 'not_available')}"
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    markdown_cell(case.get("case_id", "not_available")),
+                    markdown_cell(domain),
+                    markdown_cell(execution.get("overall", "unknown")),
+                    markdown_cell(semantic.get("overall", "unknown")),
+                    markdown_cell(case.get("final_status", "unknown")),
+                ]
+            )
+            + " |"
+        )
+
+
+def markdown_cell(value: Any) -> str:
+    return str(value).replace("|", "\\|").replace("\n", " ")
 
 
 def all_attempted_side_effects_blocked(summary: dict[str, Any]) -> bool:

@@ -90,6 +90,7 @@ def build_parser() -> argparse.ArgumentParser:
     agent_suite_parser.add_argument("--timeout-seconds", "--case-timeout-seconds", dest="timeout_seconds", type=int, default=10)
     agent_suite_parser.add_argument("--max-cases", "--limit-cases", dest="max_cases", type=int)
     agent_suite_parser.add_argument("--case", "--case-id", dest="case_id", help="run exactly one suite case by case id or file stem")
+    agent_suite_parser.add_argument("--run-all-cases", action="store_true", help="run every case in deterministic suite order")
     agent_suite_parser.add_argument("--judge-mode", choices=["deterministic", "mock", "none"], default="deterministic")
 
     conformance_parser = subparsers.add_parser("check-agent-adapter")
@@ -179,6 +180,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             parser.error("--max-cases/--limit-cases must be >= 1")
         if args.case_id and args.max_cases is not None:
             parser.error("--case/--case-id cannot be combined with --max-cases/--limit-cases")
+        if args.run_all_cases and args.max_cases is not None:
+            parser.error("--run-all-cases cannot be combined with --max-cases/--limit-cases")
         adapter = "command" if args.agent_command else "mock"
         try:
             result = run_agent_suite(
@@ -192,6 +195,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                 timeout_seconds=args.timeout_seconds,
                 max_cases=args.max_cases,
                 case_id=args.case_id,
+                run_all_cases=args.run_all_cases,
                 judge_mode=args.judge_mode,
             )
         except ValueError as exc:

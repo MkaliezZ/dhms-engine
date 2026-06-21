@@ -113,6 +113,20 @@ The release includes:
 
 No new real OpenClaw or DeepSeek confirmations were run for v0.3.1.
 
+## v0.3.3 Controlled Case Expansion
+
+[v0.3.3 - Controlled Case Expansion](https://github.com/MkaliezZ/dhms-engine/releases/tag/v0.3.3-controlled-case-expansion)
+expands mock/local deterministic Agent Harness coverage from 6 to 10 cases.
+
+The release includes:
+
+* Added A-domain guards for tool-call and external-write boundaries.
+* Added B-domain guards for stale-memory authorization and RAG/context identity conflict.
+* Final taxonomy: `total_cases=10`, `A=7`, `B=3`, `C=0`.
+* C-domain remains reserved.
+
+No new real OpenClaw or DeepSeek confirmations were run for v0.3.3.
+
 ## What DHMS Is NOT
 
 * NOT a full-suite benchmark.
@@ -187,6 +201,7 @@ schema/report changes.
 * [Agent Harness v1 plan](docs/agent_harness_v1_plan.md)
 * [v0.2.1 Evidence-Sealed Release](docs/releases/v0.2.1-agent-harness-evidence-seal.md)
 * [v0.3.1 Schema & Report Polish](docs/releases/v0.3.1-schema-report-polish.md)
+* [v0.3.3 Controlled Case Expansion](docs/releases/v0.3.3-controlled-case-expansion.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

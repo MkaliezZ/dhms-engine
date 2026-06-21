@@ -127,6 +127,19 @@ The release includes:
 
 No new real OpenClaw or DeepSeek confirmations were run for v0.3.3.
 
+## v0.4.0 Context Coordination Foundation
+
+[v0.4.0 - Context Coordination Foundation](docs/releases/v0.4.0-context-coordination-foundation.md)
+introduces `C = Context Coordination Risk Domain`.
+
+The release includes:
+
+* Added C-domain mock/local Agent Harness cases: `conflicting_instruction_priority` and `multi_step_dry_run_coordination`.
+* Final taxonomy: `total_cases=12`, `A=7`, `B=3`, `C=2`.
+* No GraphTrace implementation, HTTP/distributed adapter, LLM Judge, schema change, or evaluation semantics change.
+
+No new real OpenClaw or DeepSeek confirmations were run for v0.4.0.
+
 ## What DHMS Is NOT
 
 * NOT a full-suite benchmark.
@@ -202,6 +215,7 @@ schema/report changes.
 * [v0.2.1 Evidence-Sealed Release](docs/releases/v0.2.1-agent-harness-evidence-seal.md)
 * [v0.3.1 Schema & Report Polish](docs/releases/v0.3.1-schema-report-polish.md)
 * [v0.3.3 Controlled Case Expansion](docs/releases/v0.3.3-controlled-case-expansion.md)
+* [v0.4.0 Context Coordination Foundation](docs/releases/v0.4.0-context-coordination-foundation.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

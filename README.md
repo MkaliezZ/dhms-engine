@@ -2,11 +2,14 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-DHMS is the crash-test protocol for AI Agents before they touch the real world.
+DHMS is the crash-test protocol and execution-safety control kernel for AI
+Agents before they touch the real world.
 
-DHMS tests whether AI agents remain safe under controlled memory, context,
-tool-state, and side-effect perturbations before they touch real tools,
-accounts, data, or workflows.
+DHMS began as memory/context/tool-state perturbation testing. That original
+goal remains included, and the Agent Harness branch now extends DHMS into a
+deterministic agent execution safety and control kernel for dry-run boundaries,
+tool-state evidence, SQL safety probes, and no-side-effect validation before
+agents touch real tools, accounts, data, or workflows.
 
 Traditional AI evals ask whether a model gives the right answer. DHMS asks
 whether an Agent will cross the line under pressure.
@@ -14,6 +17,13 @@ whether an Agent will cross the line under pressure.
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the Agent Harness preview development branch.
 
 Status: DHMS Agent Harness v1 is an evidence-sealed prototype of a deterministic Agent safety evaluation protocol.
+
+## Current Status
+
+* Current branch: `agent-harness-v1`.
+* Current milestone: `v0.4.2J SQL Safety Temp SQLite Mutation Block Test`.
+* Latest commit: `012d438a0e3f7c788c8906ca5bb36e776524ff20`.
+* Status: SQL Safety v0.4 ready for freeze/release notes.
 
 ## Architecture at a Glance
 
@@ -170,6 +180,62 @@ This report provides evidence of observed behavior under the tested DHMS coverag
 This campaign does not certify universal agent safety and does not close all
 RAG/context identity-conflict questions.
 
+## SQL Safety v0.4
+
+SQL Safety v0.4 adds a validation-layer and local target-shot path for
+database-operation safety boundaries while preserving the existing A/B/C
+perturbation taxonomy.
+
+The completed SQL Safety v0.4 work includes:
+
+* 7 SQL safety cases under `cases/sql_safety/`.
+* A/B/C perturbation taxonomy unchanged.
+* Isolated SQL safety validation path.
+* Dry-fire target validation.
+* Disposable sandbox stubs.
+* SQLite guardrail stubs.
+* First real temporary SQLite SELECT-only target shot.
+* Mutation-block test.
+
+What is proven under this local SQL safety scope:
+
+* A temporary local SQLite sandbox can be created and destroyed.
+* Synthetic toy data can be seeded.
+* One allowlisted SELECT can execute successfully.
+* The 7 SQL safety cases remain blocked/not-executed.
+* Mutation probes are classified and blocked before execution.
+* Mutation detection confirms schema, content, and row counts remain unchanged.
+* Sandbox teardown and deletion verification pass.
+
+What is not claimed:
+
+* Not production SQL agent integration.
+* Not production checker integration.
+* Not production runner integration.
+* Not an HTTP adapter.
+* Not OpenClaw runtime integration.
+* Not DeepSeek/provider integration.
+* Not full suite validation.
+* Not production database usage.
+* Not user data or production data usage.
+
+### No SDK / Black-box Boundary
+
+SQL Safety v0.4 uses no provider SDK, no agent SDK, no external service SDK, no
+production DB SDK, and no network DB client. Only Python standard-library
+`sqlite3` was used inside temporary local disposable SQLite validation code.
+
+Validation remains black-box: only inputs, observable traces, safety flags, SQL
+allowlist decisions, control SELECT result, mutation-block decisions, and
+external state are checked.
+
+### SQL Safety Quick Validation
+
+```bash
+python3 validation/run_sql_safety_temp_sqlite_select_only_first_real_run.py
+python3 validation/run_sql_safety_temp_sqlite_mutation_block_test.py
+```
+
 ## What DHMS Is NOT
 
 * NOT a benchmark leaderboard.
@@ -233,6 +299,11 @@ schema/report changes.
 * P0 `mock_refund_case` and P1 `conflicting_instruction_priority` were closed under targeted re-evaluation.
 * P2 `rag_noise_identity_conflict` remains Needs review.
 * No real tool execution is enabled by DHMS.
+* SQL Safety v0.4 uses only temporary local SQLite with synthetic toy data.
+* SQL Safety v0.4 is not production SQL agent, checker, runner, HTTP, OpenClaw,
+  DeepSeek, provider, or full-suite integration.
+* SQL Safety v0.4 does not use production databases, user data, production data,
+  database credentials, provider SDKs, agent SDKs, or network DB clients.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -260,6 +331,9 @@ schema/report changes.
 * [mock_refund_case focused review](docs/evidence/v0.4.0-opencLaw-deepseek-n3-mock-refund-focused-review.md)
 * [Refund checker fix note](docs/evidence/v0.4.0-opencLaw-deepseek-n3-refund-checker-fix.md)
 * [Refund targeted re-evaluation](docs/evidence/v0.4.0-opencLaw-deepseek-n3-refund-targeted-reevaluation.md)
+* [SQL Safety v0.4 freeze and release notes](docs/sql_safety_v0_4_freeze_and_release_notes.md)
+* [SQL Safety temp SQLite SELECT-only first real run](docs/sql_safety_temp_sqlite_select_only_first_real_run_log.md)
+* [SQL Safety temp SQLite mutation block test](docs/sql_safety_temp_sqlite_mutation_block_test_log.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

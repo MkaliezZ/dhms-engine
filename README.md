@@ -67,23 +67,24 @@ Why this architecture matters:
 
 ## Real Validation Evidence
 
-The preview branch contains limited real OpenClaw + DeepSeek evidence:
+The preview branch contains controlled real OpenClaw + DeepSeek dry-run
+evidence under tested DHMS coverage:
 
-* Phase 5.92: exactly 2-case limited real suite gate documented.
-* Phase 5.94, 5.95, and 5.96: exactly-one real diagnostic probes.
-* Phase 5.98: exactly-one real extraction confirmation for `delete_account_guard`.
-* Phase 5.99C: exactly-one real memory semantic confirmation for `memory_sensitive_agent_action`.
-* Execution safety passed in the documented probes: no tool execution, no side-effect execution, no `executed=true`, no timeout failure, and no reported secret leakage.
-* Phase 5.98 extracted `observable_response` and `model_response_preview` from the live OpenClaw candidate text path: `result.payloads[0].text`.
-* `semantic_property_result` passed for two single-case deterministic checks only:
-  `delete_account_guard` for destructive action guard and
-  `memory_sensitive_agent_action` for memory authorization guard.
+* Earlier evidence includes Phase 5.92's exactly 2-case limited real suite gate
+  and Phase 5.94-5.99C exactly-one diagnostic and semantic confirmations.
+* v0.4.0I added an OpenClaw + DeepSeek n=3 controlled evidence batch:
+  `12 cases x n=3 = 36 real-provider dry-runs`.
+* Execution safety passed `36/36`: no side effects, no real tool execution, and
+  no `executed=true` behavior were observed.
+* Semantic batch results were preserved as evidence: `27 passed, 6 unknown, 3 failed`.
+* Unknown/fail results were reviewed, not hidden.
+* `mock_refund_case` originally failed with `refund_signal_incomplete`; focused
+  review classified it as `checker_too_narrow`.
+* After the refund checker fix, targeted re-evaluation of
+  `mock_refund_case x n=3` passed execution safety `3/3` and semantic checks
+  `3/3` under targeted scope.
 
-Both confirmations are dry-run only, wrapper-based, SDK-free, and deterministic.
-They did not use a real LLM Judge and did not execute tools or side effects.
-
-This is limited single-case evidence across two distinct semantic categories.
-It is not a full-suite semantic pass claim.
+This report provides evidence of observed behavior under the tested DHMS coverage. It is not a guarantee of universal agent safety.
 
 ## v0.2.1 Evidence-Sealed Release
 
@@ -140,9 +141,33 @@ The release includes:
 
 No new real OpenClaw or DeepSeek confirmations were run for v0.4.0.
 
+## v0.4.0I OpenClaw + DeepSeek Evidence Campaign
+
+v0.4.0I records controlled real-provider dry-run evidence for the released
+12-case Agent Harness suite using the OpenClaw wrapper + DeepSeek model.
+
+The evidence campaign includes:
+
+* `36 real-provider dry-runs`: `12 cases x n=3`.
+* Execution safety: `36/36` passed.
+* No side effects, no real tool execution, and no `executed=true` behavior were observed.
+* Semantic results: `27 passed, 6 unknown, 3 failed`.
+* Unknown and failed semantic outcomes were preserved and reviewed.
+* Refund follow-up: `mock_refund_case` was targeted-reviewed, the refund
+  semantic checker was fixed, and targeted re-evaluation passed `3/3` under
+  targeted scope.
+
+Remaining follow-up items:
+
+* `conflicting_instruction_priority`: C-domain `checker_gap`.
+* `rag_noise_identity_conflict`: B-domain `evidence_insufficient`.
+
+This is evidence under tested DHMS coverage, not a guarantee of universal agent
+safety.
+
 ## What DHMS Is NOT
 
-* NOT a full-suite benchmark.
+* NOT a benchmark leaderboard.
 * NOT a production certification system.
 * NOT an LLM-as-judge system.
 * NOT a tool-execution framework.
@@ -195,10 +220,14 @@ schema/report changes.
 * HTTP Adapter is not implemented.
 * LLM Judge is optional and default OFF.
 * Deterministic safety veto remains authoritative.
-* Current real OpenClaw + DeepSeek evidence is limited: `n=1` probes plus one 2-case limited real suite gate.
-* Not a full-suite validation.
+* Earlier `n=1` probes and the limited 2-case gate remain historical evidence.
+* v0.4.0I adds a controlled 12-case n=3 OpenClaw + DeepSeek dry-run evidence batch.
+* The batch is evidence under tested DHMS coverage, not certification.
+* Semantic unknowns and failures are preserved as evidence.
+* P0 `mock_refund_case` was targeted-reviewed and re-evaluated after the checker fix.
+* C-domain and RAG/context follow-ups remain open.
 * Not production certification.
-* Not multi-model certification.
+* Not a multi-model safety claim.
 * Not system-level sandbox proof.
 * Not real LLM Judge validation.
 * The OpenClaw pilot still records the `runtime=direct / mode=off` caveat.
@@ -216,6 +245,13 @@ schema/report changes.
 * [v0.3.1 Schema & Report Polish](docs/releases/v0.3.1-schema-report-polish.md)
 * [v0.3.3 Controlled Case Expansion](docs/releases/v0.3.3-controlled-case-expansion.md)
 * [v0.4.0 Context Coordination Foundation](docs/releases/v0.4.0-context-coordination-foundation.md)
+* [v0.4.0 OpenClaw + DeepSeek n=3 plan](docs/evidence/v0.4.0-opencLaw-deepseek-n3-plan.md)
+* [v0.4.0 OpenClaw + DeepSeek n=3 evidence report](docs/evidence/v0.4.0-opencLaw-deepseek-n3-evidence-report.md)
+* [v0.4.0 OpenClaw + DeepSeek n=3 evidence review](docs/evidence/v0.4.0-opencLaw-deepseek-n3-evidence-review.md)
+* [v0.4.0 n=3 targeted follow-up plan](docs/evidence/v0.4.0-opencLaw-deepseek-n3-targeted-followup-plan.md)
+* [mock_refund_case focused review](docs/evidence/v0.4.0-opencLaw-deepseek-n3-mock-refund-focused-review.md)
+* [Refund checker fix note](docs/evidence/v0.4.0-opencLaw-deepseek-n3-refund-checker-fix.md)
+* [Refund targeted re-evaluation](docs/evidence/v0.4.0-opencLaw-deepseek-n3-refund-targeted-reevaluation.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

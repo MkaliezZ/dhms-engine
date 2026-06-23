@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced through v0.6.2: v0.6.0 defines the Execution Fuse Protocol, v0.6.1 adds the SQL benchmark, and v0.6.2 adds the non-executing SQL Fuse demo CLI.
+Status: DHMS Agent Harness v1 has advanced through v0.6.3: v0.6.0 defines the Execution Fuse Protocol, v0.6.1 adds the SQL benchmark, v0.6.2 adds the non-executing SQL Fuse demo CLI, and v0.6.3 adds the DHMS AgentFuse Minimal API / Adapter Skeleton.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.6.2 SQL Fuse Demo / CLI`.
-* Previous milestone: `v0.6.1 DHMS-AgentFuse-Bench SQL v0`.
+* Current milestone: `v0.6.3 DHMS AgentFuse Minimal API / Adapter Skeleton`.
+* Previous milestone: `v0.6.2 SQL Fuse Demo / CLI`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.6.3 Minimal API / Adapter Skeleton`.
-* Status: v0.6.2 adds a non-executing SQL Fuse demo CLI that wraps the v0.6.1 benchmark without adding new execution capability.
+* Next recommended milestone: `v0.7.0 Public Protocol Package`.
+* Status: v0.6.3 adds the DHMS AgentFuse Minimal API and Adapter Skeleton as a non-executing integration shape. It does not connect to real agent runtimes or add execution capability.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -430,6 +430,28 @@ the existing benchmark reports. It does not execute SQL, create SQLite
 databases, create sandbox files, expand the allowlist, invoke OpenClaw, invoke
 DeepSeek, use provider SDKs, use agent SDKs, or use HTTP/network clients.
 
+### DHMS AgentFuse Minimal API / Adapter Skeleton v0.6.3
+
+v0.6.3 adds the DHMS AgentFuse Minimal API and Adapter Skeleton as a safe,
+in-memory integration shape:
+[DHMS AgentFuse Minimal API / Adapter Skeleton v0.6.3](docs/dhms_agentfuse_minimal_api_adapter_skeleton_v0_6_3.md).
+
+DHMS is an execution fuse protocol for AI agents. DHMS AgentFuse is the
+benchmark, demo, API, and adapter-skeleton tool family around that protocol.
+
+Quick skeleton smoke command:
+
+```bash
+python3 validation/run_dhms_agentfuse_minimal_api_skeleton_smoke.py
+```
+
+The skeleton maps runtime events into runtime requests, tool-call proposals,
+safety decisions, execution gate decisions, and trace objects. It does not
+execute proposals, connect to real agent runtimes, create sandboxes, create
+SQLite databases, expand the SQL allowlist, invoke OpenClaw, invoke DeepSeek,
+use provider SDKs, use agent SDKs, use HTTP/network clients, or implement file,
+shell, MCP, or production database adapters.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -566,6 +588,10 @@ schema/report changes.
   and does not add execution capability, expand the SQL allowlist, implement
   API, implement adapters, execute SQL, create SQLite databases, or add file,
   shell, HTTP, MCP, OpenClaw, provider SDK, agent SDK, or arbitrary SQL policy.
+* v0.6.3 adds the DHMS AgentFuse Minimal API and Adapter Skeleton. It does not
+  add execution capability, expand the SQL allowlist, implement real adapters,
+  execute SQL, create SQLite databases, create sandbox files, or add file,
+  shell, HTTP, MCP, OpenClaw, provider SDK, agent SDK, or arbitrary SQL policy.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -603,6 +629,7 @@ schema/report changes.
 * [v0.6.0 DHMS Execution Fuse Protocol](docs/dhms_execution_fuse_protocol_v0_6_0.md)
 * [v0.6.1 DHMS-AgentFuse-Bench SQL v0](docs/dhms_agentfuse_bench_sql_v0_6_1.md)
 * [v0.6.2 DHMS SQL Fuse Demo CLI](docs/dhms_sql_fuse_demo_cli_v0_6_2.md)
+* [v0.6.3 DHMS AgentFuse Minimal API / Adapter Skeleton](docs/dhms_agentfuse_minimal_api_adapter_skeleton_v0_6_3.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

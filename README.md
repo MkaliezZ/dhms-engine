@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.8.2: the File Operation Safety Fuse now has a non-executing benchmark over the static, inert case manifest.
+Status: DHMS Agent Harness v1 has advanced to v0.8.3: the File Operation Safety Fuse now has non-executing examples and static trace examples.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.8.2 Non-Executing File Fuse Benchmark`.
-* Previous milestone: `v0.8.1 File Fuse Static Case Manifest`.
+* Current milestone: `v0.8.3 Non-Executing File Fuse Examples`.
+* Previous milestone: `v0.8.2 Non-Executing File Fuse Benchmark`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.8.3 Non-Executing File Fuse Examples`.
-* Status: v0.8.2 adds a non-executing File Operation Safety Fuse benchmark over the static v0.8.1 manifest. It evaluates 13 inert cases in memory and does not open or resolve requested path templates.
+* Next recommended milestone: `v0.8.4 Constrained Temp-Directory Proof Planning`.
+* Status: v0.8.3 adds non-executing File Operation Safety Fuse examples and static trace examples. The examples demonstrate representative proposals, decisions, gates, and traces without opening or resolving requested path templates.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -565,6 +565,25 @@ The benchmark evaluates 13 inert cases in memory. It reads only the committed
 manifest and does not open, resolve, list, write, append, delete, or inspect
 requested path templates.
 
+### DHMS Non-Executing File Fuse Examples v0.8.3
+
+v0.8.3 adds non-executing File Operation Safety Fuse examples and static trace
+examples:
+[DHMS Non-Executing File Fuse Examples v0.8.3](docs/dhms_file_fuse_non_executing_examples_v0_8_3.md),
+[File Fuse examples](examples/dhms_agentfuse_file_v0/),
+[File Fuse trace examples](examples/dhms_agentfuse_file_v0/trace_examples.json),
+and
+[File Fuse examples smoke validation](validation/run_dhms_file_fuse_non_executing_examples_smoke.py).
+
+Run the File Fuse examples smoke validation:
+
+```bash
+python3 validation/run_dhms_file_fuse_non_executing_examples_smoke.py
+```
+
+The examples demonstrate representative proposals, decisions, gates, and
+traces without opening or resolving requested path templates.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -737,6 +756,11 @@ schema/report changes.
   delete, file list, path normalization, symlink checks, size checks, extension
   checks, a file adapter, runtime behavior, file policy, or arbitrary file
   operation support.
+* v0.8.3 adds non-executing File Operation Safety Fuse examples and static
+  trace examples. It treats requested path templates as inert strings and does
+  not implement file read, file write, file append, file delete, file list,
+  path normalization, symlink checks, size checks, extension checks, a file
+  adapter, runtime behavior, file policy, or arbitrary file operation support.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -788,6 +812,10 @@ schema/report changes.
 * [File Fuse static cases](benchmarks/dhms_agentfuse_file_v0/cases.json)
 * [v0.8.2 DHMS Non-Executing File Fuse Benchmark](docs/dhms_file_fuse_non_executing_benchmark_v0_8_2.md)
 * [File Fuse benchmark runner](validation/run_dhms_agentfuse_bench_file_v0.py)
+* [v0.8.3 DHMS Non-Executing File Fuse Examples](docs/dhms_file_fuse_non_executing_examples_v0_8_3.md)
+* [File Fuse examples](examples/dhms_agentfuse_file_v0/)
+* [File Fuse trace examples](examples/dhms_agentfuse_file_v0/trace_examples.json)
+* [File Fuse examples smoke validation](validation/run_dhms_file_fuse_non_executing_examples_smoke.py)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

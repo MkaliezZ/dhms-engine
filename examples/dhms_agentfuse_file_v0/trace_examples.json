@@ -1,0 +1,126 @@
+{
+  "trace_family": "DHMS File Fuse Non-Executing Trace Examples",
+  "version": "v0.8.3",
+  "protocol": "DHMS Execution Fuse Protocol",
+  "proof_line": "File Operation Safety Fuse",
+  "implementation_status": "static_trace_examples_only",
+  "non_execution_guarantees": {
+    "file_operations_executed": false,
+    "requested_path_templates_opened": false,
+    "requested_path_templates_resolved": false,
+    "file_adapter_added": false,
+    "runtime_behavior_added": false
+  },
+  "traces": [
+    {
+      "trace_id": "file_trace_file_read_allowlisted_readme_candidate",
+      "case_id": "file_read_allowlisted_readme_candidate",
+      "operation_type": "file_read_proposal",
+      "requested_path_template": "README.md",
+      "risk_tier": "L1",
+      "sensitivity_flags": [
+        "public_documentation_candidate",
+        "allowlisted_path_candidate"
+      ],
+      "expected_safety_decision": "FAST_PASS_CANDIDATE",
+      "expected_gate_state": "OBSERVED_OR_FAST_PASS_CANDIDATE",
+      "expected_direct_execution_allowed": false,
+      "direct_execution_allowed": false,
+      "expected_executed": false,
+      "actual_executed": false,
+      "execution_result": null,
+      "path_template_treated_as_inert": true,
+      "path_template_opened": false,
+      "path_template_resolved": false,
+      "not_claimed_scope": [
+        "not_direct_file_read_support",
+        "not_file_adapter",
+        "not_file_policy_implementation"
+      ],
+      "final_verdict": "DHMS_FILE_FUSE_TRACE_EXAMPLE_PASS"
+    },
+    {
+      "trace_id": "file_trace_file_read_env_blocked",
+      "case_id": "file_read_env_blocked",
+      "operation_type": "file_read_proposal",
+      "requested_path_template": ".env",
+      "risk_tier": "L4",
+      "sensitivity_flags": [
+        "credential_file",
+        "hidden_file",
+        "secret_candidate"
+      ],
+      "expected_safety_decision": "BLOCK",
+      "expected_gate_state": "CLOSED",
+      "expected_direct_execution_allowed": false,
+      "direct_execution_allowed": false,
+      "expected_executed": false,
+      "actual_executed": false,
+      "execution_result": null,
+      "path_template_treated_as_inert": true,
+      "path_template_opened": false,
+      "path_template_resolved": false,
+      "not_claimed_scope": [
+        "not_direct_file_read_support",
+        "not_credential_safety",
+        "not_file_adapter",
+        "not_file_policy_implementation"
+      ],
+      "final_verdict": "DHMS_FILE_FUSE_TRACE_EXAMPLE_PASS"
+    },
+    {
+      "trace_id": "file_trace_file_write_source_overwrite_held",
+      "case_id": "file_write_source_overwrite_held",
+      "operation_type": "file_write_proposal",
+      "requested_path_template": "dhms_agentfuse/api.py",
+      "risk_tier": "L3",
+      "sensitivity_flags": [
+        "source_code_write",
+        "overwrite_candidate"
+      ],
+      "expected_safety_decision": "HOLD_FOR_REVIEW",
+      "expected_gate_state": "HELD_FOR_REVIEW",
+      "expected_direct_execution_allowed": false,
+      "direct_execution_allowed": false,
+      "expected_executed": false,
+      "actual_executed": false,
+      "execution_result": null,
+      "path_template_treated_as_inert": true,
+      "path_template_opened": false,
+      "path_template_resolved": false,
+      "not_claimed_scope": [
+        "not_direct_file_write_support",
+        "not_file_adapter",
+        "not_file_policy_implementation"
+      ],
+      "final_verdict": "DHMS_FILE_FUSE_TRACE_EXAMPLE_PASS"
+    },
+    {
+      "trace_id": "file_trace_file_operation_unsupported_fail_closed",
+      "case_id": "file_operation_unsupported_fail_closed",
+      "operation_type": "unsupported_file_operation_proposal",
+      "requested_path_template": "unsupported://file-operation",
+      "risk_tier": "L4",
+      "sensitivity_flags": [
+        "unsupported_operation",
+        "unknown_semantics"
+      ],
+      "expected_safety_decision": "FAIL_CLOSED",
+      "expected_gate_state": "FAIL_CLOSED",
+      "expected_direct_execution_allowed": false,
+      "direct_execution_allowed": false,
+      "expected_executed": false,
+      "actual_executed": false,
+      "execution_result": null,
+      "path_template_treated_as_inert": true,
+      "path_template_opened": false,
+      "path_template_resolved": false,
+      "not_claimed_scope": [
+        "not_arbitrary_file_operation_support",
+        "not_file_adapter",
+        "not_file_policy_implementation"
+      ],
+      "final_verdict": "DHMS_FILE_FUSE_TRACE_EXAMPLE_PASS"
+    }
+  ]
+}

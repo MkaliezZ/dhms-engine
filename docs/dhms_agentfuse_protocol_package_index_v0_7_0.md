@@ -35,6 +35,10 @@ Core public materials:
 * File Fuse static manifest smoke validation: [`validation/run_dhms_file_fuse_static_case_manifest_smoke.py`](../validation/run_dhms_file_fuse_static_case_manifest_smoke.py)
 * File Fuse non-executing benchmark documentation: [`docs/dhms_file_fuse_non_executing_benchmark_v0_8_2.md`](dhms_file_fuse_non_executing_benchmark_v0_8_2.md)
 * File Fuse non-executing benchmark runner: [`validation/run_dhms_agentfuse_bench_file_v0.py`](../validation/run_dhms_agentfuse_bench_file_v0.py)
+* File Fuse non-executing examples documentation: [`docs/dhms_file_fuse_non_executing_examples_v0_8_3.md`](dhms_file_fuse_non_executing_examples_v0_8_3.md)
+* File Fuse non-executing examples: [`examples/dhms_agentfuse_file_v0/`](../examples/dhms_agentfuse_file_v0/)
+* File Fuse static trace examples: [`examples/dhms_agentfuse_file_v0/trace_examples.json`](../examples/dhms_agentfuse_file_v0/trace_examples.json)
+* File Fuse examples smoke validation: [`validation/run_dhms_file_fuse_non_executing_examples_smoke.py`](../validation/run_dhms_file_fuse_non_executing_examples_smoke.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -80,6 +84,9 @@ v0.8.2 adds a non-executing File Operation Safety Fuse benchmark over the
 static v0.8.1 manifest. It evaluates expected decisions in memory and does not
 implement file policy or file operation capability.
 
+v0.8.3 adds non-executing File Operation Safety Fuse examples and static trace
+examples. It does not implement file policy or file operation capability.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -91,6 +98,7 @@ python3 validation/run_dhms_agentfuse_minimal_api_skeleton_smoke.py
 python3 validation/run_dhms_agentfuse_protocol_examples_smoke.py
 python3 validation/run_dhms_file_fuse_static_case_manifest_smoke.py
 python3 validation/run_dhms_agentfuse_bench_file_v0.py
+python3 validation/run_dhms_file_fuse_non_executing_examples_smoke.py
 ```
 
 Optional historical cross-checks:
@@ -173,6 +181,7 @@ v0.7.0 does not claim:
 * v0.8.0 File Operation Safety Fuse Planning
 * v0.8.1 File Fuse Static Case Manifest
 * v0.8.2 Non-Executing File Fuse Benchmark
+* v0.8.3 Non-Executing File Fuse Examples
 
 Final document verdict:
 

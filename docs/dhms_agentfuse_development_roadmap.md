@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.8.2 Non-Executing File Fuse Benchmark`
+* Current package milestone: `v0.8.3 Non-Executing File Fuse Examples`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -115,7 +115,7 @@ should still avoid uncontrolled real-world side effects.
 
 Next direction:
 
-`v0.8.3 Non-Executing File Fuse Examples`
+`v0.8.4 Constrained Temp-Directory Proof Planning`
 
 ## v0.8 File Operation Safety Fuse Plan
 
@@ -147,6 +147,7 @@ Next direction:
 * add public examples for file fuse proposals, decisions, gates, and traces
 * keep examples non-executing
 * do not add a file adapter
+* current/completed non-executing file fuse examples milestone in v0.8.3
 
 ### v0.8.4 Constrained Temp-Directory Proof
 
@@ -213,4 +214,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V0_8_3_NON_EXECUTING_FILE_FUSE_EXAMPLES`
+`READY_FOR_V0_8_4_CONSTRAINED_TEMP_DIRECTORY_PROOF_PLANNING`

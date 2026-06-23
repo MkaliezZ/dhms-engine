@@ -43,12 +43,12 @@ Status: DHMS Agent Harness v1 has advanced into the v0.6.0 Execution Fuse Protoc
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.6.0 DHMS Execution Fuse Protocol`.
-* Previous line: `v0.5 SQL Sandbox Execution Fuse`.
-* Pre-v0.6 integrity baseline: `fcd12d9f46fc41c7e4e7cf73c1dc10f58676fce7`.
+* Current milestone: `v0.6.1 DHMS-AgentFuse-Bench SQL v0`.
+* Previous milestone/protocol: `v0.6.0 DHMS Execution Fuse Protocol`.
+* Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.6.1 DHMS-AgentFuse-Bench SQL v0`.
-* Status: v0.6.0 defines the protocol abstraction for the proven v0.5 SQL sandbox controlled-release line without adding new execution capability.
+* Next recommended milestone: `v0.6.2 SQL Fuse Demo / CLI`.
+* Status: v0.6.1 adds a non-executing SQL v0 benchmark layer for the proven v0.5 SQL sandbox controlled-release line without adding new execution capability.
 
 ## Architecture at a Glance
 
@@ -373,6 +373,25 @@ synthetic toy data and verified teardown. Future tool families, benchmark
 adapters, CLI demos, file/shell/HTTP/MCP policies, and OpenClaw runtime adapter
 work remain future adapters, not current claims.
 
+## DHMS-AgentFuse-Bench SQL v0.6.1
+
+v0.6.1 adds the first reproducible benchmark layer for the DHMS Execution Fuse
+Protocol:
+[DHMS-AgentFuse-Bench SQL v0.6.1](docs/dhms_agentfuse_bench_sql_v0_6_1.md).
+
+The benchmark contains 7 SQL-policy cases: 1 release-eligible allowlisted
+SELECT candidate and 6 blocked or fail-closed rejected paths. The benchmark
+runner is non-executing: it does not execute SQL, import `sqlite3`, create
+SQLite databases, create sandboxes, invoke OpenClaw, invoke DeepSeek, use
+provider SDKs, use agent SDKs, or use HTTP/network clients. The actual
+controlled release proof remains v0.5.15.
+
+Quick benchmark command:
+
+```bash
+python3 validation/run_dhms_agentfuse_bench_sql_v0.py
+```
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -501,6 +520,10 @@ schema/report changes.
   expand the SQL allowlist, implement benchmarks, implement CLI, implement
   adapters, or add file, shell, HTTP, MCP, OpenClaw, provider SDK, agent SDK,
   or arbitrary SQL policy.
+* v0.6.1 adds a non-executing SQL benchmark layer. It does not add execution
+  capability, expand the SQL allowlist, implement CLI, implement API,
+  implement adapters, execute SQL, create SQLite databases, or add file, shell,
+  HTTP, MCP, OpenClaw, provider SDK, agent SDK, or arbitrary SQL policy.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -536,6 +559,7 @@ schema/report changes.
 * [v0.5.16 First actual release result review and freeze](docs/sql_sandbox_runtime_first_actual_release_result_review_and_freeze_v0_5_16.md)
 * [v0.5.17 SQL sandbox runtime execution policy freeze](docs/sql_sandbox_runtime_execution_policy_freeze_v0_5_17.md)
 * [v0.6.0 DHMS Execution Fuse Protocol](docs/dhms_execution_fuse_protocol_v0_6_0.md)
+* [v0.6.1 DHMS-AgentFuse-Bench SQL v0](docs/dhms_agentfuse_bench_sql_v0_6_1.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

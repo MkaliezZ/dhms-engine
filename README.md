@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.8.4: the File Operation Safety Fuse now has constrained temp-directory proof planning.
+Status: DHMS Agent Harness v1 has advanced to v0.8.4.1: the File Operation Safety Fuse now has an explicitly approved constrained temp-directory proof.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.8.4 Constrained Temp-Directory Proof Planning`.
-* Previous milestone: `v0.8.3 Non-Executing File Fuse Examples`.
+* Current milestone: `v0.8.4.1 Constrained Temp-Directory Proof Implementation`.
+* Previous milestone: `v0.8.4 Constrained Temp-Directory Proof Planning`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.8.4.1 Constrained Temp-Directory Proof Implementation — requires explicit approval`.
-* Status: v0.8.4 plans the safety envelope for a possible constrained temp-directory proof. It does not implement the proof, does not create temp directories, and does not add file operation capability.
+* Next recommended milestone: `v0.8.5 File Operation Safety Fuse Result Review and Freeze`.
+* Status: v0.8.4.1 implements an explicitly approved constrained temp-directory proof. It performs two synthetic file operations inside a disposable temp root, verifies cleanup, and keeps rejected paths unopened and unresolved.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -595,6 +595,23 @@ directories, create synthetic fixtures, write synthetic reports, perform
 cleanup verification, add a file adapter, or add file operation capability.
 Any future implementation requires explicit approval.
 
+### DHMS File Fuse Constrained Temp-Directory Proof v0.8.4.1
+
+v0.8.4.1 implements an explicitly approved constrained temp-directory proof:
+[DHMS File Fuse Constrained Temp-Directory Proof Result v0.8.4.1](docs/dhms_file_fuse_constrained_temp_directory_proof_result_v0_8_4_1.md)
+and
+[File Fuse constrained temp-directory proof runner](validation/run_dhms_file_fuse_constrained_temp_directory_proof.py).
+
+Run the constrained temp-directory proof:
+
+```bash
+python3 validation/run_dhms_file_fuse_constrained_temp_directory_proof.py
+```
+
+The proof performs two synthetic file operations inside a disposable temp
+root, verifies cleanup, and keeps rejected paths unopened and unresolved. It
+does not add arbitrary file operation support or a file adapter.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -778,6 +795,11 @@ schema/report changes.
   file delete, file list, path normalization, symlink checks, size checks,
   extension checks, a file adapter, runtime behavior, file policy, or
   arbitrary file operation support.
+* v0.8.4.1 implements only the explicitly approved constrained
+  temp-directory proof runner. It performs two synthetic file operations inside
+  a disposable temp root, verifies cleanup, keeps rejected paths unopened and
+  unresolved, and does not add arbitrary file operation support, a file
+  adapter, production file-system safety, or production runtime behavior.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -834,6 +856,8 @@ schema/report changes.
 * [File Fuse trace examples](examples/dhms_agentfuse_file_v0/trace_examples.json)
 * [File Fuse examples smoke validation](validation/run_dhms_file_fuse_non_executing_examples_smoke.py)
 * [v0.8.4 DHMS File Fuse Constrained Temp-Directory Proof Planning](docs/dhms_file_fuse_constrained_temp_directory_proof_planning_v0_8_4.md)
+* [v0.8.4.1 DHMS File Fuse Constrained Temp-Directory Proof Result](docs/dhms_file_fuse_constrained_temp_directory_proof_result_v0_8_4_1.md)
+* [File Fuse constrained temp-directory proof runner](validation/run_dhms_file_fuse_constrained_temp_directory_proof.py)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

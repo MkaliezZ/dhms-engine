@@ -40,6 +40,8 @@ Core public materials:
 * File Fuse static trace examples: [`examples/dhms_agentfuse_file_v0/trace_examples.json`](../examples/dhms_agentfuse_file_v0/trace_examples.json)
 * File Fuse examples smoke validation: [`validation/run_dhms_file_fuse_non_executing_examples_smoke.py`](../validation/run_dhms_file_fuse_non_executing_examples_smoke.py)
 * File Fuse constrained temp-directory proof planning: [`docs/dhms_file_fuse_constrained_temp_directory_proof_planning_v0_8_4.md`](dhms_file_fuse_constrained_temp_directory_proof_planning_v0_8_4.md)
+* File Fuse constrained temp-directory proof result: [`docs/dhms_file_fuse_constrained_temp_directory_proof_result_v0_8_4_1.md`](dhms_file_fuse_constrained_temp_directory_proof_result_v0_8_4_1.md)
+* File Fuse constrained temp-directory proof runner: [`validation/run_dhms_file_fuse_constrained_temp_directory_proof.py`](../validation/run_dhms_file_fuse_constrained_temp_directory_proof.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -91,6 +93,11 @@ examples. It does not implement file policy or file operation capability.
 v0.8.4 plans the safety envelope for a possible constrained temp-directory
 proof. It does not implement the proof or add file operation capability.
 
+v0.8.4.1 implements an explicitly approved constrained temp-directory proof.
+It performs only synthetic read/write operations inside a disposable temp root
+and verifies cleanup. It does not add arbitrary file operation support or a
+file adapter.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -103,6 +110,7 @@ python3 validation/run_dhms_agentfuse_protocol_examples_smoke.py
 python3 validation/run_dhms_file_fuse_static_case_manifest_smoke.py
 python3 validation/run_dhms_agentfuse_bench_file_v0.py
 python3 validation/run_dhms_file_fuse_non_executing_examples_smoke.py
+python3 validation/run_dhms_file_fuse_constrained_temp_directory_proof.py
 ```
 
 Optional historical cross-checks:
@@ -187,6 +195,7 @@ v0.7.0 does not claim:
 * v0.8.2 Non-Executing File Fuse Benchmark
 * v0.8.3 Non-Executing File Fuse Examples
 * v0.8.4 Constrained Temp-Directory Proof Planning
+* v0.8.4.1 Constrained Temp-Directory Proof Implementation
 
 Final document verdict:
 

@@ -43,12 +43,12 @@ Status: DHMS Agent Harness v1 has advanced into the v0.6.0 Execution Fuse Protoc
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.6.1 DHMS-AgentFuse-Bench SQL v0`.
-* Previous milestone/protocol: `v0.6.0 DHMS Execution Fuse Protocol`.
+* Current milestone: `v0.6.2 SQL Fuse Demo / CLI`.
+* Previous milestone: `v0.6.1 DHMS-AgentFuse-Bench SQL v0`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.6.2 SQL Fuse Demo / CLI`.
-* Status: v0.6.1 adds a non-executing SQL v0 benchmark layer for the proven v0.5 SQL sandbox controlled-release line without adding new execution capability.
+* Next recommended milestone: `v0.6.3 Minimal API / Adapter Skeleton`.
+* Status: v0.6.2 adds a non-executing SQL Fuse demo CLI that wraps the v0.6.1 benchmark without adding new execution capability.
 
 ## Architecture at a Glance
 
@@ -392,6 +392,22 @@ Quick benchmark command:
 python3 validation/run_dhms_agentfuse_bench_sql_v0.py
 ```
 
+### SQL Fuse Demo CLI v0.6.2
+
+v0.6.2 exposes the same non-executing benchmark through a concise CLI demo:
+[DHMS SQL Fuse Demo CLI v0.6.2](docs/dhms_sql_fuse_demo_cli_v0_6_2.md).
+
+Quick demo command:
+
+```bash
+python3 cli.py demo-sql-fuse
+```
+
+The demo wraps the benchmark runner, prints the SQL Fuse summary, and preserves
+the existing benchmark reports. It does not execute SQL, create SQLite
+databases, create sandbox files, expand the allowlist, invoke OpenClaw, invoke
+DeepSeek, use provider SDKs, use agent SDKs, or use HTTP/network clients.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -524,6 +540,10 @@ schema/report changes.
   capability, expand the SQL allowlist, implement CLI, implement API,
   implement adapters, execute SQL, create SQLite databases, or add file, shell,
   HTTP, MCP, OpenClaw, provider SDK, agent SDK, or arbitrary SQL policy.
+* v0.6.2 adds a non-executing SQL Fuse demo CLI. It wraps the v0.6.1 benchmark
+  and does not add execution capability, expand the SQL allowlist, implement
+  API, implement adapters, execute SQL, create SQLite databases, or add file,
+  shell, HTTP, MCP, OpenClaw, provider SDK, agent SDK, or arbitrary SQL policy.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -560,6 +580,7 @@ schema/report changes.
 * [v0.5.17 SQL sandbox runtime execution policy freeze](docs/sql_sandbox_runtime_execution_policy_freeze_v0_5_17.md)
 * [v0.6.0 DHMS Execution Fuse Protocol](docs/dhms_execution_fuse_protocol_v0_6_0.md)
 * [v0.6.1 DHMS-AgentFuse-Bench SQL v0](docs/dhms_agentfuse_bench_sql_v0_6_1.md)
+* [v0.6.2 DHMS SQL Fuse Demo CLI](docs/dhms_sql_fuse_demo_cli_v0_6_2.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

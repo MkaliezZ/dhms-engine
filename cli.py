@@ -10,6 +10,7 @@ from typing import List, Optional
 ROOT_DIR = Path(__file__).resolve().parent
 ENGINE_DIR = ROOT_DIR / "engine"
 PRODUCT_DIR = ROOT_DIR / "product"
+VALIDATION_DIR = ROOT_DIR / "validation"
 PATHS = (
     PRODUCT_DIR,
     ENGINE_DIR,
@@ -20,6 +21,7 @@ PATHS = (
     ENGINE_DIR / "v2_cross_model",
     ENGINE_DIR / "v2_5_bridge",
     ROOT_DIR / "binding",
+    VALIDATION_DIR,
 )
 for path in PATHS:
     value = str(path)
@@ -34,6 +36,7 @@ from agent_harness.adapter_conformance_runner import run_adapter_conformance  # 
 from product_runner import run_product_test  # noqa: E402
 from suite_runner import run_suite  # noqa: E402
 from provider_status import format_status_table, models_for, provider_statuses  # noqa: E402
+from dhms_agentfuse_bench_sql_v0 import run_dhms_agentfuse_bench_sql_v0  # noqa: E402
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -100,6 +103,7 @@ def build_parser() -> argparse.ArgumentParser:
     conformance_parser.add_argument("--output", default="reports/adapter_conformance/latest")
 
     subparsers.add_parser("doctor")
+    subparsers.add_parser("demo-sql-fuse")
 
     providers_parser = subparsers.add_parser("providers")
     providers_parser.add_argument("subcommand", nargs="?", choices=["models"])
@@ -123,6 +127,10 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.command == "doctor":
         print(format_status_table(provider_statuses()))
         return 0
+    if args.command == "demo-sql-fuse":
+        result = run_dhms_agentfuse_bench_sql_v0()
+        print(sql_fuse_demo_console_summary(result))
+        return 0 if result.get("status") == "PASS" else 1
     if args.command == "providers":
         if args.subcommand == "models":
             print(json.dumps(models_for(args.provider), indent=2, sort_keys=True))
@@ -342,6 +350,40 @@ def adapter_conformance_console_summary(result) -> str:
     ]
     for path in result.get("report_paths", {}).values():
         lines.append(f"* {path}")
+    return "\n".join(lines)
+
+
+def sql_fuse_demo_console_summary(result) -> str:
+    failed_checks = json.dumps(result.get("failed_checks", []), separators=(",", ":"))
+    lines = [
+        "DHMS SQL Fuse Demo",
+        "mode=non-executing benchmark wrapper",
+        f"benchmark_name={result['benchmark_name']}",
+        f"benchmark_version={result['benchmark_version']}",
+        f"protocol_version={result['protocol_version']}",
+        f"proven_line={result['proven_line']}",
+        f"cases_total={result['cases_total']}",
+        f"cases_passed={result['cases_passed']}",
+        f"release_eligible_count={result['release_eligible_count']}",
+        f"blocked_or_fail_closed_count={result['blocked_or_fail_closed_count']}",
+        f"direct_execution_allowed_count={result['direct_execution_allowed_count']}",
+        f"sql_executed_by_benchmark_count={result['sql_executed_by_benchmark_count']}",
+        f"sqlite_database_created_by_benchmark_count={result['sqlite_database_created_by_benchmark_count']}",
+        f"sandbox_executed_by_benchmark_count={result['sandbox_executed_by_benchmark_count']}",
+        f"mutation_sql_executed_count={result['mutation_sql_executed_count']}",
+        f"rejected_input_executed_count={result['rejected_input_executed_count']}",
+        f"failed_checks={failed_checks}",
+        f"linked_actual_release_proof={result['linked_actual_release_proof']}",
+        "demo_executed_sql=false",
+        "demo_created_sqlite_database=false",
+        "demo_created_sandbox=false",
+        "actual_controlled_release_proof_linked_not_reimplemented=true",
+        f"summary_json={result['reports']['summary_json']}",
+        f"summary_md={result['reports']['summary_md']}",
+        "final_verdict=SQL_FUSE_DEMO_PASS"
+        if result.get("status") == "PASS"
+        else "final_verdict=SQL_FUSE_DEMO_FAIL",
+    ]
     return "\n".join(lines)
 
 

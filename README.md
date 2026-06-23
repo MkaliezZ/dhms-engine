@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.8.0: the File Operation Safety Fuse is now planned as the preferred second DHMS execution fuse proof line.
+Status: DHMS Agent Harness v1 has advanced to v0.8.1: the File Operation Safety Fuse now has a static, inert case manifest.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.8.0 File Operation Safety Fuse Planning`.
-* Previous milestone: `v0.7.5 Fresh Clone Reproduction Check`.
+* Current milestone: `v0.8.1 File Fuse Static Case Manifest`.
+* Previous milestone: `v0.8.0 File Operation Safety Fuse Planning`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.8.1 File Fuse Static Case Manifest`.
-* Status: v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second execution fuse proof line. It is planning-only and does not implement file read/write behavior, file policy, file adapters, or runtime execution capability.
+* Next recommended milestone: `v0.8.2 Non-Executing File Fuse Benchmark`.
+* Status: v0.8.1 adds a static, inert File Operation Safety Fuse case manifest with 13 planned cases. It does not implement file read/write/list/delete behavior, file policy, file adapters, or runtime execution capability.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -530,6 +530,23 @@ execution fuse proof line:
 This phase is planning-only. It does not implement file read/write behavior,
 file policy, file adapters, or runtime execution capability.
 
+### DHMS File Fuse Static Case Manifest v0.8.1
+
+v0.8.1 adds a static, inert File Operation Safety Fuse case manifest with 13
+planned cases:
+[DHMS File Fuse Static Case Manifest v0.8.1](docs/dhms_file_fuse_static_case_manifest_v0_8_1.md)
+and
+[File Fuse static cases](benchmarks/dhms_agentfuse_file_v0/cases.json).
+
+Run the static manifest smoke validation:
+
+```bash
+python3 validation/run_dhms_file_fuse_static_case_manifest_smoke.py
+```
+
+This phase does not implement file read/write/list/delete behavior, file
+policy, file adapters, or runtime execution capability.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -691,6 +708,11 @@ schema/report changes.
   behavior, shell policy, HTTP policy, MCP policy, OpenClaw runtime
   integration, provider SDK integration, agent SDK integration, or arbitrary
   file operation support.
+* v0.8.1 adds a static, inert File Operation Safety Fuse case manifest. It
+  does not implement file read, file write, file append, file delete, file
+  list, path normalization, symlink checks, size checks, extension checks, a
+  file adapter, runtime behavior, file policy, or arbitrary file operation
+  support.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -738,6 +760,8 @@ schema/report changes.
 * [Contributing to DHMS AgentFuse](CONTRIBUTING.md)
 * [v0.7.5 DHMS Fresh Clone Reproduction Check](docs/dhms_fresh_clone_reproduction_check_v0_7_5.md)
 * [v0.8.0 DHMS File Operation Safety Fuse Planning](docs/dhms_file_operation_safety_fuse_planning_v0_8_0.md)
+* [v0.8.1 DHMS File Fuse Static Case Manifest](docs/dhms_file_fuse_static_case_manifest_v0_8_1.md)
+* [File Fuse static cases](benchmarks/dhms_agentfuse_file_v0/cases.json)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

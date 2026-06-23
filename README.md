@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced through v0.7.3: the public DHMS AgentFuse protocol package now includes the DHMS Landscape / Comparison Doc.
+Status: DHMS Agent Harness v1 has advanced through v0.7.4: the public DHMS AgentFuse protocol package now includes contribution and case-format guidance.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.7.3 Landscape / Comparison Doc`.
-* Previous milestone: `v0.7.2 Risk-Tiered Fuse Policy Draft`.
+* Current milestone: `v0.7.4 Contribution Guide / Case Format`.
+* Previous milestone: `v0.7.3 Landscape / Comparison Doc`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.7.4 Contribution Guide / Case Format`.
-* Status: v0.7.3 clarifies the DHMS landscape position: MCP connects tools; DHMS controls execution boundaries. The comparison is conceptual, complementary, and does not claim DHMS replaces MCP, guardrails, agent SDKs, sandboxes, observability, or human approval workflows.
+* Next recommended milestone: `v0.7.5 Fresh Clone Reproduction Check`.
+* Status: v0.7.4 defines contribution and case-format guidance for DHMS AgentFuse. It treats every case as a safety contract and states that adding a case does not authorize a new execution path.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -501,6 +501,15 @@ MCP connects tools; DHMS controls execution boundaries. The comparison is
 conceptual, complementary, and does not claim DHMS replaces MCP, guardrails,
 agent SDKs, sandboxes, observability, or human approval workflows.
 
+### DHMS Contribution Guide / Case Format v0.7.4
+
+v0.7.4 defines contribution and case-format guidance for DHMS AgentFuse:
+[CONTRIBUTING.md](CONTRIBUTING.md) and
+[DHMS Contribution Guide / Case Format v0.7.4](docs/dhms_contribution_guide_case_format_v0_7_4.md).
+
+Every case is treated as a safety contract. Adding a case does not authorize a
+new execution path.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -695,6 +704,8 @@ schema/report changes.
 * [v0.7.1 DHMS AgentFuse Protocol Examples](docs/dhms_agentfuse_protocol_examples_v0_7_1.md)
 * [v0.7.2 DHMS Risk-Tiered Fuse Policy Draft](docs/dhms_risk_tiered_fuse_policy_v0_7_2.md)
 * [v0.7.3 DHMS Landscape / Comparison Doc](docs/dhms_landscape_comparison_v0_7_3.md)
+* [v0.7.4 DHMS Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
+* [Contributing to DHMS AgentFuse](CONTRIBUTING.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

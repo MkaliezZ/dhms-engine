@@ -22,6 +22,8 @@ Core public materials:
 * Minimal API / Adapter Skeleton documentation: [`docs/dhms_agentfuse_minimal_api_adapter_skeleton_v0_6_3.md`](dhms_agentfuse_minimal_api_adapter_skeleton_v0_6_3.md)
 * Risk-tiered fuse policy draft: [`docs/dhms_risk_tiered_fuse_policy_v0_7_2.md`](dhms_risk_tiered_fuse_policy_v0_7_2.md)
 * Landscape / comparison doc: [`docs/dhms_landscape_comparison_v0_7_3.md`](dhms_landscape_comparison_v0_7_3.md)
+* Contribution guide: [`CONTRIBUTING.md`](../CONTRIBUTING.md)
+* Contribution and case-format documentation: [`docs/dhms_contribution_guide_case_format_v0_7_4.md`](dhms_contribution_guide_case_format_v0_7_4.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -45,6 +47,9 @@ actions into L0-L4 fuse tiers.
 v0.7.3 clarifies how DHMS relates to MCP, guardrails, agent SDKs, sandboxes,
 observability, human approval workflows, policy engines, and AI security /
 AppSec categories.
+
+v0.7.4 defines contribution and case-format guidance for DHMS AgentFuse and
+clarifies that adding cases does not authorize new execution paths.
 
 ## Reproducible Commands
 

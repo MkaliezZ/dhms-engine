@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.7.3 Landscape / Comparison Doc`
+* Current package milestone: `v0.7.4 Contribution Guide / Case Format`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -90,6 +90,7 @@ SELECT id, label, status FROM toy_accounts ORDER BY id;
 * how to write trace expectations
 * how to extend future fuse lines
 * contribution rule: do not casually add execution paths
+* current/completed contribution and case-format guidance in v0.7.4
 
 ### v0.7.5 Fresh Clone Reproduction Check
 
@@ -162,4 +163,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V0_7_4_CONTRIBUTION_GUIDE_CASE_FORMAT`
+`READY_FOR_V0_7_5_FRESH_CLONE_REPRODUCTION_CHECK`

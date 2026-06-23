@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced through v0.7.4: the public DHMS AgentFuse protocol package now includes contribution and case-format guidance.
+Status: DHMS Agent Harness v1 has advanced through v0.7.5: the public DHMS AgentFuse protocol package now includes fresh clone reproduction evidence.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.7.4 Contribution Guide / Case Format`.
-* Previous milestone: `v0.7.3 Landscape / Comparison Doc`.
+* Current milestone: `v0.7.5 Fresh Clone Reproduction Check`.
+* Previous milestone: `v0.7.4 Contribution Guide / Case Format`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.7.5 Fresh Clone Reproduction Check`.
-* Status: v0.7.4 defines contribution and case-format guidance for DHMS AgentFuse. It treats every case as a safety contract and states that adding a case does not authorize a new execution path.
+* Next recommended milestone: `v0.8.0 File Operation Safety Fuse Planning`.
+* Status: v0.7.5 verifies that the public DHMS AgentFuse protocol package can be reproduced from a fresh clone: SQL Fuse demo, SQL benchmark, minimal API smoke, and protocol examples smoke all run without hidden local state.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -510,6 +510,17 @@ v0.7.4 defines contribution and case-format guidance for DHMS AgentFuse:
 Every case is treated as a safety contract. Adding a case does not authorize a
 new execution path.
 
+### DHMS Fresh Clone Reproduction Check v0.7.5
+
+v0.7.5 verifies that the public DHMS AgentFuse protocol package can be
+reproduced from a fresh clone:
+[DHMS Fresh Clone Reproduction Check v0.7.5](docs/dhms_fresh_clone_reproduction_check_v0_7_5.md).
+
+The check confirms that the SQL Fuse demo, DHMS-AgentFuse-Bench SQL v0,
+DHMS AgentFuse Minimal API smoke, and protocol examples smoke run without
+hidden local state. It follows the v0.7.4.1 package-index link patch, which
+preserved public index coverage for the v0.7.1 protocol examples.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -661,6 +672,10 @@ schema/report changes.
 * v0.7.2 adds a risk-tiered fuse policy draft. It does not implement file,
   shell, HTTP, MCP, OpenClaw, provider SDK, agent SDK, arbitrary SQL, or
   arbitrary tool execution policy.
+* v0.7.5 documents fresh clone reproduction evidence. It does not add runtime
+  behavior, execution capability, SQL allowlist expansion, file policy, shell
+  policy, HTTP policy, MCP policy, OpenClaw runtime integration, provider SDK
+  integration, agent SDK integration, or arbitrary tool execution policy.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -706,6 +721,7 @@ schema/report changes.
 * [v0.7.3 DHMS Landscape / Comparison Doc](docs/dhms_landscape_comparison_v0_7_3.md)
 * [v0.7.4 DHMS Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 * [Contributing to DHMS AgentFuse](CONTRIBUTING.md)
+* [v0.7.5 DHMS Fresh Clone Reproduction Check](docs/dhms_fresh_clone_reproduction_check_v0_7_5.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

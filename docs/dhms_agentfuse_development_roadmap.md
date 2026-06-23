@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.7.4 Contribution Guide / Case Format`
+* Current package milestone: `v0.7.5 Fresh Clone Reproduction Check`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -99,18 +99,23 @@ SELECT id, label, status FROM toy_accounts ORDER BY id;
 * run demo
 * run benchmark
 * document minimum external reproduction path
+* current/completed fresh clone reproduction check in v0.7.5
 
 ## v0.8 Second Fuse Line Direction
 
-`v0.8.x = second execution fuse proof line`
+`v0.8.0 = File Operation Safety Fuse Planning`
 
 Preferred direction:
 
 `File Operation Safety Fuse`
 
-v0.8 should demonstrate that DHMS is not only a SQL benchmark, but a general
-execution fuse protocol with a second proof line. It should still avoid
-uncontrolled real-world side effects.
+v0.8.0 should plan how DHMS can demonstrate that it is not only a SQL
+benchmark, but a general execution fuse protocol with a second proof line. It
+should still avoid uncontrolled real-world side effects.
+
+Next direction:
+
+`v0.8.0 File Operation Safety Fuse Planning`
 
 ## Development Prompt Pattern
 
@@ -163,4 +168,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V0_7_5_FRESH_CLONE_REPRODUCTION_CHECK`
+`READY_FOR_V0_8_0_FILE_OPERATION_SAFETY_FUSE_PLANNING`

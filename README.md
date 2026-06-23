@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced through v0.7.1: the public DHMS AgentFuse protocol package now includes non-executing protocol examples for held, blocked, unsupported, and trace-reading flows.
+Status: DHMS Agent Harness v1 has advanced through v0.7.2: the public DHMS AgentFuse protocol package now includes the DHMS Risk-Tiered Fuse Policy Draft.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.7.1 Protocol Examples`.
-* Previous milestone: `v0.7.0 Public Protocol Package`.
+* Current milestone: `v0.7.2 Risk-Tiered Fuse Policy Draft`.
+* Previous milestone: `v0.7.1 Protocol Examples`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.7.2 Risk-Tiered Fuse Policy Draft`.
-* Status: v0.7.1 adds non-executing DHMS AgentFuse protocol examples for SQL held, SQL blocked, unsupported non-SQL blocked/fail-closed, and trace object reading.
+* Next recommended milestone: `v0.7.3 Landscape / Comparison Doc`.
+* Status: v0.7.2 defines the DHMS Risk-Tiered Fuse Policy Draft: low-risk actions may use fast paths, high-risk actions require hold/sandbox/review/block behavior, and read-only is not treated as automatically safe. This phase is design-only and does not add execution capability.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -482,6 +482,16 @@ SQL, create SQLite databases, create sandbox files, invoke OpenClaw, invoke
 DeepSeek, use provider SDKs, use agent SDKs, use HTTP/network clients, or add
 file, shell, MCP, or production database adapters.
 
+### DHMS Risk-Tiered Fuse Policy Draft v0.7.2
+
+v0.7.2 defines the DHMS Risk-Tiered Fuse Policy Draft:
+[DHMS Risk-Tiered Fuse Policy Draft v0.7.2](docs/dhms_risk_tiered_fuse_policy_v0_7_2.md).
+
+The draft introduces L0-L4 fuse tiers so low-risk actions may use fast paths
+while high-risk actions require hold, sandbox, review, block, or fail-closed
+behavior. Read-only is not treated as automatically safe. This phase is
+design-only and does not add execution capability.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -630,6 +640,9 @@ schema/report changes.
   capability, expand the SQL allowlist, implement adapters, execute SQL, create
   SQLite databases, create sandbox files, or add file, shell, HTTP, MCP,
   OpenClaw, provider SDK, agent SDK, or arbitrary SQL policy.
+* v0.7.2 adds a risk-tiered fuse policy draft. It does not implement file,
+  shell, HTTP, MCP, OpenClaw, provider SDK, agent SDK, arbitrary SQL, or
+  arbitrary tool execution policy.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -671,6 +684,7 @@ schema/report changes.
 * [v0.7.0 DHMS AgentFuse Public Protocol Package](docs/dhms_agentfuse_protocol_package_index_v0_7_0.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [v0.7.1 DHMS AgentFuse Protocol Examples](docs/dhms_agentfuse_protocol_examples_v0_7_1.md)
+* [v0.7.2 DHMS Risk-Tiered Fuse Policy Draft](docs/dhms_risk_tiered_fuse_policy_v0_7_2.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

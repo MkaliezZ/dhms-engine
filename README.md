@@ -36,9 +36,9 @@ allowlisted SELECT to execute inside a temporary local SQLite sandbox, while
 all rejected inputs, mutation SQL, OpenClaw runtime requests, provider SDKs,
 agent SDKs, HTTP paths, and production database paths remained blocked.
 
-> Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the Agent Harness preview development branch.
+> Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 is an evidence-sealed prototype of a deterministic Agent safety evaluation protocol.
+Status: DHMS Agent Harness v1 has advanced into the v0.6.0 Execution Fuse Protocol line, with the v0.5 SQL Sandbox Execution Fuse as the first proven controlled-release implementation.
 
 ## Current Status
 
@@ -52,40 +52,55 @@ Status: DHMS Agent Harness v1 is an evidence-sealed prototype of a deterministic
 
 ## Architecture at a Glance
 
-DHMS is an external crash-test protocol for AI agents. It evaluates whether an
-agent stays safe under controlled perturbations without requiring SDK
-instrumentation or agent code modification.
+DHMS sits between agent intent and real-world execution. It captures observable
+runtime requests and tool-call proposals, applies fail-closed safety decisions,
+gates execution, routes only eligible actions through controlled release,
+verifies external state, and records traceable outcomes.
+
+The original perturbation/crash-test lineage remains part of DHMS, but the
+current `agent-harness-v1` public branch now presents DHMS as an Execution Fuse
+Protocol.
 
 ```mermaid
 flowchart LR
-    A[Target Agent<br/>Existing Local Command Agent<br/>No SDK / No Code Modification]
-    B[DHMS Agent Harness<br/>SDK-free Wrapper-based Evaluation Layer]
-    C[DHMS Perturbation Protocol<br/>A = Action Risk<br/>B = Memory / Context Risk<br/>C = Reserved Coordination]
-    D[Execution Safety Boundary<br/>Controlled Release Required<br/>No Unapproved Side Effects]
-    E[AgentTrace<br/>Structured Trace / Observable Response / Safety Evidence]
-    F[DHMS Engine<br/>Deterministic Safety Evaluation Core]
-    G[Reports<br/>execution_summary.json<br/>JSON / Markdown / HTML]
-    H[Mock Baseline]
-    I[Real Agent Run]
-    J[Diagnosis Output<br/>Execution Safety<br/>Semantic Property<br/>Safety Veto]
+    A[Agent Intent<br/>Runtime Request]
+    B[ToolCallProposal<br/>Observable Capture]
+    C[DHMS Execution Fuse<br/>Policy Owner: DHMS]
+    D{Safety Decision}
+    E[BLOCK<br/>No Execution]
+    F[FAIL-CLOSED<br/>Unsupported / Unknown]
+    G[SANDBOX<br/>Held, Not Executed]
+    H[Execution Gate<br/>Closed or Held]
+    I[Bridge / Review<br/>Controlled Release Path]
+    J[Authorization Boundary<br/>Explicit Policy Approval]
+    K[Controlled Sandbox Release<br/>Minimal Proven Action]
+    L[External State Verification<br/>Mutation Detection]
+    M[Teardown Verification<br/>Sandbox Delete Check]
+    N[ExecutionTrace<br/>Observable Evidence]
 
     A --> B
     B --> C
-    C --> H
-    C --> I
-    H --> D
-    I --> D
+    C --> D
     D --> E
-    E --> F
-    F --> J
-    F --> G
+    D --> F
+    D --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+    K --> L
+    L --> M
+    M --> N
+    E --> N
+    F --> N
 ```
 
 Why this architecture matters:
 
-* Non-invasive — no SDK instrumentation and no agent code changes.
-* Default-safe boundary — no unapproved real tool execution and no unapproved side effects.
-* Auditable — structured AgentTrace plus deterministic JSON / Markdown / HTML reports.
+* Execution fuse - unsafe proposals are blocked, held, or failed closed before real-world side effects.
+* Controlled release - `SANDBOX` is not direct execution; eligible actions must pass gate, bridge, review, authorization, sandbox execution, state verification, and teardown verification.
+* Black-box and SDK-agnostic - DHMS validates observable requests, proposals, decisions, traces, sandbox results, and external state without requiring hidden reasoning inspection or SDK policy ownership.
+* First proven line - v0.5 proved exactly one allowlisted SQL SELECT in a temporary local SQLite sandbox while rejected paths remained non-executing.
 
 ## Current Capabilities
 

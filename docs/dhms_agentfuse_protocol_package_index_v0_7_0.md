@@ -33,6 +33,8 @@ Core public materials:
 * File Fuse static case manifest documentation: [`docs/dhms_file_fuse_static_case_manifest_v0_8_1.md`](dhms_file_fuse_static_case_manifest_v0_8_1.md)
 * File Fuse static case manifest: [`benchmarks/dhms_agentfuse_file_v0/cases.json`](../benchmarks/dhms_agentfuse_file_v0/cases.json)
 * File Fuse static manifest smoke validation: [`validation/run_dhms_file_fuse_static_case_manifest_smoke.py`](../validation/run_dhms_file_fuse_static_case_manifest_smoke.py)
+* File Fuse non-executing benchmark documentation: [`docs/dhms_file_fuse_non_executing_benchmark_v0_8_2.md`](dhms_file_fuse_non_executing_benchmark_v0_8_2.md)
+* File Fuse non-executing benchmark runner: [`validation/run_dhms_agentfuse_bench_file_v0.py`](../validation/run_dhms_agentfuse_bench_file_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -74,6 +76,10 @@ capability.
 v0.8.1 adds a static, inert File Operation Safety Fuse case manifest with 13
 planned cases. It does not implement file policy or file operation capability.
 
+v0.8.2 adds a non-executing File Operation Safety Fuse benchmark over the
+static v0.8.1 manifest. It evaluates expected decisions in memory and does not
+implement file policy or file operation capability.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -84,6 +90,7 @@ python3 validation/run_dhms_agentfuse_bench_sql_v0.py
 python3 validation/run_dhms_agentfuse_minimal_api_skeleton_smoke.py
 python3 validation/run_dhms_agentfuse_protocol_examples_smoke.py
 python3 validation/run_dhms_file_fuse_static_case_manifest_smoke.py
+python3 validation/run_dhms_agentfuse_bench_file_v0.py
 ```
 
 Optional historical cross-checks:
@@ -165,6 +172,7 @@ v0.7.0 does not claim:
 * v0.7.5 Fresh Clone Reproduction Check
 * v0.8.0 File Operation Safety Fuse Planning
 * v0.8.1 File Fuse Static Case Manifest
+* v0.8.2 Non-Executing File Fuse Benchmark
 
 Final document verdict:
 

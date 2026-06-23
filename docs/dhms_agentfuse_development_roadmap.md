@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.8.1 File Fuse Static Case Manifest`
+* Current package milestone: `v0.8.2 Non-Executing File Fuse Benchmark`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -115,7 +115,7 @@ should still avoid uncontrolled real-world side effects.
 
 Next direction:
 
-`v0.8.2 Non-Executing File Fuse Benchmark`
+`v0.8.3 Non-Executing File Fuse Examples`
 
 ## v0.8 File Operation Safety Fuse Plan
 
@@ -140,6 +140,7 @@ Next direction:
 * evaluate planned file fuse cases in memory
 * produce deterministic summary metrics
 * do not perform file reads, writes, appends, deletes, or lists
+* current/completed non-executing file fuse benchmark milestone in v0.8.2
 
 ### v0.8.3 Non-Executing File Fuse Examples
 
@@ -212,4 +213,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V0_8_2_NON_EXECUTING_FILE_FUSE_BENCHMARK`
+`READY_FOR_V0_8_3_NON_EXECUTING_FILE_FUSE_EXAMPLES`

@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced through v0.7.5: the public DHMS AgentFuse protocol package now includes fresh clone reproduction evidence.
+Status: DHMS Agent Harness v1 has advanced to v0.8.0: the File Operation Safety Fuse is now planned as the preferred second DHMS execution fuse proof line.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.7.5 Fresh Clone Reproduction Check`.
-* Previous milestone: `v0.7.4 Contribution Guide / Case Format`.
+* Current milestone: `v0.8.0 File Operation Safety Fuse Planning`.
+* Previous milestone: `v0.7.5 Fresh Clone Reproduction Check`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.8.0 File Operation Safety Fuse Planning`.
-* Status: v0.7.5 verifies that the public DHMS AgentFuse protocol package can be reproduced from a fresh clone: SQL Fuse demo, SQL benchmark, minimal API smoke, and protocol examples smoke all run without hidden local state.
+* Next recommended milestone: `v0.8.1 File Fuse Static Case Manifest`.
+* Status: v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second execution fuse proof line. It is planning-only and does not implement file read/write behavior, file policy, file adapters, or runtime execution capability.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -521,6 +521,15 @@ DHMS AgentFuse Minimal API smoke, and protocol examples smoke run without
 hidden local state. It follows the v0.7.4.1 package-index link patch, which
 preserved public index coverage for the v0.7.1 protocol examples.
 
+### DHMS File Operation Safety Fuse Planning v0.8.0
+
+v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
+execution fuse proof line:
+[DHMS File Operation Safety Fuse Planning v0.8.0](docs/dhms_file_operation_safety_fuse_planning_v0_8_0.md).
+
+This phase is planning-only. It does not implement file read/write behavior,
+file policy, file adapters, or runtime execution capability.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -676,6 +685,12 @@ schema/report changes.
   behavior, execution capability, SQL allowlist expansion, file policy, shell
   policy, HTTP policy, MCP policy, OpenClaw runtime integration, provider SDK
   integration, agent SDK integration, or arbitrary tool execution policy.
+* v0.8.0 plans the File Operation Safety Fuse. It does not implement file
+  read, file write, file append, file delete, file list, path normalization,
+  symlink checks, size checks, extension checks, a file adapter, runtime
+  behavior, shell policy, HTTP policy, MCP policy, OpenClaw runtime
+  integration, provider SDK integration, agent SDK integration, or arbitrary
+  file operation support.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -722,6 +737,7 @@ schema/report changes.
 * [v0.7.4 DHMS Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 * [Contributing to DHMS AgentFuse](CONTRIBUTING.md)
 * [v0.7.5 DHMS Fresh Clone Reproduction Check](docs/dhms_fresh_clone_reproduction_check_v0_7_5.md)
+* [v0.8.0 DHMS File Operation Safety Fuse Planning](docs/dhms_file_operation_safety_fuse_planning_v0_8_0.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

@@ -29,6 +29,7 @@ Core public materials:
 * Contribution guide: [`CONTRIBUTING.md`](../CONTRIBUTING.md)
 * Contribution and case-format documentation: [`docs/dhms_contribution_guide_case_format_v0_7_4.md`](dhms_contribution_guide_case_format_v0_7_4.md)
 * Fresh clone reproduction check: [`docs/dhms_fresh_clone_reproduction_check_v0_7_5.md`](dhms_fresh_clone_reproduction_check_v0_7_5.md)
+* File Operation Safety Fuse planning: [`docs/dhms_file_operation_safety_fuse_planning_v0_8_0.md`](dhms_file_operation_safety_fuse_planning_v0_8_0.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -62,6 +63,10 @@ clarifies that adding cases does not authorize new execution paths.
 
 v0.7.5 verifies the public DHMS AgentFuse protocol package from a fresh clone
 and documents the reproducible command path.
+
+v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
+execution fuse proof line. It does not implement file policy or file operation
+capability.
 
 ## Reproducible Commands
 
@@ -151,6 +156,7 @@ v0.7.0 does not claim:
 * v0.7.3 Landscape / Comparison Doc
 * v0.7.4 Contribution Guide / Case Format
 * v0.7.5 Fresh Clone Reproduction Check
+* v0.8.0 File Operation Safety Fuse Planning
 
 Final document verdict:
 

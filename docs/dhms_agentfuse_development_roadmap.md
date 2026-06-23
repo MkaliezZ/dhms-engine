@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.7.5 Fresh Clone Reproduction Check`
+* Current package milestone: `v0.8.0 File Operation Safety Fuse Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -115,7 +115,48 @@ should still avoid uncontrolled real-world side effects.
 
 Next direction:
 
-`v0.8.0 File Operation Safety Fuse Planning`
+`v0.8.1 File Fuse Static Case Manifest`
+
+## v0.8 File Operation Safety Fuse Plan
+
+### v0.8.0 File Operation Safety Fuse Planning
+
+* plan the second DHMS execution fuse proof line
+* define file operation threat categories
+* map file operation examples to L0-L4 risk tiers
+* propose future case categories and trace fields
+* planning-only; no file policy, file adapter, or file operation capability
+* current/completed planning milestone in v0.8.0
+
+### v0.8.1 File Fuse Static Case Manifest
+
+* define a static file fuse case manifest
+* keep cases inert and non-executing
+* preserve fail-closed defaults and no direct execution by default
+
+### v0.8.2 Non-Executing File Fuse Benchmark
+
+* evaluate planned file fuse cases in memory
+* produce deterministic summary metrics
+* do not perform file reads, writes, appends, deletes, or lists
+
+### v0.8.3 Non-Executing File Fuse Examples
+
+* add public examples for file fuse proposals, decisions, gates, and traces
+* keep examples non-executing
+* do not add a file adapter
+
+### v0.8.4 Constrained Temp-Directory Proof
+
+* possible only if explicitly approved later
+* may consider a tightly constrained local temp-directory proof
+* must not be implemented by v0.8.0, v0.8.1, v0.8.2, or v0.8.3
+
+### v0.8.5 Result Review and Freeze
+
+* review any explicitly approved future proof result
+* freeze claims and not-claimed boundaries
+* preserve no uncontrolled real-world side effects principle
 
 ## Development Prompt Pattern
 
@@ -151,6 +192,7 @@ Persistent boundaries:
 * no provider SDK integration without explicit phase approval
 * no agent SDK integration without explicit phase approval
 * no HTTP/file/shell/MCP adapter without explicit phase approval
+* no file operation capability without explicit phase approval
 * no production-ready claims before proof
 * do not alter License / Trademark Notice casually
 
@@ -163,9 +205,10 @@ DHMS AgentFuse currently does not claim:
 * production runtime
 * production DB safety
 * arbitrary tool execution
+* arbitrary file operation support
 * autonomous execution authorization
 * a standard adopted by industry yet
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V0_8_0_FILE_OPERATION_SAFETY_FUSE_PLANNING`
+`READY_FOR_V0_8_1_FILE_FUSE_STATIC_CASE_MANIFEST`

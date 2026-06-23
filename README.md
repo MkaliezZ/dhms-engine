@@ -2,8 +2,9 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-DHMS is the crash-test protocol and execution-safety control kernel for AI
-Agents before they touch the real world: an execution fuse for AI agents.
+DHMS is an agent execution safety and control kernel - an execution fuse
+protocol for AI agents - built from memory/context/tool-state perturbation
+testing toward runtime execution control.
 
 DHMS began as memory/context/tool-state perturbation testing. That original
 goal remains included, and the Agent Harness branch now extends DHMS into a
@@ -42,12 +43,12 @@ Status: DHMS Agent Harness v1 is an evidence-sealed prototype of a deterministic
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.5.17 SQL Sandbox Runtime Execution Policy Freeze`.
-* Previous proof: `v0.5.15 First Actual Controlled Runtime-Path SQL Sandbox Release`.
-* Latest committed evidence before v0.5.17 freeze: `51794d923a7ad153155d3bd6c9d92e220b6c8072`.
-* Current freeze: `v0.5 SQL sandbox runtime-path execution policy frozen`.
-* Next recommended milestone: `v0.6.0 DHMS Execution Fuse Protocol`.
-* Status: v0.5.17 freezes the SQL sandbox runtime execution policy proven by v0.5.15 without adding new execution capability.
+* Current milestone: `v0.6.0 DHMS Execution Fuse Protocol`.
+* Previous line: `v0.5 SQL Sandbox Execution Fuse`.
+* Pre-v0.6 integrity baseline: `fcd12d9f46fc41c7e4e7cf73c1dc10f58676fce7`.
+* Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
+* Next recommended milestone: `v0.6.1 DHMS-AgentFuse-Bench SQL v0`.
+* Status: v0.6.0 defines the protocol abstraction for the proven v0.5 SQL sandbox controlled-release line without adding new execution capability.
 
 ## Architecture at a Glance
 
@@ -60,7 +61,7 @@ flowchart LR
     A[Target Agent<br/>Existing Local Command Agent<br/>No SDK / No Code Modification]
     B[DHMS Agent Harness<br/>SDK-free Wrapper-based Evaluation Layer]
     C[DHMS Perturbation Protocol<br/>A = Action Risk<br/>B = Memory / Context Risk<br/>C = Reserved Coordination]
-    D[Dry-run Safety Boundary<br/>No Real Tool Execution<br/>No Side Effects]
+    D[Execution Safety Boundary<br/>Controlled Release Required<br/>No Unapproved Side Effects]
     E[AgentTrace<br/>Structured Trace / Observable Response / Safety Evidence]
     F[DHMS Engine<br/>Deterministic Safety Evaluation Core]
     G[Reports<br/>execution_summary.json<br/>JSON / Markdown / HTML]
@@ -83,7 +84,7 @@ flowchart LR
 Why this architecture matters:
 
 * Non-invasive — no SDK instrumentation and no agent code changes.
-* Dry-run safe — no real tool execution and no side effects.
+* Default-safe boundary — no unapproved real tool execution and no unapproved side effects.
 * Auditable — structured AgentTrace plus deterministic JSON / Markdown / HTML reports.
 
 ## Current Capabilities
@@ -340,6 +341,23 @@ the execution fuse narrative beyond the proven SQL sandbox controlled-release
 path. Broader file, shell, HTTP, MCP, OpenClaw, provider SDK, and agent SDK
 runtime policies are not yet claimed.
 
+## DHMS Execution Fuse Protocol v0.6.0
+
+v0.6.0 adds the first protocol-level specification for DHMS:
+[DHMS Execution Fuse Protocol v0.6.0](docs/dhms_execution_fuse_protocol_v0_6_0.md).
+
+The protocol abstracts the proven v0.5 SQL Sandbox Execution Fuse line into a
+shared vocabulary for runtime requests, tool-call proposals, safety decisions,
+execution gates, bridge/review states, controlled release, sandbox results,
+external state verification, and observable traces.
+
+v0.6.0 is protocol abstraction, not capability expansion. The only proven
+implementation line remains the v0.5 SQL sandbox controlled-release path, where
+one exact allowlisted SELECT executed in a temporary local SQLite sandbox with
+synthetic toy data and verified teardown. Future tool families, benchmark
+adapters, CLI demos, file/shell/HTTP/MCP policies, and OpenClaw runtime adapter
+work remain future adapters, not current claims.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -434,8 +452,9 @@ schema/report changes.
 
 ## Caveats
 
-* Dry-run only.
-* Real tool execution is not enabled.
+* General runtime execution remains disabled by default.
+* The only proven runtime-path execution is the v0.5.15 exact allowlisted SQL
+  SELECT inside a temporary local SQLite sandbox.
 * HTTP Adapter is not implemented.
 * LLM Judge is optional and default OFF.
 * Deterministic safety veto remains authoritative.
@@ -446,7 +465,7 @@ schema/report changes.
 * Semantic unknowns and failures were preserved and reviewed, not hidden.
 * P0 `mock_refund_case` and P1 `conflicting_instruction_priority` were closed under targeted re-evaluation.
 * P2 `rag_noise_identity_conflict` remains Needs review.
-* No real tool execution is enabled by DHMS.
+* No general real tool execution is enabled by DHMS.
 * SQL Safety v0.4 uses only temporary local SQLite with synthetic toy data.
 * SQL Safety v0.4 is not production SQL agent, checker, runner, HTTP, OpenClaw,
   DeepSeek, provider, or full-suite integration.
@@ -463,6 +482,10 @@ schema/report changes.
 * v0.5.17 freezes only the SQL sandbox runtime-path controlled execution
   policy. It does not add file, shell, HTTP, MCP, OpenClaw, provider SDK, agent
   SDK, or arbitrary SQL policy.
+* v0.6.0 defines a protocol abstraction. It does not add execution capability,
+  expand the SQL allowlist, implement benchmarks, implement CLI, implement
+  adapters, or add file, shell, HTTP, MCP, OpenClaw, provider SDK, agent SDK,
+  or arbitrary SQL policy.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -497,6 +520,7 @@ schema/report changes.
 * [v0.5.15 First actual controlled SQL sandbox release](docs/sql_sandbox_runtime_first_actual_controlled_release_log_v0_5_15.md)
 * [v0.5.16 First actual release result review and freeze](docs/sql_sandbox_runtime_first_actual_release_result_review_and_freeze_v0_5_16.md)
 * [v0.5.17 SQL sandbox runtime execution policy freeze](docs/sql_sandbox_runtime_execution_policy_freeze_v0_5_17.md)
+* [v0.6.0 DHMS Execution Fuse Protocol](docs/dhms_execution_fuse_protocol_v0_6_0.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

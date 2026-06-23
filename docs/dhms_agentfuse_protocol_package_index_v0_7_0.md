@@ -39,6 +39,7 @@ Core public materials:
 * File Fuse non-executing examples: [`examples/dhms_agentfuse_file_v0/`](../examples/dhms_agentfuse_file_v0/)
 * File Fuse static trace examples: [`examples/dhms_agentfuse_file_v0/trace_examples.json`](../examples/dhms_agentfuse_file_v0/trace_examples.json)
 * File Fuse examples smoke validation: [`validation/run_dhms_file_fuse_non_executing_examples_smoke.py`](../validation/run_dhms_file_fuse_non_executing_examples_smoke.py)
+* File Fuse constrained temp-directory proof planning: [`docs/dhms_file_fuse_constrained_temp_directory_proof_planning_v0_8_4.md`](dhms_file_fuse_constrained_temp_directory_proof_planning_v0_8_4.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -86,6 +87,9 @@ implement file policy or file operation capability.
 
 v0.8.3 adds non-executing File Operation Safety Fuse examples and static trace
 examples. It does not implement file policy or file operation capability.
+
+v0.8.4 plans the safety envelope for a possible constrained temp-directory
+proof. It does not implement the proof or add file operation capability.
 
 ## Reproducible Commands
 
@@ -182,6 +186,7 @@ v0.7.0 does not claim:
 * v0.8.1 File Fuse Static Case Manifest
 * v0.8.2 Non-Executing File Fuse Benchmark
 * v0.8.3 Non-Executing File Fuse Examples
+* v0.8.4 Constrained Temp-Directory Proof Planning
 
 Final document verdict:
 

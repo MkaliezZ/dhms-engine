@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.8.3 Non-Executing File Fuse Examples`
+* Current package milestone: `v0.8.4 Constrained Temp-Directory Proof Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -115,7 +115,7 @@ should still avoid uncontrolled real-world side effects.
 
 Next direction:
 
-`v0.8.4 Constrained Temp-Directory Proof Planning`
+`v0.8.4.1 Constrained Temp-Directory Proof Implementation — requires explicit approval`
 
 ## v0.8 File Operation Safety Fuse Plan
 
@@ -149,11 +149,19 @@ Next direction:
 * do not add a file adapter
 * current/completed non-executing file fuse examples milestone in v0.8.3
 
-### v0.8.4 Constrained Temp-Directory Proof
+### v0.8.4 Constrained Temp-Directory Proof Planning
 
-* possible only if explicitly approved later
-* may consider a tightly constrained local temp-directory proof
-* must not be implemented by v0.8.0, v0.8.1, v0.8.2, or v0.8.3
+* define the safety envelope for a possible constrained temp-directory proof
+* require explicit approval before any implementation
+* plan temp root constraints, future proof cases, metrics, trace fields, failure conditions, and cleanup requirements
+* do not create temp directories, fixtures, synthetic reports, cleanup verification, file policy, or file operation capability
+* current/completed constrained temp-directory proof planning milestone in v0.8.4
+
+### v0.8.4.1 Constrained Temp-Directory Proof Implementation
+
+* requires explicit approval before implementation
+* exact approval language is defined in the v0.8.4 planning document
+* must remain within the v0.8.4 safety envelope if approved later
 
 ### v0.8.5 Result Review and Freeze
 
@@ -214,4 +222,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V0_8_4_CONSTRAINED_TEMP_DIRECTORY_PROOF_PLANNING`
+`READY_FOR_EXPLICIT_APPROVAL_BEFORE_V0_8_4_1_CONSTRAINED_TEMP_DIRECTORY_PROOF_IMPLEMENTATION`

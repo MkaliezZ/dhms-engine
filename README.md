@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.8.3: the File Operation Safety Fuse now has non-executing examples and static trace examples.
+Status: DHMS Agent Harness v1 has advanced to v0.8.4: the File Operation Safety Fuse now has constrained temp-directory proof planning.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.8.3 Non-Executing File Fuse Examples`.
-* Previous milestone: `v0.8.2 Non-Executing File Fuse Benchmark`.
+* Current milestone: `v0.8.4 Constrained Temp-Directory Proof Planning`.
+* Previous milestone: `v0.8.3 Non-Executing File Fuse Examples`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.8.4 Constrained Temp-Directory Proof Planning`.
-* Status: v0.8.3 adds non-executing File Operation Safety Fuse examples and static trace examples. The examples demonstrate representative proposals, decisions, gates, and traces without opening or resolving requested path templates.
+* Next recommended milestone: `v0.8.4.1 Constrained Temp-Directory Proof Implementation — requires explicit approval`.
+* Status: v0.8.4 plans the safety envelope for a possible constrained temp-directory proof. It does not implement the proof, does not create temp directories, and does not add file operation capability.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -584,6 +584,17 @@ python3 validation/run_dhms_file_fuse_non_executing_examples_smoke.py
 The examples demonstrate representative proposals, decisions, gates, and
 traces without opening or resolving requested path templates.
 
+### DHMS File Fuse Constrained Temp-Directory Proof Planning v0.8.4
+
+v0.8.4 plans the safety envelope for a possible constrained temp-directory
+proof:
+[DHMS File Fuse Constrained Temp-Directory Proof Planning v0.8.4](docs/dhms_file_fuse_constrained_temp_directory_proof_planning_v0_8_4.md).
+
+This phase is planning-only. It does not implement the proof, create temp
+directories, create synthetic fixtures, write synthetic reports, perform
+cleanup verification, add a file adapter, or add file operation capability.
+Any future implementation requires explicit approval.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -761,6 +772,12 @@ schema/report changes.
   not implement file read, file write, file append, file delete, file list,
   path normalization, symlink checks, size checks, extension checks, a file
   adapter, runtime behavior, file policy, or arbitrary file operation support.
+* v0.8.4 plans a constrained temp-directory proof safety envelope. It does not
+  create temp directories, create fixtures, write reports, delete temp roots,
+  perform cleanup verification, implement file read, file write, file append,
+  file delete, file list, path normalization, symlink checks, size checks,
+  extension checks, a file adapter, runtime behavior, file policy, or
+  arbitrary file operation support.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -816,6 +833,7 @@ schema/report changes.
 * [File Fuse examples](examples/dhms_agentfuse_file_v0/)
 * [File Fuse trace examples](examples/dhms_agentfuse_file_v0/trace_examples.json)
 * [File Fuse examples smoke validation](validation/run_dhms_file_fuse_non_executing_examples_smoke.py)
+* [v0.8.4 DHMS File Fuse Constrained Temp-Directory Proof Planning](docs/dhms_file_fuse_constrained_temp_directory_proof_planning_v0_8_4.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

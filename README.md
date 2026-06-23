@@ -42,10 +42,12 @@ Status: DHMS Agent Harness v1 is an evidence-sealed prototype of a deterministic
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.5.15 First Actual Controlled Runtime-Path SQL Sandbox Release`.
-* Latest commit: `cae2ec801985de2c72ace3d325c25414e34ed4bd`.
-* Next planned milestone: `READY_FOR_V0_5_17_RUNTIME_EXECUTION_POLICY_FREEZE`.
-* Status: v0.5.16 result review and freeze documentation records the first verified controlled runtime-path execution.
+* Current milestone: `v0.5.17 SQL Sandbox Runtime Execution Policy Freeze`.
+* Previous proof: `v0.5.15 First Actual Controlled Runtime-Path SQL Sandbox Release`.
+* Latest committed evidence before v0.5.17 freeze: `51794d923a7ad153155d3bd6c9d92e220b6c8072`.
+* Current freeze: `v0.5 SQL sandbox runtime-path execution policy frozen`.
+* Next recommended milestone: `v0.6.0 DHMS Execution Fuse Protocol`.
+* Status: v0.5.17 freezes the SQL sandbox runtime execution policy proven by v0.5.15 without adding new execution capability.
 
 ## Architecture at a Glance
 
@@ -287,6 +289,8 @@ Completed v0.5 runtime milestones:
 * v0.5.13 SQL Sandbox Runtime First Actual Release Boundary Plan.
 * v0.5.14 SQL Sandbox Runtime First Actual Release Boundary Stub.
 * v0.5.15 First Actual Controlled Runtime-Path SQL Sandbox Release.
+* v0.5.16 SQL Sandbox Runtime First Actual Release Result Review and Freeze.
+* v0.5.17 SQL Sandbox Runtime Execution Policy Freeze.
 
 v0.5.15 connects:
 
@@ -330,6 +334,12 @@ What is proven under this controlled runtime scope:
 * Mutation detection and teardown verification can complete successfully.
 * DHMS retains final execution ownership.
 
+v0.5.17 freezes the SQL sandbox runtime execution policy proven by v0.5.15. It
+does not add new execution capability, expand the SQL allowlist, or generalize
+the execution fuse narrative beyond the proven SQL sandbox controlled-release
+path. Broader file, shell, HTTP, MCP, OpenClaw, provider SDK, and agent SDK
+runtime policies are not yet claimed.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -371,6 +381,7 @@ python3 validation/run_sql_sandbox_runtime_bridge_first_controlled_release_stub.
 python3 validation/run_sql_sandbox_runtime_bridge_actual_release_authorization_review.py
 python3 validation/run_sql_sandbox_runtime_first_actual_release_boundary_stub.py
 python3 validation/run_sql_sandbox_runtime_first_actual_controlled_release.py
+python3 validation/run_runtime_execution_policy_freeze_stub.py
 ```
 
 ## What DHMS Is NOT
@@ -449,6 +460,9 @@ schema/report changes.
 * v0.5.15 does not implement OpenClaw runtime integration, DeepSeek/provider
   integration, provider SDK integration, agent SDK integration, HTTP adapter,
   production runner integration, or full-suite validation.
+* v0.5.17 freezes only the SQL sandbox runtime-path controlled execution
+  policy. It does not add file, shell, HTTP, MCP, OpenClaw, provider SDK, agent
+  SDK, or arbitrary SQL policy.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -482,6 +496,7 @@ schema/report changes.
 * [v0.5.5 Runtime dry-run loop stub log](docs/runtime_dry_run_loop_stub_log_v0_5_5.md)
 * [v0.5.15 First actual controlled SQL sandbox release](docs/sql_sandbox_runtime_first_actual_controlled_release_log_v0_5_15.md)
 * [v0.5.16 First actual release result review and freeze](docs/sql_sandbox_runtime_first_actual_release_result_review_and_freeze_v0_5_16.md)
+* [v0.5.17 SQL sandbox runtime execution policy freeze](docs/sql_sandbox_runtime_execution_policy_freeze_v0_5_17.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

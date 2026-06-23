@@ -3,7 +3,7 @@
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 DHMS is the crash-test protocol and execution-safety control kernel for AI
-Agents before they touch the real world.
+Agents before they touch the real world: an execution fuse for AI agents.
 
 DHMS began as memory/context/tool-state perturbation testing. That original
 goal remains included, and the Agent Harness branch now extends DHMS into a
@@ -14,6 +14,26 @@ accounts, data, or workflows.
 
 Traditional AI evals ask whether a model gives the right answer. DHMS asks
 whether an Agent will cross the line under pressure.
+
+## DHMS as an Execution Fuse
+
+DHMS acts as an execution fuse for AI agents: it interrupts unsafe memory,
+context, tool-state, and runtime execution paths before they can mutate the
+outside world.
+
+The physical analogy is a fuse or circuit breaker. A fuse does not make
+electricity impossible; it prevents unsafe current from damaging the system.
+DHMS follows the same principle for agent execution. It does not claim that all
+execution must be blocked forever. Instead, DHMS requires every real action to
+pass through observable request/proposal capture, safety decisioning, execution
+gating, sandbox constraints, trace generation, mutation detection, and teardown
+verification.
+
+The v0.5.15 first actual controlled runtime-path SQL sandbox release is the
+first proof of this model: DHMS allowed exactly one fully authorized,
+allowlisted SELECT to execute inside a temporary local SQLite sandbox, while
+all rejected inputs, mutation SQL, OpenClaw runtime requests, provider SDKs,
+agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the Agent Harness preview development branch.
 

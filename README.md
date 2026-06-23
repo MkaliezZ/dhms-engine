@@ -8,8 +8,9 @@ Agents before they touch the real world.
 DHMS began as memory/context/tool-state perturbation testing. That original
 goal remains included, and the Agent Harness branch now extends DHMS into a
 deterministic agent execution safety and control kernel for dry-run boundaries,
-tool-state evidence, SQL safety probes, and no-side-effect validation before
-agents touch real tools, accounts, data, or workflows.
+tool-state evidence, SQL safety probes, controlled runtime execution
+boundaries, and no-side-effect validation before agents touch real tools,
+accounts, data, or workflows.
 
 Traditional AI evals ask whether a model gives the right answer. DHMS asks
 whether an Agent will cross the line under pressure.
@@ -21,10 +22,10 @@ Status: DHMS Agent Harness v1 is an evidence-sealed prototype of a deterministic
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.5.5 First Runtime Dry-Run Loop`.
-* Latest commit: `b333b376c391b5e0daaf50c434ed893fa96f1e84`.
-* Next planned milestone: `v0.5.6 Runtime Execution Gate Stub`.
-* Status: Execution Runtime Layer dry-run control flow is active in stub form.
+* Current milestone: `v0.5.15 First Actual Controlled Runtime-Path SQL Sandbox Release`.
+* Latest commit: `cae2ec801985de2c72ace3d325c25414e34ed4bd`.
+* Next planned milestone: `READY_FOR_V0_5_17_RUNTIME_EXECUTION_POLICY_FREEZE`.
+* Status: v0.5.16 result review and freeze documentation records the first verified controlled runtime-path execution.
 
 ## Architecture at a Glance
 
@@ -76,7 +77,8 @@ Why this architecture matters:
 * Optional LLM Judge posture: default OFF; no external judge is required.
 * OpenClaw + DeepSeek dry-run pilot evidence documented for limited gates.
 * v0.5 runtime dry-run stubs for request intake, tool-call interception, SQL
-  safety routing, runtime decisions, and final dry-run traces.
+  safety routing, runtime decisions, final dry-run traces, execution gate and
+  bridge controls, and one verified controlled runtime-path SQL sandbox release.
 
 ## Real Validation Evidence
 
@@ -241,9 +243,11 @@ python3 validation/run_sql_safety_temp_sqlite_mutation_block_test.py
 
 ## Execution Runtime Layer v0.5
 
-DHMS has moved from SQL safety validation into execution runtime dry-run
-control flow. The runtime layer is still dry-run only: no tool execution occurs
-and no SDK or tool owns execution policy.
+DHMS has moved from SQL safety validation into execution runtime control flow.
+v0.5.15 completed the first verified controlled runtime-path execution: one
+fully authorized SQL SELECT was released into a temporary local SQLite sandbox.
+This does not replace DHMS's original perturbation-testing goal; it extends that
+goal into runtime execution control.
 
 Completed v0.5 runtime milestones:
 
@@ -253,8 +257,18 @@ Completed v0.5 runtime milestones:
 * v0.5.3 SQL Safety Module Mounted into Runtime Stub.
 * v0.5.4 OpenClaw Evaluation Wrapper Runtime Adaptation Review.
 * v0.5.5 First Runtime Dry-Run Loop.
+* v0.5.6 Runtime Execution Gate Stub.
+* v0.5.7 SQL Sandbox Runtime Bridge Plan.
+* v0.5.8 SQL Sandbox Runtime Bridge Stub.
+* v0.5.9 SQL Sandbox Runtime Bridge First Held Release Review.
+* v0.5.10 SQL Sandbox Runtime Bridge First Controlled Release Plan.
+* v0.5.11 SQL Sandbox Runtime Bridge First Controlled Release Stub.
+* v0.5.12 SQL Sandbox Runtime Bridge Actual Release Authorization Review.
+* v0.5.13 SQL Sandbox Runtime First Actual Release Boundary Plan.
+* v0.5.14 SQL Sandbox Runtime First Actual Release Boundary Stub.
+* v0.5.15 First Actual Controlled Runtime-Path SQL Sandbox Release.
 
-v0.5.5 connects:
+v0.5.15 connects:
 
 ```text
 runtime request
@@ -263,35 +277,47 @@ runtime request
 -> DHMS handoff
 -> SQL safety mount decision
 -> runtime decision
--> final dry-run trace
+-> execution gate
+-> SQL sandbox runtime bridge
+-> held release review
+-> controlled release authorization
+-> actual release boundary
+-> temporary local SQLite sandbox result trace
 ```
 
-### v0.5.5 Proof Summary
+### v0.5.15 Proof Summary
 
-The deterministic dry-run loop shows:
+The deterministic controlled release shows:
 
-* SQL mutation request routes to `BLOCK`.
-* SQL SELECT-only request routes to `SANDBOX`.
-* OpenClaw runtime request routes to `BLOCK` because the runtime adapter is not
-  implemented.
-* Future API request routes to `BLOCK`.
-* Unknown or malformed tool request routes to `BLOCK`.
-* All execution flags remain false.
+* First actual controlled runtime-path execution completed.
+* Exactly one SQL execution occurred.
+* Only the exact allowlisted SELECT executed:
+  `SELECT id, label, status FROM toy_accounts ORDER BY id;`
+* Execution used a temporary local SQLite sandbox only.
+* Dataset was deterministic synthetic toy data only.
+* Mutation detection passed.
+* Sandbox teardown and deletion verification passed.
+* Rejected inputs remained non-executing.
 
-What is proven under this runtime dry-run scope:
+What is proven under this controlled runtime scope:
 
 * A runtime request can enter the DHMS control flow.
-* Tool calls can be intercepted before execution.
-* SQL proposals can be routed into the SQL Safety runtime mount.
-* DHMS can produce runtime decisions without executing tools.
-* Final dry-run traces are generated.
-* DHMS remains the final execution decision owner.
+* A SQL proposal can be intercepted and routed into the SQL Safety runtime mount.
+* A runtime decision can produce `SANDBOX`.
+* The execution gate and bridge chain can hold release until authorization.
+* Only a fully authorized candidate can be released.
+* Controlled sandbox execution can run the exact allowlisted SELECT.
+* Mutation detection and teardown verification can complete successfully.
+* DHMS retains final execution ownership.
 
 What is not claimed:
 
-* Not real runtime tool execution.
-* Not SQL execution from the runtime path.
-* Not SQL sandbox execution from the runtime path.
+* Not arbitrary SQL execution.
+* Not mutation SQL execution.
+* Not production DB safety.
+* Not user-data safety.
+* Not credentialed DB execution.
+* Not network DB execution.
 * Not OpenClaw runtime integration.
 * Not DeepSeek/provider integration.
 * Not provider SDK integration.
@@ -299,14 +325,17 @@ What is not claimed:
 * Not an HTTP adapter.
 * Not full-suite validation.
 * Not production runner integration.
+* Not production-ready SQL agent runtime.
 
 ### Runtime No SDK / Black-box Boundary
 
 DHMS does not depend on provider SDKs or agent SDKs as policy owners.
 Tools and SDKs may only become backend executors after DHMS approval in future
 phases. DHMS validates observable request, proposal, decision, trace,
-execution result, and external state. DHMS does not claim hidden reasoning
-inspection.
+execution result, sandbox result, and external state. No provider SDK, agent
+SDK, external service SDK, production DB SDK, or network DB client owns policy.
+Only Python standard-library `sqlite3` was used for temporary local SQLite
+sandbox execution. DHMS does not claim hidden reasoning inspection.
 
 ### Runtime Quick Validation
 
@@ -315,6 +344,13 @@ python3 validation/run_execution_runtime_contract_stub.py
 python3 validation/run_tool_call_interceptor_stub.py
 python3 validation/run_sql_safety_runtime_mount_stub.py
 python3 validation/run_runtime_dry_run_loop_stub.py
+python3 validation/run_runtime_execution_gate_stub.py
+python3 validation/run_sql_sandbox_runtime_bridge_stub.py
+python3 validation/run_sql_sandbox_runtime_bridge_first_held_release_review.py
+python3 validation/run_sql_sandbox_runtime_bridge_first_controlled_release_stub.py
+python3 validation/run_sql_sandbox_runtime_bridge_actual_release_authorization_review.py
+python3 validation/run_sql_sandbox_runtime_first_actual_release_boundary_stub.py
+python3 validation/run_sql_sandbox_runtime_first_actual_controlled_release.py
 ```
 
 ## What DHMS Is NOT
@@ -385,10 +421,12 @@ schema/report changes.
   DeepSeek, provider, or full-suite integration.
 * SQL Safety v0.4 does not use production databases, user data, production data,
   database credentials, provider SDKs, agent SDKs, or network DB clients.
-* v0.5.5 is runtime dry-run control flow only; it does not execute tools.
-* v0.5.5 does not execute SQL from the runtime path and does not call SQL
-  sandbox execution from the runtime path.
-* v0.5.5 does not implement OpenClaw runtime integration, DeepSeek/provider
+* v0.5.15 executed exactly one runtime-path SQL statement: the allowlisted
+  synthetic SELECT in a temporary local SQLite sandbox.
+* v0.5.15 does not enable arbitrary SQL, mutation SQL, production DB access,
+  user data, credentials, network DBs, persistent DBs, or production SQL agent
+  runtime support.
+* v0.5.15 does not implement OpenClaw runtime integration, DeepSeek/provider
   integration, provider SDK integration, agent SDK integration, HTTP adapter,
   production runner integration, or full-suite validation.
 * Not production certification.
@@ -422,6 +460,8 @@ schema/report changes.
 * [SQL Safety temp SQLite SELECT-only first real run](docs/sql_safety_temp_sqlite_select_only_first_real_run_log.md)
 * [SQL Safety temp SQLite mutation block test](docs/sql_safety_temp_sqlite_mutation_block_test_log.md)
 * [v0.5.5 Runtime dry-run loop stub log](docs/runtime_dry_run_loop_stub_log_v0_5_5.md)
+* [v0.5.15 First actual controlled SQL sandbox release](docs/sql_sandbox_runtime_first_actual_controlled_release_log_v0_5_15.md)
+* [v0.5.16 First actual release result review and freeze](docs/sql_sandbox_runtime_first_actual_release_result_review_and_freeze_v0_5_16.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

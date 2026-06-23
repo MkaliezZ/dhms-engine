@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.7.2 Risk-Tiered Fuse Policy Draft`
+* Current package milestone: `v0.7.3 Landscape / Comparison Doc`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -81,6 +81,7 @@ SELECT id, label, status FROM toy_accounts ORDER BY id;
 * agent SDK vs policy owner
 * sandbox vs controlled release
 * define boundaries without attacking competitors
+* current/completed conceptual comparison in v0.7.3
 
 ### v0.7.4 Contribution Guide / Case Format
 
@@ -161,4 +162,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V0_7_3_LANDSCAPE_COMPARISON_DOC`
+`READY_FOR_V0_7_4_CONTRIBUTION_GUIDE_CASE_FORMAT`

@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced through v0.7.2: the public DHMS AgentFuse protocol package now includes the DHMS Risk-Tiered Fuse Policy Draft.
+Status: DHMS Agent Harness v1 has advanced through v0.7.3: the public DHMS AgentFuse protocol package now includes the DHMS Landscape / Comparison Doc.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.7.2 Risk-Tiered Fuse Policy Draft`.
-* Previous milestone: `v0.7.1 Protocol Examples`.
+* Current milestone: `v0.7.3 Landscape / Comparison Doc`.
+* Previous milestone: `v0.7.2 Risk-Tiered Fuse Policy Draft`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.7.3 Landscape / Comparison Doc`.
-* Status: v0.7.2 defines the DHMS Risk-Tiered Fuse Policy Draft: low-risk actions may use fast paths, high-risk actions require hold/sandbox/review/block behavior, and read-only is not treated as automatically safe. This phase is design-only and does not add execution capability.
+* Next recommended milestone: `v0.7.4 Contribution Guide / Case Format`.
+* Status: v0.7.3 clarifies the DHMS landscape position: MCP connects tools; DHMS controls execution boundaries. The comparison is conceptual, complementary, and does not claim DHMS replaces MCP, guardrails, agent SDKs, sandboxes, observability, or human approval workflows.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -492,6 +492,15 @@ while high-risk actions require hold, sandbox, review, block, or fail-closed
 behavior. Read-only is not treated as automatically safe. This phase is
 design-only and does not add execution capability.
 
+### DHMS Landscape / Comparison Doc v0.7.3
+
+v0.7.3 clarifies DHMS's landscape position:
+[DHMS Landscape / Comparison Doc v0.7.3](docs/dhms_landscape_comparison_v0_7_3.md).
+
+MCP connects tools; DHMS controls execution boundaries. The comparison is
+conceptual, complementary, and does not claim DHMS replaces MCP, guardrails,
+agent SDKs, sandboxes, observability, or human approval workflows.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -685,6 +694,7 @@ schema/report changes.
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [v0.7.1 DHMS AgentFuse Protocol Examples](docs/dhms_agentfuse_protocol_examples_v0_7_1.md)
 * [v0.7.2 DHMS Risk-Tiered Fuse Policy Draft](docs/dhms_risk_tiered_fuse_policy_v0_7_2.md)
+* [v0.7.3 DHMS Landscape / Comparison Doc](docs/dhms_landscape_comparison_v0_7_3.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

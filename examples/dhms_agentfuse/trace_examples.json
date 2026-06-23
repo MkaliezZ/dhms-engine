@@ -1,0 +1,147 @@
+{
+  "protocol_version": "v0.6.0",
+  "tool_family": "DHMS AgentFuse",
+  "trace_examples": [
+    {
+      "example_id": "sql_fuse_allowlisted_candidate_held",
+      "runtime_request": {
+        "request_id": "example_request_sql_fuse_allowlisted_candidate",
+        "source": "dhms_agentfuse_protocol_example",
+        "intent_summary": "Review allowlisted SQL candidate without execution",
+        "raw_event": {
+          "event_type": "tool_call_proposal",
+          "observed_only": true
+        },
+        "metadata": {
+          "example_id": "sql_fuse_allowlisted_candidate_held"
+        }
+      },
+      "tool_call_proposal": {
+        "proposal_id": "example_proposal_sql_fuse_allowlisted_candidate",
+        "request_id": "example_request_sql_fuse_allowlisted_candidate",
+        "tool_name": "sql.query",
+        "tool_type": "SQL",
+        "requested_effect": "read_sandbox_candidate",
+        "payload": {
+          "sql": "SELECT id, label, status FROM toy_accounts ORDER BY id;"
+        },
+        "metadata": {
+          "example_id": "sql_fuse_allowlisted_candidate_held"
+        }
+      },
+      "safety_decision": {
+        "decision": "ALLOWLIST_CANDIDATE_HELD",
+        "reason": "exact_allowlisted_sql_candidate_held_for_review",
+        "release_eligible": true,
+        "direct_execution_allowed": false
+      },
+      "execution_gate_decision": {
+        "gate_state": "HELD_FOR_SANDBOX_BRIDGE",
+        "reason": "candidate_requires_existing_dhms_controlled_release_chain",
+        "execution_allowed": false,
+        "requires_review": true
+      },
+      "agentfuse_trace": {
+        "trace_id": "example_trace_sql_fuse_allowlisted_candidate",
+        "executed": false,
+        "execution_result": null,
+        "protocol_version": "v0.6.0",
+        "tool_family": "DHMS AgentFuse"
+      }
+    },
+    {
+      "example_id": "sql_mutation_blocked",
+      "runtime_request": {
+        "request_id": "example_request_sql_mutation_blocked",
+        "source": "dhms_agentfuse_protocol_example",
+        "intent_summary": "Review mutation SQL proposal without execution",
+        "raw_event": {
+          "event_type": "tool_call_proposal",
+          "observed_only": true
+        },
+        "metadata": {
+          "example_id": "sql_mutation_blocked"
+        }
+      },
+      "tool_call_proposal": {
+        "proposal_id": "example_proposal_sql_mutation_blocked",
+        "request_id": "example_request_sql_mutation_blocked",
+        "tool_name": "sql.query",
+        "tool_type": "SQL",
+        "requested_effect": "write_database",
+        "payload": {
+          "sql": "DELETE FROM toy_accounts WHERE id = 1;"
+        },
+        "metadata": {
+          "example_id": "sql_mutation_blocked"
+        }
+      },
+      "safety_decision": {
+        "decision": "BLOCK",
+        "reason": "mutation_like_sql_is_not_release_eligible",
+        "release_eligible": false,
+        "direct_execution_allowed": false
+      },
+      "execution_gate_decision": {
+        "gate_state": "CLOSED",
+        "reason": "blocked_before_execution",
+        "execution_allowed": false,
+        "requires_review": false
+      },
+      "agentfuse_trace": {
+        "trace_id": "example_trace_sql_mutation_blocked",
+        "executed": false,
+        "execution_result": null,
+        "protocol_version": "v0.6.0",
+        "tool_family": "DHMS AgentFuse"
+      }
+    },
+    {
+      "example_id": "unsupported_non_sql_blocked_or_fail_closed",
+      "runtime_request": {
+        "request_id": "example_request_unsupported_non_sql",
+        "source": "dhms_agentfuse_protocol_example",
+        "intent_summary": "Review unsupported non-SQL proposal without execution",
+        "raw_event": {
+          "event_type": "tool_call_proposal",
+          "observed_only": true
+        },
+        "metadata": {
+          "example_id": "unsupported_non_sql_blocked_or_fail_closed"
+        }
+      },
+      "tool_call_proposal": {
+        "proposal_id": "example_proposal_unsupported_non_sql",
+        "request_id": "example_request_unsupported_non_sql",
+        "tool_name": "openclaw.runtime",
+        "tool_type": "OPENCLAW",
+        "requested_effect": "external_runtime_action",
+        "payload": {
+          "action": "inert unsupported proposal"
+        },
+        "metadata": {
+          "example_id": "unsupported_non_sql_blocked_or_fail_closed"
+        }
+      },
+      "safety_decision": {
+        "decision": "BLOCK",
+        "reason": "unsupported_non_sql_tool_family",
+        "release_eligible": false,
+        "direct_execution_allowed": false
+      },
+      "execution_gate_decision": {
+        "gate_state": "CLOSED",
+        "reason": "blocked_before_execution",
+        "execution_allowed": false,
+        "requires_review": false
+      },
+      "agentfuse_trace": {
+        "trace_id": "example_trace_unsupported_non_sql",
+        "executed": false,
+        "execution_result": null,
+        "protocol_version": "v0.6.0",
+        "tool_family": "DHMS AgentFuse"
+      }
+    }
+  ]
+}

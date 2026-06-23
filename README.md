@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced through v0.7.0: the completed v0.6 protocol, benchmark, CLI demo, and minimal API skeleton are now packaged into a public-facing DHMS AgentFuse protocol package.
+Status: DHMS Agent Harness v1 has advanced through v0.7.1: the public DHMS AgentFuse protocol package now includes non-executing protocol examples for held, blocked, unsupported, and trace-reading flows.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.7.0 Public Protocol Package`.
-* Previous milestone: `v0.6.3 DHMS AgentFuse Minimal API / Adapter Skeleton`.
+* Current milestone: `v0.7.1 Protocol Examples`.
+* Previous milestone: `v0.7.0 Public Protocol Package`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.7.1 Protocol Examples`.
-* Status: v0.7.0 packages the completed v0.6 protocol, benchmark, CLI demo, and minimal API skeleton into a public-facing DHMS AgentFuse protocol package. It does not add execution capability.
+* Next recommended milestone: `v0.7.2 Risk-Tiered Fuse Policy Draft`.
+* Status: v0.7.1 adds non-executing DHMS AgentFuse protocol examples for SQL held, SQL blocked, unsupported non-SQL blocked/fail-closed, and trace object reading.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -464,6 +464,24 @@ Package index:
 Roadmap:
 [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md).
 
+### DHMS AgentFuse Protocol Examples v0.7.1
+
+v0.7.1 adds non-executing DHMS AgentFuse protocol examples for SQL held, SQL
+blocked, unsupported non-SQL blocked/fail-closed, and trace object reading:
+[DHMS AgentFuse Protocol Examples v0.7.1](docs/dhms_agentfuse_protocol_examples_v0_7_1.md).
+
+Quick examples smoke command:
+
+```bash
+python3 validation/run_dhms_agentfuse_protocol_examples_smoke.py
+```
+
+The examples demonstrate runtime requests, tool-call proposals, safety
+decisions, execution gate decisions, and AgentFuse traces. They do not execute
+SQL, create SQLite databases, create sandbox files, invoke OpenClaw, invoke
+DeepSeek, use provider SDKs, use agent SDKs, use HTTP/network clients, or add
+file, shell, MCP, or production database adapters.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -608,6 +626,10 @@ schema/report changes.
   execution capability, expand the SQL allowlist, implement adapters, execute
   SQL, create SQLite databases, or add file, shell, HTTP, MCP, OpenClaw,
   provider SDK, agent SDK, or arbitrary SQL policy.
+* v0.7.1 adds non-executing protocol examples. It does not add execution
+  capability, expand the SQL allowlist, implement adapters, execute SQL, create
+  SQLite databases, create sandbox files, or add file, shell, HTTP, MCP,
+  OpenClaw, provider SDK, agent SDK, or arbitrary SQL policy.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -648,6 +670,7 @@ schema/report changes.
 * [v0.6.3 DHMS AgentFuse Minimal API / Adapter Skeleton](docs/dhms_agentfuse_minimal_api_adapter_skeleton_v0_6_3.md)
 * [v0.7.0 DHMS AgentFuse Public Protocol Package](docs/dhms_agentfuse_protocol_package_index_v0_7_0.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
+* [v0.7.1 DHMS AgentFuse Protocol Examples](docs/dhms_agentfuse_protocol_examples_v0_7_1.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

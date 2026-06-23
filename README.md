@@ -38,7 +38,7 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced into the v0.6.0 Execution Fuse Protocol line, with the v0.5 SQL Sandbox Execution Fuse as the first proven controlled-release implementation.
+Status: DHMS Agent Harness v1 has advanced through v0.6.2: v0.6.0 defines the Execution Fuse Protocol, v0.6.1 adds the SQL benchmark, and v0.6.2 adds the non-executing SQL Fuse demo CLI.
 
 ## Current Status
 
@@ -49,6 +49,28 @@ Status: DHMS Agent Harness v1 has advanced into the v0.6.0 Execution Fuse Protoc
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
 * Next recommended milestone: `v0.6.3 Minimal API / Adapter Skeleton`.
 * Status: v0.6.2 adds a non-executing SQL Fuse demo CLI that wraps the v0.6.1 benchmark without adding new execution capability.
+
+## Quickstart: SQL Fuse Demo
+
+Run the non-executing SQL Fuse demo:
+
+```bash
+python3 cli.py demo-sql-fuse
+```
+
+Expected result:
+
+```text
+SQL_FUSE_DEMO_PASS
+cases_total=7
+cases_passed=7
+release_eligible_count=1
+blocked_or_fail_closed_count=6
+sql_executed_by_benchmark_count=0
+sqlite_database_created_by_benchmark_count=0
+```
+
+This demo does not execute SQL. It wraps the v0.6.1 benchmark and links back to the v0.5.15 controlled sandbox release proof.
 
 ## Architecture at a Glance
 

@@ -42,6 +42,7 @@ Core public materials:
 * File Fuse constrained temp-directory proof planning: [`docs/dhms_file_fuse_constrained_temp_directory_proof_planning_v0_8_4.md`](dhms_file_fuse_constrained_temp_directory_proof_planning_v0_8_4.md)
 * File Fuse constrained temp-directory proof result: [`docs/dhms_file_fuse_constrained_temp_directory_proof_result_v0_8_4_1.md`](dhms_file_fuse_constrained_temp_directory_proof_result_v0_8_4_1.md)
 * File Fuse constrained temp-directory proof runner: [`validation/run_dhms_file_fuse_constrained_temp_directory_proof.py`](../validation/run_dhms_file_fuse_constrained_temp_directory_proof.py)
+* File Operation Safety Fuse result review and freeze: [`docs/dhms_file_operation_safety_fuse_result_review_and_freeze_v0_8_5.md`](dhms_file_operation_safety_fuse_result_review_and_freeze_v0_8_5.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -97,6 +98,10 @@ v0.8.4.1 implements an explicitly approved constrained temp-directory proof.
 It performs only synthetic read/write operations inside a disposable temp root
 and verifies cleanup. It does not add arbitrary file operation support or a
 file adapter.
+
+v0.8.5 reviews and freezes the File Operation Safety Fuse evidence chain from
+v0.8.0 through v0.8.4.1. It adds no new capability and keeps the frozen claim
+limited to the constrained temp-directory proof result.
 
 ## Reproducible Commands
 
@@ -196,6 +201,7 @@ v0.7.0 does not claim:
 * v0.8.3 Non-Executing File Fuse Examples
 * v0.8.4 Constrained Temp-Directory Proof Planning
 * v0.8.4.1 Constrained Temp-Directory Proof Implementation
+* v0.8.5 File Operation Safety Fuse Result Review and Freeze
 
 Final document verdict:
 

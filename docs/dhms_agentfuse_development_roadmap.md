@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.8.4.1 Constrained Temp-Directory Proof Implementation`
+* Current package milestone: `v0.8.5 File Operation Safety Fuse Result Review and Freeze`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -115,7 +115,7 @@ should still avoid uncontrolled real-world side effects.
 
 Next direction:
 
-`v0.8.5 File Operation Safety Fuse Result Review and Freeze`
+`Next DHMS proof line planning`
 
 ## v0.8 File Operation Safety Fuse Plan
 
@@ -168,9 +168,10 @@ Next direction:
 
 ### v0.8.5 Result Review and Freeze
 
-* review any explicitly approved future proof result
+* review the v0.8 File Operation Safety Fuse evidence chain
 * freeze claims and not-claimed boundaries
 * preserve no uncontrolled real-world side effects principle
+* current/completed File Operation Safety Fuse result review and freeze milestone in v0.8.5
 
 ## Development Prompt Pattern
 
@@ -225,4 +226,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V0_8_5_FILE_OPERATION_SAFETY_FUSE_RESULT_REVIEW_AND_FREEZE`
+`READY_FOR_NEXT_DHMS_PROOF_LINE_PLANNING`

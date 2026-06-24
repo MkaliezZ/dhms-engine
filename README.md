@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.8.4.1: the File Operation Safety Fuse now has an explicitly approved constrained temp-directory proof.
+Status: DHMS Agent Harness v1 has advanced to v0.8.5: the File Operation Safety Fuse evidence chain has been reviewed and frozen.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.8.4.1 Constrained Temp-Directory Proof Implementation`.
-* Previous milestone: `v0.8.4 Constrained Temp-Directory Proof Planning`.
+* Current milestone: `v0.8.5 File Operation Safety Fuse Result Review and Freeze`.
+* Previous milestone: `v0.8.4.1 Constrained Temp-Directory Proof Implementation`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.8.5 File Operation Safety Fuse Result Review and Freeze`.
-* Status: v0.8.4.1 implements an explicitly approved constrained temp-directory proof. It performs two synthetic file operations inside a disposable temp root, verifies cleanup, and keeps rejected paths unopened and unresolved.
+* Next recommended milestone: `Next DHMS proof line planning`.
+* Status: v0.8.5 reviews and freezes the File Operation Safety Fuse evidence chain from v0.8.0 through v0.8.4.1. The frozen claim remains limited to a constrained temp-directory proof, not arbitrary file operation support.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -612,6 +612,15 @@ The proof performs two synthetic file operations inside a disposable temp
 root, verifies cleanup, and keeps rejected paths unopened and unresolved. It
 does not add arbitrary file operation support or a file adapter.
 
+### DHMS File Operation Safety Fuse Result Review and Freeze v0.8.5
+
+v0.8.5 reviews and freezes the File Operation Safety Fuse evidence chain:
+[DHMS File Operation Safety Fuse Result Review and Freeze v0.8.5](docs/dhms_file_operation_safety_fuse_result_review_and_freeze_v0_8_5.md).
+
+The freeze confirms the v0.8.4.1 proof metrics, clarifies that
+`authorization_gate_confirmed=true` is process-level approval evidence, and
+keeps the claim limited to the constrained temp-directory proof.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -800,6 +809,9 @@ schema/report changes.
   a disposable temp root, verifies cleanup, keeps rejected paths unopened and
   unresolved, and does not add arbitrary file operation support, a file
   adapter, production file-system safety, or production runtime behavior.
+* v0.8.5 reviews and freezes the File Operation Safety Fuse evidence chain. It
+  adds no new capability and keeps v0.8 claims limited to the constrained
+  temp-directory proof result.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -858,6 +870,7 @@ schema/report changes.
 * [v0.8.4 DHMS File Fuse Constrained Temp-Directory Proof Planning](docs/dhms_file_fuse_constrained_temp_directory_proof_planning_v0_8_4.md)
 * [v0.8.4.1 DHMS File Fuse Constrained Temp-Directory Proof Result](docs/dhms_file_fuse_constrained_temp_directory_proof_result_v0_8_4_1.md)
 * [File Fuse constrained temp-directory proof runner](validation/run_dhms_file_fuse_constrained_temp_directory_proof.py)
+* [v0.8.5 DHMS File Operation Safety Fuse Result Review and Freeze](docs/dhms_file_operation_safety_fuse_result_review_and_freeze_v0_8_5.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

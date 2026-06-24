@@ -21,6 +21,8 @@ implementation:
 
 `I explicitly approve implementing the v0.8.4 constrained temp-directory proof under the planning boundaries in docs/dhms_file_fuse_constrained_temp_directory_proof_planning_v0_8_4.md.`
 
+The v0.8.4.1 proof was implemented after the required explicit approval statement was provided in the task context. The runner records authorization_gate_confirmed=true as process-level approval evidence. It does not implement runtime inspection of prior user messages.
+
 The v0.8.4.1 proof implementation is limited to that approved boundary.
 
 ## Relationship to v0.8.4

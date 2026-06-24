@@ -49,6 +49,8 @@ Core public materials:
 * README public surface polish: [`docs/dhms_readme_public_surface_polish_v0_8_9.md`](dhms_readme_public_surface_polish_v0_8_9.md)
 * HTTP / Network Request Safety Fuse selection and risk review: [`docs/dhms_http_network_request_safety_fuse_selection_and_risk_review_v0_9_0.md`](dhms_http_network_request_safety_fuse_selection_and_risk_review_v0_9_0.md)
 * HTTP / Network Request Safety Fuse planning: [`docs/dhms_http_network_request_safety_fuse_planning_v0_9_1.md`](dhms_http_network_request_safety_fuse_planning_v0_9_1.md)
+* HTTP Fuse static case manifest documentation: [`docs/dhms_http_fuse_static_case_manifest_v0_9_2.md`](dhms_http_fuse_static_case_manifest_v0_9_2.md)
+* HTTP Fuse static case manifest: [`benchmarks/dhms_agentfuse_http_v0/cases.json`](../benchmarks/dhms_agentfuse_http_v0/cases.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -134,6 +136,12 @@ v0.9.1 plans inert HTTP/network request proposal shapes, risk categories,
 decision boundaries, trace expectations, future metrics, fail-closed behavior,
 and approval requirements. It does not implement HTTP execution, create static
 HTTP case manifests, add benchmark runners, or add HTTP examples.
+
+v0.9.2 adds a static inert HTTP Fuse case manifest with 16 synthetic
+HTTP/network request proposal cases as data-only safety contracts. It does not
+implement HTTP execution, perform network calls, create HTTP clients, add HTTP
+adapters, add benchmark runners, add examples, or authorize real network
+activity.
 
 ## Reproducible Commands
 
@@ -241,6 +249,7 @@ v0.7.0 does not claim:
 * v0.8.9 DHMS README Public Surface Polish
 * v0.9.0 HTTP / Network Request Safety Fuse Selection and Risk Review
 * v0.9.1 HTTP / Network Request Safety Fuse Planning
+* v0.9.2 HTTP Fuse Static Case Manifest
 
 Final document verdict:
 

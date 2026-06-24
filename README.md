@@ -38,18 +38,18 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.9.1: HTTP / Network Request Safety Fuse planning defines inert proposal shapes, risk categories, decision boundaries, trace expectations, and approval requirements without implementing HTTP execution.
+Status: DHMS Agent Harness v1 has advanced to v0.9.2: HTTP Fuse static inert case manifest is added as data-only safety contracts without HTTP execution or network calls.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.9.1 HTTP / Network Request Safety Fuse Planning`.
-* Previous milestone: `v0.9.0 HTTP / Network Request Safety Fuse Selection and Risk Review`.
+* Current milestone: `v0.9.2 HTTP Fuse Static Case Manifest`.
+* Previous milestone: `v0.9.1 HTTP / Network Request Safety Fuse Planning`.
 * Proven lines: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`.
 * Selected next proof line: `HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.9.2 HTTP Fuse Static Case Manifest`.
-* Status: v0.9.1 plans HTTP/network request proposal modeling only. HTTP follows the File Fuse staged strategy first: planning, static inert cases, non-executing benchmark, examples, and freeze. It does not implement HTTP execution, network calls, API clients, HTTP adapters, MCP integration, provider SDK integration, agent SDK integration, or arbitrary tool execution.
+* Next recommended milestone: `v0.9.3 Non-Executing HTTP Fuse Benchmark`.
+* Status: v0.9.2 adds a static inert HTTP case manifest with 16 synthetic data-only safety contracts. It does not implement HTTP execution, perform network calls, add HTTP clients, add HTTP adapters, add benchmark runners, add examples, or authorize real network activity.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -751,6 +751,20 @@ calls, add API clients, add HTTP adapters, create a static HTTP case manifest,
 add an HTTP benchmark runner, or add HTTP examples. v0.9.2 should create the
 static inert HTTP case manifest.
 
+## DHMS HTTP Fuse Static Case Manifest v0.9.2
+
+v0.9.2 adds a static inert HTTP case manifest:
+[DHMS HTTP Fuse Static Case Manifest v0.9.2](docs/dhms_http_fuse_static_case_manifest_v0_9_2.md)
+and
+[HTTP Fuse static cases](benchmarks/dhms_agentfuse_http_v0/cases.json).
+
+The manifest contains 16 synthetic HTTP/network request proposal cases as
+data-only safety contracts. It records expected decisions for inert analysis,
+hold-for-review, blocked, and fail-closed paths. It does not implement HTTP
+execution, perform network calls, create HTTP clients, add HTTP adapters, add
+benchmark runners, add examples, handle credentials, or authorize real network
+activity. v0.9.3 should add the non-executing HTTP Fuse benchmark runner.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -967,6 +981,10 @@ schema/report changes.
   perform real network calls, add a static HTTP manifest, add an HTTP benchmark
   runner, add HTTP examples, add API clients, add HTTP adapters, or add
   credential handling.
+* v0.9.2 adds a static inert HTTP Fuse case manifest. It does not implement
+  HTTP execution, perform network calls, create HTTP clients, add HTTP
+  adapters, add benchmark runners, add examples, handle credentials, integrate
+  MCP/provider/agent SDKs, or authorize real network activity.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1036,6 +1054,8 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v0.8.9 DHMS README Public Surface Polish](docs/dhms_readme_public_surface_polish_v0_8_9.md)
 * [v0.9.0 DHMS HTTP / Network Request Safety Fuse Selection and Risk Review](docs/dhms_http_network_request_safety_fuse_selection_and_risk_review_v0_9_0.md)
 * [v0.9.1 DHMS HTTP / Network Request Safety Fuse Planning](docs/dhms_http_network_request_safety_fuse_planning_v0_9_1.md)
+* [v0.9.2 DHMS HTTP Fuse Static Case Manifest](docs/dhms_http_fuse_static_case_manifest_v0_9_2.md)
+* [HTTP Fuse static cases](benchmarks/dhms_agentfuse_http_v0/cases.json)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

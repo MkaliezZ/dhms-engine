@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.9.1 HTTP / Network Request Safety Fuse Planning`
+* Current package milestone: `v0.9.2 HTTP Fuse Static Case Manifest`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -115,7 +115,7 @@ should still avoid uncontrolled real-world side effects.
 
 Next direction:
 
-`v0.9.2 HTTP Fuse Static Case Manifest`
+`v0.9.3 Non-Executing HTTP Fuse Benchmark`
 
 ## v0.8 File Operation Safety Fuse Plan
 
@@ -237,6 +237,8 @@ Next direction:
 * define static HTTP/network request safety cases
 * treat URLs, headers, bodies, methods, and credentials as inert data
 * do not perform network calls
+* add exactly 16 synthetic HTTP/network request proposal cases
+* current/completed static inert HTTP case manifest milestone in v0.9.2
 
 ### v0.9.3 Non-Executing HTTP Fuse Benchmark
 

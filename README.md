@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.9.8: the SQL, File, and HTTP proof-line evidence presentation is aligned before the v0.10 line.
+Status: DHMS Agent Harness v1 has advanced to v0.10.0: the Mock Agent Runtime Interception Proof line is planned for SQL/File/HTTP tool-call proposals only.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.9.8 SQL/File/HTTP Evidence Alignment`.
-* Previous milestone: `v0.9.7 HTTP Fuse CLI Demo Wrapper`.
+* Current milestone: `v0.10.0 Agent Runtime Interception Proof Planning`.
+* Previous milestone: `v0.9.8 SQL/File/HTTP Evidence Alignment`.
 * Aligned proof-line evidence: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`; `v0.9 HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.9.8 GitHub Release before v0.10.0`.
-* Status: v0.9.8 aligns SQL, File, and HTTP evidence presentation. It adds no runner, manifest, example, CLI command, adapter, API client, credential handling, or execution behavior.
+* Next recommended milestone: `v0.10.1 Static Mock Agent Tool-Call Proposal Manifest`.
+* Status: v0.10.0 plans deterministic mock-agent runtime interception for existing SQL/File/HTTP tool-call proposals only. It is planning-only and adds no runner, manifest, examples, trace examples, CLI command, source code, integration, or execution behavior.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -161,6 +161,21 @@ interception, arbitrary SQL support, arbitrary file operation support, arbitrary
 HTTP/network support, SDK integration, MCP integration, or adapter/API-client
 support. See
 [DHMS SQL/File/HTTP Evidence Alignment v0.9.8](docs/dhms_sql_file_http_evidence_alignment_v0_9_8.md).
+
+## Mock Agent Runtime Interception Proof Planning
+
+v0.10.0 plans the Mock Agent Runtime Interception Proof line. The planned proof
+claim is that a deterministic mock agent emits SQL/File/HTTP tool-call
+proposals, DHMS intercepts them before execution, assigns safety decisions,
+applies execution gates, returns mock-agent runtime results, prevents rejected
+actions from executing, and allows approved candidates only through existing
+constrained proof paths.
+
+This milestone is planning-only. It does not add a runner, manifest, examples,
+trace examples, CLI command, source code, real agent runtime, real LLM, Codex,
+Claude, OpenClaw, DeepSeek, MCP, E2B, SDK integration, arbitrary tool execution,
+or production runtime claim. See
+[DHMS Mock Agent Runtime Interception Proof Planning v0.10.0](docs/dhms_mock_agent_runtime_interception_proof_planning_v0_10_0.md).
 
 ## Architecture at a Glance
 
@@ -936,7 +951,8 @@ python3 cli.py demo-http-fuse
 The command runs the existing non-executing HTTP benchmark and constrained
 local mock HTTP proof in order. It does not modify existing HTTP runners,
 manifests, examples, SQL/File runners, proof semantics, or execution behavior.
-v0.9.8 should align SQL, File, and HTTP evidence presentation.
+v0.9.8 aligned SQL, File, and HTTP evidence presentation. v0.10.0 plans the
+Mock Agent Runtime Interception Proof line.
 
 What is not claimed:
 
@@ -1197,6 +1213,11 @@ schema/report changes.
   v0.10 line. It is evidence documentation only and does not add runners,
   manifests, examples, CLI commands, adapters, API clients, credential handling,
   tags, GitHub Releases, or execution behavior.
+* v0.10.0 plans deterministic mock-agent runtime interception for existing
+  SQL/File/HTTP tool-call proposals only. It is planning-only and does not add
+  runners, manifests, examples, trace examples, CLI commands, source code, real
+  agent runtime, real LLM integration, MCP/E2B/OpenClaw/DeepSeek integration,
+  SDK integration, arbitrary tool execution, or production runtime claims.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1281,6 +1302,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v0.9.6 DHMS HTTP Fuse Result Review and Freeze](docs/dhms_http_fuse_result_review_and_freeze_v0_9_6.md)
 * [v0.9.7 DHMS HTTP Fuse CLI Demo Wrapper](docs/dhms_http_fuse_cli_demo_wrapper_v0_9_7.md)
 * [v0.9.8 DHMS SQL/File/HTTP Evidence Alignment](docs/dhms_sql_file_http_evidence_alignment_v0_9_8.md)
+* [v0.10.0 DHMS Mock Agent Runtime Interception Proof Planning](docs/dhms_mock_agent_runtime_interception_proof_planning_v0_10_0.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

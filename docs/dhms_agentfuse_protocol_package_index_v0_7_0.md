@@ -64,6 +64,7 @@ Core public materials:
 * HTTP Fuse result review and freeze: [`docs/dhms_http_fuse_result_review_and_freeze_v0_9_6.md`](dhms_http_fuse_result_review_and_freeze_v0_9_6.md)
 * HTTP Fuse CLI demo wrapper: [`docs/dhms_http_fuse_cli_demo_wrapper_v0_9_7.md`](dhms_http_fuse_cli_demo_wrapper_v0_9_7.md)
 * SQL/File/HTTP evidence alignment: [`docs/dhms_sql_file_http_evidence_alignment_v0_9_8.md`](dhms_sql_file_http_evidence_alignment_v0_9_8.md)
+* Mock Agent Runtime Interception Proof planning: [`docs/dhms_mock_agent_runtime_interception_proof_planning_v0_10_0.md`](dhms_mock_agent_runtime_interception_proof_planning_v0_10_0.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -204,6 +205,13 @@ inert cases plus a non-executing benchmark plus constrained local mock HTTP
 proof. It does not add runners, manifests, examples, CLI commands, adapters, or
 execution behavior.
 
+v0.10.0 plans deterministic mock-agent runtime interception for existing
+SQL/File/HTTP tool-call proposals only. It defines the mock agent boundary,
+proposal schema, interception lifecycle, v0.10.1-v0.10.5 expected scopes,
+success metrics, and frozen non-claims. It does not add a runner, manifest,
+examples, trace examples, CLI command, source code, integration, or execution
+behavior.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -323,6 +331,8 @@ v0.7.0 does not claim:
 * v0.9.7 HTTP Fuse CLI Demo Wrapper
 * v0.9.8 SQL/File/HTTP Evidence Alignment
 * v0.9.8 GitHub Release before v0.10.0
+* v0.10.0 Agent Runtime Interception Proof Planning
+* v0.10.1 Static Mock Agent Tool-Call Proposal Manifest
 
 Final document verdict:
 

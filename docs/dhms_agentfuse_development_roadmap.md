@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.9.8 SQL/File/HTTP Evidence Alignment`
+* Current package milestone: `v0.10.0 Agent Runtime Interception Proof Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -306,6 +306,16 @@ Next direction:
 * documentation/evidence-alignment only; do not modify runners, manifests, examples, CLI commands, adapters, API clients, proof semantics, tags, releases, or runtime behavior
 * current/completed SQL/File/HTTP evidence alignment milestone in v0.9.8
 * next recommended milestone: `v0.9.8 GitHub Release before v0.10.0`
+
+### v0.10.0 Agent Runtime Interception Proof Planning
+
+* plan deterministic mock-agent runtime interception for existing SQL/File/HTTP tool-call proposals only
+* define the deterministic mock agent boundary, proposal schema, DHMS interception lifecycle, protocol mapping, v0.10.1-v0.10.5 scopes, v0.10.4 success metrics, and frozen non-claims
+* allowed proposal types: SQL, File, HTTP
+* forbidden proposal types: Shell, Browser, Email, Git, Docker, E2B, MCP, Cloud, API client, real database adapter, real agent SDK, arbitrary tool execution
+* planning-only; do not add runners, manifests, examples, trace examples, CLI commands, source code, execution behavior, real LLMs, Codex/Claude/OpenClaw/DeepSeek/MCP/E2B integrations, SDK integrations, real agent runtime, real user data, or production runtime claims
+* current/completed Agent Runtime Interception Proof planning milestone in v0.10.0
+* next recommended milestone: `v0.10.1 Static Mock Agent Tool-Call Proposal Manifest`
 
 ## Development Prompt Pattern
 

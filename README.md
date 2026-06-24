@@ -38,18 +38,18 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.9.5.1: a constrained local mock HTTP proof has released exactly one approved synthetic GET to a disposable loopback-only mock target under explicit approval.
+Status: DHMS Agent Harness v1 has advanced to v0.9.6: the HTTP / Network Request Safety Fuse evidence chain is reviewed and frozen.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.9.5.1 Constrained Local Mock HTTP Proof Implementation`.
-* Previous milestone: `v0.9.5 Constrained Local Mock HTTP Proof Planning`.
+* Current milestone: `v0.9.6 HTTP Fuse Result Review and Freeze`.
+* Previous milestone: `v0.9.5.1 Constrained Local Mock HTTP Proof Implementation`.
 * Proven lines: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`.
 * Selected proof line: `HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.9.6 HTTP Fuse Result Review and Freeze`.
-* Status: v0.9.5.1 implements one constrained local mock HTTP proof under explicit approval. It releases exactly one synthetic GET to `127.0.0.1` on a disposable mock target and keeps all rejected HTTP/network proposal classes non-executing.
+* Next recommended milestone: `v0.9.7 HTTP Fuse CLI Demo Wrapper`.
+* Status: v0.9.6 reviews and freezes the HTTP Fuse evidence chain. It is documentation-only and adds no new execution behavior.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -860,6 +860,22 @@ credentials, request bodies, mutation methods, SDK/tool/browser paths,
 OpenClaw, DeepSeek, or arbitrary tools. v0.9.6 should review and freeze the
 HTTP Fuse evidence chain.
 
+## DHMS HTTP Fuse Result Review and Freeze v0.9.6
+
+v0.9.6 reviews and freezes the HTTP Fuse evidence chain:
+[DHMS HTTP Fuse Result Review and Freeze v0.9.6](docs/dhms_http_fuse_result_review_and_freeze_v0_9_6.md).
+
+The frozen chain includes static inert cases, non-executing benchmark,
+examples, lifecycle mapping, constrained local mock proof planning, and one
+constrained local mock proof. v0.9.5.1 released exactly one approved synthetic
+GET to a disposable `127.0.0.1` mock target, while all rejected HTTP/network
+proposal classes remained non-executing.
+
+No external network, DNS dependency, redirects, proxies, credentials, request
+bodies, mutation methods, SDK/tool/browser paths, OpenClaw, DeepSeek, or
+arbitrary tools were used. v0.9.6 is documentation-only. v0.9.7 should add the
+HTTP Fuse CLI demo wrapper.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -1107,6 +1123,10 @@ schema/report changes.
   and does not add general HTTP execution, external network access, HTTP
   adapter support, API client support, SDK/tool/browser paths, OpenClaw,
   DeepSeek, or arbitrary tool execution.
+* v0.9.6 reviews and freezes the HTTP Fuse evidence chain. It is
+  documentation-only and does not add execution capability, modify runners,
+  change manifests, add adapters, add API clients, add CLI commands, change
+  proof semantics, or authorize new runtime behavior.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1188,6 +1208,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v0.9.5 DHMS Constrained Local Mock HTTP Proof Planning](docs/dhms_constrained_local_mock_http_proof_planning_v0_9_5.md)
 * [v0.9.5.1 DHMS Constrained Local Mock HTTP Proof Result](docs/dhms_constrained_local_mock_http_proof_result_v0_9_5_1.md)
 * [Constrained local mock HTTP proof runner](validation/run_dhms_constrained_local_mock_http_proof.py)
+* [v0.9.6 DHMS HTTP Fuse Result Review and Freeze](docs/dhms_http_fuse_result_review_and_freeze_v0_9_6.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.9.5.1 Constrained Local Mock HTTP Proof Implementation`
+* Current package milestone: `v0.9.6 HTTP Fuse Result Review and Freeze`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -280,6 +280,14 @@ Next direction:
 * verify teardown and non-claim boundaries
 * current/completed constrained local mock HTTP proof implementation milestone in v0.9.5.1
 * next recommended milestone: `v0.9.6 HTTP Fuse Result Review and Freeze`
+
+### v0.9.6 HTTP Fuse Result Review and Freeze
+
+* review and freeze the HTTP / Network Request Safety Fuse evidence chain
+* include v0.9.0 selection, v0.9.1 planning, v0.9.2 static cases, v0.9.3 benchmark, v0.9.3.1 lifecycle mapping, v0.9.4 examples, v0.9.5 planning, and v0.9.5.1 constrained local mock proof
+* documentation-only; do not modify runners, manifests, examples, CLI commands, adapters, proof semantics, or runtime behavior
+* current/completed HTTP Fuse result review and freeze milestone in v0.9.6
+* next recommended milestone: `v0.9.7 HTTP Fuse CLI Demo Wrapper`
 
 ## Development Prompt Pattern
 

@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.10.4: the static mock-agent SQL/File/HTTP proposal manifest now has a controlled deterministic mock-agent interception proof.
+Status: DHMS Agent Harness v1 has advanced to v0.10.5: the v0.10 mock-agent runtime interception proof line is reviewed and frozen.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.10.4 Controlled Mock Agent Runtime Interception Proof`.
-* Previous milestone: `v0.10.3 Mock Agent Interception Examples and Trace Examples`.
+* Current milestone: `v0.10.5 Agent Runtime Interception Result Review and Freeze`.
+* Previous milestone: `v0.10.4 Controlled Mock Agent Runtime Interception Proof`.
 * Aligned proof-line evidence: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`; `v0.9 HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.10.5 Agent Runtime Interception Result Review and Freeze`.
-* Status: v0.10.4 adds a controlled deterministic mock-agent interception proof for exactly 9 inert SQL/File/HTTP proposals. It intercepts every proposal before execution, releases 3 constrained candidates only through existing public proof/demo commands, keeps rejected actions non-executing, and does not claim real agent runtime interception or production readiness.
+* Next recommended milestone: `v1.0 Public Evidence Package`.
+* Status: v0.10.5 reviews and freezes the v0.10 mock-agent runtime interception proof line: exactly 9 inert SQL/File/HTTP proposals, 3 constrained releases through existing public proof/demo commands, 0 rejected action executions, and 0 proposal payload direct executions. It does not claim real agent runtime interception or production readiness.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -293,6 +293,34 @@ This proof is deterministic and mock-agent-only. It does not claim real agent
 runtime interception. Constrained candidates are routed only through existing
 public SQL/File/HTTP proof/demo commands, and proposal payloads are never
 directly executed.
+
+## Agent Runtime Interception Result Review and Freeze
+
+v0.10.5 reviews and freezes the v0.10 Mock Agent Runtime Interception proof
+line:
+[DHMS Agent Runtime Interception Result Review and Freeze v0.10.5](docs/dhms_agent_runtime_interception_result_review_and_freeze_v0_10_5.md).
+
+Frozen claim:
+
+```text
+DHMS has completed a controlled deterministic mock-agent runtime interception proof for exactly 9 inert SQL/File/HTTP proposals under the v0.10 proof line.
+```
+
+Frozen evidence:
+
+```text
+tool_call_proposals_total=9
+sql_proposals_total=3
+file_proposals_total=3
+http_proposals_total=3
+controlled_release_count=3
+rejected_actions_executed_count=0
+proposal_payload_direct_executions=0
+```
+
+This freeze does not claim real agent runtime interception, real LLM execution,
+production readiness, adapter/API-client support, arbitrary tool execution, or
+production runtime behavior.
 
 ## Architecture at a Glance
 
@@ -1357,6 +1385,12 @@ schema/report changes.
   does not add new SQL/File/HTTP execution paths, real agent runtimes, real LLMs,
   MCP/E2B/OpenClaw/DeepSeek/Codex/Claude integrations, SDK integrations,
   adapters, API clients, credentials, or production runtime behavior.
+* v0.10.5 reviews and freezes the v0.10 mock-agent runtime interception proof
+  line. It freezes the controlled deterministic mock-agent proof for exactly 9
+  inert SQL/File/HTTP proposals, with 3 constrained releases through existing
+  public proof/demo commands, 0 rejected action executions, and 0 proposal
+  payload direct executions. It does not claim real agent runtime interception
+  or production readiness.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1451,6 +1485,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [Mock agent interception trace examples](examples/dhms_mock_agent_runtime_interception_v0/trace_examples.json)
 * [v0.10.4 DHMS Controlled Mock Agent Runtime Interception Proof](docs/dhms_controlled_mock_agent_runtime_interception_proof_v0_10_4.md)
 * [Controlled mock agent runtime interception proof runner](validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py)
+* [v0.10.5 DHMS Agent Runtime Interception Result Review and Freeze](docs/dhms_agent_runtime_interception_result_review_and_freeze_v0_10_5.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

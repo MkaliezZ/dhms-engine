@@ -74,6 +74,7 @@ Core public materials:
 * Mock agent interception trace examples: [`examples/dhms_mock_agent_runtime_interception_v0/trace_examples.json`](../examples/dhms_mock_agent_runtime_interception_v0/trace_examples.json)
 * Controlled mock agent runtime interception proof documentation: [`docs/dhms_controlled_mock_agent_runtime_interception_proof_v0_10_4.md`](dhms_controlled_mock_agent_runtime_interception_proof_v0_10_4.md)
 * Controlled mock agent runtime interception proof runner: [`validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py`](../validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py)
+* Agent runtime interception result review and freeze: [`docs/dhms_agent_runtime_interception_result_review_and_freeze_v0_10_5.md`](dhms_agent_runtime_interception_result_review_and_freeze_v0_10_5.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -244,6 +245,12 @@ execution, releases 3 constrained candidates only through existing public
 SQL/File/HTTP proof/demo commands, keeps rejected actions non-executing, and
 does not claim real agent runtime interception or production readiness.
 
+v0.10.5 reviews and freezes the v0.10 mock-agent runtime interception proof
+line. It freezes exactly 9 intercepted inert SQL/File/HTTP proposals, 3
+constrained releases through existing public proof/demo commands, 0 rejected
+action executions, 0 proposal payload direct executions, and no real agent
+runtime or production runtime claim.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -371,6 +378,7 @@ v0.7.0 does not claim:
 * v0.10.3 Mock Agent Interception Examples and Trace Examples
 * v0.10.4 Controlled Mock Agent Runtime Interception Proof
 * v0.10.5 Agent Runtime Interception Result Review and Freeze
+* v1.0 Public Evidence Package
 
 Final document verdict:
 

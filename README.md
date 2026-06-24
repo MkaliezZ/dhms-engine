@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.10.2: the static mock-agent SQL/File/HTTP proposal manifest now has a non-executing benchmark.
+Status: DHMS Agent Harness v1 has advanced to v0.10.3: the static mock-agent SQL/File/HTTP proposal manifest now has non-executing interception examples and trace examples.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.10.2 Non-Executing Agent Interception Benchmark`.
-* Previous milestone: `v0.10.1 Static Mock Agent Tool-Call Proposal Manifest`.
+* Current milestone: `v0.10.3 Mock Agent Interception Examples and Trace Examples`.
+* Previous milestone: `v0.10.2 Non-Executing Agent Interception Benchmark`.
 * Aligned proof-line evidence: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`; `v0.9 HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.10.3 Mock Agent Interception Examples and Trace Examples`.
-* Status: v0.10.2 adds a non-executing benchmark for the v0.10.1 static mock-agent proposal manifest. It validates 9 SQL/File/HTTP proposals in memory and adds no proposal execution, real agent runtime, real LLM, SDK integration, adapter, API client, credentials, or production runtime behavior.
+* Next recommended milestone: `v0.10.4 Controlled Mock Agent Runtime Interception Proof`.
+* Status: v0.10.3 adds static mock-agent interception examples and trace examples for exactly 9 SQL/File/HTTP proposals. It is static-examples-only and adds no runner, benchmark runner, CLI command, source code, proposal execution, real agent runtime, real LLM, SDK integration, adapter, API client, credentials, or production runtime behavior.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -233,6 +233,30 @@ This benchmark is non-executing. It validates interception expectations in
 memory and does not execute SQL, read or write proposal file paths, perform HTTP
 requests, start mock servers, invoke real agents or LLMs, add adapters, add API
 clients, or touch production resources.
+
+## Mock Agent Interception Examples and Trace Examples
+
+v0.10.3 adds static mock-agent interception examples and trace examples for the
+same 9 SQL/File/HTTP proposals:
+[DHMS Mock Agent Interception Examples and Trace Examples v0.10.3](docs/dhms_mock_agent_interception_examples_and_traces_v0_10_3.md).
+
+Static examples:
+
+```text
+examples/dhms_mock_agent_runtime_interception_v0/interception_examples.json
+examples/dhms_mock_agent_runtime_interception_v0/trace_examples.json
+```
+
+The examples cover 3 SQL proposals, 3 File proposals, and 3 HTTP proposals.
+They show that DHMS observes inert mock-agent proposals before execution,
+assigns safety decisions, applies execution gates, returns mock-agent runtime
+results, keeps rejected proposals non-executing, holds constrained candidates
+for existing constrained proof paths, and records trace examples.
+
+v0.10.3 is static-examples-only. It adds no runner, benchmark runner, CLI
+command, source code, execution behavior, real agent runtime, real LLM, MCP/E2B,
+OpenClaw, DeepSeek, Codex, Claude, SDK integration, adapter, API client,
+credential handling, or production runtime behavior.
 
 ## Architecture at a Glance
 
@@ -1284,6 +1308,12 @@ schema/report changes.
   not execute proposals, SQL, file operations, HTTP requests, real agents, real
   LLMs, MCP/E2B/OpenClaw/DeepSeek integrations, SDK integrations, adapters, API
   clients, credentials, or production resources.
+* v0.10.3 adds static mock-agent interception examples and trace examples for
+  exactly 9 SQL/File/HTTP proposals. It is static-examples-only and does not add
+  runners, benchmark runners, CLI commands, source code, execution behavior,
+  real agents, real LLMs, MCP/E2B/OpenClaw/DeepSeek/Codex/Claude integrations,
+  SDK integrations, adapters, API clients, credentials, or production runtime
+  behavior.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1373,6 +1403,9 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [Mock agent runtime interception static proposals](benchmarks/dhms_mock_agent_runtime_interception_v0/proposals.json)
 * [v0.10.2 DHMS Non-Executing Agent Interception Benchmark](docs/dhms_non_executing_agent_interception_benchmark_v0_10_2.md)
 * [Mock agent interception benchmark runner](validation/run_dhms_mock_agent_interception_benchmark_v0.py)
+* [v0.10.3 DHMS Mock Agent Interception Examples and Trace Examples](docs/dhms_mock_agent_interception_examples_and_traces_v0_10_3.md)
+* [Mock agent interception examples](examples/dhms_mock_agent_runtime_interception_v0/interception_examples.json)
+* [Mock agent interception trace examples](examples/dhms_mock_agent_runtime_interception_v0/trace_examples.json)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

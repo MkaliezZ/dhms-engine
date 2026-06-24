@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.10.2 Non-Executing Agent Interception Benchmark`
+* Current package milestone: `v0.10.3 Mock Agent Interception Examples and Trace Examples`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -336,6 +336,17 @@ Next direction:
 * non-executing benchmark only; do not execute SQL, read or write proposal file paths, perform HTTP requests, start mock servers, invoke real agents or LLMs, add MCP/E2B/OpenClaw/DeepSeek/Codex/Claude/provider SDK/agent SDK integrations, add adapters, add API clients, handle credentials, or touch production resources
 * current/completed Non-Executing Agent Interception Benchmark milestone in v0.10.2
 * next recommended milestone: `v0.10.3 Mock Agent Interception Examples and Trace Examples`
+
+### v0.10.3 Mock Agent Interception Examples and Trace Examples
+
+* add `examples/dhms_mock_agent_runtime_interception_v0/interception_examples.json`
+* add `examples/dhms_mock_agent_runtime_interception_v0/trace_examples.json`
+* add `docs/dhms_mock_agent_interception_examples_and_traces_v0_10_3.md`
+* cover exactly 9 static SQL/File/HTTP proposals with counts of 3/3/3
+* show mock agent proposal emission, DHMS pre-execution observation, safety decision, execution gate, mock-agent runtime result, rejected non-execution, constrained candidate hold, and trace production
+* static examples only; do not add runners, benchmark runners, CLI commands, source code, execution behavior, real agent runtimes, real LLMs, Codex/Claude/OpenClaw/DeepSeek/MCP/E2B integrations, SDK integrations, credentials, user data, or production runtime claims
+* current/completed Mock Agent Interception Examples and Trace Examples milestone in v0.10.3
+* next recommended milestone: `v0.10.4 Controlled Mock Agent Runtime Interception Proof`
 
 ## Development Prompt Pattern
 

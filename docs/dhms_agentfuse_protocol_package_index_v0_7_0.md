@@ -69,6 +69,9 @@ Core public materials:
 * Static mock agent tool-call proposal manifest: [`benchmarks/dhms_mock_agent_runtime_interception_v0/proposals.json`](../benchmarks/dhms_mock_agent_runtime_interception_v0/proposals.json)
 * Non-executing agent interception benchmark documentation: [`docs/dhms_non_executing_agent_interception_benchmark_v0_10_2.md`](dhms_non_executing_agent_interception_benchmark_v0_10_2.md)
 * Non-executing agent interception benchmark runner: [`validation/run_dhms_mock_agent_interception_benchmark_v0.py`](../validation/run_dhms_mock_agent_interception_benchmark_v0.py)
+* Mock agent interception examples and trace documentation: [`docs/dhms_mock_agent_interception_examples_and_traces_v0_10_3.md`](dhms_mock_agent_interception_examples_and_traces_v0_10_3.md)
+* Mock agent interception examples: [`examples/dhms_mock_agent_runtime_interception_v0/interception_examples.json`](../examples/dhms_mock_agent_runtime_interception_v0/interception_examples.json)
+* Mock agent interception trace examples: [`examples/dhms_mock_agent_runtime_interception_v0/trace_examples.json`](../examples/dhms_mock_agent_runtime_interception_v0/trace_examples.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -226,6 +229,13 @@ proposal manifest. It validates 9 SQL/File/HTTP proposals in memory, keeps
 unsupported proposal types at zero, confirms rejected actions do not execute,
 and adds only a minimal CLI wrapper around the benchmark runner.
 
+v0.10.3 adds static mock-agent interception examples and trace examples for
+exactly 9 SQL/File/HTTP proposals. It is static-examples-only and does not add
+runners, benchmark runners, CLI commands, source code, execution behavior, real
+agent runtimes, real LLMs, MCP/E2B/OpenClaw/DeepSeek/Codex/Claude integrations,
+SDK integrations, adapters, API clients, credentials, or production runtime
+behavior.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -350,6 +360,7 @@ v0.7.0 does not claim:
 * v0.10.1 Static Mock Agent Tool-Call Proposal Manifest
 * v0.10.2 Non-Executing Agent Interception Benchmark
 * v0.10.3 Mock Agent Interception Examples and Trace Examples
+* v0.10.4 Controlled Mock Agent Runtime Interception Proof
 
 Final document verdict:
 

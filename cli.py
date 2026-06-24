@@ -145,6 +145,7 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers.add_parser("demo-file-fuse")
     subparsers.add_parser("demo-http-fuse")
     subparsers.add_parser("bench-mock-agent-interception")
+    subparsers.add_parser("proof-mock-agent-interception")
 
     providers_parser = subparsers.add_parser("providers")
     providers_parser.add_argument("subcommand", nargs="?", choices=["models"])
@@ -185,6 +186,17 @@ def main(argv: Optional[List[str]] = None) -> int:
             [
                 sys.executable,
                 str(ROOT_DIR / "validation/run_dhms_mock_agent_interception_benchmark_v0.py"),
+            ],
+            cwd=ROOT_DIR,
+            check=False,
+            shell=False,
+        )
+        return completed.returncode
+    if args.command == "proof-mock-agent-interception":
+        completed = subprocess.run(
+            [
+                sys.executable,
+                str(ROOT_DIR / "validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py"),
             ],
             cwd=ROOT_DIR,
             check=False,

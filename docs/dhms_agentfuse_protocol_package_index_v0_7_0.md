@@ -72,6 +72,8 @@ Core public materials:
 * Mock agent interception examples and trace documentation: [`docs/dhms_mock_agent_interception_examples_and_traces_v0_10_3.md`](dhms_mock_agent_interception_examples_and_traces_v0_10_3.md)
 * Mock agent interception examples: [`examples/dhms_mock_agent_runtime_interception_v0/interception_examples.json`](../examples/dhms_mock_agent_runtime_interception_v0/interception_examples.json)
 * Mock agent interception trace examples: [`examples/dhms_mock_agent_runtime_interception_v0/trace_examples.json`](../examples/dhms_mock_agent_runtime_interception_v0/trace_examples.json)
+* Controlled mock agent runtime interception proof documentation: [`docs/dhms_controlled_mock_agent_runtime_interception_proof_v0_10_4.md`](dhms_controlled_mock_agent_runtime_interception_proof_v0_10_4.md)
+* Controlled mock agent runtime interception proof runner: [`validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py`](../validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -236,6 +238,12 @@ agent runtimes, real LLMs, MCP/E2B/OpenClaw/DeepSeek/Codex/Claude integrations,
 SDK integrations, adapters, API clients, credentials, or production runtime
 behavior.
 
+v0.10.4 adds a controlled deterministic mock-agent runtime interception proof
+for exactly 9 inert SQL/File/HTTP proposals. It intercepts every proposal before
+execution, releases 3 constrained candidates only through existing public
+SQL/File/HTTP proof/demo commands, keeps rejected actions non-executing, and
+does not claim real agent runtime interception or production readiness.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -246,6 +254,7 @@ python3 validation/run_dhms_agentfuse_bench_sql_v0.py
 python3 validation/run_dhms_agentfuse_minimal_api_skeleton_smoke.py
 python3 validation/run_dhms_agentfuse_protocol_examples_smoke.py
 python3 cli.py bench-mock-agent-interception
+python3 cli.py proof-mock-agent-interception
 python3 validation/run_dhms_file_fuse_static_case_manifest_smoke.py
 python3 validation/run_dhms_agentfuse_bench_file_v0.py
 python3 validation/run_dhms_file_fuse_non_executing_examples_smoke.py
@@ -361,6 +370,7 @@ v0.7.0 does not claim:
 * v0.10.2 Non-Executing Agent Interception Benchmark
 * v0.10.3 Mock Agent Interception Examples and Trace Examples
 * v0.10.4 Controlled Mock Agent Runtime Interception Proof
+* v0.10.5 Agent Runtime Interception Result Review and Freeze
 
 Final document verdict:
 

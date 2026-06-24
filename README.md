@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.10.3: the static mock-agent SQL/File/HTTP proposal manifest now has non-executing interception examples and trace examples.
+Status: DHMS Agent Harness v1 has advanced to v0.10.4: the static mock-agent SQL/File/HTTP proposal manifest now has a controlled deterministic mock-agent interception proof.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.10.3 Mock Agent Interception Examples and Trace Examples`.
-* Previous milestone: `v0.10.2 Non-Executing Agent Interception Benchmark`.
+* Current milestone: `v0.10.4 Controlled Mock Agent Runtime Interception Proof`.
+* Previous milestone: `v0.10.3 Mock Agent Interception Examples and Trace Examples`.
 * Aligned proof-line evidence: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`; `v0.9 HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.10.4 Controlled Mock Agent Runtime Interception Proof`.
-* Status: v0.10.3 adds static mock-agent interception examples and trace examples for exactly 9 SQL/File/HTTP proposals. It is static-examples-only and adds no runner, benchmark runner, CLI command, source code, proposal execution, real agent runtime, real LLM, SDK integration, adapter, API client, credentials, or production runtime behavior.
+* Next recommended milestone: `v0.10.5 Agent Runtime Interception Result Review and Freeze`.
+* Status: v0.10.4 adds a controlled deterministic mock-agent interception proof for exactly 9 inert SQL/File/HTTP proposals. It intercepts every proposal before execution, releases 3 constrained candidates only through existing public proof/demo commands, keeps rejected actions non-executing, and does not claim real agent runtime interception or production readiness.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -257,6 +257,42 @@ v0.10.3 is static-examples-only. It adds no runner, benchmark runner, CLI
 command, source code, execution behavior, real agent runtime, real LLM, MCP/E2B,
 OpenClaw, DeepSeek, Codex, Claude, SDK integration, adapter, API client,
 credential handling, or production runtime behavior.
+
+## Controlled Mock Agent Runtime Interception Proof
+
+v0.10.4 adds a controlled deterministic mock-agent runtime interception proof:
+[DHMS Controlled Mock Agent Runtime Interception Proof v0.10.4](docs/dhms_controlled_mock_agent_runtime_interception_proof_v0_10_4.md).
+
+Run the proof:
+
+```bash
+python3 validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py
+```
+
+Or through the CLI wrapper:
+
+```bash
+python3 cli.py proof-mock-agent-interception
+```
+
+Expected result:
+
+```text
+DHMS_CONTROLLED_MOCK_AGENT_RUNTIME_INTERCEPTION_PROOF_PASS
+tool_call_proposals_total=9
+proposals_intercepted_before_execution=9
+sql_proposals_total=3
+file_proposals_total=3
+http_proposals_total=3
+controlled_release_count=3
+rejected_actions_executed_count=0
+proposal_payload_direct_executions=0
+```
+
+This proof is deterministic and mock-agent-only. It does not claim real agent
+runtime interception. Constrained candidates are routed only through existing
+public SQL/File/HTTP proof/demo commands, and proposal payloads are never
+directly executed.
 
 ## Architecture at a Glance
 
@@ -1314,6 +1350,13 @@ schema/report changes.
   real agents, real LLMs, MCP/E2B/OpenClaw/DeepSeek/Codex/Claude integrations,
   SDK integrations, adapters, API clients, credentials, or production runtime
   behavior.
+* v0.10.4 adds a controlled deterministic mock-agent runtime interception proof
+  for exactly 9 inert SQL/File/HTTP proposals. It intercepts every proposal
+  before execution, routes 3 constrained candidates only through existing public
+  SQL/File/HTTP proof/demo commands, keeps rejected actions non-executing, and
+  does not add new SQL/File/HTTP execution paths, real agent runtimes, real LLMs,
+  MCP/E2B/OpenClaw/DeepSeek/Codex/Claude integrations, SDK integrations,
+  adapters, API clients, credentials, or production runtime behavior.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1406,6 +1449,8 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v0.10.3 DHMS Mock Agent Interception Examples and Trace Examples](docs/dhms_mock_agent_interception_examples_and_traces_v0_10_3.md)
 * [Mock agent interception examples](examples/dhms_mock_agent_runtime_interception_v0/interception_examples.json)
 * [Mock agent interception trace examples](examples/dhms_mock_agent_runtime_interception_v0/trace_examples.json)
+* [v0.10.4 DHMS Controlled Mock Agent Runtime Interception Proof](docs/dhms_controlled_mock_agent_runtime_interception_proof_v0_10_4.md)
+* [Controlled mock agent runtime interception proof runner](validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.10.3 Mock Agent Interception Examples and Trace Examples`
+* Current package milestone: `v0.10.4 Controlled Mock Agent Runtime Interception Proof`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -347,6 +347,18 @@ Next direction:
 * static examples only; do not add runners, benchmark runners, CLI commands, source code, execution behavior, real agent runtimes, real LLMs, Codex/Claude/OpenClaw/DeepSeek/MCP/E2B integrations, SDK integrations, credentials, user data, or production runtime claims
 * current/completed Mock Agent Interception Examples and Trace Examples milestone in v0.10.3
 * next recommended milestone: `v0.10.4 Controlled Mock Agent Runtime Interception Proof`
+
+### v0.10.4 Controlled Mock Agent Runtime Interception Proof
+
+* add `validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py`
+* add `python3 cli.py proof-mock-agent-interception`
+* process exactly 9 inert SQL/File/HTTP proposals from the v0.10.1 static manifest
+* intercept every proposal before execution, assign safety decisions, apply execution gates, and produce deterministic mock-agent runtime results
+* route exactly 3 constrained candidates only through existing public SQL/File/HTTP proof/demo commands
+* keep rejected actions non-executing and keep proposal payload direct executions at zero
+* controlled deterministic mock-agent proof only; do not claim real agent runtime interception or production readiness
+* current/completed Controlled Mock Agent Runtime Interception Proof milestone in v0.10.4
+* next recommended milestone: `v0.10.5 Agent Runtime Interception Result Review and Freeze`
 
 ## Development Prompt Pattern
 

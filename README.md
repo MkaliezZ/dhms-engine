@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.8.9: the README public surface is polished so SQL Fuse and File Fuse remain the primary quickstarts, while older Agent Harness commands are preserved as legacy reproduction material.
+Status: DHMS Agent Harness v1 has advanced to v0.8.10: README public milestone headings are normalized so peer milestone sections render consistently on GitHub.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.8.9 DHMS README Public Surface Polish`.
-* Previous milestone: `v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment`.
+* Current milestone: `v0.8.10 DHMS README Milestone Heading Normalization`.
+* Previous milestone: `v0.8.9 DHMS README Public Surface Polish`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
 * Next recommended milestone: `v0.9.0 Next DHMS Proof Line Selection and Risk Review`.
-* Status: v0.8.9 polishes the README public surface, keeps SQL Fuse and File Fuse as the primary public quickstarts, preserves historical Agent Harness commands as legacy reproduction material, and adds no runtime behavior.
+* Status: v0.8.10 normalizes README milestone heading levels for public rendering consistency. It preserves wording, proof claims, links, quickstarts, License, Trademark Notice, and runtime behavior.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -457,7 +457,7 @@ Quick benchmark command:
 python3 validation/run_dhms_agentfuse_bench_sql_v0.py
 ```
 
-### SQL Fuse Demo CLI v0.6.2
+## SQL Fuse Demo CLI v0.6.2
 
 v0.6.2 exposes the same non-executing benchmark through a concise CLI demo:
 [DHMS SQL Fuse Demo CLI v0.6.2](docs/dhms_sql_fuse_demo_cli_v0_6_2.md).
@@ -473,7 +473,7 @@ the existing benchmark reports. It does not execute SQL, create SQLite
 databases, create sandbox files, expand the allowlist, invoke OpenClaw, invoke
 DeepSeek, use provider SDKs, use agent SDKs, or use HTTP/network clients.
 
-### DHMS AgentFuse Minimal API / Adapter Skeleton v0.6.3
+## DHMS AgentFuse Minimal API / Adapter Skeleton v0.6.3
 
 v0.6.3 adds the DHMS AgentFuse Minimal API and Adapter Skeleton as a safe,
 in-memory integration shape:
@@ -495,7 +495,7 @@ SQLite databases, expand the SQL allowlist, invoke OpenClaw, invoke DeepSeek,
 use provider SDKs, use agent SDKs, use HTTP/network clients, or implement file,
 shell, MCP, or production database adapters.
 
-### DHMS AgentFuse Public Protocol Package v0.7.0
+## DHMS AgentFuse Public Protocol Package v0.7.0
 
 v0.7.0 packages the completed v0.6 protocol, benchmark, CLI demo, and minimal
 API skeleton into a public-facing DHMS AgentFuse protocol package. It does not
@@ -507,7 +507,7 @@ Package index:
 Roadmap:
 [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md).
 
-### DHMS AgentFuse Protocol Examples v0.7.1
+## DHMS AgentFuse Protocol Examples v0.7.1
 
 v0.7.1 adds non-executing DHMS AgentFuse protocol examples for SQL held, SQL
 blocked, unsupported non-SQL blocked/fail-closed, and trace object reading:
@@ -525,7 +525,7 @@ SQL, create SQLite databases, create sandbox files, invoke OpenClaw, invoke
 DeepSeek, use provider SDKs, use agent SDKs, use HTTP/network clients, or add
 file, shell, MCP, or production database adapters.
 
-### DHMS Risk-Tiered Fuse Policy Draft v0.7.2
+## DHMS Risk-Tiered Fuse Policy Draft v0.7.2
 
 v0.7.2 defines the DHMS Risk-Tiered Fuse Policy Draft:
 [DHMS Risk-Tiered Fuse Policy Draft v0.7.2](docs/dhms_risk_tiered_fuse_policy_v0_7_2.md).
@@ -535,7 +535,7 @@ while high-risk actions require hold, sandbox, review, block, or fail-closed
 behavior. Read-only is not treated as automatically safe. This phase is
 design-only and does not add execution capability.
 
-### DHMS Landscape / Comparison Doc v0.7.3
+## DHMS Landscape / Comparison Doc v0.7.3
 
 v0.7.3 clarifies DHMS's landscape position:
 [DHMS Landscape / Comparison Doc v0.7.3](docs/dhms_landscape_comparison_v0_7_3.md).
@@ -544,7 +544,7 @@ MCP connects tools; DHMS controls execution boundaries. The comparison is
 conceptual, complementary, and does not claim DHMS replaces MCP, guardrails,
 agent SDKs, sandboxes, observability, or human approval workflows.
 
-### DHMS Contribution Guide / Case Format v0.7.4
+## DHMS Contribution Guide / Case Format v0.7.4
 
 v0.7.4 defines contribution and case-format guidance for DHMS AgentFuse:
 [CONTRIBUTING.md](CONTRIBUTING.md) and
@@ -553,7 +553,7 @@ v0.7.4 defines contribution and case-format guidance for DHMS AgentFuse:
 Every case is treated as a safety contract. Adding a case does not authorize a
 new execution path.
 
-### DHMS Fresh Clone Reproduction Check v0.7.5
+## DHMS Fresh Clone Reproduction Check v0.7.5
 
 v0.7.5 verifies that the public DHMS AgentFuse protocol package can be
 reproduced from a fresh clone:
@@ -564,7 +564,7 @@ DHMS AgentFuse Minimal API smoke, and protocol examples smoke run without
 hidden local state. It follows the v0.7.4.1 package-index link patch, which
 preserved public index coverage for the v0.7.1 protocol examples.
 
-### DHMS File Operation Safety Fuse Planning v0.8.0
+## DHMS File Operation Safety Fuse Planning v0.8.0
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line:
@@ -573,7 +573,7 @@ execution fuse proof line:
 This phase is planning-only. It does not implement file read/write behavior,
 file policy, file adapters, or runtime execution capability.
 
-### DHMS File Fuse Static Case Manifest v0.8.1
+## DHMS File Fuse Static Case Manifest v0.8.1
 
 v0.8.1 adds a static, inert File Operation Safety Fuse case manifest with 13
 planned cases:
@@ -590,7 +590,7 @@ python3 validation/run_dhms_file_fuse_static_case_manifest_smoke.py
 This phase does not implement file read/write/list/delete behavior, file
 policy, file adapters, or runtime execution capability.
 
-### DHMS Non-Executing File Fuse Benchmark v0.8.2
+## DHMS Non-Executing File Fuse Benchmark v0.8.2
 
 v0.8.2 adds a non-executing File Operation Safety Fuse benchmark over the
 static v0.8.1 manifest:
@@ -608,7 +608,7 @@ The benchmark evaluates 13 inert cases in memory. It reads only the committed
 manifest and does not open, resolve, list, write, append, delete, or inspect
 requested path templates.
 
-### DHMS Non-Executing File Fuse Examples v0.8.3
+## DHMS Non-Executing File Fuse Examples v0.8.3
 
 v0.8.3 adds non-executing File Operation Safety Fuse examples and static trace
 examples:
@@ -627,7 +627,7 @@ python3 validation/run_dhms_file_fuse_non_executing_examples_smoke.py
 The examples demonstrate representative proposals, decisions, gates, and
 traces without opening or resolving requested path templates.
 
-### DHMS File Fuse Constrained Temp-Directory Proof Planning v0.8.4
+## DHMS File Fuse Constrained Temp-Directory Proof Planning v0.8.4
 
 v0.8.4 plans the safety envelope for a possible constrained temp-directory
 proof:
@@ -638,7 +638,7 @@ directories, create synthetic fixtures, write synthetic reports, perform
 cleanup verification, add a file adapter, or add file operation capability.
 Any future implementation requires explicit approval.
 
-### DHMS File Fuse Constrained Temp-Directory Proof v0.8.4.1
+## DHMS File Fuse Constrained Temp-Directory Proof v0.8.4.1
 
 v0.8.4.1 implements an explicitly approved constrained temp-directory proof:
 [DHMS File Fuse Constrained Temp-Directory Proof Result v0.8.4.1](docs/dhms_file_fuse_constrained_temp_directory_proof_result_v0_8_4_1.md)
@@ -655,7 +655,7 @@ The proof performs two synthetic file operations inside a disposable temp
 root, verifies cleanup, and keeps rejected paths unopened and unresolved. It
 does not add arbitrary file operation support or a file adapter.
 
-### DHMS File Operation Safety Fuse Result Review and Freeze v0.8.5
+## DHMS File Operation Safety Fuse Result Review and Freeze v0.8.5
 
 v0.8.5 reviews and freezes the File Operation Safety Fuse evidence chain:
 [DHMS File Operation Safety Fuse Result Review and Freeze v0.8.5](docs/dhms_file_operation_safety_fuse_result_review_and_freeze_v0_8_5.md).
@@ -664,7 +664,7 @@ The freeze confirms the v0.8.4.1 proof metrics, clarifies that
 `authorization_gate_confirmed=true` is process-level approval evidence, and
 keeps the claim limited to the constrained temp-directory proof.
 
-### DHMS File Operation Safety Fuse Evidence Seal v0.8.6
+## DHMS File Operation Safety Fuse Evidence Seal v0.8.6
 
 v0.8.6 adds README File Fuse Quickstart alignment and seals the v0.8 File
 Operation Safety Fuse evidence chain:
@@ -673,7 +673,7 @@ Operation Safety Fuse evidence chain:
 The seal preserves the v0.8.5 freeze semantics. It adds no execution
 capability, no file adapter, and no arbitrary file operation support.
 
-### DHMS File Fuse CLI Demo Wrapper v0.8.7
+## DHMS File Fuse CLI Demo Wrapper v0.8.7
 
 v0.8.7 adds a public File Fuse CLI demo wrapper:
 [DHMS File Fuse CLI Demo Wrapper v0.8.7](docs/dhms_file_fuse_cli_demo_wrapper_v0_8_7.md).
@@ -688,7 +688,7 @@ It aggregates the existing deterministic File Fuse public checks into one
 command and preserves the v0.8.6 evidence seal. It adds no arbitrary file
 operation support, no file adapter, and no new runtime file execution behavior.
 
-### DHMS AgentFuse Naming and Trademark Notice Alignment v0.8.8
+## DHMS AgentFuse Naming and Trademark Notice Alignment v0.8.8
 
 v0.8.8 aligns the public naming hierarchy and Trademark Notice:
 [DHMS AgentFuse Naming and Trademark Notice Alignment v0.8.8](docs/dhms_agentfuse_naming_and_trademark_alignment_v0_8_8.md).
@@ -698,7 +698,7 @@ Protocol, DHMS AgentFuse, DHMS AgentFuse CLI, DHMS AgentFuse Minimal API, DHMS
 AgentFuse Adapter Skeleton, and DHMS-AgentFuse-Bench. It does not rename the
 repository or branches and does not claim formal trademark registration.
 
-### DHMS README Public Surface Polish v0.8.9
+## DHMS README Public Surface Polish v0.8.9
 
 v0.8.9 polishes the README public surface:
 [DHMS README Public Surface Polish v0.8.9](docs/dhms_readme_public_surface_polish_v0_8_9.md).

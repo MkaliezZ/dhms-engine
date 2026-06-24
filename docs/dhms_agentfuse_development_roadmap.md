@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.8.9 DHMS README Public Surface Polish`
+* Current package milestone: `v0.8.10 DHMS README Milestone Heading Normalization`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -205,6 +205,14 @@ Next direction:
 * simplify README Trademark Notice wording without changing naming hierarchy docs
 * documentation-only; no code or runtime behavior changes
 * current/completed README public surface polish milestone in v0.8.9
+
+### v0.8.10 DHMS README Milestone Heading Normalization
+
+* normalize README peer milestone headings from v0.6.2 through v0.8.9
+* keep true README subsections at their existing heading level
+* preserve wording, proof claims, non-claims, links, quickstarts, License, and Trademark Notice
+* documentation-only; no code or runtime behavior changes
+* current/completed README milestone heading normalization patch in v0.8.10
 
 ## Development Prompt Pattern
 

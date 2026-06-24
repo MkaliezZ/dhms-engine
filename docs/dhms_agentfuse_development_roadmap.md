@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.0.5 Manual GitHub Release Confirmation`
+* Current package milestone: `v1.0.6 README Slim Public Landing Page`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -427,6 +427,16 @@ Next direction:
 * confirm tag `v1.0.0-public-evidence-package` points to `24319dfa3db0f272b13b220201e6f4528c62a6f2`
 * documentation-only release confirmation; do not create or edit a GitHub release, create/modify/delete/push tags, add runners, CLI commands, source code, manifest changes, examples changes, trace example changes, schema changes, execution behavior changes, proof semantic changes, real agent runtimes, real LLMs, SDK integrations, credentials, user data, or production runtime behavior
 * current/completed Manual GitHub Release Confirmation milestone in v1.0.5
+* next recommended milestone: `v1.1.0 Local Command-Agent Interception Planning`
+
+### v1.0.6 README Slim Public Landing Page
+
+* add `docs/dhms_readme_slim_public_landing_page_v1_0_6.md`
+* slim README into a concise public landing page for external technical readers
+* preserve the public frozen claim, SQL/File/HTTP/Mock-agent evidence lines, reproduction commands, release link, fresh clone reproduction link, docs index, public non-claims, License section, and Trademark Notice
+* link long-form evidence through the docs index instead of keeping archive-style milestone history in README
+* documentation-only README slimming; do not change claims, proof semantics, source code, runners, CLI commands, manifests, examples, trace examples, schemas, execution behavior, tags, or GitHub releases
+* current/completed README Slim Public Landing Page milestone in v1.0.6
 * next recommended milestone: `v1.1.0 Local Command-Agent Interception Planning`
 
 ## Development Prompt Pattern

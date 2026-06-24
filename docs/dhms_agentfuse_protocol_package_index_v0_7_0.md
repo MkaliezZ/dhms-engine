@@ -81,6 +81,7 @@ Core public materials:
 * GitHub release notes: [`docs/dhms_github_release_notes_v1_0_3.md`](dhms_github_release_notes_v1_0_3.md)
 * v1.0 tag / release preparation: [`docs/dhms_v1_0_tag_release_preparation_v1_0_4.md`](dhms_v1_0_tag_release_preparation_v1_0_4.md)
 * Manual GitHub release confirmation: [`docs/dhms_manual_github_release_confirmation_v1_0_5.md`](dhms_manual_github_release_confirmation_v1_0_5.md)
+* README slim public landing page: [`docs/dhms_readme_slim_public_landing_page_v1_0_6.md`](dhms_readme_slim_public_landing_page_v1_0_6.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -134,6 +135,11 @@ v1.0.5 documents that the v1.0 public evidence package GitHub release and tag
 were manually created and confirmed. It does not create or edit a GitHub
 release, create/modify/delete/push a tag, add execution behavior, or change
 proof semantics.
+
+v1.0.6 slims the README into a concise public landing page while preserving
+the public frozen claim, SQL/File/HTTP/Mock-agent evidence lines, reproduction
+commands, v1.0 release link, fresh clone reproduction link, docs index, public
+non-claims, License section, and Trademark Notice.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

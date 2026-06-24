@@ -43,6 +43,7 @@ Core public materials:
 * File Fuse constrained temp-directory proof result: [`docs/dhms_file_fuse_constrained_temp_directory_proof_result_v0_8_4_1.md`](dhms_file_fuse_constrained_temp_directory_proof_result_v0_8_4_1.md)
 * File Fuse constrained temp-directory proof runner: [`validation/run_dhms_file_fuse_constrained_temp_directory_proof.py`](../validation/run_dhms_file_fuse_constrained_temp_directory_proof.py)
 * File Operation Safety Fuse result review and freeze: [`docs/dhms_file_operation_safety_fuse_result_review_and_freeze_v0_8_5.md`](dhms_file_operation_safety_fuse_result_review_and_freeze_v0_8_5.md)
+* File Operation Safety Fuse evidence seal: [`docs/dhms_file_operation_safety_fuse_evidence_seal_v0_8_6.md`](dhms_file_operation_safety_fuse_evidence_seal_v0_8_6.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -102,6 +103,10 @@ file adapter.
 v0.8.5 reviews and freezes the File Operation Safety Fuse evidence chain from
 v0.8.0 through v0.8.4.1. It adds no new capability and keeps the frozen claim
 limited to the constrained temp-directory proof result.
+
+v0.8.6 adds README File Fuse Quickstart alignment and seals the v0.8 File
+Operation Safety Fuse evidence chain. It adds no new capability and does not
+add a file adapter or arbitrary file operation support.
 
 ## Reproducible Commands
 
@@ -202,6 +207,7 @@ v0.7.0 does not claim:
 * v0.8.4 Constrained Temp-Directory Proof Planning
 * v0.8.4.1 Constrained Temp-Directory Proof Implementation
 * v0.8.5 File Operation Safety Fuse Result Review and Freeze
+* v0.8.6 File Fuse Quickstart and Evidence Seal
 
 Final document verdict:
 

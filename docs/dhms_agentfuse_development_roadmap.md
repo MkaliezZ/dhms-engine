@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.8.5 File Operation Safety Fuse Result Review and Freeze`
+* Current package milestone: `v0.8.6 File Fuse Quickstart and Evidence Seal`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -115,7 +115,7 @@ should still avoid uncontrolled real-world side effects.
 
 Next direction:
 
-`Next DHMS proof line planning`
+`v0.9.0 Next DHMS Proof Line Selection and Risk Review`
 
 ## v0.8 File Operation Safety Fuse Plan
 
@@ -172,6 +172,14 @@ Next direction:
 * freeze claims and not-claimed boundaries
 * preserve no uncontrolled real-world side effects principle
 * current/completed File Operation Safety Fuse result review and freeze milestone in v0.8.5
+
+### v0.8.6 File Fuse Quickstart and Evidence Seal
+
+* add README File Fuse Quickstart directly below the SQL Fuse Demo quickstart
+* seal the v0.8 File Operation Safety Fuse evidence chain
+* preserve the v0.8.5 freeze semantics
+* add no execution capability, file adapter, or arbitrary file operation support
+* current/completed File Fuse Quickstart and Evidence Seal milestone in v0.8.6
 
 ## Development Prompt Pattern
 

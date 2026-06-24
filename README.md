@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.10.5: the v0.10 mock-agent runtime interception proof line is reviewed and frozen.
+Status: DHMS Agent Harness v1 has advanced to v1.0: the public evidence package summarizes the SQL, File, HTTP, and controlled deterministic mock-agent proof chain.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.10.5 Agent Runtime Interception Result Review and Freeze`.
-* Previous milestone: `v0.10.4 Controlled Mock Agent Runtime Interception Proof`.
+* Current milestone: `v1.0 Public Evidence Package`.
+* Previous milestone: `v0.10.5 Agent Runtime Interception Result Review and Freeze`.
 * Aligned proof-line evidence: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`; `v0.9 HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v1.0 Public Evidence Package`.
-* Status: v0.10.5 reviews and freezes the v0.10 mock-agent runtime interception proof line: exactly 9 inert SQL/File/HTTP proposals, 3 constrained releases through existing public proof/demo commands, 0 rejected action executions, and 0 proposal payload direct executions. It does not claim real agent runtime interception or production readiness.
+* Next recommended milestone: `v1.0.1 Fresh Clone Reproduction Check`.
+* Status: v1.0 packages the public DHMS evidence chain across SQL, File, HTTP, and controlled deterministic mock-agent runtime interception under documented non-production boundaries. It does not claim real agent runtime interception or production readiness.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -321,6 +321,43 @@ proposal_payload_direct_executions=0
 This freeze does not claim real agent runtime interception, real LLM execution,
 production readiness, adapter/API-client support, arbitrary tool execution, or
 production runtime behavior.
+
+## Public Evidence Package
+
+v1.0 creates the public DHMS evidence package:
+[DHMS Public Evidence Package v1.0](docs/dhms_public_evidence_package_v1_0.md).
+
+Frozen claim:
+
+```text
+DHMS provides a public evidence package for an execution fuse protocol proof chain covering SQL, File, HTTP, and controlled deterministic mock-agent runtime interception under documented non-production boundaries.
+```
+
+Evidence lines:
+
+| Proof line | Evidence classification |
+| --- | --- |
+| SQL | controlled local SQLite sandbox release proof |
+| File | constrained synthetic temp-directory proof |
+| HTTP | constrained local mock HTTP proof |
+| Mock agent | controlled deterministic mock-agent runtime interception proof for exactly 9 inert SQL/File/HTTP proposals |
+
+Reproduction commands:
+
+```bash
+python3 cli.py demo-sql-fuse
+python3 cli.py demo-file-fuse
+python3 cli.py demo-http-fuse
+python3 validation/run_dhms_mock_agent_interception_benchmark_v0.py
+python3 cli.py bench-mock-agent-interception
+python3 validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py
+python3 cli.py proof-mock-agent-interception
+```
+
+This public evidence package does not claim production readiness, real agent
+runtime interception, real LLM execution, arbitrary tool execution, adapters,
+API clients, credential handling, user-data safety certification, or
+industry-standard status.
 
 ## Architecture at a Glance
 
@@ -1391,6 +1428,12 @@ schema/report changes.
   public proof/demo commands, 0 rejected action executions, and 0 proposal
   payload direct executions. It does not claim real agent runtime interception
   or production readiness.
+* v1.0 packages the public evidence chain for SQL, File, HTTP, and controlled
+  deterministic mock-agent runtime interception under documented non-production
+  boundaries. It is documentation and release-preparation only and does not add
+  capability, runners, CLI commands, source code, manifests, examples, schemas,
+  execution behavior, proof semantics, proposal types, or SQL/File/HTTP
+  execution paths.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1486,6 +1529,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v0.10.4 DHMS Controlled Mock Agent Runtime Interception Proof](docs/dhms_controlled_mock_agent_runtime_interception_proof_v0_10_4.md)
 * [Controlled mock agent runtime interception proof runner](validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py)
 * [v0.10.5 DHMS Agent Runtime Interception Result Review and Freeze](docs/dhms_agent_runtime_interception_result_review_and_freeze_v0_10_5.md)
+* [v1.0 DHMS Public Evidence Package](docs/dhms_public_evidence_package_v1_0.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

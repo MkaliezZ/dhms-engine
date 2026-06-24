@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.10.5 Agent Runtime Interception Result Review and Freeze`
+* Current package milestone: `v1.0 Public Evidence Package`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -369,6 +369,18 @@ Next direction:
 * documentation freeze only; do not add runners, CLI commands, source code, manifest changes, examples changes, trace example changes, schema changes, execution behavior changes, proof semantic changes, real agent runtimes, real LLMs, SDK integrations, credentials, user data, or production runtime behavior
 * current/completed Agent Runtime Interception Result Review and Freeze milestone in v0.10.5
 * next recommended milestone: `v1.0 Public Evidence Package`
+
+### v1.0 Public Evidence Package
+
+* add `docs/dhms_public_evidence_package_v1_0.md`
+* summarize the v0.5 SQL Sandbox Execution Fuse proof line
+* summarize the v0.8 File Operation Safety Fuse proof line
+* summarize the v0.9 HTTP / Network Request Safety Fuse proof line
+* summarize the v0.10 Mock Agent Runtime Interception proof line
+* include reproduction commands, validation matrix, public frozen claim, public non-claims, and next roadmap direction
+* documentation and release-preparation only; do not add runners, CLI commands, source code, manifest changes, examples changes, trace example changes, schema changes, execution behavior changes, proof semantic changes, real agent runtimes, real LLMs, SDK integrations, credentials, user data, or production runtime behavior
+* current/completed Public Evidence Package milestone in v1.0
+* next recommended milestone: `v1.0.1 Fresh Clone Reproduction Check`
 
 ## Development Prompt Pattern
 

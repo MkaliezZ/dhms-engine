@@ -75,6 +75,7 @@ Core public materials:
 * Controlled mock agent runtime interception proof documentation: [`docs/dhms_controlled_mock_agent_runtime_interception_proof_v0_10_4.md`](dhms_controlled_mock_agent_runtime_interception_proof_v0_10_4.md)
 * Controlled mock agent runtime interception proof runner: [`validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py`](../validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py)
 * Agent runtime interception result review and freeze: [`docs/dhms_agent_runtime_interception_result_review_and_freeze_v0_10_5.md`](dhms_agent_runtime_interception_result_review_and_freeze_v0_10_5.md)
+* Public evidence package: [`docs/dhms_public_evidence_package_v1_0.md`](dhms_public_evidence_package_v1_0.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -251,6 +252,11 @@ constrained releases through existing public proof/demo commands, 0 rejected
 action executions, 0 proposal payload direct executions, and no real agent
 runtime or production runtime claim.
 
+v1.0 packages the public DHMS evidence chain across SQL, File, HTTP, and
+controlled deterministic mock-agent runtime interception under documented
+non-production boundaries. It is documentation and release-preparation only and
+does not add capability or execution behavior.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -379,6 +385,7 @@ v0.7.0 does not claim:
 * v0.10.4 Controlled Mock Agent Runtime Interception Proof
 * v0.10.5 Agent Runtime Interception Result Review and Freeze
 * v1.0 Public Evidence Package
+* v1.0.1 Fresh Clone Reproduction Check
 
 Final document verdict:
 

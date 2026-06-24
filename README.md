@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v1.0: the public evidence package summarizes the SQL, File, HTTP, and controlled deterministic mock-agent proof chain.
+Status: DHMS Agent Harness v1 has advanced to v1.0.1: the public evidence package has been reproduced from a fresh clone without hidden local state.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.0 Public Evidence Package`.
-* Previous milestone: `v0.10.5 Agent Runtime Interception Result Review and Freeze`.
+* Current milestone: `v1.0.1 Fresh Clone Reproduction Check`.
+* Previous milestone: `v1.0 Public Evidence Package`.
 * Aligned proof-line evidence: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`; `v0.9 HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v1.0.1 Fresh Clone Reproduction Check`.
-* Status: v1.0 packages the public DHMS evidence chain across SQL, File, HTTP, and controlled deterministic mock-agent runtime interception under documented non-production boundaries. It does not claim real agent runtime interception or production readiness.
+* Next recommended milestone: `v1.0.2 README Public Launch Polish`.
+* Status: v1.0.1 verifies that the public DHMS evidence chain across SQL, File, HTTP, and controlled deterministic mock-agent runtime interception can be reproduced from a fresh clone. It does not claim real agent runtime interception or production readiness.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -358,6 +358,28 @@ This public evidence package does not claim production readiness, real agent
 runtime interception, real LLM execution, arbitrary tool execution, adapters,
 API clients, credential handling, user-data safety certification, or
 industry-standard status.
+
+## Fresh Clone Reproduction Check
+
+v1.0.1 verifies the public DHMS evidence package from a fresh clone:
+[DHMS Fresh Clone Reproduction Check v1.0.1](docs/dhms_fresh_clone_reproduction_check_v1_0_1.md).
+
+The reproduction check confirms that these public commands pass outside the
+original working repository:
+
+```bash
+python3 cli.py demo-sql-fuse
+python3 cli.py demo-file-fuse
+python3 cli.py demo-http-fuse
+python3 validation/run_dhms_mock_agent_interception_benchmark_v0.py
+python3 cli.py bench-mock-agent-interception
+python3 validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py
+python3 cli.py proof-mock-agent-interception
+```
+
+This check is reproduction evidence only. It does not add execution capability,
+modify runners, change manifests, add CLI commands, or claim production
+readiness.
 
 ## Architecture at a Glance
 
@@ -1530,6 +1552,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [Controlled mock agent runtime interception proof runner](validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py)
 * [v0.10.5 DHMS Agent Runtime Interception Result Review and Freeze](docs/dhms_agent_runtime_interception_result_review_and_freeze_v0_10_5.md)
 * [v1.0 DHMS Public Evidence Package](docs/dhms_public_evidence_package_v1_0.md)
+* [v1.0.1 DHMS Fresh Clone Reproduction Check](docs/dhms_fresh_clone_reproduction_check_v1_0_1.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.10.1: the static mock-agent SQL/File/HTTP tool-call proposal manifest is now published.
+Status: DHMS Agent Harness v1 has advanced to v0.10.2: the static mock-agent SQL/File/HTTP proposal manifest now has a non-executing benchmark.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.10.1 Static Mock Agent Tool-Call Proposal Manifest`.
-* Previous milestone: `v0.10.0 Agent Runtime Interception Proof Planning`.
+* Current milestone: `v0.10.2 Non-Executing Agent Interception Benchmark`.
+* Previous milestone: `v0.10.1 Static Mock Agent Tool-Call Proposal Manifest`.
 * Aligned proof-line evidence: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`; `v0.9 HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.10.2 Non-Executing Agent Interception Benchmark`.
-* Status: v0.10.1 adds a static mock-agent tool-call proposal manifest with exactly 9 SQL/File/HTTP proposals. It is static-manifest-only and adds no runner, benchmark runner, examples, trace examples, CLI command, source code, integration, or execution behavior.
+* Next recommended milestone: `v0.10.3 Mock Agent Interception Examples and Trace Examples`.
+* Status: v0.10.2 adds a non-executing benchmark for the v0.10.1 static mock-agent proposal manifest. It validates 9 SQL/File/HTTP proposals in memory and adds no proposal execution, real agent runtime, real LLM, SDK integration, adapter, API client, credentials, or production runtime behavior.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -195,6 +195,44 @@ proposals, and three HTTP proposals. Proposal types are limited to `SQL`,
 runner, benchmark runner, examples, trace examples, CLI command, source code,
 real agent runtime, real LLM, MCP/E2B integration, SDK integration, or execution
 behavior.
+
+## Non-Executing Agent Interception Benchmark
+
+v0.10.2 adds a non-executing benchmark for the static mock-agent proposal
+manifest:
+[DHMS Non-Executing Agent Interception Benchmark v0.10.2](docs/dhms_non_executing_agent_interception_benchmark_v0_10_2.md).
+
+Run the benchmark:
+
+```bash
+python3 validation/run_dhms_mock_agent_interception_benchmark_v0.py
+```
+
+Or through the minimal CLI wrapper:
+
+```bash
+python3 cli.py bench-mock-agent-interception
+```
+
+Expected result:
+
+```text
+DHMS_MOCK_AGENT_INTERCEPTION_BENCHMARK_PASS
+tool_call_proposals_total=9
+sql_proposals_total=3
+file_proposals_total=3
+http_proposals_total=3
+unsupported_proposal_type_count=0
+rejected_actions_executed_count=0
+actual_sql_executions=0
+actual_file_operations=0
+actual_http_requests=0
+```
+
+This benchmark is non-executing. It validates interception expectations in
+memory and does not execute SQL, read or write proposal file paths, perform HTTP
+requests, start mock servers, invoke real agents or LLMs, add adapters, add API
+clients, or touch production resources.
 
 ## Architecture at a Glance
 
@@ -1241,6 +1279,11 @@ schema/report changes.
   with exactly 9 proposals. It is static-manifest-only and does not add runners,
   benchmark runners, examples, trace examples, CLI commands, source code,
   integrations, or execution behavior.
+* v0.10.2 adds a non-executing benchmark over the v0.10.1 static mock-agent
+  proposal manifest. It validates 9 SQL/File/HTTP proposals in memory and does
+  not execute proposals, SQL, file operations, HTTP requests, real agents, real
+  LLMs, MCP/E2B/OpenClaw/DeepSeek integrations, SDK integrations, adapters, API
+  clients, credentials, or production resources.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1328,6 +1371,8 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v0.10.0 DHMS Mock Agent Runtime Interception Proof Planning](docs/dhms_mock_agent_runtime_interception_proof_planning_v0_10_0.md)
 * [v0.10.1 DHMS Static Mock Agent Tool-Call Proposal Manifest](docs/dhms_static_mock_agent_tool_call_proposal_manifest_v0_10_1.md)
 * [Mock agent runtime interception static proposals](benchmarks/dhms_mock_agent_runtime_interception_v0/proposals.json)
+* [v0.10.2 DHMS Non-Executing Agent Interception Benchmark](docs/dhms_non_executing_agent_interception_benchmark_v0_10_2.md)
+* [Mock agent interception benchmark runner](validation/run_dhms_mock_agent_interception_benchmark_v0.py)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

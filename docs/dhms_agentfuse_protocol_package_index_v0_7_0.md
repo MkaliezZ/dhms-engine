@@ -67,6 +67,8 @@ Core public materials:
 * Mock Agent Runtime Interception Proof planning: [`docs/dhms_mock_agent_runtime_interception_proof_planning_v0_10_0.md`](dhms_mock_agent_runtime_interception_proof_planning_v0_10_0.md)
 * Static mock agent tool-call proposal manifest documentation: [`docs/dhms_static_mock_agent_tool_call_proposal_manifest_v0_10_1.md`](dhms_static_mock_agent_tool_call_proposal_manifest_v0_10_1.md)
 * Static mock agent tool-call proposal manifest: [`benchmarks/dhms_mock_agent_runtime_interception_v0/proposals.json`](../benchmarks/dhms_mock_agent_runtime_interception_v0/proposals.json)
+* Non-executing agent interception benchmark documentation: [`docs/dhms_non_executing_agent_interception_benchmark_v0_10_2.md`](dhms_non_executing_agent_interception_benchmark_v0_10_2.md)
+* Non-executing agent interception benchmark runner: [`validation/run_dhms_mock_agent_interception_benchmark_v0.py`](../validation/run_dhms_mock_agent_interception_benchmark_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -219,6 +221,11 @@ SQL/File/HTTP proposals. It is static-manifest-only and does not add a runner,
 benchmark runner, examples, trace examples, CLI command, source code,
 integration, or execution behavior.
 
+v0.10.2 adds a non-executing benchmark over the v0.10.1 static mock-agent
+proposal manifest. It validates 9 SQL/File/HTTP proposals in memory, keeps
+unsupported proposal types at zero, confirms rejected actions do not execute,
+and adds only a minimal CLI wrapper around the benchmark runner.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -228,6 +235,7 @@ python3 cli.py demo-sql-fuse
 python3 validation/run_dhms_agentfuse_bench_sql_v0.py
 python3 validation/run_dhms_agentfuse_minimal_api_skeleton_smoke.py
 python3 validation/run_dhms_agentfuse_protocol_examples_smoke.py
+python3 cli.py bench-mock-agent-interception
 python3 validation/run_dhms_file_fuse_static_case_manifest_smoke.py
 python3 validation/run_dhms_agentfuse_bench_file_v0.py
 python3 validation/run_dhms_file_fuse_non_executing_examples_smoke.py
@@ -341,6 +349,7 @@ v0.7.0 does not claim:
 * v0.10.0 Agent Runtime Interception Proof Planning
 * v0.10.1 Static Mock Agent Tool-Call Proposal Manifest
 * v0.10.2 Non-Executing Agent Interception Benchmark
+* v0.10.3 Mock Agent Interception Examples and Trace Examples
 
 Final document verdict:
 

@@ -144,6 +144,7 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers.add_parser("demo-sql-fuse")
     subparsers.add_parser("demo-file-fuse")
     subparsers.add_parser("demo-http-fuse")
+    subparsers.add_parser("bench-mock-agent-interception")
 
     providers_parser = subparsers.add_parser("providers")
     providers_parser.add_argument("subcommand", nargs="?", choices=["models"])
@@ -179,6 +180,17 @@ def main(argv: Optional[List[str]] = None) -> int:
         result = run_http_fuse_demo()
         print(http_fuse_demo_console_summary(result))
         return 0 if result["final_verdict"] == "DHMS_HTTP_FUSE_DEMO_PASS" else 1
+    if args.command == "bench-mock-agent-interception":
+        completed = subprocess.run(
+            [
+                sys.executable,
+                str(ROOT_DIR / "validation/run_dhms_mock_agent_interception_benchmark_v0.py"),
+            ],
+            cwd=ROOT_DIR,
+            check=False,
+            shell=False,
+        )
+        return completed.returncode
     if args.command == "providers":
         if args.subcommand == "models":
             print(json.dumps(models_for(args.provider), indent=2, sort_keys=True))

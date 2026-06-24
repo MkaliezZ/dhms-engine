@@ -45,6 +45,7 @@ Core public materials:
 * File Operation Safety Fuse result review and freeze: [`docs/dhms_file_operation_safety_fuse_result_review_and_freeze_v0_8_5.md`](dhms_file_operation_safety_fuse_result_review_and_freeze_v0_8_5.md)
 * File Operation Safety Fuse evidence seal: [`docs/dhms_file_operation_safety_fuse_evidence_seal_v0_8_6.md`](dhms_file_operation_safety_fuse_evidence_seal_v0_8_6.md)
 * File Fuse CLI demo wrapper: [`docs/dhms_file_fuse_cli_demo_wrapper_v0_8_7.md`](dhms_file_fuse_cli_demo_wrapper_v0_8_7.md)
+* DHMS AgentFuse naming and Trademark Notice alignment: [`docs/dhms_agentfuse_naming_and_trademark_alignment_v0_8_8.md`](dhms_agentfuse_naming_and_trademark_alignment_v0_8_8.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -112,6 +113,10 @@ add a file adapter or arbitrary file operation support.
 v0.8.7 adds a File Fuse CLI demo wrapper and the public command
 `python3 cli.py demo-file-fuse`. It aggregates existing deterministic checks
 and does not add new file operation capability.
+
+v0.8.8 aligns DHMS AgentFuse public naming and updates the README Trademark
+Notice to include the current DHMS AgentFuse project-mark surface. It does not
+rename the repository or branches.
 
 ## Reproducible Commands
 
@@ -215,6 +220,7 @@ v0.7.0 does not claim:
 * v0.8.5 File Operation Safety Fuse Result Review and Freeze
 * v0.8.6 File Fuse Quickstart and Evidence Seal
 * v0.8.7 File Fuse CLI Demo Wrapper
+* v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment
 
 Final document verdict:
 

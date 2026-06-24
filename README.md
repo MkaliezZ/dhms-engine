@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.8.7: the File Fuse CLI demo wrapper now makes the SQL and File Fuse quickstarts symmetrical.
+Status: DHMS Agent Harness v1 has advanced to v0.8.8: DHMS AgentFuse naming and Trademark Notice alignment are now updated for the public protocol surface.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.8.7 File Fuse CLI Demo Wrapper`.
-* Previous milestone: `v0.8.6 File Fuse Quickstart and Evidence Seal`.
+* Current milestone: `v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment`.
+* Previous milestone: `v0.8.7 File Fuse CLI Demo Wrapper`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
 * Next recommended milestone: `v0.9.0 Next DHMS Proof Line Selection and Risk Review`.
-* Status: v0.8.7 adds a DHMS File Fuse CLI demo wrapper that runs the existing deterministic File Fuse public checks behind one command. It preserves the v0.8 sealed claim and does not add arbitrary file operation support, a file adapter, or new runtime file execution behavior.
+* Status: v0.8.8 aligns the public DHMS AgentFuse naming hierarchy and updates the Trademark Notice to include current DHMS AgentFuse project marks. It is documentation/public-surface cleanup only and does not add runtime behavior.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -688,6 +688,16 @@ It aggregates the existing deterministic File Fuse public checks into one
 command and preserves the v0.8.6 evidence seal. It adds no arbitrary file
 operation support, no file adapter, and no new runtime file execution behavior.
 
+### DHMS AgentFuse Naming and Trademark Notice Alignment v0.8.8
+
+v0.8.8 aligns the public naming hierarchy and Trademark Notice:
+[DHMS AgentFuse Naming and Trademark Notice Alignment v0.8.8](docs/dhms_agentfuse_naming_and_trademark_alignment_v0_8_8.md).
+
+The milestone confirms the naming hierarchy for DHMS, the DHMS Execution Fuse
+Protocol, DHMS AgentFuse, DHMS AgentFuse CLI, DHMS AgentFuse Minimal API, DHMS
+AgentFuse Adapter Skeleton, and DHMS-AgentFuse-Bench. It does not rename the
+repository or branches and does not claim formal trademark registration.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -886,6 +896,9 @@ schema/report changes.
 * v0.8.7 adds a File Fuse CLI demo wrapper around existing deterministic
   checks. It adds no file operation capability, no file adapter, no arbitrary
   file operation support, and no new runtime file execution behavior.
+* v0.8.8 aligns public naming and Trademark Notice wording. It does not rename
+  the repository or branches, claim formal trademark registration, modify code,
+  or add execution capability.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -947,6 +960,7 @@ schema/report changes.
 * [v0.8.5 DHMS File Operation Safety Fuse Result Review and Freeze](docs/dhms_file_operation_safety_fuse_result_review_and_freeze_v0_8_5.md)
 * [v0.8.6 DHMS File Operation Safety Fuse Evidence Seal](docs/dhms_file_operation_safety_fuse_evidence_seal_v0_8_6.md)
 * [v0.8.7 DHMS File Fuse CLI Demo Wrapper](docs/dhms_file_fuse_cli_demo_wrapper_v0_8_7.md)
+* [v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment](docs/dhms_agentfuse_naming_and_trademark_alignment_v0_8_8.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note
@@ -961,7 +975,7 @@ Copyright 2026 Huaxinsheng Zhong.
 
 ## Trademark Notice
 
-DHMS, DHMS Engine, and DHMS Agent Harness are claimed as trademarks of Huaxinsheng Zhong.
+DHMS, DHMS Engine, DHMS Agent Harness, DHMS Execution Fuse Protocol, DHMS AgentFuse, DHMS AgentFuse CLI, DHMS AgentFuse Minimal API, DHMS AgentFuse Adapter Skeleton, and DHMS-AgentFuse-Bench are claimed as trademarks or project marks of Huaxinsheng Zhong.
 
 Use of these names is permitted for accurate reference to this project, but does not imply endorsement, sponsorship, or affiliation unless explicitly authorized.
 

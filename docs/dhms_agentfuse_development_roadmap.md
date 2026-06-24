@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.8.7 File Fuse CLI Demo Wrapper`
+* Current package milestone: `v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -188,6 +188,14 @@ Next direction:
 * preserve the v0.8.6 evidence seal
 * add no file operation capability, file adapter, or arbitrary file operation support
 * current/completed File Fuse CLI Demo Wrapper milestone in v0.8.7
+
+### v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment
+
+* align the public DHMS AgentFuse naming hierarchy
+* update README Trademark Notice to include current DHMS AgentFuse project marks
+* do not rename the repository or branches
+* do not claim formal trademark registration or provide legal advice
+* current/completed naming and Trademark Notice alignment milestone in v0.8.8
 
 ## Development Prompt Pattern
 

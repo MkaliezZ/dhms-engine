@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.10.0 Agent Runtime Interception Proof Planning`
+* Current package milestone: `v0.10.1 Static Mock Agent Tool-Call Proposal Manifest`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -316,6 +316,15 @@ Next direction:
 * planning-only; do not add runners, manifests, examples, trace examples, CLI commands, source code, execution behavior, real LLMs, Codex/Claude/OpenClaw/DeepSeek/MCP/E2B integrations, SDK integrations, real agent runtime, real user data, or production runtime claims
 * current/completed Agent Runtime Interception Proof planning milestone in v0.10.0
 * next recommended milestone: `v0.10.1 Static Mock Agent Tool-Call Proposal Manifest`
+
+### v0.10.1 Static Mock Agent Tool-Call Proposal Manifest
+
+* add `benchmarks/dhms_mock_agent_runtime_interception_v0/proposals.json`
+* include exactly 9 deterministic mock-agent tool-call proposals: 3 SQL, 3 File, and 3 HTTP
+* keep proposal types limited to SQL, File, and HTTP
+* static-manifest-only; do not add runners, benchmark runners, examples, trace examples, CLI commands, source code, execution behavior, real agent runtimes, real LLMs, Codex/Claude/OpenClaw/DeepSeek/MCP/E2B integrations, SDK integrations, credentials, user data, or production runtime claims
+* current/completed Static Mock Agent Tool-Call Proposal Manifest milestone in v0.10.1
+* next recommended milestone: `v0.10.2 Non-Executing Agent Interception Benchmark`
 
 ## Development Prompt Pattern
 

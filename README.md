@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.10.0: the Mock Agent Runtime Interception Proof line is planned for SQL/File/HTTP tool-call proposals only.
+Status: DHMS Agent Harness v1 has advanced to v0.10.1: the static mock-agent SQL/File/HTTP tool-call proposal manifest is now published.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.10.0 Agent Runtime Interception Proof Planning`.
-* Previous milestone: `v0.9.8 SQL/File/HTTP Evidence Alignment`.
+* Current milestone: `v0.10.1 Static Mock Agent Tool-Call Proposal Manifest`.
+* Previous milestone: `v0.10.0 Agent Runtime Interception Proof Planning`.
 * Aligned proof-line evidence: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`; `v0.9 HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.10.1 Static Mock Agent Tool-Call Proposal Manifest`.
-* Status: v0.10.0 plans deterministic mock-agent runtime interception for existing SQL/File/HTTP tool-call proposals only. It is planning-only and adds no runner, manifest, examples, trace examples, CLI command, source code, integration, or execution behavior.
+* Next recommended milestone: `v0.10.2 Non-Executing Agent Interception Benchmark`.
+* Status: v0.10.1 adds a static mock-agent tool-call proposal manifest with exactly 9 SQL/File/HTTP proposals. It is static-manifest-only and adds no runner, benchmark runner, examples, trace examples, CLI command, source code, integration, or execution behavior.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -176,6 +176,25 @@ trace examples, CLI command, source code, real agent runtime, real LLM, Codex,
 Claude, OpenClaw, DeepSeek, MCP, E2B, SDK integration, arbitrary tool execution,
 or production runtime claim. See
 [DHMS Mock Agent Runtime Interception Proof Planning v0.10.0](docs/dhms_mock_agent_runtime_interception_proof_planning_v0_10_0.md).
+
+## Static Mock Agent Tool-Call Proposal Manifest
+
+v0.10.1 adds a static manifest for deterministic mock-agent SQL/File/HTTP
+tool-call proposals:
+[DHMS Static Mock Agent Tool-Call Proposal Manifest v0.10.1](docs/dhms_static_mock_agent_tool_call_proposal_manifest_v0_10_1.md).
+
+Manifest:
+
+```text
+benchmarks/dhms_mock_agent_runtime_interception_v0/proposals.json
+```
+
+The manifest contains exactly 9 proposals: three SQL proposals, three File
+proposals, and three HTTP proposals. Proposal types are limited to `SQL`,
+`File`, and `HTTP`. This milestone is static-manifest-only and does not add a
+runner, benchmark runner, examples, trace examples, CLI command, source code,
+real agent runtime, real LLM, MCP/E2B integration, SDK integration, or execution
+behavior.
 
 ## Architecture at a Glance
 
@@ -1218,6 +1237,10 @@ schema/report changes.
   runners, manifests, examples, trace examples, CLI commands, source code, real
   agent runtime, real LLM integration, MCP/E2B/OpenClaw/DeepSeek integration,
   SDK integration, arbitrary tool execution, or production runtime claims.
+* v0.10.1 adds a static mock-agent SQL/File/HTTP tool-call proposal manifest
+  with exactly 9 proposals. It is static-manifest-only and does not add runners,
+  benchmark runners, examples, trace examples, CLI commands, source code,
+  integrations, or execution behavior.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1303,6 +1326,8 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v0.9.7 DHMS HTTP Fuse CLI Demo Wrapper](docs/dhms_http_fuse_cli_demo_wrapper_v0_9_7.md)
 * [v0.9.8 DHMS SQL/File/HTTP Evidence Alignment](docs/dhms_sql_file_http_evidence_alignment_v0_9_8.md)
 * [v0.10.0 DHMS Mock Agent Runtime Interception Proof Planning](docs/dhms_mock_agent_runtime_interception_proof_planning_v0_10_0.md)
+* [v0.10.1 DHMS Static Mock Agent Tool-Call Proposal Manifest](docs/dhms_static_mock_agent_tool_call_proposal_manifest_v0_10_1.md)
+* [Mock agent runtime interception static proposals](benchmarks/dhms_mock_agent_runtime_interception_v0/proposals.json)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

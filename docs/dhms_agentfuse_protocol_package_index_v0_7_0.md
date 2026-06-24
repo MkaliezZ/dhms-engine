@@ -65,6 +65,8 @@ Core public materials:
 * HTTP Fuse CLI demo wrapper: [`docs/dhms_http_fuse_cli_demo_wrapper_v0_9_7.md`](dhms_http_fuse_cli_demo_wrapper_v0_9_7.md)
 * SQL/File/HTTP evidence alignment: [`docs/dhms_sql_file_http_evidence_alignment_v0_9_8.md`](dhms_sql_file_http_evidence_alignment_v0_9_8.md)
 * Mock Agent Runtime Interception Proof planning: [`docs/dhms_mock_agent_runtime_interception_proof_planning_v0_10_0.md`](dhms_mock_agent_runtime_interception_proof_planning_v0_10_0.md)
+* Static mock agent tool-call proposal manifest documentation: [`docs/dhms_static_mock_agent_tool_call_proposal_manifest_v0_10_1.md`](dhms_static_mock_agent_tool_call_proposal_manifest_v0_10_1.md)
+* Static mock agent tool-call proposal manifest: [`benchmarks/dhms_mock_agent_runtime_interception_v0/proposals.json`](../benchmarks/dhms_mock_agent_runtime_interception_v0/proposals.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -212,6 +214,11 @@ success metrics, and frozen non-claims. It does not add a runner, manifest,
 examples, trace examples, CLI command, source code, integration, or execution
 behavior.
 
+v0.10.1 adds the static mock-agent tool-call proposal manifest with exactly 9
+SQL/File/HTTP proposals. It is static-manifest-only and does not add a runner,
+benchmark runner, examples, trace examples, CLI command, source code,
+integration, or execution behavior.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -333,6 +340,7 @@ v0.7.0 does not claim:
 * v0.9.8 GitHub Release before v0.10.0
 * v0.10.0 Agent Runtime Interception Proof Planning
 * v0.10.1 Static Mock Agent Tool-Call Proposal Manifest
+* v0.10.2 Non-Executing Agent Interception Benchmark
 
 Final document verdict:
 

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment`
+* Current package milestone: `v0.8.9 DHMS README Public Surface Polish`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -196,6 +196,15 @@ Next direction:
 * do not rename the repository or branches
 * do not claim formal trademark registration or provide legal advice
 * current/completed naming and Trademark Notice alignment milestone in v0.8.8
+
+### v0.8.9 DHMS README Public Surface Polish
+
+* clarify the README public landing page
+* keep SQL Fuse and File Fuse demos as primary quickstarts
+* preserve historical Agent Harness reproduction commands as legacy material
+* simplify README Trademark Notice wording without changing naming hierarchy docs
+* documentation-only; no code or runtime behavior changes
+* current/completed README public surface polish milestone in v0.8.9
 
 ## Development Prompt Pattern
 

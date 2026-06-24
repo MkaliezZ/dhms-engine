@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.8.8: DHMS AgentFuse naming and Trademark Notice alignment are now updated for the public protocol surface.
+Status: DHMS Agent Harness v1 has advanced to v0.8.9: the README public surface is polished so SQL Fuse and File Fuse remain the primary quickstarts, while older Agent Harness commands are preserved as legacy reproduction material.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment`.
-* Previous milestone: `v0.8.7 File Fuse CLI Demo Wrapper`.
+* Current milestone: `v0.8.9 DHMS README Public Surface Polish`.
+* Previous milestone: `v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
 * Next recommended milestone: `v0.9.0 Next DHMS Proof Line Selection and Risk Review`.
-* Status: v0.8.8 aligns the public DHMS AgentFuse naming hierarchy and updates the Trademark Notice to include current DHMS AgentFuse project marks. It is documentation/public-surface cleanup only and does not add runtime behavior.
+* Status: v0.8.9 polishes the README public surface, keeps SQL Fuse and File Fuse as the primary public quickstarts, preserves historical Agent Harness commands as legacy reproduction material, and adds no runtime behavior.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -698,6 +698,15 @@ Protocol, DHMS AgentFuse, DHMS AgentFuse CLI, DHMS AgentFuse Minimal API, DHMS
 AgentFuse Adapter Skeleton, and DHMS-AgentFuse-Bench. It does not rename the
 repository or branches and does not claim formal trademark registration.
 
+### DHMS README Public Surface Polish v0.8.9
+
+v0.8.9 polishes the README public surface:
+[DHMS README Public Surface Polish v0.8.9](docs/dhms_readme_public_surface_polish_v0_8_9.md).
+
+It keeps SQL Fuse and File Fuse as primary quickstarts, preserves historical
+Agent Harness commands as legacy reproduction material, and simplifies the
+Trademark Notice without changing proof semantics or adding runtime behavior.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -749,7 +758,9 @@ python3 validation/run_runtime_execution_policy_freeze_stub.py
 * NOT an LLM-as-judge system.
 * NOT a tool-execution framework.
 
-## Quickstart
+## Legacy Agent Harness Reproduction Commands
+
+These commands are retained for historical Agent Harness reproduction. The primary public DHMS AgentFuse quickstarts are the SQL Fuse and File Fuse demos near the top of this README.
 
 Adapter conformance with the local sample agent:
 
@@ -790,7 +801,7 @@ git checkout v0.3.2-reproducibility-package
 The default branch is active development and may include later cases or
 schema/report changes.
 
-## Caveats
+## Historical Caveats and Boundaries
 
 * General runtime execution remains disabled by default.
 * The only proven runtime-path execution is the v0.5.15 exact allowlisted SQL
@@ -899,6 +910,9 @@ schema/report changes.
 * v0.8.8 aligns public naming and Trademark Notice wording. It does not rename
   the repository or branches, claim formal trademark registration, modify code,
   or add execution capability.
+* v0.8.9 polishes the README public surface. It changes documentation
+  structure and Trademark Notice wording only; it does not modify code, add
+  runtime behavior, or change proof semantics.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -906,7 +920,11 @@ schema/report changes.
 * The OpenClaw pilot still records the `runtime=direct / mode=off` caveat.
 * Phase 5.98 and Phase 5.99C confirmations are limited to their named single cases.
 
-## Documentation
+## Documentation and Evidence Archive
+
+This archive preserves public and historical evidence links across the DHMS
+Agent Harness and DHMS AgentFuse lines. The primary public quickstarts remain
+the SQL Fuse and File Fuse demos near the top of this README.
 
 * [Real validation log](docs/agent_harness_real_validation_log.md)
 * [OpenClaw DeepSeek v4 wrapper](docs/openclaw_deepseek_v4_wrapper.md)
@@ -961,6 +979,7 @@ schema/report changes.
 * [v0.8.6 DHMS File Operation Safety Fuse Evidence Seal](docs/dhms_file_operation_safety_fuse_evidence_seal_v0_8_6.md)
 * [v0.8.7 DHMS File Fuse CLI Demo Wrapper](docs/dhms_file_fuse_cli_demo_wrapper_v0_8_7.md)
 * [v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment](docs/dhms_agentfuse_naming_and_trademark_alignment_v0_8_8.md)
+* [v0.8.9 DHMS README Public Surface Polish](docs/dhms_readme_public_surface_polish_v0_8_9.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note
@@ -975,7 +994,7 @@ Copyright 2026 Huaxinsheng Zhong.
 
 ## Trademark Notice
 
-DHMS, DHMS Engine, DHMS Agent Harness, DHMS Execution Fuse Protocol, DHMS AgentFuse, DHMS AgentFuse CLI, DHMS AgentFuse Minimal API, DHMS AgentFuse Adapter Skeleton, and DHMS-AgentFuse-Bench are claimed as trademarks or project marks of Huaxinsheng Zhong.
+DHMS, DHMS Engine, DHMS AgentFuse, and DHMS Agent Harness are project names and marks of Huaxinsheng Zhong.
 
 Use of these names is permitted for accurate reference to this project, but does not imply endorsement, sponsorship, or affiliation unless explicitly authorized.
 

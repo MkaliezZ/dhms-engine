@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.9.0 HTTP / Network Request Safety Fuse Selection and Risk Review`
+* Current package milestone: `v0.9.1 HTTP / Network Request Safety Fuse Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -115,7 +115,7 @@ should still avoid uncontrolled real-world side effects.
 
 Next direction:
 
-`v0.9.1 HTTP / Network Request Safety Fuse Planning`
+`v0.9.2 HTTP Fuse Static Case Manifest`
 
 ## v0.8 File Operation Safety Fuse Plan
 
@@ -229,6 +229,8 @@ Next direction:
 * plan inert HTTP/network request proposal shapes
 * define future risk-tier mapping and trace expectations
 * keep all HTTP/network proposals non-executing until separately approved
+* document planned fields, risk categories, decision classes, future metrics, and fail-closed planning rules
+* current/completed HTTP/network planning milestone in v0.9.1
 
 ### v0.9.2 HTTP Fuse Static Case Manifest
 

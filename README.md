@@ -38,18 +38,18 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.9.0: HTTP / Network Request Safety Fuse is selected as the next DHMS proof line for planning and risk review only.
+Status: DHMS Agent Harness v1 has advanced to v0.9.1: HTTP / Network Request Safety Fuse planning defines inert proposal shapes, risk categories, decision boundaries, trace expectations, and approval requirements without implementing HTTP execution.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.9.0 HTTP / Network Request Safety Fuse Selection and Risk Review`.
-* Previous milestone: `v0.8.10 DHMS README Milestone Heading Normalization`.
+* Current milestone: `v0.9.1 HTTP / Network Request Safety Fuse Planning`.
+* Previous milestone: `v0.9.0 HTTP / Network Request Safety Fuse Selection and Risk Review`.
 * Proven lines: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`.
 * Selected next proof line: `HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.9.1 HTTP / Network Request Safety Fuse Planning`.
-* Status: v0.9.0 records the selected next proof line and defines HTTP/network risk boundaries. It is planning-only and does not implement HTTP execution, network adapters, API clients, MCP integration, provider SDK integration, agent SDK integration, or arbitrary tool execution.
+* Next recommended milestone: `v0.9.2 HTTP Fuse Static Case Manifest`.
+* Status: v0.9.1 plans HTTP/network request proposal modeling only. HTTP follows the File Fuse staged strategy first: planning, static inert cases, non-executing benchmark, examples, and freeze. It does not implement HTTP execution, network calls, API clients, HTTP adapters, MCP integration, provider SDK integration, agent SDK integration, or arbitrary tool execution.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -733,6 +733,24 @@ integration, provider SDK integration, agent SDK integration, or arbitrary tool
 execution. The next recommended milestone is `v0.9.1 HTTP / Network Request
 Safety Fuse Planning`.
 
+## DHMS HTTP / Network Request Safety Fuse Planning v0.9.1
+
+v0.9.1 plans the HTTP / Network Request Safety Fuse proof line:
+[DHMS HTTP / Network Request Safety Fuse Planning v0.9.1](docs/dhms_http_network_request_safety_fuse_planning_v0_9_1.md).
+
+HTTP follows the File Fuse staged strategy first: planning, static inert cases,
+non-executing benchmark, examples, and freeze. A SQL-style controlled release
+proof is not appropriate at the start of the HTTP line. Any later HTTP
+constrained proof must be separately approved and should remain synthetic,
+local, mock-only, or loopback-only, with no real external network calls.
+
+v0.9.1 is planning-only. It defines inert HTTP/network request proposal fields,
+risk categories, decision classes, trace expectations, future metrics, and
+approval requirements. It does not implement HTTP execution, perform network
+calls, add API clients, add HTTP adapters, create a static HTTP case manifest,
+add an HTTP benchmark runner, or add HTTP examples. v0.9.2 should create the
+static inert HTTP case manifest.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -944,6 +962,11 @@ schema/report changes.
   network calls, add API clients, add HTTP adapters, add MCP integration, add
   provider SDK integration, add agent SDK integration, or add arbitrary tool
   execution.
+* v0.9.1 plans inert HTTP/network request proposal shapes, trace expectations,
+  and future validation expectations. It does not implement HTTP execution,
+  perform real network calls, add a static HTTP manifest, add an HTTP benchmark
+  runner, add HTTP examples, add API clients, add HTTP adapters, or add
+  credential handling.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1012,6 +1035,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment](docs/dhms_agentfuse_naming_and_trademark_alignment_v0_8_8.md)
 * [v0.8.9 DHMS README Public Surface Polish](docs/dhms_readme_public_surface_polish_v0_8_9.md)
 * [v0.9.0 DHMS HTTP / Network Request Safety Fuse Selection and Risk Review](docs/dhms_http_network_request_safety_fuse_selection_and_risk_review_v0_9_0.md)
+* [v0.9.1 DHMS HTTP / Network Request Safety Fuse Planning](docs/dhms_http_network_request_safety_fuse_planning_v0_9_1.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

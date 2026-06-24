@@ -48,6 +48,7 @@ Core public materials:
 * DHMS AgentFuse naming and Trademark Notice alignment: [`docs/dhms_agentfuse_naming_and_trademark_alignment_v0_8_8.md`](dhms_agentfuse_naming_and_trademark_alignment_v0_8_8.md)
 * README public surface polish: [`docs/dhms_readme_public_surface_polish_v0_8_9.md`](dhms_readme_public_surface_polish_v0_8_9.md)
 * HTTP / Network Request Safety Fuse selection and risk review: [`docs/dhms_http_network_request_safety_fuse_selection_and_risk_review_v0_9_0.md`](dhms_http_network_request_safety_fuse_selection_and_risk_review_v0_9_0.md)
+* HTTP / Network Request Safety Fuse planning: [`docs/dhms_http_network_request_safety_fuse_planning_v0_9_1.md`](dhms_http_network_request_safety_fuse_planning_v0_9_1.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -128,6 +129,11 @@ v0.9.0 selects HTTP / Network Request Safety Fuse as the next DHMS proof line
 after the completed SQL Sandbox Execution Fuse and File Operation Safety Fuse
 lines. It is planning-only and does not implement HTTP execution or network
 adapters.
+
+v0.9.1 plans inert HTTP/network request proposal shapes, risk categories,
+decision boundaries, trace expectations, future metrics, fail-closed behavior,
+and approval requirements. It does not implement HTTP execution, create static
+HTTP case manifests, add benchmark runners, or add HTTP examples.
 
 ## Reproducible Commands
 
@@ -234,6 +240,7 @@ v0.7.0 does not claim:
 * v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment
 * v0.8.9 DHMS README Public Surface Polish
 * v0.9.0 HTTP / Network Request Safety Fuse Selection and Risk Review
+* v0.9.1 HTTP / Network Request Safety Fuse Planning
 
 Final document verdict:
 

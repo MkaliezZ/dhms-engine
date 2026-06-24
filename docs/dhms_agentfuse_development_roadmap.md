@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.0.4 v1.0 Tag / Release Preparation`
+* Current package milestone: `v1.0.5 Manual GitHub Release Confirmation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -419,6 +419,15 @@ Next direction:
 * documentation-only release preparation; do not create a GitHub release, create a tag, push tags, add runners, CLI commands, source code, manifest changes, examples changes, trace example changes, schema changes, execution behavior changes, proof semantic changes, real agent runtimes, real LLMs, SDK integrations, credentials, user data, or production runtime behavior
 * current/completed v1.0 Tag / Release Preparation milestone in v1.0.4
 * next recommended milestone: `v1.0.5 Manual GitHub Release Confirmation`
+
+### v1.0.5 Manual GitHub Release Confirmation
+
+* add `docs/dhms_manual_github_release_confirmation_v1_0_5.md`
+* document the manually created GitHub release URL, release title, tag name, confirmed tag target commit, release body source, release-preparation source, confirmation checklist, tag verification command, reproduction commands, expected verdict markers, public frozen claim, and public non-claims
+* confirm tag `v1.0.0-public-evidence-package` points to `24319dfa3db0f272b13b220201e6f4528c62a6f2`
+* documentation-only release confirmation; do not create or edit a GitHub release, create/modify/delete/push tags, add runners, CLI commands, source code, manifest changes, examples changes, trace example changes, schema changes, execution behavior changes, proof semantic changes, real agent runtimes, real LLMs, SDK integrations, credentials, user data, or production runtime behavior
+* current/completed Manual GitHub Release Confirmation milestone in v1.0.5
+* next recommended milestone: `v1.1.0 Local Command-Agent Interception Planning`
 
 ## Development Prompt Pattern
 

@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v1.0.4: the v1.0 public evidence package is prepared for a future manually created tag and GitHub release, but no release or tag has been created.
+Status: DHMS Agent Harness v1 has advanced to v1.0.5: the v1.0 public evidence package release and tag have been manually created and confirmed under documented non-production boundaries.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.0.4 v1.0 Tag / Release Preparation`.
-* Previous milestone: `v1.0.3 GitHub Release Notes`.
+* Current milestone: `v1.0.5 Manual GitHub Release Confirmation`.
+* Previous milestone: `v1.0.4 v1.0 Tag / Release Preparation`.
 * Aligned proof-line evidence: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`; `v0.9 HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v1.0.5 Manual GitHub Release Confirmation`.
-* Status: v1.0.4 prepares the checklist for a future manual GitHub tag and release. It does not create a GitHub release, create a tag, push tags, claim real agent runtime interception, or claim production readiness.
+* Next recommended milestone: `v1.1.0 Local Command-Agent Interception Planning`.
+* Status: v1.0.5 documents manual GitHub release confirmation. It does not create or edit a GitHub release, create/modify/delete/push a tag, claim real agent runtime interception, or claim production readiness.
 
 ## Public Overview
 
@@ -445,6 +445,21 @@ Release body source:
 No GitHub release or tag has been created yet. This is release preparation
 only and does not claim production readiness or real agent runtime
 interception.
+
+## Manual GitHub Release Confirmation
+
+v1.0.5 documents that the v1.0 public evidence package GitHub release and tag
+were manually created and confirmed:
+[DHMS Manual GitHub Release Confirmation v1.0.5](docs/dhms_manual_github_release_confirmation_v1_0_5.md).
+
+Release URL:
+[`DHMS v1.0 Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package).
+
+Confirmed tag target commit: `24319dfa3db0f272b13b220201e6f4528c62a6f2`.
+
+This milestone is documentation-only confirmation. It does not create or edit
+a GitHub release, create/modify/delete/push a tag, claim production readiness,
+or claim real agent runtime interception.
 
 ## Architecture at a Glance
 
@@ -1621,6 +1636,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v1.0.2 DHMS README Public Launch Polish](docs/dhms_readme_public_launch_polish_v1_0_2.md)
 * [v1.0.3 DHMS GitHub Release Notes](docs/dhms_github_release_notes_v1_0_3.md)
 * [v1.0.4 DHMS v1.0 Tag / Release Preparation](docs/dhms_v1_0_tag_release_preparation_v1_0_4.md)
+* [v1.0.5 DHMS Manual GitHub Release Confirmation](docs/dhms_manual_github_release_confirmation_v1_0_5.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

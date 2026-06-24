@@ -80,6 +80,7 @@ Core public materials:
 * README public launch polish: [`docs/dhms_readme_public_launch_polish_v1_0_2.md`](dhms_readme_public_launch_polish_v1_0_2.md)
 * GitHub release notes: [`docs/dhms_github_release_notes_v1_0_3.md`](dhms_github_release_notes_v1_0_3.md)
 * v1.0 tag / release preparation: [`docs/dhms_v1_0_tag_release_preparation_v1_0_4.md`](dhms_v1_0_tag_release_preparation_v1_0_4.md)
+* Manual GitHub release confirmation: [`docs/dhms_manual_github_release_confirmation_v1_0_5.md`](dhms_manual_github_release_confirmation_v1_0_5.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -128,6 +129,11 @@ does not create a GitHub release or tag.
 v1.0.4 prepares the manual tag and GitHub release checklist for the v1.0
 public evidence package. It does not create a GitHub release, create a tag, or
 push tags.
+
+v1.0.5 documents that the v1.0 public evidence package GitHub release and tag
+were manually created and confirmed. It does not create or edit a GitHub
+release, create/modify/delete/push a tag, add execution behavior, or change
+proof semantics.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

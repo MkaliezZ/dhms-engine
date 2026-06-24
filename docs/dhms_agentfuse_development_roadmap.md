@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.9.7 HTTP Fuse CLI Demo Wrapper`
+* Current package milestone: `v0.9.8 SQL/File/HTTP Evidence Alignment`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -296,6 +296,16 @@ Next direction:
 * do not modify existing HTTP runners, manifests, examples, SQL/File runners, proof behavior, adapters, API clients, or credential handling
 * current/completed HTTP Fuse CLI demo wrapper milestone in v0.9.7
 * next recommended milestone: `v0.9.8 SQL/File/HTTP Evidence Alignment`
+
+### v0.9.8 SQL/File/HTTP Evidence Alignment
+
+* align the public evidence presentation for the completed SQL, File, and HTTP proof lines
+* classify SQL as a controlled runtime-path SQLite sandbox release proof
+* classify File as a constrained synthetic temp-directory proof
+* classify HTTP as static inert cases plus a non-executing benchmark plus constrained local mock HTTP proof
+* documentation/evidence-alignment only; do not modify runners, manifests, examples, CLI commands, adapters, API clients, proof semantics, tags, releases, or runtime behavior
+* current/completed SQL/File/HTTP evidence alignment milestone in v0.9.8
+* next recommended milestone: `v0.9.8 GitHub Release before v0.10.0`
 
 ## Development Prompt Pattern
 

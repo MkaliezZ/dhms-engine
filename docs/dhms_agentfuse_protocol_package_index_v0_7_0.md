@@ -63,6 +63,7 @@ Core public materials:
 * Constrained local mock HTTP proof runner: [`validation/run_dhms_constrained_local_mock_http_proof.py`](../validation/run_dhms_constrained_local_mock_http_proof.py)
 * HTTP Fuse result review and freeze: [`docs/dhms_http_fuse_result_review_and_freeze_v0_9_6.md`](dhms_http_fuse_result_review_and_freeze_v0_9_6.md)
 * HTTP Fuse CLI demo wrapper: [`docs/dhms_http_fuse_cli_demo_wrapper_v0_9_7.md`](dhms_http_fuse_cli_demo_wrapper_v0_9_7.md)
+* SQL/File/HTTP evidence alignment: [`docs/dhms_sql_file_http_evidence_alignment_v0_9_8.md`](dhms_sql_file_http_evidence_alignment_v0_9_8.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -196,6 +197,13 @@ non-executing HTTP benchmark and constrained local mock HTTP proof in order and
 does not modify existing runners, manifests, examples, proof semantics, or
 execution behavior.
 
+v0.9.8 aligns the public evidence presentation for SQL, File, and HTTP proof
+lines. It classifies SQL as a controlled runtime-path SQLite sandbox release
+proof, File as a constrained synthetic temp-directory proof, and HTTP as static
+inert cases plus a non-executing benchmark plus constrained local mock HTTP
+proof. It does not add runners, manifests, examples, CLI commands, adapters, or
+execution behavior.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -313,6 +321,8 @@ v0.7.0 does not claim:
 * v0.9.5.1 Constrained Local Mock HTTP Proof Implementation
 * v0.9.6 HTTP Fuse Result Review and Freeze
 * v0.9.7 HTTP Fuse CLI Demo Wrapper
+* v0.9.8 SQL/File/HTTP Evidence Alignment
+* v0.9.8 GitHub Release before v0.10.0
 
 Final document verdict:
 

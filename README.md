@@ -38,18 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.9.7: the HTTP Fuse evidence chain now has a minimal CLI demo wrapper.
+Status: DHMS Agent Harness v1 has advanced to v0.9.8: the SQL, File, and HTTP proof-line evidence presentation is aligned before the v0.10 line.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.9.7 HTTP Fuse CLI Demo Wrapper`.
-* Previous milestone: `v0.9.6 HTTP Fuse Result Review and Freeze`.
-* Proven lines: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`.
-* Selected proof line: `HTTP / Network Request Safety Fuse`.
+* Current milestone: `v0.9.8 SQL/File/HTTP Evidence Alignment`.
+* Previous milestone: `v0.9.7 HTTP Fuse CLI Demo Wrapper`.
+* Aligned proof-line evidence: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`; `v0.9 HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.9.8 SQL/File/HTTP Evidence Alignment`.
-* Status: v0.9.7 adds a minimal HTTP Fuse CLI demo wrapper around existing HTTP benchmark and constrained local mock HTTP proof checks. It adds no new proof behavior, adapter, API client, or credential handling.
+* Next recommended milestone: `v0.9.8 GitHub Release before v0.10.0`.
+* Status: v0.9.8 aligns SQL, File, and HTTP evidence presentation. It adds no runner, manifest, example, CLI command, adapter, API client, credential handling, or execution behavior.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -144,6 +143,24 @@ The command wraps the existing HTTP Fuse benchmark and constrained local mock
 HTTP proof. It does not add a new proof behavior, HTTP adapter, API client,
 credential handling, or production HTTP safety claim. See
 [DHMS HTTP Fuse CLI Demo Wrapper v0.9.7](docs/dhms_http_fuse_cli_demo_wrapper_v0_9_7.md).
+
+## SQL/File/HTTP Evidence Alignment
+
+v0.9.8 aligns the public evidence presentation for the three completed DHMS
+proof lines. It is evidence documentation only and does not add execution
+capability.
+
+| Proof line | Evidence classification | Public command |
+| --- | --- | --- |
+| SQL Fuse | Controlled runtime-path SQLite sandbox release proof | `python3 cli.py demo-sql-fuse` |
+| File Fuse | Constrained synthetic temp-directory proof | `python3 cli.py demo-file-fuse` |
+| HTTP Fuse | Static inert cases + non-executing benchmark + constrained local mock HTTP proof | `python3 cli.py demo-http-fuse` |
+
+This alignment does not claim production readiness, real agent runtime
+interception, arbitrary SQL support, arbitrary file operation support, arbitrary
+HTTP/network support, SDK integration, MCP integration, or adapter/API-client
+support. See
+[DHMS SQL/File/HTTP Evidence Alignment v0.9.8](docs/dhms_sql_file_http_evidence_alignment_v0_9_8.md).
 
 ## Architecture at a Glance
 
@@ -1176,6 +1193,10 @@ schema/report changes.
   It does not modify existing HTTP runners, manifests, examples, SQL/File
   runners, proof behavior, adapters, API clients, credential handling, or
   production HTTP safety claims.
+* v0.9.8 aligns the public SQL, File, and HTTP evidence presentation before the
+  v0.10 line. It is evidence documentation only and does not add runners,
+  manifests, examples, CLI commands, adapters, API clients, credential handling,
+  tags, GitHub Releases, or execution behavior.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1259,6 +1280,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [Constrained local mock HTTP proof runner](validation/run_dhms_constrained_local_mock_http_proof.py)
 * [v0.9.6 DHMS HTTP Fuse Result Review and Freeze](docs/dhms_http_fuse_result_review_and_freeze_v0_9_6.md)
 * [v0.9.7 DHMS HTTP Fuse CLI Demo Wrapper](docs/dhms_http_fuse_cli_demo_wrapper_v0_9_7.md)
+* [v0.9.8 DHMS SQL/File/HTTP Evidence Alignment](docs/dhms_sql_file_http_evidence_alignment_v0_9_8.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

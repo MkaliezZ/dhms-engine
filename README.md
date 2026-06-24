@@ -38,18 +38,18 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.9.4: static non-executing HTTP Fuse examples and trace examples map inert HTTP proposal cases to protocol lifecycle traces.
+Status: DHMS Agent Harness v1 has advanced to v0.9.5: a planning-only constrained local mock HTTP proof envelope is defined for a future explicitly approved implementation milestone.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.9.4 HTTP Fuse Non-Executing Examples`.
-* Previous milestone: `v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification`.
+* Current milestone: `v0.9.5 Constrained Local Mock HTTP Proof Planning`.
+* Previous milestone: `v0.9.4 HTTP Fuse Non-Executing Examples`.
 * Proven lines: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`.
 * Selected next proof line: `HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.9.5 HTTP Fuse Result Review and Freeze`.
-* Status: v0.9.4 adds static non-executing HTTP Fuse examples and trace examples. The examples map inert HTTP proposal cases to protocol lifecycle traces and do not implement HTTP execution, network calls, runners, manifests, CLI commands, adapters, or API clients.
+* Next recommended milestone: `v0.9.5.1 Constrained Local Mock HTTP Proof Implementation, after explicit approval`.
+* Status: v0.9.5 is planning-only. It distinguishes weak simulated target evidence from a future strong constrained local mock proof and does not implement a mock server, HTTP client, socket creation, network request, proof runner, validation runner, adapter, API client, or CLI command.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -825,8 +825,23 @@ illustrate proposal, safety decision, execution gate, and trace semantics for
 `ALLOW_INERT`, `HOLD_FOR_REVIEW`, `BLOCK`, and `FAIL_CLOSED` paths.
 
 No HTTP execution or network calls are implemented. No runner, manifest, CLI
-command, adapter, or API client is changed. v0.9.5 should review and freeze the
-HTTP Fuse evidence chain.
+command, adapter, or API client is changed. v0.9.5 proceeds by planning the
+future constrained local mock HTTP proof before any implementation is allowed.
+
+## DHMS Constrained Local Mock HTTP Proof Planning v0.9.5
+
+v0.9.5 plans a future constrained local mock HTTP proof:
+[DHMS Constrained Local Mock HTTP Proof Planning v0.9.5](docs/dhms_constrained_local_mock_http_proof_planning_v0_9_5.md).
+
+This milestone is planning-only. It distinguishes the current weak simulated
+target evidence from a future strong constrained local mock proof. It plans a
+future local/mock/loopback-only constrained proof where exactly one approved
+synthetic GET may be released to a disposable local mock target only after
+explicit approval in a later implementation milestone.
+
+v0.9.5 does not implement a mock server, HTTP client, socket creation, network
+request, proof runner, validation runner, adapter, API client, or CLI command.
+v0.9.5.1 requires explicit approval before implementation.
 
 What is not claimed:
 
@@ -1063,6 +1078,12 @@ schema/report changes.
   add HTTP adapters, add API clients, add benchmark runners, add validation
   runners, add CLI commands, handle credentials, integrate MCP/provider/agent
   SDKs, or authorize real network activity.
+* v0.9.5 plans a future constrained local mock HTTP proof. It is planning-only
+  and does not implement a mock server, socket creation, HTTP client, network
+  request, loopback call, proof runner, validation runner, CLI command, HTTP
+  adapter, API client, credential handling, provider SDK integration, agent SDK
+  integration, MCP integration, OpenClaw integration, DeepSeek integration, or
+  arbitrary tool execution.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1141,6 +1162,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [HTTP Fuse examples](examples/dhms_agentfuse_http_v0/)
 * [HTTP Fuse non-executing examples](examples/dhms_agentfuse_http_v0/non_executing_examples.json)
 * [HTTP Fuse trace examples](examples/dhms_agentfuse_http_v0/trace_examples.json)
+* [v0.9.5 DHMS Constrained Local Mock HTTP Proof Planning](docs/dhms_constrained_local_mock_http_proof_planning_v0_9_5.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

@@ -58,6 +58,7 @@ Core public materials:
 * HTTP Fuse non-executing examples: [`examples/dhms_agentfuse_http_v0/`](../examples/dhms_agentfuse_http_v0/)
 * HTTP Fuse example cases: [`examples/dhms_agentfuse_http_v0/non_executing_examples.json`](../examples/dhms_agentfuse_http_v0/non_executing_examples.json)
 * HTTP Fuse trace examples: [`examples/dhms_agentfuse_http_v0/trace_examples.json`](../examples/dhms_agentfuse_http_v0/trace_examples.json)
+* Constrained local mock HTTP proof planning: [`docs/dhms_constrained_local_mock_http_proof_planning_v0_9_5.md`](dhms_constrained_local_mock_http_proof_planning_v0_9_5.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -166,6 +167,12 @@ examples map inert HTTP proposal cases to protocol lifecycle traces and do not
 implement HTTP execution, perform network calls, create HTTP clients, add HTTP
 adapters, add API clients, add benchmark runners, add validation runners, add
 CLI commands, or authorize real network activity.
+
+v0.9.5 plans a future constrained local mock HTTP proof. It is planning-only
+and does not implement a mock server, HTTP client, socket creation, network
+request, proof runner, validation runner, adapter, API client, credential
+handling, provider SDK integration, agent SDK integration, MCP integration, or
+arbitrary tool execution.
 
 ## Reproducible Commands
 
@@ -278,6 +285,7 @@ v0.7.0 does not claim:
 * v0.9.3 Non-Executing HTTP Fuse Benchmark
 * v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification
 * v0.9.4 HTTP Fuse Non-Executing Examples
+* v0.9.5 Constrained Local Mock HTTP Proof Planning
 
 Final document verdict:
 

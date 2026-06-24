@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.9.4 HTTP Fuse Non-Executing Examples`
+* Current package milestone: `v0.9.5 Constrained Local Mock HTTP Proof Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -260,13 +260,24 @@ Next direction:
 * add examples for request proposals, decisions, gates, and traces
 * keep examples non-executing
 * current/completed HTTP Fuse non-executing examples milestone in v0.9.4
-* next recommended milestone: `v0.9.5 HTTP Fuse Result Review and Freeze`
+* next recommended milestone: `v0.9.5 Constrained Local Mock HTTP Proof Planning`
 
-### v0.9.5 HTTP Fuse Result Review / Freeze
+### v0.9.5 Constrained Local Mock HTTP Proof Planning
 
-* review v0.9 HTTP/network evidence
-* freeze claims and not-claimed boundaries
-* keep any constrained proof optional and separately approved
+* plan a future constrained local mock HTTP proof
+* distinguish weak simulated target evidence from a future strong constrained mock proof
+* define mock-only, local-only, loopback-only, synthetic-only proof envelope
+* require explicit approval before any v0.9.5.1 implementation
+* do not implement mock server, socket creation, HTTP client, network request, proof runner, validation runner, adapter, API client, or CLI command
+* current/completed constrained local mock HTTP proof planning milestone in v0.9.5
+* next recommended milestone: `v0.9.5.1 Constrained Local Mock HTTP Proof Implementation, after explicit approval`
+
+### v0.9.5.1 Constrained Local Mock HTTP Proof Implementation, after explicit approval
+
+* implement only if the task context explicitly approves implementation
+* if approved, release exactly one synthetic GET to a disposable local mock target
+* keep blocked and fail-closed cases non-executing
+* verify teardown and non-claim boundaries
 
 ## Development Prompt Pattern
 

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.8.10 DHMS README Milestone Heading Normalization`
+* Current package milestone: `v0.9.0 HTTP / Network Request Safety Fuse Selection and Risk Review`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -115,7 +115,7 @@ should still avoid uncontrolled real-world side effects.
 
 Next direction:
 
-`v0.9.0 Next DHMS Proof Line Selection and Risk Review`
+`v0.9.1 HTTP / Network Request Safety Fuse Planning`
 
 ## v0.8 File Operation Safety Fuse Plan
 
@@ -214,6 +214,45 @@ Next direction:
 * documentation-only; no code or runtime behavior changes
 * current/completed README milestone heading normalization patch in v0.8.10
 
+## v0.9 HTTP / Network Request Safety Fuse Plan
+
+### v0.9.0 HTTP / Network Request Safety Fuse Selection and Risk Review
+
+* select `HTTP / Network Request Safety Fuse` as the next DHMS proof line
+* record that SQL Sandbox Execution Fuse and File Operation Safety Fuse are the completed proof lines
+* define HTTP/network risk categories and explicit non-claims
+* planning-only; no HTTP execution, network adapter, API client, MCP integration, provider SDK integration, agent SDK integration, or arbitrary tool execution
+* current/completed selection and risk review milestone in v0.9.0
+
+### v0.9.1 HTTP / Network Request Safety Fuse Planning
+
+* plan inert HTTP/network request proposal shapes
+* define future risk-tier mapping and trace expectations
+* keep all HTTP/network proposals non-executing until separately approved
+
+### v0.9.2 HTTP Fuse Static Case Manifest
+
+* define static HTTP/network request safety cases
+* treat URLs, headers, bodies, methods, and credentials as inert data
+* do not perform network calls
+
+### v0.9.3 Non-Executing HTTP Fuse Benchmark
+
+* evaluate static HTTP/network cases in memory
+* produce deterministic metrics
+* do not implement HTTP execution or API clients
+
+### v0.9.4 HTTP Fuse Non-Executing Examples
+
+* add examples for request proposals, decisions, gates, and traces
+* keep examples non-executing
+
+### v0.9.5 HTTP Fuse Result Review / Freeze
+
+* review v0.9 HTTP/network evidence
+* freeze claims and not-claimed boundaries
+* keep any constrained proof optional and separately approved
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -249,6 +288,7 @@ Persistent boundaries:
 * no agent SDK integration without explicit phase approval
 * no HTTP/file/shell/MCP adapter without explicit phase approval
 * no file operation capability without explicit phase approval
+* no HTTP/network request capability without explicit phase approval
 * no production-ready claims before proof
 * do not alter License / Trademark Notice casually
 

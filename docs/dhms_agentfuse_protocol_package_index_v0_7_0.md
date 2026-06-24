@@ -47,6 +47,7 @@ Core public materials:
 * File Fuse CLI demo wrapper: [`docs/dhms_file_fuse_cli_demo_wrapper_v0_8_7.md`](dhms_file_fuse_cli_demo_wrapper_v0_8_7.md)
 * DHMS AgentFuse naming and Trademark Notice alignment: [`docs/dhms_agentfuse_naming_and_trademark_alignment_v0_8_8.md`](dhms_agentfuse_naming_and_trademark_alignment_v0_8_8.md)
 * README public surface polish: [`docs/dhms_readme_public_surface_polish_v0_8_9.md`](dhms_readme_public_surface_polish_v0_8_9.md)
+* HTTP / Network Request Safety Fuse selection and risk review: [`docs/dhms_http_network_request_safety_fuse_selection_and_risk_review_v0_9_0.md`](dhms_http_network_request_safety_fuse_selection_and_risk_review_v0_9_0.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -122,6 +123,11 @@ rename the repository or branches.
 v0.8.9 polishes the README public surface, keeps SQL/File Fuse demos as primary
 quickstarts, preserves historical Agent Harness commands as legacy reproduction
 material, and simplifies the README Trademark Notice.
+
+v0.9.0 selects HTTP / Network Request Safety Fuse as the next DHMS proof line
+after the completed SQL Sandbox Execution Fuse and File Operation Safety Fuse
+lines. It is planning-only and does not implement HTTP execution or network
+adapters.
 
 ## Reproducible Commands
 
@@ -227,6 +233,7 @@ v0.7.0 does not claim:
 * v0.8.7 File Fuse CLI Demo Wrapper
 * v0.8.8 DHMS AgentFuse Naming and Trademark Notice Alignment
 * v0.8.9 DHMS README Public Surface Polish
+* v0.9.0 HTTP / Network Request Safety Fuse Selection and Risk Review
 
 Final document verdict:
 

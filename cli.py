@@ -63,6 +63,19 @@ FILE_FUSE_DEMO_CHECKS = (
     },
 )
 
+HTTP_FUSE_DEMO_CHECKS = (
+    {
+        "name": "non_executing_http_benchmark",
+        "script": "validation/run_dhms_agentfuse_bench_http_v0.py",
+        "expected_verdict": "DHMS_AGENTFUSE_BENCH_HTTP_V0_PASS",
+    },
+    {
+        "name": "constrained_local_mock_http_proof",
+        "script": "validation/run_dhms_constrained_local_mock_http_proof.py",
+        "expected_verdict": "DHMS_CONSTRAINED_LOCAL_MOCK_HTTP_PROOF_PASS",
+    },
+)
+
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="dhms")
@@ -130,6 +143,7 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers.add_parser("doctor")
     subparsers.add_parser("demo-sql-fuse")
     subparsers.add_parser("demo-file-fuse")
+    subparsers.add_parser("demo-http-fuse")
 
     providers_parser = subparsers.add_parser("providers")
     providers_parser.add_argument("subcommand", nargs="?", choices=["models"])
@@ -161,6 +175,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         result = run_file_fuse_demo()
         print(file_fuse_demo_console_summary(result))
         return 0 if result["final_verdict"] == "DHMS_FILE_FUSE_DEMO_PASS" else 1
+    if args.command == "demo-http-fuse":
+        result = run_http_fuse_demo()
+        print(http_fuse_demo_console_summary(result))
+        return 0 if result["final_verdict"] == "DHMS_HTTP_FUSE_DEMO_PASS" else 1
     if args.command == "providers":
         if args.subcommand == "models":
             print(json.dumps(models_for(args.provider), indent=2, sort_keys=True))
@@ -427,6 +445,17 @@ def parse_first_json_object(stdout: str) -> dict[str, Any]:
     return parsed
 
 
+def parse_key_value_summary(stdout: str) -> dict[str, str]:
+    values: dict[str, str] = {}
+    for line in stdout.splitlines():
+        if not line or line.startswith("{"):
+            break
+        if "=" in line:
+            key, value = line.split("=", 1)
+            values[key] = value
+    return values
+
+
 def run_fixed_file_fuse_check(check: dict[str, str]) -> dict[str, Any]:
     script = ROOT_DIR / check["script"]
     completed = subprocess.run(
@@ -570,6 +599,151 @@ def file_fuse_demo_console_summary(result: dict[str, Any]) -> str:
         f"final_verdict={result['final_verdict']}",
     ]
     if result["final_verdict"] != "DHMS_FILE_FUSE_DEMO_PASS":
+        failed_detail = [
+            {
+                "name": check_result["name"],
+                "script": check_result["script"],
+                "exit_code": check_result["exit_code"],
+                "observed_verdict": check_result["observed_verdict"],
+                "failed_checks": check_result["failed_checks"],
+                "stderr": check_result["stderr"],
+            }
+            for check_result in result["check_results"]
+            if not check_result["passed"]
+        ]
+        lines.append(
+            "failed_check_details="
+            + json.dumps(failed_detail, separators=(",", ":"), sort_keys=True)
+        )
+    return "\n".join(lines)
+
+
+def run_fixed_http_fuse_check(check: dict[str, str]) -> dict[str, Any]:
+    script = ROOT_DIR / check["script"]
+    completed = subprocess.run(
+        [sys.executable, str(script)],
+        cwd=ROOT_DIR,
+        text=True,
+        capture_output=True,
+        check=False,
+        shell=False,
+    )
+
+    failed_checks: list[str] = []
+    summary = parse_key_value_summary(completed.stdout)
+    output_lines = completed.stdout.splitlines()
+    observed_verdict = output_lines[0].strip() if output_lines else None
+
+    if completed.returncode != 0:
+        failed_checks.append(f"{check['name']}.exit_code_nonzero")
+    if observed_verdict != check["expected_verdict"]:
+        failed_checks.append(
+            f"{check['name']}.verdict_expected_{check['expected_verdict']}_got_{observed_verdict}"
+        )
+    if summary.get("failed_checks") not in {"[]", None}:
+        failed_checks.append(f"{check['name']}.nested_failed_checks_present")
+
+    return {
+        "name": check["name"],
+        "script": check["script"],
+        "expected_verdict": check["expected_verdict"],
+        "observed_verdict": observed_verdict,
+        "exit_code": completed.returncode,
+        "passed": not failed_checks,
+        "summary": summary,
+        "failed_checks": failed_checks,
+        "stderr": completed.stderr.strip(),
+    }
+
+
+def run_http_fuse_demo() -> dict[str, Any]:
+    check_results = [run_fixed_http_fuse_check(check) for check in HTTP_FUSE_DEMO_CHECKS]
+    failed_checks = [
+        failed_check
+        for result in check_results
+        for failed_check in result["failed_checks"]
+    ]
+
+    by_name = {result["name"]: result for result in check_results}
+    proof_summary = by_name["constrained_local_mock_http_proof"]["summary"]
+
+    checks_passed = sum(1 for result in check_results if result["passed"])
+    actual_http_requests_executed_count = int(
+        proof_summary.get("actual_http_requests_executed_count", 0)
+    )
+    approved_mock_get_request_count = int(
+        proof_summary.get("approved_mock_get_request_count", 0)
+    )
+    rejected_http_requests_executed_count = int(
+        proof_summary.get("rejected_http_requests_executed_count", 0)
+    )
+    external_network_requests_attempted_count = int(
+        proof_summary.get("external_network_requests_attempted_count", 0)
+    )
+    dns_resolution_attempted_count = int(
+        proof_summary.get("dns_resolution_attempted_count", 0)
+    )
+    credentials_used_count = int(proof_summary.get("credentials_used_count", 0))
+
+    if actual_http_requests_executed_count != 1:
+        failed_checks.append("constrained_local_mock_http_proof.actual_http_requests_executed_count_not_one")
+    if approved_mock_get_request_count != 1:
+        failed_checks.append("constrained_local_mock_http_proof.approved_mock_get_request_count_not_one")
+    if rejected_http_requests_executed_count != 0:
+        failed_checks.append("constrained_local_mock_http_proof.rejected_http_requests_executed_count_not_zero")
+    if external_network_requests_attempted_count != 0:
+        failed_checks.append("constrained_local_mock_http_proof.external_network_requests_attempted_count_not_zero")
+    if dns_resolution_attempted_count != 0:
+        failed_checks.append("constrained_local_mock_http_proof.dns_resolution_attempted_count_not_zero")
+    if credentials_used_count != 0:
+        failed_checks.append("constrained_local_mock_http_proof.credentials_used_count_not_zero")
+
+    return {
+        "demo_name": "DHMS HTTP Fuse Demo",
+        "mode": "fixed deterministic HTTP Fuse validation wrapper",
+        "checks_total": len(HTTP_FUSE_DEMO_CHECKS),
+        "checks_passed": checks_passed,
+        "non_executing_http_benchmark_passed": by_name["non_executing_http_benchmark"]["passed"],
+        "constrained_local_mock_http_proof_passed": by_name["constrained_local_mock_http_proof"]["passed"],
+        "actual_http_requests_executed_count": actual_http_requests_executed_count,
+        "approved_mock_get_request_count": approved_mock_get_request_count,
+        "rejected_http_requests_executed_count": rejected_http_requests_executed_count,
+        "external_network_requests_attempted_count": external_network_requests_attempted_count,
+        "dns_resolution_attempted_count": dns_resolution_attempted_count,
+        "credentials_used_count": credentials_used_count,
+        "http_adapter_added": False,
+        "api_client_added": False,
+        "credential_handling_added": False,
+        "check_results": check_results,
+        "failed_checks": failed_checks,
+        "final_verdict": "DHMS_HTTP_FUSE_DEMO_PASS"
+        if not failed_checks and checks_passed == len(HTTP_FUSE_DEMO_CHECKS)
+        else "DHMS_HTTP_FUSE_DEMO_FAIL",
+    }
+
+
+def http_fuse_demo_console_summary(result: dict[str, Any]) -> str:
+    failed_checks = json.dumps(result.get("failed_checks", []), separators=(",", ":"))
+    lines = [
+        "DHMS HTTP Fuse Demo",
+        f"mode={result['mode']}",
+        f"checks_total={result['checks_total']}",
+        f"checks_passed={result['checks_passed']}",
+        f"non_executing_http_benchmark_passed={str(result['non_executing_http_benchmark_passed']).lower()}",
+        f"constrained_local_mock_http_proof_passed={str(result['constrained_local_mock_http_proof_passed']).lower()}",
+        f"actual_http_requests_executed_count={result['actual_http_requests_executed_count']}",
+        f"approved_mock_get_request_count={result['approved_mock_get_request_count']}",
+        f"rejected_http_requests_executed_count={result['rejected_http_requests_executed_count']}",
+        f"external_network_requests_attempted_count={result['external_network_requests_attempted_count']}",
+        f"dns_resolution_attempted_count={result['dns_resolution_attempted_count']}",
+        f"credentials_used_count={result['credentials_used_count']}",
+        f"http_adapter_added={str(result['http_adapter_added']).lower()}",
+        f"api_client_added={str(result['api_client_added']).lower()}",
+        f"credential_handling_added={str(result['credential_handling_added']).lower()}",
+        f"failed_checks={failed_checks}",
+        f"final_verdict={result['final_verdict']}",
+    ]
+    if result["final_verdict"] != "DHMS_HTTP_FUSE_DEMO_PASS":
         failed_detail = [
             {
                 "name": check_result["name"],

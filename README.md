@@ -38,18 +38,18 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.9.6: the HTTP / Network Request Safety Fuse evidence chain is reviewed and frozen.
+Status: DHMS Agent Harness v1 has advanced to v0.9.7: the HTTP Fuse evidence chain now has a minimal CLI demo wrapper.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.9.6 HTTP Fuse Result Review and Freeze`.
-* Previous milestone: `v0.9.5.1 Constrained Local Mock HTTP Proof Implementation`.
+* Current milestone: `v0.9.7 HTTP Fuse CLI Demo Wrapper`.
+* Previous milestone: `v0.9.6 HTTP Fuse Result Review and Freeze`.
 * Proven lines: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`.
 * Selected proof line: `HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.9.7 HTTP Fuse CLI Demo Wrapper`.
-* Status: v0.9.6 reviews and freezes the HTTP Fuse evidence chain. It is documentation-only and adds no new execution behavior.
+* Next recommended milestone: `v0.9.8 SQL/File/HTTP Evidence Alignment`.
+* Status: v0.9.7 adds a minimal HTTP Fuse CLI demo wrapper around existing HTTP benchmark and constrained local mock HTTP proof checks. It adds no new proof behavior, adapter, API client, or credential handling.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -115,6 +115,35 @@ the v0.8.7 CLI wrapper note and v0.8.6 evidence seal:
 [DHMS File Fuse CLI Demo Wrapper v0.8.7](docs/dhms_file_fuse_cli_demo_wrapper_v0_8_7.md)
 and
 [DHMS File Operation Safety Fuse Evidence Seal v0.8.6](docs/dhms_file_operation_safety_fuse_evidence_seal_v0_8_6.md).
+
+## Quickstart: HTTP Fuse Demo
+
+Run the HTTP Fuse demo wrapper:
+
+```bash
+python3 cli.py demo-http-fuse
+```
+
+Expected result:
+
+```text
+DHMS_HTTP_FUSE_DEMO_PASS
+checks_total=2
+checks_passed=2
+non_executing_http_benchmark_passed=true
+constrained_local_mock_http_proof_passed=true
+actual_http_requests_executed_count=1
+approved_mock_get_request_count=1
+rejected_http_requests_executed_count=0
+external_network_requests_attempted_count=0
+dns_resolution_attempted_count=0
+credentials_used_count=0
+```
+
+The command wraps the existing HTTP Fuse benchmark and constrained local mock
+HTTP proof. It does not add a new proof behavior, HTTP adapter, API client,
+credential handling, or production HTTP safety claim. See
+[DHMS HTTP Fuse CLI Demo Wrapper v0.9.7](docs/dhms_http_fuse_cli_demo_wrapper_v0_9_7.md).
 
 ## Architecture at a Glance
 
@@ -876,6 +905,22 @@ bodies, mutation methods, SDK/tool/browser paths, OpenClaw, DeepSeek, or
 arbitrary tools were used. v0.9.6 is documentation-only. v0.9.7 should add the
 HTTP Fuse CLI demo wrapper.
 
+## DHMS HTTP Fuse CLI Demo Wrapper v0.9.7
+
+v0.9.7 adds the HTTP Fuse CLI demo wrapper:
+[DHMS HTTP Fuse CLI Demo Wrapper v0.9.7](docs/dhms_http_fuse_cli_demo_wrapper_v0_9_7.md).
+
+Run:
+
+```bash
+python3 cli.py demo-http-fuse
+```
+
+The command runs the existing non-executing HTTP benchmark and constrained
+local mock HTTP proof in order. It does not modify existing HTTP runners,
+manifests, examples, SQL/File runners, proof semantics, or execution behavior.
+v0.9.8 should align SQL, File, and HTTP evidence presentation.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -1127,6 +1172,10 @@ schema/report changes.
   documentation-only and does not add execution capability, modify runners,
   change manifests, add adapters, add API clients, add CLI commands, change
   proof semantics, or authorize new runtime behavior.
+* v0.9.7 adds a minimal HTTP Fuse CLI demo wrapper around existing HTTP checks.
+  It does not modify existing HTTP runners, manifests, examples, SQL/File
+  runners, proof behavior, adapters, API clients, credential handling, or
+  production HTTP safety claims.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1209,6 +1258,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v0.9.5.1 DHMS Constrained Local Mock HTTP Proof Result](docs/dhms_constrained_local_mock_http_proof_result_v0_9_5_1.md)
 * [Constrained local mock HTTP proof runner](validation/run_dhms_constrained_local_mock_http_proof.py)
 * [v0.9.6 DHMS HTTP Fuse Result Review and Freeze](docs/dhms_http_fuse_result_review_and_freeze_v0_9_6.md)
+* [v0.9.7 DHMS HTTP Fuse CLI Demo Wrapper](docs/dhms_http_fuse_cli_demo_wrapper_v0_9_7.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

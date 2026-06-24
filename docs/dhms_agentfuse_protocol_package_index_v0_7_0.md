@@ -62,6 +62,7 @@ Core public materials:
 * Constrained local mock HTTP proof result: [`docs/dhms_constrained_local_mock_http_proof_result_v0_9_5_1.md`](dhms_constrained_local_mock_http_proof_result_v0_9_5_1.md)
 * Constrained local mock HTTP proof runner: [`validation/run_dhms_constrained_local_mock_http_proof.py`](../validation/run_dhms_constrained_local_mock_http_proof.py)
 * HTTP Fuse result review and freeze: [`docs/dhms_http_fuse_result_review_and_freeze_v0_9_6.md`](dhms_http_fuse_result_review_and_freeze_v0_9_6.md)
+* HTTP Fuse CLI demo wrapper: [`docs/dhms_http_fuse_cli_demo_wrapper_v0_9_7.md`](dhms_http_fuse_cli_demo_wrapper_v0_9_7.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -190,6 +191,11 @@ documentation-only and does not add execution capability, modify runners,
 change manifests, add adapters, add API clients, add CLI commands, change
 proof semantics, or authorize new runtime behavior.
 
+v0.9.7 adds a minimal HTTP Fuse CLI demo wrapper. It runs the existing
+non-executing HTTP benchmark and constrained local mock HTTP proof in order and
+does not modify existing runners, manifests, examples, proof semantics, or
+execution behavior.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -206,6 +212,7 @@ python3 validation/run_dhms_file_fuse_constrained_temp_directory_proof.py
 python3 cli.py demo-file-fuse
 python3 validation/run_dhms_agentfuse_bench_http_v0.py
 python3 validation/run_dhms_constrained_local_mock_http_proof.py
+python3 cli.py demo-http-fuse
 ```
 
 Optional historical cross-checks:
@@ -305,6 +312,7 @@ v0.7.0 does not claim:
 * v0.9.5 Constrained Local Mock HTTP Proof Planning
 * v0.9.5.1 Constrained Local Mock HTTP Proof Implementation
 * v0.9.6 HTTP Fuse Result Review and Freeze
+* v0.9.7 HTTP Fuse CLI Demo Wrapper
 
 Final document verdict:
 

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.9.6 HTTP Fuse Result Review and Freeze`
+* Current package milestone: `v0.9.7 HTTP Fuse CLI Demo Wrapper`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -288,6 +288,14 @@ Next direction:
 * documentation-only; do not modify runners, manifests, examples, CLI commands, adapters, proof semantics, or runtime behavior
 * current/completed HTTP Fuse result review and freeze milestone in v0.9.6
 * next recommended milestone: `v0.9.7 HTTP Fuse CLI Demo Wrapper`
+
+### v0.9.7 HTTP Fuse CLI Demo Wrapper
+
+* add `python3 cli.py demo-http-fuse`
+* run the existing non-executing HTTP benchmark and constrained local mock HTTP proof in order
+* do not modify existing HTTP runners, manifests, examples, SQL/File runners, proof behavior, adapters, API clients, or credential handling
+* current/completed HTTP Fuse CLI demo wrapper milestone in v0.9.7
+* next recommended milestone: `v0.9.8 SQL/File/HTTP Evidence Alignment`
 
 ## Development Prompt Pattern
 

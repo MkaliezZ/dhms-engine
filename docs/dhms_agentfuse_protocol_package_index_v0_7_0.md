@@ -51,6 +51,8 @@ Core public materials:
 * HTTP / Network Request Safety Fuse planning: [`docs/dhms_http_network_request_safety_fuse_planning_v0_9_1.md`](dhms_http_network_request_safety_fuse_planning_v0_9_1.md)
 * HTTP Fuse static case manifest documentation: [`docs/dhms_http_fuse_static_case_manifest_v0_9_2.md`](dhms_http_fuse_static_case_manifest_v0_9_2.md)
 * HTTP Fuse static case manifest: [`benchmarks/dhms_agentfuse_http_v0/cases.json`](../benchmarks/dhms_agentfuse_http_v0/cases.json)
+* HTTP Fuse non-executing benchmark documentation: [`docs/dhms_non_executing_http_fuse_benchmark_v0_9_3.md`](dhms_non_executing_http_fuse_benchmark_v0_9_3.md)
+* HTTP Fuse non-executing benchmark runner: [`validation/run_dhms_agentfuse_bench_http_v0.py`](../validation/run_dhms_agentfuse_bench_http_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -143,6 +145,12 @@ implement HTTP execution, perform network calls, create HTTP clients, add HTTP
 adapters, add benchmark runners, add examples, or authorize real network
 activity.
 
+v0.9.3 adds a deterministic non-executing HTTP Fuse benchmark runner over the
+static inert v0.9.2 manifest. It evaluates expected decisions in memory and
+does not implement HTTP execution, perform network calls, create HTTP clients,
+add HTTP adapters, add examples, add CLI wrapper commands, or authorize real
+network activity.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -157,6 +165,7 @@ python3 validation/run_dhms_agentfuse_bench_file_v0.py
 python3 validation/run_dhms_file_fuse_non_executing_examples_smoke.py
 python3 validation/run_dhms_file_fuse_constrained_temp_directory_proof.py
 python3 cli.py demo-file-fuse
+python3 validation/run_dhms_agentfuse_bench_http_v0.py
 ```
 
 Optional historical cross-checks:
@@ -250,6 +259,7 @@ v0.7.0 does not claim:
 * v0.9.0 HTTP / Network Request Safety Fuse Selection and Risk Review
 * v0.9.1 HTTP / Network Request Safety Fuse Planning
 * v0.9.2 HTTP Fuse Static Case Manifest
+* v0.9.3 Non-Executing HTTP Fuse Benchmark
 
 Final document verdict:
 

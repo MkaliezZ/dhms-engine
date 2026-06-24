@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.9.2 HTTP Fuse Static Case Manifest`
+* Current package milestone: `v0.9.3 Non-Executing HTTP Fuse Benchmark`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -245,6 +245,8 @@ Next direction:
 * evaluate static HTTP/network cases in memory
 * produce deterministic metrics
 * do not implement HTTP execution or API clients
+* current/completed non-executing HTTP Fuse benchmark milestone in v0.9.3
+* next recommended milestone: `v0.9.4 HTTP Fuse Non-Executing Examples`
 
 ### v0.9.4 HTTP Fuse Non-Executing Examples
 

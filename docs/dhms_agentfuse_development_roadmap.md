@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.9.3 Non-Executing HTTP Fuse Benchmark`
+* Current package milestone: `v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -246,6 +246,13 @@ Next direction:
 * produce deterministic metrics
 * do not implement HTTP execution or API clients
 * current/completed non-executing HTTP Fuse benchmark milestone in v0.9.3
+
+### v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification
+
+* map SQL, File, and HTTP proof-line evidence back to the v0.6 DHMS Execution Fuse Protocol lifecycle
+* clarify that SQL has a controlled runtime-path sandbox release, File has a constrained synthetic temp-directory proof, and HTTP currently has static inert cases plus a non-executing benchmark
+* documentation-only; do not modify runners, manifests, examples, CLI commands, adapters, proof semantics, or runtime behavior
+* current/completed lifecycle mapping clarification milestone in v0.9.3.1
 * next recommended milestone: `v0.9.4 HTTP Fuse Non-Executing Examples`
 
 ### v0.9.4 HTTP Fuse Non-Executing Examples

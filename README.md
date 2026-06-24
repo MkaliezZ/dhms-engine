@@ -38,18 +38,18 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.9.3: a deterministic non-executing HTTP Fuse benchmark runner evaluates the static v0.9.2 manifest in memory without HTTP execution or network calls.
+Status: DHMS Agent Harness v1 has advanced to v0.9.3.1: a documentation-only clarification maps SQL, File, and HTTP proof-line evidence back to the v0.6 DHMS Execution Fuse Protocol lifecycle.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.9.3 Non-Executing HTTP Fuse Benchmark`.
-* Previous milestone: `v0.9.2 HTTP Fuse Static Case Manifest`.
+* Current milestone: `v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification`.
+* Previous milestone: `v0.9.3 Non-Executing HTTP Fuse Benchmark`.
 * Proven lines: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`.
 * Selected next proof line: `HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
 * Next recommended milestone: `v0.9.4 HTTP Fuse Non-Executing Examples`.
-* Status: v0.9.3 adds a deterministic non-executing HTTP Fuse benchmark runner over the static v0.9.2 manifest. It validates synthetic HTTP/network request proposal cases as inert data-only safety contracts in memory and does not perform HTTP execution, network calls, URL fetching, socket operations, API client creation, HTTP adapter behavior, credential handling, MCP/provider/agent SDK integration, or arbitrary tool execution.
+* Status: v0.9.3.1 is documentation-only. It maps SQL, File, and HTTP proof-line evidence back to the v0.6 DHMS Execution Fuse Protocol lifecycle and does not modify runners, manifests, examples, CLI commands, adapters, proof semantics, or runtime behavior.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -797,6 +797,22 @@ network_calls_executed_count=0
 http_clients_created_count=0
 ```
 
+## DHMS Proof-Line Protocol Lifecycle Mapping Clarification v0.9.3.1
+
+v0.9.3.1 adds a documentation-only clarification:
+[DHMS Proof-Line Protocol Lifecycle Mapping Clarification v0.9.3.1](docs/dhms_proof_line_protocol_lifecycle_mapping_v0_9_3_1.md).
+
+It maps the SQL, File, and HTTP proof-line evidence back to the v0.6 DHMS
+Execution Fuse Protocol lifecycle. SQL has the closest controlled runtime-path
+sandbox release mapping; File follows the same lifecycle semantics through a
+constrained synthetic temp-directory proof; HTTP currently maps only to
+inert/non-executing proposal validation and metrics, with no bridge, release,
+authorization, adapter behavior, or HTTP/network execution.
+
+This patch does not modify runners, manifests, examples, CLI commands,
+adapters, proof semantics, or runtime behavior. v0.9.4 should proceed with
+HTTP Fuse non-executing examples.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -1023,6 +1039,10 @@ schema/report changes.
   HTTP execution, network calls, create HTTP clients, add HTTP adapters, add
   examples, add CLI wrapper commands, handle credentials, integrate
   MCP/provider/agent SDKs, or authorize real network activity.
+* v0.9.3.1 clarifies how SQL, File, and HTTP proof lines map back to the v0.6
+  DHMS Execution Fuse Protocol lifecycle. It is documentation-only and does not
+  add execution capability, modify benchmark runners, change manifests, add
+  adapters, change proof semantics, or authorize new runtime behavior.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1096,6 +1116,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [HTTP Fuse static cases](benchmarks/dhms_agentfuse_http_v0/cases.json)
 * [v0.9.3 DHMS Non-Executing HTTP Fuse Benchmark](docs/dhms_non_executing_http_fuse_benchmark_v0_9_3.md)
 * [HTTP Fuse benchmark runner](validation/run_dhms_agentfuse_bench_http_v0.py)
+* [v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification](docs/dhms_proof_line_protocol_lifecycle_mapping_v0_9_3_1.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

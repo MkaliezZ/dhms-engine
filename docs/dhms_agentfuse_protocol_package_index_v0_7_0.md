@@ -53,6 +53,7 @@ Core public materials:
 * HTTP Fuse static case manifest: [`benchmarks/dhms_agentfuse_http_v0/cases.json`](../benchmarks/dhms_agentfuse_http_v0/cases.json)
 * HTTP Fuse non-executing benchmark documentation: [`docs/dhms_non_executing_http_fuse_benchmark_v0_9_3.md`](dhms_non_executing_http_fuse_benchmark_v0_9_3.md)
 * HTTP Fuse non-executing benchmark runner: [`validation/run_dhms_agentfuse_bench_http_v0.py`](../validation/run_dhms_agentfuse_bench_http_v0.py)
+* Proof-line protocol lifecycle mapping clarification: [`docs/dhms_proof_line_protocol_lifecycle_mapping_v0_9_3_1.md`](dhms_proof_line_protocol_lifecycle_mapping_v0_9_3_1.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -150,6 +151,11 @@ static inert v0.9.2 manifest. It evaluates expected decisions in memory and
 does not implement HTTP execution, perform network calls, create HTTP clients,
 add HTTP adapters, add examples, add CLI wrapper commands, or authorize real
 network activity.
+
+v0.9.3.1 clarifies how the SQL, File, and HTTP proof lines map back to the
+v0.6 DHMS Execution Fuse Protocol lifecycle. It is documentation-only and does
+not modify runners, manifests, examples, CLI commands, adapters, proof
+semantics, or runtime behavior.
 
 ## Reproducible Commands
 
@@ -260,6 +266,7 @@ v0.7.0 does not claim:
 * v0.9.1 HTTP / Network Request Safety Fuse Planning
 * v0.9.2 HTTP Fuse Static Case Manifest
 * v0.9.3 Non-Executing HTTP Fuse Benchmark
+* v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification
 
 Final document verdict:
 

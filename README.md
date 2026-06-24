@@ -38,18 +38,18 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.9.3.1: a documentation-only clarification maps SQL, File, and HTTP proof-line evidence back to the v0.6 DHMS Execution Fuse Protocol lifecycle.
+Status: DHMS Agent Harness v1 has advanced to v0.9.4: static non-executing HTTP Fuse examples and trace examples map inert HTTP proposal cases to protocol lifecycle traces.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification`.
-* Previous milestone: `v0.9.3 Non-Executing HTTP Fuse Benchmark`.
+* Current milestone: `v0.9.4 HTTP Fuse Non-Executing Examples`.
+* Previous milestone: `v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification`.
 * Proven lines: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`.
 * Selected next proof line: `HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.9.4 HTTP Fuse Non-Executing Examples`.
-* Status: v0.9.3.1 is documentation-only. It maps SQL, File, and HTTP proof-line evidence back to the v0.6 DHMS Execution Fuse Protocol lifecycle and does not modify runners, manifests, examples, CLI commands, adapters, proof semantics, or runtime behavior.
+* Next recommended milestone: `v0.9.5 HTTP Fuse Result Review and Freeze`.
+* Status: v0.9.4 adds static non-executing HTTP Fuse examples and trace examples. The examples map inert HTTP proposal cases to protocol lifecycle traces and do not implement HTTP execution, network calls, runners, manifests, CLI commands, adapters, or API clients.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -813,6 +813,21 @@ This patch does not modify runners, manifests, examples, CLI commands,
 adapters, proof semantics, or runtime behavior. v0.9.4 should proceed with
 HTTP Fuse non-executing examples.
 
+## DHMS HTTP Fuse Non-Executing Examples v0.9.4
+
+v0.9.4 adds static non-executing HTTP Fuse examples and trace examples:
+[DHMS HTTP Fuse Non-Executing Examples v0.9.4](docs/dhms_http_fuse_non_executing_examples_v0_9_4.md)
+and
+[HTTP Fuse examples](examples/dhms_agentfuse_http_v0/).
+
+The examples map inert HTTP proposal cases to protocol lifecycle traces. They
+illustrate proposal, safety decision, execution gate, and trace semantics for
+`ALLOW_INERT`, `HOLD_FOR_REVIEW`, `BLOCK`, and `FAIL_CLOSED` paths.
+
+No HTTP execution or network calls are implemented. No runner, manifest, CLI
+command, adapter, or API client is changed. v0.9.5 should review and freeze the
+HTTP Fuse evidence chain.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -1043,6 +1058,11 @@ schema/report changes.
   DHMS Execution Fuse Protocol lifecycle. It is documentation-only and does not
   add execution capability, modify benchmark runners, change manifests, add
   adapters, change proof semantics, or authorize new runtime behavior.
+* v0.9.4 adds static non-executing HTTP Fuse examples and trace examples. It
+  does not implement HTTP execution, perform network calls, create HTTP clients,
+  add HTTP adapters, add API clients, add benchmark runners, add validation
+  runners, add CLI commands, handle credentials, integrate MCP/provider/agent
+  SDKs, or authorize real network activity.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1117,6 +1137,10 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v0.9.3 DHMS Non-Executing HTTP Fuse Benchmark](docs/dhms_non_executing_http_fuse_benchmark_v0_9_3.md)
 * [HTTP Fuse benchmark runner](validation/run_dhms_agentfuse_bench_http_v0.py)
 * [v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification](docs/dhms_proof_line_protocol_lifecycle_mapping_v0_9_3_1.md)
+* [v0.9.4 DHMS HTTP Fuse Non-Executing Examples](docs/dhms_http_fuse_non_executing_examples_v0_9_4.md)
+* [HTTP Fuse examples](examples/dhms_agentfuse_http_v0/)
+* [HTTP Fuse non-executing examples](examples/dhms_agentfuse_http_v0/non_executing_examples.json)
+* [HTTP Fuse trace examples](examples/dhms_agentfuse_http_v0/trace_examples.json)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

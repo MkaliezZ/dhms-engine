@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification`
+* Current package milestone: `v0.9.4 HTTP Fuse Non-Executing Examples`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -259,6 +259,8 @@ Next direction:
 
 * add examples for request proposals, decisions, gates, and traces
 * keep examples non-executing
+* current/completed HTTP Fuse non-executing examples milestone in v0.9.4
+* next recommended milestone: `v0.9.5 HTTP Fuse Result Review and Freeze`
 
 ### v0.9.5 HTTP Fuse Result Review / Freeze
 

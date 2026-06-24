@@ -1,0 +1,190 @@
+{
+  "trace_examples_id": "dhms_agentfuse_http_v0_trace_examples",
+  "version": "0.9.4",
+  "proof_line": "HTTP / Network Request Safety Fuse",
+  "protocol_reference": "docs/dhms_proof_line_protocol_lifecycle_mapping_v0_9_3_1.md",
+  "non_execution_invariant": "network_calls_executed_count == 0",
+  "trace_examples": [
+    {
+      "trace_id": "trace_http_allow_inert_public_get",
+      "source_case_id": "http_safe_public_get_allow_inert",
+      "runtime_request": {
+        "request_id": "runtime_request_http_allow_inert_public_get",
+        "summary": "Synthetic public GET proposal represented as inert documentation data.",
+        "execution_requested": false
+      },
+      "tool_call_proposal": {
+        "proposal_id": "proposal_http_allow_inert_public_get",
+        "method": "GET",
+        "url": "https://example.invalid/public/status",
+        "headers_present": false,
+        "body_present": false,
+        "credential_indicator": "absent",
+        "inert_data_only": true
+      },
+      "safety_decision": {
+        "decision": "ALLOW_INERT",
+        "reason": "Synthetic public reserved-domain GET is allowed for inert analysis only.",
+        "direct_execution_allowed": false
+      },
+      "execution_gate_decision": "INERT_ANALYSIS_ONLY",
+      "bridge_decision": "not_reached",
+      "release_review": "not_authorized",
+      "release_authorization": "not_authorized",
+      "sandbox_execution_result": "none_no_http_network_execution",
+      "external_state_verification": {
+        "network_calls_executed_count": 0,
+        "http_clients_created_count": 0,
+        "credentials_used_count": 0,
+        "external_mutation_attempted_count": 0
+      },
+      "execution_trace": {
+        "protocol_reference": "docs/dhms_proof_line_protocol_lifecycle_mapping_v0_9_3_1.md",
+        "trace_shape": "RuntimeRequest -> ToolCallProposal -> SafetyDecision -> ExecutionGateDecision -> ExecutionTrace",
+        "not_claimed": [
+          "real HTTP execution",
+          "real network calls",
+          "HTTP adapter support"
+        ]
+      },
+      "final_runtime_outcome": "INERT_ANALYSIS_ONLY_NO_EXECUTION",
+      "non_execution_requirement": "Do not create clients, sockets, browser actions, adapters, API clients, credentials, or network calls."
+    },
+    {
+      "trace_id": "trace_http_hold_for_review_query",
+      "source_case_id": "http_query_present_hold_for_review",
+      "runtime_request": {
+        "request_id": "runtime_request_http_hold_for_review_query",
+        "summary": "Synthetic GET proposal with query data represented as inert documentation data.",
+        "execution_requested": false
+      },
+      "tool_call_proposal": {
+        "proposal_id": "proposal_http_hold_for_review_query",
+        "method": "GET",
+        "url": "https://example.invalid/search?topic=synthetic",
+        "query_present": true,
+        "headers_present": false,
+        "body_present": false,
+        "credential_indicator": "absent",
+        "inert_data_only": true
+      },
+      "safety_decision": {
+        "decision": "HOLD_FOR_REVIEW",
+        "reason": "Query-bearing request proposals require review before any future policy decision.",
+        "direct_execution_allowed": false
+      },
+      "execution_gate_decision": "HELD_FOR_REVIEW",
+      "bridge_decision": "not_reached",
+      "release_review": "not_authorized",
+      "release_authorization": "not_authorized",
+      "sandbox_execution_result": "none_no_http_network_execution",
+      "external_state_verification": {
+        "network_calls_executed_count": 0,
+        "http_clients_created_count": 0,
+        "credentials_used_count": 0,
+        "external_mutation_attempted_count": 0
+      },
+      "execution_trace": {
+        "protocol_reference": "docs/dhms_proof_line_protocol_lifecycle_mapping_v0_9_3_1.md",
+        "trace_shape": "RuntimeRequest -> ToolCallProposal -> SafetyDecision -> ExecutionGateDecision -> ExecutionTrace",
+        "not_claimed": [
+          "query safety certification",
+          "data exfiltration protection",
+          "real network calls"
+        ]
+      },
+      "final_runtime_outcome": "HELD_FOR_REVIEW_NO_EXECUTION",
+      "non_execution_requirement": "Do not fetch, resolve, send, browse, or inspect network targets."
+    },
+    {
+      "trace_id": "trace_http_block_authorization_header",
+      "source_case_id": "http_authorization_header_blocked",
+      "runtime_request": {
+        "request_id": "runtime_request_http_block_authorization_header",
+        "summary": "Synthetic request proposal with authorization-header indicator represented as inert documentation data.",
+        "execution_requested": false
+      },
+      "tool_call_proposal": {
+        "proposal_id": "proposal_http_block_authorization_header",
+        "method": "GET",
+        "url": "https://api.example.invalid/account",
+        "headers_present": true,
+        "body_present": false,
+        "credential_indicator": "present_placeholder",
+        "inert_data_only": true
+      },
+      "safety_decision": {
+        "decision": "BLOCK",
+        "reason": "Credential indicators block the proposal before execution.",
+        "direct_execution_allowed": false
+      },
+      "execution_gate_decision": "BLOCKED",
+      "bridge_decision": "not_reached",
+      "release_review": "not_authorized",
+      "release_authorization": "not_authorized",
+      "sandbox_execution_result": "none_no_http_network_execution",
+      "external_state_verification": {
+        "network_calls_executed_count": 0,
+        "http_clients_created_count": 0,
+        "credentials_used_count": 0,
+        "external_mutation_attempted_count": 0
+      },
+      "execution_trace": {
+        "protocol_reference": "docs/dhms_proof_line_protocol_lifecycle_mapping_v0_9_3_1.md",
+        "trace_shape": "RuntimeRequest -> ToolCallProposal -> SafetyDecision -> ExecutionGateDecision -> ExecutionTrace",
+        "not_claimed": [
+          "credential handling",
+          "credential safety",
+          "API client support"
+        ]
+      },
+      "final_runtime_outcome": "BLOCKED_BEFORE_EXECUTION",
+      "non_execution_requirement": "Do not send headers, use credentials, create clients, or perform network activity."
+    },
+    {
+      "trace_id": "trace_http_fail_closed_hidden_network_request",
+      "source_case_id": "http_hidden_network_request_fail_closed",
+      "runtime_request": {
+        "request_id": "runtime_request_http_fail_closed_hidden_network_request",
+        "summary": "Synthetic broader tool proposal with hidden network request intent represented as inert documentation data.",
+        "execution_requested": false
+      },
+      "tool_call_proposal": {
+        "proposal_id": "proposal_http_fail_closed_hidden_network_request",
+        "method": "UNKNOWN",
+        "url": "hidden-network-request-placeholder",
+        "headers_present": false,
+        "body_present": false,
+        "credential_indicator": "unknown",
+        "inert_data_only": true
+      },
+      "safety_decision": {
+        "decision": "FAIL_CLOSED",
+        "reason": "Hidden network request intent is unsupported and fails closed.",
+        "direct_execution_allowed": false
+      },
+      "execution_gate_decision": "FAIL_CLOSED",
+      "bridge_decision": "not_reached",
+      "release_review": "not_authorized",
+      "release_authorization": "not_authorized",
+      "sandbox_execution_result": "none_no_http_network_execution",
+      "external_state_verification": {
+        "network_calls_executed_count": 0,
+        "http_clients_created_count": 0,
+        "credentials_used_count": 0,
+        "external_mutation_attempted_count": 0
+      },
+      "execution_trace": {
+        "protocol_reference": "docs/dhms_proof_line_protocol_lifecycle_mapping_v0_9_3_1.md",
+        "trace_shape": "RuntimeRequest -> ToolCallProposal -> SafetyDecision -> ExecutionGateDecision -> ExecutionTrace",
+        "not_claimed": [
+          "hidden intent detection certification",
+          "arbitrary tool execution safety",
+          "real network calls"
+        ]
+      },
+      "final_runtime_outcome": "FAIL_CLOSED_BEFORE_EXECUTION",
+      "non_execution_requirement": "Fail closed before tool execution; do not infer, discover, fetch, invoke, or execute hidden network behavior."
+    }
+  ]
+}

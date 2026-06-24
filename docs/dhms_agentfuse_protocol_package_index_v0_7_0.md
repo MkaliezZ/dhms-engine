@@ -54,6 +54,10 @@ Core public materials:
 * HTTP Fuse non-executing benchmark documentation: [`docs/dhms_non_executing_http_fuse_benchmark_v0_9_3.md`](dhms_non_executing_http_fuse_benchmark_v0_9_3.md)
 * HTTP Fuse non-executing benchmark runner: [`validation/run_dhms_agentfuse_bench_http_v0.py`](../validation/run_dhms_agentfuse_bench_http_v0.py)
 * Proof-line protocol lifecycle mapping clarification: [`docs/dhms_proof_line_protocol_lifecycle_mapping_v0_9_3_1.md`](dhms_proof_line_protocol_lifecycle_mapping_v0_9_3_1.md)
+* HTTP Fuse non-executing examples documentation: [`docs/dhms_http_fuse_non_executing_examples_v0_9_4.md`](dhms_http_fuse_non_executing_examples_v0_9_4.md)
+* HTTP Fuse non-executing examples: [`examples/dhms_agentfuse_http_v0/`](../examples/dhms_agentfuse_http_v0/)
+* HTTP Fuse example cases: [`examples/dhms_agentfuse_http_v0/non_executing_examples.json`](../examples/dhms_agentfuse_http_v0/non_executing_examples.json)
+* HTTP Fuse trace examples: [`examples/dhms_agentfuse_http_v0/trace_examples.json`](../examples/dhms_agentfuse_http_v0/trace_examples.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -156,6 +160,12 @@ v0.9.3.1 clarifies how the SQL, File, and HTTP proof lines map back to the
 v0.6 DHMS Execution Fuse Protocol lifecycle. It is documentation-only and does
 not modify runners, manifests, examples, CLI commands, adapters, proof
 semantics, or runtime behavior.
+
+v0.9.4 adds static non-executing HTTP Fuse examples and trace examples. The
+examples map inert HTTP proposal cases to protocol lifecycle traces and do not
+implement HTTP execution, perform network calls, create HTTP clients, add HTTP
+adapters, add API clients, add benchmark runners, add validation runners, add
+CLI commands, or authorize real network activity.
 
 ## Reproducible Commands
 
@@ -267,6 +277,7 @@ v0.7.0 does not claim:
 * v0.9.2 HTTP Fuse Static Case Manifest
 * v0.9.3 Non-Executing HTTP Fuse Benchmark
 * v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification
+* v0.9.4 HTTP Fuse Non-Executing Examples
 
 Final document verdict:
 

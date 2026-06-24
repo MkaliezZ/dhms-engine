@@ -77,6 +77,7 @@ Core public materials:
 * Agent runtime interception result review and freeze: [`docs/dhms_agent_runtime_interception_result_review_and_freeze_v0_10_5.md`](dhms_agent_runtime_interception_result_review_and_freeze_v0_10_5.md)
 * Public evidence package: [`docs/dhms_public_evidence_package_v1_0.md`](dhms_public_evidence_package_v1_0.md)
 * Fresh clone reproduction check: [`docs/dhms_fresh_clone_reproduction_check_v1_0_1.md`](dhms_fresh_clone_reproduction_check_v1_0_1.md)
+* README public launch polish: [`docs/dhms_readme_public_launch_polish_v1_0_2.md`](dhms_readme_public_launch_polish_v1_0_2.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -114,6 +115,10 @@ and documents the reproducible command path.
 v1.0.1 verifies the v1.0 DHMS Public Evidence Package from a fresh clone and
 documents that the public SQL/File/HTTP demos plus mock-agent benchmark and
 controlled proof commands pass without hidden local state.
+
+v1.0.2 polishes the README public launch surface for external technical
+readers while preserving the evidence chain, reproduction commands, fresh clone
+reproduction evidence, and public non-claims.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

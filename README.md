@@ -2,9 +2,9 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-DHMS is an agent execution safety and control kernel - an execution fuse
-protocol for AI agents - built from memory/context/tool-state perturbation
-testing toward runtime execution control.
+DHMS is an execution fuse protocol for AI agents. It studies whether proposed
+actions should be released, blocked, held, or fail-closed before execution,
+with reproducible evidence under documented non-production boundaries.
 
 DHMS began as memory/context/tool-state perturbation testing. That original
 goal remains included, and the Agent Harness branch now extends DHMS into a
@@ -38,17 +38,42 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v1.0.1: the public evidence package has been reproduced from a fresh clone without hidden local state.
+Status: DHMS Agent Harness v1 has advanced to v1.0.2: the README public launch surface now presents the reproduced v1.0 evidence package for external technical readers.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.0.1 Fresh Clone Reproduction Check`.
-* Previous milestone: `v1.0 Public Evidence Package`.
+* Current milestone: `v1.0.2 README Public Launch Polish`.
+* Previous milestone: `v1.0.1 Fresh Clone Reproduction Check`.
 * Aligned proof-line evidence: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`; `v0.9 HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v1.0.2 README Public Launch Polish`.
-* Status: v1.0.1 verifies that the public DHMS evidence chain across SQL, File, HTTP, and controlled deterministic mock-agent runtime interception can be reproduced from a fresh clone. It does not claim real agent runtime interception or production readiness.
+* Next recommended milestone: `v1.0.3 GitHub Release Notes`.
+* Status: v1.0.2 polishes the public README around the reproduced SQL, File, HTTP, and controlled deterministic mock-agent evidence chain. It does not claim real agent runtime interception or production readiness.
+
+## Public Overview
+
+DHMS provides a public evidence package for an execution fuse protocol proof
+chain covering SQL, File, HTTP, and controlled deterministic mock-agent runtime
+interception under documented non-production boundaries.
+
+| Evidence line | Public proof status |
+| --- | --- |
+| SQL | controlled runtime-path SQLite sandbox release proof |
+| File | constrained synthetic temp-directory proof |
+| HTTP | constrained local mock HTTP proof |
+| Mock agent | controlled deterministic mock-agent proof over exactly 9 inert SQL/File/HTTP proposals |
+
+The public evidence package is documented in
+[DHMS Public Evidence Package v1.0](docs/dhms_public_evidence_package_v1_0.md),
+and its fresh-clone reproduction is documented in
+[DHMS Fresh Clone Reproduction Check v1.0.1](docs/dhms_fresh_clone_reproduction_check_v1_0_1.md).
+
+Public boundary: this branch does not claim production readiness, real agent
+runtime interception, real LLM execution, universal agent safety,
+industry-standard status, arbitrary tool execution, arbitrary SQL support,
+arbitrary file operation support, arbitrary HTTP/network support,
+adapter/API-client support, or MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider
+SDK/agent SDK integration.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -380,6 +405,16 @@ python3 cli.py proof-mock-agent-interception
 This check is reproduction evidence only. It does not add execution capability,
 modify runners, change manifests, add CLI commands, or claim production
 readiness.
+
+## README Public Launch Polish
+
+v1.0.2 polishes the README for external technical readers:
+[DHMS README Public Launch Polish v1.0.2](docs/dhms_readme_public_launch_polish_v1_0_2.md).
+
+This polish keeps the SQL/File/HTTP/mock-agent evidence chain, reproduction
+commands, v1.0 evidence package, v1.0.1 fresh clone reproduction evidence, and
+public non-claims visible. It is documentation-only and does not add execution
+capability.
 
 ## Architecture at a Glance
 
@@ -1553,6 +1588,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v0.10.5 DHMS Agent Runtime Interception Result Review and Freeze](docs/dhms_agent_runtime_interception_result_review_and_freeze_v0_10_5.md)
 * [v1.0 DHMS Public Evidence Package](docs/dhms_public_evidence_package_v1_0.md)
 * [v1.0.1 DHMS Fresh Clone Reproduction Check](docs/dhms_fresh_clone_reproduction_check_v1_0_1.md)
+* [v1.0.2 DHMS README Public Launch Polish](docs/dhms_readme_public_launch_polish_v1_0_2.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

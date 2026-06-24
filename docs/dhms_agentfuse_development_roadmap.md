@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.0.1 Fresh Clone Reproduction Check`
+* Current package milestone: `v1.0.2 README Public Launch Polish`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -391,6 +391,16 @@ Next direction:
 * documentation and reproduction-check only; do not add runners, CLI commands, source code, manifest changes, examples changes, trace example changes, schema changes, execution behavior changes, proof semantic changes, real agent runtimes, real LLMs, SDK integrations, credentials, user data, or production runtime behavior
 * current/completed Fresh Clone Reproduction Check milestone in v1.0.1
 * next recommended milestone: `v1.0.2 README Public Launch Polish`
+
+### v1.0.2 README Public Launch Polish
+
+* add `docs/dhms_readme_public_launch_polish_v1_0_2.md`
+* polish the README first-screen positioning for external technical readers
+* keep SQL/File/HTTP/mock-agent evidence lines visible
+* keep reproduction commands, v1.0 public evidence package link, v1.0.1 fresh clone reproduction link, and public non-claims visible
+* documentation-only; do not add runners, CLI commands, source code, manifest changes, examples changes, trace example changes, schema changes, execution behavior changes, proof semantic changes, real agent runtimes, real LLMs, SDK integrations, credentials, user data, or production runtime behavior
+* current/completed README Public Launch Polish milestone in v1.0.2
+* next recommended milestone: `v1.0.3 GitHub Release Notes`
 
 ## Development Prompt Pattern
 

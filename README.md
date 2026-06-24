@@ -38,18 +38,18 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.9.5: a planning-only constrained local mock HTTP proof envelope is defined for a future explicitly approved implementation milestone.
+Status: DHMS Agent Harness v1 has advanced to v0.9.5.1: a constrained local mock HTTP proof has released exactly one approved synthetic GET to a disposable loopback-only mock target under explicit approval.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.9.5 Constrained Local Mock HTTP Proof Planning`.
-* Previous milestone: `v0.9.4 HTTP Fuse Non-Executing Examples`.
+* Current milestone: `v0.9.5.1 Constrained Local Mock HTTP Proof Implementation`.
+* Previous milestone: `v0.9.5 Constrained Local Mock HTTP Proof Planning`.
 * Proven lines: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`.
-* Selected next proof line: `HTTP / Network Request Safety Fuse`.
+* Selected proof line: `HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v0.9.5.1 Constrained Local Mock HTTP Proof Implementation, after explicit approval`.
-* Status: v0.9.5 is planning-only. It distinguishes weak simulated target evidence from a future strong constrained local mock proof and does not implement a mock server, HTTP client, socket creation, network request, proof runner, validation runner, adapter, API client, or CLI command.
+* Next recommended milestone: `v0.9.6 HTTP Fuse Result Review and Freeze`.
+* Status: v0.9.5.1 implements one constrained local mock HTTP proof under explicit approval. It releases exactly one synthetic GET to `127.0.0.1` on a disposable mock target and keeps all rejected HTTP/network proposal classes non-executing.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -843,6 +843,23 @@ v0.9.5 does not implement a mock server, HTTP client, socket creation, network
 request, proof runner, validation runner, adapter, API client, or CLI command.
 v0.9.5.1 requires explicit approval before implementation.
 
+## DHMS Constrained Local Mock HTTP Proof Implementation v0.9.5.1
+
+v0.9.5.1 implements a constrained local mock HTTP proof under explicit
+approval:
+[DHMS Constrained Local Mock HTTP Proof Result v0.9.5.1](docs/dhms_constrained_local_mock_http_proof_result_v0_9_5_1.md)
+and
+[constrained local mock HTTP proof runner](validation/run_dhms_constrained_local_mock_http_proof.py).
+
+The proof releases exactly one approved synthetic GET to a disposable local
+mock target bound only to `127.0.0.1`. All rejected HTTP/network proposal
+classes remain non-executing.
+
+The proof uses no external network, DNS dependency, redirects, proxies,
+credentials, request bodies, mutation methods, SDK/tool/browser paths,
+OpenClaw, DeepSeek, or arbitrary tools. v0.9.6 should review and freeze the
+HTTP Fuse evidence chain.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -1084,6 +1101,12 @@ schema/report changes.
   adapter, API client, credential handling, provider SDK integration, agent SDK
   integration, MCP integration, OpenClaw integration, DeepSeek integration, or
   arbitrary tool execution.
+* v0.9.5.1 implements the explicitly approved constrained local mock HTTP
+  proof. It releases exactly one synthetic GET to a disposable loopback-only
+  mock target, keeps all rejected HTTP/network proposal classes non-executing,
+  and does not add general HTTP execution, external network access, HTTP
+  adapter support, API client support, SDK/tool/browser paths, OpenClaw,
+  DeepSeek, or arbitrary tool execution.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -1163,6 +1186,8 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [HTTP Fuse non-executing examples](examples/dhms_agentfuse_http_v0/non_executing_examples.json)
 * [HTTP Fuse trace examples](examples/dhms_agentfuse_http_v0/trace_examples.json)
 * [v0.9.5 DHMS Constrained Local Mock HTTP Proof Planning](docs/dhms_constrained_local_mock_http_proof_planning_v0_9_5.md)
+* [v0.9.5.1 DHMS Constrained Local Mock HTTP Proof Result](docs/dhms_constrained_local_mock_http_proof_result_v0_9_5_1.md)
+* [Constrained local mock HTTP proof runner](validation/run_dhms_constrained_local_mock_http_proof.py)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

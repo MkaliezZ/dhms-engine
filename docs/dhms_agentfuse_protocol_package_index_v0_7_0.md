@@ -59,6 +59,8 @@ Core public materials:
 * HTTP Fuse example cases: [`examples/dhms_agentfuse_http_v0/non_executing_examples.json`](../examples/dhms_agentfuse_http_v0/non_executing_examples.json)
 * HTTP Fuse trace examples: [`examples/dhms_agentfuse_http_v0/trace_examples.json`](../examples/dhms_agentfuse_http_v0/trace_examples.json)
 * Constrained local mock HTTP proof planning: [`docs/dhms_constrained_local_mock_http_proof_planning_v0_9_5.md`](dhms_constrained_local_mock_http_proof_planning_v0_9_5.md)
+* Constrained local mock HTTP proof result: [`docs/dhms_constrained_local_mock_http_proof_result_v0_9_5_1.md`](dhms_constrained_local_mock_http_proof_result_v0_9_5_1.md)
+* Constrained local mock HTTP proof runner: [`validation/run_dhms_constrained_local_mock_http_proof.py`](../validation/run_dhms_constrained_local_mock_http_proof.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -174,6 +176,13 @@ request, proof runner, validation runner, adapter, API client, credential
 handling, provider SDK integration, agent SDK integration, MCP integration, or
 arbitrary tool execution.
 
+v0.9.5.1 implements the explicitly approved constrained local mock HTTP proof.
+It releases exactly one approved synthetic GET to a disposable loopback-only
+mock target, keeps all rejected HTTP/network proposal classes non-executing,
+verifies teardown, and does not implement general HTTP execution, external
+network access, HTTP adapter support, API client support, SDK/tool/browser
+paths, OpenClaw, DeepSeek, or arbitrary tool execution.
+
 ## Reproducible Commands
 
 Current public commands:
@@ -189,6 +198,7 @@ python3 validation/run_dhms_file_fuse_non_executing_examples_smoke.py
 python3 validation/run_dhms_file_fuse_constrained_temp_directory_proof.py
 python3 cli.py demo-file-fuse
 python3 validation/run_dhms_agentfuse_bench_http_v0.py
+python3 validation/run_dhms_constrained_local_mock_http_proof.py
 ```
 
 Optional historical cross-checks:
@@ -286,6 +296,7 @@ v0.7.0 does not claim:
 * v0.9.3.1 DHMS Proof-Line Protocol Lifecycle Mapping Clarification
 * v0.9.4 HTTP Fuse Non-Executing Examples
 * v0.9.5 Constrained Local Mock HTTP Proof Planning
+* v0.9.5.1 Constrained Local Mock HTTP Proof Implementation
 
 Final document verdict:
 

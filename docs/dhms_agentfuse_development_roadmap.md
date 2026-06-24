@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.9.5 Constrained Local Mock HTTP Proof Planning`
+* Current package milestone: `v0.9.5.1 Constrained Local Mock HTTP Proof Implementation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -275,9 +275,11 @@ Next direction:
 ### v0.9.5.1 Constrained Local Mock HTTP Proof Implementation, after explicit approval
 
 * implement only if the task context explicitly approves implementation
-* if approved, release exactly one synthetic GET to a disposable local mock target
-* keep blocked and fail-closed cases non-executing
+* release exactly one synthetic GET to a disposable local mock target
+* keep blocked and fail-closed HTTP/network proposal classes non-executing
 * verify teardown and non-claim boundaries
+* current/completed constrained local mock HTTP proof implementation milestone in v0.9.5.1
+* next recommended milestone: `v0.9.6 HTTP Fuse Result Review and Freeze`
 
 ## Development Prompt Pattern
 

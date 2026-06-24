@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.0.2 README Public Launch Polish`
+* Current package milestone: `v1.0.3 GitHub Release Notes`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -401,6 +401,15 @@ Next direction:
 * documentation-only; do not add runners, CLI commands, source code, manifest changes, examples changes, trace example changes, schema changes, execution behavior changes, proof semantic changes, real agent runtimes, real LLMs, SDK integrations, credentials, user data, or production runtime behavior
 * current/completed README Public Launch Polish milestone in v1.0.2
 * next recommended milestone: `v1.0.3 GitHub Release Notes`
+
+### v1.0.3 GitHub Release Notes
+
+* add `docs/dhms_github_release_notes_v1_0_3.md`
+* prepare release notes for the v1.0 public evidence package
+* include release title, recommended tag, public frozen claim, evidence lines, reproduction commands, validation matrix, fresh clone reference, and public non-claims
+* documentation-only; do not create a GitHub release, create a tag, add runners, CLI commands, source code, manifest changes, examples changes, trace example changes, schema changes, execution behavior changes, proof semantic changes, real agent runtimes, real LLMs, SDK integrations, credentials, user data, or production runtime behavior
+* current/completed GitHub Release Notes milestone in v1.0.3
+* next recommended milestone: `v1.0.4 v1.0 Tag / Release Preparation`
 
 ## Development Prompt Pattern
 

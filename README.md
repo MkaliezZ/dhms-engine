@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v1.0.2: the README public launch surface now presents the reproduced v1.0 evidence package for external technical readers.
+Status: DHMS Agent Harness v1 has advanced to v1.0.3: GitHub release notes for the v1.0 public evidence package are now prepared, but no release or tag has been created.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.0.2 README Public Launch Polish`.
-* Previous milestone: `v1.0.1 Fresh Clone Reproduction Check`.
+* Current milestone: `v1.0.3 GitHub Release Notes`.
+* Previous milestone: `v1.0.2 README Public Launch Polish`.
 * Aligned proof-line evidence: `v0.5 SQL Sandbox Execution Fuse`; `v0.8 File Operation Safety Fuse`; `v0.9 HTTP / Network Request Safety Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
-* Next recommended milestone: `v1.0.3 GitHub Release Notes`.
-* Status: v1.0.2 polishes the public README around the reproduced SQL, File, HTTP, and controlled deterministic mock-agent evidence chain. It does not claim real agent runtime interception or production readiness.
+* Next recommended milestone: `v1.0.4 v1.0 Tag / Release Preparation`.
+* Status: v1.0.3 prepares GitHub release notes for the reproduced v1.0 public evidence package. It does not create a GitHub release, create a tag, claim real agent runtime interception, or claim production readiness.
 
 ## Public Overview
 
@@ -415,6 +415,18 @@ This polish keeps the SQL/File/HTTP/mock-agent evidence chain, reproduction
 commands, v1.0 evidence package, v1.0.1 fresh clone reproduction evidence, and
 public non-claims visible. It is documentation-only and does not add execution
 capability.
+
+## GitHub Release Notes
+
+v1.0.3 prepares GitHub release notes for the public evidence package:
+[DHMS v1.0 GitHub Release Notes v1.0.3](docs/dhms_github_release_notes_v1_0_3.md).
+
+Recommended release title: `DHMS v1.0 Public Evidence Package`.
+
+Recommended release tag: `v1.0.0-public-evidence-package`.
+
+This milestone is documentation-only. It does not create a GitHub release,
+create a tag, add execution behavior, or claim production readiness.
 
 ## Architecture at a Glance
 
@@ -1589,6 +1601,7 @@ the SQL Fuse and File Fuse demos near the top of this README.
 * [v1.0 DHMS Public Evidence Package](docs/dhms_public_evidence_package_v1_0.md)
 * [v1.0.1 DHMS Fresh Clone Reproduction Check](docs/dhms_fresh_clone_reproduction_check_v1_0_1.md)
 * [v1.0.2 DHMS README Public Launch Polish](docs/dhms_readme_public_launch_polish_v1_0_2.md)
+* [v1.0.3 DHMS GitHub Release Notes](docs/dhms_github_release_notes_v1_0_3.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

@@ -38,17 +38,17 @@ agent SDKs, HTTP paths, and production database paths remained blocked.
 
 > Branch note: `main` remains the Product Diagnosis v1.3 stable checkpoint. `agent-harness-v1` is the current public Agent Harness / Execution Fuse development branch.
 
-Status: DHMS Agent Harness v1 has advanced to v0.8.6: the File Operation Safety Fuse evidence chain has been sealed with README Quickstart alignment.
+Status: DHMS Agent Harness v1 has advanced to v0.8.7: the File Fuse CLI demo wrapper now makes the SQL and File Fuse quickstarts symmetrical.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v0.8.6 File Fuse Quickstart and Evidence Seal`.
-* Previous milestone: `v0.8.5 File Operation Safety Fuse Result Review and Freeze`.
+* Current milestone: `v0.8.7 File Fuse CLI Demo Wrapper`.
+* Previous milestone: `v0.8.6 File Fuse Quickstart and Evidence Seal`.
 * Proven line: `v0.5 SQL Sandbox Execution Fuse`.
 * Current protocol: `DHMS Execution Fuse Protocol v0.6.0`.
 * Next recommended milestone: `v0.9.0 Next DHMS Proof Line Selection and Risk Review`.
-* Status: v0.8.6 adds README File Fuse Quickstart alignment and seals the v0.8 File Operation Safety Fuse evidence chain. The sealed claim remains limited to static inert cases, non-executing benchmark/examples, and one explicitly approved constrained temp-directory proof, not arbitrary file operation support.
+* Status: v0.8.7 adds a DHMS File Fuse CLI demo wrapper that runs the existing deterministic File Fuse public checks behind one command. It preserves the v0.8 sealed claim and does not add arbitrary file operation support, a file adapter, or new runtime file execution behavior.
 
 ## Quickstart: SQL Fuse Demo
 
@@ -74,64 +74,45 @@ This demo does not execute SQL. It wraps the v0.6.1 benchmark and links back to 
 
 ## Quickstart: File Fuse Demo
 
-Run the File Operation Safety Fuse public checks:
+Run the non-executing File Fuse demo wrapper:
 
 ```bash
-python3 validation/run_dhms_file_fuse_static_case_manifest_smoke.py
-python3 validation/run_dhms_agentfuse_bench_file_v0.py
-python3 validation/run_dhms_file_fuse_non_executing_examples_smoke.py
-python3 validation/run_dhms_file_fuse_constrained_temp_directory_proof.py
+python3 cli.py demo-file-fuse
 ```
 
-Expected local results:
+Expected result:
 
 ```text
-DHMS_FILE_FUSE_STATIC_CASE_MANIFEST_PASS
-cases_total=13
-cases_passed=13
-file_paths_opened_count=0
-file_paths_resolved_count=0
-
-DHMS_AGENTFUSE_BENCH_FILE_V0_PASS
-cases_total=13
-cases_passed=13
-actual_file_operations_executed_count=0
-requested_path_templates_opened_count=0
-requested_path_templates_resolved_count=0
-
-DHMS_FILE_FUSE_NON_EXECUTING_EXAMPLES_PASS
-examples_total=4
-examples_passed=4
-actual_file_operations_executed_count=0
-requested_path_templates_opened_count=0
-requested_path_templates_resolved_count=0
-
-DHMS_FILE_FUSE_CONSTRAINED_TEMP_DIRECTORY_PROOF_PASS
-authorization_gate_confirmed=true
-total_cases=10
-cases_passed=10
+DHMS_FILE_FUSE_DEMO_PASS
+checks_total=4
+checks_passed=4
+static_manifest_smoke_passed=true
+file_benchmark_passed=true
+non_executing_examples_passed=true
+constrained_temp_directory_proof_passed=true
+actual_file_operations_executed_count=2
 approved_constrained_release_cases=2
 blocked_or_fail_closed_cases=8
-actual_file_operations_executed_count=2
-synthetic_fixture_read_count=1
-synthetic_report_write_count=1
 rejected_path_opened_count=0
 rejected_path_resolved_count=0
-temp_root_created_count=1
-temp_root_deleted_count=1
-temp_root_deletion_verified_count=1
-cleanup_failed_count=0
+file_adapter_added=false
+arbitrary_file_operation_support_added=false
 ```
 
-The static manifest smoke, file benchmark, and file examples smoke are
-non-executing. The constrained temp-directory proof executes only two approved
-synthetic operations inside one disposable temp root: one synthetic fixture read
-and one synthetic report write. Rejected paths remain unopened, unresolved, and
-non-executing.
+The command wraps the existing deterministic File Fuse checks: static manifest
+smoke, non-executing File Fuse benchmark, non-executing File Fuse examples
+smoke, and constrained temp-directory proof.
+
+The first three checks are non-executing. The constrained temp-directory proof
+executes only two approved synthetic operations inside one disposable temp root:
+one synthetic fixture read and one synthetic report write. Rejected paths remain
+unopened, unresolved, and non-executing.
 
 This File Fuse Quickstart does not add arbitrary file operation support, does
 not add a file adapter, and does not claim production filesystem safety. See
-the v0.8.6 evidence seal:
+the v0.8.7 CLI wrapper note and v0.8.6 evidence seal:
+[DHMS File Fuse CLI Demo Wrapper v0.8.7](docs/dhms_file_fuse_cli_demo_wrapper_v0_8_7.md)
+and
 [DHMS File Operation Safety Fuse Evidence Seal v0.8.6](docs/dhms_file_operation_safety_fuse_evidence_seal_v0_8_6.md).
 
 ## Architecture at a Glance
@@ -692,6 +673,21 @@ Operation Safety Fuse evidence chain:
 The seal preserves the v0.8.5 freeze semantics. It adds no execution
 capability, no file adapter, and no arbitrary file operation support.
 
+### DHMS File Fuse CLI Demo Wrapper v0.8.7
+
+v0.8.7 adds a public File Fuse CLI demo wrapper:
+[DHMS File Fuse CLI Demo Wrapper v0.8.7](docs/dhms_file_fuse_cli_demo_wrapper_v0_8_7.md).
+
+The new command is:
+
+```bash
+python3 cli.py demo-file-fuse
+```
+
+It aggregates the existing deterministic File Fuse public checks into one
+command and preserves the v0.8.6 evidence seal. It adds no arbitrary file
+operation support, no file adapter, and no new runtime file execution behavior.
+
 What is not claimed:
 
 * Not arbitrary SQL execution.
@@ -887,6 +883,9 @@ schema/report changes.
   Operation Safety Fuse evidence chain. It adds no new capability, no file
   adapter, no arbitrary file operation support, and no production filesystem
   safety claim.
+* v0.8.7 adds a File Fuse CLI demo wrapper around existing deterministic
+  checks. It adds no file operation capability, no file adapter, no arbitrary
+  file operation support, and no new runtime file execution behavior.
 * Not production certification.
 * Not a multi-model safety claim.
 * Not system-level sandbox proof.
@@ -947,6 +946,7 @@ schema/report changes.
 * [File Fuse constrained temp-directory proof runner](validation/run_dhms_file_fuse_constrained_temp_directory_proof.py)
 * [v0.8.5 DHMS File Operation Safety Fuse Result Review and Freeze](docs/dhms_file_operation_safety_fuse_result_review_and_freeze_v0_8_5.md)
 * [v0.8.6 DHMS File Operation Safety Fuse Evidence Seal](docs/dhms_file_operation_safety_fuse_evidence_seal_v0_8_6.md)
+* [v0.8.7 DHMS File Fuse CLI Demo Wrapper](docs/dhms_file_fuse_cli_demo_wrapper_v0_8_7.md)
 * [Product README](README_PRODUCT.md)
 
 ## Architecture Note

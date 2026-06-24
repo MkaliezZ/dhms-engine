@@ -3,9 +3,10 @@
 
 import argparse
 import json
+import subprocess
 import sys
 from pathlib import Path
-from typing import List, Optional
+from typing import Any, List, Optional
 
 ROOT_DIR = Path(__file__).resolve().parent
 ENGINE_DIR = ROOT_DIR / "engine"
@@ -37,6 +38,30 @@ from product_runner import run_product_test  # noqa: E402
 from suite_runner import run_suite  # noqa: E402
 from provider_status import format_status_table, models_for, provider_statuses  # noqa: E402
 from dhms_agentfuse_bench_sql_v0 import run_dhms_agentfuse_bench_sql_v0  # noqa: E402
+
+
+FILE_FUSE_DEMO_CHECKS = (
+    {
+        "name": "static_manifest_smoke",
+        "script": "validation/run_dhms_file_fuse_static_case_manifest_smoke.py",
+        "expected_verdict": "DHMS_FILE_FUSE_STATIC_CASE_MANIFEST_PASS",
+    },
+    {
+        "name": "file_benchmark",
+        "script": "validation/run_dhms_agentfuse_bench_file_v0.py",
+        "expected_verdict": "DHMS_AGENTFUSE_BENCH_FILE_V0_PASS",
+    },
+    {
+        "name": "non_executing_examples",
+        "script": "validation/run_dhms_file_fuse_non_executing_examples_smoke.py",
+        "expected_verdict": "DHMS_FILE_FUSE_NON_EXECUTING_EXAMPLES_PASS",
+    },
+    {
+        "name": "constrained_temp_directory_proof",
+        "script": "validation/run_dhms_file_fuse_constrained_temp_directory_proof.py",
+        "expected_verdict": "DHMS_FILE_FUSE_CONSTRAINED_TEMP_DIRECTORY_PROOF_PASS",
+    },
+)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -104,6 +129,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     subparsers.add_parser("doctor")
     subparsers.add_parser("demo-sql-fuse")
+    subparsers.add_parser("demo-file-fuse")
 
     providers_parser = subparsers.add_parser("providers")
     providers_parser.add_argument("subcommand", nargs="?", choices=["models"])
@@ -131,6 +157,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         result = run_dhms_agentfuse_bench_sql_v0()
         print(sql_fuse_demo_console_summary(result))
         return 0 if result.get("status") == "PASS" else 1
+    if args.command == "demo-file-fuse":
+        result = run_file_fuse_demo()
+        print(file_fuse_demo_console_summary(result))
+        return 0 if result["final_verdict"] == "DHMS_FILE_FUSE_DEMO_PASS" else 1
     if args.command == "providers":
         if args.subcommand == "models":
             print(json.dumps(models_for(args.provider), indent=2, sort_keys=True))
@@ -384,6 +414,178 @@ def sql_fuse_demo_console_summary(result) -> str:
         if result.get("status") == "PASS"
         else "final_verdict=SQL_FUSE_DEMO_FAIL",
     ]
+    return "\n".join(lines)
+
+
+def parse_first_json_object(stdout: str) -> dict[str, Any]:
+    text = stdout.lstrip()
+    if not text:
+        raise ValueError("empty_stdout")
+    parsed, _ = json.JSONDecoder().raw_decode(text)
+    if not isinstance(parsed, dict):
+        raise ValueError("stdout_json_not_object")
+    return parsed
+
+
+def run_fixed_file_fuse_check(check: dict[str, str]) -> dict[str, Any]:
+    script = ROOT_DIR / check["script"]
+    completed = subprocess.run(
+        [sys.executable, str(script)],
+        cwd=ROOT_DIR,
+        text=True,
+        capture_output=True,
+        check=False,
+        shell=False,
+    )
+
+    failed_checks: list[str] = []
+    summary: dict[str, Any] = {}
+    if completed.returncode != 0:
+        failed_checks.append(f"{check['name']}.exit_code_nonzero")
+    try:
+        summary = parse_first_json_object(completed.stdout)
+    except (json.JSONDecodeError, ValueError) as exc:
+        failed_checks.append(f"{check['name']}.stdout_json_parse_failed:{type(exc).__name__}")
+
+    observed_verdict = summary.get("final_verdict")
+    if observed_verdict != check["expected_verdict"]:
+        failed_checks.append(
+            f"{check['name']}.verdict_expected_{check['expected_verdict']}_got_{observed_verdict}"
+        )
+
+    nested_failed_checks = summary.get("failed_checks", [])
+    if nested_failed_checks:
+        failed_checks.append(f"{check['name']}.nested_failed_checks_present")
+
+    return {
+        "name": check["name"],
+        "script": check["script"],
+        "expected_verdict": check["expected_verdict"],
+        "observed_verdict": observed_verdict,
+        "exit_code": completed.returncode,
+        "passed": not failed_checks,
+        "summary": summary,
+        "failed_checks": failed_checks,
+        "stderr": completed.stderr.strip(),
+    }
+
+
+def run_file_fuse_demo() -> dict[str, Any]:
+    check_results = [run_fixed_file_fuse_check(check) for check in FILE_FUSE_DEMO_CHECKS]
+    failed_checks = [
+        failed_check
+        for result in check_results
+        for failed_check in result["failed_checks"]
+    ]
+
+    by_name = {result["name"]: result for result in check_results}
+    static_summary = by_name["static_manifest_smoke"]["summary"]
+    benchmark_summary = by_name["file_benchmark"]["summary"]
+    examples_summary = by_name["non_executing_examples"]["summary"]
+    proof_summary = by_name["constrained_temp_directory_proof"]["summary"]
+
+    checks_passed = sum(1 for result in check_results if result["passed"])
+    actual_file_operations_executed_count = int(
+        proof_summary.get("actual_file_operations_executed_count", 0)
+    )
+    approved_constrained_release_cases = int(
+        proof_summary.get("approved_constrained_release_cases", 0)
+    )
+    blocked_or_fail_closed_cases = int(
+        proof_summary.get("blocked_or_fail_closed_cases", 0)
+    )
+    rejected_path_opened_count = int(proof_summary.get("rejected_path_opened_count", 0))
+    rejected_path_resolved_count = int(proof_summary.get("rejected_path_resolved_count", 0))
+
+    if static_summary.get("file_paths_opened_count") != 0:
+        failed_checks.append("static_manifest_smoke.file_paths_opened_count_not_zero")
+    if static_summary.get("file_paths_resolved_count") != 0:
+        failed_checks.append("static_manifest_smoke.file_paths_resolved_count_not_zero")
+    if benchmark_summary.get("actual_file_operations_executed_count") != 0:
+        failed_checks.append("file_benchmark.actual_file_operations_executed_count_not_zero")
+    if benchmark_summary.get("requested_path_templates_opened_count") != 0:
+        failed_checks.append("file_benchmark.requested_path_templates_opened_count_not_zero")
+    if benchmark_summary.get("requested_path_templates_resolved_count") != 0:
+        failed_checks.append("file_benchmark.requested_path_templates_resolved_count_not_zero")
+    if examples_summary.get("actual_file_operations_executed_count") != 0:
+        failed_checks.append("non_executing_examples.actual_file_operations_executed_count_not_zero")
+    if examples_summary.get("requested_path_templates_opened_count") != 0:
+        failed_checks.append("non_executing_examples.requested_path_templates_opened_count_not_zero")
+    if examples_summary.get("requested_path_templates_resolved_count") != 0:
+        failed_checks.append("non_executing_examples.requested_path_templates_resolved_count_not_zero")
+    if actual_file_operations_executed_count != 2:
+        failed_checks.append("constrained_temp_directory_proof.actual_file_operations_executed_count_not_two")
+    if approved_constrained_release_cases != 2:
+        failed_checks.append("constrained_temp_directory_proof.approved_constrained_release_cases_not_two")
+    if blocked_or_fail_closed_cases != 8:
+        failed_checks.append("constrained_temp_directory_proof.blocked_or_fail_closed_cases_not_eight")
+    if rejected_path_opened_count != 0:
+        failed_checks.append("constrained_temp_directory_proof.rejected_path_opened_count_not_zero")
+    if rejected_path_resolved_count != 0:
+        failed_checks.append("constrained_temp_directory_proof.rejected_path_resolved_count_not_zero")
+
+    return {
+        "demo_name": "DHMS File Fuse Demo",
+        "mode": "fixed deterministic File Fuse validation wrapper",
+        "checks_total": len(FILE_FUSE_DEMO_CHECKS),
+        "checks_passed": checks_passed,
+        "static_manifest_smoke_passed": by_name["static_manifest_smoke"]["passed"],
+        "file_benchmark_passed": by_name["file_benchmark"]["passed"],
+        "non_executing_examples_passed": by_name["non_executing_examples"]["passed"],
+        "constrained_temp_directory_proof_passed": by_name["constrained_temp_directory_proof"]["passed"],
+        "actual_file_operations_executed_count": actual_file_operations_executed_count,
+        "approved_constrained_release_cases": approved_constrained_release_cases,
+        "blocked_or_fail_closed_cases": blocked_or_fail_closed_cases,
+        "rejected_path_opened_count": rejected_path_opened_count,
+        "rejected_path_resolved_count": rejected_path_resolved_count,
+        "file_adapter_added": False,
+        "arbitrary_file_operation_support_added": False,
+        "check_results": check_results,
+        "failed_checks": failed_checks,
+        "final_verdict": "DHMS_FILE_FUSE_DEMO_PASS"
+        if not failed_checks and checks_passed == len(FILE_FUSE_DEMO_CHECKS)
+        else "DHMS_FILE_FUSE_DEMO_FAIL",
+    }
+
+
+def file_fuse_demo_console_summary(result: dict[str, Any]) -> str:
+    failed_checks = json.dumps(result.get("failed_checks", []), separators=(",", ":"))
+    lines = [
+        "DHMS File Fuse Demo",
+        f"mode={result['mode']}",
+        f"checks_total={result['checks_total']}",
+        f"checks_passed={result['checks_passed']}",
+        f"static_manifest_smoke_passed={str(result['static_manifest_smoke_passed']).lower()}",
+        f"file_benchmark_passed={str(result['file_benchmark_passed']).lower()}",
+        f"non_executing_examples_passed={str(result['non_executing_examples_passed']).lower()}",
+        f"constrained_temp_directory_proof_passed={str(result['constrained_temp_directory_proof_passed']).lower()}",
+        f"actual_file_operations_executed_count={result['actual_file_operations_executed_count']}",
+        f"approved_constrained_release_cases={result['approved_constrained_release_cases']}",
+        f"blocked_or_fail_closed_cases={result['blocked_or_fail_closed_cases']}",
+        f"rejected_path_opened_count={result['rejected_path_opened_count']}",
+        f"rejected_path_resolved_count={result['rejected_path_resolved_count']}",
+        f"file_adapter_added={str(result['file_adapter_added']).lower()}",
+        f"arbitrary_file_operation_support_added={str(result['arbitrary_file_operation_support_added']).lower()}",
+        f"failed_checks={failed_checks}",
+        f"final_verdict={result['final_verdict']}",
+    ]
+    if result["final_verdict"] != "DHMS_FILE_FUSE_DEMO_PASS":
+        failed_detail = [
+            {
+                "name": check_result["name"],
+                "script": check_result["script"],
+                "exit_code": check_result["exit_code"],
+                "observed_verdict": check_result["observed_verdict"],
+                "failed_checks": check_result["failed_checks"],
+                "stderr": check_result["stderr"],
+            }
+            for check_result in result["check_results"]
+            if not check_result["passed"]
+        ]
+        lines.append(
+            "failed_check_details="
+            + json.dumps(failed_detail, separators=(",", ":"), sort_keys=True)
+        )
     return "\n".join(lines)
 
 

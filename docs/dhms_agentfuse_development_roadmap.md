@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v0.8.6 File Fuse Quickstart and Evidence Seal`
+* Current package milestone: `v0.8.7 File Fuse CLI Demo Wrapper`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -180,6 +180,14 @@ Next direction:
 * preserve the v0.8.5 freeze semantics
 * add no execution capability, file adapter, or arbitrary file operation support
 * current/completed File Fuse Quickstart and Evidence Seal milestone in v0.8.6
+
+### v0.8.7 File Fuse CLI Demo Wrapper
+
+* add `python3 cli.py demo-file-fuse`
+* aggregate the existing deterministic File Fuse public checks into one command
+* preserve the v0.8.6 evidence seal
+* add no file operation capability, file adapter, or arbitrary file operation support
+* current/completed File Fuse CLI Demo Wrapper milestone in v0.8.7
 
 ## Development Prompt Pattern
 

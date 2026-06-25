@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.1.1 Local Command Proposal Static Manifest`
+* Current package milestone: `v1.1.2 Non-Executing Local Command Proposal Benchmark`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -457,6 +457,17 @@ Next direction:
 * documentation/data-only static manifest; do not add command execution, shell execution, subprocess execution, terminal integration, command runners, benchmark runners, CLI commands, schemas, source code changes, executable examples, trace examples, proof semantic changes, real agent runtime integration, real LLM integration, SDK integration, credentials, user data, or production runtime behavior
 * current/completed Local Command Proposal Static Manifest milestone in v1.1.1
 * next recommended milestone: `v1.1.2 Non-Executing Local Command Proposal Benchmark`
+
+### v1.1.2 Non-Executing Local Command Proposal Benchmark
+
+* add `validation/run_dhms_local_command_proposal_benchmark_v0.py`
+* add `docs/dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md`
+* validate the static inert local command proposal manifest in memory
+* confirm decisions are limited to `HOLD`, `BLOCK`, and `FAIL_CLOSED`
+* confirm `RELEASE` count is 0 and command strings / argv are never executed
+* validation-only benchmark; do not add command execution, shell execution, subprocess execution, terminal integration, command runners, CLI commands, executable examples, trace examples, schemas, proof semantic changes, real agent runtime integration, real LLM integration, SDK integration, credentials, user data, or production runtime behavior
+* current/completed Non-Executing Local Command Proposal Benchmark milestone in v1.1.2
+* next recommended milestone: `v1.1.3 Local Command Proposal Examples and Trace Plan`
 
 Planned v1.1 sequence:
 

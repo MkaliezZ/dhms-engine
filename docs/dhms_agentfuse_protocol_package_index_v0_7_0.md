@@ -85,6 +85,8 @@ Core public materials:
 * Local Command-Agent Interception planning: [`docs/dhms_local_command_agent_interception_planning_v1_1_0.md`](dhms_local_command_agent_interception_planning_v1_1_0.md)
 * Local Command Proposal Static Manifest documentation: [`docs/dhms_local_command_proposal_static_manifest_v1_1_1.md`](dhms_local_command_proposal_static_manifest_v1_1_1.md)
 * Local Command Proposal Static Manifest: [`benchmarks/dhms_local_command_proposals_v0/cases.json`](../benchmarks/dhms_local_command_proposals_v0/cases.json)
+* Non-executing Local Command Proposal Benchmark documentation: [`docs/dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md`](dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md)
+* Non-executing Local Command Proposal Benchmark runner: [`validation/run_dhms_local_command_proposal_benchmark_v0.py`](../validation/run_dhms_local_command_proposal_benchmark_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -155,6 +157,12 @@ future command-agent interception evidence. It does not add command execution,
 shell execution, subprocess execution, terminal integration, benchmark runners,
 CLI commands, source code, schemas, executable examples, trace examples, or
 proof behavior.
+
+v1.1.2 adds a non-executing benchmark validator for the static inert local
+command proposal manifest. It validates the manifest in memory and does not
+execute command strings, execute argv, invoke shells, invoke subprocess
+execution, add terminal integration, add a command runner, or add a CLI
+command.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

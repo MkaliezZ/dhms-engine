@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.0.1 Real Agent Target Selection and Threat Boundary`
+* Current package milestone: `v2.0.2 Proposal-Only Dry-Run Contract`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -674,7 +674,7 @@ Planned sequence:
 
 Next recommended milestone:
 
-`v2.0.2 Proposal-Only Dry-Run Contract`
+`v2.0.3 Non-Executing Real-Agent Proposal Capture Plan`
 
 Core distinction:
 
@@ -881,9 +881,41 @@ Current/completed milestone:
 
 `v2.0.1 Real Agent Target Selection and Threat Boundary`
 
-Next recommended milestone:
+v2.0.2 defines the Proposal-Only Dry-Run Contract for the selected future
+`local mock-to-real agent boundary` in planning form only. It defines dry-run
+principles, future input and output meanings, decision semantics, fail-closed
+cases, evidence expectations, trace continuity expectations, and public
+non-claims before any dry-run implementation begins.
+
+Scope:
+
+* define a proposal-only dry-run contract in prose only
+* preserve `RELEASE`, `HOLD`, `BLOCK`, and `FAIL_CLOSED` decision labels
+* define that `RELEASE` remains a planning-level label in v2.0.2 and does not
+  execute anything
+* define future dry-run inputs and outputs without adding schema files
+* define fail-closed behavior for missing dry-run marker, malformed proposal
+  envelope, missing payload reference, payload hash mismatch, unsupported
+  proposal type, credential scope, user data scope, missing evidence, missing
+  trace, unknown decision, missing decision, and any attempted execution
+* no real agent integration
+* no SDK integration
+* no runtime integration
+* no adapter code
+* no schema files
+* no parsers
+* no runners
+* no CLI commands
+* no execution behavior
+* no production runtime claims
+
+Current/completed milestone:
 
 `v2.0.2 Proposal-Only Dry-Run Contract`
+
+Next recommended milestone:
+
+`v2.0.3 Non-Executing Real-Agent Proposal Capture Plan`
 
 ## Development Prompt Pattern
 
@@ -939,4 +971,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_0_2_PROPOSAL_ONLY_DRY_RUN_CONTRACT`
+`READY_FOR_V2_0_3_NON_EXECUTING_REAL_AGENT_PROPOSAL_CAPTURE_PLAN`

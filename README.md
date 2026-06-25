@@ -13,18 +13,19 @@ Execution Fuse Protocol and the DHMS AgentFuse proof chain.
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.1.0 Local Command-Agent Interception Planning`.
-* Previous milestone: `v1.0.6 README Slim Public Landing Page`.
-* Next recommended milestone: `v1.1.1 Local Command Proposal Static Manifest`.
+* Current milestone: `v1.1.1 Local Command Proposal Static Manifest`.
+* Previous milestone: `v1.1.0 Local Command-Agent Interception Planning`.
+* Next recommended milestone: `v1.1.2 Non-Executing Local Command Proposal Benchmark`.
 * Public release: [`DHMS v1.0 Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package).
 * Release tag: `v1.0.0-public-evidence-package`.
 * Confirmed tag target commit: `24319dfa3db0f272b13b220201e6f4528c62a6f2`.
 
-v1.1.0 opens planning for Local Command-Agent Interception:
-[DHMS Local Command-Agent Interception Planning v1.1.0](docs/dhms_local_command_agent_interception_planning_v1_1_0.md).
-It does not add command execution, shell execution, subprocess execution,
-terminal integration, runners, manifests, examples, schemas, source code,
-tags, or GitHub releases.
+v1.1 adds Local Command-Agent Interception planning and a static inert manifest:
+[planning](docs/dhms_local_command_agent_interception_planning_v1_1_0.md),
+[manifest doc](docs/dhms_local_command_proposal_static_manifest_v1_1_1.md),
+and [cases](benchmarks/dhms_local_command_proposals_v0/cases.json). It does
+not add command execution, shell execution, subprocess execution, terminal
+integration, runners, schemas, source code, tags, or GitHub releases.
 
 ## Public Frozen Claim
 
@@ -95,6 +96,7 @@ Core documents:
 * [DHMS Manual GitHub Release Confirmation v1.0.5](docs/dhms_manual_github_release_confirmation_v1_0_5.md)
 * [DHMS README Slim Public Landing Page v1.0.6](docs/dhms_readme_slim_public_landing_page_v1_0_6.md)
 * [DHMS Local Command-Agent Interception Planning v1.1.0](docs/dhms_local_command_agent_interception_planning_v1_1_0.md)
+* [DHMS Local Command Proposal Static Manifest v1.1.1](docs/dhms_local_command_proposal_static_manifest_v1_1_1.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 

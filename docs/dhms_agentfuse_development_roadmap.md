@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.1.0 Local Command-Agent Interception Planning`
+* Current package milestone: `v1.1.1 Local Command Proposal Static Manifest`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -447,6 +447,16 @@ Next direction:
 * documentation-only planning; do not add command execution, shell execution, subprocess execution, terminal integration, command runners, benchmark runners, CLI commands, manifests, examples, trace examples, schema changes, source code changes, proof semantic changes, real agent runtime integration, real LLM integration, SDK integration, credentials, user data, or production runtime behavior
 * current/completed Local Command-Agent Interception Planning milestone in v1.1.0
 * next recommended milestone: `v1.1.1 Local Command Proposal Static Manifest`
+
+### v1.1.1 Local Command Proposal Static Manifest
+
+* add `benchmarks/dhms_local_command_proposals_v0/cases.json`
+* add `docs/dhms_local_command_proposal_static_manifest_v1_1_1.md`
+* define a compact static inert manifest of local command proposal cases with `HOLD`, `BLOCK`, and `FAIL_CLOSED` expectations only
+* cover read-like, destructive, credential, environment, hidden file, redirection, chaining, shell ambiguity, process spawning, network side-effect, privilege escalation, and malformed command proposal categories
+* documentation/data-only static manifest; do not add command execution, shell execution, subprocess execution, terminal integration, command runners, benchmark runners, CLI commands, schemas, source code changes, executable examples, trace examples, proof semantic changes, real agent runtime integration, real LLM integration, SDK integration, credentials, user data, or production runtime behavior
+* current/completed Local Command Proposal Static Manifest milestone in v1.1.1
+* next recommended milestone: `v1.1.2 Non-Executing Local Command Proposal Benchmark`
 
 Planned v1.1 sequence:
 

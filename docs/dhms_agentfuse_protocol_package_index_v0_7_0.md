@@ -83,6 +83,8 @@ Core public materials:
 * Manual GitHub release confirmation: [`docs/dhms_manual_github_release_confirmation_v1_0_5.md`](dhms_manual_github_release_confirmation_v1_0_5.md)
 * README slim public landing page: [`docs/dhms_readme_slim_public_landing_page_v1_0_6.md`](dhms_readme_slim_public_landing_page_v1_0_6.md)
 * Local Command-Agent Interception planning: [`docs/dhms_local_command_agent_interception_planning_v1_1_0.md`](dhms_local_command_agent_interception_planning_v1_1_0.md)
+* Local Command Proposal Static Manifest documentation: [`docs/dhms_local_command_proposal_static_manifest_v1_1_1.md`](dhms_local_command_proposal_static_manifest_v1_1_1.md)
+* Local Command Proposal Static Manifest: [`benchmarks/dhms_local_command_proposals_v0/cases.json`](../benchmarks/dhms_local_command_proposals_v0/cases.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -147,6 +149,12 @@ will reason about inert local command proposals before execution, under
 fail-closed, non-production boundaries. It does not add command execution,
 shell execution, subprocess execution, terminal integration, runners,
 manifests, examples, source code, or proof behavior.
+
+v1.1.1 creates the first static inert local command proposal manifest for
+future command-agent interception evidence. It does not add command execution,
+shell execution, subprocess execution, terminal integration, benchmark runners,
+CLI commands, source code, schemas, executable examples, trace examples, or
+proof behavior.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

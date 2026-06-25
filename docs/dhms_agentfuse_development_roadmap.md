@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.3.2 Runtime Adapter Boundary Fresh Clone Reproduction Check`
+* Current package milestone: `v1.3.3 Runtime Adapter Boundary README Public Launch Polish`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -618,6 +618,15 @@ Planned v1.2 sequence:
 * documentation/reproduction-record only; do not add runtime adapter implementation, SDK imports/calls, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls beyond public `git clone` reproduction, shell/subprocess/terminal features, command execution features, tool invocation features, credential/user-data handling, production runtime behavior, runners, proof runners, benchmark runners, CLI commands, CLI wrappers, schemas, manifest/example/trace-plan changes, source code changes, release/tag changes, or new SQL/File/HTTP/local-command execution paths
 * current/completed Runtime Adapter Boundary Fresh Clone Reproduction Check milestone in v1.3.2
 * next recommended milestone: `v1.3.3 Runtime Adapter Boundary README Public Launch Polish`
+
+### v1.3.3 Runtime Adapter Boundary README Public Launch Polish
+
+* add `docs/dhms_runtime_adapter_boundary_readme_public_launch_polish_v1_3_3.md`
+* polish the README as the public landing page for the v1.3 Runtime Adapter Boundary Public Evidence Package
+* preserve the v1.0 public release URL, v1.0 public frozen claim, v1.1 frozen local command summary, v1.2 frozen runtime adapter boundary summary, v1.3 package links, Quickstart commands, expected PASS markers, public non-claims, and README License / Trademark Notice
+* documentation/README-polish only; do not add runtime adapter implementation, SDK imports/calls, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls, shell/subprocess/terminal features, command execution features, tool invocation features, credential/user-data handling, production runtime behavior, runners, proof runners, benchmark runners, CLI commands, CLI wrappers, schemas, manifest/example/trace-plan changes, source code changes, release/tag changes, or new SQL/File/HTTP/local-command execution paths
+* current/completed Runtime Adapter Boundary README Public Launch Polish milestone in v1.3.3
+* next recommended milestone: `v1.3.4 Runtime Adapter Boundary GitHub Release Notes Draft`
 
 ## Development Prompt Pattern
 

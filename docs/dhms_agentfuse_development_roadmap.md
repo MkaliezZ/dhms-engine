@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.3.5 Runtime Adapter Boundary Tag / Release Preparation`
+* Current package milestone: `v1.3.6 Runtime Adapter Boundary Manual GitHub Release Confirmation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -647,6 +647,16 @@ Planned v1.2 sequence:
 * documentation/tag-release-preparation only; do not create a GitHub release, create/modify/delete/push tags, move tags, perform final release action, tag the v1.3.5 preparation commit, add runtime adapter implementation, SDK imports/calls, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls, shell/subprocess/terminal features, command execution features, tool invocation features, credential/user-data handling, production runtime behavior, runners, proof runners, benchmark runners, CLI commands, CLI wrappers, schemas, manifest/example/trace-plan changes, source code changes, or new SQL/File/HTTP/local-command execution paths
 * current/completed Runtime Adapter Boundary Tag / Release Preparation milestone in v1.3.5
 * next recommended milestone: `v1.3.6 Runtime Adapter Boundary Manual GitHub Release Confirmation`
+
+### v1.3.6 Runtime Adapter Boundary Manual GitHub Release Confirmation
+
+* add `docs/dhms_runtime_adapter_boundary_manual_github_release_confirmation_v1_3_6.md`
+* record the manually created GitHub release URL, release title, release tag, and confirmed tag target commit
+* confirm tag `v1.3.0-runtime-adapter-boundary-public-evidence-package` points to `23311e7484e1a603c56a479189463a9d18f97741`
+* confirm the release tag does not point to the v1.3.5 preparation commit `af8f04a1ede70094806f1cb3f02793edb59892fa`
+* documentation/release-confirmation only; do not add runtime adapter implementation, SDK integration, execution behavior, source code changes, frozen evidence artifact changes, validation runner changes, benchmark runner changes, manifest changes, example changes, or trace-plan changes
+* current/completed Runtime Adapter Boundary Manual GitHub Release Confirmation milestone in v1.3.6
+* next status: `V1_3_RELEASE_CONFIRMED`
 
 ## Development Prompt Pattern
 

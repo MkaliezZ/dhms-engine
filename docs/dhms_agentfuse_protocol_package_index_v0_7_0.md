@@ -111,6 +111,7 @@ Core public materials:
 * Runtime Adapter Boundary README Public Launch Polish: [`docs/dhms_runtime_adapter_boundary_readme_public_launch_polish_v1_3_3.md`](dhms_runtime_adapter_boundary_readme_public_launch_polish_v1_3_3.md)
 * Runtime Adapter Boundary GitHub Release Notes Draft: [`docs/dhms_runtime_adapter_boundary_github_release_notes_draft_v1_3_4.md`](dhms_runtime_adapter_boundary_github_release_notes_draft_v1_3_4.md)
 * Runtime Adapter Boundary Tag / Release Preparation: [`docs/dhms_runtime_adapter_boundary_tag_release_preparation_v1_3_5.md`](dhms_runtime_adapter_boundary_tag_release_preparation_v1_3_5.md)
+* Runtime Adapter Boundary Manual GitHub Release Confirmation: [`docs/dhms_runtime_adapter_boundary_manual_github_release_confirmation_v1_3_6.md`](dhms_runtime_adapter_boundary_manual_github_release_confirmation_v1_3_6.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -271,6 +272,12 @@ v1.3.5 prepares the tag and GitHub release plan for the v1.3 Runtime Adapter
 Boundary Public Evidence Package. It is documentation/tag-release-preparation
 only and does not create a GitHub release, create or push tags, add runtime
 adapter implementation, add SDK integration, or add execution behavior.
+
+v1.3.6 records the completed manual GitHub release confirmation for the v1.3
+Runtime Adapter Boundary Public Evidence Package. It is documentation/release
+confirmation only and does not add runtime adapter implementation, SDK
+integration, execution behavior, source code changes, or frozen evidence
+artifact changes.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

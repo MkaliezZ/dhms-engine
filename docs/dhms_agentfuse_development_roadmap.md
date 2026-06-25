@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.0.0 Real Agent Integration Preview Planning`
+* Current package milestone: `v2.0.1 Real Agent Target Selection and Threat Boundary`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -674,7 +674,7 @@ Planned sequence:
 
 Next recommended milestone:
 
-`v2.0.1 Real Agent Target Selection and Threat Boundary`
+`v2.0.2 Proposal-Only Dry-Run Contract`
 
 Core distinction:
 
@@ -851,9 +851,39 @@ Current/completed milestone:
 
 `v2.0.0 Real Agent Integration Preview Planning`
 
-Next recommended milestone:
+v2.0.1 selects the `local mock-to-real agent boundary` as the first future
+real-agent integration preview target in planning form only. It defines the
+threat boundary, candidate comparison, non-selected target deferrals,
+fail-closed cases, trace continuity expectations, and public non-claims before
+any implementation begins.
+
+Scope:
+
+* select exactly one future preview target for planning
+* define why the selected target is the lowest-risk first v2.x target
+* defer OpenClaw-style, Codex-style, Claude Code-style, MCP, E2B, and other
+  candidates without claiming support
+* define what remains inside and outside the selected threat boundary
+* keep target labels, payload references, evidence references, and trace
+  references inert
+* no real agent integration
+* no SDK integration
+* no runtime integration
+* no adapter code
+* no schema files
+* no parsers
+* no runners
+* no CLI commands
+* no execution behavior
+* no production runtime claims
+
+Current/completed milestone:
 
 `v2.0.1 Real Agent Target Selection and Threat Boundary`
+
+Next recommended milestone:
+
+`v2.0.2 Proposal-Only Dry-Run Contract`
 
 ## Development Prompt Pattern
 
@@ -909,4 +939,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_0_1_REAL_AGENT_TARGET_SELECTION_AND_THREAT_BOUNDARY`
+`READY_FOR_V2_0_2_PROPOSAL_ONLY_DRY_RUN_CONTRACT`

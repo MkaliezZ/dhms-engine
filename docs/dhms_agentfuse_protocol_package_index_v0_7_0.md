@@ -117,6 +117,7 @@ Core public materials:
 * External Runtime Handoff Contract Planning: [`docs/dhms_external_runtime_handoff_contract_planning_v1_6_0.md`](dhms_external_runtime_handoff_contract_planning_v1_6_0.md)
 * Controlled Adapter Skeleton Planning: [`docs/dhms_controlled_adapter_skeleton_planning_v1_7_0.md`](dhms_controlled_adapter_skeleton_planning_v1_7_0.md)
 * Real Agent Integration Preview Planning: [`docs/dhms_real_agent_integration_preview_planning_v2_0_0.md`](dhms_real_agent_integration_preview_planning_v2_0_0.md)
+* Real Agent Target Selection and Threat Boundary: [`docs/dhms_real_agent_target_selection_and_threat_boundary_v2_0_1.md`](dhms_real_agent_target_selection_and_threat_boundary_v2_0_1.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -565,6 +566,7 @@ v0.7.0 does not claim:
 * v1.6.0 External Runtime Handoff Contract Planning
 * v1.7.0 Controlled Adapter Skeleton Planning
 * v2.0.0 Real Agent Integration Preview Planning
+* v2.0.1 Real Agent Target Selection and Threat Boundary
 
 Final document verdict:
 

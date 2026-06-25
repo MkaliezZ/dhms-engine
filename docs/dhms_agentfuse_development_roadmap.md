@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.2.0 Runtime Adapter Boundary Planning`
+* Current package milestone: `v1.2.1 Runtime Adapter Proposal Static Manifest`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -521,6 +521,16 @@ Planned v1.1 sequence:
 * planning-only documentation; do not add real runtime adapters, MCP integration, E2B integration, Codex integration, Claude integration, OpenClaw integration, DeepSeek integration, provider SDK integration, agent SDK integration, real agent runtime behavior, real LLM runtime behavior, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, filesystem mutation, credential handling, user data handling, persistent memory mutation, billing/quota interaction, production runtime behavior, executable examples, benchmark runners, proof runners, CLI commands, CLI wrappers, schemas, manifests, evidence artifact changes, execution behavior changes, proof semantic changes, or new SQL/File/HTTP/local-command execution paths
 * current/completed Runtime Adapter Boundary Planning milestone in v1.2.0
 * next recommended milestone: `v1.2.1 Runtime Adapter Proposal Static Manifest`
+
+### v1.2.1 Runtime Adapter Proposal Static Manifest
+
+* add `benchmarks/dhms_runtime_adapter_proposals_v0/cases.json`
+* add `docs/dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md`
+* define 19 static inert runtime adapter proposal cases for future non-executing validation
+* keep decisions limited to `HOLD`, `BLOCK`, and `FAIL_CLOSED`; do not use `RELEASE`
+* static inert manifest only; do not add real runtime adapters, SDK imports, SDK calls, MCP integration, E2B integration, Codex integration, Claude integration, OpenClaw integration, DeepSeek integration, provider SDK integration, agent SDK integration, real agent runtime behavior, real LLM runtime behavior, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, filesystem mutation, credential handling, user data handling, persistent memory mutation, billing/quota interaction, production runtime behavior, executable examples, benchmark runners, proof runners, CLI commands, CLI wrappers, schemas, source code changes, validation behavior changes, evidence artifact changes, execution behavior changes, proof semantic changes, or new SQL/File/HTTP/local-command execution paths
+* current/completed Runtime Adapter Proposal Static Manifest milestone in v1.2.1
+* next recommended milestone: `v1.2.2 Non-Executing Runtime Adapter Proposal Benchmark`
 
 Planned v1.2 sequence:
 

@@ -95,6 +95,8 @@ Core public materials:
 * Controlled Mock-Agent Local Command Interception Proof runner: [`validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py`](../validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py)
 * Local Command Interception Result Review and Freeze: [`docs/dhms_local_command_interception_result_review_and_freeze_v1_1_5.md`](dhms_local_command_interception_result_review_and_freeze_v1_1_5.md)
 * Runtime Adapter Boundary Planning: [`docs/dhms_runtime_adapter_boundary_planning_v1_2_0.md`](dhms_runtime_adapter_boundary_planning_v1_2_0.md)
+* Runtime Adapter Proposal Static Manifest documentation: [`docs/dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md`](dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md)
+* Runtime Adapter Proposal Static Manifest: [`benchmarks/dhms_runtime_adapter_proposals_v0/cases.json`](../benchmarks/dhms_runtime_adapter_proposals_v0/cases.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -195,6 +197,12 @@ proposals as inert proposed actions under fail-closed, non-executing,
 non-production boundaries. It does not implement MCP, E2B, Codex, Claude,
 OpenClaw, DeepSeek, provider SDK, agent SDK, or real runtime adapter
 integration.
+
+v1.2.1 defines a static inert manifest of 19 runtime adapter proposal cases.
+It keeps decisions limited to `HOLD`, `BLOCK`, and `FAIL_CLOSED`, keeps
+`RELEASE=0`, and does not implement runtime adapter behavior, SDK calls,
+network calls, shell/subprocess execution, CLI commands, schemas, or proof
+behavior.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

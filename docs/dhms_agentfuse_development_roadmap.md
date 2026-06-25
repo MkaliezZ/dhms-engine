@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.7.0 Controlled Adapter Skeleton Planning`
+* Current package milestone: `v2.0.0 Real Agent Integration Preview Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -674,7 +674,7 @@ Planned sequence:
 
 Next recommended milestone:
 
-`v2.0.0 Real Agent Integration Preview Planning`
+`v2.0.1 Real Agent Target Selection and Threat Boundary`
 
 Core distinction:
 
@@ -831,6 +831,12 @@ Next recommended milestone:
 
 v2.0 is reserved for a later explicit phase.
 
+v2.0.0 adds Real Agent Integration Preview Planning. It defines target
+selection criteria, preview constraints, the proposed v2.x sequence, and the
+reason v2.0 remains planning-only before any real agent integration, SDK
+integration, runtime integration, adapter code, schema files, runners, CLI
+commands, execution behavior, or production runtime claims.
+
 Scope:
 
 * choose only one integration target when v2.0 begins
@@ -840,6 +846,14 @@ Scope:
   agent SDK integration now
 * do not claim production readiness
 * do not claim universal agent safety
+
+Current/completed milestone:
+
+`v2.0.0 Real Agent Integration Preview Planning`
+
+Next recommended milestone:
+
+`v2.0.1 Real Agent Target Selection and Threat Boundary`
 
 ## Development Prompt Pattern
 
@@ -895,4 +909,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_0_0_REAL_AGENT_INTEGRATION_PREVIEW_PLANNING`
+`READY_FOR_V2_0_1_REAL_AGENT_TARGET_SELECTION_AND_THREAT_BOUNDARY`

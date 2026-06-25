@@ -13,9 +13,9 @@ Execution Fuse Protocol and the DHMS AgentFuse proof chain.
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.2.1 Runtime Adapter Proposal Static Manifest`.
-* Previous milestone: `v1.2.0 Runtime Adapter Boundary Planning`.
-* Next recommended milestone: `v1.2.2 Non-Executing Runtime Adapter Proposal Benchmark`.
+* Current milestone: `v1.2.2 Non-Executing Runtime Adapter Proposal Benchmark`.
+* Previous milestone: `v1.2.1 Runtime Adapter Proposal Static Manifest`.
+* Next recommended milestone: `v1.2.3 Runtime Adapter Proposal Examples and Trace Plan`.
 * Public release: [`DHMS v1.0 Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package).
 * Release tag: `v1.0.0-public-evidence-package`.
 * Confirmed tag target commit: `24319dfa3db0f272b13b220201e6f4528c62a6f2`.
@@ -44,6 +44,8 @@ proposals as inert proposed actions before any future adapter integration:
 v1.2.1 adds a static inert manifest for those proposal cases:
 [manifest doc](docs/dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md)
 and [cases](benchmarks/dhms_runtime_adapter_proposals_v0/cases.json).
+v1.2.2 adds a [non-executing benchmark](docs/dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md)
+and [runner](validation/run_dhms_runtime_adapter_proposal_benchmark_v0.py).
 It does not add runtime adapter implementation, SDK integration, network calls,
 shell execution, subprocess execution, CLI commands, schemas, or proof behavior.
 
@@ -81,6 +83,7 @@ python3 validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py
 python3 cli.py proof-mock-agent-interception
 python3 validation/run_dhms_local_command_proposal_benchmark_v0.py
 python3 validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py
+python3 validation/run_dhms_runtime_adapter_proposal_benchmark_v0.py
 ```
 
 Expected verdict markers:
@@ -92,6 +95,7 @@ Expected verdict markers:
 * `DHMS_CONTROLLED_MOCK_AGENT_RUNTIME_INTERCEPTION_PROOF_PASS`
 * `DHMS_LOCAL_COMMAND_PROPOSAL_BENCHMARK_PASS`
 * `DHMS_CONTROLLED_MOCK_AGENT_LOCAL_COMMAND_INTERCEPTION_PROOF_PASS`
+* `DHMS_RUNTIME_ADAPTER_PROPOSAL_BENCHMARK_PASS`
 
 Fresh-clone reproduction is documented in
 [DHMS Fresh Clone Reproduction Check v1.0.1](docs/dhms_fresh_clone_reproduction_check_v1_0_1.md).
@@ -127,6 +131,7 @@ Core documents:
 * [DHMS Local Command Interception Result Review and Freeze v1.1.5](docs/dhms_local_command_interception_result_review_and_freeze_v1_1_5.md)
 * [DHMS Runtime Adapter Boundary Planning v1.2.0](docs/dhms_runtime_adapter_boundary_planning_v1_2_0.md)
 * [DHMS Runtime Adapter Proposal Static Manifest v1.2.1](docs/dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md)
+* [DHMS Non-Executing Runtime Adapter Proposal Benchmark v1.2.2](docs/dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 

@@ -97,6 +97,8 @@ Core public materials:
 * Runtime Adapter Boundary Planning: [`docs/dhms_runtime_adapter_boundary_planning_v1_2_0.md`](dhms_runtime_adapter_boundary_planning_v1_2_0.md)
 * Runtime Adapter Proposal Static Manifest documentation: [`docs/dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md`](dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md)
 * Runtime Adapter Proposal Static Manifest: [`benchmarks/dhms_runtime_adapter_proposals_v0/cases.json`](../benchmarks/dhms_runtime_adapter_proposals_v0/cases.json)
+* Non-executing Runtime Adapter Proposal Benchmark documentation: [`docs/dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md`](dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md)
+* Non-executing Runtime Adapter Proposal Benchmark runner: [`validation/run_dhms_runtime_adapter_proposal_benchmark_v0.py`](../validation/run_dhms_runtime_adapter_proposal_benchmark_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -203,6 +205,11 @@ It keeps decisions limited to `HOLD`, `BLOCK`, and `FAIL_CLOSED`, keeps
 `RELEASE=0`, and does not implement runtime adapter behavior, SDK calls,
 network calls, shell/subprocess execution, CLI commands, schemas, or proof
 behavior.
+
+v1.2.2 adds a non-executing benchmark validator for the static inert runtime
+adapter proposal manifest. It validates 19 cases, `HOLD=2`, `BLOCK=11`,
+`FAIL_CLOSED=6`, `RELEASE=0`, and no SDK/runtime/tool/network/shell/subprocess
+execution indicators.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

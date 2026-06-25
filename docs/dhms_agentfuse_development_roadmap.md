@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.2.1 Runtime Adapter Proposal Static Manifest`
+* Current package milestone: `v1.2.2 Non-Executing Runtime Adapter Proposal Benchmark`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -531,6 +531,17 @@ Planned v1.1 sequence:
 * static inert manifest only; do not add real runtime adapters, SDK imports, SDK calls, MCP integration, E2B integration, Codex integration, Claude integration, OpenClaw integration, DeepSeek integration, provider SDK integration, agent SDK integration, real agent runtime behavior, real LLM runtime behavior, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, filesystem mutation, credential handling, user data handling, persistent memory mutation, billing/quota interaction, production runtime behavior, executable examples, benchmark runners, proof runners, CLI commands, CLI wrappers, schemas, source code changes, validation behavior changes, evidence artifact changes, execution behavior changes, proof semantic changes, or new SQL/File/HTTP/local-command execution paths
 * current/completed Runtime Adapter Proposal Static Manifest milestone in v1.2.1
 * next recommended milestone: `v1.2.2 Non-Executing Runtime Adapter Proposal Benchmark`
+
+### v1.2.2 Non-Executing Runtime Adapter Proposal Benchmark
+
+* add `validation/run_dhms_runtime_adapter_proposal_benchmark_v0.py`
+* add `docs/dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md`
+* validate the static inert runtime adapter proposal manifest in memory
+* confirm 19 proposals, `HOLD=2`, `BLOCK=11`, `FAIL_CLOSED=6`, and `RELEASE=0`
+* confirm no execution is authorized and no SDK/runtime/tool/network/shell/subprocess/terminal indicators are present
+* non-executing validation only; do not add real runtime adapters, SDK imports, SDK calls, MCP integration, E2B integration, Codex integration, Claude integration, OpenClaw integration, DeepSeek integration, provider SDK integration, agent SDK integration, real agent runtime behavior, real LLM runtime behavior, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, filesystem mutation, credential handling, user data handling, persistent memory mutation, billing/quota interaction, production runtime behavior, executable examples, proof runners, CLI commands, CLI wrappers, schemas, manifest changes, evidence artifact changes, execution behavior changes, proof semantic changes, or new SQL/File/HTTP/local-command execution paths
+* current/completed Non-Executing Runtime Adapter Proposal Benchmark milestone in v1.2.2
+* next recommended milestone: `v1.2.3 Runtime Adapter Proposal Examples and Trace Plan`
 
 Planned v1.2 sequence:
 

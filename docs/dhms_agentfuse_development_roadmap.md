@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.4.0 Substrate Boundary / Runtime Boundary Planning`
+* Current package milestone: `v1.5.0 Agent Proposal Envelope Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -674,7 +674,7 @@ Planned sequence:
 
 Next recommended milestone:
 
-`v1.5.0 Agent Proposal Envelope Planning`
+`v1.6.0 External Runtime Handoff Contract Planning`
 
 Core distinction:
 
@@ -734,6 +734,12 @@ Next recommended milestone:
 
 v1.5 should plan a future agent proposal envelope in prose only.
 
+v1.5.0 adds the Agent Proposal Envelope planning document. It defines a future
+pre-execution proposal envelope in prose only, maps existing SQL/File/HTTP,
+mock-agent, local command, and runtime adapter evidence lines into that future
+shape, and preserves the invariant that an envelope is not permission to
+execute.
+
 Scope:
 
 * define proposed envelope fields for observable agent proposals
@@ -744,6 +750,14 @@ Scope:
 * no runtime integration
 * no SDK integration
 * no execution behavior
+
+Current/completed milestone:
+
+`v1.5.0 Agent Proposal Envelope Planning`
+
+Next recommended milestone:
+
+`v1.6.0 External Runtime Handoff Contract Planning`
 
 ### v1.6 External Runtime Handoff Contract
 
@@ -852,4 +866,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V1_5_0_AGENT_PROPOSAL_ENVELOPE_PLANNING`
+`READY_FOR_V1_6_0_EXTERNAL_RUNTIME_HANDOFF_CONTRACT_PLANNING`

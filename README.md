@@ -13,16 +13,18 @@ Execution Fuse Protocol and the DHMS AgentFuse proof chain.
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.0.6 README Slim Public Landing Page`.
-* Previous milestone: `v1.0.5 Manual GitHub Release Confirmation`.
-* Next recommended milestone: `v1.1.0 Local Command-Agent Interception Planning`.
+* Current milestone: `v1.1.0 Local Command-Agent Interception Planning`.
+* Previous milestone: `v1.0.6 README Slim Public Landing Page`.
+* Next recommended milestone: `v1.1.1 Local Command Proposal Static Manifest`.
 * Public release: [`DHMS v1.0 Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package).
 * Release tag: `v1.0.0-public-evidence-package`.
 * Confirmed tag target commit: `24319dfa3db0f272b13b220201e6f4528c62a6f2`.
 
-v1.0.6 slims the README into a concise public landing page. It does not change
-claims, proof semantics, execution behavior, source code, runners, manifests,
-examples, trace examples, schemas, tags, or GitHub releases.
+v1.1.0 opens planning for Local Command-Agent Interception:
+[DHMS Local Command-Agent Interception Planning v1.1.0](docs/dhms_local_command_agent_interception_planning_v1_1_0.md).
+It does not add command execution, shell execution, subprocess execution,
+terminal integration, runners, manifests, examples, schemas, source code,
+tags, or GitHub releases.
 
 ## Public Frozen Claim
 
@@ -92,6 +94,7 @@ Core documents:
 * [DHMS v1.0 Tag / Release Preparation v1.0.4](docs/dhms_v1_0_tag_release_preparation_v1_0_4.md)
 * [DHMS Manual GitHub Release Confirmation v1.0.5](docs/dhms_manual_github_release_confirmation_v1_0_5.md)
 * [DHMS README Slim Public Landing Page v1.0.6](docs/dhms_readme_slim_public_landing_page_v1_0_6.md)
+* [DHMS Local Command-Agent Interception Planning v1.1.0](docs/dhms_local_command_agent_interception_planning_v1_1_0.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 
@@ -107,9 +110,12 @@ DHMS v1.0 does not claim:
 * production readiness
 * real agent runtime interception
 * real LLM execution
+* real shell execution safety
 * universal agent safety
 * industry-standard status
 * arbitrary tool execution
+* arbitrary command execution support
+* arbitrary terminal support
 * arbitrary SQL support
 * arbitrary file operation support
 * arbitrary HTTP/network support

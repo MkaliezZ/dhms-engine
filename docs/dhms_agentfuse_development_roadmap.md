@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.0.6 README Slim Public Landing Page`
+* Current package milestone: `v1.1.0 Local Command-Agent Interception Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -438,6 +438,24 @@ Next direction:
 * documentation-only README slimming; do not change claims, proof semantics, source code, runners, CLI commands, manifests, examples, trace examples, schemas, execution behavior, tags, or GitHub releases
 * current/completed README Slim Public Landing Page milestone in v1.0.6
 * next recommended milestone: `v1.1.0 Local Command-Agent Interception Planning`
+
+### v1.1.0 Local Command-Agent Interception Planning
+
+* add `docs/dhms_local_command_agent_interception_planning_v1_1_0.md`
+* open the v1.1 planning line for local command proposals as intercepted agent actions before execution
+* define local command proposal concept, threat model, proposed fields in prose, fail-closed default rule, forbidden current behavior, safety invariants, validation expectations, public claim boundaries, and public non-claims
+* documentation-only planning; do not add command execution, shell execution, subprocess execution, terminal integration, command runners, benchmark runners, CLI commands, manifests, examples, trace examples, schema changes, source code changes, proof semantic changes, real agent runtime integration, real LLM integration, SDK integration, credentials, user data, or production runtime behavior
+* current/completed Local Command-Agent Interception Planning milestone in v1.1.0
+* next recommended milestone: `v1.1.1 Local Command Proposal Static Manifest`
+
+Planned v1.1 sequence:
+
+* `v1.1.0 Local Command-Agent Interception Planning`
+* `v1.1.1 Local Command Proposal Static Manifest`
+* `v1.1.2 Non-Executing Local Command Proposal Benchmark`
+* `v1.1.3 Local Command Proposal Examples and Trace Plan`
+* `v1.1.4 Controlled Mock-Agent Local Command Interception Proof`
+* `v1.1.5 Local Command Interception Result Review and Freeze`
 
 ## Development Prompt Pattern
 

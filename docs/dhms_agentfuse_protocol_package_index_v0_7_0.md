@@ -82,6 +82,7 @@ Core public materials:
 * v1.0 tag / release preparation: [`docs/dhms_v1_0_tag_release_preparation_v1_0_4.md`](dhms_v1_0_tag_release_preparation_v1_0_4.md)
 * Manual GitHub release confirmation: [`docs/dhms_manual_github_release_confirmation_v1_0_5.md`](dhms_manual_github_release_confirmation_v1_0_5.md)
 * README slim public landing page: [`docs/dhms_readme_slim_public_landing_page_v1_0_6.md`](dhms_readme_slim_public_landing_page_v1_0_6.md)
+* Local Command-Agent Interception planning: [`docs/dhms_local_command_agent_interception_planning_v1_1_0.md`](dhms_local_command_agent_interception_planning_v1_1_0.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -140,6 +141,12 @@ v1.0.6 slims the README into a concise public landing page while preserving
 the public frozen claim, SQL/File/HTTP/Mock-agent evidence lines, reproduction
 commands, v1.0 release link, fresh clone reproduction link, docs index, public
 non-claims, License section, and Trademark Notice.
+
+v1.1.0 opens planning for Local Command-Agent Interception. It defines how DHMS
+will reason about inert local command proposals before execution, under
+fail-closed, non-production boundaries. It does not add command execution,
+shell execution, subprocess execution, terminal integration, runners,
+manifests, examples, source code, or proof behavior.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

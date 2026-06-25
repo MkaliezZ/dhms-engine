@@ -87,6 +87,10 @@ Core public materials:
 * Local Command Proposal Static Manifest: [`benchmarks/dhms_local_command_proposals_v0/cases.json`](../benchmarks/dhms_local_command_proposals_v0/cases.json)
 * Non-executing Local Command Proposal Benchmark documentation: [`docs/dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md`](dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md)
 * Non-executing Local Command Proposal Benchmark runner: [`validation/run_dhms_local_command_proposal_benchmark_v0.py`](../validation/run_dhms_local_command_proposal_benchmark_v0.py)
+* Local Command Proposal Examples and Trace Plan documentation: [`docs/dhms_local_command_proposal_examples_and_trace_plan_v1_1_3.md`](dhms_local_command_proposal_examples_and_trace_plan_v1_1_3.md)
+* Local Command Proposal examples README: [`examples/dhms_local_command_proposals_v0/README.md`](../examples/dhms_local_command_proposals_v0/README.md)
+* Local Command Proposal inert examples: [`examples/dhms_local_command_proposals_v0/inert_examples.json`](../examples/dhms_local_command_proposals_v0/inert_examples.json)
+* Local Command Proposal trace plan: [`trace_examples/dhms_local_command_proposals_v0/trace_plan.json`](../trace_examples/dhms_local_command_proposals_v0/trace_plan.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -163,6 +167,12 @@ command proposal manifest. It validates the manifest in memory and does not
 execute command strings, execute argv, invoke shells, invoke subprocess
 execution, add terminal integration, add a command runner, or add a CLI
 command.
+
+v1.1.3 adds inert local command proposal examples and a non-executing trace
+plan. It maps the static manifest cases to proposal observation, risk
+classification, policy decision, trace evidence, and execution_not_performed
+expectations without adding command execution, terminal integration, benchmark
+runners, CLI commands, executable examples, or executable trace examples.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

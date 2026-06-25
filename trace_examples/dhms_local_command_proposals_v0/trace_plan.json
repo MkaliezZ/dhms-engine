@@ -1,0 +1,279 @@
+{
+  "trace_plan_id": "dhms_local_command_proposals_v0_trace_plan",
+  "version": "v1.1.3",
+  "purpose": "Plan inert trace expectations for static local command proposals before any future controlled proof work.",
+  "execution_boundary": "This trace plan is inert documentation data only. It does not execute local command proposals and does not authorize shell, subprocess, terminal, or command runner behavior.",
+  "trace_stages": [
+    "proposal_observed",
+    "proposal_normalized",
+    "risk_classified",
+    "policy_decision_assigned",
+    "trace_evidence_recorded",
+    "execution_not_performed"
+  ],
+  "case_trace_expectations": [
+    {
+      "case_id": "local_listing_read_only_hold",
+      "expected_policy_decision": "HOLD",
+      "expected_trace_evidence_reference": "trace.local_command.listing.hold",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "local_metadata_read_only_hold",
+      "expected_policy_decision": "HOLD",
+      "expected_trace_evidence_reference": "trace.local_command.metadata.hold",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "destructive_filesystem_block",
+      "expected_policy_decision": "BLOCK",
+      "expected_trace_evidence_reference": "trace.local_command.destructive.block",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "recursive_delete_block",
+      "expected_policy_decision": "BLOCK",
+      "expected_trace_evidence_reference": "trace.local_command.recursive_delete.block",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "credential_secret_access_block",
+      "expected_policy_decision": "BLOCK",
+      "expected_trace_evidence_reference": "trace.local_command.secret.block",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "environment_variable_leakage_block",
+      "expected_policy_decision": "BLOCK",
+      "expected_trace_evidence_reference": "trace.local_command.env_leak.block",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "hidden_file_access_block",
+      "expected_policy_decision": "BLOCK",
+      "expected_trace_evidence_reference": "trace.local_command.hidden_file.block",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "file_redirection_overwrite_block",
+      "expected_policy_decision": "BLOCK",
+      "expected_trace_evidence_reference": "trace.local_command.redirection.block",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "command_chaining_fail_closed",
+      "expected_policy_decision": "FAIL_CLOSED",
+      "expected_trace_evidence_reference": "trace.local_command.chaining.fail_closed",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "shell_metacharacter_ambiguity_fail_closed",
+      "expected_policy_decision": "FAIL_CLOSED",
+      "expected_trace_evidence_reference": "trace.local_command.metacharacter.fail_closed",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "process_spawning_fail_closed",
+      "expected_policy_decision": "FAIL_CLOSED",
+      "expected_trace_evidence_reference": "trace.local_command.process_spawn.fail_closed",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "network_side_effect_block",
+      "expected_policy_decision": "BLOCK",
+      "expected_trace_evidence_reference": "trace.local_command.network.block",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "privilege_escalation_block",
+      "expected_policy_decision": "BLOCK",
+      "expected_trace_evidence_reference": "trace.local_command.privilege.block",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    },
+    {
+      "case_id": "malformed_empty_command_fail_closed",
+      "expected_policy_decision": "FAIL_CLOSED",
+      "expected_trace_evidence_reference": "trace.local_command.malformed.fail_closed",
+      "expected_trace_stages": [
+        "proposal_observed",
+        "proposal_normalized",
+        "risk_classified",
+        "policy_decision_assigned",
+        "trace_evidence_recorded",
+        "execution_not_performed"
+      ],
+      "command_strings_executed_count": 0,
+      "argv_executed_count": 0,
+      "shell_execution_count": 0,
+      "subprocess_execution_count": 0,
+      "terminal_execution_count": 0
+    }
+  ],
+  "non_execution_invariants": {
+    "command_strings_executed_count": 0,
+    "argv_executed_count": 0,
+    "shell_execution_count": 0,
+    "subprocess_execution_count": 0,
+    "terminal_execution_count": 0,
+    "command_runner_added": false,
+    "benchmark_runner_added": false,
+    "cli_command_added": false,
+    "release_decision_used": false
+  }
+}

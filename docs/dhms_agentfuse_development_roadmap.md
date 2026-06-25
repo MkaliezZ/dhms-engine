@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.1.2 Non-Executing Local Command Proposal Benchmark`
+* Current package milestone: `v1.1.3 Local Command Proposal Examples and Trace Plan`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -468,6 +468,18 @@ Next direction:
 * validation-only benchmark; do not add command execution, shell execution, subprocess execution, terminal integration, command runners, CLI commands, executable examples, trace examples, schemas, proof semantic changes, real agent runtime integration, real LLM integration, SDK integration, credentials, user data, or production runtime behavior
 * current/completed Non-Executing Local Command Proposal Benchmark milestone in v1.1.2
 * next recommended milestone: `v1.1.3 Local Command Proposal Examples and Trace Plan`
+
+### v1.1.3 Local Command Proposal Examples and Trace Plan
+
+* add `examples/dhms_local_command_proposals_v0/README.md`
+* add `examples/dhms_local_command_proposals_v0/inert_examples.json`
+* add `trace_examples/dhms_local_command_proposals_v0/trace_plan.json`
+* add `docs/dhms_local_command_proposal_examples_and_trace_plan_v1_1_3.md`
+* provide inert reader examples for held, blocked, and fail-closed local command proposals
+* map all 14 manifest case IDs to non-executing trace expectations
+* documentation/data-only examples and trace planning; do not add command execution, shell execution, subprocess execution, terminal integration, command runners, benchmark runners, CLI commands, executable examples, executable trace examples, schemas, manifest changes, benchmark runner changes, proof semantic changes, real agent runtime integration, real LLM integration, SDK integration, credentials, user data, or production runtime behavior
+* current/completed Local Command Proposal Examples and Trace Plan milestone in v1.1.3
+* next recommended milestone: `v1.1.4 Controlled Mock-Agent Local Command Interception Proof`
 
 Planned v1.1 sequence:
 

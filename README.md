@@ -13,22 +13,26 @@ Execution Fuse Protocol and the DHMS AgentFuse proof chain.
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.1.2 Non-Executing Local Command Proposal Benchmark`.
-* Previous milestone: `v1.1.1 Local Command Proposal Static Manifest`.
-* Next recommended milestone: `v1.1.3 Local Command Proposal Examples and Trace Plan`.
+* Current milestone: `v1.1.3 Local Command Proposal Examples and Trace Plan`.
+* Previous milestone: `v1.1.2 Non-Executing Local Command Proposal Benchmark`.
+* Next recommended milestone: `v1.1.4 Controlled Mock-Agent Local Command Interception Proof`.
 * Public release: [`DHMS v1.0 Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package).
 * Release tag: `v1.0.0-public-evidence-package`.
 * Confirmed tag target commit: `24319dfa3db0f272b13b220201e6f4528c62a6f2`.
 
 v1.1 adds Local Command-Agent Interception planning, a static inert manifest,
-and a non-executing local command proposal benchmark:
+a non-executing benchmark, and inert examples / trace planning:
 [planning](docs/dhms_local_command_agent_interception_planning_v1_1_0.md),
 [manifest doc](docs/dhms_local_command_proposal_static_manifest_v1_1_1.md),
 [benchmark doc](docs/dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md),
-[cases](benchmarks/dhms_local_command_proposals_v0/cases.json), and
-[runner](validation/run_dhms_local_command_proposal_benchmark_v0.py). It does
-not add command execution, shell execution, subprocess execution, terminal
-integration, CLI commands, schemas, tags, or GitHub releases.
+[examples doc](docs/dhms_local_command_proposal_examples_and_trace_plan_v1_1_3.md),
+[cases](benchmarks/dhms_local_command_proposals_v0/cases.json),
+[runner](validation/run_dhms_local_command_proposal_benchmark_v0.py),
+[examples README](examples/dhms_local_command_proposals_v0/README.md),
+[examples JSON](examples/dhms_local_command_proposals_v0/inert_examples.json),
+and [trace plan](trace_examples/dhms_local_command_proposals_v0/trace_plan.json).
+It does not add command execution, shell execution, subprocess execution,
+terminal integration, CLI commands, schemas, tags, or GitHub releases.
 
 ## Public Frozen Claim
 
@@ -103,6 +107,7 @@ Core documents:
 * [DHMS Local Command-Agent Interception Planning v1.1.0](docs/dhms_local_command_agent_interception_planning_v1_1_0.md)
 * [DHMS Local Command Proposal Static Manifest v1.1.1](docs/dhms_local_command_proposal_static_manifest_v1_1_1.md)
 * [DHMS Non-Executing Local Command Proposal Benchmark v1.1.2](docs/dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md)
+* [DHMS Local Command Proposal Examples and Trace Plan v1.1.3](docs/dhms_local_command_proposal_examples_and_trace_plan_v1_1_3.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 
@@ -113,7 +118,7 @@ Historical milestone details are intentionally kept in the linked docs index.
 
 ## Public Non-Claims
 
-DHMS v1.0 does not claim:
+DHMS public line does not claim:
 
 * production readiness
 * real agent runtime interception

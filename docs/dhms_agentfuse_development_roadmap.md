@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.3.1 Runtime Adapter Boundary Public Evidence Package Assembly`
+* Current package milestone: `v1.3.2 Runtime Adapter Boundary Fresh Clone Reproduction Check`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -607,6 +607,17 @@ Planned v1.2 sequence:
 * documentation/package-assembly only; do not add runtime adapter implementation, SDK imports/calls, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, credential/user-data handling, production runtime behavior, runners, proof runners, benchmark runners, CLI commands, CLI wrappers, schemas, manifest/example/trace-plan changes, source code changes, release/tag changes, or new SQL/File/HTTP/local-command execution paths
 * current/completed Runtime Adapter Boundary Public Evidence Package Assembly milestone in v1.3.1
 * next recommended milestone: `v1.3.2 Runtime Adapter Boundary Fresh Clone Reproduction Check`
+
+### v1.3.2 Runtime Adapter Boundary Fresh Clone Reproduction Check
+
+* add `docs/dhms_runtime_adapter_boundary_fresh_clone_reproduction_check_v1_3_2.md`
+* record a fresh-clone reproduction check for the v1.3.1 Runtime Adapter Boundary Public Evidence Package
+* verify the public repository branch `agent-harness-v1` at `d48f368698776bc045b8542dc1e12fc055e89f12`
+* preserve the v1.0 public frozen claim, v1.1 frozen local command claim, v1.2 frozen runtime adapter boundary claim, and v1.3.1 public package claim exactly
+* carry forward `runtime_adapter_proposal_count=19`, `HOLD=2`, `BLOCK=11`, `FAIL_CLOSED=6`, `RELEASE=0`, `intercepted_proposal_count=19`, `trace_cases_validated_count=19`, `trace_cases_missing_count=0`, `examples_validated_count=7`, and all execution/runtime/SDK/network/shell/subprocess/terminal/tool/credential/user-data/model-provider/production-runtime counts at 0
+* documentation/reproduction-record only; do not add runtime adapter implementation, SDK imports/calls, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls beyond public `git clone` reproduction, shell/subprocess/terminal features, command execution features, tool invocation features, credential/user-data handling, production runtime behavior, runners, proof runners, benchmark runners, CLI commands, CLI wrappers, schemas, manifest/example/trace-plan changes, source code changes, release/tag changes, or new SQL/File/HTTP/local-command execution paths
+* current/completed Runtime Adapter Boundary Fresh Clone Reproduction Check milestone in v1.3.2
+* next recommended milestone: `v1.3.3 Runtime Adapter Boundary README Public Launch Polish`
 
 ## Development Prompt Pattern
 

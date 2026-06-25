@@ -114,6 +114,7 @@ Core public materials:
 * Runtime Adapter Boundary Manual GitHub Release Confirmation: [`docs/dhms_runtime_adapter_boundary_manual_github_release_confirmation_v1_3_6.md`](dhms_runtime_adapter_boundary_manual_github_release_confirmation_v1_3_6.md)
 * Substrate Boundary / Runtime Boundary Planning: [`docs/dhms_substrate_boundary_runtime_boundary_planning_v1_4_0.md`](dhms_substrate_boundary_runtime_boundary_planning_v1_4_0.md)
 * Agent Proposal Envelope Planning: [`docs/dhms_agent_proposal_envelope_planning_v1_5_0.md`](dhms_agent_proposal_envelope_planning_v1_5_0.md)
+* External Runtime Handoff Contract Planning: [`docs/dhms_external_runtime_handoff_contract_planning_v1_6_0.md`](dhms_external_runtime_handoff_contract_planning_v1_6_0.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -559,6 +560,7 @@ v0.7.0 does not claim:
 * v1.0.1 Fresh Clone Reproduction Check
 * v1.4.0 Substrate Boundary / Runtime Boundary Planning
 * v1.5.0 Agent Proposal Envelope Planning
+* v1.6.0 External Runtime Handoff Contract Planning
 
 Final document verdict:
 

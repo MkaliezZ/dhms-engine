@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.5.0 Agent Proposal Envelope Planning`
+* Current package milestone: `v1.6.0 External Runtime Handoff Contract Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -674,7 +674,7 @@ Planned sequence:
 
 Next recommended milestone:
 
-`v1.6.0 External Runtime Handoff Contract Planning`
+`v1.7.0 Controlled Adapter Skeleton Planning`
 
 Core distinction:
 
@@ -764,6 +764,13 @@ Next recommended milestone:
 v1.6 should plan a future handoff contract from DHMS decisions to external
 runtimes without implementing that handoff.
 
+v1.6.0 adds the External Runtime Handoff Contract planning document. It defines
+how a future external runtime or substrate should consume a DHMS boundary
+decision without treating it as an advisory log, without reinterpreting
+`HOLD`, `BLOCK`, `FAIL_CLOSED`, missing, stale, or incomplete decisions as
+`RELEASE`, and without adding schema files, runtime integration, SDK
+integration, adapter code, runners, CLI commands, or execution behavior.
+
 Expected decision outputs:
 
 * `RELEASE`
@@ -782,6 +789,14 @@ Scope:
 * no SDK
 * no adapter
 * no runtime execution
+
+Current/completed milestone:
+
+`v1.6.0 External Runtime Handoff Contract Planning`
+
+Next recommended milestone:
+
+`v1.7.0 Controlled Adapter Skeleton Planning`
 
 ### v1.7 Controlled Adapter Skeleton Planning
 
@@ -866,4 +881,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V1_6_0_EXTERNAL_RUNTIME_HANDOFF_CONTRACT_PLANNING`
+`READY_FOR_V1_7_0_CONTROLLED_ADAPTER_SKELETON_PLANNING`

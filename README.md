@@ -11,9 +11,9 @@ DHMS began as memory/context/tool-state perturbation testing. The current
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.2.5 Runtime Adapter Boundary Result Review and Freeze`.
-* Previous milestone: `v1.2.4 Controlled Mock-Agent Runtime Adapter Boundary Proof`.
-* Next recommended milestone: `v1.3.0 Runtime Adapter Boundary Public Evidence Package Planning`.
+* Current milestone: `v1.3.0 Runtime Adapter Boundary Public Evidence Package Planning`.
+* Previous milestone: `v1.2.5 Runtime Adapter Boundary Result Review and Freeze`.
+* Next recommended milestone: `v1.3.1 Runtime Adapter Boundary Public Evidence Package Assembly`.
 * Public release: [`DHMS v1.0 Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package).
 * Release tag: `v1.0.0-public-evidence-package`.
 * Confirmed tag target commit: `24319dfa3db0f272b13b220201e6f4528c62a6f2`.
@@ -49,8 +49,8 @@ mock-agent boundary proof:
 [examples doc](docs/dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md),
 [proof doc](docs/dhms_controlled_mock_agent_runtime_adapter_boundary_proof_v1_2_4.md), [proof runner](validation/run_dhms_controlled_mock_agent_runtime_adapter_boundary_proof.py),
 and [freeze doc](docs/dhms_runtime_adapter_boundary_result_review_and_freeze_v1_2_5.md).
-It does not add runtime adapter implementation, SDK integration, network calls,
-shell execution, subprocess execution, CLI commands, schemas, or runtime execution behavior.
+v1.3.0 adds [public package planning](docs/dhms_runtime_adapter_boundary_public_evidence_package_planning_v1_3_0.md).
+It does not add runtime adapter implementation, SDK integration, network calls, shell execution, subprocess execution, CLI commands, schemas, or runtime execution behavior.
 
 ## Public Frozen Claim
 
@@ -139,6 +139,7 @@ Core documents:
 * [DHMS Runtime Adapter Proposal Examples and Trace Plan v1.2.3](docs/dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md)
 * [DHMS Controlled Mock-Agent Runtime Adapter Boundary Proof v1.2.4](docs/dhms_controlled_mock_agent_runtime_adapter_boundary_proof_v1_2_4.md)
 * [DHMS Runtime Adapter Boundary Result Review and Freeze v1.2.5](docs/dhms_runtime_adapter_boundary_result_review_and_freeze_v1_2_5.md)
+* [DHMS Runtime Adapter Boundary Public Evidence Package Planning v1.3.0](docs/dhms_runtime_adapter_boundary_public_evidence_package_planning_v1_3_0.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 

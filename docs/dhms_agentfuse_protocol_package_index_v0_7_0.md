@@ -119,6 +119,7 @@ Core public materials:
 * Real Agent Integration Preview Planning: [`docs/dhms_real_agent_integration_preview_planning_v2_0_0.md`](dhms_real_agent_integration_preview_planning_v2_0_0.md)
 * Real Agent Target Selection and Threat Boundary: [`docs/dhms_real_agent_target_selection_and_threat_boundary_v2_0_1.md`](dhms_real_agent_target_selection_and_threat_boundary_v2_0_1.md)
 * Proposal-Only Dry-Run Contract: [`docs/dhms_proposal_only_dry_run_contract_v2_0_2.md`](dhms_proposal_only_dry_run_contract_v2_0_2.md)
+* Non-Executing Real-Agent Proposal Capture Plan: [`docs/dhms_non_executing_real_agent_proposal_capture_plan_v2_0_3.md`](dhms_non_executing_real_agent_proposal_capture_plan_v2_0_3.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -569,6 +570,7 @@ v0.7.0 does not claim:
 * v2.0.0 Real Agent Integration Preview Planning
 * v2.0.1 Real Agent Target Selection and Threat Boundary
 * v2.0.2 Proposal-Only Dry-Run Contract
+* v2.0.3 Non-Executing Real-Agent Proposal Capture Plan
 
 Final document verdict:
 

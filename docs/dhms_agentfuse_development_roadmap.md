@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.0.2 Proposal-Only Dry-Run Contract`
+* Current package milestone: `v2.0.3 Non-Executing Real-Agent Proposal Capture Plan`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -674,7 +674,7 @@ Planned sequence:
 
 Next recommended milestone:
 
-`v2.0.3 Non-Executing Real-Agent Proposal Capture Plan`
+`v2.0.4 Controlled Real-Agent Preview Proof Planning`
 
 Core distinction:
 
@@ -913,9 +913,47 @@ Current/completed milestone:
 
 `v2.0.2 Proposal-Only Dry-Run Contract`
 
-Next recommended milestone:
+v2.0.3 plans a non-executing real-agent proposal capture path for the selected
+future `local mock-to-real agent boundary` in prose only. It defines capture
+principles, future capture item meanings, acceptance criteria, refusal and
+fail-closed cases, decision semantics, evidence and trace preservation, and
+public non-claims before any capture implementation begins.
+
+Scope:
+
+* plan inert proposal capture before execution
+* preserve proposal envelope reference, selected target identifier,
+  `proposal_id`, inert payload reference, payload hash, requested capability,
+  expected side effects, dry-run mode marker, credential scope declaration,
+  user data scope declaration, runtime target label, evidence reference, trace
+  reference, capture marker, and capture completeness status as planning items
+* preserve `RELEASE`, `HOLD`, `BLOCK`, and `FAIL_CLOSED` decision labels
+* define that `RELEASE` remains a planning-level label in v2.0.3 and does not
+  execute anything
+* define refusal and fail-closed behavior for missing, malformed, stale,
+  unsupported, executable-looking, credential-involving, user-data-involving,
+  or out-of-boundary capture inputs
+* no real agent integration
+* no real agent runtime interception
+* no SDK integration
+* no runtime integration
+* no adapter code
+* no schema files
+* no proposal parser
+* no capture parser
+* no capture runner
+* no agent hook
+* no CLI commands
+* no execution behavior
+* no production runtime claims
+
+Current/completed milestone:
 
 `v2.0.3 Non-Executing Real-Agent Proposal Capture Plan`
+
+Next recommended milestone:
+
+`v2.0.4 Controlled Real-Agent Preview Proof Planning`
 
 ## Development Prompt Pattern
 
@@ -971,4 +1009,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_0_3_NON_EXECUTING_REAL_AGENT_PROPOSAL_CAPTURE_PLAN`
+`READY_FOR_V2_0_4_CONTROLLED_REAL_AGENT_PREVIEW_PROOF_PLANNING`

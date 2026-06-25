@@ -123,6 +123,7 @@ Core public materials:
 * Controlled Real-Agent Preview Proof Planning: [`docs/dhms_controlled_real_agent_preview_proof_planning_v2_0_4.md`](dhms_controlled_real_agent_preview_proof_planning_v2_0_4.md)
 * Controlled Real-Agent Preview Result Review and Freeze: [`docs/dhms_controlled_real_agent_preview_result_review_and_freeze_v2_0_5.md`](dhms_controlled_real_agent_preview_result_review_and_freeze_v2_0_5.md)
 * README Current Status Sync: [`docs/dhms_readme_current_status_sync_v2_0_5_1.md`](dhms_readme_current_status_sync_v2_0_5_1.md)
+* Bounded Local Mock-to-Real Preview Proof Planning: [`docs/dhms_bounded_local_mock_to_real_preview_proof_planning_v2_1_0.md`](dhms_bounded_local_mock_to_real_preview_proof_planning_v2_1_0.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -577,6 +578,7 @@ v0.7.0 does not claim:
 * v2.0.4 Controlled Real-Agent Preview Proof Planning
 * v2.0.5 Result Review and Freeze
 * v2.0.5.1 README Current Status Sync
+* v2.1.0 Bounded Local Mock-to-Real Preview Proof Planning
 
 Final document verdict:
 

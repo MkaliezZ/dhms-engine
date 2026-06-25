@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.0.5.1 README Current Status Sync`
+* Current package milestone: `v2.1.0 Bounded Local Mock-to-Real Preview Proof Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1055,6 +1055,55 @@ Next recommended milestone:
 v2.1.0 is still a planning gate only. v2.0.5.1 does not authorize v2.1.0
 implementation and does not claim that a v2.1.0 implementation is approved.
 
+v2.1.0 plans what a future bounded local mock-to-real preview proof would
+require before any implementation can be considered. It preserves the local
+mock-to-real target from v2.0.1, the proposal-only dry-run constraints from
+v2.0.2, the non-executing capture boundary from v2.0.3, the controlled proof
+planning requirements from v2.0.4, and the v2.0.5 freeze. It is planning-only
+and does not authorize implementation.
+
+Scope:
+
+* plan the future bounded local mock-to-real preview proof requirements
+* preserve that DHMS asks whether a proposed action should be released at all,
+  under what boundary, and with what evidence
+* preserve that DHMS operates before execution and is not a sandbox, MCP
+  replacement, runtime adapter, or production runtime
+* define proof objective, bounded assumptions, inert proposal boundary,
+  proposal-only dry-run boundary, non-executing capture boundary, decision
+  semantics, fail-closed requirements, evidence requirements, trace
+  requirements, rollback requirements, freeze requirements, and later approval
+  gate
+* no implementation approval
+* no source code
+* no schema files
+* no parsers
+* no runners
+* no adapters
+* no agent hooks
+* no CLI commands
+* no execution path
+* no shell or command execution
+* no file mutation
+* no network access
+* no credential handling
+* no user data handling
+* no production runtime claims
+* no real agent integration claims
+* no SDK/runtime integration claims
+
+Current/completed milestone:
+
+`v2.1.0 Bounded Local Mock-to-Real Preview Proof Planning`
+
+Next recommended milestone:
+
+`v2.1.1 Bounded Local Mock-to-Real Preview Proof Contract`
+
+v2.1.1 should also be planning/contract only, not implementation. It must not
+authorize any proof runner, parser, adapter, hook, CLI command, SDK/runtime
+integration, or execution path.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -1109,4 +1158,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_1_0_BOUNDED_LOCAL_MOCK_TO_REAL_PREVIEW_PROOF_PLANNING`
+`READY_FOR_V2_1_1_BOUNDED_LOCAL_MOCK_TO_REAL_PREVIEW_PROOF_CONTRACT`

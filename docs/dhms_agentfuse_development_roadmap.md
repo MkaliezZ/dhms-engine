@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.2.4 Controlled Mock-Agent Runtime Adapter Boundary Proof`
+* Current package milestone: `v1.2.5 Runtime Adapter Boundary Result Review and Freeze`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -566,6 +566,16 @@ Planned v1.1 sequence:
 * controlled mock-agent proof only; do not add real runtime adapters, SDK imports, SDK calls, MCP integration, E2B integration, Codex integration, Claude integration, OpenClaw integration, DeepSeek integration, provider SDK integration, agent SDK integration, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, filesystem mutation, credential handling, user data handling, persistent memory mutation, billing/quota interaction, production runtime behavior, CLI commands, CLI wrappers, schemas, manifest changes, example changes, trace-plan changes, evidence artifact changes outside v1.2.4 proof docs/runner, proof semantic changes to prior lines, or new SQL/File/HTTP/local-command execution paths
 * current/completed Controlled Mock-Agent Runtime Adapter Boundary Proof milestone in v1.2.4
 * next recommended milestone: `v1.2.5 Runtime Adapter Boundary Result Review and Freeze`
+
+### v1.2.5 Runtime Adapter Boundary Result Review and Freeze
+
+* add `docs/dhms_runtime_adapter_boundary_result_review_and_freeze_v1_2_5.md`
+* freeze the v1.2 Runtime Adapter Boundary evidence line across planning, static manifest, non-executing benchmark, inert examples/trace planning, and controlled mock-agent boundary proof
+* preserve the frozen claim over 19 static inert runtime adapter proposals under fail-closed, non-production boundaries
+* confirm `runtime_adapter_proposal_count=19`, `HOLD=2`, `BLOCK=11`, `FAIL_CLOSED=6`, `RELEASE=0`, `intercepted_proposal_count=19`, `trace_cases_validated_count=19`, `examples_validated_count=7`, and all execution/runtime/SDK/network/shell/subprocess/terminal/tool/credential/user-data/model-provider/production-runtime counts at 0
+* documentation/freeze-only; do not add runners, proof runners, benchmark runners, CLI commands, CLI wrappers, schemas, source code changes, manifest changes, examples changes, trace-plan changes, runtime adapter implementation, SDK imports/calls, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, credential/user-data handling, production runtime behavior, release/tag changes, or new SQL/File/HTTP/local-command execution paths
+* current/completed Runtime Adapter Boundary Result Review and Freeze milestone in v1.2.5
+* next recommended milestone: `v1.3.0 Runtime Adapter Boundary Public Evidence Package Planning`
 
 Planned v1.2 sequence:
 

@@ -104,6 +104,7 @@ Core public materials:
 * Runtime Adapter Proposal trace plan: [`trace_examples/dhms_runtime_adapter_proposals_v0/trace_plan.json`](../trace_examples/dhms_runtime_adapter_proposals_v0/trace_plan.json)
 * Controlled Mock-Agent Runtime Adapter Boundary Proof documentation: [`docs/dhms_controlled_mock_agent_runtime_adapter_boundary_proof_v1_2_4.md`](dhms_controlled_mock_agent_runtime_adapter_boundary_proof_v1_2_4.md)
 * Controlled Mock-Agent Runtime Adapter Boundary Proof runner: [`validation/run_dhms_controlled_mock_agent_runtime_adapter_boundary_proof.py`](../validation/run_dhms_controlled_mock_agent_runtime_adapter_boundary_proof.py)
+* Runtime Adapter Boundary Result Review and Freeze: [`docs/dhms_runtime_adapter_boundary_result_review_and_freeze_v1_2_5.md`](dhms_runtime_adapter_boundary_result_review_and_freeze_v1_2_5.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -228,6 +229,11 @@ once, intercepts them before execution, preserves `HOLD=2`, `BLOCK=11`,
 `FAIL_CLOSED=6`, `RELEASE=0`, and keeps runtime adapter, SDK, network, shell,
 subprocess, terminal, tool, credential, user-data, model-provider, and
 production-runtime behavior at 0.
+
+v1.2.5 reviews and freezes the Runtime Adapter Boundary evidence line with the
+frozen claim over 19 static inert runtime adapter proposals under fail-closed,
+non-production boundaries. It is documentation/freeze-only and does not add
+runtime execution behavior.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

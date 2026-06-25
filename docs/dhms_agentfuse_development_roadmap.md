@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.3.4 Runtime Adapter Boundary GitHub Release Notes Draft`
+* Current package milestone: `v1.3.5 Runtime Adapter Boundary Tag / Release Preparation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -637,6 +637,16 @@ Planned v1.2 sequence:
 * documentation/release-notes-draft only; do not create a GitHub release, create/modify/delete/push tags, select a final target commit, add runtime adapter implementation, SDK imports/calls, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls, shell/subprocess/terminal features, command execution features, tool invocation features, credential/user-data handling, production runtime behavior, runners, proof runners, benchmark runners, CLI commands, CLI wrappers, schemas, manifest/example/trace-plan changes, source code changes, or new SQL/File/HTTP/local-command execution paths
 * current/completed Runtime Adapter Boundary GitHub Release Notes Draft milestone in v1.3.4
 * next recommended milestone: `v1.3.5 Runtime Adapter Boundary Tag / Release Preparation`
+
+### v1.3.5 Runtime Adapter Boundary Tag / Release Preparation
+
+* add `docs/dhms_runtime_adapter_boundary_tag_release_preparation_v1_3_5.md`
+* prepare the candidate release title, candidate tag name, prepared release target commit, target commit rationale, release notes source, tag existence check, validation checklist, and future manual release instructions
+* prepare target commit `23311e7484e1a603c56a479189463a9d18f97741`, the v1.3.4 release-notes-draft commit
+* preserve the v1.0 public frozen claim, v1.1 frozen local command claim, v1.2 frozen runtime adapter boundary claim, v1.3.1 package claim, v1.3.2 reproduction claim, v1.3.3 README polish claim, and v1.3.4 release notes draft claim exactly
+* documentation/tag-release-preparation only; do not create a GitHub release, create/modify/delete/push tags, move tags, perform final release action, tag the v1.3.5 preparation commit, add runtime adapter implementation, SDK imports/calls, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls, shell/subprocess/terminal features, command execution features, tool invocation features, credential/user-data handling, production runtime behavior, runners, proof runners, benchmark runners, CLI commands, CLI wrappers, schemas, manifest/example/trace-plan changes, source code changes, or new SQL/File/HTTP/local-command execution paths
+* current/completed Runtime Adapter Boundary Tag / Release Preparation milestone in v1.3.5
+* next recommended milestone: `v1.3.6 Runtime Adapter Boundary Manual GitHub Release Confirmation`
 
 ## Development Prompt Pattern
 

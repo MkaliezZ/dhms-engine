@@ -125,6 +125,8 @@ Core public materials:
 * README Current Status Sync: [`docs/dhms_readme_current_status_sync_v2_0_5_1.md`](dhms_readme_current_status_sync_v2_0_5_1.md)
 * Bounded Local Mock-to-Real Preview Proof Planning: [`docs/dhms_bounded_local_mock_to_real_preview_proof_planning_v2_1_0.md`](dhms_bounded_local_mock_to_real_preview_proof_planning_v2_1_0.md)
 * Bounded Local Mock-to-Real Preview Proof Contract: [`docs/dhms_bounded_local_mock_to_real_preview_proof_contract_v2_1_1.md`](dhms_bounded_local_mock_to_real_preview_proof_contract_v2_1_1.md)
+* Bounded Local Mock-to-Real Inert Proposal Fixtures: [`docs/dhms_bounded_local_mock_to_real_inert_proposal_fixtures_v2_1_2.md`](dhms_bounded_local_mock_to_real_inert_proposal_fixtures_v2_1_2.md)
+* Bounded Local Mock-to-Real proposal fixtures: [`benchmarks/dhms_bounded_local_mock_to_real_v0/proposals.json`](../benchmarks/dhms_bounded_local_mock_to_real_v0/proposals.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -581,6 +583,7 @@ v0.7.0 does not claim:
 * v2.0.5.1 README Current Status Sync
 * v2.1.0 Bounded Local Mock-to-Real Preview Proof Planning
 * v2.1.1 Bounded Local Mock-to-Real Preview Proof Contract
+* v2.1.2 Bounded Local Mock-to-Real Inert Proposal Fixtures
 
 Final document verdict:
 

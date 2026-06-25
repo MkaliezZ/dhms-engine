@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.1.1 Bounded Local Mock-to-Real Preview Proof Contract`
+* Current package milestone: `v2.1.2 Bounded Local Mock-to-Real Inert Proposal Fixtures`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1158,6 +1158,58 @@ integration. It must not authorize any proof runner, parser, adapter, hook, CLI
 command, SDK/runtime integration, KerniQ runtime call, E2B handoff, or execution
 path.
 
+v2.1.2 adds static inert bounded local mock-to-real proposal fixtures following
+the v2.1.1 prose contract. The fixture file contains exactly 8 synthetic,
+local-only, mock-to-real-shaped, non-executing, non-credentialed,
+non-user-data, non-production, no-runtime, no-network, no-shell, no-command,
+no-file-mutation, no-SDK, no-model-call, no-adapter, no-KerniQ-runtime-call, and
+no-E2B-handoff cases.
+
+Scope:
+
+* add static JSON fixtures only
+* preserve that v2.1.2 does not authorize implementation
+* preserve `execution_allowed=false` for every fixture
+* preserve `dry_run=true` for every fixture
+* cover `RELEASE`, `HOLD`, `BLOCK`, and `FAIL_CLOSED` decision labels as inert fixture expectations
+* preserve that `RELEASE` means only `eligible_for_future_bounded_decision_evaluation`
+* no source code
+* no schema files
+* no parsers
+* no runners
+* no validation runners
+* no adapters
+* no agent hooks
+* no CLI commands
+* no execution path
+* no command or shell execution
+* no file mutation
+* no network access
+* no SDK/model/runtime access
+* no KerniQ runtime call
+* no E2B handoff
+* no credential handling
+* no user data handling
+* no production runtime claims
+* no real agent integration claims
+* no KerniQ integration claims
+* no E2B integration claims
+
+Current/completed milestone:
+
+`v2.1.2 Bounded Local Mock-to-Real Inert Proposal Fixtures`
+
+Next recommended milestone:
+
+`v2.1.3 Bounded Local Mock-to-Real Non-Executing Fixture Validation`
+
+v2.1.3 should be non-executing validation planning / runner only if separately
+approved, not runtime integration. It must not authorize proof runner behavior,
+parser-triggered execution, adapter behavior, hooks, CLI commands, SDK/runtime
+integration, KerniQ runtime calls, E2B handoff, command execution, file
+mutation, network access, credential handling, user data handling, or production
+behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -1212,4 +1264,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_1_2_BOUNDED_LOCAL_MOCK_TO_REAL_INERT_PROPOSAL_FIXTURES`
+`READY_FOR_V2_1_3_BOUNDED_LOCAL_MOCK_TO_REAL_NON_EXECUTING_FIXTURE_VALIDATION`

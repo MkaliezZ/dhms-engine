@@ -13,9 +13,9 @@ Execution Fuse Protocol and the DHMS AgentFuse proof chain.
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.2.2 Non-Executing Runtime Adapter Proposal Benchmark`.
-* Previous milestone: `v1.2.1 Runtime Adapter Proposal Static Manifest`.
-* Next recommended milestone: `v1.2.3 Runtime Adapter Proposal Examples and Trace Plan`.
+* Current milestone: `v1.2.3 Runtime Adapter Proposal Examples and Trace Plan`.
+* Previous milestone: `v1.2.2 Non-Executing Runtime Adapter Proposal Benchmark`.
+* Next recommended milestone: `v1.2.4 Controlled Mock-Agent Runtime Adapter Boundary Proof`.
 * Public release: [`DHMS v1.0 Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package).
 * Release tag: `v1.0.0-public-evidence-package`.
 * Confirmed tag target commit: `24319dfa3db0f272b13b220201e6f4528c62a6f2`.
@@ -46,6 +46,9 @@ v1.2.1 adds a static inert manifest for those proposal cases:
 and [cases](benchmarks/dhms_runtime_adapter_proposals_v0/cases.json).
 v1.2.2 adds a [non-executing benchmark](docs/dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md)
 and [runner](validation/run_dhms_runtime_adapter_proposal_benchmark_v0.py).
+v1.2.3 adds [inert examples](examples/dhms_runtime_adapter_proposals_v0/inert_examples.json),
+a [trace plan](trace_examples/dhms_runtime_adapter_proposals_v0/trace_plan.json),
+and [docs](docs/dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md).
 It does not add runtime adapter implementation, SDK integration, network calls,
 shell execution, subprocess execution, CLI commands, schemas, or proof behavior.
 
@@ -132,6 +135,7 @@ Core documents:
 * [DHMS Runtime Adapter Boundary Planning v1.2.0](docs/dhms_runtime_adapter_boundary_planning_v1_2_0.md)
 * [DHMS Runtime Adapter Proposal Static Manifest v1.2.1](docs/dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md)
 * [DHMS Non-Executing Runtime Adapter Proposal Benchmark v1.2.2](docs/dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md)
+* [DHMS Runtime Adapter Proposal Examples and Trace Plan v1.2.3](docs/dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 

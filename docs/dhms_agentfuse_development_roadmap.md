@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.2.2 Non-Executing Runtime Adapter Proposal Benchmark`
+* Current package milestone: `v1.2.3 Runtime Adapter Proposal Examples and Trace Plan`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -542,6 +542,19 @@ Planned v1.1 sequence:
 * non-executing validation only; do not add real runtime adapters, SDK imports, SDK calls, MCP integration, E2B integration, Codex integration, Claude integration, OpenClaw integration, DeepSeek integration, provider SDK integration, agent SDK integration, real agent runtime behavior, real LLM runtime behavior, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, filesystem mutation, credential handling, user data handling, persistent memory mutation, billing/quota interaction, production runtime behavior, executable examples, proof runners, CLI commands, CLI wrappers, schemas, manifest changes, evidence artifact changes, execution behavior changes, proof semantic changes, or new SQL/File/HTTP/local-command execution paths
 * current/completed Non-Executing Runtime Adapter Proposal Benchmark milestone in v1.2.2
 * next recommended milestone: `v1.2.3 Runtime Adapter Proposal Examples and Trace Plan`
+
+### v1.2.3 Runtime Adapter Proposal Examples and Trace Plan
+
+* add `examples/dhms_runtime_adapter_proposals_v0/README.md`
+* add `examples/dhms_runtime_adapter_proposals_v0/inert_examples.json`
+* add `trace_examples/dhms_runtime_adapter_proposals_v0/trace_plan.json`
+* add `docs/dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md`
+* provide 7 inert reader examples covering `HOLD`, `BLOCK`, and `FAIL_CLOSED` runtime adapter proposal outcomes
+* map all 19 static manifest cases to trace stages from `proposal_observed` through `execution_not_performed`
+* preserve `HOLD=2`, `BLOCK=11`, `FAIL_CLOSED=6`, and `RELEASE=0`
+* documentation/data-only; do not add real runtime adapters, SDK imports, SDK calls, MCP integration, E2B integration, Codex integration, Claude integration, OpenClaw integration, DeepSeek integration, provider SDK integration, agent SDK integration, real agent runtime behavior, real LLM runtime behavior, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, filesystem mutation, credential handling, user data handling, persistent memory mutation, billing/quota interaction, production runtime behavior, benchmark runners, proof runners, CLI commands, CLI wrappers, schemas, manifest changes, evidence artifact changes outside v1.2.3 examples/trace docs, execution behavior changes, proof semantic changes, or new SQL/File/HTTP/local-command execution paths
+* current/completed Runtime Adapter Proposal Examples and Trace Plan milestone in v1.2.3
+* next recommended milestone: `v1.2.4 Controlled Mock-Agent Runtime Adapter Boundary Proof`
 
 Planned v1.2 sequence:
 

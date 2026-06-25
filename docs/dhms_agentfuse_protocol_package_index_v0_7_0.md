@@ -99,6 +99,9 @@ Core public materials:
 * Runtime Adapter Proposal Static Manifest: [`benchmarks/dhms_runtime_adapter_proposals_v0/cases.json`](../benchmarks/dhms_runtime_adapter_proposals_v0/cases.json)
 * Non-executing Runtime Adapter Proposal Benchmark documentation: [`docs/dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md`](dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md)
 * Non-executing Runtime Adapter Proposal Benchmark runner: [`validation/run_dhms_runtime_adapter_proposal_benchmark_v0.py`](../validation/run_dhms_runtime_adapter_proposal_benchmark_v0.py)
+* Runtime Adapter Proposal Examples and Trace Plan documentation: [`docs/dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md`](dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md)
+* Runtime Adapter Proposal inert examples: [`examples/dhms_runtime_adapter_proposals_v0/inert_examples.json`](../examples/dhms_runtime_adapter_proposals_v0/inert_examples.json)
+* Runtime Adapter Proposal trace plan: [`trace_examples/dhms_runtime_adapter_proposals_v0/trace_plan.json`](../trace_examples/dhms_runtime_adapter_proposals_v0/trace_plan.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -210,6 +213,12 @@ v1.2.2 adds a non-executing benchmark validator for the static inert runtime
 adapter proposal manifest. It validates 19 cases, `HOLD=2`, `BLOCK=11`,
 `FAIL_CLOSED=6`, `RELEASE=0`, and no SDK/runtime/tool/network/shell/subprocess
 execution indicators.
+
+v1.2.3 adds inert runtime adapter proposal examples and a non-executing trace
+plan over all 19 manifest cases. It preserves `HOLD=2`, `BLOCK=11`,
+`FAIL_CLOSED=6`, `RELEASE=0`, and does not add runtime adapter behavior,
+SDK calls, network calls, shell/subprocess execution, CLI commands, schemas, or
+proof behavior.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

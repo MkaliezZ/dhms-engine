@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.1.5 Local Command Interception Result Review and Freeze`
+* Current package milestone: `v1.2.0 Runtime Adapter Boundary Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -511,12 +511,25 @@ Planned v1.1 sequence:
 * `v1.1.4 Controlled Mock-Agent Local Command Interception Proof`
 * `v1.1.5 Local Command Interception Result Review and Freeze`
 
-Next planning direction:
+## v1.2 Runtime Adapter Boundary Planning
 
-`v1.2.0 Runtime Adapter Boundary Planning`
+### v1.2.0 Runtime Adapter Boundary Planning
 
-v1.2.0 must be planning-only and must not implement real runtime adapters, MCP,
-E2B, Codex, Claude, OpenClaw, DeepSeek, provider SDK, or agent SDK integration.
+* add `docs/dhms_runtime_adapter_boundary_planning_v1_2_0.md`
+* open the v1.2 planning line for runtime adapter proposals as inert proposed actions before any future adapter integration
+* define runtime adapter proposal concept, adapter boundary model, threat model, proposed fields in prose, fail-closed default rule, forbidden current behavior, safety invariants, validation expectations, public claim boundaries, and public non-claims
+* planning-only documentation; do not add real runtime adapters, MCP integration, E2B integration, Codex integration, Claude integration, OpenClaw integration, DeepSeek integration, provider SDK integration, agent SDK integration, real agent runtime behavior, real LLM runtime behavior, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, filesystem mutation, credential handling, user data handling, persistent memory mutation, billing/quota interaction, production runtime behavior, executable examples, benchmark runners, proof runners, CLI commands, CLI wrappers, schemas, manifests, evidence artifact changes, execution behavior changes, proof semantic changes, or new SQL/File/HTTP/local-command execution paths
+* current/completed Runtime Adapter Boundary Planning milestone in v1.2.0
+* next recommended milestone: `v1.2.1 Runtime Adapter Proposal Static Manifest`
+
+Planned v1.2 sequence:
+
+* `v1.2.0 Runtime Adapter Boundary Planning`
+* `v1.2.1 Runtime Adapter Proposal Static Manifest`
+* `v1.2.2 Non-Executing Runtime Adapter Proposal Benchmark`
+* `v1.2.3 Runtime Adapter Proposal Examples and Trace Plan`
+* `v1.2.4 Controlled Mock-Agent Runtime Adapter Boundary Proof`
+* `v1.2.5 Runtime Adapter Boundary Result Review and Freeze`
 
 ## Development Prompt Pattern
 

@@ -13,9 +13,9 @@ Execution Fuse Protocol and the DHMS AgentFuse proof chain.
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.1.5 Local Command Interception Result Review and Freeze`.
-* Previous milestone: `v1.1.4 Controlled Mock-Agent Local Command Interception Proof`.
-* Next recommended milestone: `v1.2.0 Runtime Adapter Boundary Planning`.
+* Current milestone: `v1.2.0 Runtime Adapter Boundary Planning`.
+* Previous milestone: `v1.1.5 Local Command Interception Result Review and Freeze`.
+* Next recommended milestone: `v1.2.1 Runtime Adapter Proposal Static Manifest`.
 * Public release: [`DHMS v1.0 Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package).
 * Release tag: `v1.0.0-public-evidence-package`.
 * Confirmed tag target commit: `24319dfa3db0f272b13b220201e6f4528c62a6f2`.
@@ -37,6 +37,13 @@ non-executing mock-agent local command proof, now reviewed and frozen:
 and [trace plan](trace_examples/dhms_local_command_proposals_v0/trace_plan.json).
 It does not add command execution, shell execution, subprocess execution,
 terminal integration, CLI commands, schemas, tags, or GitHub releases.
+
+v1.2.0 opens runtime adapter boundary planning by defining runtime adapter
+proposals as inert proposed actions before any future adapter integration:
+[runtime adapter boundary planning](docs/dhms_runtime_adapter_boundary_planning_v1_2_0.md).
+It does not add runtime adapter implementation, SDK integration, network calls,
+shell execution, subprocess execution, CLI commands, manifests, schemas, or
+proof behavior.
 
 ## Public Frozen Claim
 
@@ -116,6 +123,7 @@ Core documents:
 * [DHMS Local Command Proposal Examples and Trace Plan v1.1.3](docs/dhms_local_command_proposal_examples_and_trace_plan_v1_1_3.md)
 * [DHMS Controlled Mock-Agent Local Command Interception Proof v1.1.4](docs/dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md)
 * [DHMS Local Command Interception Result Review and Freeze v1.1.5](docs/dhms_local_command_interception_result_review_and_freeze_v1_1_5.md)
+* [DHMS Runtime Adapter Boundary Planning v1.2.0](docs/dhms_runtime_adapter_boundary_planning_v1_2_0.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 

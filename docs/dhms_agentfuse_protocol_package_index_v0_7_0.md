@@ -94,6 +94,7 @@ Core public materials:
 * Controlled Mock-Agent Local Command Interception Proof documentation: [`docs/dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md`](dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md)
 * Controlled Mock-Agent Local Command Interception Proof runner: [`validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py`](../validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py)
 * Local Command Interception Result Review and Freeze: [`docs/dhms_local_command_interception_result_review_and_freeze_v1_1_5.md`](dhms_local_command_interception_result_review_and_freeze_v1_1_5.md)
+* Runtime Adapter Boundary Planning: [`docs/dhms_runtime_adapter_boundary_planning_v1_2_0.md`](dhms_runtime_adapter_boundary_planning_v1_2_0.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -188,6 +189,12 @@ It freezes the claim over 14 static inert local command proposals and confirms
 `proposal_count=14`, `intercepted_proposal_count=14`, `release_count=0`, and
 all command_string, argv, shell, subprocess, terminal, command runner, real
 agent runtime, and real LLM execution counts at 0.
+
+v1.2.0 opens runtime adapter boundary planning by defining runtime adapter
+proposals as inert proposed actions under fail-closed, non-executing,
+non-production boundaries. It does not implement MCP, E2B, Codex, Claude,
+OpenClaw, DeepSeek, provider SDK, agent SDK, or real runtime adapter
+integration.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

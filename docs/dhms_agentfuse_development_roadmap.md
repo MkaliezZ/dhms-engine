@@ -658,6 +658,132 @@ Planned v1.2 sequence:
 * current/completed Runtime Adapter Boundary Manual GitHub Release Confirmation milestone in v1.3.6
 * next status: `V1_3_RELEASE_CONFIRMED`
 
+## Post-v1.3 Roadmap Direction
+
+The v1.3 Runtime Adapter Boundary Public Evidence Package is released and
+confirmed. The next roadmap direction is planning-only until a future explicit
+implementation phase is approved.
+
+Planned sequence:
+
+* `v1.4 - Substrate / Runtime Boundary Positioning`
+* `v1.5 - Agent Proposal Envelope`
+* `v1.6 - External Runtime Handoff Contract`
+* `v1.7 - Controlled Adapter Skeleton Planning`
+* `v2.0 - Real Agent Integration Preview`
+
+Next recommended milestone:
+
+`v1.4.0 Substrate Boundary / Runtime Boundary Planning`
+
+Core distinction:
+
+```text
+Sandbox / E2B asks:
+Where can this action run safely?
+
+DHMS asks:
+Should this proposed action be released at all, under what boundary, and with what evidence?
+```
+
+DHMS remains an execution fuse protocol. It is not a sandbox, not an MCP
+replacement, not a runtime adapter, and not a production runtime.
+
+### v1.4 Substrate / Runtime Boundary Positioning
+
+v1.4 is documentation and planning only.
+
+Scope:
+
+* compare DHMS with sandbox, E2B, MCP, agent SDKs, guardrails, policy engines,
+  and observability
+* clarify DHMS boundaries versus execution substrates and runtime systems
+* define what DHMS owns: proposal observation, policy decision, release/hold/
+  block/fail-closed boundary, evidence, and trace expectations
+* define what DHMS does not own: sandbox hosting, E2B execution, MCP tool
+  connection, agent SDK orchestration, policy-engine replacement, or
+  observability storage
+* define why DHMS sits before execution
+* no implementation
+* no SDK
+* no adapter
+* no runner
+* no CLI
+* no schema
+* no execution path
+
+v1.4 must not claim integration with E2B, MCP, Codex, Claude, OpenClaw,
+DeepSeek, provider SDKs, or agent SDKs. It must not claim production readiness
+or universal agent safety.
+
+### v1.5 Agent Proposal Envelope
+
+v1.5 should plan a future agent proposal envelope in prose only.
+
+Scope:
+
+* define proposed envelope fields for observable agent proposals
+* describe how SQL/File/HTTP/local-command/runtime-adapter proposal evidence
+  informs the envelope
+* keep the envelope design static and non-executing
+* no schema unless separately approved
+* no runtime integration
+* no SDK integration
+* no execution behavior
+
+### v1.6 External Runtime Handoff Contract
+
+v1.6 should plan a future handoff contract from DHMS decisions to external
+runtimes without implementing that handoff.
+
+Expected decision outputs:
+
+* `RELEASE`
+* `HOLD`
+* `BLOCK`
+* `FAIL_CLOSED`
+
+External runtimes must not reinterpret `BLOCK` as `RELEASE`.
+
+Scope:
+
+* define handoff contract expectations in prose
+* define evidence and trace requirements for decision transfer
+* define that rejected or failed-closed decisions remain non-executing
+* no implementation
+* no SDK
+* no adapter
+* no runtime execution
+
+### v1.7 Controlled Adapter Skeleton Planning
+
+v1.7 should plan a controlled adapter skeleton only.
+
+Scope:
+
+* identify the narrow adapter boundary that may be explored later
+* keep adapter behavior conceptual until separately approved
+* preserve fail-closed defaults
+* no production claims
+* no implementation
+* no adapter code
+* no SDK integration
+* no execution path
+
+### v2.0 Real Agent Integration Preview
+
+v2.0 is reserved for a later explicit phase.
+
+Scope:
+
+* choose only one integration target when v2.0 begins
+* define the integration target, threat boundary, evidence contract, and
+  rollback plan before any implementation
+* do not claim MCP, E2B, Codex, Claude, OpenClaw, DeepSeek, provider SDK, or
+  agent SDK integration now
+* do not claim production readiness
+* do not claim universal agent safety
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -712,4 +838,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_NEXT_DHMS_PROOF_LINE_PLANNING`
+`READY_FOR_V1_4_0_SUBSTRATE_BOUNDARY_RUNTIME_PLANNING`

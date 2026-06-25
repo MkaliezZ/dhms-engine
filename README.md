@@ -9,48 +9,23 @@ DHMS began as memory/context/tool-state perturbation testing. The current `agent
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.7.0 Controlled Adapter Skeleton Planning`.
-* Previous milestone: `v1.6.0 External Runtime Handoff Contract Planning`.
+* Current milestone: `v2.0.5 Result Review and Freeze`.
+* Previous milestone: `v2.0.4 Controlled Real-Agent Preview Proof Planning`.
 * Public release: [`DHMS v1.3 Runtime Adapter Boundary Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.3.0-runtime-adapter-boundary-public-evidence-package).
 * Release tag: `v1.3.0-runtime-adapter-boundary-public-evidence-package`.
 * Confirmed tag target commit: `23311e7484e1a603c56a479189463a9d18f97741`.
 * Prior public release: [`DHMS v1.0 Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package), tag `v1.0.0-public-evidence-package`, target `24319dfa3db0f272b13b220201e6f4528c62a6f2`.
 
-v1.1 adds Local Command-Agent Interception planning, a static inert manifest,
-a non-executing benchmark, inert examples / trace planning, and a controlled
-non-executing mock-agent local command proof, now reviewed and frozen:
-[planning](docs/dhms_local_command_agent_interception_planning_v1_1_0.md),
-[manifest doc](docs/dhms_local_command_proposal_static_manifest_v1_1_1.md),
-[benchmark doc](docs/dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md),
-[examples doc](docs/dhms_local_command_proposal_examples_and_trace_plan_v1_1_3.md),
-[proof doc](docs/dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md),
-[freeze doc](docs/dhms_local_command_interception_result_review_and_freeze_v1_1_5.md),
-[cases](benchmarks/dhms_local_command_proposals_v0/cases.json),
-[runner](validation/run_dhms_local_command_proposal_benchmark_v0.py),
-[proof runner](validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py),
-[examples README](examples/dhms_local_command_proposals_v0/README.md),
-[examples JSON](examples/dhms_local_command_proposals_v0/inert_examples.json),
-and [trace plan](trace_examples/dhms_local_command_proposals_v0/trace_plan.json).
-It does not add command execution, shell execution, subprocess execution,
-terminal integration, CLI commands, schemas, tags, or GitHub releases.
+v1.1 freezes the Local Command-Agent Interception evidence line over inert local command proposals: [planning](docs/dhms_local_command_agent_interception_planning_v1_1_0.md), [manifest](docs/dhms_local_command_proposal_static_manifest_v1_1_1.md), [benchmark](docs/dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md), [examples](docs/dhms_local_command_proposal_examples_and_trace_plan_v1_1_3.md), [proof](docs/dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md), and [freeze](docs/dhms_local_command_interception_result_review_and_freeze_v1_1_5.md). It adds no command, shell, subprocess, terminal, CLI, schema, tag, release, or execution behavior.
 
-v1.2 adds runtime adapter boundary planning, a static inert manifest,
-non-executing benchmark, inert examples / trace plan, and controlled
-mock-agent boundary proof:
-[planning](docs/dhms_runtime_adapter_boundary_planning_v1_2_0.md),
-[manifest](docs/dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md),
-[cases](benchmarks/dhms_runtime_adapter_proposals_v0/cases.json),
-[benchmark](docs/dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md),
-[runner](validation/run_dhms_runtime_adapter_proposal_benchmark_v0.py),
-[examples](examples/dhms_runtime_adapter_proposals_v0/inert_examples.json),
-[trace plan](trace_examples/dhms_runtime_adapter_proposals_v0/trace_plan.json),
-[examples doc](docs/dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md),
-[proof doc](docs/dhms_controlled_mock_agent_runtime_adapter_boundary_proof_v1_2_4.md), [proof runner](validation/run_dhms_controlled_mock_agent_runtime_adapter_boundary_proof.py),
-and [freeze doc](docs/dhms_runtime_adapter_boundary_result_review_and_freeze_v1_2_5.md).
+v1.2 freezes the Runtime Adapter Boundary line: [planning](docs/dhms_runtime_adapter_boundary_planning_v1_2_0.md), [manifest](docs/dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md), [benchmark](docs/dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md), [examples](docs/dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md), [proof](docs/dhms_controlled_mock_agent_runtime_adapter_boundary_proof_v1_2_4.md), and [freeze](docs/dhms_runtime_adapter_boundary_result_review_and_freeze_v1_2_5.md). It adds no runtime adapter implementation, SDK calls, network calls, shell/subprocess execution, CLI commands, schemas, or proof-semantics expansion.
+
 v1.3 packages the frozen v1.2 Runtime Adapter Boundary line for public reading: [planning](docs/dhms_runtime_adapter_boundary_public_evidence_package_planning_v1_3_0.md), [assembly](docs/dhms_runtime_adapter_boundary_public_evidence_package_v1_3_1.md), [fresh-clone reproduction](docs/dhms_runtime_adapter_boundary_fresh_clone_reproduction_check_v1_3_2.md), [README polish](docs/dhms_runtime_adapter_boundary_readme_public_launch_polish_v1_3_3.md), [release notes draft](docs/dhms_runtime_adapter_boundary_github_release_notes_draft_v1_3_4.md), [tag/release preparation](docs/dhms_runtime_adapter_boundary_tag_release_preparation_v1_3_5.md), and [manual release confirmation](docs/dhms_runtime_adapter_boundary_manual_github_release_confirmation_v1_3_6.md).
 It does not add runtime adapter implementation, SDK integration, CLI commands, schemas, or runtime execution behavior.
 
 v1.4-v1.7 extend the planning chain with [substrate/runtime boundary](docs/dhms_substrate_boundary_runtime_boundary_planning_v1_4_0.md), [Agent Proposal Envelope](docs/dhms_agent_proposal_envelope_planning_v1_5_0.md), [External Runtime Handoff Contract](docs/dhms_external_runtime_handoff_contract_planning_v1_6_0.md), and [Controlled Adapter Skeleton Planning](docs/dhms_controlled_adapter_skeleton_planning_v1_7_0.md). They add no adapter implementation, SDK/runtime integration, CLI commands, schemas, or execution behavior.
+
+v2.0.0-v2.0.5 is a real-agent-adjacent planning chain: [planning](docs/dhms_real_agent_integration_preview_planning_v2_0_0.md), [target selection](docs/dhms_real_agent_target_selection_and_threat_boundary_v2_0_1.md), [dry-run contract](docs/dhms_proposal_only_dry_run_contract_v2_0_2.md), [capture plan](docs/dhms_non_executing_real_agent_proposal_capture_plan_v2_0_3.md), [controlled proof planning](docs/dhms_controlled_real_agent_preview_proof_planning_v2_0_4.md), and [freeze](docs/dhms_controlled_real_agent_preview_result_review_and_freeze_v2_0_5.md). It selects the future local mock-to-real agent boundary, defines proposal-only dry-run constraints, plans non-executing proposal capture and controlled preview-proof requirements, then freezes the chain as planning-only, non-executing, and non-production. It does not implement real agent integration, real runtime interception, SDK/runtime integration, parser, runner, adapter, agent hook, CLI command, credential handling, user data handling, or execution behavior.
 
 ## Public Frozen Claim
 
@@ -140,6 +115,8 @@ Core documents:
 * [DHMS Controlled Mock-Agent Runtime Adapter Boundary Proof v1.2.4](docs/dhms_controlled_mock_agent_runtime_adapter_boundary_proof_v1_2_4.md)
 * [DHMS Runtime Adapter Boundary Result Review and Freeze v1.2.5](docs/dhms_runtime_adapter_boundary_result_review_and_freeze_v1_2_5.md)
 * [DHMS Runtime Adapter Boundary Public Evidence Package Planning v1.3.0](docs/dhms_runtime_adapter_boundary_public_evidence_package_planning_v1_3_0.md) / [Assembly v1.3.1](docs/dhms_runtime_adapter_boundary_public_evidence_package_v1_3_1.md) / [Fresh Clone v1.3.2](docs/dhms_runtime_adapter_boundary_fresh_clone_reproduction_check_v1_3_2.md) / [README Polish v1.3.3](docs/dhms_runtime_adapter_boundary_readme_public_launch_polish_v1_3_3.md) / [Release Notes Draft v1.3.4](docs/dhms_runtime_adapter_boundary_github_release_notes_draft_v1_3_4.md) / [Tag Release Prep v1.3.5](docs/dhms_runtime_adapter_boundary_tag_release_preparation_v1_3_5.md) / [Release Confirmation v1.3.6](docs/dhms_runtime_adapter_boundary_manual_github_release_confirmation_v1_3_6.md)
+* [DHMS v2.0 Real-Agent-Adjacent Planning Chain](docs/dhms_real_agent_integration_preview_planning_v2_0_0.md) / [Target v2.0.1](docs/dhms_real_agent_target_selection_and_threat_boundary_v2_0_1.md) / [Dry Run v2.0.2](docs/dhms_proposal_only_dry_run_contract_v2_0_2.md) / [Capture v2.0.3](docs/dhms_non_executing_real_agent_proposal_capture_plan_v2_0_3.md) / [Proof Planning v2.0.4](docs/dhms_controlled_real_agent_preview_proof_planning_v2_0_4.md) / [Freeze v2.0.5](docs/dhms_controlled_real_agent_preview_result_review_and_freeze_v2_0_5.md)
+* [DHMS README Current Status Sync v2.0.5.1](docs/dhms_readme_current_status_sync_v2_0_5_1.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 
@@ -151,9 +128,11 @@ Historical milestone details are intentionally kept in the linked docs index.
 DHMS public line does not claim:
 
 * production readiness
+* real agent integration
 * real agent runtime interception
 * real LLM execution
 * real shell execution safety
+* local mock-to-real implementation
 * universal agent safety
 * industry-standard status
 * arbitrary tool execution
@@ -162,15 +141,22 @@ DHMS public line does not claim:
 * arbitrary SQL support
 * arbitrary file operation support
 * arbitrary HTTP/network support
+* parser / runner / adapter / agent hook / CLI command support
+* runtime adapter implementation
 * adapter/API-client support
 * MCP integration
 * E2B integration
 * Codex integration
 * Claude integration
+* Claude Code integration
 * OpenClaw integration
 * DeepSeek integration
 * provider SDK integration
 * agent SDK integration
+* command execution
+* shell execution
+* file mutation support
+* network execution support
 * credential handling
 * user data safety certification
 * production DB safety

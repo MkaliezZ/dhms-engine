@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.0.5 Result Review and Freeze`
+* Current package milestone: `v2.0.5.1 README Current Status Sync`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1038,6 +1038,22 @@ Next recommended milestone:
 
 v2.1.0 is the next planning gate only. It does not authorize implementation in
 v2.0.5 and does not claim that a v2.1.0 implementation is approved.
+
+v2.0.5.1 syncs the README public landing-page status after the v2.0.5 freeze.
+It updates README Current Status and links the v2.0.0-v2.0.5 planning chain
+without adding implementation, parser, runner, adapter, hook, CLI, SDK/runtime
+integration, credential handling, user data handling, or execution behavior.
+
+Current/completed milestone:
+
+`v2.0.5.1 README Current Status Sync`
+
+Next recommended milestone:
+
+`v2.1.0 Bounded Local Mock-to-Real Preview Proof Planning`
+
+v2.1.0 is still a planning gate only. v2.0.5.1 does not authorize v2.1.0
+implementation and does not claim that a v2.1.0 implementation is approved.
 
 ## Development Prompt Pattern
 

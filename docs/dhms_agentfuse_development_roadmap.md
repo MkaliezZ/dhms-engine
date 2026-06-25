@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.6.0 External Runtime Handoff Contract Planning`
+* Current package milestone: `v1.7.0 Controlled Adapter Skeleton Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -674,7 +674,7 @@ Planned sequence:
 
 Next recommended milestone:
 
-`v1.7.0 Controlled Adapter Skeleton Planning`
+`v2.0.0 Real Agent Integration Preview Planning`
 
 Core distinction:
 
@@ -802,6 +802,12 @@ Next recommended milestone:
 
 v1.7 should plan a controlled adapter skeleton only.
 
+v1.7.0 adds the Controlled Adapter Skeleton Planning document. It defines what
+a future controlled adapter skeleton may demonstrate, what it must refuse, and
+how it must remain fail-closed without adding adapter code, implementation,
+schema files, SDK integration, runtime integration, runners, CLI commands, or
+execution behavior.
+
 Scope:
 
 * identify the narrow adapter boundary that may be explored later
@@ -812,6 +818,14 @@ Scope:
 * no adapter code
 * no SDK integration
 * no execution path
+
+Current/completed milestone:
+
+`v1.7.0 Controlled Adapter Skeleton Planning`
+
+Next recommended milestone:
+
+`v2.0.0 Real Agent Integration Preview Planning`
 
 ### v2.0 Real Agent Integration Preview
 
@@ -881,4 +895,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V1_7_0_CONTROLLED_ADAPTER_SKELETON_PLANNING`
+`READY_FOR_V2_0_0_REAL_AGENT_INTEGRATION_PREVIEW_PLANNING`

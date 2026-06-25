@@ -2,17 +2,15 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-DHMS is an execution fuse protocol for AI agents. It records reproducible
-evidence for release, block, hold, and fail-closed decisions under documented non-production boundaries.
+DHMS is an execution fuse protocol for AI agents. It records reproducible evidence for release, block, hold, and fail-closed decisions under documented non-production boundaries.
 
-DHMS began as memory/context/tool-state perturbation testing. The current
-`agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the DHMS Execution Fuse Protocol.
+DHMS began as memory/context/tool-state perturbation testing. The current `agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the DHMS Execution Fuse Protocol.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.3.6 Runtime Adapter Boundary Manual GitHub Release Confirmation`.
-* Previous milestone: `v1.3.5 Runtime Adapter Boundary Tag / Release Preparation`.
+* Current milestone: `v1.7.0 Controlled Adapter Skeleton Planning`.
+* Previous milestone: `v1.6.0 External Runtime Handoff Contract Planning`.
 * Public release: [`DHMS v1.3 Runtime Adapter Boundary Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.3.0-runtime-adapter-boundary-public-evidence-package).
 * Release tag: `v1.3.0-runtime-adapter-boundary-public-evidence-package`.
 * Confirmed tag target commit: `23311e7484e1a603c56a479189463a9d18f97741`.
@@ -51,6 +49,8 @@ mock-agent boundary proof:
 and [freeze doc](docs/dhms_runtime_adapter_boundary_result_review_and_freeze_v1_2_5.md).
 v1.3 packages the frozen v1.2 Runtime Adapter Boundary line for public reading: [planning](docs/dhms_runtime_adapter_boundary_public_evidence_package_planning_v1_3_0.md), [assembly](docs/dhms_runtime_adapter_boundary_public_evidence_package_v1_3_1.md), [fresh-clone reproduction](docs/dhms_runtime_adapter_boundary_fresh_clone_reproduction_check_v1_3_2.md), [README polish](docs/dhms_runtime_adapter_boundary_readme_public_launch_polish_v1_3_3.md), [release notes draft](docs/dhms_runtime_adapter_boundary_github_release_notes_draft_v1_3_4.md), [tag/release preparation](docs/dhms_runtime_adapter_boundary_tag_release_preparation_v1_3_5.md), and [manual release confirmation](docs/dhms_runtime_adapter_boundary_manual_github_release_confirmation_v1_3_6.md).
 It does not add runtime adapter implementation, SDK integration, CLI commands, schemas, or runtime execution behavior.
+
+v1.4-v1.7 extend the planning chain with [substrate/runtime boundary](docs/dhms_substrate_boundary_runtime_boundary_planning_v1_4_0.md), [Agent Proposal Envelope](docs/dhms_agent_proposal_envelope_planning_v1_5_0.md), [External Runtime Handoff Contract](docs/dhms_external_runtime_handoff_contract_planning_v1_6_0.md), and [Controlled Adapter Skeleton Planning](docs/dhms_controlled_adapter_skeleton_planning_v1_7_0.md). They add no adapter implementation, SDK/runtime integration, CLI commands, schemas, or execution behavior.
 
 ## Public Frozen Claim
 

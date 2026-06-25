@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.0.4 Controlled Real-Agent Preview Proof Planning`
+* Current package milestone: `v2.0.5 Result Review and Freeze`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -674,7 +674,7 @@ Planned sequence:
 
 Next recommended milestone:
 
-`v2.0.5 Result Review and Freeze`
+`v2.1.0 Bounded Local Mock-to-Real Preview Proof Planning`
 
 Core distinction:
 
@@ -994,9 +994,50 @@ Current/completed milestone:
 
 `v2.0.4 Controlled Real-Agent Preview Proof Planning`
 
-Next recommended milestone:
+v2.0.5 reviews and freezes the v2.0.0-v2.0.4 real-agent-adjacent planning
+chain as planning-only, non-executing, and non-production. It freezes the
+selected future `local mock-to-real agent boundary`, proposal-only dry-run
+contract planning, non-executing proposal capture planning, controlled preview
+proof planning, fail-closed defaults, evidence continuity expectations, trace
+continuity expectations, and public non-claims.
+
+Scope:
+
+* review and freeze v2.0.0 through v2.0.4
+* preserve that v2.0.5 is result review and freeze only
+* preserve that proposal, envelope, handoff, dry-run, and capture metadata do
+  not authorize execution
+* preserve that `RELEASE` remains planning-level unless a later explicit
+  bounded proof implements it
+* preserve that `HOLD`, `BLOCK`, and `FAIL_CLOSED` remain non-executing and
+  must never be reinterpreted as `RELEASE`
+* preserve fail-closed defaults for missing, malformed, stale, ambiguous,
+  unsupported, executable-looking, credential-involving, user-data-involving,
+  or production-resource-involving inputs
+* no future proof implementation
+* no bounded implementation authorization
+* no source code
+* no schema files
+* no parsers
+* no runners
+* no adapters
+* no agent hooks
+* no CLI commands
+* no execution path
+* no production runtime claims
+* no real agent integration claims
+* no SDK/runtime integration claims
+
+Current/completed milestone:
 
 `v2.0.5 Result Review and Freeze`
+
+Next recommended milestone:
+
+`v2.1.0 Bounded Local Mock-to-Real Preview Proof Planning`
+
+v2.1.0 is the next planning gate only. It does not authorize implementation in
+v2.0.5 and does not claim that a v2.1.0 implementation is approved.
 
 ## Development Prompt Pattern
 
@@ -1052,4 +1093,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_0_5_RESULT_REVIEW_AND_FREEZE`
+`READY_FOR_V2_1_0_BOUNDED_LOCAL_MOCK_TO_REAL_PREVIEW_PROOF_PLANNING`

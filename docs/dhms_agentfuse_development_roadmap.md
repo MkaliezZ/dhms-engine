@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.1.3 Local Command Proposal Examples and Trace Plan`
+* Current package milestone: `v1.1.4 Controlled Mock-Agent Local Command Interception Proof`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -480,6 +480,17 @@ Next direction:
 * documentation/data-only examples and trace planning; do not add command execution, shell execution, subprocess execution, terminal integration, command runners, benchmark runners, CLI commands, executable examples, executable trace examples, schemas, manifest changes, benchmark runner changes, proof semantic changes, real agent runtime integration, real LLM integration, SDK integration, credentials, user data, or production runtime behavior
 * current/completed Local Command Proposal Examples and Trace Plan milestone in v1.1.3
 * next recommended milestone: `v1.1.4 Controlled Mock-Agent Local Command Interception Proof`
+
+### v1.1.4 Controlled Mock-Agent Local Command Interception Proof
+
+* add `validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py`
+* add `docs/dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md`
+* simulate a deterministic mock agent proposing all 14 static local command cases exactly once
+* intercept every proposal before execution and validate `HOLD`, `BLOCK`, and `FAIL_CLOSED` outcomes
+* validate trace behavior from the v1.1.3 trace plan and keep all local command execution counters at 0
+* controlled mock-agent proof only; do not add command execution, shell execution, subprocess execution, terminal integration, command runners, CLI commands, CLI wrappers, real agent runtime integration, real LLM integration, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, credentials, user data, production runtime behavior, manifest changes, benchmark runner changes, examples changes, trace plan changes, or SQL/File/HTTP execution path changes
+* current/completed Controlled Mock-Agent Local Command Interception Proof milestone in v1.1.4
+* next recommended milestone: `v1.1.5 Local Command Interception Result Review and Freeze`
 
 Planned v1.1 sequence:
 

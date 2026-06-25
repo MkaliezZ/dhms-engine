@@ -13,21 +13,24 @@ Execution Fuse Protocol and the DHMS AgentFuse proof chain.
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.1.3 Local Command Proposal Examples and Trace Plan`.
-* Previous milestone: `v1.1.2 Non-Executing Local Command Proposal Benchmark`.
-* Next recommended milestone: `v1.1.4 Controlled Mock-Agent Local Command Interception Proof`.
+* Current milestone: `v1.1.4 Controlled Mock-Agent Local Command Interception Proof`.
+* Previous milestone: `v1.1.3 Local Command Proposal Examples and Trace Plan`.
+* Next recommended milestone: `v1.1.5 Local Command Interception Result Review and Freeze`.
 * Public release: [`DHMS v1.0 Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package).
 * Release tag: `v1.0.0-public-evidence-package`.
 * Confirmed tag target commit: `24319dfa3db0f272b13b220201e6f4528c62a6f2`.
 
 v1.1 adds Local Command-Agent Interception planning, a static inert manifest,
-a non-executing benchmark, and inert examples / trace planning:
+a non-executing benchmark, inert examples / trace planning, and a controlled
+non-executing mock-agent local command proof:
 [planning](docs/dhms_local_command_agent_interception_planning_v1_1_0.md),
 [manifest doc](docs/dhms_local_command_proposal_static_manifest_v1_1_1.md),
 [benchmark doc](docs/dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md),
 [examples doc](docs/dhms_local_command_proposal_examples_and_trace_plan_v1_1_3.md),
+[proof doc](docs/dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md),
 [cases](benchmarks/dhms_local_command_proposals_v0/cases.json),
 [runner](validation/run_dhms_local_command_proposal_benchmark_v0.py),
+[proof runner](validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py),
 [examples README](examples/dhms_local_command_proposals_v0/README.md),
 [examples JSON](examples/dhms_local_command_proposals_v0/inert_examples.json),
 and [trace plan](trace_examples/dhms_local_command_proposals_v0/trace_plan.json).
@@ -67,6 +70,7 @@ python3 cli.py bench-mock-agent-interception
 python3 validation/run_dhms_controlled_mock_agent_runtime_interception_proof.py
 python3 cli.py proof-mock-agent-interception
 python3 validation/run_dhms_local_command_proposal_benchmark_v0.py
+python3 validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py
 ```
 
 Expected verdict markers:
@@ -77,6 +81,7 @@ Expected verdict markers:
 * `DHMS_MOCK_AGENT_INTERCEPTION_BENCHMARK_PASS`
 * `DHMS_CONTROLLED_MOCK_AGENT_RUNTIME_INTERCEPTION_PROOF_PASS`
 * `DHMS_LOCAL_COMMAND_PROPOSAL_BENCHMARK_PASS`
+* `DHMS_CONTROLLED_MOCK_AGENT_LOCAL_COMMAND_INTERCEPTION_PROOF_PASS`
 
 Fresh-clone reproduction is documented in
 [DHMS Fresh Clone Reproduction Check v1.0.1](docs/dhms_fresh_clone_reproduction_check_v1_0_1.md).
@@ -108,6 +113,7 @@ Core documents:
 * [DHMS Local Command Proposal Static Manifest v1.1.1](docs/dhms_local_command_proposal_static_manifest_v1_1_1.md)
 * [DHMS Non-Executing Local Command Proposal Benchmark v1.1.2](docs/dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md)
 * [DHMS Local Command Proposal Examples and Trace Plan v1.1.3](docs/dhms_local_command_proposal_examples_and_trace_plan_v1_1_3.md)
+* [DHMS Controlled Mock-Agent Local Command Interception Proof v1.1.4](docs/dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 

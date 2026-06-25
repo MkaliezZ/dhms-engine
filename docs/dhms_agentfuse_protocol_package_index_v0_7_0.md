@@ -91,6 +91,8 @@ Core public materials:
 * Local Command Proposal examples README: [`examples/dhms_local_command_proposals_v0/README.md`](../examples/dhms_local_command_proposals_v0/README.md)
 * Local Command Proposal inert examples: [`examples/dhms_local_command_proposals_v0/inert_examples.json`](../examples/dhms_local_command_proposals_v0/inert_examples.json)
 * Local Command Proposal trace plan: [`trace_examples/dhms_local_command_proposals_v0/trace_plan.json`](../trace_examples/dhms_local_command_proposals_v0/trace_plan.json)
+* Controlled Mock-Agent Local Command Interception Proof documentation: [`docs/dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md`](dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md)
+* Controlled Mock-Agent Local Command Interception Proof runner: [`validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py`](../validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -173,6 +175,12 @@ plan. It maps the static manifest cases to proposal observation, risk
 classification, policy decision, trace evidence, and execution_not_performed
 expectations without adding command execution, terminal integration, benchmark
 runners, CLI commands, executable examples, or executable trace examples.
+
+v1.1.4 adds a controlled deterministic mock-agent local command interception
+proof. It simulates a mock agent proposing all 14 static local command cases as
+inert data, validates `HOLD`, `BLOCK`, and `FAIL_CLOSED` decisions plus trace
+behavior, and keeps command_string, argv, shell, subprocess, terminal, command
+runner, real agent runtime, and real LLM execution counts at 0.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

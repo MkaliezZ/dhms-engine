@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.1.4 Bounded Local Mock-to-Real Fixture Validation Result Review and Freeze`
+* Current package milestone: `v2.1.4.1 README Current Status Sync`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1316,6 +1316,59 @@ Next recommended milestone:
 v2.2.0 should be planning-only. It may discuss a future local proposal emitter
 candidate profile, but it must not authorize KerniQ integration, KerniQ runtime
 invocation, E2B handoff, proof runner behavior, capture runner behavior,
+parser-triggered execution, adapter behavior, hooks, CLI commands, SDK/runtime
+integration, command execution, file mutation, network access, credential
+handling, user data handling, or production behavior.
+
+v2.1.4.1 synchronizes README Current Status with the reviewed v2.1.4 bounded
+local mock-to-real fixture validation result review and freeze. It is
+README/status-sync-only and does not modify Quickstart, validator, fixtures,
+source package code, schemas, proof semantics, public release/tag information,
+or runtime behavior.
+
+Scope:
+
+* README Current Status sync only
+* conservative v2.1.0-v2.1.4 README summary only
+* preserves that v2.1.4.1 does not authorize implementation
+* preserves that v2.1.4.1 does not modify the validator or fixtures
+* preserves that v2.1.4.1 does not modify Quickstart
+* no code
+* no proof runner
+* no capture runner
+* no execution runner
+* no runtime runner
+* no source package code
+* no schema files
+* no adapter
+* no agent hook
+* no CLI command
+* no quickstart command
+* no execution path
+* no subprocess usage
+* no shell or command execution
+* no file mutation
+* no network access
+* no SDK/model/runtime access
+* no credential handling
+* no user data handling
+* no production runtime claim
+* no real agent integration claim
+* no KerniQ integration claim
+* no KerniQ runtime call
+* no E2B integration claim
+* no E2B handoff
+
+Current/completed milestone:
+
+`v2.1.4.1 README Current Status Sync`
+
+Next recommended milestone:
+
+`v2.2.0 Bounded Local Proposal Emitter Candidate Planning`
+
+v2.2.0 remains planning-only. It must not authorize KerniQ integration, KerniQ
+runtime invocation, E2B handoff, proof runner behavior, capture runner behavior,
 parser-triggered execution, adapter behavior, hooks, CLI commands, SDK/runtime
 integration, command execution, file mutation, network access, credential
 handling, user data handling, or production behavior.

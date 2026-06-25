@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.3.3 Runtime Adapter Boundary README Public Launch Polish`
+* Current package milestone: `v1.3.4 Runtime Adapter Boundary GitHub Release Notes Draft`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -627,6 +627,16 @@ Planned v1.2 sequence:
 * documentation/README-polish only; do not add runtime adapter implementation, SDK imports/calls, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls, shell/subprocess/terminal features, command execution features, tool invocation features, credential/user-data handling, production runtime behavior, runners, proof runners, benchmark runners, CLI commands, CLI wrappers, schemas, manifest/example/trace-plan changes, source code changes, release/tag changes, or new SQL/File/HTTP/local-command execution paths
 * current/completed Runtime Adapter Boundary README Public Launch Polish milestone in v1.3.3
 * next recommended milestone: `v1.3.4 Runtime Adapter Boundary GitHub Release Notes Draft`
+
+### v1.3.4 Runtime Adapter Boundary GitHub Release Notes Draft
+
+* add `docs/dhms_runtime_adapter_boundary_github_release_notes_draft_v1_3_4.md`
+* draft GitHub release notes for the v1.3 Runtime Adapter Boundary Public Evidence Package
+* preserve the v1.0 public frozen claim, v1.1 frozen local command claim, v1.2 frozen runtime adapter boundary claim, v1.3.1 package claim, v1.3.2 reproduction claim, and v1.3.3 README polish claim exactly
+* document candidate release title, draft-only candidate tag name, target commit policy, included artifacts, reproducibility commands, expected PASS markers, frozen metrics, release/tag boundary, and future release-preparation checklist
+* documentation/release-notes-draft only; do not create a GitHub release, create/modify/delete/push tags, select a final target commit, add runtime adapter implementation, SDK imports/calls, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls, shell/subprocess/terminal features, command execution features, tool invocation features, credential/user-data handling, production runtime behavior, runners, proof runners, benchmark runners, CLI commands, CLI wrappers, schemas, manifest/example/trace-plan changes, source code changes, or new SQL/File/HTTP/local-command execution paths
+* current/completed Runtime Adapter Boundary GitHub Release Notes Draft milestone in v1.3.4
+* next recommended milestone: `v1.3.5 Runtime Adapter Boundary Tag / Release Preparation`
 
 ## Development Prompt Pattern
 

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.1.0 Bounded Local Mock-to-Real Preview Proof Planning`
+* Current package milestone: `v2.1.1 Bounded Local Mock-to-Real Preview Proof Contract`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1104,6 +1104,60 @@ v2.1.1 should also be planning/contract only, not implementation. It must not
 authorize any proof runner, parser, adapter, hook, CLI command, SDK/runtime
 integration, or execution path.
 
+v2.1.1 defines the prose-only bounded local mock-to-real preview proof contract.
+It covers future inert proposal envelope fields, dry-run marker requirements,
+target boundary fields, requested capability declarations, expected side-effect
+declarations, payload reference and hash requirements, credential and user data
+scope requirements, runtime target requirements, decision labels, evidence
+fields, trace fields, acceptance rules, rejection rules, fail-closed rules, and
+non-execution confirmations.
+
+Scope:
+
+* define the future proof contract in prose only
+* preserve that v2.1.1 is planning/contract-only
+* preserve that v2.1.1 does not authorize implementation
+* preserve the local mock-to-real target boundary
+* require explicit dry-run semantics
+* require empty credential and user data scopes
+* require none / inert / no-runtime target semantics
+* require `execution_allowed=false`
+* preserve `RELEASE`, `HOLD`, `BLOCK`, and `FAIL_CLOSED`
+* no source code
+* no schema files
+* no parsers
+* no runners
+* no validation runners
+* no adapters
+* no agent hooks
+* no CLI commands
+* no fixtures
+* no examples
+* no execution path
+* no command or shell execution
+* no file mutation
+* no network access
+* no SDK/model/runtime access
+* no credential handling
+* no user data handling
+* no production runtime claims
+* no real agent integration claims
+* no KerniQ integration claims
+* no E2B integration claims
+
+Current/completed milestone:
+
+`v2.1.1 Bounded Local Mock-to-Real Preview Proof Contract`
+
+Next recommended milestone:
+
+`v2.1.2 Bounded Local Mock-to-Real Inert Proposal Fixtures`
+
+v2.1.2 should be fixture planning / inert fixture addition only, not runtime
+integration. It must not authorize any proof runner, parser, adapter, hook, CLI
+command, SDK/runtime integration, KerniQ runtime call, E2B handoff, or execution
+path.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -1158,4 +1212,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_1_1_BOUNDED_LOCAL_MOCK_TO_REAL_PREVIEW_PROOF_CONTRACT`
+`READY_FOR_V2_1_2_BOUNDED_LOCAL_MOCK_TO_REAL_INERT_PROPOSAL_FIXTURES`

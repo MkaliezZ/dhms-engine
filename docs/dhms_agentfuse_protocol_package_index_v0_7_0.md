@@ -127,6 +127,8 @@ Core public materials:
 * Bounded Local Mock-to-Real Preview Proof Contract: [`docs/dhms_bounded_local_mock_to_real_preview_proof_contract_v2_1_1.md`](dhms_bounded_local_mock_to_real_preview_proof_contract_v2_1_1.md)
 * Bounded Local Mock-to-Real Inert Proposal Fixtures: [`docs/dhms_bounded_local_mock_to_real_inert_proposal_fixtures_v2_1_2.md`](dhms_bounded_local_mock_to_real_inert_proposal_fixtures_v2_1_2.md)
 * Bounded Local Mock-to-Real proposal fixtures: [`benchmarks/dhms_bounded_local_mock_to_real_v0/proposals.json`](../benchmarks/dhms_bounded_local_mock_to_real_v0/proposals.json)
+* Bounded Local Mock-to-Real Non-Executing Fixture Validation: [`docs/dhms_bounded_local_mock_to_real_non_executing_fixture_validation_v2_1_3.md`](dhms_bounded_local_mock_to_real_non_executing_fixture_validation_v2_1_3.md)
+* Bounded Local Mock-to-Real fixture validation runner: [`validation/run_dhms_bounded_local_mock_to_real_fixture_validation_v0.py`](../validation/run_dhms_bounded_local_mock_to_real_fixture_validation_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -584,6 +586,7 @@ v0.7.0 does not claim:
 * v2.1.0 Bounded Local Mock-to-Real Preview Proof Planning
 * v2.1.1 Bounded Local Mock-to-Real Preview Proof Contract
 * v2.1.2 Bounded Local Mock-to-Real Inert Proposal Fixtures
+* v2.1.3 Bounded Local Mock-to-Real Non-Executing Fixture Validation
 
 Final document verdict:
 

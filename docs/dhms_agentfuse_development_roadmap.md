@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.1.2 Bounded Local Mock-to-Real Inert Proposal Fixtures`
+* Current package milestone: `v2.1.3 Bounded Local Mock-to-Real Non-Executing Fixture Validation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1210,6 +1210,60 @@ integration, KerniQ runtime calls, E2B handoff, command execution, file
 mutation, network access, credential handling, user data handling, or production
 behavior.
 
+v2.1.3 adds a deterministic non-executing fixture validation runner for the
+bounded local mock-to-real fixture set. The validator reads only the static
+fixture file, treats every fixture value as inert metadata, validates the
+decision coverage of `RELEASE=1`, `HOLD=1`, `BLOCK=1`, and `FAIL_CLOSED=5`,
+and confirms that all non-execution assertions remain false.
+
+Scope:
+
+* deterministic non-executing fixture validation only
+* reads only `benchmarks/dhms_bounded_local_mock_to_real_v0/proposals.json`
+* validates exactly 8 inert fixtures
+* validates `dry_run=true` and `execution_allowed=false`
+* validates non-execution assertions including no command execution, file mutation, network access, SDK/model/runtime calls, KerniQ runtime calls, E2B handoffs, credential access, user-data access, or production-resource access
+* no implementation approval
+* no proof runner
+* no capture runner
+* no execution runner
+* no runtime runner
+* no source package code
+* no schema files
+* no parser-triggered execution
+* no adapter
+* no agent hook
+* no CLI command
+* no execution path
+* no quickstart command
+* no subprocess usage
+* no file mutation
+* no network access
+* no SDK/model/runtime access
+* no credential handling
+* no user data handling
+* no production runtime claim
+* no real agent integration claim
+* no KerniQ integration claim
+* no KerniQ runtime call
+* no E2B integration claim
+* no E2B handoff
+
+Current/completed milestone:
+
+`v2.1.3 Bounded Local Mock-to-Real Non-Executing Fixture Validation`
+
+Next recommended milestone:
+
+`v2.1.4 Bounded Local Mock-to-Real Fixture Validation Result Review and Freeze`
+
+v2.1.4 should review and freeze the v2.1.3 fixture validation result only. It
+must not add real-agent integration, KerniQ runtime invocation, E2B handoff,
+proof runner behavior, capture runner behavior, parser-triggered execution,
+adapter behavior, hooks, CLI commands, SDK/runtime integration, command
+execution, file mutation, network access, credential handling, user data
+handling, or production behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -1264,4 +1318,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_1_3_BOUNDED_LOCAL_MOCK_TO_REAL_NON_EXECUTING_FIXTURE_VALIDATION`
+`READY_FOR_V2_1_4_BOUNDED_LOCAL_MOCK_TO_REAL_FIXTURE_VALIDATION_RESULT_REVIEW_AND_FREEZE`

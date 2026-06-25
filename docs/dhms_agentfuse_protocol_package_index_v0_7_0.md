@@ -93,6 +93,7 @@ Core public materials:
 * Local Command Proposal trace plan: [`trace_examples/dhms_local_command_proposals_v0/trace_plan.json`](../trace_examples/dhms_local_command_proposals_v0/trace_plan.json)
 * Controlled Mock-Agent Local Command Interception Proof documentation: [`docs/dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md`](dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md)
 * Controlled Mock-Agent Local Command Interception Proof runner: [`validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py`](../validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py)
+* Local Command Interception Result Review and Freeze: [`docs/dhms_local_command_interception_result_review_and_freeze_v1_1_5.md`](dhms_local_command_interception_result_review_and_freeze_v1_1_5.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -181,6 +182,12 @@ proof. It simulates a mock agent proposing all 14 static local command cases as
 inert data, validates `HOLD`, `BLOCK`, and `FAIL_CLOSED` decisions plus trace
 behavior, and keeps command_string, argv, shell, subprocess, terminal, command
 runner, real agent runtime, and real LLM execution counts at 0.
+
+v1.1.5 reviews and freezes the Local Command-Agent Interception evidence line.
+It freezes the claim over 14 static inert local command proposals and confirms
+`proposal_count=14`, `intercepted_proposal_count=14`, `release_count=0`, and
+all command_string, argv, shell, subprocess, terminal, command runner, real
+agent runtime, and real LLM execution counts at 0.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

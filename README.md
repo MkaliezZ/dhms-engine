@@ -13,21 +13,22 @@ Execution Fuse Protocol and the DHMS AgentFuse proof chain.
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.1.4 Controlled Mock-Agent Local Command Interception Proof`.
-* Previous milestone: `v1.1.3 Local Command Proposal Examples and Trace Plan`.
-* Next recommended milestone: `v1.1.5 Local Command Interception Result Review and Freeze`.
+* Current milestone: `v1.1.5 Local Command Interception Result Review and Freeze`.
+* Previous milestone: `v1.1.4 Controlled Mock-Agent Local Command Interception Proof`.
+* Next recommended milestone: `v1.2.0 Runtime Adapter Boundary Planning`.
 * Public release: [`DHMS v1.0 Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package).
 * Release tag: `v1.0.0-public-evidence-package`.
 * Confirmed tag target commit: `24319dfa3db0f272b13b220201e6f4528c62a6f2`.
 
 v1.1 adds Local Command-Agent Interception planning, a static inert manifest,
 a non-executing benchmark, inert examples / trace planning, and a controlled
-non-executing mock-agent local command proof:
+non-executing mock-agent local command proof, now reviewed and frozen:
 [planning](docs/dhms_local_command_agent_interception_planning_v1_1_0.md),
 [manifest doc](docs/dhms_local_command_proposal_static_manifest_v1_1_1.md),
 [benchmark doc](docs/dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md),
 [examples doc](docs/dhms_local_command_proposal_examples_and_trace_plan_v1_1_3.md),
 [proof doc](docs/dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md),
+[freeze doc](docs/dhms_local_command_interception_result_review_and_freeze_v1_1_5.md),
 [cases](benchmarks/dhms_local_command_proposals_v0/cases.json),
 [runner](validation/run_dhms_local_command_proposal_benchmark_v0.py),
 [proof runner](validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py),
@@ -114,6 +115,7 @@ Core documents:
 * [DHMS Non-Executing Local Command Proposal Benchmark v1.1.2](docs/dhms_non_executing_local_command_proposal_benchmark_v1_1_2.md)
 * [DHMS Local Command Proposal Examples and Trace Plan v1.1.3](docs/dhms_local_command_proposal_examples_and_trace_plan_v1_1_3.md)
 * [DHMS Controlled Mock-Agent Local Command Interception Proof v1.1.4](docs/dhms_controlled_mock_agent_local_command_interception_proof_v1_1_4.md)
+* [DHMS Local Command Interception Result Review and Freeze v1.1.5](docs/dhms_local_command_interception_result_review_and_freeze_v1_1_5.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 

@@ -106,6 +106,7 @@ Core public materials:
 * Controlled Mock-Agent Runtime Adapter Boundary Proof runner: [`validation/run_dhms_controlled_mock_agent_runtime_adapter_boundary_proof.py`](../validation/run_dhms_controlled_mock_agent_runtime_adapter_boundary_proof.py)
 * Runtime Adapter Boundary Result Review and Freeze: [`docs/dhms_runtime_adapter_boundary_result_review_and_freeze_v1_2_5.md`](dhms_runtime_adapter_boundary_result_review_and_freeze_v1_2_5.md)
 * Runtime Adapter Boundary Public Evidence Package Planning: [`docs/dhms_runtime_adapter_boundary_public_evidence_package_planning_v1_3_0.md`](dhms_runtime_adapter_boundary_public_evidence_package_planning_v1_3_0.md)
+* Runtime Adapter Boundary Public Evidence Package Assembly: [`docs/dhms_runtime_adapter_boundary_public_evidence_package_v1_3_1.md`](dhms_runtime_adapter_boundary_public_evidence_package_v1_3_1.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -240,6 +241,11 @@ v1.3.0 plans a public evidence package for the frozen v1.2 Runtime Adapter
 Boundary evidence line. It is planning-only and does not create a GitHub
 release, create tags, assemble the final package, or add runtime execution
 behavior.
+
+v1.3.1 assembles the public evidence package for the frozen v1.2 Runtime
+Adapter Boundary evidence line. It is documentation/package-assembly only and
+does not create a GitHub release, create tags, add runtime adapter
+implementation, add SDK integration, or add execution behavior.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

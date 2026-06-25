@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.3.0 Runtime Adapter Boundary Public Evidence Package Planning`
+* Current package milestone: `v1.3.1 Runtime Adapter Boundary Public Evidence Package Assembly`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -597,6 +597,16 @@ Planned v1.2 sequence:
 * planning-only; do not add runtime adapter implementation, SDK imports/calls, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, credential/user-data handling, production runtime behavior, runners, proof runners, benchmark runners, CLI commands, CLI wrappers, schemas, manifest/example/trace-plan changes, source code changes, release/tag changes, or new SQL/File/HTTP/local-command execution paths
 * current/completed Runtime Adapter Boundary Public Evidence Package Planning milestone in v1.3.0
 * next recommended milestone: `v1.3.1 Runtime Adapter Boundary Public Evidence Package Assembly`
+
+### v1.3.1 Runtime Adapter Boundary Public Evidence Package Assembly
+
+* add `docs/dhms_runtime_adapter_boundary_public_evidence_package_v1_3_1.md`
+* assemble the public evidence package for the frozen v1.2 Runtime Adapter Boundary evidence line
+* preserve the v1.0 public frozen claim, v1.1 frozen local command claim, and v1.2 frozen runtime adapter boundary claim exactly
+* carry forward `runtime_adapter_proposal_count=19`, `HOLD=2`, `BLOCK=11`, `FAIL_CLOSED=6`, `RELEASE=0`, `intercepted_proposal_count=19`, `trace_cases_validated_count=19`, `trace_cases_missing_count=0`, `examples_validated_count=7`, and all execution/runtime/SDK/network/shell/subprocess/terminal/tool/credential/user-data/model-provider/production-runtime counts at 0
+* documentation/package-assembly only; do not add runtime adapter implementation, SDK imports/calls, MCP/E2B/Codex/Claude/OpenClaw/DeepSeek/provider SDK/agent SDK integrations, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, credential/user-data handling, production runtime behavior, runners, proof runners, benchmark runners, CLI commands, CLI wrappers, schemas, manifest/example/trace-plan changes, source code changes, release/tag changes, or new SQL/File/HTTP/local-command execution paths
+* current/completed Runtime Adapter Boundary Public Evidence Package Assembly milestone in v1.3.1
+* next recommended milestone: `v1.3.2 Runtime Adapter Boundary Fresh Clone Reproduction Check`
 
 ## Development Prompt Pattern
 

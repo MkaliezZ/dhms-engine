@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.0.3 Non-Executing Real-Agent Proposal Capture Plan`
+* Current package milestone: `v2.0.4 Controlled Real-Agent Preview Proof Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -674,7 +674,7 @@ Planned sequence:
 
 Next recommended milestone:
 
-`v2.0.4 Controlled Real-Agent Preview Proof Planning`
+`v2.0.5 Result Review and Freeze`
 
 Core distinction:
 
@@ -951,9 +951,52 @@ Current/completed milestone:
 
 `v2.0.3 Non-Executing Real-Agent Proposal Capture Plan`
 
-Next recommended milestone:
+v2.0.4 plans the Controlled Real-Agent Preview Proof boundary in prose only.
+It defines what a future controlled proof would need to prove before any
+implementation begins: proposal inertness, non-executing capture, decision
+preservation, fail-closed behavior, evidence continuity, trace continuity,
+rollback requirements, freeze requirements, and public non-claims.
+
+Scope:
+
+* plan a future controlled preview proof boundary
+* preserve the selected `local mock-to-real agent boundary` as the future
+  target from v2.0.1
+* preserve the proposal-only dry-run constraints from v2.0.2
+* preserve the non-executing capture constraints from v2.0.3
+* define that `RELEASE` remains planning-level unless a later explicit bounded
+  proof implements it
+* define that `HOLD`, `BLOCK`, and `FAIL_CLOSED` must never be reinterpreted
+  as `RELEASE`
+* define missing, malformed, stale, ambiguous, unsupported, and
+  executable-looking inputs as fail-closed unless explicitly covered by a later
+  approved bounded proof
+* no proof execution
+* no proof runner
+* no capture runner
+* no proposal parser
+* no capture parser
+* no agent hook
+* no adapter code
+* no SDK integration
+* no runtime integration
+* no CLI commands
+* no shell execution
+* no command execution
+* no file mutation
+* no network access
+* no credential handling
+* no user data handling
+* no execution path
+* no production runtime claims
+
+Current/completed milestone:
 
 `v2.0.4 Controlled Real-Agent Preview Proof Planning`
+
+Next recommended milestone:
+
+`v2.0.5 Result Review and Freeze`
 
 ## Development Prompt Pattern
 
@@ -1009,4 +1052,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_0_4_CONTROLLED_REAL_AGENT_PREVIEW_PROOF_PLANNING`
+`READY_FOR_V2_0_5_RESULT_REVIEW_AND_FREEZE`

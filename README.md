@@ -3,19 +3,17 @@
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 DHMS is an execution fuse protocol for AI agents. It studies whether proposed
-actions should be released, blocked, held, or fail-closed before execution,
-with reproducible evidence under documented non-production boundaries.
+actions should be released, blocked, held, or fail-closed before execution, with reproducible evidence under documented non-production boundaries.
 
 DHMS began as memory/context/tool-state perturbation testing. The current
-`agent-harness-v1` branch presents the public evidence package for the DHMS
-Execution Fuse Protocol and the DHMS AgentFuse proof chain.
+`agent-harness-v1` branch presents the public evidence package for the DHMS Execution Fuse Protocol and the DHMS AgentFuse proof chain.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v1.2.3 Runtime Adapter Proposal Examples and Trace Plan`.
-* Previous milestone: `v1.2.2 Non-Executing Runtime Adapter Proposal Benchmark`.
-* Next recommended milestone: `v1.2.4 Controlled Mock-Agent Runtime Adapter Boundary Proof`.
+* Current milestone: `v1.2.4 Controlled Mock-Agent Runtime Adapter Boundary Proof`.
+* Previous milestone: `v1.2.3 Runtime Adapter Proposal Examples and Trace Plan`.
+* Next recommended milestone: `v1.2.5 Runtime Adapter Boundary Result Review and Freeze`.
 * Public release: [`DHMS v1.0 Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package).
 * Release tag: `v1.0.0-public-evidence-package`.
 * Confirmed tag target commit: `24319dfa3db0f272b13b220201e6f4528c62a6f2`.
@@ -38,17 +36,19 @@ and [trace plan](trace_examples/dhms_local_command_proposals_v0/trace_plan.json)
 It does not add command execution, shell execution, subprocess execution,
 terminal integration, CLI commands, schemas, tags, or GitHub releases.
 
-v1.2.0 opens runtime adapter boundary planning by defining runtime adapter
-proposals as inert proposed actions before any future adapter integration:
-[runtime adapter boundary planning](docs/dhms_runtime_adapter_boundary_planning_v1_2_0.md).
-v1.2.1 adds a static inert manifest for those proposal cases:
-[manifest doc](docs/dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md)
-and [cases](benchmarks/dhms_runtime_adapter_proposals_v0/cases.json).
-v1.2.2 adds a [non-executing benchmark](docs/dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md)
-and [runner](validation/run_dhms_runtime_adapter_proposal_benchmark_v0.py).
-v1.2.3 adds [inert examples](examples/dhms_runtime_adapter_proposals_v0/inert_examples.json),
-a [trace plan](trace_examples/dhms_runtime_adapter_proposals_v0/trace_plan.json),
-and [docs](docs/dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md).
+v1.2 adds runtime adapter boundary planning, a static inert manifest,
+non-executing benchmark, inert examples / trace plan, and controlled
+mock-agent boundary proof:
+[planning](docs/dhms_runtime_adapter_boundary_planning_v1_2_0.md),
+[manifest](docs/dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md),
+[cases](benchmarks/dhms_runtime_adapter_proposals_v0/cases.json),
+[benchmark](docs/dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md),
+[runner](validation/run_dhms_runtime_adapter_proposal_benchmark_v0.py),
+[examples](examples/dhms_runtime_adapter_proposals_v0/inert_examples.json),
+[trace plan](trace_examples/dhms_runtime_adapter_proposals_v0/trace_plan.json),
+[examples doc](docs/dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md),
+[proof doc](docs/dhms_controlled_mock_agent_runtime_adapter_boundary_proof_v1_2_4.md),
+and [proof runner](validation/run_dhms_controlled_mock_agent_runtime_adapter_boundary_proof.py).
 It does not add runtime adapter implementation, SDK integration, network calls,
 shell execution, subprocess execution, CLI commands, schemas, or proof behavior.
 
@@ -87,6 +87,7 @@ python3 cli.py proof-mock-agent-interception
 python3 validation/run_dhms_local_command_proposal_benchmark_v0.py
 python3 validation/run_dhms_controlled_mock_agent_local_command_interception_proof.py
 python3 validation/run_dhms_runtime_adapter_proposal_benchmark_v0.py
+python3 validation/run_dhms_controlled_mock_agent_runtime_adapter_boundary_proof.py
 ```
 
 Expected verdict markers:
@@ -99,9 +100,9 @@ Expected verdict markers:
 * `DHMS_LOCAL_COMMAND_PROPOSAL_BENCHMARK_PASS`
 * `DHMS_CONTROLLED_MOCK_AGENT_LOCAL_COMMAND_INTERCEPTION_PROOF_PASS`
 * `DHMS_RUNTIME_ADAPTER_PROPOSAL_BENCHMARK_PASS`
+* `DHMS_CONTROLLED_MOCK_AGENT_RUNTIME_ADAPTER_BOUNDARY_PROOF_PASS`
 
-Fresh-clone reproduction is documented in
-[DHMS Fresh Clone Reproduction Check v1.0.1](docs/dhms_fresh_clone_reproduction_check_v1_0_1.md).
+Fresh-clone reproduction is documented in [DHMS Fresh Clone Reproduction Check v1.0.1](docs/dhms_fresh_clone_reproduction_check_v1_0_1.md).
 
 ## Release Materials
 
@@ -136,6 +137,7 @@ Core documents:
 * [DHMS Runtime Adapter Proposal Static Manifest v1.2.1](docs/dhms_runtime_adapter_proposal_static_manifest_v1_2_1.md)
 * [DHMS Non-Executing Runtime Adapter Proposal Benchmark v1.2.2](docs/dhms_non_executing_runtime_adapter_proposal_benchmark_v1_2_2.md)
 * [DHMS Runtime Adapter Proposal Examples and Trace Plan v1.2.3](docs/dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md)
+* [DHMS Controlled Mock-Agent Runtime Adapter Boundary Proof v1.2.4](docs/dhms_controlled_mock_agent_runtime_adapter_boundary_proof_v1_2_4.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 

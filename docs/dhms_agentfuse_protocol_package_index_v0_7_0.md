@@ -102,6 +102,8 @@ Core public materials:
 * Runtime Adapter Proposal Examples and Trace Plan documentation: [`docs/dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md`](dhms_runtime_adapter_proposal_examples_and_trace_plan_v1_2_3.md)
 * Runtime Adapter Proposal inert examples: [`examples/dhms_runtime_adapter_proposals_v0/inert_examples.json`](../examples/dhms_runtime_adapter_proposals_v0/inert_examples.json)
 * Runtime Adapter Proposal trace plan: [`trace_examples/dhms_runtime_adapter_proposals_v0/trace_plan.json`](../trace_examples/dhms_runtime_adapter_proposals_v0/trace_plan.json)
+* Controlled Mock-Agent Runtime Adapter Boundary Proof documentation: [`docs/dhms_controlled_mock_agent_runtime_adapter_boundary_proof_v1_2_4.md`](dhms_controlled_mock_agent_runtime_adapter_boundary_proof_v1_2_4.md)
+* Controlled Mock-Agent Runtime Adapter Boundary Proof runner: [`validation/run_dhms_controlled_mock_agent_runtime_adapter_boundary_proof.py`](../validation/run_dhms_controlled_mock_agent_runtime_adapter_boundary_proof.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -219,6 +221,13 @@ plan over all 19 manifest cases. It preserves `HOLD=2`, `BLOCK=11`,
 `FAIL_CLOSED=6`, `RELEASE=0`, and does not add runtime adapter behavior,
 SDK calls, network calls, shell/subprocess execution, CLI commands, schemas, or
 proof behavior.
+
+v1.2.4 adds a controlled deterministic mock-agent proof for runtime adapter
+proposal boundary interception. It validates all 19 inert proposals exactly
+once, intercepts them before execution, preserves `HOLD=2`, `BLOCK=11`,
+`FAIL_CLOSED=6`, `RELEASE=0`, and keeps runtime adapter, SDK, network, shell,
+subprocess, terminal, tool, credential, user-data, model-provider, and
+production-runtime behavior at 0.
 
 v0.8.0 plans the File Operation Safety Fuse as DHMS's preferred second
 execution fuse proof line. It does not implement file policy or file operation

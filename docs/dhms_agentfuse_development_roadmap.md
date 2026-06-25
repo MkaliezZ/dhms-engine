@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.2.3 Runtime Adapter Proposal Examples and Trace Plan`
+* Current package milestone: `v1.2.4 Controlled Mock-Agent Runtime Adapter Boundary Proof`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -555,6 +555,17 @@ Planned v1.1 sequence:
 * documentation/data-only; do not add real runtime adapters, SDK imports, SDK calls, MCP integration, E2B integration, Codex integration, Claude integration, OpenClaw integration, DeepSeek integration, provider SDK integration, agent SDK integration, real agent runtime behavior, real LLM runtime behavior, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, filesystem mutation, credential handling, user data handling, persistent memory mutation, billing/quota interaction, production runtime behavior, benchmark runners, proof runners, CLI commands, CLI wrappers, schemas, manifest changes, evidence artifact changes outside v1.2.3 examples/trace docs, execution behavior changes, proof semantic changes, or new SQL/File/HTTP/local-command execution paths
 * current/completed Runtime Adapter Proposal Examples and Trace Plan milestone in v1.2.3
 * next recommended milestone: `v1.2.4 Controlled Mock-Agent Runtime Adapter Boundary Proof`
+
+### v1.2.4 Controlled Mock-Agent Runtime Adapter Boundary Proof
+
+* add `validation/run_dhms_controlled_mock_agent_runtime_adapter_boundary_proof.py`
+* add `docs/dhms_controlled_mock_agent_runtime_adapter_boundary_proof_v1_2_4.md`
+* simulate a deterministic mock agent proposing all 19 static inert runtime adapter proposals exactly once
+* intercept every proposal before execution and validate decisions, examples, trace stages, and non-execution flags
+* confirm `proposal_count=19`, `intercepted_proposal_count=19`, `HOLD=2`, `BLOCK=11`, `FAIL_CLOSED=6`, `RELEASE=0`, `trace_cases_validated_count=19`, and `examples_validated_count=7`
+* controlled mock-agent proof only; do not add real runtime adapters, SDK imports, SDK calls, MCP integration, E2B integration, Codex integration, Claude integration, OpenClaw integration, DeepSeek integration, provider SDK integration, agent SDK integration, real agent runtime behavior, real LLM runtime behavior, model-provider calls, network calls, shell execution, subprocess execution, terminal integration, command execution, tool invocation, filesystem mutation, credential handling, user data handling, persistent memory mutation, billing/quota interaction, production runtime behavior, CLI commands, CLI wrappers, schemas, manifest changes, example changes, trace-plan changes, evidence artifact changes outside v1.2.4 proof docs/runner, proof semantic changes to prior lines, or new SQL/File/HTTP/local-command execution paths
+* current/completed Controlled Mock-Agent Runtime Adapter Boundary Proof milestone in v1.2.4
+* next recommended milestone: `v1.2.5 Runtime Adapter Boundary Result Review and Freeze`
 
 Planned v1.2 sequence:
 

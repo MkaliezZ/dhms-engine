@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v1.3.6 Runtime Adapter Boundary Manual GitHub Release Confirmation`
+* Current package milestone: `v1.4.0 Substrate Boundary / Runtime Boundary Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -674,7 +674,7 @@ Planned sequence:
 
 Next recommended milestone:
 
-`v1.4.0 Substrate Boundary / Runtime Boundary Planning`
+`v1.5.0 Agent Proposal Envelope Planning`
 
 Core distinction:
 
@@ -692,6 +692,12 @@ replacement, not a runtime adapter, and not a production runtime.
 ### v1.4 Substrate / Runtime Boundary Positioning
 
 v1.4 is documentation and planning only.
+
+v1.4.0 adds the Substrate Boundary / Runtime Boundary planning document. It
+clarifies DHMS boundaries versus sandbox, E2B, MCP, agent SDKs, guardrails,
+policy engines, observability systems, and approval workflows without adding
+implementation, SDK integration, adapter code, runners, CLI commands, schemas,
+or execution behavior.
 
 Scope:
 
@@ -715,6 +721,14 @@ Scope:
 v1.4 must not claim integration with E2B, MCP, Codex, Claude, OpenClaw,
 DeepSeek, provider SDKs, or agent SDKs. It must not claim production readiness
 or universal agent safety.
+
+Current/completed milestone:
+
+`v1.4.0 Substrate Boundary / Runtime Boundary Planning`
+
+Next recommended milestone:
+
+`v1.5.0 Agent Proposal Envelope Planning`
 
 ### v1.5 Agent Proposal Envelope
 
@@ -838,4 +852,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V1_4_0_SUBSTRATE_BOUNDARY_RUNTIME_PLANNING`
+`READY_FOR_V1_5_0_AGENT_PROPOSAL_ENVELOPE_PLANNING`

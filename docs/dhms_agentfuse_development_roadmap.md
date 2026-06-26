@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.3.0 SQL Agent Local Emit-Only Test Planning`
+* Current package milestone: `v2.3.1 SQL Agent Local Emit-Only Contract`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1725,6 +1725,67 @@ v2.3.1 must be prose-contract-only. It must not add code, schema, fixtures,
 parser, runner, validator, CLI, SQL execution, DB connection, LangChain,
 LlamaIndex, KerniQ, E2B, or runtime behavior.
 
+v2.3.1 converts the v2.3.0 planning line into a prose-only contract for the
+`SQL Proposal Agent Candidate`. The contract remains emit-only and
+proposal-only. It defines future envelope fields, required inert boundary
+values, SQL risk category names, DHMS decision boundaries, and fail-closed rules
+without adding implementation.
+
+Scope:
+
+* docs-only and prose-contract-only
+* future SQL Proposal Agent Candidate only
+* no SQL examples
+* no code
+* no schema
+* no JSON examples
+* no fixtures
+* no parser
+* no runner
+* no validator
+* no CLI command
+* no quickstart command
+* no adapter
+* no hook
+* no execution path
+* no SQL execution
+* no DB connection
+* no database integration
+* no schema introspection
+* no real schema access
+* no real data access
+* no database mutation
+* no sqlite/postgres/mysql client
+* no ORM
+* no LangChain integration
+* no LlamaIndex integration
+* no SQLDatabaseToolkit
+* no SQL agent runtime
+* no subprocess usage
+* no shell or command execution
+* no file mutation behavior
+* no network access
+* no env access
+* no credential access
+* no user-data access
+* no SDK/model/runtime access
+* no KerniQ integration
+* no KerniQ runtime call
+* no E2B integration
+* no E2B handoff
+
+Current/completed milestone:
+
+`v2.3.1 SQL Agent Local Emit-Only Contract`
+
+Next recommended milestone:
+
+`v2.3.2 SQL Agent Static Proposal Fixtures`
+
+v2.3.2 may add static inert fixtures only. v2.3.2 must not add code, schema,
+parser, runner, validator, CLI, SQL execution, DB connection, LangChain,
+LlamaIndex, KerniQ, E2B, or runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -1779,4 +1840,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_3_1_SQL_AGENT_LOCAL_EMIT_ONLY_CONTRACT`
+`READY_FOR_V2_3_2_SQL_AGENT_STATIC_PROPOSAL_FIXTURES`

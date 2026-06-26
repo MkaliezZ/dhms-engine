@@ -137,6 +137,7 @@ Core public materials:
 * Bounded Local Proposal Emitter Candidate fixtures: [`benchmarks/dhms_bounded_local_proposal_emitter_candidate_v0/proposals.json`](../benchmarks/dhms_bounded_local_proposal_emitter_candidate_v0/proposals.json)
 * Bounded Local Proposal Emitter Candidate Non-Executing Fixture Validation: [`docs/dhms_bounded_local_proposal_emitter_candidate_non_executing_fixture_validation_v2_2_3.md`](dhms_bounded_local_proposal_emitter_candidate_non_executing_fixture_validation_v2_2_3.md)
 * Bounded Local Proposal Emitter Candidate fixture validator: [`validation/run_dhms_bounded_local_proposal_emitter_candidate_fixture_validation_v0.py`](../validation/run_dhms_bounded_local_proposal_emitter_candidate_fixture_validation_v0.py)
+* Bounded Local Proposal Emitter Candidate Validation Result Review and Freeze: [`docs/dhms_bounded_local_proposal_emitter_candidate_validation_result_review_and_freeze_v2_2_4.md`](dhms_bounded_local_proposal_emitter_candidate_validation_result_review_and_freeze_v2_2_4.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -606,6 +607,8 @@ v0.7.0 does not claim:
 * Bounded Local Proposal Emitter Candidate Non-Executing Fixture Validation: [`docs/dhms_bounded_local_proposal_emitter_candidate_non_executing_fixture_validation_v2_2_3.md`](dhms_bounded_local_proposal_emitter_candidate_non_executing_fixture_validation_v2_2_3.md)
 * Bounded Local Proposal Emitter Candidate fixture validator: [`validation/run_dhms_bounded_local_proposal_emitter_candidate_fixture_validation_v0.py`](../validation/run_dhms_bounded_local_proposal_emitter_candidate_fixture_validation_v0.py)
 * v2.2.3 Bounded Local Proposal Emitter Candidate Non-Executing Fixture Validation
+* Bounded Local Proposal Emitter Candidate Validation Result Review and Freeze: [`docs/dhms_bounded_local_proposal_emitter_candidate_validation_result_review_and_freeze_v2_2_4.md`](dhms_bounded_local_proposal_emitter_candidate_validation_result_review_and_freeze_v2_2_4.md)
+* v2.2.4 Bounded Local Proposal Emitter Candidate Validation Result Review and Freeze
 
 Final document verdict:
 

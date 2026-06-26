@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.2.1 Bounded Local Proposal Emitter Candidate Contract`
+* Current package milestone: `v2.2.2 Bounded Local Proposal Emitter Candidate Static Fixtures`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1490,6 +1490,64 @@ code, add schema, add examples, add fixtures, add parser, add runner, add
 validator, add CLI, add adapter, add hook, add execution path, add KerniQ
 integration, or add E2B handoff.
 
+v2.2.2 adds static inert fixture examples for the future bounded local proposal
+emitter candidate contract. It is static-fixture-only and does not add schema,
+parser, runner, validator, CLI command, quickstart command, adapter, hook,
+execution path, subprocess usage, shell execution, command execution, file
+mutation, network access, SDK/model/runtime access, credential handling, user
+data handling, production behavior, KerniQ integration, KerniQ invocation,
+KerniQ runtime call, KerniQ command, KerniQ repository inspection, E2B
+integration, E2B handoff, E2B sandbox, or real-agent integration.
+
+Scope:
+
+* static-fixture-only milestone
+* exactly 8 static fixtures
+* exactly 1 `ACCEPT_FOR_DHMS_EVALUATION`
+* exactly 7 `FAIL_CLOSED`
+* fixtures are inert metadata only
+* fixtures are synthetic, local-only, non-credentialed, non-user-data,
+  non-production, non-executing, and no-runtime
+* no code
+* no schema files
+* no parser
+* no runner
+* no validator
+* no CLI command
+* no quickstart command
+* no adapter
+* no hook
+* no execution path
+* no subprocess usage
+* no shell or command execution
+* no file mutation
+* no network access
+* no SDK/model/runtime access
+* no credential handling
+* no user data handling
+* no production behavior
+* no KerniQ integration
+* no KerniQ invocation
+* no KerniQ runtime call
+* no KerniQ command
+* no KerniQ repository inspection
+* no E2B integration
+* no E2B handoff
+* no E2B sandbox
+* no real-agent integration
+
+Current/completed milestone:
+
+`v2.2.2 Bounded Local Proposal Emitter Candidate Static Fixtures`
+
+Next recommended milestone:
+
+`v2.2.3 Bounded Local Proposal Emitter Candidate Non-Executing Fixture Validation`
+
+v2.2.3 may add a deterministic non-executing validator only if separately
+approved. v2.2.3 must not add parser-triggered execution, runner behavior, CLI
+command, KerniQ integration, E2B integration, or execution behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -1544,4 +1602,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_2_2_BOUNDED_LOCAL_PROPOSAL_EMITTER_CANDIDATE_STATIC_FIXTURES`
+`READY_FOR_V2_2_3_BOUNDED_LOCAL_PROPOSAL_EMITTER_CANDIDATE_NON_EXECUTING_FIXTURE_VALIDATION`

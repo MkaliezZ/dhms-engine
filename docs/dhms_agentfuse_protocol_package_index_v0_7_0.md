@@ -149,6 +149,8 @@ Core public materials:
 * README Current Status Sync v2.3.4.1: [`docs/dhms_readme_current_status_sync_v2_3_4_1.md`](dhms_readme_current_status_sync_v2_3_4_1.md)
 * Third-Party SQL Agent Threat Boundary Review Planning: [`docs/dhms_third_party_sql_agent_threat_boundary_review_planning_v2_4_0.md`](dhms_third_party_sql_agent_threat_boundary_review_planning_v2_4_0.md)
 * Third-Party SQL Agent Threat Boundary Contract: [`docs/dhms_third_party_sql_agent_threat_boundary_contract_v2_4_1.md`](dhms_third_party_sql_agent_threat_boundary_contract_v2_4_1.md)
+* Third-Party SQL Agent Static Threat Fixtures: [`docs/dhms_third_party_sql_agent_static_threat_fixtures_v2_4_2.md`](dhms_third_party_sql_agent_static_threat_fixtures_v2_4_2.md)
+* Third-Party SQL Agent threat fixtures: [`benchmarks/dhms_third_party_sql_agent_threat_boundary_v0/threat_fixtures.json`](../benchmarks/dhms_third_party_sql_agent_threat_boundary_v0/threat_fixtures.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -640,6 +642,9 @@ v0.7.0 does not claim:
 * v2.4.0 Third-Party SQL Agent Threat Boundary Review Planning
 * Third-Party SQL Agent Threat Boundary Contract: [`docs/dhms_third_party_sql_agent_threat_boundary_contract_v2_4_1.md`](dhms_third_party_sql_agent_threat_boundary_contract_v2_4_1.md)
 * v2.4.1 Third-Party SQL Agent Threat Boundary Contract
+* Third-Party SQL Agent Static Threat Fixtures: [`docs/dhms_third_party_sql_agent_static_threat_fixtures_v2_4_2.md`](dhms_third_party_sql_agent_static_threat_fixtures_v2_4_2.md)
+* Third-Party SQL Agent threat fixtures: [`benchmarks/dhms_third_party_sql_agent_threat_boundary_v0/threat_fixtures.json`](../benchmarks/dhms_third_party_sql_agent_threat_boundary_v0/threat_fixtures.json)
+* v2.4.2 Third-Party SQL Agent Static Threat Fixtures
 
 Final document verdict:
 

@@ -141,6 +141,8 @@ Core public materials:
 * README and Roadmap Current Status Sync v2.2.4.1: [`docs/dhms_readme_current_status_sync_v2_2_4_1.md`](dhms_readme_current_status_sync_v2_2_4_1.md)
 * SQL Agent Local Emit-Only Test Planning: [`docs/dhms_sql_agent_local_emit_only_test_planning_v2_3_0.md`](dhms_sql_agent_local_emit_only_test_planning_v2_3_0.md)
 * SQL Agent Local Emit-Only Contract: [`docs/dhms_sql_agent_local_emit_only_contract_v2_3_1.md`](dhms_sql_agent_local_emit_only_contract_v2_3_1.md)
+* SQL Agent Static Proposal Fixtures: [`docs/dhms_sql_agent_static_proposal_fixtures_v2_3_2.md`](dhms_sql_agent_static_proposal_fixtures_v2_3_2.md)
+* SQL Agent static proposal fixtures: [`benchmarks/dhms_sql_agent_local_emit_only_v0/proposals.json`](../benchmarks/dhms_sql_agent_local_emit_only_v0/proposals.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -618,6 +620,9 @@ v0.7.0 does not claim:
 * v2.3.0 SQL Agent Local Emit-Only Test Planning
 * SQL Agent Local Emit-Only Contract: [`docs/dhms_sql_agent_local_emit_only_contract_v2_3_1.md`](dhms_sql_agent_local_emit_only_contract_v2_3_1.md)
 * v2.3.1 SQL Agent Local Emit-Only Contract
+* SQL Agent Static Proposal Fixtures: [`docs/dhms_sql_agent_static_proposal_fixtures_v2_3_2.md`](dhms_sql_agent_static_proposal_fixtures_v2_3_2.md)
+* SQL Agent static proposal fixtures: [`benchmarks/dhms_sql_agent_local_emit_only_v0/proposals.json`](../benchmarks/dhms_sql_agent_local_emit_only_v0/proposals.json)
+* v2.3.2 SQL Agent Static Proposal Fixtures
 
 Final document verdict:
 

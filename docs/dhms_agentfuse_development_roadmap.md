@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.3.1 SQL Agent Local Emit-Only Contract`
+* Current package milestone: `v2.3.2 SQL Agent Static Proposal Fixtures`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1786,6 +1786,42 @@ v2.3.2 may add static inert fixtures only. v2.3.2 must not add code, schema,
 parser, runner, validator, CLI, SQL execution, DB connection, LangChain,
 LlamaIndex, KerniQ, E2B, or runtime behavior.
 
+v2.3.2 adds the static inert fixture manifest for the SQL Proposal Agent
+Candidate line. The fixture set is metadata-only and exists to prepare a later
+non-executing validator without creating SQL execution, parser behavior, DB
+connection behavior, runtime hooks, or adapter behavior.
+
+Fixture summary:
+
+* exactly 10 fixtures
+* exactly 1 `ACCEPT_FOR_DHMS_EVALUATION`
+* exactly 9 `FAIL_CLOSED`
+* no executable SQL statements
+* no real table, column, or database names
+* no credentials, user data, production data, URLs, or file paths
+* no sqlite/postgres/mysql client
+* no ORM
+* no LangChain integration
+* no LlamaIndex integration
+* no SQLDatabaseToolkit integration
+* no KerniQ integration
+* no E2B handoff
+* no runtime behavior
+* no code, schema, parser, runner, validator, CLI, quickstart, adapter, hook, or execution path
+
+Current/completed milestone:
+
+`v2.3.2 SQL Agent Static Proposal Fixtures`
+
+Next recommended milestone:
+
+`v2.3.3 SQL Agent Non-Executing Fixture Validation`
+
+v2.3.3 may add deterministic read-only fixture validation only. It must not add
+SQL execution, DB connection, schema introspection, parser-triggered execution,
+runner behavior beyond the approved non-executing validator, CLI behavior,
+LangChain, LlamaIndex, SQLDatabaseToolkit, KerniQ, E2B, or runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -1840,4 +1876,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_3_2_SQL_AGENT_STATIC_PROPOSAL_FIXTURES`
+`READY_FOR_V2_3_3_SQL_AGENT_NON_EXECUTING_FIXTURE_VALIDATION`

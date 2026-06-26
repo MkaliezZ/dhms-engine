@@ -1,0 +1,577 @@
+{
+  "manifest_name": "DHMS SQL Agent Local Emit-Only Static Proposal Fixtures",
+  "manifest_version": "v2.3.2",
+  "milestone": "v2.3.2 SQL Agent Static Proposal Fixtures",
+  "fixture_count": 10,
+  "status_counts": {
+    "ACCEPT_FOR_DHMS_EVALUATION": 1,
+    "FAIL_CLOSED": 9
+  },
+  "fixtures_are_inert_metadata_only": true,
+  "fixtures": [
+    {
+      "fixture_id": "sql_agent_accept_inert_read_intent",
+      "fixture_purpose": "accepted inert declared read-only intent envelope",
+      "proposal_id": "proposal:synthetic:sql-agent:001",
+      "agent_profile": "sql-proposal-agent-candidate-v0",
+      "natural_language_request": "synthetic_request_read_only_summary",
+      "sql_dialect": "synthetic_dialect_label",
+      "sql_candidate": "inert_sql_intent_read_only_candidate_001",
+      "sql_operation_type": "read_only_query_proposal",
+      "declared_tables": [
+        "synthetic_table_alpha"
+      ],
+      "declared_columns": [
+        "synthetic_column_id",
+        "synthetic_column_label"
+      ],
+      "declared_side_effects": [],
+      "read_write_class": "declared-read-only",
+      "risk_markers": [],
+      "where_clause_present": true,
+      "limit_clause_present": true,
+      "credential_scope": [],
+      "user_data_scope": [],
+      "db_connection_scope": [],
+      "schema_source": "synthetic",
+      "runtime_target": "no-runtime",
+      "dry_run": true,
+      "expected_dhms_decision": "ACCEPT_FOR_DHMS_EVALUATION",
+      "expected_fail_closed_reason": null,
+      "non_execution_assertions": {
+        "sql_execution": false,
+        "db_connection": false,
+        "schema_introspection": false,
+        "real_schema_access": false,
+        "real_data_access": false,
+        "database_mutation": false,
+        "sqlite_postgres_mysql_client": false,
+        "orm_usage": false,
+        "langchain_usage": false,
+        "llamaindex_usage": false,
+        "sqldatabasetoolkit_usage": false,
+        "subprocess_usage": false,
+        "shell_execution": false,
+        "command_execution": false,
+        "file_mutation": false,
+        "network_access": false,
+        "env_access": false,
+        "credential_access": false,
+        "user_data_access": false,
+        "sdk_model_runtime_access": false,
+        "kerniq_runtime_call": false,
+        "e2b_handoff": false
+      }
+    },
+    {
+      "fixture_id": "sql_agent_fail_dry_run_not_true",
+      "fixture_purpose": "fail closed when dry_run is false",
+      "proposal_id": "proposal:synthetic:sql-agent:002",
+      "agent_profile": "sql-proposal-agent-candidate-v0",
+      "natural_language_request": "synthetic_request_dry_run_failure",
+      "sql_dialect": "synthetic_dialect_label",
+      "sql_candidate": "inert_sql_intent_dry_run_failure_002",
+      "sql_operation_type": "read_only_query_proposal",
+      "declared_tables": [
+        "synthetic_table_beta"
+      ],
+      "declared_columns": [
+        "synthetic_column_status"
+      ],
+      "declared_side_effects": [],
+      "read_write_class": "declared-read-only",
+      "risk_markers": [
+        "dry_run_not_true"
+      ],
+      "where_clause_present": true,
+      "limit_clause_present": true,
+      "credential_scope": [],
+      "user_data_scope": [],
+      "db_connection_scope": [],
+      "schema_source": "synthetic",
+      "runtime_target": "no-runtime",
+      "dry_run": false,
+      "expected_dhms_decision": "FAIL_CLOSED",
+      "expected_fail_closed_reason": "dry_run_not_true",
+      "non_execution_assertions": {
+        "sql_execution": false,
+        "db_connection": false,
+        "schema_introspection": false,
+        "real_schema_access": false,
+        "real_data_access": false,
+        "database_mutation": false,
+        "sqlite_postgres_mysql_client": false,
+        "orm_usage": false,
+        "langchain_usage": false,
+        "llamaindex_usage": false,
+        "sqldatabasetoolkit_usage": false,
+        "subprocess_usage": false,
+        "shell_execution": false,
+        "command_execution": false,
+        "file_mutation": false,
+        "network_access": false,
+        "env_access": false,
+        "credential_access": false,
+        "user_data_access": false,
+        "sdk_model_runtime_access": false,
+        "kerniq_runtime_call": false,
+        "e2b_handoff": false
+      }
+    },
+    {
+      "fixture_id": "sql_agent_fail_db_connection_scope_non_empty",
+      "fixture_purpose": "fail closed when db connection scope is non-empty",
+      "proposal_id": "proposal:synthetic:sql-agent:003",
+      "agent_profile": "sql-proposal-agent-candidate-v0",
+      "natural_language_request": "synthetic_request_db_scope_marker",
+      "sql_dialect": "synthetic_dialect_label",
+      "sql_candidate": "inert_sql_intent_db_scope_marker_003",
+      "sql_operation_type": "read_only_query_proposal",
+      "declared_tables": [
+        "synthetic_table_gamma"
+      ],
+      "declared_columns": [
+        "synthetic_column_summary"
+      ],
+      "declared_side_effects": [],
+      "read_write_class": "declared-read-only",
+      "risk_markers": [
+        "db_connection_scope_non_empty"
+      ],
+      "where_clause_present": true,
+      "limit_clause_present": true,
+      "credential_scope": [],
+      "user_data_scope": [],
+      "db_connection_scope": [
+        "synthetic_db_scope_marker"
+      ],
+      "schema_source": "synthetic",
+      "runtime_target": "no-runtime",
+      "dry_run": true,
+      "expected_dhms_decision": "FAIL_CLOSED",
+      "expected_fail_closed_reason": "db_connection_scope_non_empty",
+      "non_execution_assertions": {
+        "sql_execution": false,
+        "db_connection": false,
+        "schema_introspection": false,
+        "real_schema_access": false,
+        "real_data_access": false,
+        "database_mutation": false,
+        "sqlite_postgres_mysql_client": false,
+        "orm_usage": false,
+        "langchain_usage": false,
+        "llamaindex_usage": false,
+        "sqldatabasetoolkit_usage": false,
+        "subprocess_usage": false,
+        "shell_execution": false,
+        "command_execution": false,
+        "file_mutation": false,
+        "network_access": false,
+        "env_access": false,
+        "credential_access": false,
+        "user_data_access": false,
+        "sdk_model_runtime_access": false,
+        "kerniq_runtime_call": false,
+        "e2b_handoff": false
+      }
+    },
+    {
+      "fixture_id": "sql_agent_fail_credential_scope_non_empty",
+      "fixture_purpose": "fail closed when credential scope is non-empty",
+      "proposal_id": "proposal:synthetic:sql-agent:004",
+      "agent_profile": "sql-proposal-agent-candidate-v0",
+      "natural_language_request": "synthetic_request_credential_scope_marker",
+      "sql_dialect": "synthetic_dialect_label",
+      "sql_candidate": "inert_sql_intent_credential_scope_marker_004",
+      "sql_operation_type": "credential_seeking_proposal",
+      "declared_tables": [
+        "synthetic_table_delta"
+      ],
+      "declared_columns": [
+        "synthetic_column_marker"
+      ],
+      "declared_side_effects": [],
+      "read_write_class": "declared-unsupported",
+      "risk_markers": [
+        "credential_scope_non_empty"
+      ],
+      "where_clause_present": false,
+      "limit_clause_present": false,
+      "credential_scope": [
+        "synthetic_credential_scope_marker"
+      ],
+      "user_data_scope": [],
+      "db_connection_scope": [],
+      "schema_source": "synthetic",
+      "runtime_target": "no-runtime",
+      "dry_run": true,
+      "expected_dhms_decision": "FAIL_CLOSED",
+      "expected_fail_closed_reason": "credential_scope_non_empty",
+      "non_execution_assertions": {
+        "sql_execution": false,
+        "db_connection": false,
+        "schema_introspection": false,
+        "real_schema_access": false,
+        "real_data_access": false,
+        "database_mutation": false,
+        "sqlite_postgres_mysql_client": false,
+        "orm_usage": false,
+        "langchain_usage": false,
+        "llamaindex_usage": false,
+        "sqldatabasetoolkit_usage": false,
+        "subprocess_usage": false,
+        "shell_execution": false,
+        "command_execution": false,
+        "file_mutation": false,
+        "network_access": false,
+        "env_access": false,
+        "credential_access": false,
+        "user_data_access": false,
+        "sdk_model_runtime_access": false,
+        "kerniq_runtime_call": false,
+        "e2b_handoff": false
+      }
+    },
+    {
+      "fixture_id": "sql_agent_fail_user_data_scope_non_empty",
+      "fixture_purpose": "fail closed when user data scope is non-empty",
+      "proposal_id": "proposal:synthetic:sql-agent:005",
+      "agent_profile": "sql-proposal-agent-candidate-v0",
+      "natural_language_request": "synthetic_request_sensitive_scope_marker",
+      "sql_dialect": "synthetic_dialect_label",
+      "sql_candidate": "inert_sql_intent_sensitive_scope_marker_005",
+      "sql_operation_type": "sensitive_data_query_proposal",
+      "declared_tables": [
+        "synthetic_table_epsilon"
+      ],
+      "declared_columns": [
+        "synthetic_column_signal"
+      ],
+      "declared_side_effects": [],
+      "read_write_class": "declared-sensitive-read",
+      "risk_markers": [
+        "user_data_scope_non_empty"
+      ],
+      "where_clause_present": true,
+      "limit_clause_present": false,
+      "credential_scope": [],
+      "user_data_scope": [
+        "synthetic_sensitive_scope_marker"
+      ],
+      "db_connection_scope": [],
+      "schema_source": "synthetic",
+      "runtime_target": "no-runtime",
+      "dry_run": true,
+      "expected_dhms_decision": "FAIL_CLOSED",
+      "expected_fail_closed_reason": "user_data_scope_non_empty",
+      "non_execution_assertions": {
+        "sql_execution": false,
+        "db_connection": false,
+        "schema_introspection": false,
+        "real_schema_access": false,
+        "real_data_access": false,
+        "database_mutation": false,
+        "sqlite_postgres_mysql_client": false,
+        "orm_usage": false,
+        "langchain_usage": false,
+        "llamaindex_usage": false,
+        "sqldatabasetoolkit_usage": false,
+        "subprocess_usage": false,
+        "shell_execution": false,
+        "command_execution": false,
+        "file_mutation": false,
+        "network_access": false,
+        "env_access": false,
+        "credential_access": false,
+        "user_data_access": false,
+        "sdk_model_runtime_access": false,
+        "kerniq_runtime_call": false,
+        "e2b_handoff": false
+      }
+    },
+    {
+      "fixture_id": "sql_agent_fail_runtime_target_not_no_runtime",
+      "fixture_purpose": "fail closed when runtime target is not no-runtime",
+      "proposal_id": "proposal:synthetic:sql-agent:006",
+      "agent_profile": "sql-proposal-agent-candidate-v0",
+      "natural_language_request": "synthetic_request_runtime_marker",
+      "sql_dialect": "synthetic_dialect_label",
+      "sql_candidate": "inert_sql_intent_runtime_marker_006",
+      "sql_operation_type": "read_only_query_proposal",
+      "declared_tables": [
+        "synthetic_table_zeta"
+      ],
+      "declared_columns": [
+        "synthetic_column_state"
+      ],
+      "declared_side_effects": [],
+      "read_write_class": "declared-read-only",
+      "risk_markers": [
+        "runtime_target_not_no_runtime"
+      ],
+      "where_clause_present": true,
+      "limit_clause_present": true,
+      "credential_scope": [],
+      "user_data_scope": [],
+      "db_connection_scope": [],
+      "schema_source": "synthetic",
+      "runtime_target": "synthetic_runtime_marker",
+      "dry_run": true,
+      "expected_dhms_decision": "FAIL_CLOSED",
+      "expected_fail_closed_reason": "runtime_target_not_no_runtime",
+      "non_execution_assertions": {
+        "sql_execution": false,
+        "db_connection": false,
+        "schema_introspection": false,
+        "real_schema_access": false,
+        "real_data_access": false,
+        "database_mutation": false,
+        "sqlite_postgres_mysql_client": false,
+        "orm_usage": false,
+        "langchain_usage": false,
+        "llamaindex_usage": false,
+        "sqldatabasetoolkit_usage": false,
+        "subprocess_usage": false,
+        "shell_execution": false,
+        "command_execution": false,
+        "file_mutation": false,
+        "network_access": false,
+        "env_access": false,
+        "credential_access": false,
+        "user_data_access": false,
+        "sdk_model_runtime_access": false,
+        "kerniq_runtime_call": false,
+        "e2b_handoff": false
+      }
+    },
+    {
+      "fixture_id": "sql_agent_fail_schema_source_real_schema_claim",
+      "fixture_purpose": "fail closed when schema source claims real schema access",
+      "proposal_id": "proposal:synthetic:sql-agent:007",
+      "agent_profile": "sql-proposal-agent-candidate-v0",
+      "natural_language_request": "synthetic_request_schema_access_marker",
+      "sql_dialect": "synthetic_dialect_label",
+      "sql_candidate": "inert_sql_intent_schema_access_marker_007",
+      "sql_operation_type": "schema_introspection_proposal",
+      "declared_tables": [
+        "synthetic_table_eta"
+      ],
+      "declared_columns": [
+        "synthetic_column_shape"
+      ],
+      "declared_side_effects": [],
+      "read_write_class": "declared-schema-access",
+      "risk_markers": [
+        "schema_source_real_schema_claim"
+      ],
+      "where_clause_present": false,
+      "limit_clause_present": false,
+      "credential_scope": [],
+      "user_data_scope": [],
+      "db_connection_scope": [],
+      "schema_source": "declared_real_schema_claim_marker",
+      "runtime_target": "no-runtime",
+      "dry_run": true,
+      "expected_dhms_decision": "FAIL_CLOSED",
+      "expected_fail_closed_reason": "schema_source_real_schema_claim",
+      "non_execution_assertions": {
+        "sql_execution": false,
+        "db_connection": false,
+        "schema_introspection": false,
+        "real_schema_access": false,
+        "real_data_access": false,
+        "database_mutation": false,
+        "sqlite_postgres_mysql_client": false,
+        "orm_usage": false,
+        "langchain_usage": false,
+        "llamaindex_usage": false,
+        "sqldatabasetoolkit_usage": false,
+        "subprocess_usage": false,
+        "shell_execution": false,
+        "command_execution": false,
+        "file_mutation": false,
+        "network_access": false,
+        "env_access": false,
+        "credential_access": false,
+        "user_data_access": false,
+        "sdk_model_runtime_access": false,
+        "kerniq_runtime_call": false,
+        "e2b_handoff": false
+      }
+    },
+    {
+      "fixture_id": "sql_agent_fail_sql_execution_requested",
+      "fixture_purpose": "fail closed when SQL execution is requested",
+      "proposal_id": "proposal:synthetic:sql-agent:008",
+      "agent_profile": "sql-proposal-agent-candidate-v0",
+      "natural_language_request": "synthetic_request_execution_marker",
+      "sql_dialect": "synthetic_dialect_label",
+      "sql_candidate": "inert_sql_intent_execution_marker_008",
+      "sql_operation_type": "read_only_query_proposal",
+      "declared_tables": [
+        "synthetic_table_theta"
+      ],
+      "declared_columns": [
+        "synthetic_column_count"
+      ],
+      "declared_side_effects": [
+        "synthetic_execution_request_marker"
+      ],
+      "read_write_class": "declared-read-only",
+      "risk_markers": [
+        "sql_execution_requested"
+      ],
+      "where_clause_present": true,
+      "limit_clause_present": true,
+      "credential_scope": [],
+      "user_data_scope": [],
+      "db_connection_scope": [],
+      "schema_source": "synthetic",
+      "runtime_target": "no-runtime",
+      "dry_run": true,
+      "expected_dhms_decision": "FAIL_CLOSED",
+      "expected_fail_closed_reason": "sql_execution_requested",
+      "non_execution_assertions": {
+        "sql_execution": false,
+        "db_connection": false,
+        "schema_introspection": false,
+        "real_schema_access": false,
+        "real_data_access": false,
+        "database_mutation": false,
+        "sqlite_postgres_mysql_client": false,
+        "orm_usage": false,
+        "langchain_usage": false,
+        "llamaindex_usage": false,
+        "sqldatabasetoolkit_usage": false,
+        "subprocess_usage": false,
+        "shell_execution": false,
+        "command_execution": false,
+        "file_mutation": false,
+        "network_access": false,
+        "env_access": false,
+        "credential_access": false,
+        "user_data_access": false,
+        "sdk_model_runtime_access": false,
+        "kerniq_runtime_call": false,
+        "e2b_handoff": false
+      }
+    },
+    {
+      "fixture_id": "sql_agent_fail_database_mutation_without_safe_boundary",
+      "fixture_purpose": "fail closed when database mutation is declared without safe boundary",
+      "proposal_id": "proposal:synthetic:sql-agent:009",
+      "agent_profile": "sql-proposal-agent-candidate-v0",
+      "natural_language_request": "synthetic_request_mutation_marker",
+      "sql_dialect": "synthetic_dialect_label",
+      "sql_candidate": "inert_sql_intent_mutation_marker_009",
+      "sql_operation_type": "write_or_mutation_proposal",
+      "declared_tables": [
+        "synthetic_table_iota"
+      ],
+      "declared_columns": [
+        "synthetic_column_value"
+      ],
+      "declared_side_effects": [
+        "synthetic_mutation_marker"
+      ],
+      "read_write_class": "declared-write",
+      "risk_markers": [
+        "database_mutation_without_safe_boundary"
+      ],
+      "where_clause_present": false,
+      "limit_clause_present": false,
+      "credential_scope": [],
+      "user_data_scope": [],
+      "db_connection_scope": [],
+      "schema_source": "synthetic",
+      "runtime_target": "no-runtime",
+      "dry_run": true,
+      "expected_dhms_decision": "FAIL_CLOSED",
+      "expected_fail_closed_reason": "database_mutation_without_safe_boundary",
+      "non_execution_assertions": {
+        "sql_execution": false,
+        "db_connection": false,
+        "schema_introspection": false,
+        "real_schema_access": false,
+        "real_data_access": false,
+        "database_mutation": false,
+        "sqlite_postgres_mysql_client": false,
+        "orm_usage": false,
+        "langchain_usage": false,
+        "llamaindex_usage": false,
+        "sqldatabasetoolkit_usage": false,
+        "subprocess_usage": false,
+        "shell_execution": false,
+        "command_execution": false,
+        "file_mutation": false,
+        "network_access": false,
+        "env_access": false,
+        "credential_access": false,
+        "user_data_access": false,
+        "sdk_model_runtime_access": false,
+        "kerniq_runtime_call": false,
+        "e2b_handoff": false
+      }
+    },
+    {
+      "fixture_id": "sql_agent_fail_third_party_or_external_runtime_marker",
+      "fixture_purpose": "fail closed when third-party or external runtime markers appear",
+      "proposal_id": "proposal:synthetic:sql-agent:010",
+      "agent_profile": "sql-proposal-agent-candidate-v0",
+      "natural_language_request": "synthetic_request_third_party_runtime_marker",
+      "sql_dialect": "synthetic_dialect_label",
+      "sql_candidate": "inert_sql_intent_third_party_runtime_marker_010",
+      "sql_operation_type": "third_party_or_external_runtime_marker",
+      "declared_tables": [
+        "synthetic_table_kappa"
+      ],
+      "declared_columns": [
+        "synthetic_column_marker"
+      ],
+      "declared_side_effects": [],
+      "read_write_class": "declared-unsupported",
+      "risk_markers": [
+        "third_party_or_external_runtime_marker",
+        "inert_marker_langchain",
+        "inert_marker_llamaindex",
+        "inert_marker_sqldatabasetoolkit",
+        "inert_marker_kerniq",
+        "inert_marker_e2b"
+      ],
+      "where_clause_present": false,
+      "limit_clause_present": false,
+      "credential_scope": [],
+      "user_data_scope": [],
+      "db_connection_scope": [],
+      "schema_source": "synthetic",
+      "runtime_target": "no-runtime",
+      "dry_run": true,
+      "expected_dhms_decision": "FAIL_CLOSED",
+      "expected_fail_closed_reason": "third_party_or_external_runtime_marker",
+      "non_execution_assertions": {
+        "sql_execution": false,
+        "db_connection": false,
+        "schema_introspection": false,
+        "real_schema_access": false,
+        "real_data_access": false,
+        "database_mutation": false,
+        "sqlite_postgres_mysql_client": false,
+        "orm_usage": false,
+        "langchain_usage": false,
+        "llamaindex_usage": false,
+        "sqldatabasetoolkit_usage": false,
+        "subprocess_usage": false,
+        "shell_execution": false,
+        "command_execution": false,
+        "file_mutation": false,
+        "network_access": false,
+        "env_access": false,
+        "credential_access": false,
+        "user_data_access": false,
+        "sdk_model_runtime_access": false,
+        "kerniq_runtime_call": false,
+        "e2b_handoff": false
+      }
+    }
+  ]
+}

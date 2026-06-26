@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.4.4.1 README Current Status Sync`
+* Current package milestone: `v2.5.0 LangChain SQL Agent Emit-Only Adapter Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2068,6 +2068,28 @@ install, import, invoke, adapt, or integrate LangChain. It must not add SQL
 execution, DB connection, schema introspection, model API call, KerniQ, E2B,
 release, tag, or runtime behavior.
 
+v2.5.0 defines the planning-only boundary for a future LangChain SQL Agent
+Emit-Only Adapter Candidate. It preserves v2.4.4.1 status and treats LangChain
+as an untrusted third-party proposal/runtime subject. The future adapter concept
+may eventually observe proposed LangChain SQL-agent actions before execution and
+emit inert DHMS proposal metadata only, but v2.5.0 does not implement an
+adapter, hook, parser, runner, CLI, schema, fixture, dependency, SQL execution,
+DB connection, schema introspection, model API call, KerniQ, E2B, release, tag,
+or runtime behavior.
+
+Current/completed milestone:
+
+`v2.5.0 LangChain SQL Agent Emit-Only Adapter Planning`
+
+Next recommended milestone:
+
+`v2.5.1 LangChain SQL Agent Emit-Only Adapter Contract`
+
+v2.5.1 must be prose-contract-only. It must not add code, fixtures, validators,
+schemas, parser, runner, CLI, dependencies, LangChain install/import/invocation
+or integration, SQLDatabaseToolkit usage, SQL execution, DB connection, schema
+introspection, model API call, KerniQ, E2B, release, tag, or runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2122,4 +2144,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_5_0_LANGCHAIN_SQL_AGENT_EMIT_ONLY_ADAPTER_PLANNING`
+`READY_FOR_V2_5_1_LANGCHAIN_SQL_AGENT_EMIT_ONLY_ADAPTER_CONTRACT`

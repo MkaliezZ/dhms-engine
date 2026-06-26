@@ -9,8 +9,9 @@ DHMS began as memory/context/tool-state perturbation testing. The current `agent
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v2.1.4 Bounded Local Mock-to-Real Fixture Validation Result Review and Freeze`.
-* Previous milestone: `v2.1.3 Bounded Local Mock-to-Real Non-Executing Fixture Validation`.
+* Current milestone: `v2.2.4.1 README and Roadmap Current Status Sync`.
+* Previous milestone: `v2.2.4 Bounded Local Proposal Emitter Candidate Validation Result Review and Freeze`.
+* Next recommended milestone: `v2.3.0 SQL Agent Local Emit-Only Test Planning`.
 * Public release: [`DHMS v1.3 Runtime Adapter Boundary Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.3.0-runtime-adapter-boundary-public-evidence-package).
 * Release tag: `v1.3.0-runtime-adapter-boundary-public-evidence-package`.
 * Confirmed tag target commit: `23311e7484e1a603c56a479189463a9d18f97741`.
@@ -27,7 +28,9 @@ v1.4-v1.7 extend the planning chain with [substrate/runtime boundary](docs/dhms_
 
 v2.0.0-v2.0.5 is a real-agent-adjacent planning chain: [planning](docs/dhms_real_agent_integration_preview_planning_v2_0_0.md), [target selection](docs/dhms_real_agent_target_selection_and_threat_boundary_v2_0_1.md), [dry-run contract](docs/dhms_proposal_only_dry_run_contract_v2_0_2.md), [capture plan](docs/dhms_non_executing_real_agent_proposal_capture_plan_v2_0_3.md), [controlled proof planning](docs/dhms_controlled_real_agent_preview_proof_planning_v2_0_4.md), and [freeze](docs/dhms_controlled_real_agent_preview_result_review_and_freeze_v2_0_5.md). It selects the future local mock-to-real agent boundary, defines proposal-only dry-run constraints, plans non-executing proposal capture and controlled preview-proof requirements, then freezes the chain as planning-only, non-executing, and non-production. It does not implement real agent integration, real runtime interception, SDK/runtime integration, parser, runner, adapter, agent hook, CLI command, credential handling, user data handling, or execution behavior.
 
-v2.1.0-v2.1.4 freezes the bounded local mock-to-real fixture validation evidence line: v2.1.1 defined a prose-only contract, v2.1.2 added static inert fixtures, v2.1.3 added deterministic non-executing fixture validation, and v2.1.4 reviewed and froze the result. The line is bounded, local-only, static-fixture-based, deterministic, non-executing, non-production, non-credentialed, non-user-data, and no-runtime. It adds no real-agent integration, KerniQ integration, KerniQ runtime call, E2B integration, E2B handoff, proof runner, capture runner, execution runner, runtime runner, adapter, hook, CLI command, SDK/runtime integration, command execution, file mutation, network access, credential handling, user data handling, or production behavior.
+v2.1.0-v2.1.4 freezes the bounded local mock-to-real fixture validation evidence line: v2.1.1 defined a prose-only contract, v2.1.2 added static inert fixtures, v2.1.3 added deterministic non-executing fixture validation, and v2.1.4 reviewed and froze the result. It adds no real-agent integration, KerniQ integration, E2B handoff, CLI command, SDK/runtime integration, command execution, file mutation, network access, credential handling, user data handling, or production behavior.
+
+v2.2.0-v2.2.4 freezes the bounded local proposal emitter candidate evidence chain: v2.2.0 planning-only profile, v2.2.1 prose-only contract, v2.2.2 exactly 8 static inert fixtures, and v2.2.3 deterministic read-only non-executing validation. The frozen validator result is `fixture_count=8`, `accepted_for_dhms_evaluation=1`, `fail_closed=7`, `kerniq_runtime_calls=0`, and `e2b_handoffs=0`. v2.3.0 is SQL Agent Local Emit-Only Test Planning only; it must not execute SQL, connect to databases, inspect real schemas, integrate KerniQ, call E2B, or add runtime behavior.
 
 ## Public Frozen Claim
 

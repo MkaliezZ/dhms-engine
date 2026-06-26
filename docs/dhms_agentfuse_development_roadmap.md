@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.2.4 Bounded Local Proposal Emitter Candidate Validation Result Review and Freeze`
+* Current package milestone: `v2.2.4.1 README and Roadmap Current Status Sync`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1634,11 +1634,32 @@ Current/completed milestone:
 
 Next recommended milestone:
 
-`v2.3.0 KerniQ Local Emit-Only Test Planning`
+`v2.3.0 SQL Agent Local Emit-Only Test Planning`
 
-v2.3.0 is planning-only. v2.3.0 must not install KerniQ, run KerniQ, invoke
-KerniQ, integrate KerniQ, call E2B, add runtime behavior, or authorize
-execution unless separately approved later.
+v2.2.4.1 synchronizes README and roadmap after the v2.2.4 freeze. It preserves
+the frozen bounded local proposal emitter candidate evidence chain and redirects
+the next proof-line planning direction from KerniQ-first to SQL Agent Local
+Emit-Only Test Planning.
+
+Current/completed milestone:
+
+`v2.2.4.1 README and Roadmap Current Status Sync`
+
+Next recommended milestone:
+
+`v2.3.0 SQL Agent Local Emit-Only Test Planning`
+
+SQL Agent is first because it has a narrower action space, clearer risk
+taxonomy, natural continuity with the DHMS SQL Fuse line, and easier inert
+proposal validation. v2.3.0 is planning-only. The target is SQL Proposal Agent,
+not a real database agent. It may only plan an emit-only SQL proposal envelope.
+It must not connect to any database, execute SQL, read real schemas, read real
+data, mutate databases, use sqlite/postgres/mysql clients, use ORM, access
+credentials, access user data, integrate KerniQ, call E2B, or authorize runtime
+behavior.
+
+KerniQ is moved to a later candidate line after SQL Agent emit-only proof. E2B
+remains later handoff-boundary planning, not an immediate execution target.
 
 ## Development Prompt Pattern
 
@@ -1694,4 +1715,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_3_0_KERNIQ_LOCAL_EMIT_ONLY_TEST_PLANNING`
+`READY_FOR_V2_3_0_SQL_AGENT_LOCAL_EMIT_ONLY_TEST_PLANNING`

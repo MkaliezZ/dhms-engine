@@ -146,6 +146,7 @@ Core public materials:
 * SQL Agent Non-Executing Fixture Validation: [`docs/dhms_sql_agent_non_executing_fixture_validation_v2_3_3.md`](dhms_sql_agent_non_executing_fixture_validation_v2_3_3.md)
 * SQL Agent fixture validator: [`validation/run_dhms_sql_agent_local_emit_only_fixture_validation_v0.py`](../validation/run_dhms_sql_agent_local_emit_only_fixture_validation_v0.py)
 * SQL Agent Fixture Validation Result Review and Freeze: [`docs/dhms_sql_agent_fixture_validation_result_review_and_freeze_v2_3_4.md`](dhms_sql_agent_fixture_validation_result_review_and_freeze_v2_3_4.md)
+* README Current Status Sync v2.3.4.1: [`docs/dhms_readme_current_status_sync_v2_3_4_1.md`](dhms_readme_current_status_sync_v2_3_4_1.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -631,6 +632,8 @@ v0.7.0 does not claim:
 * v2.3.3 SQL Agent Non-Executing Fixture Validation
 * SQL Agent Fixture Validation Result Review and Freeze: [`docs/dhms_sql_agent_fixture_validation_result_review_and_freeze_v2_3_4.md`](dhms_sql_agent_fixture_validation_result_review_and_freeze_v2_3_4.md)
 * v2.3.4 SQL Agent Fixture Validation Result Review and Freeze
+* README Current Status Sync v2.3.4.1: [`docs/dhms_readme_current_status_sync_v2_3_4_1.md`](dhms_readme_current_status_sync_v2_3_4_1.md)
+* v2.3.4.1 README Current Status Sync
 
 Final document verdict:
 

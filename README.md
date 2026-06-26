@@ -9,9 +9,9 @@ DHMS began as memory/context/tool-state perturbation testing. The current `agent
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v2.3.4.1 README Current Status Sync`.
-* Previous milestone: `v2.3.4 SQL Agent Fixture Validation Result Review and Freeze`.
-* Next recommended milestone: `v2.4.0 Third-Party SQL Agent Threat Boundary Review Planning`.
+* Current milestone: `v2.4.4.1 README Current Status Sync`.
+* Previous milestone: `v2.4.4 Third-Party SQL Agent Threat Fixture Validation Result Review and Freeze`.
+* Next recommended milestone: `v2.5.0 LangChain SQL Agent Emit-Only Adapter Planning`.
 * Public release: [`DHMS v1.3 Runtime Adapter Boundary Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.3.0-runtime-adapter-boundary-public-evidence-package).
 * Release tag: `v1.3.0-runtime-adapter-boundary-public-evidence-package`.
 * Confirmed tag target commit: `23311e7484e1a603c56a479189463a9d18f97741`.
@@ -34,7 +34,9 @@ v2.2.0-v2.2.4 freezes the bounded local proposal emitter candidate evidence chai
 
 v2.3.0-v2.3.4 freezes the SQL Agent Local Emit-Only evidence chain: v2.3.0 selected SQL Proposal Agent Candidate as a planning-only target, v2.3.1 defined a prose-only emit-only contract, v2.3.2 added exactly 10 static inert fixtures, v2.3.3 added deterministic read-only validation, and v2.3.4 reviewed and froze the result. The frozen result is `fixture_count=10`, `ACCEPT_FOR_DHMS_EVALUATION=1`, `FAIL_CLOSED=9`, SQL execution attempts `0`, DB connections `0`, schema introspection `0`, LangChain runtime calls `0`, LlamaIndex runtime calls `0`, KerniQ runtime calls `0`, and E2B handoffs `0`. The v2.3.4.1 status sync is documented in [DHMS README Current Status Sync v2.3.4.1](docs/dhms_readme_current_status_sync_v2_3_4_1.md).
 
-v2.4.0 is the next planning/review-only milestone for Third-Party SQL Agent Threat Boundary Review. It may discuss LangChain/LlamaIndex SQL agents as threat-boundary subjects only; it must not integrate, install, run, import, invoke, adapt, execute SQL, connect to databases, inspect schemas, call KerniQ, hand off to E2B, or add runtime behavior.
+v2.4.0-v2.4.4 freezes the third-party SQL Agent threat-boundary evidence chain: v2.4.0 planned the review line, v2.4.1 defined a prose-only threat-boundary contract, v2.4.2 added exactly 16 static inert threat fixtures, v2.4.3 added deterministic read-only validation, and v2.4.4 reviewed and froze the result. The frozen result is `fixture_count=16`, `ACCEPT_FOR_DHMS_EVALUATION=1`, `FAIL_CLOSED=15`, `all_required_fields_present=true`, `all_non_execution_assertions_present=true`, `all_non_execution_assertions_false=true`, `all_threat_fixtures_inert=true`, SQL execution attempts `0`, DB connections `0`, schema introspection `0`, framework imports `0`, framework invocations `0`, model API calls `0`, KerniQ runtime calls `0`, and E2B handoffs `0`. LangChain, LlamaIndex, and domestic LLMs are only threat-boundary subjects so far; DHMS does not install, import, invoke, adapt, or integrate them. The v2.4.4.1 status sync is documented in [DHMS README Current Status Sync v2.4.4.1](docs/dhms_readme_current_status_sync_v2_4_4_1.md).
+
+v2.5.0 is the next planning-only milestone for LangChain SQL Agent Emit-Only Adapter Planning. It must not install, import, invoke, adapt, or integrate LangChain; execute SQL; connect to databases; inspect schemas; call model APIs; call KerniQ; hand off to E2B; or add runtime behavior.
 
 ## Public Frozen Claim
 

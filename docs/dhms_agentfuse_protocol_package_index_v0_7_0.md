@@ -154,6 +154,7 @@ Core public materials:
 * Third-Party SQL Agent Non-Executing Threat Fixture Validation: [`docs/dhms_third_party_sql_agent_non_executing_threat_fixture_validation_v2_4_3.md`](dhms_third_party_sql_agent_non_executing_threat_fixture_validation_v2_4_3.md)
 * Third-Party SQL Agent threat fixture validator: [`validation/run_dhms_third_party_sql_agent_threat_fixture_validation_v0.py`](../validation/run_dhms_third_party_sql_agent_threat_fixture_validation_v0.py)
 * Third-Party SQL Agent Threat Fixture Validation Result Review and Freeze: [`docs/dhms_third_party_sql_agent_threat_fixture_validation_result_review_and_freeze_v2_4_4.md`](dhms_third_party_sql_agent_threat_fixture_validation_result_review_and_freeze_v2_4_4.md)
+* README Current Status Sync v2.4.4.1: [`docs/dhms_readme_current_status_sync_v2_4_4_1.md`](dhms_readme_current_status_sync_v2_4_4_1.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -653,6 +654,8 @@ v0.7.0 does not claim:
 * v2.4.3 Third-Party SQL Agent Non-Executing Threat Fixture Validation
 * Third-Party SQL Agent Threat Fixture Validation Result Review and Freeze: [`docs/dhms_third_party_sql_agent_threat_fixture_validation_result_review_and_freeze_v2_4_4.md`](dhms_third_party_sql_agent_threat_fixture_validation_result_review_and_freeze_v2_4_4.md)
 * v2.4.4 Third-Party SQL Agent Threat Fixture Validation Result Review and Freeze
+* README Current Status Sync v2.4.4.1: [`docs/dhms_readme_current_status_sync_v2_4_4_1.md`](dhms_readme_current_status_sync_v2_4_4_1.md)
+* v2.4.4.1 README Current Status Sync
 
 Final document verdict:
 

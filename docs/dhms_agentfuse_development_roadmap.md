@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.4.4 Third-Party SQL Agent Threat Fixture Validation Result Review and Freeze`
+* Current package milestone: `v2.4.4.1 README Current Status Sync`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2047,6 +2047,27 @@ validators, schemas, parser, runner, CLI, dependencies, LangChain/LlamaIndex
 integration, SQL execution, DB connection, model API call, KerniQ, E2B, release,
 tag, or runtime behavior.
 
+v2.4.4.1 syncs README, package index, and roadmap after the v2.4.4 third-party
+SQL Agent threat-boundary evidence-chain freeze. It preserves the frozen result:
+16 static inert fixtures, 1 `ACCEPT_FOR_DHMS_EVALUATION`, 15 `FAIL_CLOSED`,
+all required fields present, all non-execution assertions present and false,
+all threat fixtures inert, and zero SQL execution attempts, DB connections,
+schema introspection, framework imports, framework invocations, model API calls,
+KerniQ runtime calls, and E2B handoffs.
+
+Current/completed milestone:
+
+`v2.4.4.1 README Current Status Sync`
+
+Next recommended milestone:
+
+`v2.5.0 LangChain SQL Agent Emit-Only Adapter Planning`
+
+v2.5.0 must be planning-only unless explicitly approved later. It must not
+install, import, invoke, adapt, or integrate LangChain. It must not add SQL
+execution, DB connection, schema introspection, model API call, KerniQ, E2B,
+release, tag, or runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2101,4 +2122,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_4_4_1_README_CURRENT_STATUS_SYNC`
+`READY_FOR_V2_5_0_LANGCHAIN_SQL_AGENT_EMIT_ONLY_ADAPTER_PLANNING`

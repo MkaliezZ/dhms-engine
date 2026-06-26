@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.3.2 SQL Agent Static Proposal Fixtures`
+* Current package milestone: `v2.3.3 SQL Agent Non-Executing Fixture Validation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1822,6 +1822,44 @@ SQL execution, DB connection, schema introspection, parser-triggered execution,
 runner behavior beyond the approved non-executing validator, CLI behavior,
 LangChain, LlamaIndex, SQLDatabaseToolkit, KerniQ, E2B, or runtime behavior.
 
+v2.3.3 adds deterministic read-only validation for the v2.3.2 static SQL Agent
+fixtures. The validator reads only the committed fixture manifest, parses JSON
+only, checks required inert boundaries, and prints deterministic pass/fail
+markers. It does not modify fixtures or add SQL execution, DB connection,
+schema introspection, parser-triggered execution, runner behavior, CLI behavior,
+LangChain, LlamaIndex, SQLDatabaseToolkit, KerniQ, E2B, or runtime behavior.
+
+Validation summary:
+
+* exactly 10 fixtures checked
+* exactly 1 `ACCEPT_FOR_DHMS_EVALUATION`
+* exactly 9 `FAIL_CLOSED`
+* required fields checked
+* non-execution assertions checked
+* inert SQL candidate markers checked
+* accepted fixture boundary checked
+* fail-closed reason coverage checked
+* third-party runtime markers constrained to inert fail-closed marker usage
+* no SQL execution
+* no DB connection
+* no schema introspection
+* no LangChain integration
+* no LlamaIndex integration
+* no KerniQ integration or runtime call
+* no E2B integration or handoff
+
+Current/completed milestone:
+
+`v2.3.3 SQL Agent Non-Executing Fixture Validation`
+
+Next recommended milestone:
+
+`v2.3.4 SQL Agent Fixture Validation Result Review and Freeze`
+
+v2.3.4 must be docs-only result review and freeze. It must not add code,
+fixtures, schema, parser, runner, validator, CLI, SQL execution, DB connection,
+LangChain, LlamaIndex, SQLDatabaseToolkit, KerniQ, E2B, or runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -1876,4 +1914,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_3_3_SQL_AGENT_NON_EXECUTING_FIXTURE_VALIDATION`
+`READY_FOR_V2_3_4_SQL_AGENT_FIXTURE_VALIDATION_RESULT_REVIEW_AND_FREEZE`

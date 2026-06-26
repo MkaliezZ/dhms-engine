@@ -143,6 +143,8 @@ Core public materials:
 * SQL Agent Local Emit-Only Contract: [`docs/dhms_sql_agent_local_emit_only_contract_v2_3_1.md`](dhms_sql_agent_local_emit_only_contract_v2_3_1.md)
 * SQL Agent Static Proposal Fixtures: [`docs/dhms_sql_agent_static_proposal_fixtures_v2_3_2.md`](dhms_sql_agent_static_proposal_fixtures_v2_3_2.md)
 * SQL Agent static proposal fixtures: [`benchmarks/dhms_sql_agent_local_emit_only_v0/proposals.json`](../benchmarks/dhms_sql_agent_local_emit_only_v0/proposals.json)
+* SQL Agent Non-Executing Fixture Validation: [`docs/dhms_sql_agent_non_executing_fixture_validation_v2_3_3.md`](dhms_sql_agent_non_executing_fixture_validation_v2_3_3.md)
+* SQL Agent fixture validator: [`validation/run_dhms_sql_agent_local_emit_only_fixture_validation_v0.py`](../validation/run_dhms_sql_agent_local_emit_only_fixture_validation_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -623,6 +625,9 @@ v0.7.0 does not claim:
 * SQL Agent Static Proposal Fixtures: [`docs/dhms_sql_agent_static_proposal_fixtures_v2_3_2.md`](dhms_sql_agent_static_proposal_fixtures_v2_3_2.md)
 * SQL Agent static proposal fixtures: [`benchmarks/dhms_sql_agent_local_emit_only_v0/proposals.json`](../benchmarks/dhms_sql_agent_local_emit_only_v0/proposals.json)
 * v2.3.2 SQL Agent Static Proposal Fixtures
+* SQL Agent Non-Executing Fixture Validation: [`docs/dhms_sql_agent_non_executing_fixture_validation_v2_3_3.md`](dhms_sql_agent_non_executing_fixture_validation_v2_3_3.md)
+* SQL Agent fixture validator: [`validation/run_dhms_sql_agent_local_emit_only_fixture_validation_v0.py`](../validation/run_dhms_sql_agent_local_emit_only_fixture_validation_v0.py)
+* v2.3.3 SQL Agent Non-Executing Fixture Validation
 
 Final document verdict:
 

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.3.4.1 README Current Status Sync`
+* Current package milestone: `v2.4.0 Third-Party SQL Agent Threat Boundary Review Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1916,6 +1916,46 @@ install, run, import, invoke, or adapt LangChain/LlamaIndex. It must not add SQL
 execution, DB connection, schema introspection, real schema/data access, CLI,
 runner, adapter, KerniQ, E2B, release, tag, or runtime behavior.
 
+v2.4.0 opens the Third-Party SQL Agent Threat Boundary Review line after the
+frozen v2.3 SQL Agent Local Emit-Only evidence chain. It reviews LangChain SQL
+Agent, LlamaIndex SQL Agent / query engine style systems, and future
+OpenAI-compatible domestic LLM-backed agent runtimes only as threat-boundary
+subjects. It adds no code, fixtures, validators, schemas, parser, runner, CLI,
+dependencies, framework integration, model API calls, SQL execution, DB
+connection, schema introspection, KerniQ, E2B, release, tag, or runtime
+behavior.
+
+Planned v2.4.0 review surfaces:
+
+* tool selection
+* tool argument generation
+* schema discovery request
+* table listing request
+* query generation
+* query checking
+* SQL execution request
+* result readback
+* retry / self-correction loop
+* DB credential request
+* DB connection request
+* unsafe write or mutation intent
+* hidden runtime behavior
+* framework-managed tool loop
+* model-dependent proposal variance
+
+Current/completed milestone:
+
+`v2.4.0 Third-Party SQL Agent Threat Boundary Review Planning`
+
+Next recommended milestone:
+
+`v2.4.1 Third-Party SQL Agent Threat Boundary Contract`
+
+v2.4.1 must be prose-contract-only. It must not add code, fixtures, validators,
+schemas, parser, runner, CLI, dependencies, LangChain/LlamaIndex integration,
+SQL execution, DB connection, model API call, KerniQ, E2B, release, tag, or
+runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -1970,4 +2010,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_4_0_THIRD_PARTY_SQL_AGENT_THREAT_BOUNDARY_REVIEW_PLANNING`
+`READY_FOR_V2_4_1_THIRD_PARTY_SQL_AGENT_THREAT_BOUNDARY_CONTRACT`

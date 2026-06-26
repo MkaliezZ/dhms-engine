@@ -147,6 +147,7 @@ Core public materials:
 * SQL Agent fixture validator: [`validation/run_dhms_sql_agent_local_emit_only_fixture_validation_v0.py`](../validation/run_dhms_sql_agent_local_emit_only_fixture_validation_v0.py)
 * SQL Agent Fixture Validation Result Review and Freeze: [`docs/dhms_sql_agent_fixture_validation_result_review_and_freeze_v2_3_4.md`](dhms_sql_agent_fixture_validation_result_review_and_freeze_v2_3_4.md)
 * README Current Status Sync v2.3.4.1: [`docs/dhms_readme_current_status_sync_v2_3_4_1.md`](dhms_readme_current_status_sync_v2_3_4_1.md)
+* Third-Party SQL Agent Threat Boundary Review Planning: [`docs/dhms_third_party_sql_agent_threat_boundary_review_planning_v2_4_0.md`](dhms_third_party_sql_agent_threat_boundary_review_planning_v2_4_0.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -634,6 +635,8 @@ v0.7.0 does not claim:
 * v2.3.4 SQL Agent Fixture Validation Result Review and Freeze
 * README Current Status Sync v2.3.4.1: [`docs/dhms_readme_current_status_sync_v2_3_4_1.md`](dhms_readme_current_status_sync_v2_3_4_1.md)
 * v2.3.4.1 README Current Status Sync
+* Third-Party SQL Agent Threat Boundary Review Planning: [`docs/dhms_third_party_sql_agent_threat_boundary_review_planning_v2_4_0.md`](dhms_third_party_sql_agent_threat_boundary_review_planning_v2_4_0.md)
+* v2.4.0 Third-Party SQL Agent Threat Boundary Review Planning
 
 Final document verdict:
 

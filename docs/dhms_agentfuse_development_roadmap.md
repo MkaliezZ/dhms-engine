@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.2.0 Bounded Local Proposal Emitter Candidate Planning`
+* Current package milestone: `v2.2.1 Bounded Local Proposal Emitter Candidate Contract`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1424,11 +1424,63 @@ Next recommended milestone:
 
 `v2.2.1 Bounded Local Proposal Emitter Candidate Contract`
 
-v2.2.1 should be prose-contract-only. It must not authorize KerniQ integration,
+v2.2.1 is prose-contract-only. It does not authorize KerniQ integration,
 KerniQ runtime invocation, E2B handoff, proof runner behavior, capture runner
 behavior, parser-triggered execution, adapter behavior, hooks, CLI commands,
 SDK/runtime integration, command execution, file mutation, network access,
 credential handling, user data handling, or production behavior.
+
+v2.2.1 defines the prose-only contract for a future bounded local proposal
+emitter candidate. It converts the v2.2.0 planning boundary into contract
+language for inert proposal metadata without adding implementation approval,
+machine schema, fixtures, parser, runner, validator, CLI, adapter, hook, or
+execution path.
+
+Scope:
+
+* docs-only and prose-contract-only milestone
+* future emitter-candidate contract only
+* preserves that v2.2.1 does not authorize implementation
+* preserves that v2.2.1 does not modify README, validator, or fixtures
+* no code
+* no schema files
+* no JSON examples
+* no fixtures
+* no parser
+* no runner
+* no validator
+* no CLI command
+* no quickstart command
+* no adapter
+* no agent hook
+* no execution path
+* no subprocess usage
+* no shell or command execution
+* no file mutation
+* no network access
+* no SDK/model/runtime access
+* no credential handling
+* no user data handling
+* no production runtime claim
+* no real agent integration claim
+* no KerniQ integration
+* no KerniQ invocation
+* no KerniQ runtime call
+* no KerniQ command
+* no E2B integration
+* no E2B handoff
+* no E2B sandbox
+
+Current/completed milestone:
+
+`v2.2.1 Bounded Local Proposal Emitter Candidate Contract`
+
+Next recommended milestone:
+
+`v2.2.2 Bounded Local Proposal Emitter Candidate Static Fixtures`
+
+v2.2.2 must be static-fixture-only. It must not add parser, runner, validator,
+CLI, KerniQ integration, E2B integration, or execution behavior.
 
 ## Development Prompt Pattern
 
@@ -1484,4 +1536,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_2_1_BOUNDED_LOCAL_PROPOSAL_EMITTER_CANDIDATE_CONTRACT`
+`READY_FOR_V2_2_2_BOUNDED_LOCAL_PROPOSAL_EMITTER_CANDIDATE_STATIC_FIXTURES`

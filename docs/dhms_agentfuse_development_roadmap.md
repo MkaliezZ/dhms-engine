@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.4.2 Third-Party SQL Agent Static Threat Fixtures`
+* Current package milestone: `v2.4.3 Third-Party SQL Agent Non-Executing Threat Fixture Validation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2004,6 +2004,27 @@ fixtures. It must not add SQL execution, DB connection, schema introspection,
 framework runtime, model API call, KerniQ, E2B, release, tag, or runtime
 behavior.
 
+v2.4.3 adds deterministic read-only validation for the v2.4.2 static inert
+third-party SQL Agent threat fixtures. The validator confirms 16 fixtures,
+1 `ACCEPT_FOR_DHMS_EVALUATION`, 15 `FAIL_CLOSED`, complete fail-closed
+coverage, required fields, non-execution assertions, and inert string
+boundaries. It adds no fixture changes, schema, parser, runner, CLI, dependency
+changes, framework install/import/invocation, SQL execution, DB connection,
+model API call, KerniQ, E2B, release, tag, or runtime behavior.
+
+Current/completed milestone:
+
+`v2.4.3 Third-Party SQL Agent Non-Executing Threat Fixture Validation`
+
+Next recommended milestone:
+
+`v2.4.4 Third-Party SQL Agent Threat Fixture Validation Result Review and Freeze`
+
+v2.4.4 must be docs-only result review/freeze. It must not add code, fixtures,
+validators, schemas, parser, runner, CLI, dependencies, LangChain/LlamaIndex
+integration, SQL execution, DB connection, model API call, KerniQ, E2B, release,
+tag, or runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2058,4 +2079,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_4_3_THIRD_PARTY_SQL_AGENT_NON_EXECUTING_THREAT_FIXTURE_VALIDATION`
+`READY_FOR_V2_4_4_THIRD_PARTY_SQL_AGENT_THREAT_FIXTURE_VALIDATION_RESULT_REVIEW_AND_FREEZE`

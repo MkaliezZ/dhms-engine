@@ -151,6 +151,8 @@ Core public materials:
 * Third-Party SQL Agent Threat Boundary Contract: [`docs/dhms_third_party_sql_agent_threat_boundary_contract_v2_4_1.md`](dhms_third_party_sql_agent_threat_boundary_contract_v2_4_1.md)
 * Third-Party SQL Agent Static Threat Fixtures: [`docs/dhms_third_party_sql_agent_static_threat_fixtures_v2_4_2.md`](dhms_third_party_sql_agent_static_threat_fixtures_v2_4_2.md)
 * Third-Party SQL Agent threat fixtures: [`benchmarks/dhms_third_party_sql_agent_threat_boundary_v0/threat_fixtures.json`](../benchmarks/dhms_third_party_sql_agent_threat_boundary_v0/threat_fixtures.json)
+* Third-Party SQL Agent Non-Executing Threat Fixture Validation: [`docs/dhms_third_party_sql_agent_non_executing_threat_fixture_validation_v2_4_3.md`](dhms_third_party_sql_agent_non_executing_threat_fixture_validation_v2_4_3.md)
+* Third-Party SQL Agent threat fixture validator: [`validation/run_dhms_third_party_sql_agent_threat_fixture_validation_v0.py`](../validation/run_dhms_third_party_sql_agent_threat_fixture_validation_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -645,6 +647,9 @@ v0.7.0 does not claim:
 * Third-Party SQL Agent Static Threat Fixtures: [`docs/dhms_third_party_sql_agent_static_threat_fixtures_v2_4_2.md`](dhms_third_party_sql_agent_static_threat_fixtures_v2_4_2.md)
 * Third-Party SQL Agent threat fixtures: [`benchmarks/dhms_third_party_sql_agent_threat_boundary_v0/threat_fixtures.json`](../benchmarks/dhms_third_party_sql_agent_threat_boundary_v0/threat_fixtures.json)
 * v2.4.2 Third-Party SQL Agent Static Threat Fixtures
+* Third-Party SQL Agent Non-Executing Threat Fixture Validation: [`docs/dhms_third_party_sql_agent_non_executing_threat_fixture_validation_v2_4_3.md`](dhms_third_party_sql_agent_non_executing_threat_fixture_validation_v2_4_3.md)
+* Third-Party SQL Agent threat fixture validator: [`validation/run_dhms_third_party_sql_agent_threat_fixture_validation_v0.py`](../validation/run_dhms_third_party_sql_agent_threat_fixture_validation_v0.py)
+* v2.4.3 Third-Party SQL Agent Non-Executing Threat Fixture Validation
 
 Final document verdict:
 

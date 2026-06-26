@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.4.0 Third-Party SQL Agent Threat Boundary Review Planning`
+* Current package milestone: `v2.4.1 Third-Party SQL Agent Threat Boundary Contract`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -1956,6 +1956,33 @@ schemas, parser, runner, CLI, dependencies, LangChain/LlamaIndex integration,
 SQL execution, DB connection, model API call, KerniQ, E2B, release, tag, or
 runtime behavior.
 
+v2.4.1 defines the prose-only contract for reviewing third-party SQL Agent
+threat boundaries. It keeps third-party frameworks and model providers as
+untrusted proposal subjects, requires DHMS observation before execution, and
+sets fail-closed behavior for unobserved runtime action, executable tool input,
+DB connection, schema introspection, SQL execution, credentials, user data,
+mutation/write intent, framework loops, retry loops, result readback, missing
+adapter boundary, missing evidence, unsupported model behavior, and unsupported
+domestic LLM tool formats.
+
+v2.4.1 remains docs-only and prose-contract-only. It adds no code, fixtures,
+validators, schemas, JSON examples, parser, runner, CLI, dependencies,
+LangChain/LlamaIndex integration, SQLDatabaseToolkit usage, SQL execution, DB
+connection, model API call, KerniQ, E2B, release, tag, or runtime behavior.
+
+Current/completed milestone:
+
+`v2.4.1 Third-Party SQL Agent Threat Boundary Contract`
+
+Next recommended milestone:
+
+`v2.4.2 Third-Party SQL Agent Static Threat Fixtures`
+
+v2.4.2 may add static inert threat fixtures only. It must not add code,
+validator, schema, parser, runner, CLI, dependencies, LangChain/LlamaIndex
+integration, SQL execution, DB connection, model API call, KerniQ, E2B, release,
+tag, or runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2010,4 +2037,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_4_1_THIRD_PARTY_SQL_AGENT_THREAT_BOUNDARY_CONTRACT`
+`READY_FOR_V2_4_2_THIRD_PARTY_SQL_AGENT_STATIC_THREAT_FIXTURES`

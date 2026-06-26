@@ -1482,6 +1482,14 @@ Next recommended milestone:
 v2.2.2 must be static-fixture-only. It must not add parser, runner, validator,
 CLI, KerniQ integration, E2B integration, or execution behavior.
 
+v2.2.1.1 Package Index Link Fix is a tiny docs-only patch that confirms the
+package index links the v2.2.1 contract document immediately after the v2.2.0
+planning entry. It does not advance the current milestone, change the next
+recommended milestone, modify README, modify the v2.2.1 contract document, add
+code, add schema, add examples, add fixtures, add parser, add runner, add
+validator, add CLI, add adapter, add hook, add execution path, add KerniQ
+integration, or add E2B handoff.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:

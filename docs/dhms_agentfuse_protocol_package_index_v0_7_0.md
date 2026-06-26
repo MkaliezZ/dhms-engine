@@ -593,8 +593,8 @@ v0.7.0 does not claim:
 * v2.1.4 Bounded Local Mock-to-Real Fixture Validation Result Review and Freeze
 * v2.1.4.1 README Current Status Sync
 * v2.2.0 Bounded Local Proposal Emitter Candidate Planning
-* v2.2.1 Bounded Local Proposal Emitter Candidate Contract
 * Bounded Local Proposal Emitter Candidate Contract: [`docs/dhms_bounded_local_proposal_emitter_candidate_contract_v2_2_1.md`](dhms_bounded_local_proposal_emitter_candidate_contract_v2_2_1.md)
+* v2.2.1 Bounded Local Proposal Emitter Candidate Contract
 
 Final document verdict:
 

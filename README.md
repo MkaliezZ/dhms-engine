@@ -9,9 +9,9 @@ DHMS began as memory/context/tool-state perturbation testing. The current `agent
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v2.4.4.1 README Current Status Sync`.
-* Previous milestone: `v2.4.4 Third-Party SQL Agent Threat Fixture Validation Result Review and Freeze`.
-* Next recommended milestone: `v2.5.0 LangChain SQL Agent Emit-Only Adapter Planning`.
+* Current milestone: `v2.5.4.1 README Current Status Sync`.
+* Previous milestone: `v2.5.4 LangChain SQL Agent Adapter Fixture Validation Result Review and Freeze`.
+* Next recommended milestone: `v2.6.0 LangChain SQL Agent Emit-Only Adapter Skeleton Planning`.
 * Public release: [`DHMS v1.3 Runtime Adapter Boundary Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.3.0-runtime-adapter-boundary-public-evidence-package).
 * Release tag: `v1.3.0-runtime-adapter-boundary-public-evidence-package`.
 * Confirmed tag target commit: `23311e7484e1a603c56a479189463a9d18f97741`.
@@ -36,7 +36,9 @@ v2.3.0-v2.3.4 freezes the SQL Agent Local Emit-Only evidence chain: v2.3.0 selec
 
 v2.4.0-v2.4.4 freezes the third-party SQL Agent threat-boundary evidence chain: v2.4.0 planned the review line, v2.4.1 defined a prose-only threat-boundary contract, v2.4.2 added exactly 16 static inert threat fixtures, v2.4.3 added deterministic read-only validation, and v2.4.4 reviewed and froze the result. The frozen result is `fixture_count=16`, `ACCEPT_FOR_DHMS_EVALUATION=1`, `FAIL_CLOSED=15`, `all_required_fields_present=true`, `all_non_execution_assertions_present=true`, `all_non_execution_assertions_false=true`, `all_threat_fixtures_inert=true`, SQL execution attempts `0`, DB connections `0`, schema introspection `0`, framework imports `0`, framework invocations `0`, model API calls `0`, KerniQ runtime calls `0`, and E2B handoffs `0`. LangChain, LlamaIndex, and domestic LLMs are only threat-boundary subjects so far; DHMS does not install, import, invoke, adapt, or integrate them. The v2.4.4.1 status sync is documented in [DHMS README Current Status Sync v2.4.4.1](docs/dhms_readme_current_status_sync_v2_4_4_1.md).
 
-v2.5.0 is the next planning-only milestone for LangChain SQL Agent Emit-Only Adapter Planning. It must not install, import, invoke, adapt, or integrate LangChain; execute SQL; connect to databases; inspect schemas; call model APIs; call KerniQ; hand off to E2B; or add runtime behavior.
+v2.5.0-v2.5.4 freezes the LangChain SQL Agent emit-only adapter boundary evidence chain: v2.5.0 planned the future boundary, v2.5.1 converted it into a prose-only contract, v2.5.2 added 17 static inert adapter-boundary fixtures, v2.5.3 added deterministic read-only validation, and v2.5.4 reviewed and froze the result. The frozen result is `fixture_count=17`, `accepted_for_dhms_evaluation=1`, `fail_closed=16`, `all_required_fields_present=true`, `all_non_execution_assertions_present=true`, `all_non_execution_assertions_false=true`, `all_adapter_fixtures_inert=true`, `all_fail_closed_reasons_covered_once=true`, SQL execution attempts `0`, DB connections `0`, schema introspection `0`, result readbacks `0`, LangChain installs/imports/invocations/integrations `0`, SQLDatabaseToolkit integrations `0`, model API calls `0`, credential accesses `0`, user data accesses `0`, KerniQ runtime calls `0`, E2B handoffs `0`, and runtime behaviors `0`. DHMS has frozen a LangChain SQL Agent emit-only adapter boundary evidence chain showing deterministic validation without LangChain installation/import/invocation/integration, SQLDatabaseToolkit integration, SQL execution, database connection, schema introspection, result readback, model API calls, credential access, user-data access, KerniQ runtime calls, E2B handoffs, or runtime behavior. Details: [freeze](docs/dhms_langchain_sql_agent_adapter_fixture_validation_result_review_and_freeze_v2_5_4.md), [status sync](docs/dhms_readme_current_status_sync_v2_5_4_1.md).
+
+v2.6.0 is the next planning-only milestone for LangChain SQL Agent Emit-Only Adapter Skeleton Planning. It must not add code, fixtures, validators, schemas, parser, runner, CLI, dependencies, LangChain install/import/invocation/integration, SQLDatabaseToolkit usage, SQL execution, DB connection, schema introspection, model API call, KerniQ, E2B, release, tag, or runtime behavior unless a later prompt explicitly changes that boundary.
 
 ## Public Frozen Claim
 
@@ -139,22 +141,25 @@ Historical milestone details are intentionally kept in the linked docs index.
 DHMS public line does not claim:
 
 * production readiness
-* real agent integration
-* real agent runtime interception
-* real LLM execution
-* real shell execution safety
+* real agent integration / real agent runtime interception / real LLM execution
+* LangChain integration / LangChain SQL Agent support / SQLDatabaseToolkit support
+* SQL agent implementation / SQL execution support / arbitrary SQL support
+* database connection support / schema introspection support / real schema access / real data access
+* database mutation safety / database client or ORM support / production DB safety
+* model-provider integration / provider SDK integration / agent SDK integration
+* runtime behavior / runtime adapter implementation / adapter/API-client support
+* credential handling / credential safety claim
+* user data safety claim / user data safety certification
+* real shell execution safety / shell execution / command execution
 * local mock-to-real implementation
 * universal agent safety
 * industry-standard status
 * arbitrary tool execution
 * arbitrary command execution support
 * arbitrary terminal support
-* arbitrary SQL support
 * arbitrary file operation support
 * arbitrary HTTP/network support
 * parser / runner / adapter / agent hook / CLI command support
-* runtime adapter implementation
-* adapter/API-client support
 * MCP integration
 * E2B integration
 * Codex integration
@@ -162,15 +167,8 @@ DHMS public line does not claim:
 * Claude Code integration
 * OpenClaw integration
 * DeepSeek integration
-* provider SDK integration
-* agent SDK integration
-* command execution
-* shell execution
 * file mutation support
 * network execution support
-* credential handling
-* user data safety certification
-* production DB safety
 * production filesystem safety
 * production HTTP/network safety
 

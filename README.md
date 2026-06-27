@@ -9,9 +9,9 @@ DHMS began as memory/context/tool-state perturbation testing. The current `agent
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current milestone: `v2.6.4.1 README Current Status Sync`.
-* Previous milestone: `v2.6.4 LangChain SQL Agent Adapter Skeleton Shape Validation Result Review and Freeze`.
-* Next recommended milestone: `v2.7.0 LangChain SQL Agent Adapter Skeleton Source Surface Planning` (planning-only).
+* Current milestone: `v2.6.4.2 Pre-Execution Fuse Roadmap Correction`.
+* Previous milestone: `v2.6.4.1 README Current Status Sync`.
+* Corrected next recommended milestone: `v2.7.0 Minimal Pre-Execution Fuse Loop Planning`.
 * Public release: [`DHMS v1.3 Runtime Adapter Boundary Public Evidence Package`](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.3.0-runtime-adapter-boundary-public-evidence-package).
 * Release tag: `v1.3.0-runtime-adapter-boundary-public-evidence-package`.
 * Confirmed tag target commit: `23311e7484e1a603c56a479189463a9d18f97741`.
@@ -40,7 +40,7 @@ v2.5.0-v2.5.4 freezes the LangChain SQL Agent emit-only adapter boundary evidenc
 
 v2.6.0-v2.6.4 freezes the LangChain SQL Agent Adapter Skeleton Shape evidence chain: v2.6.0 opened planning for a future shape candidate, v2.6.1 converted planning into a prose-only contract, v2.6.2 added exactly 17 static inert shape fixtures, v2.6.3 added deterministic read-only stdlib validation, and v2.6.4 reviewed and froze the result. v2.6.4.1 synchronizes README public status. The frozen result is `fixture_count=17`, `ACCEPT_FOR_SHAPE_REVIEW=1`, `FAIL_CLOSED=16`, `all_required_fields_present=true`, `all_non_execution_manifest_assertions_present=true`, `all_non_execution_manifest_assertions_false=true`, `all_non_execution_fixture_assertions_present=true`, `all_non_execution_fixture_assertions_false=true`, `all_shape_fixtures_inert=true`, `all_fail_closed_reasons_covered_once=true`, source files `0`, adapter implementations `0`, skeleton implementations `0`, validators added in the fixture manifest `0`, schemas `0`, CLI surfaces `0`, parsers `0`, runners `0`, hooks `0`, LangChain installs/imports/invocations/integrations/wrappers/callbacks/tools `0`, SQLDatabaseToolkit integrations `0`, SQL execution attempts `0`, DB connections `0`, schema introspection `0`, result readbacks `0`, model API calls `0`, credential accesses `0`, user data accesses `0`, KerniQ runtime calls `0`, E2B handoffs `0`, runtime behaviors `0`, and execution authorizations `0`. The frozen chain adds no code beyond the read-only validator and does not add LangChain support, SQLDatabaseToolkit support, SQL execution, DB access, model APIs, KerniQ/E2B, execution authorization, or runtime behavior. Details: [freeze](docs/dhms_langchain_sql_agent_adapter_skeleton_shape_validation_result_review_and_freeze_v2_6_4.md), [status sync](docs/dhms_readme_current_status_sync_v2_6_4_1.md).
 
-v2.7.0 is the next planning-only milestone for LangChain SQL Agent Adapter Skeleton Source Surface Planning. It is not authorized to add source files, implementation, adapter behavior, skeleton behavior, LangChain integration, SQLDatabaseToolkit usage, SQL execution, DB access, model APIs, KerniQ, E2B, or runtime behavior.
+v2.6.4.2 corrects the roadmap toward the core DHMS identity: a pre-execution fuse loop. The next line is now [v2.7.0 Minimal Pre-Execution Fuse Loop Planning](docs/dhms_pre_execution_fuse_roadmap_correction_v2_6_4_2.md), not source-surface planning. The corrected route is proposal enters, DHMS gate evaluates before execution, decision emitted, executor handoff allowed or blocked, and evidence recorded. This does not claim DHMS has already implemented the pre-execution gate, blocked real LangChain, added LangChain integration, added SQLDatabaseToolkit support, added real SQL Agent support, added runtime integration, or reached production safety.
 
 ## Public Frozen Claim
 

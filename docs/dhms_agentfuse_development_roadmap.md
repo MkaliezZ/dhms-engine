@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.6.4.1 README Current Status Sync`
+* Current package milestone: `v2.6.4.2 Pre-Execution Fuse Roadmap Correction`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2365,9 +2365,59 @@ Current/completed milestone:
 
 Next recommended milestone:
 
-`v2.7.0 LangChain SQL Agent Adapter Skeleton Source Surface Planning`
+`v2.7.0 Minimal Pre-Execution Fuse Loop Planning`
 
-v2.7.0 must be planning-only unless a later prompt explicitly changes that
+v2.6.4.2 corrects the post-v2.6 roadmap toward the core DHMS identity:
+Execution Fuse Protocol. The previous route over-prioritized inert fixtures,
+emit-only contracts, shape-only boundaries, README/status sync, and freeze
+documents. The trace -> normalization -> offline analysis -> dry-run route
+would have produced a black-box analysis system instead of an execution fuse.
+The previous Source Surface Planning direction delayed the first real
+pre-execution gate and risked more shell-building.
+
+v2.3-v2.6 solved "what to block." v2.7 must start solving "how to block before
+execution."
+
+Old route:
+
+`trace -> normalize -> offline analysis -> dry-run -> package`
+
+Corrected route:
+
+`proposal enters -> DHMS gate evaluates before execution -> decision emitted -> executor handoff allowed or blocked -> evidence recorded`
+
+Current/completed milestone:
+
+`v2.6.4.2 Pre-Execution Fuse Roadmap Correction`
+
+Next recommended milestone:
+
+`v2.7.0 Minimal Pre-Execution Fuse Loop Planning`
+
+Corrected strategic roadmap:
+
+* v2.7.x Minimal Pre-Execution Fuse Loop
+* v2.8.x Controlled Agent Proposal Gate
+* v2.9.x Tool-Call Interception Surface with LangChain-Style Shape
+* v3.0.x Local Interception CLI
+* v3.1.x Real LangChain Toy-Tool Callback Boundary
+* v3.2.x SQL Agent Pre-Execution Boundary Re-Entry
+* v3.3.x Public MVP Packaging
+* v3.4.x Next Runtime Boundary Decision
+
+v2.7 must produce a terminal proof screenshot by v2.7.3. No v2.7 freeze may
+occur without `FAIL_CLOSED` and `mock_executor_received=false` evidence. The
+required proof marker is `DHMS_PRE_EXECUTION_FUSE_LOOP_PROOF_PASS` with
+`dhms_decision=FAIL_CLOSED`, `executor_handoff_allowed=false`,
+`execution_authorized=false`, `mock_executor_received=false`,
+`mock_executor_invocations=0`, `sql_execution_attempts=0`, and
+`db_connections=0`.
+
+The standalone no-import LangChain-style compatibility line is deleted.
+LangChain-style shape support is folded into v2.9. Real LangChain toy-tool
+callback moves up to v3.1.
+
+v2.7.0 remains planning-only unless a later prompt explicitly changes that
 boundary. It must not add code, validators, fixtures, schemas, parser, runner,
 CLI, dependencies, source files, adapter implementation, skeleton
 implementation, LangChain install/import/invocation/integration,
@@ -2428,4 +2478,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_7_0_LANGCHAIN_SQL_AGENT_ADAPTER_SKELETON_SOURCE_SURFACE_PLANNING`
+`READY_FOR_V2_7_0_MINIMAL_PRE_EXECUTION_FUSE_LOOP_PLANNING`

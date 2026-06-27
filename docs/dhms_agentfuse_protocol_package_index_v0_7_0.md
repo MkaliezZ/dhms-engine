@@ -171,6 +171,7 @@ Core public materials:
 * LangChain SQL Agent adapter skeleton shape validator: [`validation/run_dhms_langchain_sql_agent_adapter_skeleton_shape_fixture_validation_v0.py`](../validation/run_dhms_langchain_sql_agent_adapter_skeleton_shape_fixture_validation_v0.py)
 * LangChain SQL Agent Adapter Skeleton Shape Validation Result Review and Freeze: [`docs/dhms_langchain_sql_agent_adapter_skeleton_shape_validation_result_review_and_freeze_v2_6_4.md`](dhms_langchain_sql_agent_adapter_skeleton_shape_validation_result_review_and_freeze_v2_6_4.md)
 * README Current Status Sync v2.6.4.1: [`docs/dhms_readme_current_status_sync_v2_6_4_1.md`](dhms_readme_current_status_sync_v2_6_4_1.md)
+* Pre-Execution Fuse Roadmap Correction v2.6.4.2: [`docs/dhms_pre_execution_fuse_roadmap_correction_v2_6_4_2.md`](dhms_pre_execution_fuse_roadmap_correction_v2_6_4_2.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -700,6 +701,8 @@ v0.7.0 does not claim:
 * v2.6.4 LangChain SQL Agent Adapter Skeleton Shape Validation Result Review and Freeze
 * README Current Status Sync v2.6.4.1: [`docs/dhms_readme_current_status_sync_v2_6_4_1.md`](dhms_readme_current_status_sync_v2_6_4_1.md)
 * v2.6.4.1 README Current Status Sync
+* Pre-Execution Fuse Roadmap Correction v2.6.4.2: [`docs/dhms_pre_execution_fuse_roadmap_correction_v2_6_4_2.md`](dhms_pre_execution_fuse_roadmap_correction_v2_6_4_2.md)
+* v2.6.4.2 Pre-Execution Fuse Roadmap Correction
 
 Final document verdict:
 

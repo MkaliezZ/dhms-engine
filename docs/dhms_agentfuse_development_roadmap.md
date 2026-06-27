@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.5.1 LangChain SQL Agent Emit-Only Adapter Contract`
+* Current package milestone: `v2.5.2 LangChain SQL Agent Static Adapter Boundary Fixtures`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2113,6 +2113,29 @@ schemas, parser, runner, CLI, dependencies, LangChain install/import/invocation
 or integration, SQLDatabaseToolkit usage, SQL execution, DB connection, schema
 introspection, model API call, KerniQ, E2B, release, tag, or runtime behavior.
 
+v2.5.2 adds static inert fixture coverage for the v2.5.1 LangChain SQL Agent
+Emit-Only Adapter Contract. It adds exactly 17 fixtures: 1
+`ACCEPT_FOR_DHMS_EVALUATION` inert metadata fixture and 16 `FAIL_CLOSED`
+fixtures covering each v2.5.1 fail-closed category exactly once. The fixtures
+are static inert metadata only and do not authorize execution. v2.5.2 does not
+add validators, schemas, parser, runner, CLI, dependencies, LangChain
+install/import/invocation or integration, SQLDatabaseToolkit usage as
+integration, SQL execution, DB connection, schema introspection, model API call,
+KerniQ, E2B, release, tag, or runtime behavior.
+
+Current/completed milestone:
+
+`v2.5.2 LangChain SQL Agent Static Adapter Boundary Fixtures`
+
+Next recommended milestone:
+
+`v2.5.3 LangChain SQL Agent Non-Executing Adapter Fixture Validation`
+
+v2.5.3 may add deterministic read-only validation for the v2.5.2 static inert
+fixtures. It must not add SQL execution, DB connection, schema introspection,
+framework runtime, LangChain import/invocation/integration, SQLDatabaseToolkit
+usage, model API call, KerniQ, E2B, release, tag, or runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2167,4 +2190,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_5_2_LANGCHAIN_SQL_AGENT_STATIC_ADAPTER_BOUNDARY_FIXTURES`
+`READY_FOR_V2_5_3_LANGCHAIN_SQL_AGENT_NON_EXECUTING_ADAPTER_FIXTURE_VALIDATION`

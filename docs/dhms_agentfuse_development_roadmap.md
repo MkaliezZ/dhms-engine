@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.6.4 LangChain SQL Agent Adapter Skeleton Shape Validation Result Review and Freeze`
+* Current package milestone: `v2.6.4.1 README Current Status Sync`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2343,6 +2343,37 @@ implementation, skeleton implementation, LangChain install/import/invocation/
 integration, SQLDatabaseToolkit usage, SQL execution, DB connection, schema
 introspection, model API call, KerniQ, E2B, release, tag, or runtime behavior.
 
+v2.6.4.1 synchronizes README public status after the frozen v2.6.4 LangChain
+SQL Agent Adapter Skeleton Shape Validation Result Review and Freeze. README
+now reflects the frozen v2.6.0-v2.6.4 evidence chain without expanding claims:
+v2.6.0 planning, v2.6.1 prose-only contract, v2.6.2 exactly 17 static inert
+shape fixtures, v2.6.3 deterministic read-only validation, and v2.6.4 result
+review and freeze. The public claim remains bounded to `fixture_count=17`, 1
+`ACCEPT_FOR_SHAPE_REVIEW`, 16 `FAIL_CLOSED`, complete inherited v2.5
+fail-closed coverage, all non-execution assertions present and false, inert
+shape fixture content, and zero source files, adapters, skeleton
+implementations, schemas, parsers, runners, CLI surfaces, LangChain
+installs/imports/invocations/integrations/wrappers/callbacks/tools,
+SQLDatabaseToolkit integrations, SQL execution attempts, DB connections,
+schema introspection, result readbacks, model API calls, credential accesses,
+user-data accesses, KerniQ runtime calls, E2B handoffs, runtime behaviors, or
+execution authorizations.
+
+Current/completed milestone:
+
+`v2.6.4.1 README Current Status Sync`
+
+Next recommended milestone:
+
+`v2.7.0 LangChain SQL Agent Adapter Skeleton Source Surface Planning`
+
+v2.7.0 must be planning-only unless a later prompt explicitly changes that
+boundary. It must not add code, validators, fixtures, schemas, parser, runner,
+CLI, dependencies, source files, adapter implementation, skeleton
+implementation, LangChain install/import/invocation/integration,
+SQLDatabaseToolkit usage, SQL execution, DB connection, schema introspection,
+model API call, KerniQ, E2B, release, tag, or runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2397,4 +2428,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_6_4_1_README_CURRENT_STATUS_SYNC`
+`READY_FOR_V2_7_0_LANGCHAIN_SQL_AGENT_ADAPTER_SKELETON_SOURCE_SURFACE_PLANNING`

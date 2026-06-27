@@ -165,6 +165,8 @@ Core public materials:
 * README Current Status Sync v2.5.4.1: [`docs/dhms_readme_current_status_sync_v2_5_4_1.md`](dhms_readme_current_status_sync_v2_5_4_1.md)
 * LangChain SQL Agent Emit-Only Adapter Skeleton Planning: [`docs/dhms_langchain_sql_agent_emit_only_adapter_skeleton_planning_v2_6_0.md`](dhms_langchain_sql_agent_emit_only_adapter_skeleton_planning_v2_6_0.md)
 * LangChain SQL Agent Emit-Only Adapter Skeleton Contract: [`docs/dhms_langchain_sql_agent_emit_only_adapter_skeleton_contract_v2_6_1.md`](dhms_langchain_sql_agent_emit_only_adapter_skeleton_contract_v2_6_1.md)
+* LangChain SQL Agent Adapter Skeleton Static Shape Fixtures: [`docs/dhms_langchain_sql_agent_adapter_skeleton_static_shape_fixtures_v2_6_2.md`](dhms_langchain_sql_agent_adapter_skeleton_static_shape_fixtures_v2_6_2.md)
+* LangChain SQL Agent adapter skeleton shape fixtures: [`benchmarks/dhms_langchain_sql_agent_adapter_skeleton_shape_v0/shape_fixtures.json`](../benchmarks/dhms_langchain_sql_agent_adapter_skeleton_shape_v0/shape_fixtures.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -684,6 +686,9 @@ v0.7.0 does not claim:
 * v2.6.0 LangChain SQL Agent Emit-Only Adapter Skeleton Planning
 * LangChain SQL Agent Emit-Only Adapter Skeleton Contract: [`docs/dhms_langchain_sql_agent_emit_only_adapter_skeleton_contract_v2_6_1.md`](dhms_langchain_sql_agent_emit_only_adapter_skeleton_contract_v2_6_1.md)
 * v2.6.1 LangChain SQL Agent Emit-Only Adapter Skeleton Contract
+* LangChain SQL Agent Adapter Skeleton Static Shape Fixtures: [`docs/dhms_langchain_sql_agent_adapter_skeleton_static_shape_fixtures_v2_6_2.md`](dhms_langchain_sql_agent_adapter_skeleton_static_shape_fixtures_v2_6_2.md)
+* LangChain SQL Agent adapter skeleton shape fixtures: [`benchmarks/dhms_langchain_sql_agent_adapter_skeleton_shape_v0/shape_fixtures.json`](../benchmarks/dhms_langchain_sql_agent_adapter_skeleton_shape_v0/shape_fixtures.json)
+* v2.6.2 LangChain SQL Agent Adapter Skeleton Static Shape Fixtures
 
 Final document verdict:
 

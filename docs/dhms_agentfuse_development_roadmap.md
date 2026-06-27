@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.6.1 LangChain SQL Agent Emit-Only Adapter Skeleton Contract`
+* Current package milestone: `v2.6.2 LangChain SQL Agent Adapter Skeleton Static Shape Fixtures`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2265,6 +2265,29 @@ implementation, skeleton implementation, LangChain install/import/invocation/
 integration, SQLDatabaseToolkit usage, SQL execution, DB connection, schema
 introspection, model API call, KerniQ, E2B, release, tag, or runtime behavior.
 
+v2.6.2 adds exactly 17 static inert shape fixtures for the future `LangChain SQL
+Agent Emit-Only Adapter Skeleton Candidate`: 1 `ACCEPT_FOR_SHAPE_REVIEW` and
+16 `FAIL_CLOSED`. Each inherited v2.5 fail-closed category is covered exactly
+once. The fixtures are documentation-level shape metadata only and do not define
+source files, package layout, imports, classes, functions, modules, callbacks,
+tools, schemas, CLI, hooks, SQL, DB access, model APIs, KerniQ, E2B, or runtime
+behavior.
+
+Current/completed milestone:
+
+`v2.6.2 LangChain SQL Agent Adapter Skeleton Static Shape Fixtures`
+
+Next recommended milestone:
+
+`v2.6.3 LangChain SQL Agent Adapter Skeleton Non-Executing Shape Validation`
+
+v2.6.3 may add deterministic read-only validation for the v2.6.2 static shape
+fixtures only. It must not execute SQL, connect DB, inspect schemas, invoke
+LangChain, import LangChain, install LangChain, use SQLDatabaseToolkit, call
+model APIs, access credentials/user data, call KerniQ, hand off to E2B, add
+source files, add adapter/skeleton implementation, add schema/parser/runner/CLI,
+or add runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2319,4 +2342,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_6_2_LANGCHAIN_SQL_AGENT_ADAPTER_SKELETON_STATIC_SHAPE_FIXTURES`
+`READY_FOR_V2_6_3_LANGCHAIN_SQL_AGENT_ADAPTER_SKELETON_NON_EXECUTING_SHAPE_VALIDATION`

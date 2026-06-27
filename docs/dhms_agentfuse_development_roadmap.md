@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.6.3 LangChain SQL Agent Adapter Skeleton Non-Executing Shape Validation`
+* Current package milestone: `v2.6.4 LangChain SQL Agent Adapter Skeleton Shape Validation Result Review and Freeze`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2221,7 +2221,7 @@ The proposed v2.6 evidence ladder is:
 * v2.6.1 LangChain SQL Agent Emit-Only Adapter Skeleton Contract
 * v2.6.2 LangChain SQL Agent Adapter Skeleton Static Shape Fixtures
 * v2.6.3 LangChain SQL Agent Adapter Skeleton Non-Executing Shape Validation
-* v2.6.4 LangChain SQL Agent Adapter Skeleton Result Review and Freeze
+* v2.6.4 LangChain SQL Agent Adapter Skeleton Shape Validation Result Review and Freeze
 * v2.6.4.1 README Current Status Sync
 
 The ladder is planning-only. v2.6.1 must be prose-contract-only unless a later
@@ -2314,6 +2314,35 @@ invocation/integration, SQLDatabaseToolkit usage, SQL execution, DB connection,
 schema introspection, model API call, KerniQ, E2B, release, tag, or runtime
 behavior.
 
+v2.6.4 reviews and freezes the v2.6.0-v2.6.3 LangChain SQL Agent Adapter
+Skeleton Shape evidence chain. It preserves v2.6.0 planning, v2.6.1
+prose-only contract, v2.6.2 exactly 17 static inert shape fixtures, and v2.6.3
+deterministic read-only validation. The frozen result remains exactly 17
+fixtures, 1 `ACCEPT_FOR_SHAPE_REVIEW`, 16 `FAIL_CLOSED`, all required fields
+present, all non-execution assertions present and false, complete inherited
+v2.5 fail-closed coverage, inert shape fixture content, and zero source files,
+adapters, skeleton implementations, schemas, parsers, runners, CLI surfaces,
+LangChain installs/imports/invocations/integrations/wrappers/callbacks/tools,
+SQLDatabaseToolkit integrations, SQL execution attempts, DB connections,
+schema introspection, result readbacks, model API calls, credential accesses,
+user-data accesses, KerniQ runtime calls, E2B handoffs, runtime behaviors, or
+execution authorizations.
+
+Current/completed milestone:
+
+`v2.6.4 LangChain SQL Agent Adapter Skeleton Shape Validation Result Review and Freeze`
+
+Next recommended milestone:
+
+`v2.6.4.1 README Current Status Sync`
+
+v2.6.4.1 must be README/status sync only. It may update README, package index,
+roadmap, and add a README sync document. It must not add code, validators,
+fixtures, schemas, parser, runner, CLI, dependencies, source files, adapter
+implementation, skeleton implementation, LangChain install/import/invocation/
+integration, SQLDatabaseToolkit usage, SQL execution, DB connection, schema
+introspection, model API call, KerniQ, E2B, release, tag, or runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2368,4 +2397,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_6_4_LANGCHAIN_SQL_AGENT_ADAPTER_SKELETON_SHAPE_VALIDATION_RESULT_REVIEW_AND_FREEZE`
+`READY_FOR_V2_6_4_1_README_CURRENT_STATUS_SYNC`

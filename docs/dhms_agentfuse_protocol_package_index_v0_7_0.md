@@ -167,6 +167,8 @@ Core public materials:
 * LangChain SQL Agent Emit-Only Adapter Skeleton Contract: [`docs/dhms_langchain_sql_agent_emit_only_adapter_skeleton_contract_v2_6_1.md`](dhms_langchain_sql_agent_emit_only_adapter_skeleton_contract_v2_6_1.md)
 * LangChain SQL Agent Adapter Skeleton Static Shape Fixtures: [`docs/dhms_langchain_sql_agent_adapter_skeleton_static_shape_fixtures_v2_6_2.md`](dhms_langchain_sql_agent_adapter_skeleton_static_shape_fixtures_v2_6_2.md)
 * LangChain SQL Agent adapter skeleton shape fixtures: [`benchmarks/dhms_langchain_sql_agent_adapter_skeleton_shape_v0/shape_fixtures.json`](../benchmarks/dhms_langchain_sql_agent_adapter_skeleton_shape_v0/shape_fixtures.json)
+* LangChain SQL Agent Adapter Skeleton Non-Executing Shape Validation: [`docs/dhms_langchain_sql_agent_adapter_skeleton_non_executing_shape_validation_v2_6_3.md`](dhms_langchain_sql_agent_adapter_skeleton_non_executing_shape_validation_v2_6_3.md)
+* LangChain SQL Agent adapter skeleton shape validator: [`validation/run_dhms_langchain_sql_agent_adapter_skeleton_shape_fixture_validation_v0.py`](../validation/run_dhms_langchain_sql_agent_adapter_skeleton_shape_fixture_validation_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -689,6 +691,9 @@ v0.7.0 does not claim:
 * LangChain SQL Agent Adapter Skeleton Static Shape Fixtures: [`docs/dhms_langchain_sql_agent_adapter_skeleton_static_shape_fixtures_v2_6_2.md`](dhms_langchain_sql_agent_adapter_skeleton_static_shape_fixtures_v2_6_2.md)
 * LangChain SQL Agent adapter skeleton shape fixtures: [`benchmarks/dhms_langchain_sql_agent_adapter_skeleton_shape_v0/shape_fixtures.json`](../benchmarks/dhms_langchain_sql_agent_adapter_skeleton_shape_v0/shape_fixtures.json)
 * v2.6.2 LangChain SQL Agent Adapter Skeleton Static Shape Fixtures
+* LangChain SQL Agent Adapter Skeleton Non-Executing Shape Validation: [`docs/dhms_langchain_sql_agent_adapter_skeleton_non_executing_shape_validation_v2_6_3.md`](dhms_langchain_sql_agent_adapter_skeleton_non_executing_shape_validation_v2_6_3.md)
+* LangChain SQL Agent adapter skeleton shape validator: [`validation/run_dhms_langchain_sql_agent_adapter_skeleton_shape_fixture_validation_v0.py`](../validation/run_dhms_langchain_sql_agent_adapter_skeleton_shape_fixture_validation_v0.py)
+* v2.6.3 LangChain SQL Agent Adapter Skeleton Non-Executing Shape Validation
 
 Final document verdict:
 

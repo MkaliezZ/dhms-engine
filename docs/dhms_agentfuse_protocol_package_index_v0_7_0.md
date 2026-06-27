@@ -159,6 +159,8 @@ Core public materials:
 * LangChain SQL Agent Emit-Only Adapter Contract: [`docs/dhms_langchain_sql_agent_emit_only_adapter_contract_v2_5_1.md`](dhms_langchain_sql_agent_emit_only_adapter_contract_v2_5_1.md)
 * LangChain SQL Agent Static Adapter Boundary Fixtures: [`docs/dhms_langchain_sql_agent_static_adapter_boundary_fixtures_v2_5_2.md`](dhms_langchain_sql_agent_static_adapter_boundary_fixtures_v2_5_2.md)
 * LangChain SQL Agent adapter boundary fixtures: [`benchmarks/dhms_langchain_sql_agent_emit_only_adapter_v0/adapter_boundary_fixtures.json`](../benchmarks/dhms_langchain_sql_agent_emit_only_adapter_v0/adapter_boundary_fixtures.json)
+* LangChain SQL Agent Non-Executing Adapter Fixture Validation: [`docs/dhms_langchain_sql_agent_non_executing_adapter_fixture_validation_v2_5_3.md`](dhms_langchain_sql_agent_non_executing_adapter_fixture_validation_v2_5_3.md)
+* LangChain SQL Agent adapter fixture validator: [`validation/run_dhms_langchain_sql_agent_emit_only_adapter_fixture_validation_v0.py`](../validation/run_dhms_langchain_sql_agent_emit_only_adapter_fixture_validation_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -667,6 +669,9 @@ v0.7.0 does not claim:
 * LangChain SQL Agent Static Adapter Boundary Fixtures: [`docs/dhms_langchain_sql_agent_static_adapter_boundary_fixtures_v2_5_2.md`](dhms_langchain_sql_agent_static_adapter_boundary_fixtures_v2_5_2.md)
 * LangChain SQL Agent adapter boundary fixtures: [`benchmarks/dhms_langchain_sql_agent_emit_only_adapter_v0/adapter_boundary_fixtures.json`](../benchmarks/dhms_langchain_sql_agent_emit_only_adapter_v0/adapter_boundary_fixtures.json)
 * v2.5.2 LangChain SQL Agent Static Adapter Boundary Fixtures
+* LangChain SQL Agent Non-Executing Adapter Fixture Validation: [`docs/dhms_langchain_sql_agent_non_executing_adapter_fixture_validation_v2_5_3.md`](dhms_langchain_sql_agent_non_executing_adapter_fixture_validation_v2_5_3.md)
+* LangChain SQL Agent adapter fixture validator: [`validation/run_dhms_langchain_sql_agent_emit_only_adapter_fixture_validation_v0.py`](../validation/run_dhms_langchain_sql_agent_emit_only_adapter_fixture_validation_v0.py)
+* v2.5.3 LangChain SQL Agent Non-Executing Adapter Fixture Validation
 
 Final document verdict:
 

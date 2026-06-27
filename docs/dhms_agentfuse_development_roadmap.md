@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.5.0 LangChain SQL Agent Emit-Only Adapter Planning`
+* Current package milestone: `v2.5.1 LangChain SQL Agent Emit-Only Adapter Contract`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2090,6 +2090,29 @@ schemas, parser, runner, CLI, dependencies, LangChain install/import/invocation
 or integration, SQLDatabaseToolkit usage, SQL execution, DB connection, schema
 introspection, model API call, KerniQ, E2B, release, tag, or runtime behavior.
 
+v2.5.1 defines the prose-only contract for the future LangChain SQL Agent
+Emit-Only Adapter Candidate. It preserves v2.5.0 planning status and clarifies
+the contract subject, roles, observation boundary, emit-only constraints, inert
+proposal classification terms, evidence capture fields, fail-closed categories,
+and later milestone boundary. It does not add fixtures, validators, schemas,
+parser, runner, CLI, dependencies, LangChain install/import/invocation or
+integration, SQLDatabaseToolkit usage as integration, SQL execution, DB
+connection, schema introspection, model API call, KerniQ, E2B, release, tag, or
+runtime behavior.
+
+Current/completed milestone:
+
+`v2.5.1 LangChain SQL Agent Emit-Only Adapter Contract`
+
+Next recommended milestone:
+
+`v2.5.2 LangChain SQL Agent Static Adapter Boundary Fixtures`
+
+v2.5.2 may add static inert fixtures only. It must not add code, validators,
+schemas, parser, runner, CLI, dependencies, LangChain install/import/invocation
+or integration, SQLDatabaseToolkit usage, SQL execution, DB connection, schema
+introspection, model API call, KerniQ, E2B, release, tag, or runtime behavior.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2144,4 +2167,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_5_1_LANGCHAIN_SQL_AGENT_EMIT_ONLY_ADAPTER_CONTRACT`
+`READY_FOR_V2_5_2_LANGCHAIN_SQL_AGENT_STATIC_ADAPTER_BOUNDARY_FIXTURES`

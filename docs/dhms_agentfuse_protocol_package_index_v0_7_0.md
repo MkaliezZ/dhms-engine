@@ -161,6 +161,7 @@ Core public materials:
 * LangChain SQL Agent adapter boundary fixtures: [`benchmarks/dhms_langchain_sql_agent_emit_only_adapter_v0/adapter_boundary_fixtures.json`](../benchmarks/dhms_langchain_sql_agent_emit_only_adapter_v0/adapter_boundary_fixtures.json)
 * LangChain SQL Agent Non-Executing Adapter Fixture Validation: [`docs/dhms_langchain_sql_agent_non_executing_adapter_fixture_validation_v2_5_3.md`](dhms_langchain_sql_agent_non_executing_adapter_fixture_validation_v2_5_3.md)
 * LangChain SQL Agent adapter fixture validator: [`validation/run_dhms_langchain_sql_agent_emit_only_adapter_fixture_validation_v0.py`](../validation/run_dhms_langchain_sql_agent_emit_only_adapter_fixture_validation_v0.py)
+* LangChain SQL Agent Adapter Fixture Validation Result Review and Freeze: [`docs/dhms_langchain_sql_agent_adapter_fixture_validation_result_review_and_freeze_v2_5_4.md`](dhms_langchain_sql_agent_adapter_fixture_validation_result_review_and_freeze_v2_5_4.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -672,6 +673,8 @@ v0.7.0 does not claim:
 * LangChain SQL Agent Non-Executing Adapter Fixture Validation: [`docs/dhms_langchain_sql_agent_non_executing_adapter_fixture_validation_v2_5_3.md`](dhms_langchain_sql_agent_non_executing_adapter_fixture_validation_v2_5_3.md)
 * LangChain SQL Agent adapter fixture validator: [`validation/run_dhms_langchain_sql_agent_emit_only_adapter_fixture_validation_v0.py`](../validation/run_dhms_langchain_sql_agent_emit_only_adapter_fixture_validation_v0.py)
 * v2.5.3 LangChain SQL Agent Non-Executing Adapter Fixture Validation
+* LangChain SQL Agent Adapter Fixture Validation Result Review and Freeze: [`docs/dhms_langchain_sql_agent_adapter_fixture_validation_result_review_and_freeze_v2_5_4.md`](dhms_langchain_sql_agent_adapter_fixture_validation_result_review_and_freeze_v2_5_4.md)
+* v2.5.4 LangChain SQL Agent Adapter Fixture Validation Result Review and Freeze
 
 Final document verdict:
 

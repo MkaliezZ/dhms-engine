@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.1.0 Real LangChain Agent Interception Minimal Harness`
+* Current package milestone: `v3.1.1 Real LangChain Dependency Lock + Agent Harness Validation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.1.0 Real LangChain Agent Interception Minimal Harness`
+`v3.1.1 Real LangChain Dependency Lock + Agent Harness Validation`
 
 Next recommended milestone:
 
-`v3.1.1 Real LangChain Agent Interception Validation`
+`v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync`
 
 Locked v3.0 sequence:
 
@@ -2789,6 +2789,7 @@ Locked v3.0 sequence:
 Mandatory post-v3.0 transition:
 
 * `v3.1.0 Real LangChain Agent Interception Minimal Harness`
+* `v3.1.1 Real LangChain Dependency Lock + Agent Harness Validation`
 
 The locked v3.0 sequence is complete. v3.0 must not expand further. There is
 no v3.0.3, and there is no generic "Next DHMS Proof Line Planning" milestone
@@ -2804,8 +2805,17 @@ v3.1.0 does not execute tools, call model providers, access SQL/DB/network/
 subprocess/env/credentials/user data, integrate SQLDatabaseToolkit, KerniQ,
 E2B, or production runtime.
 
-v3.1.1 must validate the minimal harness and may not become another planning
-step.
+v3.1.1 validates the minimal harness with a real LangChain dependency lock. It
+requires `langchain_available=true`, imports real
+`langchain.agents.create_agent`, creates a real local LangChain agent harness
+object, validates a real `AIMessage` path, and removes fallback pass behavior
+when LangChain is unavailable.
+
+v3.1.1 continues to preserve `execution_authorized=false` and
+`runtime_behaviors_added=0`. It does not execute tools, call model providers,
+access SQL/DB/network/subprocess/env/credentials/user data, integrate
+SQLDatabaseToolkit, KerniQ, E2B, MCP, provider SDKs, agent SDKs, or production
+runtime.
 
 ## Development Prompt Pattern
 
@@ -2861,4 +2871,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_1_1_REAL_LANGCHAIN_AGENT_INTERCEPTION_VALIDATION`
+`READY_FOR_V3_1_2_REAL_LANGCHAIN_PRE_TOOL_INTERCEPTION_RESULT_REVIEW_AND_README_SYNC`

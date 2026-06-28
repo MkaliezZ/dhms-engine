@@ -45,6 +45,8 @@ REQUIRED_RESULT_KEYS = (
     "dhms_interception_version",
     "langchain_available",
     "langchain_agent_harness_created",
+    "real_create_agent_imported",
+    "real_langchain_agent_object_created",
     "source",
     "observed_tool_call",
     "converted_proposal",
@@ -59,12 +61,16 @@ REQUIRED_RESULT_KEYS = (
 
 TRACE_REQUIRED_KEYS = (
     "real_langchain_installed_or_imported",
+    "real_create_agent_imported",
     "real_langchain_agent_harness_created",
+    "real_langchain_agent_object_created",
+    "real_langchain_ai_message_path_validated",
     "langchain_message_or_tool_call_observed",
     "converted_to_dhms_proposal",
     "routed_through_controlled_proposal_gate",
     "tool_not_executed",
     "model_provider_not_called",
+    "fake_or_local_model_used",
     "no_sql_execution",
     "no_db_access",
     "no_sql_database_toolkit",
@@ -80,11 +86,7 @@ TRACE_REQUIRED_KEYS = (
     "no_production_runtime",
 )
 
-TRACE_TRUE_ASSERTION_KEYS = tuple(
-    key
-    for key in TRACE_REQUIRED_KEYS
-    if key not in {"real_langchain_installed_or_imported", "real_langchain_agent_harness_created"}
-)
+TRACE_TRUE_ASSERTION_KEYS = TRACE_REQUIRED_KEYS
 
 
 def _bool_text(value: bool) -> str:
@@ -97,6 +99,15 @@ def _load_example(relative_path: str) -> Dict[str, Any]:
     if not isinstance(data, dict):
         raise AssertionError(f"{relative_path}: example must be a JSON object")
     return data
+
+
+def _ai_message_tool_call(example: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "id": example.get("id"),
+        "name": example.get("name"),
+        "args": example.get("args", {}),
+        "type": example.get("type", "tool_call"),
+    }
 
 
 def _validate_interception(
@@ -152,8 +163,19 @@ def run_validation() -> None:
     harness = create_dhms_langchain_agent_harness()
     langchain_is_available = bool(harness["langchain_available"])
     harness_created = bool(harness["langchain_agent_harness_created"])
-    if langchain_is_available and not harness_created:
-        raise AssertionError("LangChain is available but the harness was not created")
+    real_create_agent_imported = bool(harness["real_create_agent_imported"])
+    real_agent_object_created = bool(harness["real_langchain_agent_object_created"])
+    real_ai_message_path_validated = bool(harness["real_langchain_ai_message_path_validated"])
+    if not langchain_is_available:
+        raise AssertionError("LangChain must be installed for v3.1.1 smoke validation")
+    if not harness_created:
+        raise AssertionError("real LangChain agent harness must be created")
+    if not real_create_agent_imported:
+        raise AssertionError("langchain.agents.create_agent must import successfully")
+    if not real_agent_object_created:
+        raise AssertionError("real LangChain create_agent object must be created")
+    if not real_ai_message_path_validated:
+        raise AssertionError("real LangChain AIMessage path must be validated")
 
     results = []
     for relative_path, expected_id, expected_decision, expected_blocked in EXAMPLES:
@@ -164,6 +186,10 @@ def run_validation() -> None:
             raise AssertionError(f"{expected_id}: langchain availability mismatch")
         if result["langchain_agent_harness_created"] != harness_created:
             raise AssertionError(f"{expected_id}: harness created mismatch")
+        if result["real_create_agent_imported"] is not True:
+            raise AssertionError(f"{expected_id}: real_create_agent_imported must be true")
+        if result["real_langchain_agent_object_created"] is not True:
+            raise AssertionError(f"{expected_id}: real_langchain_agent_object_created must be true")
         results.append(result)
 
     if langchain_is_available:
@@ -171,7 +197,7 @@ def run_validation() -> None:
             from langchain_core.messages import AIMessage  # type: ignore
         except Exception as exc:  # pragma: no cover - depends on installed version
             raise AssertionError(f"LangChain is available but AIMessage import failed: {exc}") from exc
-        message = AIMessage(content="", tool_calls=[_load_example(EXAMPLES[0][0])])
+        message = AIMessage(content="", tool_calls=[_ai_message_tool_call(_load_example(EXAMPLES[0][0]))])
         message_result = intercept_langchain_ai_message(message, "validation:real_langchain_ai_message")
         _validate_interception(message_result, EXAMPLES[0][1], EXAMPLES[0][2], EXAMPLES[0][3])
 

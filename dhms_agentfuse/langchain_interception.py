@@ -11,7 +11,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 from dhms_agentfuse.controlled_proposal_gate import evaluate_controlled_proposal
 
 
-DHMS_INTERCEPTION_VERSION = "v3.1.0-real-langchain-agent-interception-minimal-harness"
+DHMS_INTERCEPTION_VERSION = "v3.1.1-real-langchain-dependency-agent-harness-validation"
 
 TOOL_CONVERSIONS = {
     "local_read_only_summary": {
@@ -131,17 +131,26 @@ def _sample_ai_message(ai_message_class: Any) -> Optional[Any]:
 
 
 def create_dhms_langchain_agent_harness() -> Dict[str, Any]:
-    """Create a minimal real LangChain agent/message boundary when available."""
+    """Create a minimal real LangChain agent harness when available."""
 
     components = _import_langchain_components()
     langchain_is_available = bool(components["langchain_available"])
+    create_agent = components["create_agent"]
+    fake_model_class = components["fake_chat_model_class"]
     result: Dict[str, Any] = {
         "langchain_available": langchain_is_available,
         "langchain_agent_harness_created": False,
-        "create_agent_available": components["create_agent"] is not None,
+        "real_create_agent_imported": create_agent is not None,
+        "real_langchain_agent_object_created": False,
         "harness_mode": "langchain_unavailable",
         "agent_object_type": None,
+        "fake_or_local_model_used": False,
+        "model_provider_called": False,
+        "tool_execution_attempted": False,
+        "tool_execution_allowed": False,
+        "runtime_behaviors_added": 0,
         "real_langchain_message_created": False,
+        "real_langchain_ai_message_path_validated": False,
         "inert_tools_defined": False,
         "dependency_note": "",
         "import_errors": list(components["errors"]),
@@ -158,27 +167,22 @@ def create_dhms_langchain_agent_harness() -> Dict[str, Any]:
     result["inert_tools_defined"] = True
     sample_message = _sample_ai_message(components["ai_message_class"])
     result["real_langchain_message_created"] = sample_message is not None
+    result["real_langchain_ai_message_path_validated"] = sample_message is not None
 
-    create_agent = components["create_agent"]
-    fake_model_class = components["fake_chat_model_class"]
     if create_agent is not None and fake_model_class is not None and sample_message is not None:
         try:
             fake_model = fake_model_class(responses=[sample_message])
             agent = create_agent(model=fake_model, tools=tools)
             result["langchain_agent_harness_created"] = True
+            result["real_langchain_agent_object_created"] = True
             result["harness_mode"] = "create_agent_with_fake_messages_model"
             result["agent_object_type"] = type(agent).__name__
+            result["fake_or_local_model_used"] = True
             return result
         except Exception as exc:  # pragma: no cover - depends on installed version
             result["import_errors"].append(f"create_agent construction failed: {type(exc).__name__}: {exc}")
 
-    if sample_message is not None:
-        result["langchain_agent_harness_created"] = True
-        result["harness_mode"] = "real_langchain_ai_message_tool_call_boundary"
-        result["agent_object_type"] = type(sample_message).__name__
-        return result
-
-    result["dependency_note"] = "LangChain imported, but no compatible agent/message boundary could be constructed."
+    result["dependency_note"] = "LangChain imported, but create_agent could not create a compatible local harness."
     return result
 
 
@@ -237,15 +241,19 @@ def build_langchain_tool_call_proposal(raw_tool_call: Dict[str, Any], source: st
     }
 
 
-def _interception_trace(langchain_is_available: bool, harness_created: bool) -> Dict[str, bool]:
+def _interception_trace(harness: Dict[str, Any]) -> Dict[str, bool]:
     return {
-        "real_langchain_installed_or_imported": langchain_is_available,
-        "real_langchain_agent_harness_created": harness_created,
+        "real_langchain_installed_or_imported": bool(harness["langchain_available"]),
+        "real_create_agent_imported": bool(harness["real_create_agent_imported"]),
+        "real_langchain_agent_harness_created": bool(harness["langchain_agent_harness_created"]),
+        "real_langchain_agent_object_created": bool(harness["real_langchain_agent_object_created"]),
+        "real_langchain_ai_message_path_validated": bool(harness["real_langchain_ai_message_path_validated"]),
         "langchain_message_or_tool_call_observed": True,
         "converted_to_dhms_proposal": True,
         "routed_through_controlled_proposal_gate": True,
         "tool_not_executed": True,
         "model_provider_not_called": True,
+        "fake_or_local_model_used": bool(harness["fake_or_local_model_used"]),
         "no_sql_execution": True,
         "no_db_access": True,
         "no_sql_database_toolkit": True,
@@ -278,6 +286,8 @@ def intercept_langchain_tool_call(raw_tool_call: Dict[str, Any], source: str) ->
         "dhms_interception_version": DHMS_INTERCEPTION_VERSION,
         "langchain_available": harness["langchain_available"],
         "langchain_agent_harness_created": harness["langchain_agent_harness_created"],
+        "real_create_agent_imported": harness["real_create_agent_imported"],
+        "real_langchain_agent_object_created": harness["real_langchain_agent_object_created"],
         "source": source,
         "observed_tool_call": normalized,
         "converted_proposal": converted_proposal,
@@ -287,10 +297,7 @@ def intercept_langchain_tool_call(raw_tool_call: Dict[str, Any], source: str) ->
         "tool_execution_allowed": False,
         "execution_authorized": False,
         "runtime_behaviors_added": 0,
-        "interception_trace": _interception_trace(
-            bool(harness["langchain_available"]),
-            bool(harness["langchain_agent_harness_created"]),
-        ),
+        "interception_trace": _interception_trace(harness),
     }
 
 

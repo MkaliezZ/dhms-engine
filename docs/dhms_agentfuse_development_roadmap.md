@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.7.0 Minimal Pre-Execution Fuse Loop Planning`
+* Current package milestone: `v2.7.1 Proposal Gate Contract + Fixtures`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2438,14 +2438,44 @@ Current/completed milestone:
 
 `v2.7.0 Minimal Pre-Execution Fuse Loop Planning`
 
-Next recommended milestone:
-
-`v2.7.1 Proposal Gate Contract + Fixtures`
-
 v2.7.1 may add a proposal gate contract and static proposal fixtures. It must
 not add runner code, executor code, CLI, schema, parser, source package,
 LangChain import, SQLDatabaseToolkit, SQL execution, DB connection, model API,
 network/subprocess, KerniQ, E2B, release, or tag.
+
+Current/completed milestone:
+
+`v2.7.1 Proposal Gate Contract + Fixtures`
+
+Next recommended milestone:
+
+`v2.7.2 Gate Runner + Mock Executor`
+
+v2.7.1 adds a proposal gate contract and exactly 11 static inert proposal
+fixtures in `benchmarks/dhms_pre_execution_fuse_loop_v0/proposals.json`.
+The fixture set contains 1 safe inert `RELEASE` candidate and 10
+`FAIL_CLOSED` proposals covering SQL execution, SQL mutation, schema
+introspection, DB connection, result readback, credential scope, user data
+scope, missing boundary, malformed input, and unsupported tool requests.
+
+v2.7.1 adds no runner, mock executor, parser, CLI, schema, validator, source
+package, LangChain import, SQLDatabaseToolkit, SQL execution, DB connection,
+model API, KerniQ, E2B, network/subprocess, release, tag, or runtime behavior.
+
+v2.7.2 is a Super High reasoning milestone because it may add minimal
+stdlib-only gate runner and mock executor code. It must preserve the required
+v2.7.3 proof marker:
+
+```text
+DHMS_PRE_EXECUTION_FUSE_LOOP_PROOF_PASS
+dhms_decision=FAIL_CLOSED
+executor_handoff_allowed=false
+execution_authorized=false
+mock_executor_received=false
+mock_executor_invocations=0
+sql_execution_attempts=0
+db_connections=0
+```
 
 ## Development Prompt Pattern
 
@@ -2501,4 +2531,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_7_1_PROPOSAL_GATE_CONTRACT_AND_FIXTURES`
+`READY_FOR_V2_7_2_GATE_RUNNER_AND_MOCK_EXECUTOR`

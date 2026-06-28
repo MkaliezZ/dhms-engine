@@ -173,6 +173,8 @@ Core public materials:
 * README Current Status Sync v2.6.4.1: [`docs/dhms_readme_current_status_sync_v2_6_4_1.md`](dhms_readme_current_status_sync_v2_6_4_1.md)
 * Pre-Execution Fuse Roadmap Correction v2.6.4.2: [`docs/dhms_pre_execution_fuse_roadmap_correction_v2_6_4_2.md`](dhms_pre_execution_fuse_roadmap_correction_v2_6_4_2.md)
 * Minimal Pre-Execution Fuse Loop Planning v2.7.0: [`docs/dhms_minimal_pre_execution_fuse_loop_planning_v2_7_0.md`](dhms_minimal_pre_execution_fuse_loop_planning_v2_7_0.md)
+* Proposal Gate Contract + Fixtures v2.7.1: [`docs/dhms_proposal_gate_contract_and_fixtures_v2_7_1.md`](dhms_proposal_gate_contract_and_fixtures_v2_7_1.md)
+* Pre-Execution Fuse Loop proposal fixtures: [`benchmarks/dhms_pre_execution_fuse_loop_v0/proposals.json`](../benchmarks/dhms_pre_execution_fuse_loop_v0/proposals.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -706,6 +708,9 @@ v0.7.0 does not claim:
 * v2.6.4.2 Pre-Execution Fuse Roadmap Correction
 * Minimal Pre-Execution Fuse Loop Planning v2.7.0: [`docs/dhms_minimal_pre_execution_fuse_loop_planning_v2_7_0.md`](dhms_minimal_pre_execution_fuse_loop_planning_v2_7_0.md)
 * v2.7.0 Minimal Pre-Execution Fuse Loop Planning
+* Proposal Gate Contract + Fixtures v2.7.1: [`docs/dhms_proposal_gate_contract_and_fixtures_v2_7_1.md`](dhms_proposal_gate_contract_and_fixtures_v2_7_1.md)
+* Pre-Execution Fuse Loop proposal fixtures: [`benchmarks/dhms_pre_execution_fuse_loop_v0/proposals.json`](../benchmarks/dhms_pre_execution_fuse_loop_v0/proposals.json)
+* v2.7.1 Proposal Gate Contract + Fixtures
 
 Final document verdict:
 

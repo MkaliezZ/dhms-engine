@@ -2,49 +2,53 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-DHMS is an execution fuse protocol for AI agents. Its current public proof is a repository-local, stdlib-only, read-only, non-executing Controlled Agent Proposal Gate fixture validation proof over 16 static inert proposals.
+DHMS is an execution fuse protocol for AI agents. Its current public proof is a repository-local, stdlib-only, read-only, non-executing Controlled Proposal Replay Evidence validation proof over 16 static replay records.
 
 DHMS began as memory/context/tool-state perturbation testing. The current `agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the DHMS Execution Fuse Protocol.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current DHMS line: `Controlled Agent Proposal Gate`.
-* Current frozen milestone: `v2.8.4 Controlled Agent Proposal Gate Result Review and Freeze`.
-* Latest sync milestone: `v2.8.4.1 README Current Status Sync`.
-* Current proof class: repository-local, stdlib-only, read-only, non-executing fixture validation proof.
-* Next recommended milestone: `v2.9.0 Next DHMS Proof Line Planning`.
+* Current DHMS line: `Controlled Proposal Replay Evidence Line`.
+* Current frozen milestone: `v2.9.2 Controlled Proposal Replay Validation + Freeze + README Sync`.
+* Latest sync milestone: `v2.9.2 README Current Status Sync`.
+* Current proof class: repository-local, stdlib-only, read-only, non-executing replay evidence validation proof.
+* Next recommended milestone: `Next DHMS Proof Line Planning`.
 
 ## Current Strongest Proof
 
-The frozen v2.8.4 proof validates 16 static inert controlled-agent proposal fixtures against the v2.8.1 contract.
+The frozen v2.9.2 proof validates 16 static replay evidence records against the frozen v2.8 Controlled Agent Proposal Gate fixture evidence.
 
 | Evidence field | Frozen value |
 | --- | --- |
-| Fixture count | `fixture_count=16` |
+| Record count | `record_count=16` |
+| Source fixture alignment | `source_fixture_alignment=true` |
 | Decision distribution | `RELEASE_CANDIDATE=1`, `FAIL_CLOSED=15`, `HOLD_FOR_REVIEW=0` |
 | Validator | stdlib-only, read-only, non-executing |
-| Real-world counters | all 0 |
-| Release candidate | future bounded mock eligibility only |
-| Frozen marker | `DHMS_CONTROLLED_AGENT_PROPOSAL_GATE_FIXTURE_VALIDATION_PASS` |
+| Replay boundary | all replay records static only |
+| Execution authorization | all false |
+| Runtime behaviors added | `runtime_behaviors_added=0` |
+| Frozen marker | `DHMS_CONTROLLED_PROPOSAL_REPLAY_EVIDENCE_VALIDATION_PASS` |
 
-Bounded public claim: DHMS has a repository-local, stdlib-only, read-only, non-executing Controlled Agent Proposal Gate fixture validation proof confirming fixture shape, decision distribution, counter-zero invariants, non-execution assertions, release-candidate mock-eligibility boundary, and fail-closed reason coverage.
+Bounded public claim: DHMS has a repository-local, stdlib-only, read-only, non-executing Controlled Proposal Replay Evidence validation proof confirming source fixture alignment, decision distribution, static-only replay boundaries, zero runtime behaviors added, execution authorization false, and preserved non-execution assertions.
 
 ## Reproduce The Proof
 
 ```bash
-python3 validation/run_dhms_controlled_agent_proposal_gate_fixture_validation_v0.py
+python3 validation/run_dhms_controlled_proposal_replay_evidence_validation_v0.py
 ```
 
 Expected output:
 
 ```text
-DHMS_CONTROLLED_AGENT_PROPOSAL_GATE_FIXTURE_VALIDATION_PASS
-fixture_count=16
+DHMS_CONTROLLED_PROPOSAL_REPLAY_EVIDENCE_VALIDATION_PASS
+record_count=16
+source_fixture_alignment=true
 release_candidate=1
 fail_closed=15
 hold_for_review=0
-all_real_world_counters_zero=true
+all_replay_records_static_only=true
+all_execution_authorized_false=true
 runtime_behaviors_added=0
 ```
 
@@ -98,16 +102,26 @@ CLI gate-proposal work is not part of v2.7 and remains a future local intercepti
 * [v2.8.3 fixture validator](validation/run_dhms_controlled_agent_proposal_gate_fixture_validation_v0.py)
 * [v2.8.4 Result Review and Freeze](docs/dhms_controlled_agent_proposal_gate_result_review_and_freeze_v2_8_4.md)
 
+## v2.9 Evidence Chain
+
+* [v2.9.0 Next DHMS Proof Line Planning](docs/dhms_next_proof_line_planning_v2_9_0.md)
+* [v2.9.1 Controlled Proposal Replay Evidence Contract](docs/dhms_controlled_proposal_replay_evidence_contract_v2_9_1.md)
+* [v2.9.1 static replay evidence records](docs/dhms_controlled_proposal_replay_static_evidence_records_v2_9_1.md)
+* [v2.9.1 replay records manifest](benchmarks/dhms_controlled_proposal_replay_evidence_v0/replay_records.json)
+* [v2.9.2 replay validator](validation/run_dhms_controlled_proposal_replay_evidence_validation_v0.py)
+* [v2.9.2 Validation Freeze](docs/dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md)
+* [v2.9.2 README Current Status Sync](docs/dhms_readme_current_status_sync_v2_9_2.md)
+
 ## Public Boundary
 
-DHMS v2.8 is a repository-local, stdlib-only, read-only, non-executing fixture validation proof. It is not a production safety claim.
+DHMS v2.9 is a repository-local, stdlib-only, read-only, non-executing replay evidence validation proof. It is not a production safety claim.
 
 Current public boundaries:
 
 * No production readiness or real-world agent/database protection is claimed.
 * No real LangChain, SQLDatabaseToolkit, SQL Agent, database, model-provider, KerniQ, E2B, external-runtime, or production-runtime integration is included.
 * No v2.7 CLI gate-proposal support is claimed; `python3 cli.py gate-proposal examples/proposals/drop_table.json` is explicitly not part of the v2.7 proof.
-* The current proof remains bounded to inert proposal data, pre-execution gate evaluation, blocked mock-executor handoff, and zero SQL/DB/schema/result counters.
+* The current proof remains bounded to static replay records, read-only validation, preserved non-execution assertions, execution authorization false, and zero runtime behavior added.
 
 For the detailed non-claims and freeze boundary, see:
 
@@ -115,6 +129,7 @@ For the detailed non-claims and freeze boundary, see:
 * [v2.7.4.2 README Public Landing Page Polish](docs/dhms_readme_public_landing_page_polish_v2_7_4_2.md)
 * [v2.8.1 Controlled Agent Proposal Gate Contract](docs/dhms_controlled_agent_proposal_gate_contract_v2_8_1.md)
 * [v2.8.4 Controlled Agent Proposal Gate Result Review and Freeze](docs/dhms_controlled_agent_proposal_gate_result_review_and_freeze_v2_8_4.md)
+* [v2.9.2 Controlled Proposal Replay Validation Freeze](docs/dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md)
 
 ## Historical Evidence Lines
 
@@ -149,7 +164,7 @@ Fresh-clone reproduction is documented in [DHMS Fresh Clone Reproduction Check v
 * [DHMS Execution Fuse Protocol v0.6.0](docs/dhms_execution_fuse_protocol_v0_6_0.md)
 * [DHMS Public Evidence Package v1.0](docs/dhms_public_evidence_package_v1_0.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
-* [v2.8.4 Controlled Agent Proposal Gate Result Review and Freeze](docs/dhms_controlled_agent_proposal_gate_result_review_and_freeze_v2_8_4.md)
+* [v2.9.2 Controlled Proposal Replay Validation Freeze](docs/dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md)
 
 ## Release Materials
 

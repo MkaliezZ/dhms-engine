@@ -197,6 +197,9 @@ Core public materials:
 * Controlled Proposal Replay Evidence Contract v2.9.1: [`docs/dhms_controlled_proposal_replay_evidence_contract_v2_9_1.md`](dhms_controlled_proposal_replay_evidence_contract_v2_9_1.md)
 * Controlled Proposal Replay Static Evidence Records v2.9.1: [`docs/dhms_controlled_proposal_replay_static_evidence_records_v2_9_1.md`](dhms_controlled_proposal_replay_static_evidence_records_v2_9_1.md)
 * Controlled Proposal Replay static records: [`benchmarks/dhms_controlled_proposal_replay_evidence_v0/replay_records.json`](../benchmarks/dhms_controlled_proposal_replay_evidence_v0/replay_records.json)
+* Controlled Proposal Replay validator v2.9.2: [`validation/run_dhms_controlled_proposal_replay_evidence_validation_v0.py`](../validation/run_dhms_controlled_proposal_replay_evidence_validation_v0.py)
+* Controlled Proposal Replay Validation Freeze v2.9.2: [`docs/dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md`](dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md)
+* README Current Status Sync v2.9.2: [`docs/dhms_readme_current_status_sync_v2_9_2.md`](dhms_readme_current_status_sync_v2_9_2.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -768,6 +771,10 @@ v0.7.0 does not claim:
 * Controlled Proposal Replay Static Evidence Records v2.9.1: [`docs/dhms_controlled_proposal_replay_static_evidence_records_v2_9_1.md`](dhms_controlled_proposal_replay_static_evidence_records_v2_9_1.md)
 * Controlled Proposal Replay static records: [`benchmarks/dhms_controlled_proposal_replay_evidence_v0/replay_records.json`](../benchmarks/dhms_controlled_proposal_replay_evidence_v0/replay_records.json)
 * v2.9.1 Controlled Proposal Replay Contract + Static Evidence Records
+* Controlled Proposal Replay validator v2.9.2: [`validation/run_dhms_controlled_proposal_replay_evidence_validation_v0.py`](../validation/run_dhms_controlled_proposal_replay_evidence_validation_v0.py)
+* Controlled Proposal Replay Validation Freeze v2.9.2: [`docs/dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md`](dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md)
+* README Current Status Sync v2.9.2: [`docs/dhms_readme_current_status_sync_v2_9_2.md`](dhms_readme_current_status_sync_v2_9_2.md)
+* v2.9.2 Controlled Proposal Replay Validation + Freeze + README Sync
 
 Final document verdict:
 

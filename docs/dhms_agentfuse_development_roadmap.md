@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.9.1 Controlled Proposal Replay Contract + Static Evidence Records`
+* Current package milestone: `v2.9.2 Controlled Proposal Replay Validation + Freeze + README Sync`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2751,19 +2751,20 @@ otherwise.
 
 Current/completed milestone:
 
-`v2.9.1 Controlled Proposal Replay Contract + Static Evidence Records`
+`v2.9.2 Controlled Proposal Replay Validation + Freeze + README Sync`
 
 Next recommended milestone:
 
-`v2.9.2 Controlled Proposal Replay Validation + Freeze + README Sync`
+`Next DHMS Proof Line Planning`
 
 Selected line:
 
 `Controlled Proposal Replay Evidence Line`
 
-v2.9.1 adds contract docs and static replay records only after the v2.9.0
-planning milestone. It adds no validator, proof behavior, runtime behavior,
-schema, CLI, source runtime code, dependency, release, or tag.
+v2.9.2 completes the compressed v2.9 line. It adds a stdlib-only, read-only,
+non-executing replay evidence validator, freeze doc, and README sync only. It
+adds no source runtime code, schema, CLI, dependency, production runtime,
+release, or tag.
 
 Compressed v2.9 sequence:
 
@@ -2825,4 +2826,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_9_2_CONTROLLED_PROPOSAL_REPLAY_VALIDATION_FREEZE_README_SYNC`
+`READY_FOR_NEXT_DHMS_PROOF_LINE_PLANNING`

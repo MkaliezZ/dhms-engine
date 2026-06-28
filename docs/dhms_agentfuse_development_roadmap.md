@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.6.4.2 Pre-Execution Fuse Roadmap Correction`
+* Current package milestone: `v2.7.0 Minimal Pre-Execution Fuse Loop Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2359,13 +2359,10 @@ schema introspection, result readbacks, model API calls, credential accesses,
 user-data accesses, KerniQ runtime calls, E2B handoffs, runtime behaviors, or
 execution authorizations.
 
-Current/completed milestone:
+Historical status sync note:
 
-`v2.6.4.1 README Current Status Sync`
-
-Next recommended milestone:
-
-`v2.7.0 Minimal Pre-Execution Fuse Loop Planning`
+`v2.6.4.1 README Current Status Sync` synchronized README public status after
+the v2.6.4 freeze.
 
 v2.6.4.2 corrects the post-v2.6 roadmap toward the core DHMS identity:
 Execution Fuse Protocol. The previous route over-prioritized inert fixtures,
@@ -2424,6 +2421,32 @@ implementation, LangChain install/import/invocation/integration,
 SQLDatabaseToolkit usage, SQL execution, DB connection, schema introspection,
 model API call, KerniQ, E2B, release, tag, or runtime behavior.
 
+v2.7.0 opens the first DHMS line whose purpose is to prove pre-execution
+interception rather than inert analysis, emit-only collection, trace replay,
+source-surface planning, or no-import compatibility. The minimal loop is:
+
+`proposal enters -> DHMS gate evaluates before execution -> decision emitted -> executor handoff allowed or blocked -> evidence recorded`
+
+v2.7 must prove an unsafe LangChain-SQL-agent-like proposal is blocked before
+mock executor handoff. v2.7.3 must produce terminal proof output containing
+`DHMS_PRE_EXECUTION_FUSE_LOOP_PROOF_PASS`, `dhms_decision=FAIL_CLOSED`,
+`executor_handoff_allowed=false`, `execution_authorized=false`,
+`mock_executor_received=false`, `mock_executor_invocations=0`,
+`sql_execution_attempts=0`, and `db_connections=0`.
+
+Current/completed milestone:
+
+`v2.7.0 Minimal Pre-Execution Fuse Loop Planning`
+
+Next recommended milestone:
+
+`v2.7.1 Proposal Gate Contract + Fixtures`
+
+v2.7.1 may add a proposal gate contract and static proposal fixtures. It must
+not add runner code, executor code, CLI, schema, parser, source package,
+LangChain import, SQLDatabaseToolkit, SQL execution, DB connection, model API,
+network/subprocess, KerniQ, E2B, release, or tag.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2478,4 +2501,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_7_0_MINIMAL_PRE_EXECUTION_FUSE_LOOP_PLANNING`
+`READY_FOR_V2_7_1_PROPOSAL_GATE_CONTRACT_AND_FIXTURES`

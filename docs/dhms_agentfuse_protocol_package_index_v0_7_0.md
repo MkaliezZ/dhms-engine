@@ -172,6 +172,7 @@ Core public materials:
 * LangChain SQL Agent Adapter Skeleton Shape Validation Result Review and Freeze: [`docs/dhms_langchain_sql_agent_adapter_skeleton_shape_validation_result_review_and_freeze_v2_6_4.md`](dhms_langchain_sql_agent_adapter_skeleton_shape_validation_result_review_and_freeze_v2_6_4.md)
 * README Current Status Sync v2.6.4.1: [`docs/dhms_readme_current_status_sync_v2_6_4_1.md`](dhms_readme_current_status_sync_v2_6_4_1.md)
 * Pre-Execution Fuse Roadmap Correction v2.6.4.2: [`docs/dhms_pre_execution_fuse_roadmap_correction_v2_6_4_2.md`](dhms_pre_execution_fuse_roadmap_correction_v2_6_4_2.md)
+* Minimal Pre-Execution Fuse Loop Planning v2.7.0: [`docs/dhms_minimal_pre_execution_fuse_loop_planning_v2_7_0.md`](dhms_minimal_pre_execution_fuse_loop_planning_v2_7_0.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -703,6 +704,8 @@ v0.7.0 does not claim:
 * v2.6.4.1 README Current Status Sync
 * Pre-Execution Fuse Roadmap Correction v2.6.4.2: [`docs/dhms_pre_execution_fuse_roadmap_correction_v2_6_4_2.md`](dhms_pre_execution_fuse_roadmap_correction_v2_6_4_2.md)
 * v2.6.4.2 Pre-Execution Fuse Roadmap Correction
+* Minimal Pre-Execution Fuse Loop Planning v2.7.0: [`docs/dhms_minimal_pre_execution_fuse_loop_planning_v2_7_0.md`](dhms_minimal_pre_execution_fuse_loop_planning_v2_7_0.md)
+* v2.7.0 Minimal Pre-Execution Fuse Loop Planning
 
 Final document verdict:
 

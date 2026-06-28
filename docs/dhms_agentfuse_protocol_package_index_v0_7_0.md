@@ -175,6 +175,10 @@ Core public materials:
 * Minimal Pre-Execution Fuse Loop Planning v2.7.0: [`docs/dhms_minimal_pre_execution_fuse_loop_planning_v2_7_0.md`](dhms_minimal_pre_execution_fuse_loop_planning_v2_7_0.md)
 * Proposal Gate Contract + Fixtures v2.7.1: [`docs/dhms_proposal_gate_contract_and_fixtures_v2_7_1.md`](dhms_proposal_gate_contract_and_fixtures_v2_7_1.md)
 * Pre-Execution Fuse Loop proposal fixtures: [`benchmarks/dhms_pre_execution_fuse_loop_v0/proposals.json`](../benchmarks/dhms_pre_execution_fuse_loop_v0/proposals.json)
+* Gate Runner + Mock Executor v2.7.2: [`docs/dhms_gate_runner_and_mock_executor_v2_7_2.md`](dhms_gate_runner_and_mock_executor_v2_7_2.md)
+* Pre-execution gate runner: [`dhms_agentfuse/pre_execution_gate.py`](../dhms_agentfuse/pre_execution_gate.py)
+* Inert mock executor: [`dhms_agentfuse/inert_mock_executor.py`](../dhms_agentfuse/inert_mock_executor.py)
+* Pre-execution fuse loop runner validation: [`validation/run_dhms_pre_execution_fuse_loop_runner_validation_v0.py`](../validation/run_dhms_pre_execution_fuse_loop_runner_validation_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -711,6 +715,11 @@ v0.7.0 does not claim:
 * Proposal Gate Contract + Fixtures v2.7.1: [`docs/dhms_proposal_gate_contract_and_fixtures_v2_7_1.md`](dhms_proposal_gate_contract_and_fixtures_v2_7_1.md)
 * Pre-Execution Fuse Loop proposal fixtures: [`benchmarks/dhms_pre_execution_fuse_loop_v0/proposals.json`](../benchmarks/dhms_pre_execution_fuse_loop_v0/proposals.json)
 * v2.7.1 Proposal Gate Contract + Fixtures
+* Gate Runner + Mock Executor v2.7.2: [`docs/dhms_gate_runner_and_mock_executor_v2_7_2.md`](dhms_gate_runner_and_mock_executor_v2_7_2.md)
+* Pre-execution gate runner: [`dhms_agentfuse/pre_execution_gate.py`](../dhms_agentfuse/pre_execution_gate.py)
+* Inert mock executor: [`dhms_agentfuse/inert_mock_executor.py`](../dhms_agentfuse/inert_mock_executor.py)
+* Pre-execution fuse loop runner validation: [`validation/run_dhms_pre_execution_fuse_loop_runner_validation_v0.py`](../validation/run_dhms_pre_execution_fuse_loop_runner_validation_v0.py)
+* v2.7.2 Gate Runner + Mock Executor
 
 Final document verdict:
 

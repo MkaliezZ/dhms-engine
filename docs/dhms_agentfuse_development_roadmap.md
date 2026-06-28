@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.9.0 Next DHMS Proof Line Planning`
+* Current package milestone: `v2.9.1 Controlled Proposal Replay Contract + Static Evidence Records`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2751,29 +2751,25 @@ otherwise.
 
 Current/completed milestone:
 
-`v2.9.0 Next DHMS Proof Line Planning`
+`v2.9.1 Controlled Proposal Replay Contract + Static Evidence Records`
 
 Next recommended milestone:
 
-`v2.9.1 Controlled Proposal Replay Evidence Contract`
+`v2.9.2 Controlled Proposal Replay Validation + Freeze + README Sync`
 
 Selected line:
 
 `Controlled Proposal Replay Evidence Line`
 
-v2.9.0 selects a repository-local, stdlib-only, read-only, non-executing replay
-evidence direction after the frozen v2.8.4 Controlled Agent Proposal Gate proof.
-It is planning-only and adds no proof behavior, runtime behavior, fixture change,
-validator change, schema, CLI, source runtime code, dependency, release, or tag.
+v2.9.1 adds contract docs and static replay records only after the v2.9.0
+planning milestone. It adds no validator, proof behavior, runtime behavior,
+schema, CLI, source runtime code, dependency, release, or tag.
 
-Proposed v2.9 sequence:
+Compressed v2.9 sequence:
 
 * `v2.9.0 Next DHMS Proof Line Planning`
-* `v2.9.1 Controlled Proposal Replay Evidence Contract`
-* `v2.9.2 Controlled Proposal Replay Static Evidence Records`
-* `v2.9.3 Controlled Proposal Replay Read-Only Validation`
-* `v2.9.4 Controlled Proposal Replay Result Review and Freeze`
-* `v2.9.4.1 README Current Status Sync`
+* `v2.9.1 Controlled Proposal Replay Contract + Static Evidence Records`
+* `v2.9.2 Controlled Proposal Replay Validation + Freeze + README Sync`
 
 ## Development Prompt Pattern
 
@@ -2829,4 +2825,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_9_1_CONTROLLED_PROPOSAL_REPLAY_EVIDENCE_CONTRACT`
+`READY_FOR_V2_9_2_CONTROLLED_PROPOSAL_REPLAY_VALIDATION_FREEZE_README_SYNC`

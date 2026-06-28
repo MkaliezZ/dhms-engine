@@ -194,6 +194,9 @@ Core public materials:
 * Controlled Agent Proposal Gate Result Review and Freeze v2.8.4: [`docs/dhms_controlled_agent_proposal_gate_result_review_and_freeze_v2_8_4.md`](dhms_controlled_agent_proposal_gate_result_review_and_freeze_v2_8_4.md)
 * README Current Status Sync v2.8.4.1: [`docs/dhms_readme_current_status_sync_v2_8_4_1.md`](dhms_readme_current_status_sync_v2_8_4_1.md)
 * Next DHMS Proof Line Planning v2.9.0: [`docs/dhms_next_proof_line_planning_v2_9_0.md`](dhms_next_proof_line_planning_v2_9_0.md)
+* Controlled Proposal Replay Evidence Contract v2.9.1: [`docs/dhms_controlled_proposal_replay_evidence_contract_v2_9_1.md`](dhms_controlled_proposal_replay_evidence_contract_v2_9_1.md)
+* Controlled Proposal Replay Static Evidence Records v2.9.1: [`docs/dhms_controlled_proposal_replay_static_evidence_records_v2_9_1.md`](dhms_controlled_proposal_replay_static_evidence_records_v2_9_1.md)
+* Controlled Proposal Replay static records: [`benchmarks/dhms_controlled_proposal_replay_evidence_v0/replay_records.json`](../benchmarks/dhms_controlled_proposal_replay_evidence_v0/replay_records.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -761,6 +764,10 @@ v0.7.0 does not claim:
 * v2.8.4.1 README Current Status Sync
 * Next DHMS Proof Line Planning v2.9.0: [`docs/dhms_next_proof_line_planning_v2_9_0.md`](dhms_next_proof_line_planning_v2_9_0.md)
 * v2.9.0 Next DHMS Proof Line Planning
+* Controlled Proposal Replay Evidence Contract v2.9.1: [`docs/dhms_controlled_proposal_replay_evidence_contract_v2_9_1.md`](dhms_controlled_proposal_replay_evidence_contract_v2_9_1.md)
+* Controlled Proposal Replay Static Evidence Records v2.9.1: [`docs/dhms_controlled_proposal_replay_static_evidence_records_v2_9_1.md`](dhms_controlled_proposal_replay_static_evidence_records_v2_9_1.md)
+* Controlled Proposal Replay static records: [`benchmarks/dhms_controlled_proposal_replay_evidence_v0/replay_records.json`](../benchmarks/dhms_controlled_proposal_replay_evidence_v0/replay_records.json)
+* v2.9.1 Controlled Proposal Replay Contract + Static Evidence Records
 
 Final document verdict:
 

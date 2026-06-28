@@ -184,6 +184,7 @@ Core public materials:
 * Pre-Execution Fuse Loop Result Review and Freeze v2.7.4: [`docs/dhms_pre_execution_fuse_loop_result_review_and_freeze_v2_7_4.md`](dhms_pre_execution_fuse_loop_result_review_and_freeze_v2_7_4.md)
 * Pre-Execution Fuse Loop proof screenshot: [`docs/development/screenshots/v2_7_3_pre_execution_interception_proof/v2_7_3_pre_execution_interception_proof_terminal.png`](development/screenshots/v2_7_3_pre_execution_interception_proof/v2_7_3_pre_execution_interception_proof_terminal.png)
 * README Current Status Sync v2.7.4.1: [`docs/dhms_readme_current_status_sync_v2_7_4_1.md`](dhms_readme_current_status_sync_v2_7_4_1.md)
+* README Public Landing Page Polish v2.7.4.2: [`docs/dhms_readme_public_landing_page_polish_v2_7_4_2.md`](dhms_readme_public_landing_page_polish_v2_7_4_2.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -733,6 +734,8 @@ v0.7.0 does not claim:
 * v2.7.4 Result Review and Freeze
 * README Current Status Sync v2.7.4.1: [`docs/dhms_readme_current_status_sync_v2_7_4_1.md`](dhms_readme_current_status_sync_v2_7_4_1.md)
 * v2.7.4.1 README Current Status Sync
+* README Public Landing Page Polish v2.7.4.2: [`docs/dhms_readme_public_landing_page_polish_v2_7_4_2.md`](dhms_readme_public_landing_page_polish_v2_7_4_2.md)
+* v2.7.4.2 README Public Landing Page Polish
 
 Final document verdict:
 

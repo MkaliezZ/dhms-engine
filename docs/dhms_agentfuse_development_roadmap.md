@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.7.4.1 README Current Status Sync`
+* Current package milestone: `v2.7.4.2 README Public Landing Page Polish`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2621,6 +2621,23 @@ code, proof change, runner change, mock executor change, fixture change,
 screenshot change, validator change, CLI, schema, dependency, release, or tag.
 
 v2.8.0 should begin the Controlled Agent Proposal Gate line. It must not jump
+directly to CLI, LangChain, SQLDatabaseToolkit, real SQL, real DB, model APIs,
+KerniQ, E2B, production runtime, or release/tag work.
+
+Current/completed milestone:
+
+`v2.7.4.2 README Public Landing Page Polish`
+
+Next recommended milestone:
+
+`v2.8.0 Controlled Agent Proposal Gate Planning`
+
+v2.7.4.2 improves README landing-page readability after the v2.7.4.1 status
+sync. It adds no source code, proof change, runner change, mock executor
+change, fixture change, screenshot change, validator change, CLI, schema,
+dependency, release, or tag.
+
+v2.8.0 should begin the Controlled Agent Proposal Gate line and must not jump
 directly to CLI, LangChain, SQLDatabaseToolkit, real SQL, real DB, model APIs,
 KerniQ, E2B, production runtime, or release/tag work.
 

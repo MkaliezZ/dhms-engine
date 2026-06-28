@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.7.4 Result Review and Freeze`
+* Current package milestone: `v2.7.4.1 README Current Status Sync`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2608,6 +2608,22 @@ LangChain import/invocation/integration, no SQLDatabaseToolkit integration, no
 model call, no KerniQ runtime call, no E2B handoff, no production runtime
 behavior, no release, and no tag.
 
+Current/completed milestone:
+
+`v2.7.4.1 README Current Status Sync`
+
+Next recommended milestone:
+
+`v2.8.0 Controlled Agent Proposal Gate Planning`
+
+v2.7.4.1 syncs README public status after the v2.7.4 freeze. It adds no source
+code, proof change, runner change, mock executor change, fixture change,
+screenshot change, validator change, CLI, schema, dependency, release, or tag.
+
+v2.8.0 should begin the Controlled Agent Proposal Gate line. It must not jump
+directly to CLI, LangChain, SQLDatabaseToolkit, real SQL, real DB, model APIs,
+KerniQ, E2B, production runtime, or release/tag work.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2662,4 +2678,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_7_4_1_README_CURRENT_STATUS_SYNC`
+`READY_FOR_V2_8_0_CONTROLLED_AGENT_PROPOSAL_GATE_PLANNING`

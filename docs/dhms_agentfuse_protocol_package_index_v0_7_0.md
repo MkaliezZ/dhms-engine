@@ -183,6 +183,7 @@ Core public materials:
 * Pre-execution fuse loop proof: [`validation/run_dhms_pre_execution_fuse_loop_proof_v0.py`](../validation/run_dhms_pre_execution_fuse_loop_proof_v0.py)
 * Pre-Execution Fuse Loop Result Review and Freeze v2.7.4: [`docs/dhms_pre_execution_fuse_loop_result_review_and_freeze_v2_7_4.md`](dhms_pre_execution_fuse_loop_result_review_and_freeze_v2_7_4.md)
 * Pre-Execution Fuse Loop proof screenshot: [`docs/development/screenshots/v2_7_3_pre_execution_interception_proof/v2_7_3_pre_execution_interception_proof_terminal.png`](development/screenshots/v2_7_3_pre_execution_interception_proof/v2_7_3_pre_execution_interception_proof_terminal.png)
+* README Current Status Sync v2.7.4.1: [`docs/dhms_readme_current_status_sync_v2_7_4_1.md`](dhms_readme_current_status_sync_v2_7_4_1.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -730,6 +731,8 @@ v0.7.0 does not claim:
 * Pre-Execution Fuse Loop Result Review and Freeze v2.7.4: [`docs/dhms_pre_execution_fuse_loop_result_review_and_freeze_v2_7_4.md`](dhms_pre_execution_fuse_loop_result_review_and_freeze_v2_7_4.md)
 * Pre-Execution Fuse Loop proof screenshot: [`docs/development/screenshots/v2_7_3_pre_execution_interception_proof/v2_7_3_pre_execution_interception_proof_terminal.png`](development/screenshots/v2_7_3_pre_execution_interception_proof/v2_7_3_pre_execution_interception_proof_terminal.png)
 * v2.7.4 Result Review and Freeze
+* README Current Status Sync v2.7.4.1: [`docs/dhms_readme_current_status_sync_v2_7_4_1.md`](dhms_readme_current_status_sync_v2_7_4_1.md)
+* v2.7.4.1 README Current Status Sync
 
 Final document verdict:
 

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.7.4.2 README Public Landing Page Polish`
+* Current package milestone: `v2.8.0 Controlled Agent Proposal Gate Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2641,6 +2641,23 @@ v2.8.0 should begin the Controlled Agent Proposal Gate line and must not jump
 directly to CLI, LangChain, SQLDatabaseToolkit, real SQL, real DB, model APIs,
 KerniQ, E2B, production runtime, or release/tag work.
 
+Current/completed milestone:
+
+`v2.8.0 Controlled Agent Proposal Gate Planning`
+
+Next recommended milestone:
+
+`v2.8.1 Controlled Agent Proposal Gate Contract`
+
+v2.8.0 opens a planning-only Controlled Agent Proposal Gate line after
+v2.7.4.2. It adds no source code, proof change, runner change, mock executor
+change, fixture change, screenshot change, validator change, CLI, schema,
+dependency, release, or tag.
+
+v2.8.1 should define the contract only and must not jump directly to CLI,
+LangChain, SQLDatabaseToolkit, real SQL, real DB, model APIs, KerniQ, E2B,
+production runtime, or release/tag work.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2695,4 +2712,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_8_0_CONTROLLED_AGENT_PROPOSAL_GATE_PLANNING`
+`READY_FOR_V2_8_1_CONTROLLED_AGENT_PROPOSAL_GATE_CONTRACT`

@@ -185,6 +185,7 @@ Core public materials:
 * Pre-Execution Fuse Loop proof screenshot: [`docs/development/screenshots/v2_7_3_pre_execution_interception_proof/v2_7_3_pre_execution_interception_proof_terminal.png`](development/screenshots/v2_7_3_pre_execution_interception_proof/v2_7_3_pre_execution_interception_proof_terminal.png)
 * README Current Status Sync v2.7.4.1: [`docs/dhms_readme_current_status_sync_v2_7_4_1.md`](dhms_readme_current_status_sync_v2_7_4_1.md)
 * README Public Landing Page Polish v2.7.4.2: [`docs/dhms_readme_public_landing_page_polish_v2_7_4_2.md`](dhms_readme_public_landing_page_polish_v2_7_4_2.md)
+* Controlled Agent Proposal Gate Planning v2.8.0: [`docs/dhms_controlled_agent_proposal_gate_planning_v2_8_0.md`](dhms_controlled_agent_proposal_gate_planning_v2_8_0.md)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -736,6 +737,8 @@ v0.7.0 does not claim:
 * v2.7.4.1 README Current Status Sync
 * README Public Landing Page Polish v2.7.4.2: [`docs/dhms_readme_public_landing_page_polish_v2_7_4_2.md`](dhms_readme_public_landing_page_polish_v2_7_4_2.md)
 * v2.7.4.2 README Public Landing Page Polish
+* Controlled Agent Proposal Gate Planning v2.8.0: [`docs/dhms_controlled_agent_proposal_gate_planning_v2_8_0.md`](dhms_controlled_agent_proposal_gate_planning_v2_8_0.md)
+* v2.8.0 Controlled Agent Proposal Gate Planning
 
 Final document verdict:
 

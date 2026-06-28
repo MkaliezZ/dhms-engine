@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.9.2 Controlled Proposal Replay Validation + Freeze + README Sync`
+* Current package milestone: `v3.0.0 Local Controlled Proposal Gate CLI`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2772,6 +2772,33 @@ Compressed v2.9 sequence:
 * `v2.9.1 Controlled Proposal Replay Contract + Static Evidence Records`
 * `v2.9.2 Controlled Proposal Replay Validation + Freeze + README Sync`
 
+Current/completed milestone:
+
+`v3.0.0 Local Controlled Proposal Gate CLI`
+
+Next recommended milestone:
+
+`v3.0.1 CLI Evidence Trace Validation`
+
+Locked v3.0 sequence:
+
+* `v3.0.0 Local Controlled Proposal Gate CLI`
+* `v3.0.1 CLI Evidence Trace Validation`
+* `v3.0.2 CLI Result Review + README Sync`
+
+Mandatory post-v3.0 transition:
+
+* `v3.1.0 Real LangChain Agent Interception Minimal Harness`
+
+v3.0 must not expand into a planning, contract, fixtures, runner, proof, freeze,
+and sync multi-step sequence. v3.0.2 must transition directly to v3.1 real
+LangChain agent interception.
+
+v3.0.0 adds a local deterministic controlled proposal gate CLI only. It does
+not add SQL execution, DB access, model APIs, network, subprocess, env access,
+credential access, user-data access, LangChain, SQLDatabaseToolkit, KerniQ,
+E2B, production runtime, release, or tag.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2826,4 +2853,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_NEXT_DHMS_PROOF_LINE_PLANNING`
+`READY_FOR_V3_0_1_CLI_EVIDENCE_TRACE_VALIDATION`

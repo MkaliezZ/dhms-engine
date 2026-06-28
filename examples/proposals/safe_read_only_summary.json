@@ -1,0 +1,9 @@
+{
+  "proposal_id": "safe_read_only_summary_001",
+  "intent_summary": "Review a local inert proposal summary without executing tools.",
+  "requested_capabilities": [
+    "local_read_only_summary"
+  ],
+  "declared_boundary": "local_read_only_non_executing_safe",
+  "expected_decision": "RELEASE_CANDIDATE"
+}

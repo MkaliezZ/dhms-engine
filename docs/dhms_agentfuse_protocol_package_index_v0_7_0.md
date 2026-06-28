@@ -200,6 +200,10 @@ Core public materials:
 * Controlled Proposal Replay validator v2.9.2: [`validation/run_dhms_controlled_proposal_replay_evidence_validation_v0.py`](../validation/run_dhms_controlled_proposal_replay_evidence_validation_v0.py)
 * Controlled Proposal Replay Validation Freeze v2.9.2: [`docs/dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md`](dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md)
 * README Current Status Sync v2.9.2: [`docs/dhms_readme_current_status_sync_v2_9_2.md`](dhms_readme_current_status_sync_v2_9_2.md)
+* Local Controlled Proposal Gate CLI v3.0.0: [`docs/dhms_local_controlled_proposal_gate_cli_v3_0_0.md`](dhms_local_controlled_proposal_gate_cli_v3_0_0.md)
+* Safe read-only proposal example: [`examples/proposals/safe_read_only_summary.json`](../examples/proposals/safe_read_only_summary.json)
+* DROP TABLE proposal example: [`examples/proposals/drop_table.json`](../examples/proposals/drop_table.json)
+* Model API proposal example: [`examples/proposals/model_api_request.json`](../examples/proposals/model_api_request.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -775,6 +779,11 @@ v0.7.0 does not claim:
 * Controlled Proposal Replay Validation Freeze v2.9.2: [`docs/dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md`](dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md)
 * README Current Status Sync v2.9.2: [`docs/dhms_readme_current_status_sync_v2_9_2.md`](dhms_readme_current_status_sync_v2_9_2.md)
 * v2.9.2 Controlled Proposal Replay Validation + Freeze + README Sync
+* Local Controlled Proposal Gate CLI v3.0.0: [`docs/dhms_local_controlled_proposal_gate_cli_v3_0_0.md`](dhms_local_controlled_proposal_gate_cli_v3_0_0.md)
+* Safe read-only proposal example: [`examples/proposals/safe_read_only_summary.json`](../examples/proposals/safe_read_only_summary.json)
+* DROP TABLE proposal example: [`examples/proposals/drop_table.json`](../examples/proposals/drop_table.json)
+* Model API proposal example: [`examples/proposals/model_api_request.json`](../examples/proposals/model_api_request.json)
+* v3.0.0 Local Controlled Proposal Gate CLI
 
 Final document verdict:
 

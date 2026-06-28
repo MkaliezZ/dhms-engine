@@ -1,0 +1,10 @@
+{
+  "proposal_id": "model_api_request_001",
+  "intent_summary": "Attempt to call a model provider API from a proposal.",
+  "requested_capabilities": [
+    "model_api"
+  ],
+  "declared_boundary": "unsafe_model_api_request",
+  "expected_decision": "FAIL_CLOSED",
+  "expected_blocked_capability": "model_api"
+}

@@ -38,6 +38,7 @@ from product_runner import run_product_test  # noqa: E402
 from suite_runner import run_suite  # noqa: E402
 from provider_status import format_status_table, models_for, provider_statuses  # noqa: E402
 from dhms_agentfuse_bench_sql_v0 import run_dhms_agentfuse_bench_sql_v0  # noqa: E402
+from dhms_agentfuse.controlled_proposal_gate import evaluate_controlled_proposal  # noqa: E402
 
 
 FILE_FUSE_DEMO_CHECKS = (
@@ -147,6 +148,9 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers.add_parser("bench-mock-agent-interception")
     subparsers.add_parser("proof-mock-agent-interception")
 
+    gate_parser = subparsers.add_parser("gate-proposal")
+    gate_parser.add_argument("proposal_json_path")
+
     providers_parser = subparsers.add_parser("providers")
     providers_parser.add_argument("subcommand", nargs="?", choices=["models"])
     providers_parser.add_argument("provider", nargs="?")
@@ -203,6 +207,23 @@ def main(argv: Optional[List[str]] = None) -> int:
             shell=False,
         )
         return completed.returncode
+    if args.command == "gate-proposal":
+        proposal_path = Path(args.proposal_json_path)
+        try:
+            with proposal_path.open("r", encoding="utf-8") as handle:
+                proposal = json.load(handle)
+        except FileNotFoundError:
+            print(f"gate-proposal error: missing file: {args.proposal_json_path}", file=sys.stderr)
+            return 1
+        except json.JSONDecodeError as exc:
+            print(f"gate-proposal error: invalid JSON: {exc}", file=sys.stderr)
+            return 1
+        except OSError as exc:
+            print(f"gate-proposal error: could not read file: {exc}", file=sys.stderr)
+            return 1
+        result = evaluate_controlled_proposal(proposal, args.proposal_json_path)
+        print(json.dumps(result, indent=2, sort_keys=True))
+        return 0
     if args.command == "providers":
         if args.subcommand == "models":
             print(json.dumps(models_for(args.provider), indent=2, sort_keys=True))

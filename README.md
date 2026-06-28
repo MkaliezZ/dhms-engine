@@ -12,9 +12,10 @@ DHMS began as memory/context/tool-state perturbation testing. The current `agent
 * Current frozen milestone: `v2.7.4 Result Review and Freeze`.
 * Latest sync milestone: `v2.7.4.1 README Current Status Sync`.
 * Current polish milestone: `v2.7.4.2 README Public Landing Page Polish`.
+* Current contract milestone: `v2.8.1 Controlled Agent Proposal Gate Contract + README Non-Claims Compression`.
 * Current DHMS line: `Minimal Pre-Execution Fuse Loop`.
 * Current proof class: repository-local, stdlib-only, inert proposal proof.
-* Next recommended milestone: `v2.8.0 Controlled Agent Proposal Gate Planning`.
+* Next recommended milestone: `v2.8.2 Controlled Agent Proposal Static Fixtures`.
 
 ## Current Strongest Proof
 
@@ -44,8 +45,6 @@ proposed_action=DROP TABLE customers
 Bounded public claim: DHMS has a repository-local, stdlib-only Minimal Pre-Execution Fuse Loop proof showing that one inert LangChain-SQL-agent-like DROP TABLE proposal is observed before execution, fail-closed by the DHMS gate before executor handoff, not received by the inert mock executor, and recorded with zero SQL execution attempts, zero DB connections, zero schema introspection, and zero result readbacks.
 
 ## Reproduce The Proof
-
-Run:
 
 ```bash
 python3 validation/run_dhms_pre_execution_fuse_loop_proof_v0.py
@@ -86,8 +85,6 @@ DHMS_PRE_EXECUTION_FUSE_LOOP_RUNNER_VALIDATION_PASS
 
 ## Screenshot Evidence
 
-Screenshot path:
-
 `docs/development/screenshots/v2_7_3_pre_execution_interception_proof/v2_7_3_pre_execution_interception_proof_terminal.png`
 
 The screenshot captures the v2.7.3 proof command output:
@@ -106,9 +103,7 @@ CLI gate-proposal work is not part of v2.7 and remains a future local intercepti
 
 <details>
 <summary>View v2.7.3 proof screenshot</summary>
-
 ![v2.7.3 pre-execution interception proof](docs/development/screenshots/v2_7_3_pre_execution_interception_proof/v2_7_3_pre_execution_interception_proof_terminal.png)
-
 </details>
 
 ## v2.7 Evidence Chain
@@ -124,35 +119,22 @@ CLI gate-proposal work is not part of v2.7 and remains a future local intercepti
 * [v2.7.4.1 README Current Status Sync](docs/dhms_readme_current_status_sync_v2_7_4_1.md)
 * [v2.7.4.2 README Public Landing Page Polish](docs/dhms_readme_public_landing_page_polish_v2_7_4_2.md)
 
-## Public Non-Claims
+## Public Boundary
 
-DHMS v2.7 does not claim:
+DHMS v2.7 is a repository-local, stdlib-only, inert proposal proof. It is not a production safety claim.
 
-* production readiness
-* real LangChain integration
-* SQLDatabaseToolkit support
-* real SQL Agent support
-* real SQL execution support
-* real DB protection
-* schema introspection protection for real DBs
-* model-provider integration
-* credential safety
-* user-data safety
-* KerniQ integration
-* E2B integration
-* CLI support for the v2.7 proof
-* parser support
-* hook support
-* schema support
-* real execution authorization
-* production runtime behavior
-* protection against arbitrary real-world agents
-* support for external databases
-* support for real tool calls
-* `python3 cli.py gate-proposal` support
-* `examples/proposals/drop_table.json` support
+Current public boundaries:
 
-DHMS is an Execution Fuse Protocol / AgentFuse proof line, not a general SQL execution product, not a LangChain integration, and not a production database shield.
+* No production readiness or real-world agent/database protection is claimed.
+* No real LangChain, SQLDatabaseToolkit, SQL Agent, database, model-provider, KerniQ, E2B, external-runtime, or production-runtime integration is included.
+* No v2.7 CLI gate-proposal support is claimed; `python3 cli.py gate-proposal examples/proposals/drop_table.json` is explicitly not part of the v2.7 proof.
+* The current proof remains bounded to inert proposal data, pre-execution gate evaluation, blocked mock-executor handoff, and zero SQL/DB/schema/result counters.
+
+For the detailed non-claims and freeze boundary, see:
+
+* [v2.7.4 Result Review and Freeze](docs/dhms_pre_execution_fuse_loop_result_review_and_freeze_v2_7_4.md)
+* [v2.7.4.2 README Public Landing Page Polish](docs/dhms_readme_public_landing_page_polish_v2_7_4_2.md)
+* [v2.8.1 Controlled Agent Proposal Gate Contract](docs/dhms_controlled_agent_proposal_gate_contract_v2_8_1.md)
 
 ## Historical Evidence Lines
 
@@ -182,13 +164,12 @@ Fresh-clone reproduction is documented in [DHMS Fresh Clone Reproduction Check v
 
 ## Documentation Index
 
-Start with:
-
 * [DHMS AgentFuse Public Protocol Package Index](docs/dhms_agentfuse_protocol_package_index_v0_7_0.md)
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [DHMS Execution Fuse Protocol v0.6.0](docs/dhms_execution_fuse_protocol_v0_6_0.md)
 * [DHMS Public Evidence Package v1.0](docs/dhms_public_evidence_package_v1_0.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
+* [v2.8.1 Controlled Agent Proposal Gate Contract](docs/dhms_controlled_agent_proposal_gate_contract_v2_8_1.md)
 
 ## Release Materials
 

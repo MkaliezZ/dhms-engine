@@ -1,0 +1,9 @@
+{
+  "id": "langchain_tool_call_safe_read_only_summary_001",
+  "name": "local_read_only_summary",
+  "args": {
+    "topic": "synthetic local project summary"
+  },
+  "type": "tool_call",
+  "expected_decision": "RELEASE_CANDIDATE"
+}

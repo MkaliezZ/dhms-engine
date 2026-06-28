@@ -1,0 +1,10 @@
+{
+  "id": "langchain_tool_call_model_api_request_001",
+  "name": "model_api_request",
+  "args": {
+    "prompt_summary": "synthetic provider request"
+  },
+  "type": "tool_call",
+  "expected_decision": "FAIL_CLOSED",
+  "expected_blocked_capability": "model_api"
+}

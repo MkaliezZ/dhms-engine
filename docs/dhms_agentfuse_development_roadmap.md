@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.0.2 CLI Result Review + README Sync`
+* Current package milestone: `v3.1.0 Real LangChain Agent Interception Minimal Harness`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.0.2 CLI Result Review + README Sync`
-
-Next required milestone:
-
 `v3.1.0 Real LangChain Agent Interception Minimal Harness`
+
+Next recommended milestone:
+
+`v3.1.1 Real LangChain Agent Interception Validation`
 
 Locked v3.0 sequence:
 
@@ -2794,13 +2794,18 @@ The locked v3.0 sequence is complete. v3.0 must not expand further. There is
 no v3.0.3, and there is no generic "Next DHMS Proof Line Planning" milestone
 before v3.1.
 
-v3.0.2 adds result review docs and README sync only. It does not change CLI
-behavior, evaluator behavior, validator behavior, proposal examples, SQL
-execution, DB access, model APIs, network, subprocess, env access, credential
-access, user-data access, LangChain, SQLDatabaseToolkit, KerniQ, E2B,
-production runtime, release, or tag.
+v3.1 has begun. v3.1.0 adds a minimal real LangChain agent/message/tool-call
+boundary interception harness. It attempts real LangChain imports and
+`create_agent` usage when available, converts LangChain-style tool calls into
+DHMS controlled proposal gate inputs, and preserves `execution_authorized=false`
+and `runtime_behaviors_added=0`.
 
-v3.1.0 must begin real LangChain agent interception minimal harness work.
+v3.1.0 does not execute tools, call model providers, access SQL/DB/network/
+subprocess/env/credentials/user data, integrate SQLDatabaseToolkit, KerniQ,
+E2B, or production runtime.
+
+v3.1.1 must validate the minimal harness and may not become another planning
+step.
 
 ## Development Prompt Pattern
 
@@ -2856,4 +2861,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_1_0_REAL_LANGCHAIN_AGENT_INTERCEPTION_MINIMAL_HARNESS`
+`READY_FOR_V3_1_1_REAL_LANGCHAIN_AGENT_INTERCEPTION_VALIDATION`

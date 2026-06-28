@@ -205,6 +205,12 @@ Core public materials:
 * CLI evidence trace validator: [`validation/run_dhms_local_controlled_proposal_gate_cli_trace_validation_v0.py`](../validation/run_dhms_local_controlled_proposal_gate_cli_trace_validation_v0.py)
 * CLI Result Review + README Sync v3.0.2: [`docs/dhms_cli_result_review_and_readme_sync_v3_0_2.md`](dhms_cli_result_review_and_readme_sync_v3_0_2.md)
 * README Current Status Sync v3.0.2: [`docs/dhms_readme_current_status_sync_v3_0_2.md`](dhms_readme_current_status_sync_v3_0_2.md)
+* Real LangChain Agent Interception Minimal Harness v3.1.0: [`docs/dhms_real_langchain_agent_interception_minimal_harness_v3_1_0.md`](dhms_real_langchain_agent_interception_minimal_harness_v3_1_0.md)
+* LangChain interception module: [`dhms_agentfuse/langchain_interception.py`](../dhms_agentfuse/langchain_interception.py)
+* LangChain interception smoke validation: [`validation/run_dhms_langchain_interception_smoke_v0.py`](../validation/run_dhms_langchain_interception_smoke_v0.py)
+* LangChain safe read-only tool-call example: [`examples/langchain_interception/safe_read_only_tool_call.json`](../examples/langchain_interception/safe_read_only_tool_call.json)
+* LangChain DROP TABLE tool-call example: [`examples/langchain_interception/drop_table_tool_call.json`](../examples/langchain_interception/drop_table_tool_call.json)
+* LangChain model API tool-call example: [`examples/langchain_interception/model_api_tool_call.json`](../examples/langchain_interception/model_api_tool_call.json)
 * Safe read-only proposal example: [`examples/proposals/safe_read_only_summary.json`](../examples/proposals/safe_read_only_summary.json)
 * DROP TABLE proposal example: [`examples/proposals/drop_table.json`](../examples/proposals/drop_table.json)
 * Model API proposal example: [`examples/proposals/model_api_request.json`](../examples/proposals/model_api_request.json)
@@ -788,12 +794,19 @@ v0.7.0 does not claim:
 * CLI evidence trace validator: [`validation/run_dhms_local_controlled_proposal_gate_cli_trace_validation_v0.py`](../validation/run_dhms_local_controlled_proposal_gate_cli_trace_validation_v0.py)
 * CLI Result Review + README Sync v3.0.2: [`docs/dhms_cli_result_review_and_readme_sync_v3_0_2.md`](dhms_cli_result_review_and_readme_sync_v3_0_2.md)
 * README Current Status Sync v3.0.2: [`docs/dhms_readme_current_status_sync_v3_0_2.md`](dhms_readme_current_status_sync_v3_0_2.md)
+* Real LangChain Agent Interception Minimal Harness v3.1.0: [`docs/dhms_real_langchain_agent_interception_minimal_harness_v3_1_0.md`](dhms_real_langchain_agent_interception_minimal_harness_v3_1_0.md)
+* LangChain interception module: [`dhms_agentfuse/langchain_interception.py`](../dhms_agentfuse/langchain_interception.py)
+* LangChain interception smoke validation: [`validation/run_dhms_langchain_interception_smoke_v0.py`](../validation/run_dhms_langchain_interception_smoke_v0.py)
+* LangChain safe read-only tool-call example: [`examples/langchain_interception/safe_read_only_tool_call.json`](../examples/langchain_interception/safe_read_only_tool_call.json)
+* LangChain DROP TABLE tool-call example: [`examples/langchain_interception/drop_table_tool_call.json`](../examples/langchain_interception/drop_table_tool_call.json)
+* LangChain model API tool-call example: [`examples/langchain_interception/model_api_tool_call.json`](../examples/langchain_interception/model_api_tool_call.json)
 * Safe read-only proposal example: [`examples/proposals/safe_read_only_summary.json`](../examples/proposals/safe_read_only_summary.json)
 * DROP TABLE proposal example: [`examples/proposals/drop_table.json`](../examples/proposals/drop_table.json)
 * Model API proposal example: [`examples/proposals/model_api_request.json`](../examples/proposals/model_api_request.json)
 * v3.0.0 Local Controlled Proposal Gate CLI
 * v3.0.1 CLI Evidence Trace Validation
 * v3.0.2 CLI Result Review + README Sync
+* v3.1.0 Real LangChain Agent Interception Minimal Harness
 
 Final document verdict:
 

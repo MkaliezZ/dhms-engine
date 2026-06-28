@@ -187,6 +187,8 @@ Core public materials:
 * README Public Landing Page Polish v2.7.4.2: [`docs/dhms_readme_public_landing_page_polish_v2_7_4_2.md`](dhms_readme_public_landing_page_polish_v2_7_4_2.md)
 * Controlled Agent Proposal Gate Planning v2.8.0: [`docs/dhms_controlled_agent_proposal_gate_planning_v2_8_0.md`](dhms_controlled_agent_proposal_gate_planning_v2_8_0.md)
 * Controlled Agent Proposal Gate Contract v2.8.1: [`docs/dhms_controlled_agent_proposal_gate_contract_v2_8_1.md`](dhms_controlled_agent_proposal_gate_contract_v2_8_1.md)
+* Controlled Agent Proposal Static Fixtures v2.8.2: [`docs/dhms_controlled_agent_proposal_static_fixtures_v2_8_2.md`](dhms_controlled_agent_proposal_static_fixtures_v2_8_2.md)
+* Controlled Agent Proposal Gate fixtures: [`benchmarks/dhms_controlled_agent_proposal_gate_v0/proposals.json`](../benchmarks/dhms_controlled_agent_proposal_gate_v0/proposals.json)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -742,6 +744,9 @@ v0.7.0 does not claim:
 * v2.8.0 Controlled Agent Proposal Gate Planning
 * Controlled Agent Proposal Gate Contract v2.8.1: [`docs/dhms_controlled_agent_proposal_gate_contract_v2_8_1.md`](dhms_controlled_agent_proposal_gate_contract_v2_8_1.md)
 * v2.8.1 Controlled Agent Proposal Gate Contract + README Non-Claims Compression
+* Controlled Agent Proposal Static Fixtures v2.8.2: [`docs/dhms_controlled_agent_proposal_static_fixtures_v2_8_2.md`](dhms_controlled_agent_proposal_static_fixtures_v2_8_2.md)
+* Controlled Agent Proposal Gate fixtures: [`benchmarks/dhms_controlled_agent_proposal_gate_v0/proposals.json`](../benchmarks/dhms_controlled_agent_proposal_gate_v0/proposals.json)
+* v2.8.2 Controlled Agent Proposal Static Fixtures
 
 Final document verdict:
 

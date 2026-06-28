@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.8.1 Controlled Agent Proposal Gate Contract + README Non-Claims Compression`
+* Current package milestone: `v2.8.2 Controlled Agent Proposal Static Fixtures`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2680,6 +2680,23 @@ v2.8.2 should create static inert fixtures only and must not jump directly to
 validator, CLI, LangChain, SQLDatabaseToolkit, real SQL, real DB, model APIs,
 KerniQ, E2B, production runtime, or release/tag work.
 
+Current/completed milestone:
+
+`v2.8.2 Controlled Agent Proposal Static Fixtures`
+
+Next recommended milestone:
+
+`v2.8.3 Controlled Agent Proposal Gate Non-Executing Validation`
+
+v2.8.2 adds exactly 16 repository-local static inert controlled-agent proposal
+fixtures following the v2.8.1 prose-only contract. It adds no validator,
+schema, CLI, source code, parser, runner, screenshot, dependency, release, tag,
+or runtime behavior.
+
+v2.8.3 should add stdlib-only read-only validation only. It must not add CLI,
+LangChain, SQLDatabaseToolkit, real SQL, real DB access, model APIs, KerniQ,
+E2B, production runtime, release, or tag work.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2734,4 +2751,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_8_2_CONTROLLED_AGENT_PROPOSAL_STATIC_FIXTURES`
+`READY_FOR_V2_8_3_CONTROLLED_AGENT_PROPOSAL_GATE_NON_EXECUTING_VALIDATION`

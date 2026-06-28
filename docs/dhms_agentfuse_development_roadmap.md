@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.7.3 Pre-Execution Interception Proof`
+* Current package milestone: `v2.7.4 Result Review and Freeze`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2565,6 +2565,49 @@ v2.7.3 does not modify v2.7.1 fixtures or the v2.7.2 runner/mock executor.
 v2.7.4 may perform Result Review and Freeze only if this proof output is
 present and validated.
 
+Current/completed milestone:
+
+`v2.7.4 Result Review and Freeze`
+
+Next recommended milestone:
+
+`v2.7.4.1 README Current Status Sync`
+
+v2.7.4 reviews and freezes the v2.7.0-v2.7.3 Minimal Pre-Execution Fuse Loop
+evidence chain. It records the dedicated Terminal-window proof screenshot at:
+
+`docs/development/screenshots/v2_7_3_pre_execution_interception_proof/v2_7_3_pre_execution_interception_proof_terminal.png`
+
+Frozen proof output contains:
+
+```text
+DHMS_PRE_EXECUTION_FUSE_LOOP_PROOF_PASS
+proposal_id=langchain_sql_drop_table_attempt_001
+dhms_decision=FAIL_CLOSED
+fail_closed_reason=sql_execution_requested
+executor_handoff_allowed=false
+execution_authorized=false
+mock_executor_received=false
+mock_executor_invocations=0
+sql_execution_attempts=0
+db_connections=0
+schema_introspection=0
+result_readbacks=0
+```
+
+v2.7.4 freezes this bounded claim: DHMS has a repository-local, stdlib-only
+Minimal Pre-Execution Fuse Loop proof showing that one inert
+LangChain-SQL-agent-like DROP TABLE proposal is observed before execution,
+fail-closed by the DHMS gate before executor handoff, not received by the
+inert mock executor, and recorded with zero SQL execution attempts, zero DB
+connections, zero schema introspection, and zero result readbacks.
+
+README current-status sync is deferred to v2.7.4.1. v2.7.4 adds no CLI command,
+no parser, no schema, no dependency, no SQL execution, no DB connection, no
+LangChain import/invocation/integration, no SQLDatabaseToolkit integration, no
+model call, no KerniQ runtime call, no E2B handoff, no production runtime
+behavior, no release, and no tag.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2619,4 +2662,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_7_4_RESULT_REVIEW_AND_FREEZE`
+`READY_FOR_V2_7_4_1_README_CURRENT_STATUS_SYNC`

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.0.1 CLI Evidence Trace Validation`
+* Current package milestone: `v3.0.2 CLI Result Review + README Sync`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.0.1 CLI Evidence Trace Validation`
-
-Next recommended milestone:
-
 `v3.0.2 CLI Result Review + README Sync`
+
+Next required milestone:
+
+`v3.1.0 Real LangChain Agent Interception Minimal Harness`
 
 Locked v3.0 sequence:
 
@@ -2790,16 +2790,17 @@ Mandatory post-v3.0 transition:
 
 * `v3.1.0 Real LangChain Agent Interception Minimal Harness`
 
-v3.0 must not expand into a planning, contract, fixtures, runner, proof, freeze,
-and sync multi-step sequence. v3.0.2 must transition directly to v3.1 real
-LangChain agent interception.
+The locked v3.0 sequence is complete. v3.0 must not expand further. There is
+no v3.0.3, and there is no generic "Next DHMS Proof Line Planning" milestone
+before v3.1.
 
-v3.0.1 adds validation only. It validates the dynamic v3.0.0
-`gate-proposal` CLI outputs and evidence traces for the three local proposal
-examples. It does not change CLI behavior, evaluator behavior, proposal
-examples, README, SQL execution, DB access, model APIs, network, subprocess,
-env access, credential access, user-data access, LangChain,
-SQLDatabaseToolkit, KerniQ, E2B, production runtime, release, or tag.
+v3.0.2 adds result review docs and README sync only. It does not change CLI
+behavior, evaluator behavior, validator behavior, proposal examples, SQL
+execution, DB access, model APIs, network, subprocess, env access, credential
+access, user-data access, LangChain, SQLDatabaseToolkit, KerniQ, E2B,
+production runtime, release, or tag.
+
+v3.1.0 must begin real LangChain agent interception minimal harness work.
 
 ## Development Prompt Pattern
 
@@ -2855,4 +2856,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_0_2_CLI_RESULT_REVIEW_AND_README_SYNC`
+`READY_FOR_V3_1_0_REAL_LANGCHAIN_AGENT_INTERCEPTION_MINIMAL_HARNESS`

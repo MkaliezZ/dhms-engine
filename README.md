@@ -2,55 +2,43 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-DHMS is an execution fuse protocol for AI agents. Its current public proof is a repository-local, stdlib-only, read-only, non-executing Controlled Proposal Replay Evidence validation proof over 16 static replay records.
+DHMS is an execution fuse protocol for AI agents. Its current public proof is a local deterministic controlled proposal gate CLI with validated evidence traces over three local proposal examples.
 
 DHMS began as memory/context/tool-state perturbation testing. The current `agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the DHMS Execution Fuse Protocol.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current DHMS line: `Controlled Proposal Replay Evidence Line`.
-* Current frozen milestone: `v2.9.2 Controlled Proposal Replay Validation + Freeze + README Sync`.
-* Latest sync milestone: `v2.9.2 README Current Status Sync`.
-* Current proof class: repository-local, stdlib-only, read-only, non-executing replay evidence validation proof.
-* Next recommended milestone: `Next DHMS Proof Line Planning`.
+* Current DHMS line: `Local Controlled Proposal Gate CLI Line`.
+* Current frozen milestone: `v3.0.2 CLI Result Review + README Sync`.
+* Latest sync milestone: `v3.0.2 README Current Status Sync`.
+* Current proof class: local deterministic controlled proposal gate CLI with validated evidence traces.
+* Next required milestone: `v3.1.0 Real LangChain Agent Interception Minimal Harness`.
 
 ## Current Strongest Proof
 
-The frozen v2.9.2 proof validates 16 static replay evidence records against the frozen v2.8 Controlled Agent Proposal Gate fixture evidence.
+v3.0.2 completes the local controlled proposal gate CLI result review and README sync.
 
 | Evidence field | Frozen value |
 | --- | --- |
-| Record count | `record_count=16` |
-| Source fixture alignment | `source_fixture_alignment=true` |
-| Decision distribution | `RELEASE_CANDIDATE=1`, `FAIL_CLOSED=15`, `HOLD_FOR_REVIEW=0` |
-| Validator | stdlib-only, read-only, non-executing |
-| Replay boundary | all replay records static only |
-| Execution authorization | all false |
+| CLI command | `python3 cli.py gate-proposal <proposal_json_path>` |
+| Validated examples | `safe_read_only_summary_001`, `drop_table_001`, `model_api_request_001` |
+| Decision distribution | `RELEASE_CANDIDATE=1`, `FAIL_CLOSED=2`, `HOLD_FOR_REVIEW=0` |
+| Blocked capabilities | `drop_table_001 -> sql_mutation`, `model_api_request_001 -> model_api` |
+| Trace validation | `all_outputs_valid_json=true`, `all_evidence_trace_assertions_true=true` |
+| Execution authorization | `all_execution_authorized_false=true` |
 | Runtime behaviors added | `runtime_behaviors_added=0` |
-| Frozen marker | `DHMS_CONTROLLED_PROPOSAL_REPLAY_EVIDENCE_VALIDATION_PASS` |
+| Frozen marker | `DHMS_LOCAL_CONTROLLED_PROPOSAL_GATE_CLI_TRACE_VALIDATION_PASS` |
 
-Bounded public claim: DHMS has a repository-local, stdlib-only, read-only, non-executing Controlled Proposal Replay Evidence validation proof confirming source fixture alignment, decision distribution, static-only replay boundaries, zero runtime behaviors added, execution authorization false, and preserved non-execution assertions.
+Bounded public claim: DHMS has a local controlled proposal gate CLI and a validation result confirming deterministic JSON outputs, expected decisions, expected blocked capabilities, complete evidence trace safety assertions, execution authorization false, and zero runtime behaviors added.
 
 ## Reproduce The Proof
 
 ```bash
-python3 validation/run_dhms_controlled_proposal_replay_evidence_validation_v0.py
+python3 validation/run_dhms_local_controlled_proposal_gate_cli_trace_validation_v0.py
 ```
 
-Expected output:
-
-```text
-DHMS_CONTROLLED_PROPOSAL_REPLAY_EVIDENCE_VALIDATION_PASS
-record_count=16
-source_fixture_alignment=true
-release_candidate=1
-fail_closed=15
-hold_for_review=0
-all_replay_records_static_only=true
-all_execution_authorized_false=true
-runtime_behaviors_added=0
-```
+Expected output summary: `DHMS_LOCAL_CONTROLLED_PROPOSAL_GATE_CLI_TRACE_VALIDATION_PASS`, `validated_cli_examples=3`, `release_candidate=1`, `fail_closed=2`, `hold_for_review=0`, `all_outputs_valid_json=true`, `all_execution_authorized_false=true`, `all_runtime_behaviors_added_zero=true`, `all_observed_before_execution=true`, `all_evidence_trace_keys_present=true`, `all_evidence_trace_assertions_true=true`, `gate_proposal_execution_authorized=false`, `runtime_behaviors_added=0`.
 
 Legacy v2.7 pre-execution proof command:
 
@@ -74,7 +62,7 @@ This is not a screenshot of:
 python3 cli.py gate-proposal examples/proposals/drop_table.json
 ```
 
-CLI gate-proposal work is not part of v2.7 and remains a future local interception CLI line.
+The v3.0 `gate-proposal` CLI line is separate from the v2.7 screenshot proof.
 
 <details>
 <summary>View v2.7.3 proof screenshot</summary>
@@ -112,16 +100,26 @@ CLI gate-proposal work is not part of v2.7 and remains a future local intercepti
 * [v2.9.2 Validation Freeze](docs/dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md)
 * [v2.9.2 README Current Status Sync](docs/dhms_readme_current_status_sync_v2_9_2.md)
 
+## v3.0 Evidence Chain
+
+* [v3.0.0 Local Controlled Proposal Gate CLI](docs/dhms_local_controlled_proposal_gate_cli_v3_0_0.md)
+* [v3.0.1 CLI evidence trace validator](validation/run_dhms_local_controlled_proposal_gate_cli_trace_validation_v0.py)
+* [v3.0.1 CLI Evidence Trace Validation](docs/dhms_cli_evidence_trace_validation_v3_0_1.md)
+* [v3.0.2 CLI Result Review + README Sync](docs/dhms_cli_result_review_and_readme_sync_v3_0_2.md)
+* [v3.0.2 README Current Status Sync](docs/dhms_readme_current_status_sync_v3_0_2.md)
+* Examples: [safe read-only](examples/proposals/safe_read_only_summary.json), [DROP TABLE](examples/proposals/drop_table.json), [model API](examples/proposals/model_api_request.json)
+
 ## Public Boundary
 
-DHMS v2.9 is a repository-local, stdlib-only, read-only, non-executing replay evidence validation proof. It is not a production safety claim.
+DHMS v3.0 is a local deterministic controlled proposal gate CLI line with validated evidence traces. It is not a production safety claim.
 
 Current public boundaries:
 
 * No production readiness or real-world agent/database protection is claimed.
-* No real LangChain, SQLDatabaseToolkit, SQL Agent, database, model-provider, KerniQ, E2B, external-runtime, or production-runtime integration is included.
+* No real LangChain, SQLDatabaseToolkit, SQL Agent, database, model-provider, KerniQ, E2B, external-runtime, or production-runtime integration is included yet.
 * No v2.7 CLI gate-proposal support is claimed; `python3 cli.py gate-proposal examples/proposals/drop_table.json` is explicitly not part of the v2.7 proof.
-* The current proof remains bounded to static replay records, read-only validation, preserved non-execution assertions, execution authorization false, and zero runtime behavior added.
+* The current proof remains bounded to local proposal JSON inputs, deterministic gate outputs, complete evidence trace assertions, execution authorization false, and zero runtime behavior added.
+* v3.1.0 is the required next milestone for real LangChain agent interception minimal harness.
 
 For the detailed non-claims and freeze boundary, see:
 
@@ -130,6 +128,7 @@ For the detailed non-claims and freeze boundary, see:
 * [v2.8.1 Controlled Agent Proposal Gate Contract](docs/dhms_controlled_agent_proposal_gate_contract_v2_8_1.md)
 * [v2.8.4 Controlled Agent Proposal Gate Result Review and Freeze](docs/dhms_controlled_agent_proposal_gate_result_review_and_freeze_v2_8_4.md)
 * [v2.9.2 Controlled Proposal Replay Validation Freeze](docs/dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md)
+* [v3.0.2 CLI Result Review + README Sync](docs/dhms_cli_result_review_and_readme_sync_v3_0_2.md)
 
 ## Historical Evidence Lines
 
@@ -164,7 +163,7 @@ Fresh-clone reproduction is documented in [DHMS Fresh Clone Reproduction Check v
 * [DHMS Execution Fuse Protocol v0.6.0](docs/dhms_execution_fuse_protocol_v0_6_0.md)
 * [DHMS Public Evidence Package v1.0](docs/dhms_public_evidence_package_v1_0.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
-* [v2.9.2 Controlled Proposal Replay Validation Freeze](docs/dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md)
+* [v3.0.2 CLI Result Review + README Sync](docs/dhms_cli_result_review_and_readme_sync_v3_0_2.md)
 
 ## Release Materials
 

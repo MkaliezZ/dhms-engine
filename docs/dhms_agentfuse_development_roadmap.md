@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.0.0 Local Controlled Proposal Gate CLI`
+* Current package milestone: `v3.0.1 CLI Evidence Trace Validation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.0.0 Local Controlled Proposal Gate CLI`
+`v3.0.1 CLI Evidence Trace Validation`
 
 Next recommended milestone:
 
-`v3.0.1 CLI Evidence Trace Validation`
+`v3.0.2 CLI Result Review + README Sync`
 
 Locked v3.0 sequence:
 
@@ -2794,10 +2794,12 @@ v3.0 must not expand into a planning, contract, fixtures, runner, proof, freeze,
 and sync multi-step sequence. v3.0.2 must transition directly to v3.1 real
 LangChain agent interception.
 
-v3.0.0 adds a local deterministic controlled proposal gate CLI only. It does
-not add SQL execution, DB access, model APIs, network, subprocess, env access,
-credential access, user-data access, LangChain, SQLDatabaseToolkit, KerniQ,
-E2B, production runtime, release, or tag.
+v3.0.1 adds validation only. It validates the dynamic v3.0.0
+`gate-proposal` CLI outputs and evidence traces for the three local proposal
+examples. It does not change CLI behavior, evaluator behavior, proposal
+examples, README, SQL execution, DB access, model APIs, network, subprocess,
+env access, credential access, user-data access, LangChain,
+SQLDatabaseToolkit, KerniQ, E2B, production runtime, release, or tag.
 
 ## Development Prompt Pattern
 
@@ -2853,4 +2855,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_0_1_CLI_EVIDENCE_TRACE_VALIDATION`
+`READY_FOR_V3_0_2_CLI_RESULT_REVIEW_AND_README_SYNC`

@@ -189,6 +189,8 @@ Core public materials:
 * Controlled Agent Proposal Gate Contract v2.8.1: [`docs/dhms_controlled_agent_proposal_gate_contract_v2_8_1.md`](dhms_controlled_agent_proposal_gate_contract_v2_8_1.md)
 * Controlled Agent Proposal Static Fixtures v2.8.2: [`docs/dhms_controlled_agent_proposal_static_fixtures_v2_8_2.md`](dhms_controlled_agent_proposal_static_fixtures_v2_8_2.md)
 * Controlled Agent Proposal Gate fixtures: [`benchmarks/dhms_controlled_agent_proposal_gate_v0/proposals.json`](../benchmarks/dhms_controlled_agent_proposal_gate_v0/proposals.json)
+* Controlled Agent Proposal Gate Non-Executing Validation v2.8.3: [`docs/dhms_controlled_agent_proposal_gate_non_executing_validation_v2_8_3.md`](dhms_controlled_agent_proposal_gate_non_executing_validation_v2_8_3.md)
+* Controlled Agent Proposal Gate fixture validator: [`validation/run_dhms_controlled_agent_proposal_gate_fixture_validation_v0.py`](../validation/run_dhms_controlled_agent_proposal_gate_fixture_validation_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -747,6 +749,9 @@ v0.7.0 does not claim:
 * Controlled Agent Proposal Static Fixtures v2.8.2: [`docs/dhms_controlled_agent_proposal_static_fixtures_v2_8_2.md`](dhms_controlled_agent_proposal_static_fixtures_v2_8_2.md)
 * Controlled Agent Proposal Gate fixtures: [`benchmarks/dhms_controlled_agent_proposal_gate_v0/proposals.json`](../benchmarks/dhms_controlled_agent_proposal_gate_v0/proposals.json)
 * v2.8.2 Controlled Agent Proposal Static Fixtures
+* Controlled Agent Proposal Gate Non-Executing Validation v2.8.3: [`docs/dhms_controlled_agent_proposal_gate_non_executing_validation_v2_8_3.md`](dhms_controlled_agent_proposal_gate_non_executing_validation_v2_8_3.md)
+* Controlled Agent Proposal Gate fixture validator: [`validation/run_dhms_controlled_agent_proposal_gate_fixture_validation_v0.py`](../validation/run_dhms_controlled_agent_proposal_gate_fixture_validation_v0.py)
+* v2.8.3 Controlled Agent Proposal Gate Non-Executing Validation
 
 Final document verdict:
 

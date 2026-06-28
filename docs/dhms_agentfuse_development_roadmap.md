@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.8.2 Controlled Agent Proposal Static Fixtures`
+* Current package milestone: `v2.8.3 Controlled Agent Proposal Gate Non-Executing Validation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2697,6 +2697,24 @@ v2.8.3 should add stdlib-only read-only validation only. It must not add CLI,
 LangChain, SQLDatabaseToolkit, real SQL, real DB access, model APIs, KerniQ,
 E2B, production runtime, release, or tag work.
 
+Current/completed milestone:
+
+`v2.8.3 Controlled Agent Proposal Gate Non-Executing Validation`
+
+Next recommended milestone:
+
+`v2.8.4 Controlled Agent Proposal Gate Result Review and Freeze`
+
+v2.8.3 adds stdlib-only, read-only, non-executing validation for the v2.8.2
+static inert fixtures only. It checks fixture shape, decision distribution,
+counter-zero invariants, non-execution assertions, and fail-closed reason
+coverage without changing the fixture manifest or adding runtime behavior.
+
+v2.8.4 should review and freeze the v2.8 controlled proposal gate results only.
+It must not add CLI, schema, source runtime code, fixture changes, LangChain,
+SQLDatabaseToolkit, real SQL, real DB access, model APIs, KerniQ, E2B,
+production runtime, release, or tag work.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2751,4 +2769,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_8_3_CONTROLLED_AGENT_PROPOSAL_GATE_NON_EXECUTING_VALIDATION`
+`READY_FOR_V2_8_4_CONTROLLED_AGENT_PROPOSAL_GATE_RESULT_REVIEW_AND_FREEZE`

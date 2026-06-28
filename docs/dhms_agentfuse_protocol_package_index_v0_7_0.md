@@ -179,6 +179,8 @@ Core public materials:
 * Pre-execution gate runner: [`dhms_agentfuse/pre_execution_gate.py`](../dhms_agentfuse/pre_execution_gate.py)
 * Inert mock executor: [`dhms_agentfuse/inert_mock_executor.py`](../dhms_agentfuse/inert_mock_executor.py)
 * Pre-execution fuse loop runner validation: [`validation/run_dhms_pre_execution_fuse_loop_runner_validation_v0.py`](../validation/run_dhms_pre_execution_fuse_loop_runner_validation_v0.py)
+* Pre-Execution Interception Proof v2.7.3: [`docs/dhms_pre_execution_interception_proof_v2_7_3.md`](dhms_pre_execution_interception_proof_v2_7_3.md)
+* Pre-execution fuse loop proof: [`validation/run_dhms_pre_execution_fuse_loop_proof_v0.py`](../validation/run_dhms_pre_execution_fuse_loop_proof_v0.py)
 * Development roadmap: [`docs/dhms_agentfuse_development_roadmap.md`](dhms_agentfuse_development_roadmap.md)
 * Benchmark case manifest: [`benchmarks/dhms_agentfuse_sql_v0/cases.json`](../benchmarks/dhms_agentfuse_sql_v0/cases.json)
 * Minimal API package: [`dhms_agentfuse/`](../dhms_agentfuse/)
@@ -720,6 +722,9 @@ v0.7.0 does not claim:
 * Inert mock executor: [`dhms_agentfuse/inert_mock_executor.py`](../dhms_agentfuse/inert_mock_executor.py)
 * Pre-execution fuse loop runner validation: [`validation/run_dhms_pre_execution_fuse_loop_runner_validation_v0.py`](../validation/run_dhms_pre_execution_fuse_loop_runner_validation_v0.py)
 * v2.7.2 Gate Runner + Mock Executor
+* Pre-Execution Interception Proof v2.7.3: [`docs/dhms_pre_execution_interception_proof_v2_7_3.md`](dhms_pre_execution_interception_proof_v2_7_3.md)
+* Pre-execution fuse loop proof: [`validation/run_dhms_pre_execution_fuse_loop_proof_v0.py`](../validation/run_dhms_pre_execution_fuse_loop_proof_v0.py)
+* v2.7.3 Pre-Execution Interception Proof
 
 Final document verdict:
 

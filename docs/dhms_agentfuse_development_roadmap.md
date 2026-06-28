@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v2.8.4.1 README Current Status Sync`
+* Current package milestone: `v2.9.0 Next DHMS Proof Line Planning`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2395,7 +2395,7 @@ Corrected strategic roadmap:
 
 * v2.7.x Minimal Pre-Execution Fuse Loop
 * v2.8.x Controlled Agent Proposal Gate
-* v2.9.x Tool-Call Interception Surface with LangChain-Style Shape
+* v2.9.x Controlled Proposal Replay Evidence Line
 * v3.0.x Local Interception CLI
 * v3.1.x Real LangChain Toy-Tool Callback Boundary
 * v3.2.x SQL Agent Pre-Execution Boundary Re-Entry
@@ -2411,8 +2411,8 @@ required proof marker is `DHMS_PRE_EXECUTION_FUSE_LOOP_PROOF_PASS` with
 `db_connections=0`.
 
 The standalone no-import LangChain-style compatibility line is deleted.
-LangChain-style shape support is folded into v2.9. Real LangChain toy-tool
-callback moves up to v3.1.
+v2.9 is reserved for Controlled Proposal Replay evidence. Real LangChain
+toy-tool callback remains outside v2.9 and requires a separate explicit phase.
 
 v2.7.0 remains planning-only unless a later prompt explicitly changes that
 boundary. It must not add code, validators, fixtures, schemas, parser, runner,
@@ -2749,6 +2749,32 @@ source runtime code, dependency, release, or tag.
 v2.9.0 should plan the next DHMS proof line only unless explicitly authorized
 otherwise.
 
+Current/completed milestone:
+
+`v2.9.0 Next DHMS Proof Line Planning`
+
+Next recommended milestone:
+
+`v2.9.1 Controlled Proposal Replay Evidence Contract`
+
+Selected line:
+
+`Controlled Proposal Replay Evidence Line`
+
+v2.9.0 selects a repository-local, stdlib-only, read-only, non-executing replay
+evidence direction after the frozen v2.8.4 Controlled Agent Proposal Gate proof.
+It is planning-only and adds no proof behavior, runtime behavior, fixture change,
+validator change, schema, CLI, source runtime code, dependency, release, or tag.
+
+Proposed v2.9 sequence:
+
+* `v2.9.0 Next DHMS Proof Line Planning`
+* `v2.9.1 Controlled Proposal Replay Evidence Contract`
+* `v2.9.2 Controlled Proposal Replay Static Evidence Records`
+* `v2.9.3 Controlled Proposal Replay Read-Only Validation`
+* `v2.9.4 Controlled Proposal Replay Result Review and Freeze`
+* `v2.9.4.1 README Current Status Sync`
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2803,4 +2829,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V2_9_0_NEXT_DHMS_PROOF_LINE_PLANNING`
+`READY_FOR_V2_9_1_CONTROLLED_PROPOSAL_REPLAY_EVIDENCE_CONTRACT`

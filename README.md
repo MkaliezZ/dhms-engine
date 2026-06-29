@@ -2,41 +2,41 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-DHMS is an execution fuse protocol for AI agents. Its current public proof is a reproducible local LangChain dependency plus real `create_agent` harness validation and pre-tool interception over three local tool-call proposals. DHMS began as memory/context/tool-state perturbation testing; the current `agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the DHMS Execution Fuse Protocol.
+DHMS is an execution fuse protocol for AI agents. Its current public proof is a local deterministic real LangChain agent loop boundary where `create_agent` creates an agent, the real loop reaches a guarded tool invocation boundary, DHMS fails closed for `sql_mutation`, and sentinel/count evidence proves the executable protected payload body did not run. DHMS began as memory/context/tool-state perturbation testing; the current `agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the DHMS Execution Fuse Protocol.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current DHMS line: `Real LangChain Pre-Tool Interception Line`.
-* Current frozen milestone: `v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync`.
-* Latest sync milestone: `v3.1.2 README Current Status Sync`.
-* Current proof class: reproducible local LangChain dependency plus real `create_agent` harness validation and pre-tool interception.
-* Next required milestone: `v3.2.0 Real LangChain Agent Loop Pre-Tool Boundary Harness`.
+* Current DHMS line: `Real LangChain Agent Loop Boundary Line`.
+* Current frozen milestone: `v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync`.
+* Latest sync milestone: `v3.2.2 README Current Status Sync`.
+* Current proof class: real LangChain agent loop reaches guarded pre-tool boundary; sentinel proves executable payload did not execute.
+* Next required milestone: `v3.3.0 Real LangChain Guarded Tool Adapter Boundary Expansion`.
 
 ## Current Strongest Proof
 
-v3.1.2 completes real LangChain pre-tool interception result review and README sync.
+v3.2.2 completes real LangChain agent loop boundary result review and README sync.
 
 | Evidence field | Frozen value |
 | --- | --- |
 | Dependency | `requirements.txt` with `langchain>=1.0,<2.0` |
 | Runtime and LangChain | `/usr/local/bin/python3.11`, observed LangChain `1.3.11` |
-| Real LangChain harness | `real_create_agent_imported=true`, `real_langchain_agent_object_created=true`, `agent_object_type=CompiledStateGraph`, `real_langchain_ai_message_path_validated=true` |
-| Validated interceptions | `validated_interceptions=3` |
-| Decision distribution | `RELEASE_CANDIDATE=1`, `FAIL_CLOSED=2`, `HOLD_FOR_REVIEW=0` |
-| Pre-tool invariants | `all_intercepted_before_execution=true`, `all_tool_execution_attempted_false=true`, `all_tool_execution_allowed_false=true` |
-| Execution/runtime/provider boundary | `all_execution_authorized_false=true`, `all_runtime_behaviors_added_zero=true`, `all_model_providers_not_called=true`, `runtime_behaviors_added=0` |
-| Frozen marker | `DHMS_REAL_LANGCHAIN_DEPENDENCY_AND_AGENT_HARNESS_VALIDATION_PASS` |
+| Real LangChain agent loop | `real_create_agent_imported=true`, `real_langchain_agent_object_created=true`, `agent_object_type=CompiledStateGraph`, real agent loop invoked, fake/local driver used |
+| Guarded tool boundary | tool boundary reached, guarded tool wrapper invoked, DHMS guard invoked, `gate_decision=FAIL_CLOSED`, `blocked_capabilities=sql_mutation` |
+| Sentinel proof | `side_effect_sentinel_before=0`, `side_effect_sentinel_after=0`, `side_effect_sentinel_delta=0`, `protected_payload_body_invocation_count=0`, `protected_tool_body_executed=false` |
+| Three-run validation | `validated_runs=3`, `sentinel_failure_count=0`, `protected_payload_body_execution_count=0` |
+| Execution/runtime boundary | `execution_authorized=false`, `runtime_behaviors_added=0` |
+| Frozen markers | `DHMS_REAL_LANGCHAIN_AGENT_LOOP_PRE_TOOL_BOUNDARY_HARNESS_PASS`, `DHMS_REAL_LANGCHAIN_AGENT_LOOP_BOUNDARY_VALIDATION_PASS` |
 
-Bounded public claim: DHMS has a reproducible local LangChain dependency through `requirements.txt`, validates real `langchain.agents.create_agent`, creates a real local LangChain agent object using a fake/local model and inert tools, validates a real `AIMessage` tool-call path, and intercepts three local LangChain tool/action proposals before tool execution while preserving `execution_authorized=false` and `runtime_behaviors_added=0`.
+Bounded public claim: DHMS validates a local deterministic real LangChain agent loop boundary in which real LangChain `create_agent` creates an agent, the real agent loop is invoked, the loop reaches a real LangChain tool invocation boundary, DHMS guard runs before a callable protected payload body, dangerous `sql_mutation` fails closed, and across three independent local validation runs the protected payload body does not execute, proven by sentinel/count assertions.
 
 ## Reproduce The Proof
 
 ```bash
-/usr/local/bin/python3.11 validation/run_dhms_langchain_dependency_and_agent_harness_validation_v0.py
+/usr/local/bin/python3.11 validation/run_dhms_langchain_agent_loop_boundary_validation_v0.py
 ```
 
-Expected output summary: `DHMS_REAL_LANGCHAIN_DEPENDENCY_AND_AGENT_HARNESS_VALIDATION_PASS`, `langchain_available=true`, `langchain_agent_harness_created=true`, `real_create_agent_imported=true`, `real_langchain_agent_object_created=true`, `real_langchain_ai_message_path_validated=true`, `validated_interceptions=3`, `release_candidate=1`, `fail_closed=2`, `hold_for_review=0`, `all_tool_execution_attempted_false=true`, `all_tool_execution_allowed_false=true`, `all_execution_authorized_false=true`, `all_runtime_behaviors_added_zero=true`, `all_tools_not_executed=true`, `all_model_providers_not_called=true`, `runtime_behaviors_added=0`.
+Expected output summary: `DHMS_REAL_LANGCHAIN_AGENT_LOOP_BOUNDARY_VALIDATION_PASS`, `validated_runs=3`, `all_tool_boundaries_reached=true`, `all_dhms_guards_invoked=true`, `all_gate_decisions_fail_closed=true`, `all_side_effect_sentinel_after_zero=true`, `all_protected_payload_body_invocation_count_zero=true`, `sentinel_failure_count=0`, `protected_payload_body_execution_count=0`, `runtime_behaviors_added=0`.
 
 Python runtime note: default system `python3` is Python 3.9.6 in the validated environment and cannot install LangChain 1.x. Use `/usr/local/bin/python3.11` for v3.1/v3.2 validation unless the system default Python is upgraded to >=3.10.
 
@@ -115,18 +115,28 @@ The v3.0 `gate-proposal` CLI line is separate from the v2.7 screenshot proof.
 * Implementation and validators: [LangChain interception module](dhms_agentfuse/langchain_interception.py), [strict dependency and harness validator](validation/run_dhms_langchain_dependency_and_agent_harness_validation_v0.py), [LangChain smoke validator](validation/run_dhms_langchain_interception_smoke_v0.py)
 * Examples: [safe read-only](examples/langchain_interception/safe_read_only_tool_call.json), [DROP TABLE](examples/langchain_interception/drop_table_tool_call.json), [model API](examples/langchain_interception/model_api_tool_call.json)
 
+## v3.2 Evidence Chain
+
+| Milestone | Evidence | Boundary |
+| --- | --- | --- |
+| v3.2.0 | Real LangChain agent loop pre-tool boundary harness | 真实 LangChain agent loop pre-tool 边界，sentinel 证明可执行 payload 未执行 |
+| v3.2.1 | Three-run boundary validation | 三次独立运行全部 sentinel=0，payload body 未执行 |
+| v3.2.2 | Result review + README sync | 冻结 assertion records，公开边界同步 |
+
+Links: [v3.2.0 harness doc](docs/dhms_real_langchain_agent_loop_pre_tool_boundary_harness_v3_2_0.md), [v3.2.0 validator](validation/run_dhms_langchain_agent_loop_pre_tool_boundary_harness_v0.py), [v3.2.1 validator](validation/run_dhms_langchain_agent_loop_boundary_validation_v0.py), [v3.2.1 assertion records](docs/dhms_real_langchain_agent_loop_boundary_validation_assertion_records_v3_2_1.md), [v3.2.2 result review](docs/dhms_real_langchain_agent_loop_boundary_result_review_and_readme_sync_v3_2_2.md).
+
 ## Public Boundary
 
-DHMS v3.1 has passed from LangChain-compatible fallback into reproducible local LangChain dependency validation. It validates a real local LangChain agent object created through `create_agent`, validates a real `AIMessage` tool-call path, and intercepts local LangChain tool-call proposals before execution. It is not a production safety claim.
+DHMS v3.2 validates a local deterministic real LangChain agent loop boundary where the real loop reaches a guarded tool invocation boundary and DHMS fails closed before a callable protected payload body. It is not a production safety claim.
 
 Current public boundaries:
 
 * No production readiness or real-world agent/database protection is claimed.
-* No arbitrary production LangChain agent protection, tool execution, model-provider call, execution authorization, or runtime behavior is claimed or added.
+* No arbitrary production LangChain agent protection, arbitrary real-world agent protection, tool execution, model-provider call, execution authorization, or runtime behavior is claimed or added.
 * No SQLDatabaseToolkit, SQL Agent, database, model-provider, KerniQ, E2B, MCP, external-runtime, or production-runtime integration is included yet.
 * No v2.7 CLI gate-proposal support is claimed; `python3 cli.py gate-proposal examples/proposals/drop_table.json` is explicitly not part of the v2.7 proof.
-* The current proof remains bounded to local LangChain dependency validation, fake/local model harness creation, inert local tool-call proposals, execution authorization false, and zero runtime behavior added.
-* v3.2.0 is the required next milestone for real LangChain agent loop pre-tool boundary harness.
+* The current proof remains bounded to a local deterministic real LangChain agent loop, fake/local model driver, guarded tool boundary, `FAIL_CLOSED` for `sql_mutation`, execution authorization false, sentinel/count proof, and zero runtime behavior added.
+* v3.3.0 is the required next milestone for real LangChain guarded tool adapter boundary expansion.
 
 For the detailed non-claims and freeze boundary, see:
 
@@ -137,6 +147,7 @@ For the detailed non-claims and freeze boundary, see:
 * [v2.9.2 Controlled Proposal Replay Validation Freeze](docs/dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md)
 * [v3.0.2 CLI Result Review + README Sync](docs/dhms_cli_result_review_and_readme_sync_v3_0_2.md)
 * [v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync](docs/dhms_real_langchain_pre_tool_interception_result_review_and_readme_sync_v3_1_2.md)
+* [v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync](docs/dhms_real_langchain_agent_loop_boundary_result_review_and_readme_sync_v3_2_2.md)
 
 ## Historical Evidence Lines
 
@@ -172,6 +183,7 @@ Fresh-clone reproduction is documented in [DHMS Fresh Clone Reproduction Check v
 * [DHMS Public Evidence Package v1.0](docs/dhms_public_evidence_package_v1_0.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 * [v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync](docs/dhms_real_langchain_pre_tool_interception_result_review_and_readme_sync_v3_1_2.md)
+* [v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync](docs/dhms_real_langchain_agent_loop_boundary_result_review_and_readme_sync_v3_2_2.md)
 
 ## Release Materials
 

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.2.1 Real LangChain Agent Loop Boundary Validation`
+* Current package milestone: `v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.2.1 Real LangChain Agent Loop Boundary Validation`
+`v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync`
 
 Next recommended milestone:
 
-`v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync`
+`v3.3.0 Real LangChain Guarded Tool Adapter Boundary Expansion`
 
 Locked v3.0 sequence:
 
@@ -2848,15 +2848,18 @@ invokes the DHMS pre-tool guard, fails closed for `sql_mutation`, preserves
 `side_effect_sentinel_after=0`, keeps `protected_payload_body_invocation_count=0`,
 and records `runtime_behaviors_added=0`.
 
-v3.2 must stay to exactly this three-step line unless a correction is strictly
-necessary:
+v3.2.2 freezes the v3.2.1 assertion records, syncs README, and updates the
+package index. It completes v3.2 without modifying the v3.2.0 harness or the
+v3.2.1 validator.
+
+v3.2 is complete as exactly this three-step line:
 
 * `v3.2.0 Real LangChain Agent Loop Pre-Tool Boundary Harness`
 * `v3.2.1 Real LangChain Agent Loop Boundary Validation`
 * `v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync`
 
-There should be no generic planning milestone before v3.2.2. v3.2.2 is result
-review and README sync, not a new implementation or planning line.
+There should be no v3.2.3 unless a correction is strictly necessary. There is
+no generic planning milestone before v3.3.0.
 
 ## Development Prompt Pattern
 
@@ -2912,4 +2915,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_2_2_REAL_LANGCHAIN_AGENT_LOOP_BOUNDARY_RESULT_REVIEW_AND_README_SYNC`
+`READY_FOR_V3_3_0_REAL_LANGCHAIN_GUARDED_TOOL_ADAPTER_BOUNDARY_EXPANSION`

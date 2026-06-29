@@ -8,9 +8,9 @@ DHMS is an execution fuse protocol for AI agents. Its current public proof is a 
 
 * Current branch: `agent-harness-v1`.
 * Current DHMS line: `Real LangChain Multi-Tool Selective Interception Boundary Line`.
-* Current frozen milestone: `v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync`.
+* Current packaging milestone: `v3.5.0 Packaging: pyproject.toml + pip install -e . local validation`.
 * Current strongest proof: one real LangChain agent boundary with three adapter-created tools; v3.4.1 validation passed and v3.4.2 freezes the result.
-* Next direction: packaging, integration example, public posting, and external feedback.
+* Next direction: `v3.5.1 External LangChain/LangGraph integration example`.
 
 ## Current Strongest Proof
 
@@ -38,7 +38,16 @@ Bounded public claim: DHMS validates a local deterministic real LangChain multi-
 
 Expected output summary: `DHMS_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_VALIDATION_PASS`, `single_agent_boundary_count=1`, `registered_adapter_created_tool_count=3`, `same_agent_tool_registry=true`, `independent_tool_call_count=3`, `safe_read_only_release_candidate_count=1`, `sql_mutation_fail_closed_count=1`, `model_api_fail_closed_count=1`, `all_protected_tool_body_executed_false=true`, `all_side_effect_sentinel_after_zero=true`, `execution_authorized_count=0`, `runtime_behaviors_added=0`, `sentinel_failure_count=0`, `protected_payload_body_execution_count=0`.
 
-Python runtime note: default system `python3` is Python 3.9.6 in the validated environment and cannot install LangChain 1.x. Use `/usr/local/bin/python3.11` for v3.1-v3.4 validation unless the system default Python is upgraded to >=3.10.
+Python runtime note: default system `python3` is Python 3.9.6 in the validated environment and cannot install LangChain 1.x. Use `/usr/local/bin/python3.11` for v3.1-v3.5 validation unless the system default Python is upgraded to >=3.10.
+
+## Local Editable Install
+
+```bash
+/usr/local/bin/python3.11 -m pip install -e .
+/usr/local/bin/python3.11 -c "import dhms_agentfuse; print('DHMS_AGENTFUSE_IMPORT_PASS')"
+```
+
+`pyproject.toml` makes the local `dhms_agentfuse` package editable-installable. `requirements.txt` remains the dependency model for LangChain validation dependencies. This is not a PyPI release or package release.
 
 Legacy v2.7 pre-execution proof command:
 
@@ -204,6 +213,7 @@ Fresh-clone reproduction is documented in [DHMS Fresh Clone Reproduction Check v
 * [DHMS AgentFuse Development Roadmap](docs/dhms_agentfuse_development_roadmap.md)
 * [DHMS Execution Fuse Protocol v0.6.0](docs/dhms_execution_fuse_protocol_v0_6_0.md)
 * [DHMS Public Evidence Package v1.0](docs/dhms_public_evidence_package_v1_0.md)
+* [Editable package metadata](pyproject.toml)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
 * [v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync](docs/dhms_real_langchain_pre_tool_interception_result_review_and_readme_sync_v3_1_2.md)
 * [v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync](docs/dhms_real_langchain_agent_loop_boundary_result_review_and_readme_sync_v3_2_2.md)

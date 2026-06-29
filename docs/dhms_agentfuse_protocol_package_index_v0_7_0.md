@@ -239,6 +239,7 @@ Core public materials:
 * Real LangChain Multi-Tool Selective Interception Validation v3.4.1: [`docs/dhms_real_langchain_multi_tool_selective_interception_validation_v3_4_1.md`](dhms_real_langchain_multi_tool_selective_interception_validation_v3_4_1.md)
 * Real LangChain multi-tool selective interception validation assertion records v3.4.1: [`docs/dhms_real_langchain_multi_tool_selective_interception_validation_assertion_records_v3_4_1.md`](dhms_real_langchain_multi_tool_selective_interception_validation_assertion_records_v3_4_1.md)
 * Real LangChain Multi-Tool Selective Interception Result Review + README Sync v3.4.2: [`docs/dhms_real_langchain_multi_tool_selective_interception_result_review_and_readme_sync_v3_4_2.md`](dhms_real_langchain_multi_tool_selective_interception_result_review_and_readme_sync_v3_4_2.md)
+* Editable package metadata v3.5.0: [`pyproject.toml`](../pyproject.toml)
 * LangChain safe read-only tool-call example: [`examples/langchain_interception/safe_read_only_tool_call.json`](../examples/langchain_interception/safe_read_only_tool_call.json)
 * LangChain DROP TABLE tool-call example: [`examples/langchain_interception/drop_table_tool_call.json`](../examples/langchain_interception/drop_table_tool_call.json)
 * LangChain model API tool-call example: [`examples/langchain_interception/model_api_tool_call.json`](../examples/langchain_interception/model_api_tool_call.json)

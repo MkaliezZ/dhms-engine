@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync`
+* Current package milestone: `v3.5.0 Packaging: pyproject.toml + pip install -e . local validation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync`
+`v3.5.0 Packaging: pyproject.toml + pip install -e . local validation`
 
-Next recommended direction:
+Next recommended milestone:
 
-`Packaging / integration example / public posting / external feedback`
+`v3.5.1 External LangChain/LangGraph integration example`
 
 Locked v3.0 sequence:
 
@@ -2931,10 +2931,17 @@ without adding runtime behavior. Frozen values include
 `protected_payload_body_execution_count=0`, `sentinel_failure_count=0`,
 `execution_authorized_count=0`, and `runtime_behaviors_added=0`.
 
-After v3.4.2, DHMS stops expanding internal proof versions and moves to
-packaging, integration example, public posting, and external feedback. This
-next direction should not be treated as v3.5 proof expansion unless a separate
-explicit planning phase defines it.
+v3.5.0 adds minimal Python package metadata so the local `dhms_agentfuse`
+package can be installed with `pip install -e .`. It preserves the existing
+`requirements.txt` dependency model and does not publish to PyPI, create a
+package release, add a tag, add runtime behavior, add authorization policy, or
+expand the v3.4 proof boundary.
+
+Smooth v3.5.x direction:
+
+* `v3.5.0 Packaging: pyproject.toml + pip install -e . local validation`
+* `v3.5.1 External LangChain/LangGraph integration example`
+* `v3.5.2 Public post / external feedback trigger`
 
 ## Development Prompt Pattern
 
@@ -2990,4 +2997,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_PACKAGING_INTEGRATION_EXAMPLE_AND_EXTERNAL_FEEDBACK`
+`READY_FOR_V3_5_1_EXTERNAL_LANGCHAIN_LANGGRAPH_INTEGRATION_EXAMPLE`

@@ -1,10 +1,14 @@
-# DHMS External LangChain/LangGraph Integration Example v3.5.1
+# DHMS langgraph-bigtool Registry Pattern Guard Demo v3.5.1
 
 ## Purpose
 
-v3.5.1 adds a minimal external integration example showing how DHMS AgentFuse can
-be placed around a real LangChain/LangGraph-style agent tool registry with a
-small code change.
+v3.5.1 adds a minimal deterministic guard demo showing how DHMS AgentFuse can be
+placed around a real LangChain/LangGraph-style agent tool registry pattern with
+a small code change.
+
+This example mirrors the `langgraph-bigtool` tool registry shape; it does not
+import or run `langgraph_bigtool` itself. It is a registry-pattern demo, not a
+true package integration with `langgraph-bigtool`.
 
 This is an example milestone only. It does not add production runtime behavior,
 authorization policy, provider SDK integration, SQL execution, database access,
@@ -24,7 +28,7 @@ that retrieve and call tools from a tool registry. It is small and
 understandable compared with a full framework repository, and its public README
 shows a clear tool-registry boundary that DHMS can guard.
 
-## Integration Boundary
+## Registry Pattern Boundary
 
 The external project pattern is:
 
@@ -35,9 +39,9 @@ tool_registry = {
 }
 ```
 
-The DHMS example keeps the integration at that registry boundary.
+The DHMS example keeps the guard at that registry boundary.
 
-Minimal integration diff:
+Minimal guard diff:
 
 ```python
 from dhms_agentfuse.controlled_proposal_gate import evaluate_controlled_proposal
@@ -48,7 +52,7 @@ tool_registry = {
 }
 ```
 
-Approximate integration line count: `7`
+Approximate guard line count: `7`
 
 ## Before / After
 
@@ -82,7 +86,7 @@ After:
 
 Expected final verdict:
 
-`DHMS_EXTERNAL_LANGGRAPH_BIGTOOL_INTEGRATION_EXAMPLE_PASS`
+`DHMS_LANGGRAPH_BIGTOOL_REGISTRY_PATTERN_DEMO_PASS`
 
 ## Preserved Boundaries
 
@@ -93,6 +97,7 @@ v3.5.1 preserves the v3.4.x proof boundary:
 * no provider SDK
 * no SQLDatabaseToolkit
 * no PythonREPLTool
+* no `langgraph_bigtool` import or call
 * no network calls during validation
 * no SQL execution
 * no database access

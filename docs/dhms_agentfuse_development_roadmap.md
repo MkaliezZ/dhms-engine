@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.5.1 External LangChain/LangGraph Integration Example`
+* Current package milestone: `v3.5.1 DHMS guard demo based on the langgraph-bigtool tool registry pattern`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,7 +2774,7 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.5.1 External LangChain/LangGraph Integration Example`
+`v3.5.1 DHMS guard demo based on the langgraph-bigtool tool registry pattern`
 
 Next recommended milestone:
 
@@ -2940,22 +2940,25 @@ expand the v3.4 proof boundary.
 Smooth v3.5.x direction:
 
 * `v3.5.0 Packaging: pyproject.toml + pip install -e . local validation`
-* `v3.5.1 External LangChain/LangGraph integration example`
+* `v3.5.1 DHMS guard demo based on the langgraph-bigtool tool registry pattern`
 * `v3.5.2 Public post / external feedback trigger`
 
-v3.5.1 adds a deterministic local external integration example for
-`langchain-ai/langgraph-bigtool`, observed at 545 stars. The project was chosen
-because it is a focused LangGraph tool-registry project rather than a huge
-framework repository. The example shows a before/after registry boundary:
-before, dangerous tools are reachable from the agent/tool path; after, the
-registry entries are wrapped with DHMS before protected payload execution. The
-safe read-only tool returns `RELEASE_CANDIDATE`; the SQL mutation and model API
-tools return `FAIL_CLOSED`; protected payload bodies do not execute.
+v3.5.1 adds a deterministic local guard demo based on the
+`langchain-ai/langgraph-bigtool` tool registry pattern, observed at 545 stars.
+The project was chosen because it is a focused LangGraph tool-registry project
+rather than a huge framework repository. The example mirrors the registry shape
+but does not import or run `langgraph_bigtool` itself. It shows a before/after
+registry boundary: before, dangerous tools are reachable from the agent/tool
+path; after, the registry entries are wrapped with DHMS before protected payload
+execution. The safe read-only tool returns `RELEASE_CANDIDATE`; the SQL
+mutation and model API tools return `FAIL_CLOSED`; protected payload bodies do
+not execute.
 
-v3.5.1 does not vendor the external project, add provider SDKs, add
-SQLDatabaseToolkit, add PythonREPLTool, make network calls during validation,
-execute SQL, access databases, read environment variables, read credentials,
-read user data, authorize execution, or add production runtime behavior.
+v3.5.1 does not vendor the external project, import or run `langgraph_bigtool`,
+add provider SDKs, add SQLDatabaseToolkit, add PythonREPLTool, make network
+calls during validation, execute SQL, access databases, read environment
+variables, read credentials, read user data, authorize execution, or add
+production runtime behavior.
 
 ## Development Prompt Pattern
 

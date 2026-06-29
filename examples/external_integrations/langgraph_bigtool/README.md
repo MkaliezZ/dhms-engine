@@ -1,7 +1,10 @@
-# DHMS External Integration Example: langgraph-bigtool
+# DHMS Guard Demo Based on the langgraph-bigtool Tool Registry Pattern
 
-This example shows how DHMS AgentFuse can be placed around a
-`langgraph-bigtool`-style tool registry with a small integration change.
+This example shows how DHMS AgentFuse can guard a `langgraph-bigtool`-style
+tool registry shape with a small code change.
+
+This example mirrors the `langgraph-bigtool` tool registry shape; it does not
+import or run `langgraph_bigtool` itself.
 
 External project:
 
@@ -36,10 +39,10 @@ tool_registry = {
 }
 ```
 
-The integration point is the tool registry boundary. DHMS observes each tool
-proposal before protected payload execution, returns `RELEASE_CANDIDATE` for the
-safe read-only tool, returns `FAIL_CLOSED` for dangerous SQL mutation and model
-API tools, and keeps all protected payload bodies unexecuted.
+The guard point is the tool registry boundary. DHMS observes each tool proposal
+before protected payload execution, returns `RELEASE_CANDIDATE` for the safe
+read-only tool, returns `FAIL_CLOSED` for dangerous SQL mutation and model API
+tools, and keeps all protected payload bodies unexecuted.
 
 Run the deterministic local demo:
 
@@ -49,8 +52,8 @@ Run the deterministic local demo:
 
 Expected final verdict:
 
-`DHMS_EXTERNAL_LANGGRAPH_BIGTOOL_INTEGRATION_EXAMPLE_PASS`
+`DHMS_LANGGRAPH_BIGTOOL_REGISTRY_PATTERN_DEMO_PASS`
 
-This example does not import `langgraph-bigtool`, call model providers, perform
+This example does not import `langgraph_bigtool`, call model providers, perform
 network requests, execute SQL, access a database, read environment variables,
 read credentials, read user data, or authorize protected payload execution.

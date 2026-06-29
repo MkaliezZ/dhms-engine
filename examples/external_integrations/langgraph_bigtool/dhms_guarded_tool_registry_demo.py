@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Deterministic DHMS integration example for a langgraph-bigtool-style registry.
+"""Deterministic DHMS guard demo for a langgraph-bigtool-style registry.
 
 The external project stores available tools in a registry before an agent
 retrieves and calls them. This demo keeps that boundary local and inert: it
-wraps registered tools with DHMS before protected payload bodies can execute.
+mirrors the registry shape and wraps registered tools with DHMS before
+protected payload bodies can execute. It does not import or run
+langgraph_bigtool itself.
 """
 
 from __future__ import annotations
@@ -25,9 +27,9 @@ from dhms_agentfuse.controlled_proposal_gate import evaluate_controlled_proposal
 EXTERNAL_PROJECT_NAME = "langchain-ai/langgraph-bigtool"
 EXTERNAL_PROJECT_URL = "https://github.com/langchain-ai/langgraph-bigtool"
 STAR_COUNT_OBSERVED = 545
-SOURCE = "v3.5.1-external-langgraph-bigtool-integration-example"
-FINAL_VERDICT = "DHMS_EXTERNAL_LANGGRAPH_BIGTOOL_INTEGRATION_EXAMPLE_PASS"
-INTEGRATION_DIFF_LINE_COUNT = 7
+SOURCE = "v3.5.1-langgraph-bigtool-registry-pattern-demo"
+FINAL_VERDICT = "DHMS_LANGGRAPH_BIGTOOL_REGISTRY_PATTERN_DEMO_PASS"
+GUARD_DIFF_LINE_COUNT = 7
 
 
 @dataclass(frozen=True)
@@ -113,7 +115,7 @@ def dhms_guard_tool(tool_name: str, tool: ExternalTool) -> Callable[[str], Dict[
 def create_guarded_registry(
     tool_registry: Dict[str, ExternalTool],
 ) -> Dict[str, Callable[[str], Dict[str, Any]]]:
-    # This mirrors the intended external integration diff.
+    # This mirrors the small guard diff at the registry boundary.
     return {
         tool_name: dhms_guard_tool(tool_name, tool)
         for tool_name, tool in tool_registry.items()
@@ -153,12 +155,13 @@ def run_demo() -> Dict[str, Any]:
     protected_payload_body_execution_count = state["protected_payload_body_execution_count"]
 
     summary = {
-        "demo_name": "DHMS External LangGraph Integration Example",
+        "demo_name": "DHMS langgraph-bigtool Registry Pattern Guard Demo",
         "version": "v3.5.1",
         "external_project": EXTERNAL_PROJECT_NAME,
         "external_project_url": EXTERNAL_PROJECT_URL,
         "star_count_observed": STAR_COUNT_OBSERVED,
-        "integration_diff_line_count": INTEGRATION_DIFF_LINE_COUNT,
+        "guard_diff_line_count": GUARD_DIFF_LINE_COUNT,
+        "imports_or_runs_langgraph_bigtool": False,
         "before": before_summary,
         "after_decisions": decision_by_tool,
         "after_blocked_capabilities": blocked_by_tool,
@@ -199,8 +202,10 @@ def run_demo() -> Dict[str, Any]:
 def _validate_summary(summary: Dict[str, Any]) -> None:
     if summary["star_count_observed"] < 100:
         raise AssertionError("external project must have 100+ observed stars")
-    if summary["integration_diff_line_count"] > 10:
-        raise AssertionError("integration diff line count must stay small")
+    if summary["guard_diff_line_count"] > 10:
+        raise AssertionError("guard diff line count must stay small")
+    if summary["imports_or_runs_langgraph_bigtool"] is not False:
+        raise AssertionError("demo must not claim a real langgraph_bigtool import/call")
     if summary["before"]["dangerous_sql_mutation_tool_reachable"] is not True:
         raise AssertionError("before state must show dangerous SQL tool reachability")
     if summary["after_decisions"]["safe_read_only_summary_tool"] != "RELEASE_CANDIDATE":

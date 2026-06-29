@@ -117,11 +117,11 @@ The v3.0 `gate-proposal` CLI line is separate from the v2.7 screenshot proof.
 
 ## v3.2 Evidence Chain
 
-| Milestone | Evidence | Boundary |
-| --- | --- | --- |
-| v3.2.0 | Real LangChain agent loop pre-tool boundary harness | 真实 LangChain agent loop pre-tool 边界，sentinel 证明可执行 payload 未执行 |
-| v3.2.1 | Three-run boundary validation | 三次独立运行全部 sentinel=0，payload body 未执行 |
-| v3.2.2 | Result review + README sync | 冻结 assertion records，公开边界同步 |
+| Milestone | Evidence                                            | Boundary                                                                                        |
+| --------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| v3.2.0    | Real LangChain agent loop pre-tool boundary harness | Real LangChain agent-loop pre-tool boundary; sentinel proves the executable payload did not run |
+| v3.2.1    | Three-run boundary validation                       | All three independent runs kept sentinel=0; the payload body did not execute                    |
+| v3.2.2    | Result review + README sync                         | Assertion records frozen; public boundary synced                                                |
 
 Links: [v3.2.0 harness doc](docs/dhms_real_langchain_agent_loop_pre_tool_boundary_harness_v3_2_0.md), [v3.2.0 validator](validation/run_dhms_langchain_agent_loop_pre_tool_boundary_harness_v0.py), [v3.2.1 validator](validation/run_dhms_langchain_agent_loop_boundary_validation_v0.py), [v3.2.1 assertion records](docs/dhms_real_langchain_agent_loop_boundary_validation_assertion_records_v3_2_1.md), [v3.2.2 result review](docs/dhms_real_langchain_agent_loop_boundary_result_review_and_readme_sync_v3_2_2.md).
 

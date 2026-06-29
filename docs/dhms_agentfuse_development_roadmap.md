@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`
+* Current package milestone: `v3.4.1 Real LangChain Multi-Tool Selective Interception Validation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`
+`v3.4.1 Real LangChain Multi-Tool Selective Interception Validation`
 
 Next recommended milestone:
 
-`v3.4.1 Real LangChain Multi-Tool Selective Interception Validation`
+`v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync`
 
 Locked v3.0 sequence:
 
@@ -2907,6 +2907,20 @@ authorization policy, provider SDK integration, SQLDatabaseToolkit integration,
 database access, network access, production runtime behavior, or a new CLI
 command. v3.4.1 is the next validation step.
 
+v3.4.1 validates the v3.4.0 boundary with one real LangChain agent, one shared
+tool registry boundary, and three adapter-created guarded tools. The validator
+emits three tool calls to the same agent/tool registry, confirms independent
+DHMS gate decisions, observes `RELEASE_CANDIDATE` for
+`safe_read_only_summary_tool`, observes `FAIL_CLOSED` for
+`dangerous_sql_mutation_tool` and `model_api_request_tool`, and preserves
+`protected_payload_body_execution_count=0`, `execution_authorized_count=0`,
+and `runtime_behaviors_added=0`.
+
+v3.4.1 does not implement authorization policy, provider SDK integration,
+SQLDatabaseToolkit integration, database access, network access, production
+runtime behavior, or a new CLI command. v3.4.2 is result review, assertion
+record review, and README sync only.
+
 After v3.4.2, DHMS should stop expanding internal proof versions and move to
 packaging, integration example, public posting, and external feedback.
 
@@ -2964,4 +2978,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_4_1_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_VALIDATION`
+`READY_FOR_V3_4_2_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_RESULT_REVIEW_AND_README_SYNC`

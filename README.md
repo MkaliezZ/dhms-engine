@@ -7,11 +7,11 @@ DHMS is an execution fuse protocol for AI agents. Its current public proof is a 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current DHMS line: `Real LangChain Guarded Tool Adapter Boundary Line`.
-* Current frozen milestone: `v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`.
-* Latest sync milestone: `v3.3.2 README Current Status Sync`.
-* Current proof class: reusable real LangChain guarded tool adapter boundary; 3 scenarios x 3 runs = 9 local deterministic agent-loop validations; sentinel/count proof shows protected payload bodies did not execute.
-* Next required milestone: `v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`.
+* Current DHMS line: `Real LangChain Multi-Tool Selective Interception Boundary Line`.
+* Current boundary milestone: `v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`.
+* Strongest validated proof remains: `v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`.
+* Current proof construction: one real LangChain agent boundary with three adapter-created tools; static spec only; v3.4.1 validation has not run yet.
+* Next required milestone: `v3.4.1 Real LangChain Multi-Tool Selective Interception Validation`.
 
 ## Current Strongest Proof
 
@@ -136,9 +136,17 @@ Links: [v3.2.0 harness doc](docs/dhms_real_langchain_agent_loop_pre_tool_boundar
 
 Links: [v3.3.0 adapter module](dhms_agentfuse/langchain_guarded_tool_adapter.py), [v3.3.0 validator](validation/run_dhms_langchain_guarded_tool_adapter_boundary_v0.py), [v3.3.1 validator](validation/run_dhms_langchain_guarded_tool_adapter_boundary_validation_v0.py), [v3.3.1 assertion records](docs/dhms_real_langchain_guarded_tool_adapter_boundary_validation_assertion_records_v3_3_1.md), [v3.3.2 result review](docs/dhms_real_langchain_guarded_tool_adapter_boundary_result_review_and_readme_sync_v3_3_2.md), [v3.3.2 README sync](docs/dhms_readme_current_status_sync_v3_3_2.md).
 
+## v3.4 Evidence Chain
+
+| Milestone | Evidence                                                      | Boundary                                                                                         |
+| --------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| v3.4.0    | Multi-tool selective interception boundary + static spec      | One real LangChain agent boundary with three adapter-created tools; v3.4.1 validation pending    |
+
+Links: [v3.4.0 boundary doc](docs/dhms_real_langchain_multi_tool_selective_interception_boundary_v3_4_0.md), [v3.4.0 static spec](examples/langchain_multi_tool_selective_interception/single_agent_three_tool_boundary_spec.json).
+
 ## Public Boundary
 
-DHMS v3.3 validates a local deterministic real LangChain guarded tool adapter boundary where reusable adapter-created tool invocations route through DHMS before protected payload execution. It is not a production safety claim.
+DHMS v3.4.0 defines the boundary target for one real LangChain agent with multiple adapter-created tools, where DHMS must evaluate each tool call independently before protected payload execution. It is not a production safety claim, and v3.4.1 validation has not run yet.
 
 Current public boundaries:
 
@@ -147,7 +155,7 @@ Current public boundaries:
 * No SQLDatabaseToolkit, SQL Agent, database, model-provider, KerniQ, E2B, MCP, external-runtime, or production-runtime integration is included yet.
 * No v2.7 CLI gate-proposal support is claimed; `python3 cli.py gate-proposal examples/proposals/drop_table.json` is explicitly not part of the v2.7 proof.
 * The current proof remains bounded to a local deterministic real LangChain agent loop, fake/local model driver, reusable guarded adapter boundary, `RELEASE_CANDIDATE` for safe read-only proposals, `FAIL_CLOSED` for `sql_mutation` and `model_api`, execution authorization false, sentinel/count proof, and zero runtime behavior added.
-* v3.4.0 is the required next milestone for real LangChain multi-tool selective interception boundary work, not production runtime work.
+* v3.4.1 is the required next milestone for real LangChain multi-tool selective interception validation, not production runtime work.
 
 For the detailed non-claims and freeze boundary, see:
 
@@ -160,6 +168,7 @@ For the detailed non-claims and freeze boundary, see:
 * [v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync](docs/dhms_real_langchain_pre_tool_interception_result_review_and_readme_sync_v3_1_2.md)
 * [v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync](docs/dhms_real_langchain_agent_loop_boundary_result_review_and_readme_sync_v3_2_2.md)
 * [v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync](docs/dhms_real_langchain_guarded_tool_adapter_boundary_result_review_and_readme_sync_v3_3_2.md)
+* [v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary](docs/dhms_real_langchain_multi_tool_selective_interception_boundary_v3_4_0.md)
 
 ## Historical Evidence Lines
 

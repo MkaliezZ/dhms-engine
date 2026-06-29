@@ -233,6 +233,8 @@ Core public materials:
 * Real LangChain guarded tool adapter boundary validation assertion records v3.3.1: [`docs/dhms_real_langchain_guarded_tool_adapter_boundary_validation_assertion_records_v3_3_1.md`](dhms_real_langchain_guarded_tool_adapter_boundary_validation_assertion_records_v3_3_1.md)
 * Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync v3.3.2: [`docs/dhms_real_langchain_guarded_tool_adapter_boundary_result_review_and_readme_sync_v3_3_2.md`](dhms_real_langchain_guarded_tool_adapter_boundary_result_review_and_readme_sync_v3_3_2.md)
 * README Current Status Sync v3.3.2: [`docs/dhms_readme_current_status_sync_v3_3_2.md`](dhms_readme_current_status_sync_v3_3_2.md)
+* Real LangChain Multi-Tool Selective Interception Boundary v3.4.0: [`docs/dhms_real_langchain_multi_tool_selective_interception_boundary_v3_4_0.md`](dhms_real_langchain_multi_tool_selective_interception_boundary_v3_4_0.md)
+* Real LangChain multi-tool selective interception static spec v3.4.0: [`examples/langchain_multi_tool_selective_interception/single_agent_three_tool_boundary_spec.json`](../examples/langchain_multi_tool_selective_interception/single_agent_three_tool_boundary_spec.json)
 * LangChain safe read-only tool-call example: [`examples/langchain_interception/safe_read_only_tool_call.json`](../examples/langchain_interception/safe_read_only_tool_call.json)
 * LangChain DROP TABLE tool-call example: [`examples/langchain_interception/drop_table_tool_call.json`](../examples/langchain_interception/drop_table_tool_call.json)
 * LangChain model API tool-call example: [`examples/langchain_interception/model_api_tool_call.json`](../examples/langchain_interception/model_api_tool_call.json)

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`
+* Current package milestone: `v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`
+`v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`
 
 Next recommended milestone:
 
-`v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`
+`v3.4.1 Real LangChain Multi-Tool Selective Interception Validation`
 
 Locked v3.0 sequence:
 
@@ -2888,12 +2888,24 @@ v3.3 is complete as exactly this three-step line:
 There should be no v3.3.3 unless a correction is strictly necessary. There is
 no generic planning milestone before v3.4.0.
 
-v3.4.0 should validate one real LangChain agent with multiple adapter-created
-tools. The same agent should expose `safe_read_only_summary_tool`,
+v3.4.0 establishes the boundary design and static deterministic spec artifact
+for one real LangChain agent with multiple adapter-created tools. The same
+agent boundary should expose `safe_read_only_summary_tool`,
 `dangerous_sql_mutation_tool`, and `model_api_request_tool`. DHMS should
 evaluate each tool call independently, return `RELEASE_CANDIDATE` for the safe
 read-only proposal, `FAIL_CLOSED` for `sql_mutation` and `model_api` proposals,
 and keep all protected payload bodies unexecuted with sentinel/count evidence.
+
+v3.4 must proceed as:
+
+* `v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`
+* `v3.4.1 Real LangChain Multi-Tool Selective Interception Validation`
+* `v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync`
+
+v3.4.0 is not an authorization policy milestone. It does not implement
+authorization policy, provider SDK integration, SQLDatabaseToolkit integration,
+database access, network access, production runtime behavior, or a new CLI
+command. v3.4.1 is the next validation step.
 
 After v3.4.2, DHMS should stop expanding internal proof versions and move to
 packaging, integration example, public posting, and external feedback.
@@ -2952,4 +2964,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_4_0_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_BOUNDARY`
+`READY_FOR_V3_4_1_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_VALIDATION`

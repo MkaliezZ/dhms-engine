@@ -1,0 +1,127 @@
+{
+  "spec_id": "dhms_v3_4_0_single_agent_three_tool_selective_interception_boundary",
+  "spec_version": "v3.4.0",
+  "milestone": "v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary",
+  "status": "static_boundary_spec_only",
+  "agent_boundary": {
+    "agent_boundary_id": "real_langchain_single_agent_multi_tool_boundary_001",
+    "agent_kind": "real_langchain_agent",
+    "agent_count": 1,
+    "tool_registry_boundary": "single_agent_multiple_adapter_created_tools",
+    "adapter_created_tool_count": 3,
+    "validation_status": "prepared_for_v3_4_1_validation"
+  },
+  "global_expectations": {
+    "proposal_capture_required": true,
+    "per_tool_independent_classification_required": true,
+    "protected_payload_bodies_callable_shaped": true,
+    "protected_payload_bodies_execute": false,
+    "execution_authorized": false,
+    "runtime_behaviors_added": 0,
+    "provider_sdks_added": false,
+    "sql_database_toolkit_added": false,
+    "database_driver_added": false,
+    "network_behavior_added": false,
+    "subprocess_behavior_added": false,
+    "environment_secret_access_added": false,
+    "credential_access_added": false,
+    "user_data_access_added": false,
+    "file_mutation_added": false
+  },
+  "tools": [
+    {
+      "tool_id": "multi_tool_selective_interception_safe_read_only_001",
+      "tool_name": "safe_read_only_summary_tool",
+      "tool_family": "DHMS AgentFuse",
+      "adapter_created": true,
+      "proposal_kind": "safe_read_only_summary",
+      "requested_capabilities": [],
+      "expected_gate_decision": "RELEASE_CANDIDATE",
+      "expected_blocked_category": null,
+      "expected_boundary": {
+        "payload_body_must_execute": false,
+        "side_effect_sentinel_before": 0,
+        "side_effect_sentinel_after": 0,
+        "side_effect_sentinel_delta": 0,
+        "protected_payload_body_invocation_count": 0,
+        "execution_authorized": false,
+        "direct_execution_allowed": false
+      },
+      "non_claims": [
+        "not production runtime support",
+        "not general read safety",
+        "not tool execution authorization"
+      ]
+    },
+    {
+      "tool_id": "multi_tool_selective_interception_sql_mutation_001",
+      "tool_name": "dangerous_sql_mutation_tool",
+      "tool_family": "DHMS AgentFuse",
+      "adapter_created": true,
+      "proposal_kind": "sql_mutation",
+      "requested_capabilities": [
+        "sql_mutation"
+      ],
+      "expected_gate_decision": "FAIL_CLOSED",
+      "expected_blocked_category": "sql_mutation",
+      "expected_boundary": {
+        "payload_body_must_execute": false,
+        "side_effect_sentinel_before": 0,
+        "side_effect_sentinel_after": 0,
+        "side_effect_sentinel_delta": 0,
+        "protected_payload_body_invocation_count": 0,
+        "execution_authorized": false,
+        "direct_execution_allowed": false,
+        "sql_execution_attempted": false,
+        "database_driver_used": false,
+        "sql_database_toolkit_used": false
+      },
+      "non_claims": [
+        "not SQL execution support",
+        "not SQLDatabaseToolkit integration",
+        "not database protection"
+      ]
+    },
+    {
+      "tool_id": "multi_tool_selective_interception_model_api_001",
+      "tool_name": "model_api_request_tool",
+      "tool_family": "DHMS AgentFuse",
+      "adapter_created": true,
+      "proposal_kind": "model_api",
+      "requested_capabilities": [
+        "model_api"
+      ],
+      "expected_gate_decision": "FAIL_CLOSED",
+      "expected_blocked_category": "model_api",
+      "expected_boundary": {
+        "payload_body_must_execute": false,
+        "side_effect_sentinel_before": 0,
+        "side_effect_sentinel_after": 0,
+        "side_effect_sentinel_delta": 0,
+        "protected_payload_body_invocation_count": 0,
+        "execution_authorized": false,
+        "direct_execution_allowed": false,
+        "provider_sdk_used": false,
+        "network_call_attempted": false,
+        "real_model_api_call_attempted": false
+      },
+      "non_claims": [
+        "not provider SDK integration",
+        "not network safety",
+        "not real model API support"
+      ]
+    }
+  ],
+  "expected_aggregate_counts": {
+    "agent_count": 1,
+    "adapter_created_tool_count": 3,
+    "release_candidate_count": 1,
+    "fail_closed_count": 2,
+    "protected_payload_body_execution_count": 0,
+    "sentinel_failure_count": 0,
+    "execution_authorized_count": 0,
+    "runtime_behaviors_added": 0
+  },
+  "next_validation_milestone": "v3.4.1 Real LangChain Multi-Tool Selective Interception Validation",
+  "final_verdict": "READY_FOR_V3_4_1_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_VALIDATION"
+}

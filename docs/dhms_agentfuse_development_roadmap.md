@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.3.1 Real LangChain Guarded Tool Adapter Boundary Validation`
+* Current package milestone: `v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.3.1 Real LangChain Guarded Tool Adapter Boundary Validation`
+`v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`
 
 Next recommended milestone:
 
-`v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`
+`v3.4.0 Real LangChain Guarded Adapter Authorization Policy Boundary`
 
 Locked v3.0 sequence:
 
@@ -2875,14 +2875,23 @@ non-execution, `execution_authorized=false`, and `runtime_behaviors_added=0`.
 v3.3.2 is result review, assertion record freeze, and README sync. It may not
 become another implementation or planning step.
 
-v3.3 must stay to exactly this three-step line unless a correction is strictly
-necessary:
+v3.3.2 freezes the v3.3.1 assertion records, syncs README, and completes the
+v3.3 three-step line. It preserves the v3.3.0 reusable guarded adapter behavior
+and the v3.3.1 validator behavior without adding runtime capability.
+
+v3.3 is complete as exactly this three-step line:
 
 * `v3.3.0 Real LangChain Guarded Tool Adapter Boundary Expansion`
 * `v3.3.1 Real LangChain Guarded Tool Adapter Boundary Validation`
 * `v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`
 
-There should be no generic planning milestone before v3.3.2.
+There should be no v3.3.3 unless a correction is strictly necessary. There is
+no generic planning milestone before v3.4.0.
+
+v3.4.0 should begin authorization policy boundary work, not production runtime
+work. It should explore explicit bounded authorization policy for safe local
+read-only adapter payload execution while preserving fail-closed behavior for
+dangerous capabilities. v3.4.0 is not implemented by v3.3.2.
 
 ## Development Prompt Pattern
 
@@ -2938,4 +2947,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_3_2_REAL_LANGCHAIN_GUARDED_TOOL_ADAPTER_BOUNDARY_RESULT_REVIEW_AND_README_SYNC`
+`READY_FOR_V3_4_0_REAL_LANGCHAIN_GUARDED_ADAPTER_AUTHORIZATION_POLICY_BOUNDARY`

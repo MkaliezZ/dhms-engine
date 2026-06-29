@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync`
+* Current package milestone: `v3.3.0 Real LangChain Guarded Tool Adapter Boundary Expansion`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync`
+`v3.3.0 Real LangChain Guarded Tool Adapter Boundary Expansion`
 
 Next recommended milestone:
 
-`v3.3.0 Real LangChain Guarded Tool Adapter Boundary Expansion`
+`v3.3.1 Real LangChain Guarded Tool Adapter Boundary Validation`
 
 Locked v3.0 sequence:
 
@@ -2861,6 +2861,21 @@ v3.2 is complete as exactly this three-step line:
 There should be no v3.2.3 unless a correction is strictly necessary. There is
 no generic planning milestone before v3.3.0.
 
+v3.3.0 starts reusable guarded LangChain tool adapter boundary expansion. It
+adds a reusable local deterministic guarded adapter, validates multiple local
+tool scenarios through the real LangChain agent loop, builds DHMS proposals
+from tool metadata, and preserves `side_effect_sentinel_after=0` and protected
+payload body non-execution for all scenarios.
+
+v3.3 must stay to exactly this three-step line unless a correction is strictly
+necessary:
+
+* `v3.3.0 Real LangChain Guarded Tool Adapter Boundary Expansion`
+* `v3.3.1 Real LangChain Guarded Tool Adapter Boundary Validation`
+* `v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`
+
+There should be no generic planning milestone before v3.3.1.
+
 ## Development Prompt Pattern
 
 Standard DHMS development prompts should include:
@@ -2915,4 +2930,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_3_0_REAL_LANGCHAIN_GUARDED_TOOL_ADAPTER_BOUNDARY_EXPANSION`
+`READY_FOR_V3_3_1_REAL_LANGCHAIN_GUARDED_TOOL_ADAPTER_BOUNDARY_VALIDATION`

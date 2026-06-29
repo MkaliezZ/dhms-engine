@@ -1,0 +1,12 @@
+{
+  "scenario_id": "langchain_guarded_adapter_safe_read_only_summary_001",
+  "tool_name": "safe_read_only_summary_tool",
+  "requested_capabilities": [],
+  "prompt": "Summarize a local inert note.",
+  "expected_gate_decision": "RELEASE_CANDIDATE",
+  "expected_blocked_capabilities": [],
+  "expected_side_effect_sentinel_after": 0,
+  "expected_protected_tool_body_executed": false,
+  "expected_execution_authorized": false,
+  "expected_runtime_behaviors_added": 0
+}

@@ -1,10 +1,14 @@
-# DHMS Guard Demo Based on the langgraph-bigtool Tool Registry Pattern
+# DHMS Real langgraph-bigtool API Wiring Demo
 
-This example shows how DHMS AgentFuse can guard a `langgraph-bigtool`-style
-tool registry shape with a small code change.
+This example shows how DHMS AgentFuse can guard a `langgraph-bigtool` tool
+registry with a small code change while using the real `langgraph_bigtool`
+`create_agent` API.
 
-This example mirrors the `langgraph-bigtool` tool registry shape; it does not
-import or run `langgraph_bigtool` itself.
+This is real `create_agent` wiring, not a full live production agent run. The
+demo builds a DHMS-guarded `tool_registry`, passes it into
+`langgraph_bigtool.create_agent()`, supplies a deterministic
+`retrieve_tools_function`, and does not compile, invoke, or stream the agent
+graph.
 
 External project:
 
@@ -52,8 +56,9 @@ Run the deterministic local demo:
 
 Expected final verdict:
 
-`DHMS_LANGGRAPH_BIGTOOL_REGISTRY_PATTERN_DEMO_PASS`
+`DHMS_REAL_LANGGRAPH_BIGTOOL_API_WIRING_DEMO_PASS`
 
-This example does not import `langgraph_bigtool`, call model providers, perform
-network requests, execute SQL, access a database, read environment variables,
-read credentials, read user data, or authorize protected payload execution.
+This example does not call model providers, perform network requests, execute
+SQL, access a database, use semantic search, use embeddings, use LangGraph
+Store, read environment variables, read credentials, read user data, or
+authorize protected payload execution.

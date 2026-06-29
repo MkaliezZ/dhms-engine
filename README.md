@@ -8,9 +8,9 @@ DHMS is an execution fuse protocol for AI agents. Its current public proof is a 
 
 * Current branch: `agent-harness-v1`.
 * Current DHMS line: `Real LangChain Multi-Tool Selective Interception Boundary Line`.
-* Current example milestone: `v3.5.1 DHMS guard demo based on the langgraph-bigtool tool registry pattern`.
+* Current example milestone: `v3.5.2 Real langgraph-bigtool API Wiring Demo`.
 * Current strongest proof: one real LangChain agent boundary with three adapter-created tools; v3.4.1 validation passed and v3.4.2 freezes the result.
-* Next direction: `v3.5.2 Public post / external feedback trigger`.
+* Next direction: public post and external feedback trigger.
 
 ## Current Strongest Proof
 
@@ -154,14 +154,15 @@ Links: [v3.3.0 adapter module](dhms_agentfuse/langchain_guarded_tool_adapter.py)
 
 Links: [v3.4.0 boundary doc](docs/dhms_real_langchain_multi_tool_selective_interception_boundary_v3_4_0.md), [v3.4.0 static spec](examples/langchain_multi_tool_selective_interception/single_agent_three_tool_boundary_spec.json), [v3.4.1 validator](validation/run_dhms_langchain_multi_tool_selective_interception_validation_v0.py), [v3.4.1 assertion records](docs/dhms_real_langchain_multi_tool_selective_interception_validation_assertion_records_v3_4_1.md), [v3.4.2 result review](docs/dhms_real_langchain_multi_tool_selective_interception_result_review_and_readme_sync_v3_4_2.md).
 
-## v3.5 Packaging and Registry Pattern Demo
+## v3.5 Packaging and External API Wiring
 
 | Milestone | Evidence | Boundary |
 | --------- | -------- | -------- |
 | v3.5.0 | Editable local package install | `pip install -e .` works locally; `requirements.txt` remains the dependency model |
 | v3.5.1 | DHMS guard demo based on the `langgraph-bigtool` tool registry pattern | Mirrors the registry shape without importing or running `langgraph_bigtool`; safe call returns `RELEASE_CANDIDATE`, dangerous calls fail closed |
+| v3.5.2 | Real `langgraph_bigtool.create_agent` API wiring demo | Builds a guarded registry before `create_agent()`, uses deterministic retrieval, and does not compile/invoke/stream the agent graph |
 
-Links: [editable package metadata](pyproject.toml), [v3.5.1 registry-pattern doc](docs/dhms_external_langchain_langgraph_integration_example_v3_5_1.md), [v3.5.1 example README](examples/external_integrations/langgraph_bigtool/README.md), [v3.5.1 demo](examples/external_integrations/langgraph_bigtool/dhms_guarded_tool_registry_demo.py).
+Links: [editable package metadata](pyproject.toml), [v3.5.2 real API wiring doc](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md), [v3.5.2 example README](examples/external_integrations/langgraph_bigtool/README.md), [v3.5.2 demo](examples/external_integrations/langgraph_bigtool/dhms_guarded_tool_registry_demo.py).
 
 ## Public Boundary
 
@@ -189,7 +190,7 @@ For the detailed non-claims and freeze boundary, see:
 * [v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync](docs/dhms_real_langchain_guarded_tool_adapter_boundary_result_review_and_readme_sync_v3_3_2.md)
 * [v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary](docs/dhms_real_langchain_multi_tool_selective_interception_boundary_v3_4_0.md)
 * [v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync](docs/dhms_real_langchain_multi_tool_selective_interception_result_review_and_readme_sync_v3_4_2.md)
-* [v3.5.1 langgraph-bigtool Registry Pattern Guard Demo](docs/dhms_external_langchain_langgraph_integration_example_v3_5_1.md)
+* [v3.5.2 Real langgraph-bigtool API Wiring Demo](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 
 ## Historical Evidence Lines
 
@@ -229,7 +230,7 @@ Fresh-clone reproduction is documented in [DHMS Fresh Clone Reproduction Check v
 * [v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync](docs/dhms_real_langchain_agent_loop_boundary_result_review_and_readme_sync_v3_2_2.md)
 * [v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync](docs/dhms_real_langchain_guarded_tool_adapter_boundary_result_review_and_readme_sync_v3_3_2.md)
 * [v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync](docs/dhms_real_langchain_multi_tool_selective_interception_result_review_and_readme_sync_v3_4_2.md)
-* [v3.5.1 langgraph-bigtool Registry Pattern Guard Demo](docs/dhms_external_langchain_langgraph_integration_example_v3_5_1.md)
+* [v3.5.2 Real langgraph-bigtool API Wiring Demo](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 
 ## Release Materials
 

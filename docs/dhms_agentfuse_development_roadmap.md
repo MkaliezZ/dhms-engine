@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.5.1 DHMS guard demo based on the langgraph-bigtool tool registry pattern`
+* Current package milestone: `v3.5.2 Real langgraph-bigtool API Wiring Demo`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.5.1 DHMS guard demo based on the langgraph-bigtool tool registry pattern`
+`v3.5.2 Real langgraph-bigtool API Wiring Demo`
 
 Next recommended milestone:
 
-`v3.5.2 Public post / external feedback trigger`
+`Public post / external feedback trigger`
 
 Locked v3.0 sequence:
 
@@ -2941,7 +2941,11 @@ Smooth v3.5.x direction:
 
 * `v3.5.0 Packaging: pyproject.toml + pip install -e . local validation`
 * `v3.5.1 DHMS guard demo based on the langgraph-bigtool tool registry pattern`
-* `v3.5.2 Public post / external feedback trigger`
+* `v3.5.2 Real langgraph-bigtool API Wiring Demo`
+
+Next direction after v3.5.2:
+
+`Public post / external feedback trigger`
 
 v3.5.1 adds a deterministic local guard demo based on the
 `langchain-ai/langgraph-bigtool` tool registry pattern, observed at 545 stars.
@@ -2954,11 +2958,19 @@ execution. The safe read-only tool returns `RELEASE_CANDIDATE`; the SQL
 mutation and model API tools return `FAIL_CLOSED`; protected payload bodies do
 not execute.
 
-v3.5.1 does not vendor the external project, import or run `langgraph_bigtool`,
-add provider SDKs, add SQLDatabaseToolkit, add PythonREPLTool, make network
-calls during validation, execute SQL, access databases, read environment
-variables, read credentials, read user data, authorize execution, or add
-production runtime behavior.
+v3.5.2 upgrades v3.5.1 from registry-pattern-only wording into real
+`langgraph-bigtool` API wiring. It imports `create_agent` from
+`langgraph_bigtool`, builds a guarded tool registry before `create_agent()`,
+passes the guarded registry into `create_agent()`, and uses a deterministic
+`retrieve_tools_function` that returns the guarded registry keys. It reuses the
+existing DHMS bindable fake model path and does not compile, invoke, or stream
+the agent graph.
+
+v3.5.2 does not vendor the external project, add provider SDKs, add
+SQLDatabaseToolkit, add PythonREPLTool, use semantic search, use embeddings, use
+LangGraph Store, make network calls during validation, execute SQL, access
+databases, read environment variables, read credentials, read user data,
+authorize execution, or add production runtime behavior.
 
 ## Development Prompt Pattern
 

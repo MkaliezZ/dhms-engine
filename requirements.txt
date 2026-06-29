@@ -1,1 +1,2 @@
 langchain>=1.0,<2.0
+langgraph-bigtool==0.0.3

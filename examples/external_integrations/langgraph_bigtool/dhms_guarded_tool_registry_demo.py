@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Deterministic DHMS guard demo for a langgraph-bigtool-style registry.
+"""Deterministic DHMS real langgraph-bigtool API wiring demo.
 
 The external project stores available tools in a registry before an agent
-retrieves and calls them. This demo keeps that boundary local and inert: it
-mirrors the registry shape and wraps registered tools with DHMS before
-protected payload bodies can execute. It does not import or run
-langgraph_bigtool itself.
+retrieves and calls them. This demo imports the real langgraph_bigtool
+create_agent API, passes a DHMS-guarded registry into create_agent(), and keeps
+the rest local and deterministic. It does not compile, invoke, or stream the
+agent graph.
 """
 
 from __future__ import annotations
@@ -22,13 +22,17 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from dhms_agentfuse.controlled_proposal_gate import evaluate_controlled_proposal  # noqa: E402
+from dhms_agentfuse.langchain_guarded_tool_adapter import (  # noqa: E402
+    create_deterministic_adapter_driver,
+)
+from langgraph_bigtool import create_agent  # noqa: E402
 
 
 EXTERNAL_PROJECT_NAME = "langchain-ai/langgraph-bigtool"
 EXTERNAL_PROJECT_URL = "https://github.com/langchain-ai/langgraph-bigtool"
 STAR_COUNT_OBSERVED = 545
-SOURCE = "v3.5.1-langgraph-bigtool-registry-pattern-demo"
-FINAL_VERDICT = "DHMS_LANGGRAPH_BIGTOOL_REGISTRY_PATTERN_DEMO_PASS"
+SOURCE = "v3.5.2-real-langgraph-bigtool-api-wiring-demo"
+FINAL_VERDICT = "DHMS_REAL_LANGGRAPH_BIGTOOL_API_WIRING_DEMO_PASS"
 GUARD_DIFF_LINE_COUNT = 7
 
 
@@ -90,6 +94,8 @@ def dhms_guard_tool(tool_name: str, tool: ExternalTool) -> Callable[[str], Dict[
     """Wrap one external registered tool with DHMS before payload execution."""
 
     def guarded_tool(payload: str) -> Dict[str, Any]:
+        """Evaluate a proposed external tool call through DHMS before payload execution."""
+
         proposal = build_dhms_proposal(tool)
         gate_result = evaluate_controlled_proposal(proposal, SOURCE)
         if gate_result["execution_authorized"] is True:
@@ -109,6 +115,7 @@ def dhms_guard_tool(tool_name: str, tool: ExternalTool) -> Callable[[str], Dict[
             "payload_result": None,
         }
 
+    guarded_tool.__name__ = tool_name
     return guarded_tool
 
 
@@ -119,6 +126,44 @@ def create_guarded_registry(
     return {
         tool_name: dhms_guard_tool(tool_name, tool)
         for tool_name, tool in tool_registry.items()
+    }
+
+
+def retrieve_tools(query: str) -> List[str]:
+    """Return all available guarded tool IDs deterministically."""
+
+    return list(_ACTIVE_GUARDED_TOOL_REGISTRY.keys())
+
+
+_ACTIVE_GUARDED_TOOL_REGISTRY: Dict[str, Callable[[str], Dict[str, Any]]] = {}
+
+
+def create_real_langgraph_bigtool_wiring(
+    guarded_tool_registry: Dict[str, Callable[[str], Dict[str, Any]]],
+) -> Dict[str, Any]:
+    """Wire the guarded registry into real langgraph_bigtool.create_agent()."""
+
+    _ACTIVE_GUARDED_TOOL_REGISTRY.clear()
+    _ACTIVE_GUARDED_TOOL_REGISTRY.update(guarded_tool_registry)
+    fake_model = create_deterministic_adapter_driver(
+        {
+            "scenario_id": "v3_5_2_real_langgraph_bigtool_api_wiring",
+            "tool_name": "safe_read_only_summary_tool",
+            "requested_capabilities": ["local_read_only_summary"],
+            "expected_gate_decision": "RELEASE_CANDIDATE",
+            "prompt": "Deterministic wiring-only prompt.",
+        }
+    )
+    builder = create_agent(
+        fake_model,
+        guarded_tool_registry,
+        retrieve_tools_function=retrieve_tools,
+    )
+    return {
+        "agent_builder_type": type(builder).__name__,
+        "guarded_tool_registry_key_count": len(guarded_tool_registry),
+        "guarded_tool_registry_keys": list(guarded_tool_registry.keys()),
+        "retrieve_tools_result": retrieve_tools("deterministic local query"),
     }
 
 
@@ -137,6 +182,7 @@ def run_demo() -> Dict[str, Any]:
     }
 
     guarded_registry = create_guarded_registry(before_registry)
+    wiring_summary = create_real_langgraph_bigtool_wiring(guarded_registry)
     after_results = [
         guarded_registry["safe_read_only_summary_tool"]("Summarize inert local text."),
         guarded_registry["dangerous_sql_mutation_tool"]("DROP TABLE toy_accounts;"),
@@ -155,13 +201,24 @@ def run_demo() -> Dict[str, Any]:
     protected_payload_body_execution_count = state["protected_payload_body_execution_count"]
 
     summary = {
-        "demo_name": "DHMS langgraph-bigtool Registry Pattern Guard Demo",
-        "version": "v3.5.1",
+        "demo_name": "DHMS Real langgraph-bigtool API Wiring Demo",
+        "version": "v3.5.2",
         "external_project": EXTERNAL_PROJECT_NAME,
         "external_project_url": EXTERNAL_PROJECT_URL,
         "star_count_observed": STAR_COUNT_OBSERVED,
         "guard_diff_line_count": GUARD_DIFF_LINE_COUNT,
-        "imports_or_runs_langgraph_bigtool": False,
+        "imports_or_runs_langgraph_bigtool": True,
+        "uses_create_agent": True,
+        "passes_guarded_tool_registry_to_create_agent": True,
+        "uses_deterministic_retrieve_tools_function": True,
+        "uses_semantic_search": False,
+        "uses_embeddings": False,
+        "uses_langgraph_store": False,
+        "agent_compiled": False,
+        "agent_invoked": False,
+        "agent_streamed": False,
+        "reuses_existing_dhms_bindable_fake_model": True,
+        "real_langgraph_bigtool_wiring": wiring_summary,
         "before": before_summary,
         "after_decisions": decision_by_tool,
         "after_blocked_capabilities": blocked_by_tool,
@@ -204,8 +261,29 @@ def _validate_summary(summary: Dict[str, Any]) -> None:
         raise AssertionError("external project must have 100+ observed stars")
     if summary["guard_diff_line_count"] > 10:
         raise AssertionError("guard diff line count must stay small")
-    if summary["imports_or_runs_langgraph_bigtool"] is not False:
-        raise AssertionError("demo must not claim a real langgraph_bigtool import/call")
+    if summary["imports_or_runs_langgraph_bigtool"] is not True:
+        raise AssertionError("demo must import and use langgraph_bigtool")
+    if summary["uses_create_agent"] is not True:
+        raise AssertionError("demo must use langgraph_bigtool.create_agent")
+    if summary["passes_guarded_tool_registry_to_create_agent"] is not True:
+        raise AssertionError("demo must pass guarded_tool_registry into create_agent")
+    if summary["uses_deterministic_retrieve_tools_function"] is not True:
+        raise AssertionError("demo must use deterministic retrieve_tools_function")
+    for key in ("uses_semantic_search", "uses_embeddings", "uses_langgraph_store"):
+        if summary[key] is not False:
+            raise AssertionError(f"{key} must remain false")
+    for key in ("agent_compiled", "agent_invoked", "agent_streamed"):
+        if summary[key] is not False:
+            raise AssertionError(f"{key} must remain false")
+    if summary["reuses_existing_dhms_bindable_fake_model"] is not True:
+        raise AssertionError("demo must reuse the existing DHMS bindable fake model path")
+    wiring = summary["real_langgraph_bigtool_wiring"]
+    if wiring["agent_builder_type"] != "StateGraph":
+        raise AssertionError("create_agent must return a StateGraph builder")
+    if wiring["guarded_tool_registry_key_count"] != 3:
+        raise AssertionError("guarded registry must contain three tools")
+    if wiring["retrieve_tools_result"] != wiring["guarded_tool_registry_keys"]:
+        raise AssertionError("retrieve_tools must return guarded registry keys deterministically")
     if summary["before"]["dangerous_sql_mutation_tool_reachable"] is not True:
         raise AssertionError("before state must show dangerous SQL tool reachability")
     if summary["after_decisions"]["safe_read_only_summary_tool"] != "RELEASE_CANDIDATE":

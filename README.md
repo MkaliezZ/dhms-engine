@@ -4,6 +4,8 @@
 
 DHMS is an execution fuse protocol for AI agents. Its current public proof is a local deterministic real LangChain multi-tool selective interception boundary where one real LangChain agent is equipped with three adapter-created guarded tools, DHMS evaluates each tool call independently before protected payload execution, and sentinel/count evidence proves executable protected payload bodies did not run. DHMS began as memory/context/tool-state perturbation testing; the current `agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the DHMS Execution Fuse Protocol.
 
+Chinese overview: [README.zh-CN.md](README.zh-CN.md)
+
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
@@ -75,7 +77,9 @@ The v3.0 `gate-proposal` CLI line is separate from the v2.7 screenshot proof.
 
 <details>
 <summary>View v2.7.3 proof screenshot</summary>
+
 ![v2.7.3 pre-execution interception proof](docs/development/screenshots/v2_7_3_pre_execution_interception_proof/v2_7_3_pre_execution_interception_proof_terminal.png)
+
 </details>
 
 ## v2.7 Evidence Chain

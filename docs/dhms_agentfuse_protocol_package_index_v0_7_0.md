@@ -228,6 +228,8 @@ Core public materials:
 * LangChain guarded adapter dangerous SQL mutation example: [`examples/langchain_guarded_tool_adapter/dangerous_sql_mutation_tool_call.json`](../examples/langchain_guarded_tool_adapter/dangerous_sql_mutation_tool_call.json)
 * LangChain guarded adapter model API request example: [`examples/langchain_guarded_tool_adapter/model_api_request_tool_call.json`](../examples/langchain_guarded_tool_adapter/model_api_request_tool_call.json)
 * Real LangChain Guarded Tool Adapter Boundary Expansion v3.3.0: [`docs/dhms_real_langchain_guarded_tool_adapter_boundary_expansion_v3_3_0.md`](dhms_real_langchain_guarded_tool_adapter_boundary_expansion_v3_3_0.md)
+* Real LangChain guarded tool adapter boundary validation v3.3.1: [`validation/run_dhms_langchain_guarded_tool_adapter_boundary_validation_v0.py`](../validation/run_dhms_langchain_guarded_tool_adapter_boundary_validation_v0.py)
+* Real LangChain Guarded Tool Adapter Boundary Validation v3.3.1: [`docs/dhms_real_langchain_guarded_tool_adapter_boundary_validation_v3_3_1.md`](dhms_real_langchain_guarded_tool_adapter_boundary_validation_v3_3_1.md)
 * LangChain safe read-only tool-call example: [`examples/langchain_interception/safe_read_only_tool_call.json`](../examples/langchain_interception/safe_read_only_tool_call.json)
 * LangChain DROP TABLE tool-call example: [`examples/langchain_interception/drop_table_tool_call.json`](../examples/langchain_interception/drop_table_tool_call.json)
 * LangChain model API tool-call example: [`examples/langchain_interception/model_api_tool_call.json`](../examples/langchain_interception/model_api_tool_call.json)

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.3.0 Real LangChain Guarded Tool Adapter Boundary Expansion`
+* Current package milestone: `v3.3.1 Real LangChain Guarded Tool Adapter Boundary Validation`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.3.0 Real LangChain Guarded Tool Adapter Boundary Expansion`
+`v3.3.1 Real LangChain Guarded Tool Adapter Boundary Validation`
 
 Next recommended milestone:
 
-`v3.3.1 Real LangChain Guarded Tool Adapter Boundary Validation`
+`v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`
 
 Locked v3.0 sequence:
 
@@ -2867,6 +2867,14 @@ tool scenarios through the real LangChain agent loop, builds DHMS proposals
 from tool metadata, and preserves `side_effect_sentinel_after=0` and protected
 payload body non-execution for all scenarios.
 
+v3.3.1 validates the reusable guarded LangChain tool adapter boundary across 3
+scenarios x 3 independent runs = 9 real LangChain adapter-loop executions. All
+9 runs preserve `side_effect_sentinel_after=0`, protected payload body
+non-execution, `execution_authorized=false`, and `runtime_behaviors_added=0`.
+
+v3.3.2 is result review, assertion record freeze, and README sync. It may not
+become another implementation or planning step.
+
 v3.3 must stay to exactly this three-step line unless a correction is strictly
 necessary:
 
@@ -2874,7 +2882,7 @@ necessary:
 * `v3.3.1 Real LangChain Guarded Tool Adapter Boundary Validation`
 * `v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`
 
-There should be no generic planning milestone before v3.3.1.
+There should be no generic planning milestone before v3.3.2.
 
 ## Development Prompt Pattern
 
@@ -2930,4 +2938,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_3_1_REAL_LANGCHAIN_GUARDED_TOOL_ADAPTER_BOUNDARY_VALIDATION`
+`READY_FOR_V3_3_2_REAL_LANGCHAIN_GUARDED_TOOL_ADAPTER_BOUNDARY_RESULT_REVIEW_AND_README_SYNC`

@@ -2778,7 +2778,7 @@ Current/completed milestone:
 
 Next recommended milestone:
 
-`v3.4.0 Real LangChain Guarded Adapter Authorization Policy Boundary`
+`v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`
 
 Locked v3.0 sequence:
 
@@ -2888,10 +2888,15 @@ v3.3 is complete as exactly this three-step line:
 There should be no v3.3.3 unless a correction is strictly necessary. There is
 no generic planning milestone before v3.4.0.
 
-v3.4.0 should begin authorization policy boundary work, not production runtime
-work. It should explore explicit bounded authorization policy for safe local
-read-only adapter payload execution while preserving fail-closed behavior for
-dangerous capabilities. v3.4.0 is not implemented by v3.3.2.
+v3.4.0 should validate one real LangChain agent with multiple adapter-created
+tools. The same agent should expose `safe_read_only_summary_tool`,
+`dangerous_sql_mutation_tool`, and `model_api_request_tool`. DHMS should
+evaluate each tool call independently, return `RELEASE_CANDIDATE` for the safe
+read-only proposal, `FAIL_CLOSED` for `sql_mutation` and `model_api` proposals,
+and keep all protected payload bodies unexecuted with sentinel/count evidence.
+
+After v3.4.2, DHMS should stop expanding internal proof versions and move to
+packaging, integration example, public posting, and external feedback.
 
 ## Development Prompt Pattern
 
@@ -2947,4 +2952,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_4_0_REAL_LANGCHAIN_GUARDED_ADAPTER_AUTHORIZATION_POLICY_BOUNDARY`
+`READY_FOR_V3_4_0_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_BOUNDARY`

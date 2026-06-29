@@ -11,7 +11,7 @@ DHMS is an execution fuse protocol for AI agents. Its current public proof is a 
 * Current frozen milestone: `v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`.
 * Latest sync milestone: `v3.3.2 README Current Status Sync`.
 * Current proof class: reusable real LangChain guarded tool adapter boundary; 3 scenarios x 3 runs = 9 local deterministic agent-loop validations; sentinel/count proof shows protected payload bodies did not execute.
-* Next required milestone: `v3.4.0 Real LangChain Guarded Adapter Authorization Policy Boundary`.
+* Next required milestone: `v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`.
 
 ## Current Strongest Proof
 
@@ -147,7 +147,7 @@ Current public boundaries:
 * No SQLDatabaseToolkit, SQL Agent, database, model-provider, KerniQ, E2B, MCP, external-runtime, or production-runtime integration is included yet.
 * No v2.7 CLI gate-proposal support is claimed; `python3 cli.py gate-proposal examples/proposals/drop_table.json` is explicitly not part of the v2.7 proof.
 * The current proof remains bounded to a local deterministic real LangChain agent loop, fake/local model driver, reusable guarded adapter boundary, `RELEASE_CANDIDATE` for safe read-only proposals, `FAIL_CLOSED` for `sql_mutation` and `model_api`, execution authorization false, sentinel/count proof, and zero runtime behavior added.
-* v3.4.0 is the required next milestone for bounded guarded adapter authorization policy boundary work, not production runtime work.
+* v3.4.0 is the required next milestone for real LangChain multi-tool selective interception boundary work, not production runtime work.
 
 For the detailed non-claims and freeze boundary, see:
 

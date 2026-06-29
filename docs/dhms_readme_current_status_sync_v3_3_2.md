@@ -20,7 +20,7 @@ After this sync, README states:
 * Current frozen milestone: `v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`
 * Latest sync milestone: `v3.3.2 README Current Status Sync`
 * Current proof class: reusable real LangChain guarded tool adapter boundary; 3 scenarios x 3 runs = 9 local deterministic agent-loop validations; sentinel/count proof shows protected payload bodies did not execute
-* Next required milestone: `v3.4.0 Real LangChain Guarded Adapter Authorization Policy Boundary`
+* Next required milestone: `v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`
 
 ## 4. README Evidence-Chain Sync
 
@@ -113,4 +113,4 @@ git diff --cached --check
 
 ## 11. Final Verdict
 
-`READY_FOR_V3_4_0_REAL_LANGCHAIN_GUARDED_ADAPTER_AUTHORIZATION_POLICY_BOUNDARY`
+`READY_FOR_V3_4_0_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_BOUNDARY`

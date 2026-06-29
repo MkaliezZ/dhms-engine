@@ -5,7 +5,7 @@
 * Milestone: `v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`
 * Status: result review, assertion record freeze, README sync
 * Previous milestone: `v3.3.1 Real LangChain Guarded Tool Adapter Boundary Validation`
-* Next milestone: `v3.4.0 Real LangChain Guarded Adapter Authorization Policy Boundary`
+* Next milestone: `v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`
 * Reasoning level: Super High
 
 ## 2. Purpose
@@ -90,7 +90,7 @@ README is synced to v3.3.2 and remains English-only. The README now states:
 * current frozen milestone: `v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`
 * latest sync milestone: `v3.3.2 README Current Status Sync`
 * current proof class: reusable real LangChain guarded tool adapter boundary with 3 scenarios x 3 runs
-* next required milestone: `v3.4.0 Real LangChain Guarded Adapter Authorization Policy Boundary`
+* next required milestone: `v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`
 
 ## 8. Package Index Sync Summary
 
@@ -221,13 +221,15 @@ git diff --cached --check
 
 ## 16. Next Milestone
 
-`v3.4.0 Real LangChain Guarded Adapter Authorization Policy Boundary`
+`v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`
 
-v3.4.0 should begin authorization policy boundary work, not production runtime
-work. It should explore explicit bounded authorization policy for safe local
-read-only adapter payload execution while preserving fail-closed behavior for
-dangerous capabilities.
+v3.4.0 should validate one real LangChain agent with multiple adapter-created
+tools. The same agent should expose `safe_read_only_summary_tool`,
+`dangerous_sql_mutation_tool`, and `model_api_request_tool`. DHMS should
+evaluate each tool call independently, return `RELEASE_CANDIDATE` for the safe
+read-only proposal, `FAIL_CLOSED` for `sql_mutation` and `model_api` proposals,
+and keep all protected payload bodies unexecuted with sentinel/count evidence.
 
 ## 17. Final Verdict
 
-`READY_FOR_V3_4_0_REAL_LANGCHAIN_GUARDED_ADAPTER_AUTHORIZATION_POLICY_BOUNDARY`
+`READY_FOR_V3_4_0_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_BOUNDARY`

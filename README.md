@@ -2,20 +2,19 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-DHMS is an execution fuse protocol for AI agents. Its current public proof is a local deterministic real LangChain guarded tool adapter boundary where `create_agent` creates an agent, the real loop reaches adapter-created guarded tool invocation boundaries, DHMS evaluates proposals before protected payload execution, and sentinel/count evidence proves executable protected payload bodies did not run. DHMS began as memory/context/tool-state perturbation testing; the current `agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the DHMS Execution Fuse Protocol.
+DHMS is an execution fuse protocol for AI agents. Its current public proof is a local deterministic real LangChain multi-tool selective interception boundary where one real LangChain agent is equipped with three adapter-created guarded tools, DHMS evaluates each tool call independently before protected payload execution, and sentinel/count evidence proves executable protected payload bodies did not run. DHMS began as memory/context/tool-state perturbation testing; the current `agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the DHMS Execution Fuse Protocol.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
 * Current DHMS line: `Real LangChain Multi-Tool Selective Interception Boundary Line`.
-* Current boundary milestone: `v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary`.
-* Strongest validated proof remains: `v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync`.
-* Current proof construction: one real LangChain agent boundary with three adapter-created tools; static spec only; v3.4.1 validation has not run yet.
-* Next required milestone: `v3.4.1 Real LangChain Multi-Tool Selective Interception Validation`.
+* Current frozen milestone: `v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync`.
+* Current strongest proof: one real LangChain agent boundary with three adapter-created tools; v3.4.1 validation passed and v3.4.2 freezes the result.
+* Next direction: packaging, integration example, public posting, and external feedback.
 
 ## Current Strongest Proof
 
-v3.3.2 completes real LangChain guarded tool adapter boundary result review and README sync.
+v3.4.2 completes real LangChain multi-tool selective interception result review and README sync.
 
 | Evidence field | Frozen value |
 | --- | --- |
@@ -23,23 +22,23 @@ v3.3.2 completes real LangChain guarded tool adapter boundary result review and 
 | Runtime and LangChain | `/usr/local/bin/python3.11`, observed LangChain `1.3.11` |
 | Reusable guarded adapter | `dhms_agentfuse/langchain_guarded_tool_adapter.py` with reusable adapter APIs |
 | Real LangChain agent loop | `real_create_agent_imported=true`, `real_langchain_agent_object_created=true`, real agent loop invoked, fake/local driver used, `ToolMessage` and tool boundary observed |
-| Scenario matrix | `validated_adapter_scenarios=3`, `runs_per_scenario=3`, `total_adapter_loop_runs=9` |
-| Gate results | `release_candidate_runs=3`, `fail_closed_runs=6` |
+| Scenario matrix | `single_agent_boundary_count=1`, `registered_adapter_created_tool_count=3`, `independent_tool_call_count=3` |
+| Gate results | `safe_read_only_release_candidate_count=1`, `sql_mutation_fail_closed_count=1`, `model_api_fail_closed_count=1` |
 | Sentinel proof | all `side_effect_sentinel_before=0`, `side_effect_sentinel_after=0`, `side_effect_sentinel_delta=0`; `protected_payload_body_invocation_count=0` |
-| Execution/runtime boundary | `execution_authorized=false`, `runtime_behaviors_added=0` |
-| Frozen markers | `DHMS_REAL_LANGCHAIN_GUARDED_TOOL_ADAPTER_BOUNDARY_EXPANSION_PASS`, `DHMS_REAL_LANGCHAIN_GUARDED_TOOL_ADAPTER_BOUNDARY_VALIDATION_PASS` |
+| Execution/runtime boundary | `execution_authorized_count=0`, `runtime_behaviors_added=0` |
+| Frozen markers | `DHMS_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_VALIDATION_PASS` |
 
-Bounded public claim: DHMS validates a local deterministic real LangChain guarded tool adapter boundary where a reusable adapter wraps multiple executable local payload bodies, real LangChain agent-loop tool invocations route through DHMS before protected payload execution, safe read-only proposals return release-candidate without payload execution, dangerous `sql_mutation` and `model_api` proposals fail closed, and nine independent validation runs prove all protected payload bodies remain unexecuted by sentinel/count assertions.
+Bounded public claim: DHMS validates a local deterministic real LangChain multi-tool selective interception boundary where one real LangChain agent is equipped with three adapter-created guarded tools at the same time, each tool call is evaluated independently before protected payload execution, safe read-only returns `RELEASE_CANDIDATE`, `sql_mutation` and `model_api` fail closed, and all protected payload bodies remain unexecuted with sentinel/count evidence.
 
 ## Reproduce The Proof
 
 ```bash
-/usr/local/bin/python3.11 validation/run_dhms_langchain_guarded_tool_adapter_boundary_validation_v0.py
+/usr/local/bin/python3.11 validation/run_dhms_langchain_multi_tool_selective_interception_validation_v0.py
 ```
 
-Expected output summary: `DHMS_REAL_LANGCHAIN_GUARDED_TOOL_ADAPTER_BOUNDARY_VALIDATION_PASS`, `validated_adapter_scenarios=3`, `runs_per_scenario=3`, `total_adapter_loop_runs=9`, `release_candidate_runs=3`, `fail_closed_runs=6`, `all_tool_boundaries_reached=true`, `all_guarded_adapters_invoked=true`, `all_dhms_guards_invoked=true`, `all_protected_tool_body_executed_false=true`, `all_side_effect_sentinel_after_zero=true`, `all_protected_payload_body_invocation_count_zero=true`, `all_execution_authorized_false=true`, `all_runtime_behaviors_added_zero=true`, `sentinel_failure_count=0`, `protected_payload_body_execution_count=0`, `runtime_behaviors_added=0`.
+Expected output summary: `DHMS_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_VALIDATION_PASS`, `single_agent_boundary_count=1`, `registered_adapter_created_tool_count=3`, `same_agent_tool_registry=true`, `independent_tool_call_count=3`, `safe_read_only_release_candidate_count=1`, `sql_mutation_fail_closed_count=1`, `model_api_fail_closed_count=1`, `all_protected_tool_body_executed_false=true`, `all_side_effect_sentinel_after_zero=true`, `execution_authorized_count=0`, `runtime_behaviors_added=0`, `sentinel_failure_count=0`, `protected_payload_body_execution_count=0`.
 
-Python runtime note: default system `python3` is Python 3.9.6 in the validated environment and cannot install LangChain 1.x. Use `/usr/local/bin/python3.11` for v3.1/v3.2/v3.3 validation unless the system default Python is upgraded to >=3.10.
+Python runtime note: default system `python3` is Python 3.9.6 in the validated environment and cannot install LangChain 1.x. Use `/usr/local/bin/python3.11` for v3.1-v3.4 validation unless the system default Python is upgraded to >=3.10.
 
 Legacy v2.7 pre-execution proof command:
 
@@ -140,13 +139,15 @@ Links: [v3.3.0 adapter module](dhms_agentfuse/langchain_guarded_tool_adapter.py)
 
 | Milestone | Evidence                                                      | Boundary                                                                                         |
 | --------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| v3.4.0    | Multi-tool selective interception boundary + static spec      | One real LangChain agent boundary with three adapter-created tools; v3.4.1 validation pending    |
+| v3.4.0    | Multi-tool selective interception boundary + static spec      | One real LangChain agent boundary with three adapter-created tools                               |
+| v3.4.1    | Single-agent three-tool validation                            | Same agent/tool registry; 1 release-candidate, 2 fail-closed; payload bodies unexecuted         |
+| v3.4.2    | Result review + README sync                                   | Assertion records frozen; public boundary synced                                                |
 
-Links: [v3.4.0 boundary doc](docs/dhms_real_langchain_multi_tool_selective_interception_boundary_v3_4_0.md), [v3.4.0 static spec](examples/langchain_multi_tool_selective_interception/single_agent_three_tool_boundary_spec.json).
+Links: [v3.4.0 boundary doc](docs/dhms_real_langchain_multi_tool_selective_interception_boundary_v3_4_0.md), [v3.4.0 static spec](examples/langchain_multi_tool_selective_interception/single_agent_three_tool_boundary_spec.json), [v3.4.1 validator](validation/run_dhms_langchain_multi_tool_selective_interception_validation_v0.py), [v3.4.1 assertion records](docs/dhms_real_langchain_multi_tool_selective_interception_validation_assertion_records_v3_4_1.md), [v3.4.2 result review](docs/dhms_real_langchain_multi_tool_selective_interception_result_review_and_readme_sync_v3_4_2.md).
 
 ## Public Boundary
 
-DHMS v3.4.0 defines the boundary target for one real LangChain agent with multiple adapter-created tools, where DHMS must evaluate each tool call independently before protected payload execution. It is not a production safety claim, and v3.4.1 validation has not run yet.
+DHMS v3.4 validates a local deterministic real LangChain multi-tool selective interception boundary where DHMS evaluates each adapter-created tool call independently before protected payload execution. It is not a production safety claim.
 
 Current public boundaries:
 
@@ -154,8 +155,8 @@ Current public boundaries:
 * No arbitrary production LangChain agent protection, arbitrary real-world agent protection, tool execution, model-provider call, execution authorization, or runtime behavior is claimed or added.
 * No SQLDatabaseToolkit, SQL Agent, database, model-provider, KerniQ, E2B, MCP, external-runtime, or production-runtime integration is included yet.
 * No v2.7 CLI gate-proposal support is claimed; `python3 cli.py gate-proposal examples/proposals/drop_table.json` is explicitly not part of the v2.7 proof.
-* The current proof remains bounded to a local deterministic real LangChain agent loop, fake/local model driver, reusable guarded adapter boundary, `RELEASE_CANDIDATE` for safe read-only proposals, `FAIL_CLOSED` for `sql_mutation` and `model_api`, execution authorization false, sentinel/count proof, and zero runtime behavior added.
-* v3.4.1 is the required next milestone for real LangChain multi-tool selective interception validation, not production runtime work.
+* The current proof remains bounded to a local deterministic real LangChain agent loop, fake/local model driver, reusable guarded adapter boundary, one agent with three adapter-created tools, `RELEASE_CANDIDATE` for safe read-only proposals, `FAIL_CLOSED` for `sql_mutation` and `model_api`, execution authorization false, sentinel/count proof, and zero runtime behavior added.
+* The next direction is packaging, integration example, public posting, and external feedback, not another internal proof expansion.
 
 For the detailed non-claims and freeze boundary, see:
 
@@ -169,6 +170,7 @@ For the detailed non-claims and freeze boundary, see:
 * [v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync](docs/dhms_real_langchain_agent_loop_boundary_result_review_and_readme_sync_v3_2_2.md)
 * [v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync](docs/dhms_real_langchain_guarded_tool_adapter_boundary_result_review_and_readme_sync_v3_3_2.md)
 * [v3.4.0 Real LangChain Multi-Tool Selective Interception Boundary](docs/dhms_real_langchain_multi_tool_selective_interception_boundary_v3_4_0.md)
+* [v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync](docs/dhms_real_langchain_multi_tool_selective_interception_result_review_and_readme_sync_v3_4_2.md)
 
 ## Historical Evidence Lines
 
@@ -206,6 +208,7 @@ Fresh-clone reproduction is documented in [DHMS Fresh Clone Reproduction Check v
 * [v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync](docs/dhms_real_langchain_pre_tool_interception_result_review_and_readme_sync_v3_1_2.md)
 * [v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync](docs/dhms_real_langchain_agent_loop_boundary_result_review_and_readme_sync_v3_2_2.md)
 * [v3.3.2 Real LangChain Guarded Tool Adapter Boundary Result Review + README Sync](docs/dhms_real_langchain_guarded_tool_adapter_boundary_result_review_and_readme_sync_v3_3_2.md)
+* [v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync](docs/dhms_real_langchain_multi_tool_selective_interception_result_review_and_readme_sync_v3_4_2.md)
 
 ## Release Materials
 

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.4.1 Real LangChain Multi-Tool Selective Interception Validation`
+* Current package milestone: `v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.4.1 Real LangChain Multi-Tool Selective Interception Validation`
-
-Next recommended milestone:
-
 `v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync`
+
+Next recommended direction:
+
+`Packaging / integration example / public posting / external feedback`
 
 Locked v3.0 sequence:
 
@@ -2921,8 +2921,20 @@ SQLDatabaseToolkit integration, database access, network access, production
 runtime behavior, or a new CLI command. v3.4.2 is result review, assertion
 record review, and README sync only.
 
-After v3.4.2, DHMS should stop expanding internal proof versions and move to
-packaging, integration example, public posting, and external feedback.
+v3.4.2 reviews and freezes the v3.4.1 validation result, confirms the
+assertion records are frozen, syncs README, and completes the v3.4 line
+without adding runtime behavior. Frozen values include
+`single_agent_boundary_count=1`, `registered_adapter_created_tool_count=3`,
+`same_agent_tool_registry=true`, `independent_tool_call_count=3`,
+`safe_read_only_release_candidate_count=1`,
+`sql_mutation_fail_closed_count=1`, `model_api_fail_closed_count=1`,
+`protected_payload_body_execution_count=0`, `sentinel_failure_count=0`,
+`execution_authorized_count=0`, and `runtime_behaviors_added=0`.
+
+After v3.4.2, DHMS stops expanding internal proof versions and moves to
+packaging, integration example, public posting, and external feedback. This
+next direction should not be treated as v3.5 proof expansion unless a separate
+explicit planning phase defines it.
 
 ## Development Prompt Pattern
 
@@ -2978,4 +2990,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_4_2_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_RESULT_REVIEW_AND_README_SYNC`
+`READY_FOR_PACKAGING_INTEGRATION_EXAMPLE_AND_EXTERNAL_FEEDBACK`

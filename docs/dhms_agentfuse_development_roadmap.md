@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.1.1 Real LangChain Dependency Lock + Agent Harness Validation`
+* Current package milestone: `v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.1.1 Real LangChain Dependency Lock + Agent Harness Validation`
+`v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync`
 
 Next recommended milestone:
 
-`v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync`
+`v3.2.0 Real LangChain Agent Loop Pre-Tool Boundary Harness`
 
 Locked v3.0 sequence:
 
@@ -2790,6 +2790,7 @@ Mandatory post-v3.0 transition:
 
 * `v3.1.0 Real LangChain Agent Interception Minimal Harness`
 * `v3.1.1 Real LangChain Dependency Lock + Agent Harness Validation`
+* `v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync`
 
 The locked v3.0 sequence is complete. v3.0 must not expand further. There is
 no v3.0.3, and there is no generic "Next DHMS Proof Line Planning" milestone
@@ -2805,17 +2806,36 @@ v3.1.0 does not execute tools, call model providers, access SQL/DB/network/
 subprocess/env/credentials/user data, integrate SQLDatabaseToolkit, KerniQ,
 E2B, or production runtime.
 
-v3.1.1 validates the minimal harness with a real LangChain dependency lock. It
-requires `langchain_available=true`, imports real
+v3.1.1 completed the minimal harness validation with a real LangChain
+dependency lock. It requires `langchain_available=true`, imports real
 `langchain.agents.create_agent`, creates a real local LangChain agent harness
 object, validates a real `AIMessage` path, and removes fallback pass behavior
 when LangChain is unavailable.
 
-v3.1.1 continues to preserve `execution_authorized=false` and
+Validated v3.1.1 values:
+
+* `langchain_available=true`
+* `langchain_agent_harness_created=true`
+* `real_create_agent_imported=true`
+* `real_langchain_agent_object_created=true`
+* `real_langchain_ai_message_path_validated=true`
+* `execution_authorized=false`
+* `runtime_behaviors_added=0`
+
+v3.1.2 completes result review and README sync only. v3.1 is no longer
+fallback-only; it now has reproducible local LangChain dependency validation
+and real local `create_agent` harness object validation.
+
+v3.1.2 continues to preserve `execution_authorized=false` and
 `runtime_behaviors_added=0`. It does not execute tools, call model providers,
 access SQL/DB/network/subprocess/env/credentials/user data, integrate
 SQLDatabaseToolkit, KerniQ, E2B, MCP, provider SDKs, agent SDKs, or production
 runtime.
+
+v3.2.0 must begin the real LangChain agent loop pre-tool boundary harness and
+may not become another planning step. There should be no v3.1.3 planning step
+unless strictly necessary for result review corrections, and no generic "Next
+DHMS Proof Line Planning" milestone before v3.2.
 
 ## Development Prompt Pattern
 
@@ -2871,4 +2891,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_1_2_REAL_LANGCHAIN_PRE_TOOL_INTERCEPTION_RESULT_REVIEW_AND_README_SYNC`
+`READY_FOR_V3_2_0_REAL_LANGCHAIN_AGENT_LOOP_PRE_TOOL_BOUNDARY_HARNESS`

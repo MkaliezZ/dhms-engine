@@ -2,43 +2,43 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-DHMS is an execution fuse protocol for AI agents. Its current public proof is a local deterministic controlled proposal gate CLI with validated evidence traces over three local proposal examples.
-
-DHMS began as memory/context/tool-state perturbation testing. The current `agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the DHMS Execution Fuse Protocol.
+DHMS is an execution fuse protocol for AI agents. Its current public proof is a reproducible local LangChain dependency plus real `create_agent` harness validation and pre-tool interception over three local tool-call proposals. DHMS began as memory/context/tool-state perturbation testing; the current `agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the DHMS Execution Fuse Protocol.
 
 ## Current Status
 
 * Current branch: `agent-harness-v1`.
-* Current DHMS line: `Local Controlled Proposal Gate CLI Line`.
-* Current frozen milestone: `v3.0.2 CLI Result Review + README Sync`.
-* Latest sync milestone: `v3.0.2 README Current Status Sync`.
-* Current proof class: local deterministic controlled proposal gate CLI with validated evidence traces.
-* Next required milestone: `v3.1.0 Real LangChain Agent Interception Minimal Harness`.
+* Current DHMS line: `Real LangChain Pre-Tool Interception Line`.
+* Current frozen milestone: `v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync`.
+* Latest sync milestone: `v3.1.2 README Current Status Sync`.
+* Current proof class: reproducible local LangChain dependency plus real `create_agent` harness validation and pre-tool interception.
+* Next required milestone: `v3.2.0 Real LangChain Agent Loop Pre-Tool Boundary Harness`.
 
 ## Current Strongest Proof
 
-v3.0.2 completes the local controlled proposal gate CLI result review and README sync.
+v3.1.2 completes real LangChain pre-tool interception result review and README sync.
 
 | Evidence field | Frozen value |
 | --- | --- |
-| CLI command | `python3 cli.py gate-proposal <proposal_json_path>` |
-| Validated examples | `safe_read_only_summary_001`, `drop_table_001`, `model_api_request_001` |
+| Dependency | `requirements.txt` with `langchain>=1.0,<2.0` |
+| Runtime and LangChain | `/usr/local/bin/python3.11`, observed LangChain `1.3.11` |
+| Real LangChain harness | `real_create_agent_imported=true`, `real_langchain_agent_object_created=true`, `agent_object_type=CompiledStateGraph`, `real_langchain_ai_message_path_validated=true` |
+| Validated interceptions | `validated_interceptions=3` |
 | Decision distribution | `RELEASE_CANDIDATE=1`, `FAIL_CLOSED=2`, `HOLD_FOR_REVIEW=0` |
-| Blocked capabilities | `drop_table_001 -> sql_mutation`, `model_api_request_001 -> model_api` |
-| Trace validation | `all_outputs_valid_json=true`, `all_evidence_trace_assertions_true=true` |
-| Execution authorization | `all_execution_authorized_false=true` |
-| Runtime behaviors added | `runtime_behaviors_added=0` |
-| Frozen marker | `DHMS_LOCAL_CONTROLLED_PROPOSAL_GATE_CLI_TRACE_VALIDATION_PASS` |
+| Pre-tool invariants | `all_intercepted_before_execution=true`, `all_tool_execution_attempted_false=true`, `all_tool_execution_allowed_false=true` |
+| Execution/runtime/provider boundary | `all_execution_authorized_false=true`, `all_runtime_behaviors_added_zero=true`, `all_model_providers_not_called=true`, `runtime_behaviors_added=0` |
+| Frozen marker | `DHMS_REAL_LANGCHAIN_DEPENDENCY_AND_AGENT_HARNESS_VALIDATION_PASS` |
 
-Bounded public claim: DHMS has a local controlled proposal gate CLI and a validation result confirming deterministic JSON outputs, expected decisions, expected blocked capabilities, complete evidence trace safety assertions, execution authorization false, and zero runtime behaviors added.
+Bounded public claim: DHMS has a reproducible local LangChain dependency through `requirements.txt`, validates real `langchain.agents.create_agent`, creates a real local LangChain agent object using a fake/local model and inert tools, validates a real `AIMessage` tool-call path, and intercepts three local LangChain tool/action proposals before tool execution while preserving `execution_authorized=false` and `runtime_behaviors_added=0`.
 
 ## Reproduce The Proof
 
 ```bash
-python3 validation/run_dhms_local_controlled_proposal_gate_cli_trace_validation_v0.py
+/usr/local/bin/python3.11 validation/run_dhms_langchain_dependency_and_agent_harness_validation_v0.py
 ```
 
-Expected output summary: `DHMS_LOCAL_CONTROLLED_PROPOSAL_GATE_CLI_TRACE_VALIDATION_PASS`, `validated_cli_examples=3`, `release_candidate=1`, `fail_closed=2`, `hold_for_review=0`, `all_outputs_valid_json=true`, `all_execution_authorized_false=true`, `all_runtime_behaviors_added_zero=true`, `all_observed_before_execution=true`, `all_evidence_trace_keys_present=true`, `all_evidence_trace_assertions_true=true`, `gate_proposal_execution_authorized=false`, `runtime_behaviors_added=0`.
+Expected output summary: `DHMS_REAL_LANGCHAIN_DEPENDENCY_AND_AGENT_HARNESS_VALIDATION_PASS`, `langchain_available=true`, `langchain_agent_harness_created=true`, `real_create_agent_imported=true`, `real_langchain_agent_object_created=true`, `real_langchain_ai_message_path_validated=true`, `validated_interceptions=3`, `release_candidate=1`, `fail_closed=2`, `hold_for_review=0`, `all_tool_execution_attempted_false=true`, `all_tool_execution_allowed_false=true`, `all_execution_authorized_false=true`, `all_runtime_behaviors_added_zero=true`, `all_tools_not_executed=true`, `all_model_providers_not_called=true`, `runtime_behaviors_added=0`.
+
+Python runtime note: default system `python3` is Python 3.9.6 in the validated environment and cannot install LangChain 1.x. Use `/usr/local/bin/python3.11` for v3.1/v3.2 validation unless the system default Python is upgraded to >=3.10.
 
 Legacy v2.7 pre-execution proof command:
 
@@ -109,17 +109,24 @@ The v3.0 `gate-proposal` CLI line is separate from the v2.7 screenshot proof.
 * [v3.0.2 README Current Status Sync](docs/dhms_readme_current_status_sync_v3_0_2.md)
 * Examples: [safe read-only](examples/proposals/safe_read_only_summary.json), [DROP TABLE](examples/proposals/drop_table.json), [model API](examples/proposals/model_api_request.json)
 
+## v3.1 Evidence Chain
+
+* Dependency and docs: [requirements.txt](requirements.txt), [v3.1.0](docs/dhms_real_langchain_agent_interception_minimal_harness_v3_1_0.md), [v3.1.1](docs/dhms_real_langchain_dependency_and_agent_harness_validation_v3_1_1.md), [v3.1.2 result review](docs/dhms_real_langchain_pre_tool_interception_result_review_and_readme_sync_v3_1_2.md), [v3.1.2 README sync](docs/dhms_readme_current_status_sync_v3_1_2.md)
+* Implementation and validators: [LangChain interception module](dhms_agentfuse/langchain_interception.py), [strict dependency and harness validator](validation/run_dhms_langchain_dependency_and_agent_harness_validation_v0.py), [LangChain smoke validator](validation/run_dhms_langchain_interception_smoke_v0.py)
+* Examples: [safe read-only](examples/langchain_interception/safe_read_only_tool_call.json), [DROP TABLE](examples/langchain_interception/drop_table_tool_call.json), [model API](examples/langchain_interception/model_api_tool_call.json)
+
 ## Public Boundary
 
-DHMS v3.0 is a local deterministic controlled proposal gate CLI line with validated evidence traces. It is not a production safety claim.
+DHMS v3.1 has passed from LangChain-compatible fallback into reproducible local LangChain dependency validation. It validates a real local LangChain agent object created through `create_agent`, validates a real `AIMessage` tool-call path, and intercepts local LangChain tool-call proposals before execution. It is not a production safety claim.
 
 Current public boundaries:
 
 * No production readiness or real-world agent/database protection is claimed.
-* No real LangChain, SQLDatabaseToolkit, SQL Agent, database, model-provider, KerniQ, E2B, external-runtime, or production-runtime integration is included yet.
+* No arbitrary production LangChain agent protection, tool execution, model-provider call, execution authorization, or runtime behavior is claimed or added.
+* No SQLDatabaseToolkit, SQL Agent, database, model-provider, KerniQ, E2B, MCP, external-runtime, or production-runtime integration is included yet.
 * No v2.7 CLI gate-proposal support is claimed; `python3 cli.py gate-proposal examples/proposals/drop_table.json` is explicitly not part of the v2.7 proof.
-* The current proof remains bounded to local proposal JSON inputs, deterministic gate outputs, complete evidence trace assertions, execution authorization false, and zero runtime behavior added.
-* v3.1.0 is the required next milestone for real LangChain agent interception minimal harness.
+* The current proof remains bounded to local LangChain dependency validation, fake/local model harness creation, inert local tool-call proposals, execution authorization false, and zero runtime behavior added.
+* v3.2.0 is the required next milestone for real LangChain agent loop pre-tool boundary harness.
 
 For the detailed non-claims and freeze boundary, see:
 
@@ -129,6 +136,7 @@ For the detailed non-claims and freeze boundary, see:
 * [v2.8.4 Controlled Agent Proposal Gate Result Review and Freeze](docs/dhms_controlled_agent_proposal_gate_result_review_and_freeze_v2_8_4.md)
 * [v2.9.2 Controlled Proposal Replay Validation Freeze](docs/dhms_controlled_proposal_replay_validation_freeze_v2_9_2.md)
 * [v3.0.2 CLI Result Review + README Sync](docs/dhms_cli_result_review_and_readme_sync_v3_0_2.md)
+* [v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync](docs/dhms_real_langchain_pre_tool_interception_result_review_and_readme_sync_v3_1_2.md)
 
 ## Historical Evidence Lines
 
@@ -163,7 +171,7 @@ Fresh-clone reproduction is documented in [DHMS Fresh Clone Reproduction Check v
 * [DHMS Execution Fuse Protocol v0.6.0](docs/dhms_execution_fuse_protocol_v0_6_0.md)
 * [DHMS Public Evidence Package v1.0](docs/dhms_public_evidence_package_v1_0.md)
 * [Contribution Guide / Case Format](docs/dhms_contribution_guide_case_format_v0_7_4.md)
-* [v3.0.2 CLI Result Review + README Sync](docs/dhms_cli_result_review_and_readme_sync_v3_0_2.md)
+* [v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync](docs/dhms_real_langchain_pre_tool_interception_result_review_and_readme_sync_v3_1_2.md)
 
 ## Release Materials
 

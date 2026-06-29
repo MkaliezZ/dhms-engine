@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync`
+* Current package milestone: `v3.2.0 Real LangChain Agent Loop Pre-Tool Boundary Harness`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -2774,11 +2774,11 @@ Compressed v2.9 sequence:
 
 Current/completed milestone:
 
-`v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync`
+`v3.2.0 Real LangChain Agent Loop Pre-Tool Boundary Harness`
 
 Next recommended milestone:
 
-`v3.2.0 Real LangChain Agent Loop Pre-Tool Boundary Harness`
+`v3.2.1 Real LangChain Agent Loop Boundary Validation`
 
 Locked v3.0 sequence:
 
@@ -2791,6 +2791,7 @@ Mandatory post-v3.0 transition:
 * `v3.1.0 Real LangChain Agent Interception Minimal Harness`
 * `v3.1.1 Real LangChain Dependency Lock + Agent Harness Validation`
 * `v3.1.2 Real LangChain Pre-Tool Interception Result Review + README Sync`
+* `v3.2.0 Real LangChain Agent Loop Pre-Tool Boundary Harness`
 
 The locked v3.0 sequence is complete. v3.0 must not expand further. There is
 no v3.0.3, and there is no generic "Next DHMS Proof Line Planning" milestone
@@ -2832,10 +2833,23 @@ access SQL/DB/network/subprocess/env/credentials/user data, integrate
 SQLDatabaseToolkit, KerniQ, E2B, MCP, provider SDKs, agent SDKs, or production
 runtime.
 
-v3.2.0 must begin the real LangChain agent loop pre-tool boundary harness and
-may not become another planning step. There should be no v3.1.3 planning step
-unless strictly necessary for result review corrections, and no generic "Next
-DHMS Proof Line Planning" milestone before v3.2.
+v3.1 completed reproducible local LangChain dependency and `create_agent`
+harness validation.
+
+v3.2.0 begins the real LangChain agent loop boundary line. It invokes a real
+LangChain agent loop, uses a deterministic fake/local model to emit a tool
+call, reaches a guarded LangChain tool invocation boundary, invokes the DHMS
+pre-tool guard before the protected payload body, and proves the protected
+payload body did not execute with `side_effect_sentinel_after=0`.
+
+v3.2 must stay to exactly this three-step line unless a correction is strictly
+necessary:
+
+* `v3.2.0 Real LangChain Agent Loop Pre-Tool Boundary Harness`
+* `v3.2.1 Real LangChain Agent Loop Boundary Validation`
+* `v3.2.2 Real LangChain Agent Loop Boundary Result Review + README Sync`
+
+There should be no generic planning milestone before v3.2.1.
 
 ## Development Prompt Pattern
 
@@ -2891,4 +2905,4 @@ DHMS AgentFuse currently does not claim:
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_2_0_REAL_LANGCHAIN_AGENT_LOOP_PRE_TOOL_BOUNDARY_HARNESS`
+`READY_FOR_V3_2_1_REAL_LANGCHAIN_AGENT_LOOP_BOUNDARY_VALIDATION`

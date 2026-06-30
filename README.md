@@ -1,22 +1,77 @@
-# DHMS Agent Harness v1 Preview
+# DHMS / AgentFuse
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-DHMS is an execution fuse protocol for AI agents. Its current public proof is a local deterministic real LangChain multi-tool selective interception boundary where one real LangChain agent is equipped with three adapter-created guarded tools, DHMS evaluates each tool call independently before protected payload execution, and sentinel/count evidence proves executable protected payload bodies did not run. DHMS began as memory/context/tool-state perturbation testing; the current `agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the DHMS Execution Fuse Protocol.
+Automatic fail-closed execution fuse for side-effect-capable AI agent tools.
+
+AI agents increasingly call tools that can mutate SQL, files, APIs, code, or
+business systems. DHMS / AgentFuse focuses on the execution boundary before a
+tool's protected payload runs: classify risky tool capabilities, release only
+bounded safe candidates, and fail closed for known-dangerous or unsupported
+actions before protected payload execution.
+
+Latest demo: v3.5.2 demonstrates real `langgraph_bigtool.create_agent()` API
+wiring. DHMS builds a guarded tool registry before `create_agent()`, passes it
+into the real `langgraph_bigtool.create_agent()` boundary, and uses
+deterministic retrieval. The demo does not compile, invoke, or stream the graph.
 
 Chinese overview: [README.zh-CN.md](README.zh-CN.md)
 
-## Current Status
+## Latest Evidence
 
 * Current branch: `agent-harness-v1`.
-* Current DHMS line: `Real LangChain Multi-Tool Selective Interception Boundary Line`.
-* Current example milestone: `v3.5.2 Real langgraph-bigtool API Wiring Demo`.
-* Current strongest proof: one real LangChain agent boundary with three adapter-created tools; v3.4.1 validation passed and v3.4.2 freezes the result.
-* Next direction: public post and external feedback trigger.
+* Latest demo: `v3.5.2 Real langgraph-bigtool API Wiring Demo`.
+* Demo path: `examples/external_integrations/langgraph_bigtool/`.
+* `safe_read_only_summary_tool` returns `RELEASE_CANDIDATE`.
+* `dangerous_sql_mutation_tool` fails closed with blocked category `sql_mutation`.
+* `model_api_request_tool` fails closed with blocked category `model_api`.
+* `protected_payload_body_execution_count = 0`.
+* `runtime_behaviors_added = 0`.
+* `execution_authorized_count = 0`.
 
-## Current Strongest Proof
+## Quickstart
 
-v3.4.2 completes real LangChain multi-tool selective interception result review and README sync.
+```bash
+pip install -e .
+python examples/external_integrations/langgraph_bigtool/dhms_guarded_tool_registry_demo.py
+```
+
+Expected final verdict:
+
+```text
+DHMS_REAL_LANGGRAPH_BIGTOOL_API_WIRING_DEMO_PASS
+```
+
+If your system `python` is older than Python 3.10, use a Python 3.11 runtime:
+
+```bash
+/usr/local/bin/python3.11 -m pip install -e .
+/usr/local/bin/python3.11 examples/external_integrations/langgraph_bigtool/dhms_guarded_tool_registry_demo.py
+```
+
+## What This Does Not Claim
+
+DHMS / AgentFuse is not claiming production runtime protection.
+
+The v3.5.2 demo:
+
+* does not compile, invoke, or stream the graph
+* does not call providers or real model APIs
+* does not perform network requests
+* does not access databases
+* does not execute SQL
+* does not read credentials, environment variables, or user data
+* does not authorize protected payload execution
+* does not claim to protect live production LangGraph agents
+
+## Current Strongest Proof Line
+
+The strongest frozen proof remains v3.4.2: a local deterministic real LangChain
+multi-tool selective interception boundary where one real LangChain agent has
+three adapter-created guarded tools. DHMS evaluates each tool call independently
+before protected payload execution, safe read-only returns `RELEASE_CANDIDATE`,
+`sql_mutation` and `model_api` fail closed, and all protected payload bodies
+remain unexecuted with sentinel/count evidence.
 
 | Evidence field | Frozen value |
 | --- | --- |
@@ -28,9 +83,7 @@ v3.4.2 completes real LangChain multi-tool selective interception result review 
 | Gate results | `safe_read_only_release_candidate_count=1`, `sql_mutation_fail_closed_count=1`, `model_api_fail_closed_count=1` |
 | Sentinel proof | all `side_effect_sentinel_before=0`, `side_effect_sentinel_after=0`, `side_effect_sentinel_delta=0`; `protected_payload_body_invocation_count=0` |
 | Execution/runtime boundary | `execution_authorized_count=0`, `runtime_behaviors_added=0` |
-| Frozen markers | `DHMS_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_VALIDATION_PASS` |
-
-Bounded public claim: DHMS validates a local deterministic real LangChain multi-tool selective interception boundary where one real LangChain agent is equipped with three adapter-created guarded tools at the same time, each tool call is evaluated independently before protected payload execution, safe read-only returns `RELEASE_CANDIDATE`, `sql_mutation` and `model_api` fail closed, and all protected payload bodies remain unexecuted with sentinel/count evidence.
+| Frozen marker | `DHMS_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_VALIDATION_PASS` |
 
 ## Reproduce The Proof
 
@@ -40,16 +93,9 @@ Bounded public claim: DHMS validates a local deterministic real LangChain multi-
 
 Expected output summary: `DHMS_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_VALIDATION_PASS`, `single_agent_boundary_count=1`, `registered_adapter_created_tool_count=3`, `same_agent_tool_registry=true`, `independent_tool_call_count=3`, `safe_read_only_release_candidate_count=1`, `sql_mutation_fail_closed_count=1`, `model_api_fail_closed_count=1`, `all_protected_tool_body_executed_false=true`, `all_side_effect_sentinel_after_zero=true`, `execution_authorized_count=0`, `runtime_behaviors_added=0`, `sentinel_failure_count=0`, `protected_payload_body_execution_count=0`.
 
-Python runtime note: default system `python3` is Python 3.9.6 in the validated environment and cannot install LangChain 1.x. Use `/usr/local/bin/python3.11` for v3.1-v3.5 validation unless the system default Python is upgraded to >=3.10.
-
-## Local Editable Install
-
-```bash
-/usr/local/bin/python3.11 -m pip install -e .
-/usr/local/bin/python3.11 -c "import dhms_agentfuse; print('DHMS_AGENTFUSE_IMPORT_PASS')"
-```
-
-`pyproject.toml` makes the local `dhms_agentfuse` package editable-installable. `requirements.txt` remains the dependency model for LangChain validation dependencies. This is not a PyPI release or package release.
+`pyproject.toml` makes the local `dhms_agentfuse` package editable-installable.
+`requirements.txt` remains the dependency model for LangChain validation
+dependencies. This is not a PyPI release or package release.
 
 Legacy v2.7 pre-execution proof command:
 
@@ -170,7 +216,10 @@ Links: [editable package metadata](pyproject.toml), [v3.5.2 real API wiring doc]
 
 ## Public Boundary
 
-DHMS v3.4 validates a local deterministic real LangChain multi-tool selective interception boundary where DHMS evaluates each adapter-created tool call independently before protected payload execution. It is not a production safety claim.
+DHMS v3.5.2 shows real `langgraph_bigtool.create_agent()` API wiring with a
+guarded tool registry. The frozen v3.4.2 proof remains the strongest
+multi-tool selective interception evidence. Neither is a production safety
+claim.
 
 Current public boundaries:
 
@@ -236,11 +285,11 @@ Fresh-clone reproduction is documented in [DHMS Fresh Clone Reproduction Check v
 * [v3.4.2 Real LangChain Multi-Tool Selective Interception Result Review + README Sync](docs/dhms_real_langchain_multi_tool_selective_interception_result_review_and_readme_sync_v3_4_2.md)
 * [v3.5.2 Real langgraph-bigtool API Wiring Demo](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 
-## Release Materials
+## Historical Release Materials
 
-* Current public release: [DHMS v1.3 Runtime Adapter Boundary Public Evidence Package](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.3.0-runtime-adapter-boundary-public-evidence-package)
-* Current release tag: `v1.3.0-runtime-adapter-boundary-public-evidence-package`
-* Confirmed tag target commit: `23311e7484e1a603c56a479189463a9d18f97741`
+* Historical public release: [DHMS v1.3 Runtime Adapter Boundary Public Evidence Package](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.3.0-runtime-adapter-boundary-public-evidence-package)
+* Historical v1.3 release tag: `v1.3.0-runtime-adapter-boundary-public-evidence-package`
+* Historical v1.3 tag target commit: `23311e7484e1a603c56a479189463a9d18f97741`
 * Prior public release: [DHMS v1.0 Public Evidence Package](https://github.com/MkaliezZ/dhms-engine/releases/tag/v1.0.0-public-evidence-package)
 
 ## Architecture Note

@@ -1,8 +1,34 @@
 # DHMS / AgentFuse
 
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](pyproject.toml)
+[![Install](https://img.shields.io/badge/install-editable-green.svg)](#quickstart)
+[![Evidence](https://img.shields.io/badge/evidence-v3.5.2-purple.svg)](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
+[![Docs](https://img.shields.io/badge/docs-available-informational.svg)](docs/)
 
 Automatic fail-closed execution fuse for side-effect-capable AI agent tools.
+
+DHMS guards AI agent tool calls before protected payload execution. Known safe
+read-only tools can pass; known risky side-effect tools fail closed, with
+evidence that the protected payload never ran.
+
+Current proof chain: real LangChain adapter-loop evidence plus real
+`langgraph_bigtool.create_agent()` API wiring, sentinel-verified with
+`protected_payload_body_execution_count = 0`.
+
+## Table Of Contents
+
+* [Overview](#overview)
+* [Current External-Facing Proof](#current-external-facing-proof)
+* [Quickstart](#quickstart)
+* [What DHMS Does](#what-dhms-does)
+* [What DHMS Does Not Claim](#what-dhms-does-not-claim)
+* [Latest Demo](#latest-demo)
+* [Evidence Chain](#evidence-chain)
+* [Feedback Wanted](#feedback-wanted)
+* [Chinese Overview](#chinese-overview)
+
+## Overview
 
 AI agents increasingly call tools that can mutate SQL, files, APIs, code, or
 business systems. DHMS / AgentFuse focuses on the execution boundary before a
@@ -10,17 +36,19 @@ tool's protected payload runs: classify risky tool capabilities, release only
 bounded safe candidates, and fail closed for known-dangerous or unsupported
 actions before protected payload execution.
 
-Latest demo: v3.5.2 demonstrates real `langgraph_bigtool.create_agent()` API
-wiring. DHMS builds a guarded tool registry before `create_agent()`, passes it
-into the real `langgraph_bigtool.create_agent()` boundary, and uses
-deterministic retrieval. The demo does not compile, invoke, or stream the graph.
+DHMS began as memory/context/tool-state perturbation testing. The
+`agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the
+DHMS Execution Fuse Protocol.
+
+## Chinese Overview
 
 Chinese overview: [README.zh-CN.md](README.zh-CN.md)
 
-## Latest Evidence
+## Current External-Facing Proof
 
 * Current branch: `agent-harness-v1`.
-* Latest demo: `v3.5.2 Real langgraph-bigtool API Wiring Demo`.
+* Supporting proof chain: v3.4.2 frozen multi-tool selective interception result review.
+* Latest external-facing demo: v3.5.2 real `langgraph_bigtool.create_agent()` API wiring.
 * Demo path: `examples/external_integrations/langgraph_bigtool/`.
 * `safe_read_only_summary_tool` returns `RELEASE_CANDIDATE`.
 * `dangerous_sql_mutation_tool` fails closed with blocked category `sql_mutation`.
@@ -28,6 +56,9 @@ Chinese overview: [README.zh-CN.md](README.zh-CN.md)
 * `protected_payload_body_execution_count = 0`.
 * `runtime_behaviors_added = 0`.
 * `execution_authorized_count = 0`.
+
+v3.5.2 is the latest external-facing demo. v3.4.2 is the supporting proof-chain
+foundation, not a competing current-proof label.
 
 ## Quickstart
 
@@ -49,13 +80,21 @@ If your system `python` is older than Python 3.10, use a Python 3.11 runtime:
 /usr/local/bin/python3.11 examples/external_integrations/langgraph_bigtool/dhms_guarded_tool_registry_demo.py
 ```
 
-## What This Does Not Claim
+## What DHMS Does
+
+DHMS / AgentFuse demonstrates a fail-closed execution fuse boundary and
+evidence record for side-effect-capable AI agent tools. It places a guarded tool
+registry before protected payload execution, classifies known risky
+capabilities, and keeps blocked payload bodies unexecuted.
+
+## What DHMS Does Not Claim
 
 DHMS / AgentFuse is not claiming production runtime protection.
 
 The v3.5.2 demo:
 
 * does not compile, invoke, or stream the graph
+* does not call providers, networks, databases, SQL systems, credentials, or user data
 * does not call providers or real model APIs
 * does not perform network requests
 * does not access databases
@@ -63,10 +102,19 @@ The v3.5.2 demo:
 * does not read credentials, environment variables, or user data
 * does not authorize protected payload execution
 * does not claim to protect live production LangGraph agents
+* does not claim LangChain or LangGraph lacks safety mechanisms
+* does not claim DHMS is a finished enterprise security product
 
-## Current Strongest Proof Line
+## Latest Demo
 
-The strongest frozen proof remains v3.4.2: a local deterministic real LangChain
+v3.5.2 demonstrates real `langgraph_bigtool.create_agent()` API wiring. DHMS
+builds a guarded tool registry before `create_agent()`, passes it into the real
+`langgraph_bigtool.create_agent()` boundary, and uses deterministic retrieval.
+The demo does not compile, invoke, or stream the graph.
+
+## Evidence Chain
+
+The strongest frozen proof-chain foundation remains v3.4.2: a local deterministic real LangChain
 multi-tool selective interception boundary where one real LangChain agent has
 three adapter-created guarded tools. DHMS evaluates each tool call independently
 before protected payload execution, safe read-only returns `RELEASE_CANDIDATE`,
@@ -96,6 +144,12 @@ Expected output summary: `DHMS_REAL_LANGCHAIN_MULTI_TOOL_SELECTIVE_INTERCEPTION_
 `pyproject.toml` makes the local `dhms_agentfuse` package editable-installable.
 `requirements.txt` remains the dependency model for LangChain validation
 dependencies. This is not a PyPI release or package release.
+
+## Feedback Wanted
+
+Feedback is especially useful on whether the guarded tool registry boundary is
+easy to understand, whether the v3.5.2 non-claims are clear enough, and which
+side-effect-capable tool risks should be prioritized next.
 
 Legacy v2.7 pre-execution proof command:
 

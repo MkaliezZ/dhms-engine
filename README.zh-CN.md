@@ -10,6 +10,15 @@ DHMS / AgentFuse 不是 LangChain 的附庸。LangChain、LangGraph 和其他 ag
 
 DHMS 的目标是成为 side-effect-capable AI agent tools 的 automatic fail-closed execution fuse：安全只读候选可以成为 `RELEASE_CANDIDATE`，危险 SQL mutation 和 model API 请求会 `FAIL_CLOSED`，受保护的 payload body 不会执行。
 
+## 当前证明链是什么
+
+当前对外最容易理解的证明链由两部分组成：
+
+* v3.4.2：冻结的 multi-tool selective interception result review，是当前多工具拦截证据基础。
+* v3.5.2：最新 real `langgraph_bigtool.create_agent()` API wiring demo，是当前最适合外部读者入口的 demo。
+
+这两者不是互相竞争的“当前证明”。v3.4.2 是支持证据链，v3.5.2 是最新外部展示入口。
+
 ## v3.5.2 当前证明了什么
 
 当前最新外部集成示例是 LangGraph / `langgraph-bigtool` 的真实 API wiring demo。示例位于：

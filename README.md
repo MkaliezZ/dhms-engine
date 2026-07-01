@@ -16,49 +16,14 @@ Current proof chain: real LangChain adapter-loop evidence plus real
 `langgraph_bigtool.create_agent()` API wiring, sentinel-verified with
 `protected_payload_body_execution_count = 0`.
 
-## Table Of Contents
-
-* [Overview](#overview)
-* [Current External-Facing Proof](#current-external-facing-proof)
-* [Quickstart](#quickstart)
-* [What DHMS Does](#what-dhms-does)
-* [What DHMS Does Not Claim](#what-dhms-does-not-claim)
-* [Latest Demo](#latest-demo)
-* [Evidence Chain](#evidence-chain)
-* [Feedback Wanted](#feedback-wanted)
-* [Chinese Overview](#chinese-overview)
-
-## Overview
-
 AI agents increasingly call tools that can mutate SQL, files, APIs, code, or
 business systems. DHMS / AgentFuse focuses on the execution boundary before a
 tool's protected payload runs: classify risky tool capabilities, release only
 bounded safe candidates, and fail closed for known-dangerous or unsupported
 actions before protected payload execution.
 
-DHMS began as memory/context/tool-state perturbation testing. The
-`agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the
-DHMS Execution Fuse Protocol.
-
-## Chinese Overview
-
+<a id="chinese-overview"></a>
 Chinese overview: [README.zh-CN.md](README.zh-CN.md)
-
-## Current External-Facing Proof
-
-* Current branch: `agent-harness-v1`.
-* Supporting proof chain: v3.4.2 frozen multi-tool selective interception result review.
-* Latest external-facing demo: v3.5.2 real `langgraph_bigtool.create_agent()` API wiring.
-* Demo path: `examples/external_integrations/langgraph_bigtool/`.
-* `safe_read_only_summary_tool` returns `RELEASE_CANDIDATE`.
-* `dangerous_sql_mutation_tool` fails closed with blocked category `sql_mutation`.
-* `model_api_request_tool` fails closed with blocked category `model_api`.
-* `protected_payload_body_execution_count = 0`.
-* `runtime_behaviors_added = 0`.
-* `execution_authorized_count = 0`.
-
-v3.5.2 is the latest external-facing demo. v3.4.2 is the supporting proof-chain
-foundation, not a competing current-proof label.
 
 ## Quickstart
 
@@ -79,6 +44,40 @@ If your system `python` is older than Python 3.10, use a Python 3.11 runtime:
 /usr/local/bin/python3.11 -m pip install -e .
 /usr/local/bin/python3.11 examples/external_integrations/langgraph_bigtool/dhms_guarded_tool_registry_demo.py
 ```
+
+## Current External-Facing Proof
+
+* Current branch: `agent-harness-v1`.
+* Supporting proof chain: v3.4.2 frozen multi-tool selective interception result review.
+* Latest external-facing demo: v3.5.2 real `langgraph_bigtool.create_agent()` API wiring.
+* Demo path: `examples/external_integrations/langgraph_bigtool/`.
+* `safe_read_only_summary_tool` returns `RELEASE_CANDIDATE`.
+* `dangerous_sql_mutation_tool` fails closed with blocked category `sql_mutation`.
+* `model_api_request_tool` fails closed with blocked category `model_api`.
+* `protected_payload_body_execution_count = 0`.
+* `runtime_behaviors_added = 0`.
+* `execution_authorized_count = 0`.
+
+v3.5.2 is the latest external-facing demo. v3.4.2 is the supporting proof-chain
+foundation, not a competing current-proof label.
+
+## Table of Contents
+
+* [Overview](#overview)
+* [Quickstart](#quickstart)
+* [Current External-Facing Proof](#current-external-facing-proof)
+* [What DHMS Does](#what-dhms-does)
+* [What DHMS Does Not Claim](#what-dhms-does-not-claim)
+* [Latest Demo](#latest-demo)
+* [Evidence Chain](#evidence-chain)
+* [Feedback Wanted](#feedback-wanted)
+* [Chinese Overview](#chinese-overview)
+
+## Overview
+
+DHMS began as memory/context/tool-state perturbation testing. The
+`agent-harness-v1` branch is the public DHMS AgentFuse evidence line for the
+DHMS Execution Fuse Protocol.
 
 ## What DHMS Does
 

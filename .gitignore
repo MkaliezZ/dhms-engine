@@ -27,16 +27,3 @@ node_modules/
 # Local and bulky report artifacts
 reports/
 validation/deepseek_smoke/outputs/raw/
-
-# Local outreach / feedback discovery work products
-outreach/
-feedback_discovery/
-market_discovery/
-lead_lists/
-reply_drafts/
-*.outreach.csv
-*.feedback.csv
-*.leadlist.csv
-*.reply_drafts.md
-.tmp/
-tmp/

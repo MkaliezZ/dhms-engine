@@ -10,20 +10,42 @@ from .api import (
     evaluate_proposal,
     run_non_executing_agentfuse_flow,
 )
+from .evidence_schema import (
+    AgentFuseEvidenceRecord,
+    LayeredBoundaryDecision,
+    NonExecutionEvidence,
+    PolicyResolutionEvidence,
+    SafeTraceMetadata,
+    ambiguous_pattern_overlap_evidence,
+    example_evidence_records,
+    mcp_file_network_boundary_evidence,
+    safe_read_only_summary_evidence,
+    sql_mutation_block_evidence,
+)
 from .models import AgentFuseTrace, ExecutionGateDecision, RuntimeRequest, SafetyDecision, ToolCallProposal
 
 __all__ = [
     "ALLOWLISTED_SQL",
     "AgentFuseAdapterSkeleton",
+    "AgentFuseEvidenceRecord",
     "AgentFuseTrace",
     "ExecutionGateDecision",
+    "LayeredBoundaryDecision",
+    "NonExecutionEvidence",
+    "PolicyResolutionEvidence",
     "RuntimeRequest",
+    "SafeTraceMetadata",
     "SafetyDecision",
     "ToolCallProposal",
+    "ambiguous_pattern_overlap_evidence",
     "apply_execution_gate",
     "build_agentfuse_trace",
     "create_runtime_request",
     "create_tool_call_proposal",
+    "example_evidence_records",
     "evaluate_proposal",
+    "mcp_file_network_boundary_evidence",
     "run_non_executing_agentfuse_flow",
+    "safe_read_only_summary_evidence",
+    "sql_mutation_block_evidence",
 ]

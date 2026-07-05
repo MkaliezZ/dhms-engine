@@ -61,11 +61,30 @@ If your system `python` is older than Python 3.10, use a Python 3.11 runtime:
 v3.5.2 is the latest external-facing demo. v3.4.2 is the supporting proof-chain
 foundation, not a competing current-proof label.
 
+## AgentFuse Evidence Schema v0.1
+
+AgentFuse Evidence Schema v0.1 represents blocked agent tool calls as completed
+policy decisions, not failed tool executions. It captures policy resolution,
+non-execution evidence, layered boundary decisions, and safe trace metadata for
+guarded tool-call proposals.
+
+The schema keeps approval and execution as separate lifecycle facts. A denied
+tool call can carry `status=not_executed`, `execution=not_started`, a reason
+code, safe policy metadata, and an evidence reference without exposing raw
+arguments, raw paths, environment variables, request bodies, secrets, or other
+sensitive payloads in default traces.
+
+This is feedback-informed schema/demo work, not a production runtime security
+claim. It preserves the existing boundary: no live graph invocation is required,
+no provider calls are made, no protected payload executes, and no raw sensitive
+inputs are included in default traces.
+
 ## Table of Contents
 
 * [Overview](#overview)
 * [Quickstart](#quickstart)
 * [Current External-Facing Proof](#current-external-facing-proof)
+* [AgentFuse Evidence Schema v0.1](#agentfuse-evidence-schema-v01)
 * [What DHMS Does](#what-dhms-does)
 * [What DHMS Does Not Claim](#what-dhms-does-not-claim)
 * [Latest Demo](#latest-demo)

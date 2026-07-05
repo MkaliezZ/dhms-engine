@@ -22,6 +22,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from dhms_agentfuse.controlled_proposal_gate import evaluate_controlled_proposal  # noqa: E402
+from dhms_agentfuse.evidence_schema import sql_mutation_block_evidence  # noqa: E402
 from dhms_agentfuse.langchain_guarded_tool_adapter import (  # noqa: E402
     create_deterministic_adapter_driver,
 )
@@ -194,6 +195,7 @@ def run_demo() -> Dict[str, Any]:
         result["tool_name"]: list(result["blocked_capabilities"])
         for result in after_results
     }
+    blocked_sql_evidence_record = sql_mutation_block_evidence().to_dict()
     execution_authorized_count = sum(
         1 for result in after_results if result["execution_authorized"] is True
     )
@@ -222,6 +224,8 @@ def run_demo() -> Dict[str, Any]:
         "before": before_summary,
         "after_decisions": decision_by_tool,
         "after_blocked_capabilities": blocked_by_tool,
+        "agentfuse_evidence_schema_version": blocked_sql_evidence_record["schema_version"],
+        "blocked_sql_mutation_evidence_record": blocked_sql_evidence_record,
         "safe_read_only_release_candidate_count": sum(
             1 for result in after_results if result["decision"] == "RELEASE_CANDIDATE"
         ),
@@ -292,6 +296,17 @@ def _validate_summary(summary: Dict[str, Any]) -> None:
         raise AssertionError("dangerous SQL mutation tool must fail closed")
     if summary["after_blocked_capabilities"]["dangerous_sql_mutation_tool"] != ["sql_mutation"]:
         raise AssertionError("dangerous SQL blocked category must be sql_mutation")
+    evidence_record = summary["blocked_sql_mutation_evidence_record"]
+    if evidence_record["non_execution"]["status"] != "not_executed":
+        raise AssertionError("blocked SQL evidence must have not_executed status")
+    if evidence_record["non_execution"]["execution"] != "not_started":
+        raise AssertionError("blocked SQL evidence must have not_started execution")
+    if evidence_record["non_execution"]["payload_executed"] is not False:
+        raise AssertionError("blocked SQL evidence must show payload_executed false")
+    if evidence_record["non_execution"]["side_effect_occurred"] is not False:
+        raise AssertionError("blocked SQL evidence must show side_effect_occurred false")
+    if evidence_record["trace_metadata"]["raw_inputs_in_trace"] is not False:
+        raise AssertionError("blocked SQL evidence trace must exclude raw inputs")
     if summary["after_decisions"]["model_api_request_tool"] != "FAIL_CLOSED":
         raise AssertionError("model API request tool must fail closed")
     if summary["after_blocked_capabilities"]["model_api_request_tool"] != ["model_api"]:

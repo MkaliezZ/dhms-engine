@@ -79,12 +79,34 @@ claim. It preserves the existing boundary: no live graph invocation is required,
 no provider calls are made, no protected payload executes, and no raw sensitive
 inputs are included in default traces.
 
+## Five-Minute Per-Call Denial Trial
+
+After `pip install -e .`, run:
+
+```bash
+python examples/trial/per_call_denial_lifecycle_demo.py
+```
+
+The deterministic two-call batch denies one mutation-style call before its
+handler starts, then executes one inert read-only handler exactly once. Both
+calls receive terminal lifecycle records, and the denied call does not abort
+the allowed call. Expected verdict:
+
+```text
+AGENTFUSE_PER_CALL_DENIAL_TRIAL_DEMO_PASS
+```
+
+This is a local schema/demo example. It does not invoke a provider, model,
+network, database, SQL system, graph, credential source, or external service,
+and it does not claim production runtime protection.
+
 ## Table of Contents
 
 * [Overview](#overview)
 * [Quickstart](#quickstart)
 * [Current External-Facing Proof](#current-external-facing-proof)
 * [AgentFuse Evidence Schema v0.1](#agentfuse-evidence-schema-v01)
+* [Five-Minute Per-Call Denial Trial](#five-minute-per-call-denial-trial)
 * [What DHMS Does](#what-dhms-does)
 * [What DHMS Does Not Claim](#what-dhms-does-not-claim)
 * [Latest Demo](#latest-demo)

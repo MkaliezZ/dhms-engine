@@ -1,0 +1,96 @@
+{
+  "fixture_pack": "agentfuse-denial-lifecycle-regression-fixtures-v0",
+  "provider_neutral": true,
+  "meaning": "Canonical expected outputs for this fixture pack; illustrative for external frameworks.",
+  "scenarios": [
+    {
+      "id": "single_denied_before_execution",
+      "requested_calls": [
+        {
+          "tool_call_id": "call:dangerous_sql_mutation_tool:001",
+          "tool_name": "dangerous_sql_mutation_tool",
+          "capability": "sql_mutation"
+        }
+      ],
+      "terminal_records": [
+        {
+          "tool_call_id": "call:dangerous_sql_mutation_tool:001",
+          "tool_name": "dangerous_sql_mutation_tool",
+          "decision": "block",
+          "outcome": "not_executed",
+          "execution": "not_started",
+          "handler_invoked": false,
+          "handler_execution_count": 0,
+          "payload_executed": false,
+          "side_effect_occurred": false,
+          "tool_failure": false,
+          "reason_code": "policy_denied",
+          "safe_trace_metadata": {
+            "raw_inputs_in_trace": false,
+            "model_visible_trace_sanitized": true
+          }
+        }
+      ],
+      "expectations": {
+        "batch_completed": true,
+        "terminal_record_count": 1,
+        "denied_side_effect_count": 0,
+        "safe_trace_only": true
+      }
+    },
+    {
+      "id": "mixed_batch_denial_continuation",
+      "requested_calls": [
+        {
+          "tool_call_id": "call:dangerous_sql_mutation_tool:001",
+          "tool_name": "dangerous_sql_mutation_tool",
+          "capability": "sql_mutation"
+        },
+        {
+          "tool_call_id": "call:safe_read_only_summary_tool:001",
+          "tool_name": "safe_read_only_summary_tool",
+          "capability": "read_only_summary"
+        }
+      ],
+      "terminal_records": [
+        {
+          "tool_call_id": "call:dangerous_sql_mutation_tool:001",
+          "tool_name": "dangerous_sql_mutation_tool",
+          "decision": "block",
+          "outcome": "not_executed",
+          "execution": "not_started",
+          "handler_invoked": false,
+          "handler_execution_count": 0,
+          "payload_executed": false,
+          "side_effect_occurred": false,
+          "tool_failure": false,
+          "reason_code": "policy_denied",
+          "safe_trace_metadata": {
+            "raw_inputs_in_trace": false,
+            "model_visible_trace_sanitized": true
+          }
+        },
+        {
+          "tool_call_id": "call:safe_read_only_summary_tool:001",
+          "tool_name": "safe_read_only_summary_tool",
+          "decision": "allow",
+          "outcome": "executed",
+          "handler_invoked": true,
+          "handler_execution_count": 1,
+          "safe_trace_metadata": {
+            "raw_inputs_in_trace": false,
+            "model_visible_trace_sanitized": true
+          }
+        }
+      ],
+      "expectations": {
+        "batch_completed": true,
+        "remaining_allowed_call_continued": true,
+        "terminal_record_count": 2,
+        "no_orphaned_tool_request": true,
+        "denied_side_effect_count": 0,
+        "safe_trace_only": true
+      }
+    }
+  ]
+}

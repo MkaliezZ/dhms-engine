@@ -100,6 +100,15 @@ This is a local schema/demo example. It does not invoke a provider, model,
 network, database, SQL system, graph, credential source, or external service,
 and it does not claim production runtime protection.
 
+### Regression Fixtures for Denied Tool Calls
+
+The provider-neutral, copyable fixtures cover terminal denial records,
+preserved tool-call identity, and allowed-call continuation after a denial.
+They are in
+[`examples/trial/denial_lifecycle_regression_fixtures/fixtures.json`](examples/trial/denial_lifecycle_regression_fixtures/fixtures.json)
+with a concise [fixture README](examples/trial/denial_lifecycle_regression_fixtures/README.md).
+The existing trial demo remains the runnable reference.
+
 ## Table of Contents
 
 * [Overview](#overview)

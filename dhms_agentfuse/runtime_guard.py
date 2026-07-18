@@ -535,6 +535,24 @@ class RuntimeGuard:
             failure_category=failure_category,
         )
 
+    def _interrupted_result(
+        self,
+        tool_call: ToolCallRequest,
+        resolved: _ResolvedPolicy,
+    ) -> RuntimeGuardResult:
+        return RuntimeGuardResult(
+            tool_call_id=tool_call.tool_call_id,
+            tool_name=tool_call.tool_name,
+            decision="allow",
+            reason_code=resolved.reason_code,
+            dispatch_occurred=True,
+            handler_started=True,
+            outcome="interrupted",
+            tool_failure=False,
+            side_effect_occurred=None,
+            evidence=self._evidence(tool_call, resolved),
+        )
+
 
 __all__ = [
     "GuardedInvocation",

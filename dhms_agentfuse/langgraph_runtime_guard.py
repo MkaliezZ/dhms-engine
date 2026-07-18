@@ -8,6 +8,7 @@ from typing import Any, Callable, Sequence
 
 from langchain_core.messages import ToolMessage
 from langchain_core.tools import BaseTool
+from langgraph.errors import GraphInterrupt
 from langgraph.prebuilt import ToolNode
 from langgraph.prebuilt.tool_node import (
     ToolCallRequest as LangGraphToolCallRequest,
@@ -113,6 +114,10 @@ class LangGraphRuntimeGuardAdapter:
             return self._terminal_message(receipt)
         try:
             result = execute(request)
+        except GraphInterrupt:
+            receipt = self.guard._interrupted_result(tool_call, resolved)
+            self._store(receipt)
+            raise
         except ToolInvocationError:
             receipt = self.guard._failure_result(
                 tool_call,
@@ -174,6 +179,10 @@ class LangGraphRuntimeGuardAdapter:
             return self._terminal_message(receipt)
         try:
             result = await execute(request)
+        except GraphInterrupt:
+            receipt = self.guard._interrupted_result(tool_call, resolved)
+            self._store(receipt)
+            raise
         except ToolInvocationError:
             receipt = self.guard._failure_result(
                 tool_call,

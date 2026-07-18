@@ -11,6 +11,9 @@ from langchain_core.tools import tool
 from langgraph.graph import MessagesState, StateGraph
 
 from dhms_agentfuse import LangGraphRuntimeGuardAdapter, RuntimeGuard
+from examples.runtime_guard.langgraph_interrupt_receipt_demo import (
+    run_demo as run_interrupt_demo,
+)
 
 
 def _run_graph(
@@ -259,3 +262,15 @@ def test_tool_input_validation_error_does_not_claim_handler_started() -> None:
     assert receipt.handler_started is False
     assert receipt.failure_category == "tool_input_error"
     assert receipt.side_effect_occurred is False
+
+
+def test_graph_interrupt_is_control_flow_not_execution_failure() -> None:
+    summary = run_interrupt_demo()
+
+    assert summary["decision"] == "allow"
+    assert summary["dispatch_started"] is True
+    assert summary["outcome"] == "interrupted"
+    assert summary["execution_failed"] is False
+    assert summary["non_execution_evidence_present"] is False
+    assert summary["structured_interrupt_preserved"] is True
+    assert summary["interrupt_payload_redacted"] is True

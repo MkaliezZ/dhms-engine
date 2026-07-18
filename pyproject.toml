@@ -12,6 +12,10 @@ license = { text = "Apache-2.0" }
 authors = [
   { name = "Huaxinsheng Zhong" }
 ]
+dependencies = [
+  "langchain-core>=1.4,<2.0",
+  "langgraph>=1.2,<2.0",
+]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "License :: OSI Approved :: Apache Software License",

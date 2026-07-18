@@ -6,15 +6,16 @@
 [![Evidence](https://img.shields.io/badge/evidence-v3.5.2-purple.svg)](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 [![Docs](https://img.shields.io/badge/docs-available-informational.svg)](docs/)
 
-Automatic fail-closed execution fuse for side-effect-capable AI agent tools.
+Experimental in-process pre-dispatch control and evidence for AI agent tools.
 
-DHMS guards AI agent tool calls before protected payload execution. Known safe
-read-only tools can pass; known risky side-effect tools fail closed, with
-evidence that the protected payload never ran.
+The AgentFuse Runtime Guard evaluates policy before dispatching a Python tool
+handler, blocks disallowed calls, and generates structured execution or
+non-execution evidence from the same code path that owns dispatch. It supports
+synchronous and asynchronous handlers, sequential mixed-call batches, and a
+real LangGraph `ToolNode` integration.
 
-Current proof chain: real LangChain adapter-loop evidence plus real
-`langgraph_bigtool.create_agent()` API wiring, sentinel-verified with
-`protected_payload_body_execution_count = 0`.
+The existing Evidence Schema, denial fixtures, LangChain proof chain, and
+`langgraph_bigtool.create_agent()` wiring remain supporting evidence.
 
 AI agents increasingly call tools that can mutate SQL, files, APIs, code, or
 business systems. DHMS / AgentFuse focuses on the execution boundary before a
@@ -29,23 +30,148 @@ Chinese overview: [README.zh-CN.md](README.zh-CN.md)
 
 ```bash
 pip install -e .
-python examples/external_integrations/langgraph_bigtool/dhms_guarded_tool_registry_demo.py
+python examples/runtime_guard/runtime_guard_mvp_demo.py
+python examples/runtime_guard/langgraph_runtime_guard_demo.py
 ```
 
-Expected final verdict:
+Expected final verdicts:
 
 ```text
-DHMS_REAL_LANGGRAPH_BIGTOOL_API_WIRING_DEMO_PASS
+AGENTFUSE_RUNTIME_GUARD_MVP_DEMO_PASS
+AGENTFUSE_LANGGRAPH_RUNTIME_GUARD_DEMO_PASS
 ```
 
 If your system `python` is older than Python 3.10, use a Python 3.11 runtime:
 
 ```bash
 /usr/local/bin/python3.11 -m pip install -e .
-/usr/local/bin/python3.11 examples/external_integrations/langgraph_bigtool/dhms_guarded_tool_registry_demo.py
+/usr/local/bin/python3.11 examples/runtime_guard/runtime_guard_mvp_demo.py
+/usr/local/bin/python3.11 examples/runtime_guard/langgraph_runtime_guard_demo.py
 ```
 
-## Current External-Facing Proof
+## AgentFuse Runtime Guard MVP
+
+The Runtime Guard solves one narrow problem: evaluate policy before dispatching
+an agent tool handler, block disallowed execution, and generate structured
+execution or non-execution evidence from the same control path.
+
+### Synchronous Handler
+
+```python
+from dhms_agentfuse import RuntimeGuard, ToolCallRequest
+
+guard = RuntimeGuard(
+    allow_tools={"search", "read_file"},
+    deny_tools={"delete_file", "execute_sql", "send_external_message"},
+    default_action="block",
+)
+
+result = guard.invoke(
+    tool_call=ToolCallRequest(
+        tool_call_id="call-001",
+        tool_name="delete_file",
+        arguments={"path": "synthetic-example.txt"},
+    ),
+    handler=delete_file_handler,
+)
+
+assert result.outcome == "not_executed"
+assert result.handler_invoked is False
+```
+
+An explicit denylist match has highest precedence. When `allow_tools` is
+configured, a tool absent from that set is blocked. A custom policy may further
+allow or block calls that pass static configuration; policy exceptions and
+invalid decisions fail closed.
+
+```python
+from dhms_agentfuse import RuntimePolicyDecision
+
+def policy(tool_call):
+    if tool_call.safe_metadata.get("requires_approval"):
+        return RuntimePolicyDecision.block("policy_denied")
+    return RuntimePolicyDecision.allow()
+
+guard = RuntimeGuard(default_action="block", policy=policy)
+```
+
+### Asynchronous Handler
+
+```python
+result = await guard.ainvoke(
+    tool_call=tool_call,
+    handler=async_handler,
+)
+```
+
+Use `ainvoke` for async handlers or async custom policies. The guard does not
+run async handlers through an implicit event loop.
+
+### Sequential Batch
+
+```python
+from dhms_agentfuse import GuardedInvocation
+
+results = guard.invoke_batch(
+    invocations=[
+        GuardedInvocation(tool_call=blocked_call, handler=blocked_handler),
+        GuardedInvocation(tool_call=allowed_call, handler=allowed_handler),
+    ]
+)
+```
+
+Each input receives one result in input order. A blocked call, policy failure,
+or handler exception does not suppress later calls in the sequential batch.
+
+### LangGraph ToolNode
+
+```python
+from langgraph.graph import MessagesState, StateGraph
+from dhms_agentfuse import LangGraphRuntimeGuardAdapter
+
+adapter = LangGraphRuntimeGuardAdapter(guard)
+builder = StateGraph(MessagesState)
+builder.add_node("tools", adapter.create_tool_node([read_file, delete_file]))
+builder.set_entry_point("tools")
+builder.set_finish_point("tools")
+graph = builder.compile()
+```
+
+The adapter uses the installed LangGraph `ToolNode` dispatch path. Blocked calls
+receive a terminal `ToolMessage` bound to the original tool-call ID; allowed
+handlers use normal ToolNode execution; handler exceptions remain terminal
+execution failures rather than policy denials. Evidence receipts are available
+through `adapter.receipts` and `adapter.receipt_for(tool_call_id)`.
+
+Representative safe output:
+
+```text
+delete_file:
+decision=block
+outcome=not_executed
+handler_invoked=false
+
+read_project_summary:
+decision=allow
+outcome=executed
+handler_invoked=true
+```
+
+The Runtime Guard MVP guarantees only that handlers passed through the guard
+are evaluated before dispatch, blocked handlers are not called by that guarded
+path, and evidence is generated by that path. Successful return values remain
+available on `result.return_value` but are excluded from `to_safe_dict()` and
+the default representation.
+
+AgentFuse Runtime Guard MVP is an experimental in-process pre-dispatch control
+layer. It is not a process sandbox, network firewall, or universal
+production-security boundary. Application code can still call handlers
+directly; other processes, subprocesses, monkey-patching, network traffic, and
+unwrapped LangGraph paths are not automatically intercepted. It provides no
+enterprise-security, compliance, certification, or universal side-effect
+prevention guarantee.
+
+## Supporting External-Facing Proof
 
 * Current branch: `agent-harness-v1`.
 * Supporting proof chain: v3.4.2 frozen multi-tool selective interception result review.
@@ -58,8 +184,9 @@ If your system `python` is older than Python 3.10, use a Python 3.11 runtime:
 * `runtime_behaviors_added = 0`.
 * `execution_authorized_count = 0`.
 
-v3.5.2 is the latest external-facing demo. v3.4.2 is the supporting proof-chain
-foundation, not a competing current-proof label.
+v3.5.2 remains the latest historical external-project wiring demo. The Runtime
+Guard MVP above is now the primary current-use path; v3.4.2 and v3.5.2 remain
+supporting proof-chain checkpoints.
 
 ## AgentFuse Evidence Schema v0.1
 
@@ -113,7 +240,8 @@ The existing trial demo remains the runnable reference.
 
 * [Overview](#overview)
 * [Quickstart](#quickstart)
-* [Current External-Facing Proof](#current-external-facing-proof)
+* [AgentFuse Runtime Guard MVP](#agentfuse-runtime-guard-mvp)
+* [Supporting External-Facing Proof](#supporting-external-facing-proof)
 * [AgentFuse Evidence Schema v0.1](#agentfuse-evidence-schema-v01)
 * [Five-Minute Per-Call Denial Trial](#five-minute-per-call-denial-trial)
 * [What DHMS Does](#what-dhms-does)
@@ -131,16 +259,19 @@ DHMS Execution Fuse Protocol.
 
 ## What DHMS Does
 
-DHMS / AgentFuse demonstrates a fail-closed execution fuse boundary and
-evidence record for side-effect-capable AI agent tools. It places a guarded tool
-registry before protected payload execution, classifies known risky
-capabilities, and keeps blocked payload bodies unexecuted.
+DHMS / AgentFuse provides an experimental in-process Runtime Guard for
+side-effect-capable AI agent tools. It evaluates allowlist, denylist, default,
+and optional custom policy decisions before guarded handler dispatch and emits
+safe receipts from that same path. Existing schema and proof artifacts remain
+available for regression and portability work.
 
 ## What DHMS Does Not Claim
 
-DHMS / AgentFuse is not claiming production runtime protection.
+DHMS / AgentFuse is not claiming universal production runtime protection. The
+Runtime Guard controls only handlers routed through its API or its explicit
+LangGraph adapter. Direct calls and unwrapped execution paths remain possible.
 
-The v3.5.2 demo:
+The historical v3.5.2 demo:
 
 * does not compile, invoke, or stream the graph
 * does not call providers, networks, databases, SQL systems, credentials, or user data
@@ -156,10 +287,14 @@ The v3.5.2 demo:
 
 ## Latest Demo
 
-v3.5.2 demonstrates real `langgraph_bigtool.create_agent()` API wiring. DHMS
-builds a guarded tool registry before `create_agent()`, passes it into the real
-`langgraph_bigtool.create_agent()` boundary, and uses deterministic retrieval.
-The demo does not compile, invoke, or stream the graph.
+The two current Runtime Guard demos perform real guarded handler dispatch and a
+real installed-LangGraph `ToolNode` graph invocation with deterministic,
+in-memory handlers. They make no provider or model call and perform no real
+file, SQL, network, or messaging operation.
+
+The historical v3.5.2 demo remains available to demonstrate
+`langgraph_bigtool.create_agent()` API wiring. It builds a guarded registry but
+does not compile, invoke, or stream that historical graph.
 
 ## Evidence Chain
 

@@ -19,6 +19,10 @@ MATCH_KINDS = {"exact", "glob", "regex", "capability", "none"}
 NON_EXECUTION_STATUSES = {"not_executed"}
 NON_EXECUTION_REASONS = {
     "policy_denied",
+    "explicit_denylist",
+    "not_allowlisted",
+    "policy_exception",
+    "invalid_policy_decision",
     "approval_error",
     "user_cancelled",
     "needs_confirmation",

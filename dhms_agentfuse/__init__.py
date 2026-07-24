@@ -27,6 +27,7 @@ from .models import AgentFuseTrace, ExecutionGateDecision, RuntimeRequest, Safet
 from .runtime_guard import (
     GuardedInvocation,
     RuntimeGuard,
+    RuntimeGuardDecision,
     RuntimeGuardResult,
     RuntimePolicyDecision,
     ToolCallRequest,
@@ -45,6 +46,7 @@ __all__ = [
     "PolicyResolutionEvidence",
     "RuntimeRequest",
     "RuntimeGuard",
+    "RuntimeGuardDecision",
     "RuntimeGuardResult",
     "RuntimePolicyDecision",
     "SafeTraceMetadata",

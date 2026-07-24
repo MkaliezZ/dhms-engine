@@ -2,6 +2,9 @@
 
 ## Unreleased — Agent Harness v1
 
+* AgentFuse 3.5.1: added immutable public `RuntimeGuardDecision` plus
+  decision-only `evaluate()` and `aevaluate()` APIs that never dispatch a
+  handler; `invoke()` and `ainvoke()` now consume the same public decision path.
 * Phase 1: mock dry-run skeleton and trace contract.
 * Phase 2: trace diagnosis layer and rule-based trace recommendations.
 * Phase 3: command adapter and BYOA local agent JSON protocol.

@@ -95,6 +95,27 @@ def policy(tool_call):
 guard = RuntimeGuard(default_action="block", policy=policy)
 ```
 
+### Decision-Only API
+
+Use `evaluate()` when another runtime owns approval, dispatch, and physical
+outcome recording:
+
+```python
+decision = guard.evaluate(tool_call)
+
+assert decision.action in {"allow", "block"}
+assert decision.evidence.schema_version == "agentfuse-evidence-schema-v0.1"
+```
+
+For asynchronous custom policies, use `await guard.aevaluate(tool_call)`.
+Neither method accepts a handler, dispatches a tool, or performs the protected
+side effect. `invoke()` and `ainvoke()` use the same decision path and may
+dispatch only after that public decision allows the call.
+
+See
+[`docs/dhms_agentfuse_public_decision_api_v3_5_1.md`](docs/dhms_agentfuse_public_decision_api_v3_5_1.md)
+for the complete contract.
+
 ### Asynchronous Handler
 
 ```python

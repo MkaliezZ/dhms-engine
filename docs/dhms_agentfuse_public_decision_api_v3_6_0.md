@@ -1,4 +1,9 @@
-# DHMS AgentFuse Public Decision API v3.5.1
+# DHMS AgentFuse Public Decision API 3.6.0
+
+Package identity: `dhms-agentfuse 3.6.0`.
+
+The historical external-integration evidence milestone remains `v3.5.2`, and
+the evidence schema remains `agentfuse-evidence-schema-v0.1`.
 
 ## Purpose
 

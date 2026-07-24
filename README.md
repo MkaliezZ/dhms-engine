@@ -6,6 +6,11 @@
 [![Evidence](https://img.shields.io/badge/evidence-v3.5.2-purple.svg)](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 [![Docs](https://img.shields.io/badge/docs-available-informational.svg)](docs/)
 
+Current local package identity: `dhms-agentfuse 3.6.0`.
+
+Historical evidence milestone: `v3.5.2`. Evidence schema:
+`agentfuse-evidence-schema-v0.1`.
+
 Experimental in-process pre-dispatch control and evidence for AI agent tools.
 
 The AgentFuse Runtime Guard evaluates policy before dispatching a Python tool
@@ -113,7 +118,7 @@ side effect. `invoke()` and `ainvoke()` use the same decision path and may
 dispatch only after that public decision allows the call.
 
 See
-[`docs/dhms_agentfuse_public_decision_api_v3_5_1.md`](docs/dhms_agentfuse_public_decision_api_v3_5_1.md)
+[`docs/dhms_agentfuse_public_decision_api_v3_6_0.md`](docs/dhms_agentfuse_public_decision_api_v3_6_0.md)
 for the complete contract.
 
 ### Asynchronous Handler

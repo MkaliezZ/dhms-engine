@@ -7,7 +7,7 @@ import inspect
 import json
 from dataclasses import dataclass, field
 from types import MappingProxyType
-from typing import Any, Callable, Iterable, Mapping, Sequence
+from typing import Any, Callable, Iterable, Literal, Mapping, Sequence
 
 from .evidence_schema import (
     AgentFuseEvidenceRecord,
@@ -141,6 +141,38 @@ class _ResolvedPolicy:
     fallback_reason: str | None = None
 
 
+@dataclass(frozen=True)
+class RuntimeGuardDecision:
+    """Immutable pre-dispatch policy decision with canonical evidence."""
+
+    tool_call_id: str
+    tool_name: str
+    action: Literal["allow", "block"]
+    reason_code: str
+    policy_id: str
+    evidence: AgentFuseEvidenceRecord
+
+    def __post_init__(self) -> None:
+        _require_text(self.tool_call_id, "tool_call_id")
+        _require_text(self.tool_name, "tool_name")
+        if self.action not in _ACTIONS:
+            raise ValueError(f"unsupported decision action: {self.action}")
+        _require_text(self.reason_code, "reason_code")
+        _require_text(self.policy_id, "policy_id")
+        if not isinstance(self.evidence, AgentFuseEvidenceRecord):
+            raise ValueError("evidence must be an AgentFuseEvidenceRecord")
+
+    def to_safe_dict(self) -> dict[str, Any]:
+        return {
+            "tool_call_id": self.tool_call_id,
+            "tool_name": self.tool_name,
+            "action": self.action,
+            "reason_code": self.reason_code,
+            "policy_id": self.policy_id,
+            "evidence": self.evidence.to_dict(),
+        }
+
+
 @dataclass(frozen=True, repr=False)
 class RuntimeGuardResult:
     """Structured terminal receipt for one guarded tool-call dispatch."""
@@ -216,13 +248,13 @@ class RuntimeGuard:
         self.policy = policy
 
     def invoke(self, *, tool_call: ToolCallRequest, handler: Handler) -> RuntimeGuardResult:
-        resolved = self._resolve_policy_sync(tool_call)
-        if resolved.action == "block":
-            return self._blocked_result(tool_call, resolved)
+        decision = self.evaluate(tool_call)
+        if decision.action == "block":
+            return self._blocked_result(tool_call, decision)
         if inspect.iscoroutinefunction(handler):
             return self._failure_result(
                 tool_call,
-                resolved,
+                decision,
                 dispatch_occurred=False,
                 handler_started=False,
                 failure_category="async_handler_requires_ainvoke",
@@ -235,7 +267,7 @@ class RuntimeGuard:
                     value.close()
                 return self._failure_result(
                     tool_call,
-                    resolved,
+                    decision,
                     dispatch_occurred=True,
                     handler_started=True,
                     failure_category="async_handler_requires_ainvoke",
@@ -244,18 +276,18 @@ class RuntimeGuard:
         except Exception:
             return self._failure_result(
                 tool_call,
-                resolved,
+                decision,
                 dispatch_occurred=True,
                 handler_started=True,
                 failure_category="handler_exception",
                 side_effect_occurred=None,
             )
-        return self._success_result(tool_call, resolved, value)
+        return self._success_result(tool_call, decision, value)
 
     async def ainvoke(self, *, tool_call: ToolCallRequest, handler: Handler) -> RuntimeGuardResult:
-        resolved = await self._resolve_policy_async(tool_call)
-        if resolved.action == "block":
-            return self._blocked_result(tool_call, resolved)
+        decision = await self.aevaluate(tool_call)
+        if decision.action == "block":
+            return self._blocked_result(tool_call, decision)
         try:
             value = handler(**dict(tool_call.arguments))
             if inspect.isawaitable(value):
@@ -263,13 +295,25 @@ class RuntimeGuard:
         except Exception:
             return self._failure_result(
                 tool_call,
-                resolved,
+                decision,
                 dispatch_occurred=True,
                 handler_started=True,
                 failure_category="handler_exception",
                 side_effect_occurred=None,
             )
-        return self._success_result(tool_call, resolved, value)
+        return self._success_result(tool_call, decision, value)
+
+    def evaluate(self, tool_call: ToolCallRequest) -> RuntimeGuardDecision:
+        """Evaluate policy and emit canonical evidence without dispatching a handler."""
+
+        resolved = self._resolve_policy_sync(tool_call)
+        return self._public_decision(tool_call, resolved)
+
+    async def aevaluate(self, tool_call: ToolCallRequest) -> RuntimeGuardDecision:
+        """Asynchronously evaluate policy without dispatching a handler."""
+
+        resolved = await self._resolve_policy_async(tool_call)
+        return self._public_decision(tool_call, resolved)
 
     def invoke_batch(self, *, invocations: Sequence[GuardedInvocation]) -> list[RuntimeGuardResult]:
         return [
@@ -473,48 +517,62 @@ class RuntimeGuard:
             non_execution=non_execution,
         )
 
-    def _blocked_result(
+    def _public_decision(
         self,
         tool_call: ToolCallRequest,
         resolved: _ResolvedPolicy,
+    ) -> RuntimeGuardDecision:
+        return RuntimeGuardDecision(
+            tool_call_id=tool_call.tool_call_id,
+            tool_name=tool_call.tool_name,
+            action=resolved.action,
+            reason_code=resolved.reason_code,
+            policy_id=resolved.policy_id,
+            evidence=self._evidence(tool_call, resolved),
+        )
+
+    def _blocked_result(
+        self,
+        tool_call: ToolCallRequest,
+        decision: RuntimeGuardDecision,
     ) -> RuntimeGuardResult:
         return RuntimeGuardResult(
             tool_call_id=tool_call.tool_call_id,
             tool_name=tool_call.tool_name,
             decision="block",
-            reason_code=resolved.reason_code,
+            reason_code=decision.reason_code,
             dispatch_occurred=False,
             handler_started=False,
             outcome="not_executed",
             tool_failure=False,
             side_effect_occurred=False,
-            evidence=self._evidence(tool_call, resolved),
+            evidence=decision.evidence,
         )
 
     def _success_result(
         self,
         tool_call: ToolCallRequest,
-        resolved: _ResolvedPolicy,
+        decision: RuntimeGuardDecision,
         return_value: Any,
     ) -> RuntimeGuardResult:
         return RuntimeGuardResult(
             tool_call_id=tool_call.tool_call_id,
             tool_name=tool_call.tool_name,
             decision="allow",
-            reason_code=resolved.reason_code,
+            reason_code=decision.reason_code,
             dispatch_occurred=True,
             handler_started=True,
             outcome="executed",
             tool_failure=False,
             side_effect_occurred=None,
-            evidence=self._evidence(tool_call, resolved),
+            evidence=decision.evidence,
             return_value=return_value,
         )
 
     def _failure_result(
         self,
         tool_call: ToolCallRequest,
-        resolved: _ResolvedPolicy,
+        decision: RuntimeGuardDecision,
         *,
         dispatch_occurred: bool,
         handler_started: bool,
@@ -525,38 +583,39 @@ class RuntimeGuard:
             tool_call_id=tool_call.tool_call_id,
             tool_name=tool_call.tool_name,
             decision="allow",
-            reason_code=resolved.reason_code,
+            reason_code=decision.reason_code,
             dispatch_occurred=dispatch_occurred,
             handler_started=handler_started,
             outcome="execution_failed",
             tool_failure=True,
             side_effect_occurred=side_effect_occurred,
-            evidence=self._evidence(tool_call, resolved),
+            evidence=decision.evidence,
             failure_category=failure_category,
         )
 
     def _interrupted_result(
         self,
         tool_call: ToolCallRequest,
-        resolved: _ResolvedPolicy,
+        decision: RuntimeGuardDecision,
     ) -> RuntimeGuardResult:
         return RuntimeGuardResult(
             tool_call_id=tool_call.tool_call_id,
             tool_name=tool_call.tool_name,
             decision="allow",
-            reason_code=resolved.reason_code,
+            reason_code=decision.reason_code,
             dispatch_occurred=True,
             handler_started=True,
             outcome="interrupted",
             tool_failure=False,
             side_effect_occurred=None,
-            evidence=self._evidence(tool_call, resolved),
+            evidence=decision.evidence,
         )
 
 
 __all__ = [
     "GuardedInvocation",
     "RuntimeGuard",
+    "RuntimeGuardDecision",
     "RuntimeGuardResult",
     "RuntimePolicyDecision",
     "ToolCallRequest",

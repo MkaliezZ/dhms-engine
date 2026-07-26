@@ -1,5 +1,14 @@
 # Changelog
 
+## dhms-agentfuse 3.6.0 — Unreleased
+
+* Added immutable `RuntimeGuardDecision`.
+* Added public decision-only `RuntimeGuard.evaluate()`.
+* Added public decision-only `RuntimeGuard.aevaluate()`.
+* `evaluate()` and `aevaluate()` never accept or dispatch handlers.
+* `invoke()` and `ainvoke()` reuse the same canonical decision path.
+* Policy exceptions and invalid policy results remain fail closed.
+
 ## Unreleased — Agent Harness v1
 
 * Phase 1: mock dry-run skeleton and trace contract.

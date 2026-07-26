@@ -96,15 +96,15 @@ class LangGraphRuntimeGuardAdapter:
         execute: Callable[[LangGraphToolCallRequest], Any],
     ) -> Any:
         tool_call = self._runtime_request(request)
-        resolved = self.guard._resolve_policy_sync(tool_call)
-        if resolved.action == "block":
-            receipt = self.guard._blocked_result(tool_call, resolved)
+        decision = self.guard.evaluate(tool_call)
+        if decision.action == "block":
+            receipt = self.guard._blocked_result(tool_call, decision)
             self._store(receipt)
             return self._terminal_message(receipt)
         if request.tool is None:
             receipt = self.guard._failure_result(
                 tool_call,
-                resolved,
+                decision,
                 dispatch_occurred=False,
                 handler_started=False,
                 failure_category="unregistered_tool",
@@ -115,13 +115,13 @@ class LangGraphRuntimeGuardAdapter:
         try:
             result = execute(request)
         except GraphInterrupt:
-            receipt = self.guard._interrupted_result(tool_call, resolved)
+            receipt = self.guard._interrupted_result(tool_call, decision)
             self._store(receipt)
             raise
         except ToolInvocationError:
             receipt = self.guard._failure_result(
                 tool_call,
-                resolved,
+                decision,
                 dispatch_occurred=False,
                 handler_started=False,
                 failure_category="tool_input_error",
@@ -132,7 +132,7 @@ class LangGraphRuntimeGuardAdapter:
         except Exception:
             receipt = self.guard._failure_result(
                 tool_call,
-                resolved,
+                decision,
                 dispatch_occurred=True,
                 handler_started=True,
                 failure_category="handler_exception",
@@ -143,7 +143,7 @@ class LangGraphRuntimeGuardAdapter:
         if isinstance(result, ToolMessage) and result.status == "error":
             receipt = self.guard._failure_result(
                 tool_call,
-                resolved,
+                decision,
                 dispatch_occurred=True,
                 handler_started=True,
                 failure_category="handler_exception",
@@ -151,7 +151,7 @@ class LangGraphRuntimeGuardAdapter:
             )
         else:
             return_value = result.content if isinstance(result, ToolMessage) else None
-            receipt = self.guard._success_result(tool_call, resolved, return_value)
+            receipt = self.guard._success_result(tool_call, decision, return_value)
         self._store(receipt)
         return result
 
@@ -161,15 +161,15 @@ class LangGraphRuntimeGuardAdapter:
         execute: Callable[[LangGraphToolCallRequest], Any],
     ) -> Any:
         tool_call = self._runtime_request(request)
-        resolved = await self.guard._resolve_policy_async(tool_call)
-        if resolved.action == "block":
-            receipt = self.guard._blocked_result(tool_call, resolved)
+        decision = await self.guard.aevaluate(tool_call)
+        if decision.action == "block":
+            receipt = self.guard._blocked_result(tool_call, decision)
             self._store(receipt)
             return self._terminal_message(receipt)
         if request.tool is None:
             receipt = self.guard._failure_result(
                 tool_call,
-                resolved,
+                decision,
                 dispatch_occurred=False,
                 handler_started=False,
                 failure_category="unregistered_tool",
@@ -180,13 +180,13 @@ class LangGraphRuntimeGuardAdapter:
         try:
             result = await execute(request)
         except GraphInterrupt:
-            receipt = self.guard._interrupted_result(tool_call, resolved)
+            receipt = self.guard._interrupted_result(tool_call, decision)
             self._store(receipt)
             raise
         except ToolInvocationError:
             receipt = self.guard._failure_result(
                 tool_call,
-                resolved,
+                decision,
                 dispatch_occurred=False,
                 handler_started=False,
                 failure_category="tool_input_error",
@@ -197,7 +197,7 @@ class LangGraphRuntimeGuardAdapter:
         except Exception:
             receipt = self.guard._failure_result(
                 tool_call,
-                resolved,
+                decision,
                 dispatch_occurred=True,
                 handler_started=True,
                 failure_category="handler_exception",
@@ -208,7 +208,7 @@ class LangGraphRuntimeGuardAdapter:
         if isinstance(result, ToolMessage) and result.status == "error":
             receipt = self.guard._failure_result(
                 tool_call,
-                resolved,
+                decision,
                 dispatch_occurred=True,
                 handler_started=True,
                 failure_category="handler_exception",
@@ -216,7 +216,7 @@ class LangGraphRuntimeGuardAdapter:
             )
         else:
             return_value = result.content if isinstance(result, ToolMessage) else None
-            receipt = self.guard._success_result(tool_call, resolved, return_value)
+            receipt = self.guard._success_result(tool_call, decision, return_value)
         self._store(receipt)
         return result
 

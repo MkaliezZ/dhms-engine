@@ -6,6 +6,11 @@
 [![Evidence](https://img.shields.io/badge/evidence-v3.5.2-purple.svg)](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 [![Docs](https://img.shields.io/badge/docs-available-informational.svg)](docs/)
 
+Current local package identity: `dhms-agentfuse 3.6.0`.
+
+Historical evidence milestone: `v3.5.2`. Evidence schema:
+`agentfuse-evidence-schema-v0.1`.
+
 Experimental in-process pre-dispatch control and evidence for AI agent tools.
 
 The AgentFuse Runtime Guard evaluates policy before dispatching a Python tool
@@ -94,6 +99,27 @@ def policy(tool_call):
 
 guard = RuntimeGuard(default_action="block", policy=policy)
 ```
+
+### Decision-Only API
+
+Use `evaluate()` when another runtime owns approval, dispatch, and physical
+outcome recording:
+
+```python
+decision = guard.evaluate(tool_call)
+
+assert decision.action in {"allow", "block"}
+assert decision.evidence.schema_version == "agentfuse-evidence-schema-v0.1"
+```
+
+For asynchronous custom policies, use `await guard.aevaluate(tool_call)`.
+Neither method accepts a handler, dispatches a tool, or performs the protected
+side effect. `invoke()` and `ainvoke()` use the same decision path and may
+dispatch only after that public decision allows the call.
+
+See
+[`docs/dhms_agentfuse_public_decision_api_v3_6_0.md`](docs/dhms_agentfuse_public_decision_api_v3_6_0.md)
+for the complete contract.
 
 ### Asynchronous Handler
 

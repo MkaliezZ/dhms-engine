@@ -14,27 +14,27 @@ Historical evidence milestone: `v3.5.2`. Evidence schema:
 Experimental in-process policy and authorization-boundary control for AI agent
 tools.
 
-The AgentFuse Runtime Guard evaluates whether an exact proposed action,
-approval, identity, parameters, and trusted context comply with configured
-policy. It returns a structured allow or block decision with canonical
-evidence. Its invocation APIs can enforce that decision before a Python tool
-handler; its decision-only APIs leave dispatch and physical outcome ownership
-with the integrating runtime.
+The integrating runtime constructs and validates its own approval and action
+contracts before mapping trusted context into a `ToolCallRequest`. AgentFuse
+evaluates that request against configured static or custom policy and returns
+canonical allow or block evidence. Its invocation APIs can enforce that
+decision before a Python tool handler; its decision-only APIs leave dispatch
+and physical outcome ownership with the integrating runtime.
 
 The existing Evidence Schema, denial fixtures, LangChain proof chain, and
 `langgraph_bigtool.create_agent()` wiring remain supporting evidence.
 
 AI agents increasingly call tools that can mutate SQL, files, APIs, code, or
 business systems. DHMS / AgentFuse focuses on the execution boundary before a
-tool's protected payload runs. The integrating application supplies trusted
-capability, risk, approval, and business-policy context. AgentFuse evaluates
-the exact proposal against that declared authorization boundary and fails
-closed on policy errors, malformed results, or unsupported calls.
+tool's protected payload runs. The integrating application validates and
+supplies trusted capability, risk, approval, and business-policy context.
+AgentFuse evaluates the mapped `ToolCallRequest` against configured policy and
+fails closed on policy exceptions or malformed policy results.
 
 A high-risk action may be allowed when trusted policy explicitly permits it and
-all required approval conditions are satisfied. A seemingly harmless action
-may be blocked when its identity, resource, project, parameters, expiry, or
-policy scope does not match the approved boundary.
+the integrating runtime has validated all required approval conditions. A
+seemingly harmless action may be blocked by configured AgentFuse policy even
+when the integrating runtime considers its approval contract valid.
 
 <a id="chinese-overview"></a>
 Chinese overview: [README.zh-CN.md](README.zh-CN.md)
@@ -133,8 +133,12 @@ for the complete contract.
 
 ### The integrating application owns
 
+* `ActionProposal` creation
+* `ActionApproval` creation
+* proposal digest validation
+* approval identity, expiry, and generation validation
+* project, session, task, and action identity validation
 * trusted capability and risk classification
-* required approval strength and approval UI
 * business and organizational safety policy
 * physical handler dispatch
 * physical outcome recording and recovery
@@ -142,13 +146,24 @@ for the complete contract.
 Risk classification must come from trusted application configuration or
 another deterministic application-owned source. It must not be inferred by
 AgentFuse from prompt text, model arguments, provider metadata, or command
-output.
+output. The integrating runtime must validate its approval and action contracts
+before mapping trusted context into a `ToolCallRequest`.
+
+### The bridge or adapter owns
+
+* protocol mapping
+* trusted metadata mapping
+* request and response identity validation
+* source, schema, policy revision, and protocol checks
+
+Trusted values may be placed in `ToolCallRequest.safe_metadata` for a custom
+policy to inspect. AgentFuse 3.6.0 does not define or universally validate an
+external runtime's approval schema.
 
 ### AgentFuse owns
 
-* deterministic policy and authorization-boundary evaluation
-* exact action, approval, parameter, expiry, and trusted-context validation
-* structured allow or block decision evidence
+* deterministic `ToolCallRequest` policy evaluation
+* canonical allow or block decision evidence
 * fail-closed handling of policy errors and malformed policy results
 
 ### AgentFuse does not own
@@ -163,6 +178,20 @@ output.
 When an external Action Runtime is used, it persists the decision, prevents
 dispatch without a valid durable allow decision, invokes the physical handler,
 and records the physical outcome.
+
+Decision vocabulary is intentionally bounded:
+
+```text
+AGENTFUSE_CORE_INPUT=ToolCallRequest
+AGENTFUSE_CORE_DECISIONS=allow|block
+AGENTFUSE_CORE_APPROVAL_CONTRACT=false
+AGENTFUSE_CORE_HOLD_DECISION=false
+KERNIQ_MAPPED_DECISIONS=allow|deny|error
+AGENTFUSE_HOLD_SUPPORTED=false
+```
+
+`hold` is part of KerniQ's generic `ActionDecision` contract, but the canonical
+AgentFuse 3.6.0 bridge does not emit it.
 
 ```text
 DHMS_IS_A_DANGER_CLASSIFIER=false
@@ -183,15 +212,27 @@ and calls:
 decision = guard.evaluate(tool_call)
 ```
 
-AgentFuse does not own KerniQ's physical handler. KerniQ owns trusted risk
-classification, approval, durable `ACTION_DECIDED` persistence, dispatch,
-`ACTION_STARTED`, physical execution, settlement, and restart recovery.
+KerniQ Action Runtime constructs and validates `ActionProposal` and
+`ActionApproval`, including proposal digest, approval identity, expiry,
+generation, and action, project, session, and task identity. The KerniQ bridge
+validates request identity before mapping the validated request and trusted
+context into AgentFuse `ToolCallRequest`.
+
+AgentFuse then evaluates the mapped request against a trusted allow/block policy
+and emits canonical evidence. The KerniQ adapter validates the returned
+decision identity, source commit, schema, policy revision, and protocol, then
+maps AgentFuse `allow` to KerniQ `allow`, AgentFuse `block` to KerniQ `deny`,
+and bridge or validation failure to KerniQ `error`.
+
+AgentFuse does not own KerniQ's physical handler. KerniQ owns durable
+`ACTION_DECIDED` persistence, dispatch, `ACTION_STARTED`, physical execution,
+settlement, and restart recovery.
 
 The merged integration verified these bounded properties:
 
 * a durable allow decision precedes dispatch;
 * deny results in zero handler invocations;
-* malformed or stale identities fail closed;
+* malformed or stale identities fail closed in the KerniQ bridge or adapter;
 * settlement persistence uncertainty becomes `Interrupted`;
 * interrupted actions are not automatically replayed;
 * tampered installed AgentFuse source fails closed; and

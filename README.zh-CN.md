@@ -1,8 +1,9 @@
 # DHMS / AgentFuse 中文概览
 
-DHMS / AgentFuse 是 AI agent 工具执行前的政策与授权边界。它验证某次具体
-动作是否符合接入产品提供的可信政策与审批上下文，并返回结构化的 allow 或
-block decision 及标准化证据。
+DHMS / AgentFuse 是 AI agent 工具执行前的政策与授权边界。接入产品先构建并
+验证自己的动作与审批契约，再把可信上下文映射为 `ToolCallRequest`。AgentFuse
+对该请求执行配置的静态或自定义 policy，并返回结构化的 allow 或 block
+decision 及标准化证据。
 
 当前身份：
 
@@ -31,15 +32,20 @@ decision 允许后才可能调用传入的 handler。
 DHMS 不是危险动作分类器。DHMS 是执行前的政策与授权边界。
 
 风险等级、需要多强的审批，以及业务和组织级安全规则，由接入 DHMS 的产品或
-可信策略层决定。DHMS 验证的是：这次具体动作、审批、参数、身份、期限和可信
-上下文是否符合已声明政策。
+可信策略层决定。接入产品验证自己的 proposal、approval、digest、generation、
+expiry 和 identity；DHMS 对映射后的 `ToolCallRequest` 执行配置 policy。
 
-高风险动作在可信政策明确允许、且所有审批条件都满足时，可以得到 allow
-decision。表面上无害的动作，如果超出已审批的身份、资源、项目、参数、期限或
-政策范围，也可以被 block。
+高风险动作在接入产品确认审批条件满足，且配置 policy 明确允许时，可以得到
+allow decision。即使接入产品认为审批契约有效，表面上无害的动作仍可能被
+AgentFuse 的配置 policy block。
 
 ### 接入产品负责
 
+* `ActionProposal` 创建；
+* `ActionApproval` 创建；
+* proposal digest 校验；
+* approval identity、expiry 和 generation 校验；
+* project、session、task 和 action identity 校验；
 * 可信 capability 和风险分类；
 * 审批强度、审批 UI 与审批流程；
 * 业务和组织级安全政策；
@@ -49,11 +55,20 @@ decision。表面上无害的动作，如果超出已审批的身份、资源、
 风险分类不能来自 LLM 参数、provider metadata、prompt 文本、command output
 或 DHMS 推断。
 
-### DHMS / AgentFuse 负责
+### Bridge / adapter 负责
 
-* 确定性的政策与授权边界裁决；
-* 动作、审批、参数、身份、期限和可信上下文的精确绑定；
-* allow 或 block decision evidence；
+* protocol mapping；
+* trusted metadata mapping；
+* request 与 response identity 校验；
+* source、schema、policy revision 和 protocol 校验。
+
+`safe_metadata` 可以供可信 custom policy 使用，但 DHMS 3.6.0 并没有内建一套
+通用的 `ActionApproval` 数据模型，也不会普遍校验外部 runtime 的审批 schema。
+
+### DHMS / AgentFuse 核心负责
+
+* 对 `ToolCallRequest` 进行确定性的 policy evaluation；
+* 标准化 allow 或 block decision evidence；
 * 对政策错误和畸形 decision 的 fail-closed 处理。
 
 ### DHMS / AgentFuse 不负责
@@ -64,6 +79,20 @@ decision。表面上无害的动作，如果超出已审批的身份、资源、
 * malware 检测；
 * 物理执行；
 * 对未包装执行路径的通用拦截。
+
+决策词汇边界：
+
+```text
+AGENTFUSE_CORE_INPUT=ToolCallRequest
+AGENTFUSE_CORE_DECISIONS=allow|block
+AGENTFUSE_CORE_APPROVAL_CONTRACT=false
+AGENTFUSE_CORE_HOLD_DECISION=false
+KERNIQ_MAPPED_DECISIONS=allow|deny|error
+AGENTFUSE_HOLD_SUPPORTED=false
+```
+
+`hold` 属于 KerniQ 的通用 `ActionDecision` 契约，但当前 canonical AgentFuse
+3.6.0 bridge 不会产生 `hold`。
 
 ```text
 DHMS_IS_A_DANGER_CLASSIFIER=false
@@ -107,20 +136,31 @@ commit
 KerniQ 负责：
 
 * 可信风险分类；
-* approval；
+* `ActionProposal` 与 `ActionApproval` 创建和校验；
+* proposal digest、approval expiry、generation 和 identity 校验；
 * durable `ACTION_DECIDED` persistence；
 * dispatch 与 `ACTION_STARTED`；
 * 物理执行和 settlement；
 * restart recovery。
 
-DHMS 负责政策边界裁决和标准化 decision evidence，不拥有 KerniQ 的物理
-handler。
+KerniQ 的 Action Runtime 与 bridge 负责验证 proposal、approval、digest、
+generation、expiry 和 identity。bridge 在映射为 AgentFuse `ToolCallRequest`
+之前校验 request identity，并把可信上下文映射到请求。
+
+DHMS / AgentFuse 3.6.0 核心负责对映射后的 `ToolCallRequest` 执行配置策略，
+并返回 allow 或 block 及标准化证据。KerniQ adapter 校验返回的 decision
+identity、source commit、schema、policy revision 和 protocol，然后把 allow
+映射为 KerniQ allow，把 block 映射为 KerniQ deny，把 bridge 或校验失败映射为
+KerniQ error。
+
+DHMS 不拥有 KerniQ 的物理 handler；KerniQ 负责 persistence、dispatch、物理
+执行、settlement 和 recovery。
 
 已验证的边界包括：
 
 * allow decision 在 dispatch 前独立持久化；
 * deny 的 handler invocation 为 0；
-* 畸形或过期 identity fail closed；
+* 畸形或过期 identity 在 KerniQ bridge 或 adapter 中 fail closed；
 * settlement persistence 不确定时状态为 `Interrupted`；
 * interrupted action 不会自动 replay；
 * 安装后的 AgentFuse source 被篡改时 fail closed；

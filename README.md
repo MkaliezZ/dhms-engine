@@ -11,22 +11,30 @@ Current local package identity: `dhms-agentfuse 3.6.0`.
 Historical evidence milestone: `v3.5.2`. Evidence schema:
 `agentfuse-evidence-schema-v0.1`.
 
-Experimental in-process pre-dispatch control and evidence for AI agent tools.
+Experimental in-process policy and authorization-boundary control for AI agent
+tools.
 
-The AgentFuse Runtime Guard evaluates policy before dispatching a Python tool
-handler, blocks disallowed calls, and generates structured execution or
-non-execution evidence from the same code path that owns dispatch. It supports
-synchronous and asynchronous handlers, sequential mixed-call batches, and a
-real LangGraph `ToolNode` integration.
+The integrating runtime constructs and validates its own approval and action
+contracts before mapping trusted context into a `ToolCallRequest`. AgentFuse
+evaluates that request against configured static or custom policy and returns
+canonical allow or block evidence. Its invocation APIs can enforce that
+decision before a Python tool handler; its decision-only APIs leave dispatch
+and physical outcome ownership with the integrating runtime.
 
 The existing Evidence Schema, denial fixtures, LangChain proof chain, and
 `langgraph_bigtool.create_agent()` wiring remain supporting evidence.
 
 AI agents increasingly call tools that can mutate SQL, files, APIs, code, or
 business systems. DHMS / AgentFuse focuses on the execution boundary before a
-tool's protected payload runs: classify risky tool capabilities, release only
-bounded safe candidates, and fail closed for known-dangerous or unsupported
-actions before protected payload execution.
+tool's protected payload runs. The integrating application validates and
+supplies trusted capability, risk, approval, and business-policy context.
+AgentFuse evaluates the mapped `ToolCallRequest` against configured policy and
+fails closed on policy exceptions or malformed policy results.
+
+A high-risk action may be allowed when trusted policy explicitly permits it and
+the integrating runtime has validated all required approval conditions. A
+seemingly harmless action may be blocked by configured AgentFuse policy even
+when the integrating runtime considers its approval contract valid.
 
 <a id="chinese-overview"></a>
 Chinese overview: [README.zh-CN.md](README.zh-CN.md)
@@ -120,6 +128,126 @@ dispatch only after that public decision allows the call.
 See
 [`docs/dhms_agentfuse_public_decision_api_v3_6_0.md`](docs/dhms_agentfuse_public_decision_api_v3_6_0.md)
 for the complete contract.
+
+## Responsibility Boundary
+
+### The integrating application owns
+
+* `ActionProposal` creation
+* `ActionApproval` creation
+* proposal digest validation
+* approval identity, expiry, and generation validation
+* project, session, task, and action identity validation
+* trusted capability and risk classification
+* business and organizational safety policy
+* physical handler dispatch
+* physical outcome recording and recovery
+
+Risk classification must come from trusted application configuration or
+another deterministic application-owned source. It must not be inferred by
+AgentFuse from prompt text, model arguments, provider metadata, or command
+output. The integrating runtime must validate its approval and action contracts
+before mapping trusted context into a `ToolCallRequest`.
+
+### The bridge or adapter owns
+
+* protocol mapping
+* trusted metadata mapping
+* request and response identity validation
+* source, schema, policy revision, and protocol checks
+
+Trusted values may be placed in `ToolCallRequest.safe_metadata` for a custom
+policy to inspect. AgentFuse 3.6.0 does not define or universally validate an
+external runtime's approval schema.
+
+### AgentFuse owns
+
+* deterministic `ToolCallRequest` policy evaluation
+* canonical allow or block decision evidence
+* fail-closed handling of policy errors and malformed policy results
+
+### AgentFuse does not own
+
+* intrinsic danger classification
+* user-intent interpretation
+* business correctness
+* malware detection
+* physical execution
+* universal interception of unwrapped paths
+
+When an external Action Runtime is used, it persists the decision, prevents
+dispatch without a valid durable allow decision, invokes the physical handler,
+and records the physical outcome.
+
+Decision vocabulary is intentionally bounded:
+
+```text
+AGENTFUSE_CORE_INPUT=ToolCallRequest
+AGENTFUSE_CORE_DECISIONS=allow|block
+AGENTFUSE_CORE_APPROVAL_CONTRACT=false
+AGENTFUSE_CORE_HOLD_DECISION=false
+KERNIQ_MAPPED_DECISIONS=allow|deny|error
+AGENTFUSE_HOLD_SUPPORTED=false
+```
+
+`hold` is part of KerniQ's generic `ActionDecision` contract, but the canonical
+AgentFuse 3.6.0 bridge does not emit it.
+
+```text
+DHMS_IS_A_DANGER_CLASSIFIER=false
+DHMS_IS_A_POLICY_AND_AUTHORIZATION_BOUNDARY=true
+RISK_CLASSIFICATION_OWNER=INTEGRATING_APPLICATION
+PHYSICAL_DISPATCH_OWNER=INTEGRATING_APPLICATION
+```
+
+## Real Consumer Integration: KerniQ
+
+[KerniQ](https://github.com/MkaliezZ/qodex) v0.6.0 is an external consumer of
+the public AgentFuse 3.6.0 decision-only API. Its merged
+[PR #6](https://github.com/MkaliezZ/qodex/pull/6) pins AgentFuse source commit
+[`ec4b5842339dccfba0db62df7541920759203bc9`](https://github.com/MkaliezZ/dhms-engine/commit/ec4b5842339dccfba0db62df7541920759203bc9)
+and calls:
+
+```python
+decision = guard.evaluate(tool_call)
+```
+
+KerniQ Action Runtime constructs and validates `ActionProposal` and
+`ActionApproval`, including proposal digest, approval identity, expiry,
+generation, and action, project, session, and task identity. The KerniQ bridge
+validates request identity before mapping the validated request and trusted
+context into AgentFuse `ToolCallRequest`.
+
+AgentFuse then evaluates the mapped request against a trusted allow/block policy
+and emits canonical evidence. The KerniQ adapter validates the returned
+decision identity, source commit, schema, policy revision, and protocol, then
+maps AgentFuse `allow` to KerniQ `allow`, AgentFuse `block` to KerniQ `deny`,
+and bridge or validation failure to KerniQ `error`.
+
+AgentFuse does not own KerniQ's physical handler. KerniQ owns durable
+`ACTION_DECIDED` persistence, dispatch, `ACTION_STARTED`, physical execution,
+settlement, and restart recovery.
+
+The merged integration verified these bounded properties:
+
+* a durable allow decision precedes dispatch;
+* deny results in zero handler invocations;
+* malformed or stale identities fail closed in the KerniQ bridge or adapter;
+* settlement persistence uncertainty becomes `Interrupted`;
+* interrupted actions are not automatically replayed;
+* tampered installed AgentFuse source fails closed; and
+* mutable installation metadata cannot bless tampered source.
+
+The current KerniQ integration covers one bounded proof action. Project
+Command, Patch, Git, file-write, shell, MCP, browser, Office, provider, and
+other production action paths are not yet claimed to be protected by
+AgentFuse.
+
+See the
+[public decision API contract](docs/dhms_agentfuse_public_decision_api_v3_6_0.md)
+and KerniQ merge commit
+[`3d333a30e4507e796aa97ddc0142606ad2e42587`](https://github.com/MkaliezZ/qodex/commit/3d333a30e4507e796aa97ddc0142606ad2e42587)
+for the stable integration references.
 
 ### Asynchronous Handler
 
@@ -267,6 +395,8 @@ The existing trial demo remains the runnable reference.
 * [Overview](#overview)
 * [Quickstart](#quickstart)
 * [AgentFuse Runtime Guard MVP](#agentfuse-runtime-guard-mvp)
+* [Responsibility Boundary](#responsibility-boundary)
+* [Real Consumer Integration: KerniQ](#real-consumer-integration-kerniq)
 * [Supporting External-Facing Proof](#supporting-external-facing-proof)
 * [AgentFuse Evidence Schema v0.1](#agentfuse-evidence-schema-v01)
 * [Five-Minute Per-Call Denial Trial](#five-minute-per-call-denial-trial)
@@ -286,10 +416,12 @@ DHMS Execution Fuse Protocol.
 ## What DHMS Does
 
 DHMS / AgentFuse provides an experimental in-process Runtime Guard for
-side-effect-capable AI agent tools. It evaluates allowlist, denylist, default,
-and optional custom policy decisions before guarded handler dispatch and emits
-safe receipts from that same path. Existing schema and proof artifacts remain
-available for regression and portability work.
+side-effect-capable AI agent tools. It evaluates exact calls against allowlist,
+denylist, default, and optional custom policies before guarded handler dispatch
+and emits safe receipts. The integrating application, not AgentFuse, owns
+trusted risk classification, approval requirements, and physical execution.
+Existing schema and proof artifacts remain available for regression and
+portability work.
 
 ## What DHMS Does Not Claim
 
@@ -489,7 +621,8 @@ Current public boundaries:
 
 * No production readiness or real-world agent/database protection is claimed.
 * No arbitrary production LangChain agent protection, arbitrary real-world agent protection, tool execution, model-provider call, execution authorization, or runtime behavior is claimed or added.
-* No SQLDatabaseToolkit, SQL Agent, database, model-provider, KerniQ, E2B, MCP, external-runtime, or production-runtime integration is included yet.
+* The historical v3.5.2 demo includes no SQLDatabaseToolkit, SQL Agent, database, model-provider, E2B, MCP, external-runtime, or production-runtime integration.
+* The separate KerniQ v0.6.0 consumer integration is bounded to one development proof action and does not extend protection claims to Project Command, Patch, Git, file-write, shell, MCP, browser, Office, provider, or other production action paths.
 * No v2.7 CLI gate-proposal support is claimed; `python3 cli.py gate-proposal examples/proposals/drop_table.json` is explicitly not part of the v2.7 proof.
 * The current proof remains bounded to a local deterministic real LangChain agent loop, fake/local model driver, reusable guarded adapter boundary, one agent with three adapter-created tools, `RELEASE_CANDIDATE` for safe read-only proposals, `FAIL_CLOSED` for `sql_mutation` and `model_api`, execution authorization false, sentinel/count proof, and zero runtime behavior added.
 * The next direction is packaging, integration example, public posting, and external feedback, not another internal proof expansion.

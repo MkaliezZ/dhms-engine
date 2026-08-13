@@ -1,229 +1,25 @@
 # DHMS / AgentFuse 中文概览
 
-DHMS / AgentFuse 是 AI agent 工具执行前的政策与授权边界。接入产品先构建并
-验证自己的动作与审批契约，再把可信上下文映射为 `ToolCallRequest`。AgentFuse
-对该请求执行配置的静态或自定义 policy，并返回结构化的 allow 或 block
-decision 及标准化证据。
+当前 Python package：`dhms-agentfuse 3.6.0`。
 
-当前身份：
+当前公共 API：`RuntimeGuardDecision`、`evaluate()`、`aevaluate()`、`invoke()`、`ainvoke()`。
 
-```text
-当前 Python 包：dhms-agentfuse 3.6.0
-历史证据里程碑：v3.5.2
-证据 Schema：agentfuse-evidence-schema-v0.1
-```
+当前真实 consumer 状态：KerniQ 已完成并冻结两条独立 bounded integration：v0.6.1 Project Command 与 v0.7 Coding Pack Export。最新 external proof 为 Hermes #53021 的受限 session policy proof。历史 evidence milestone `v3.5.2` 仍保留，但不代表当前 package version。
 
-当前公共 API：
+完整且最新的项目说明、责任边界、non-claims、KerniQ 证据引用与 external proof 请以英文主 README 为准：
 
-```text
-RuntimeGuardDecision
-evaluate()
-aevaluate()
-invoke()
-ainvoke()
-```
+[README.md](README.md)
 
-`evaluate()` 和 `aevaluate()` 只做 decision，不接收 handler，也不执行物理
-动作。`invoke()` 和 `ainvoke()` 复用同一公共 decision 路径，并且只有在
-decision 允许后才可能调用传入的 handler。
+AgentFuse 仍是 experimental pre-dispatch policy and authorization boundary。接入产品仍然负责自己的 action/approval identity、risk classification、durable lifecycle、physical execution 与 recovery；只有经过独立集成、审查和 proof 的路径可以作相应保护声明。
 
-## 责任边界
+## 关键引用
 
-DHMS 不是危险动作分类器。DHMS 是执行前的政策与授权边界。
+- [AgentFuse Public Decision API 3.6.0](docs/dhms_agentfuse_public_decision_api_v3_6_0.md)
+- [KerniQ v0.6.1 freeze](https://github.com/MkaliezZ/qodex/commit/0486704d613ea203672d75bee455346cceafb225)
+- [KerniQ v0.7 freeze](https://github.com/MkaliezZ/qodex/commit/2aa335dd21453ecf5d3ad44c2279b2c9362bef9f)
+- [Hermes #53021 external proof](examples/external_integrations/hermes_53021/README.md)
+- [Historical v3.5.2 wiring demo](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 
-风险等级、需要多强的审批，以及业务和组织级安全规则，由接入 DHMS 的产品或
-可信策略层决定。接入产品验证自己的 proposal、approval、digest、generation、
-expiry 和 identity；DHMS 对映射后的 `ToolCallRequest` 执行配置 policy。
+## License
 
-高风险动作在接入产品确认审批条件满足，且配置 policy 明确允许时，可以得到
-allow decision。即使接入产品认为审批契约有效，表面上无害的动作仍可能被
-AgentFuse 的配置 policy block。
-
-### 接入产品负责
-
-* `ActionProposal` 创建；
-* `ActionApproval` 创建；
-* proposal digest 校验；
-* approval identity、expiry 和 generation 校验；
-* project、session、task 和 action identity 校验；
-* 可信 capability 和风险分类；
-* 审批强度、审批 UI 与审批流程；
-* 业务和组织级安全政策；
-* physical dispatch；
-* 物理执行、outcome 与恢复。
-
-风险分类不能来自 LLM 参数、provider metadata、prompt 文本、command output
-或 DHMS 推断。
-
-### Bridge / adapter 负责
-
-* protocol mapping；
-* trusted metadata mapping；
-* request 与 response identity 校验；
-* source、schema、policy revision 和 protocol 校验。
-
-`safe_metadata` 可以供可信 custom policy 使用，但 DHMS 3.6.0 并没有内建一套
-通用的 `ActionApproval` 数据模型，也不会普遍校验外部 runtime 的审批 schema。
-
-### DHMS / AgentFuse 核心负责
-
-* 对 `ToolCallRequest` 进行确定性的 policy evaluation；
-* 标准化 allow 或 block decision evidence；
-* 对政策错误和畸形 decision 的 fail-closed 处理。
-
-### DHMS / AgentFuse 不负责
-
-* 动作的内在危险分类；
-* 用户意图判断；
-* 业务正确性；
-* malware 检测；
-* 物理执行；
-* 对未包装执行路径的通用拦截。
-
-决策词汇边界：
-
-```text
-AGENTFUSE_CORE_INPUT=ToolCallRequest
-AGENTFUSE_CORE_DECISIONS=allow|block
-AGENTFUSE_CORE_APPROVAL_CONTRACT=false
-AGENTFUSE_CORE_HOLD_DECISION=false
-KERNIQ_MAPPED_DECISIONS=allow|deny|error
-AGENTFUSE_HOLD_SUPPORTED=false
-```
-
-`hold` 属于 KerniQ 的通用 `ActionDecision` 契约，但当前 canonical AgentFuse
-3.6.0 bridge 不会产生 `hold`。
-
-```text
-DHMS_IS_A_DANGER_CLASSIFIER=false
-DHMS_IS_A_POLICY_AND_AUTHORIZATION_BOUNDARY=true
-RISK_CLASSIFICATION_OWNER=INTEGRATING_APPLICATION
-PHYSICAL_DISPATCH_OWNER=INTEGRATING_APPLICATION
-```
-
-## 当前 Runtime Guard
-
-Runtime Guard 可以根据 allowlist、denylist、default action 和可选自定义 policy
-评估 tool call。外部 runtime 拥有 dispatch 时，应调用：
-
-```python
-decision = guard.evaluate(tool_call)
-```
-
-异步 policy 使用：
-
-```python
-decision = await guard.aevaluate(tool_call)
-```
-
-完整契约见
-[`DHMS AgentFuse Public Decision API 3.6.0`](docs/dhms_agentfuse_public_decision_api_v3_6_0.md)。
-
-Runtime Guard 只控制经过自身 API 或显式 adapter 包装的 handler。直接调用、
-其他进程、subprocess、monkey-patching、network traffic 和未包装路径不会被
-自动拦截。它不是 process sandbox、network firewall、malware detector 或
-通用 production-security 边界。
-
-## 真实 Consumer Integration：KerniQ
-
-[KerniQ](https://github.com/MkaliezZ/qodex) v0.6.0 是 AgentFuse 3.6.0
-decision-only 公共 API 的外部 consumer。KerniQ 已合并的
-[PR #6](https://github.com/MkaliezZ/qodex/pull/6) 固定使用 AgentFuse source
-commit
-[`ec4b5842339dccfba0db62df7541920759203bc9`](https://github.com/MkaliezZ/dhms-engine/commit/ec4b5842339dccfba0db62df7541920759203bc9)，
-并调用 `RuntimeGuard.evaluate(tool_call)`。
-
-KerniQ 负责：
-
-* 可信风险分类；
-* `ActionProposal` 与 `ActionApproval` 创建和校验；
-* proposal digest、approval expiry、generation 和 identity 校验；
-* durable `ACTION_DECIDED` persistence；
-* dispatch 与 `ACTION_STARTED`；
-* 物理执行和 settlement；
-* restart recovery。
-
-KerniQ 的 Action Runtime 与 bridge 负责验证 proposal、approval、digest、
-generation、expiry 和 identity。bridge 在映射为 AgentFuse `ToolCallRequest`
-之前校验 request identity，并把可信上下文映射到请求。
-
-DHMS / AgentFuse 3.6.0 核心负责对映射后的 `ToolCallRequest` 执行配置策略，
-并返回 allow 或 block 及标准化证据。KerniQ adapter 校验返回的 decision
-identity、source commit、schema、policy revision 和 protocol，然后把 allow
-映射为 KerniQ allow，把 block 映射为 KerniQ deny，把 bridge 或校验失败映射为
-KerniQ error。
-
-DHMS 不拥有 KerniQ 的物理 handler；KerniQ 负责 persistence、dispatch、物理
-执行、settlement 和 recovery。
-
-已验证的边界包括：
-
-* allow decision 在 dispatch 前独立持久化；
-* deny 的 handler invocation 为 0；
-* 畸形或过期 identity 在 KerniQ bridge 或 adapter 中 fail closed；
-* settlement persistence 不确定时状态为 `Interrupted`；
-* interrupted action 不会自动 replay；
-* 安装后的 AgentFuse source 被篡改时 fail closed；
-* 可变 installation metadata 不能为被篡改 source 背书。
-
-当前 KerniQ integration 只覆盖一个受限 proof action。Project Command、Patch、
-Git、file-write、shell、MCP、browser、Office、provider 和其他 production
-action path 尚未声明受 AgentFuse 保护。该集成不证明“AgentFuse 保护 KerniQ
-全部动作”，也不证明 KerniQ 已达到通用 production security。
-
-稳定引用：
-
-* [KerniQ repository](https://github.com/MkaliezZ/qodex)
-* [KerniQ v0.6.0 merge commit](https://github.com/MkaliezZ/qodex/commit/3d333a30e4507e796aa97ddc0142606ad2e42587)
-* [AgentFuse 3.6.0 public decision API](docs/dhms_agentfuse_public_decision_api_v3_6_0.md)
-
-## 历史证据链
-
-历史证据仍然有效，但不再代表当前公共 API 的全部能力：
-
-* v3.4.2：冻结的 multi-tool selective interception result review，是多工具
-  拦截证据基础；
-* v3.5.2：real `langgraph_bigtool.create_agent()` API wiring demo，是历史
-  external-project wiring 入口。
-
-v3.5.2 demo 在真实 `langgraph_bigtool.create_agent()` API 边界前构建
-guarded tool registry，并使用确定性的 tool retrieval。它不 compile、invoke
-或 stream graph，不调用 provider、network、database、SQL、credential 或
-用户数据，也不授权受保护 payload 执行。
-
-历史证据值保持：
-
-```text
-protected_payload_body_execution_count = 0
-runtime_behaviors_added = 0
-execution_authorized_count = 0
-```
-
-## 如何运行
-
-安装当前本地包并运行 Runtime Guard demo：
-
-```bash
-pip install -e .
-python examples/runtime_guard/runtime_guard_mvp_demo.py
-python examples/runtime_guard/langgraph_runtime_guard_demo.py
-```
-
-运行历史 v3.5.2 wiring demo：
-
-```bash
-python examples/external_integrations/langgraph_bigtool/dhms_guarded_tool_registry_demo.py
-```
-
-如果系统默认 `python` 版本低于 3.10，可以使用 Python 3.11：
-
-```bash
-/usr/local/bin/python3.11 -m pip install -e .
-/usr/local/bin/python3.11 examples/runtime_guard/runtime_guard_mvp_demo.py
-```
-
-## 适合谁反馈
-
-欢迎正在设计 agent tool 政策、授权、审批、dispatch 和证据边界的开发者反馈。
-重点包括：公共 decision-only API 是否清楚、责任边界是否准确、保守 non-claims
-是否充分，以及受限 consumer integration 是否容易复现。
+Apache License 2.0。详见 [LICENSE](LICENSE)。

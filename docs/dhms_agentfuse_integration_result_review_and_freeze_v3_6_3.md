@@ -176,5 +176,8 @@ adapter/conformance tests, then the DSH matrix renderer.
 `READY_FOR_V3_6_3_REVIEW`
 
 v3.6.x integration evidence is frozen. The next planned milestone is v3.7.0
-Multi-Runtime Integration Package. It remains gated on actual consumer need and
-external integration evidence, and is not started by this freeze.
+Multi-Runtime Integration Package. v3.7.0 is not started by this freeze.
+
+The external-consumer / real-trial gate applies to the conditional v3.8.x
+Policy Provenance and Trust Contract line, as defined by the development
+roadmap.

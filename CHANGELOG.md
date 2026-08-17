@@ -1,5 +1,14 @@
 # Changelog
 
+## dhms-agentfuse 3.6.2 - Unreleased
+
+* Added 14 provider-neutral conformance fixtures for policy and host-lifecycle
+  separation across the RuntimeGuard, reference-consumer, LangGraph, and
+  independently versioned DSH adapter paths.
+* Added deterministic result and matrix generation with explicit N/A reasons,
+  identity checks, terminal-settlement scope, and safe-output checks.
+* Kept RuntimeGuard core and Evidence Schema v0.1 unchanged.
+
 ## dhms-agentfuse 3.6.1 - Unreleased
 
 * Added a provider-neutral consumer integration contract for immutable

@@ -2,7 +2,7 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](pyproject.toml)
-[![AgentFuse](https://img.shields.io/badge/AgentFuse-3.6.1-green.svg)](pyproject.toml)
+[![AgentFuse](https://img.shields.io/badge/AgentFuse-3.6.2-green.svg)](pyproject.toml)
 [![Historical Evidence](https://img.shields.io/badge/historical%20evidence-v3.5.2-purple.svg)](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 [![Docs](https://img.shields.io/badge/docs-available-informational.svg)](docs/)
 
@@ -17,7 +17,7 @@ Chinese overview: [README.zh-CN.md](README.zh-CN.md)
 ## Current Status
 
 ```text
-PACKAGE=dhms-agentfuse 3.6.1
+PACKAGE=dhms-agentfuse 3.6.2
 PUBLIC_API=RuntimeGuardDecision|evaluate|aevaluate|invoke|ainvoke
 EVIDENCE_SCHEMA=agentfuse-evidence-schema-v0.1
 HISTORICAL_EVIDENCE_MILESTONE=v3.5.2
@@ -31,12 +31,19 @@ Current externally relevant evidence:
 - **Hermes #53021 external threat-model proof** — a standalone proof models a deny-by-default session terminal allowlist and verifies pre-dispatch blocking, retry identity, deterministic re-evaluation, and safe receipts. It does not modify Hermes and is not a production Hermes integration.
 - **Historical v3.5.2 external-project wiring demo** — real `langgraph_bigtool.create_agent()` API wiring remains a historical evidence checkpoint; it is not the current package version.
 
+Current package proof: the [v3.6.2 cross-adapter conformance kit](docs/dhms_agentfuse_cross_adapter_conformance_v3_6_2.md)
+runs 14 provider-neutral cases across the Python RuntimeGuard path, the
+reference consumer, the installed LangGraph adapter, and a provenance-pinned
+snapshot consumed by the independent DSH plugin repository. Conformance is a
+bounded local engineering result, not deployment validation or certification.
+
 ## Quickstart
 
 ```bash
 pip install -e .
 python examples/runtime_guard/runtime_guard_mvp_demo.py
 python examples/runtime_guard/langgraph_runtime_guard_demo.py
+python examples/conformance/cross_adapter_v3_6_2/run_conformance.py
 ```
 
 Expected final verdicts:
@@ -44,6 +51,7 @@ Expected final verdicts:
 ```text
 AGENTFUSE_RUNTIME_GUARD_MVP_DEMO_PASS
 AGENTFUSE_LANGGRAPH_RUNTIME_GUARD_DEMO_PASS
+AGENTFUSE_CROSS_ADAPTER_CONFORMANCE_V3_6_2_PASS
 ```
 
 Run the latest external threat-model proof:
@@ -103,7 +111,7 @@ Risk classification must come from trusted application configuration or another 
 - request and response identity validation
 - source, schema, policy revision, and protocol checks
 
-Trusted values may be placed in `ToolCallRequest.safe_metadata` for a custom policy to inspect. AgentFuse 3.6.1 does not define or universally validate another runtime's approval schema.
+Trusted values may be placed in `ToolCallRequest.safe_metadata` for a custom policy to inspect. AgentFuse 3.6.2 does not define or universally validate another runtime's approval schema.
 
 ### AgentFuse owns
 
@@ -212,6 +220,7 @@ Key checkpoints:
 - [v3.5.2 real `langgraph_bigtool.create_agent()` API wiring demo](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 - [AgentFuse Public Decision API 3.6.0](docs/dhms_agentfuse_public_decision_api_v3_6_0.md)
 - [AgentFuse Consumer Integration Contract 3.6.1](docs/dhms_agentfuse_consumer_integration_contract_v3_6_1.md)
+- [AgentFuse Cross-Adapter Conformance Kit 3.6.2](docs/dhms_agentfuse_cross_adapter_conformance_v3_6_2.md)
 - [AgentFuse protocol package index](docs/dhms_agentfuse_protocol_package_index_v0_7_0.md)
 - [Development roadmap](docs/dhms_agentfuse_development_roadmap.md)
 - [Documentation directory](docs/)

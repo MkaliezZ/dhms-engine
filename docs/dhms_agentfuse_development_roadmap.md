@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.6.1 Consumer Integration Contract`
+* Current package milestone: `v3.6.2 Cross-Adapter Conformance Kit`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -3036,13 +3036,18 @@ DHMS AgentFuse currently does not claim:
 
 ### v3.6.2 Cross-Adapter Conformance Kit
 
-* plan reusable conformance assertions for independently owned adapters
-* do not add new providers, executors, or runtime authority without external
-  integration evidence
+* add 14 provider-neutral canonical policy fixtures
+* generate bounded conformance results for RuntimeGuard, the reference
+  consumer, the installed LangGraph adapter, and the independently versioned
+  DSH plugin path
+* pin copied DSH fixture provenance by source commit and SHA-256
+* keep RuntimeGuard core and Evidence Schema v0.1 unchanged
+* current/completed milestone in v3.6.2
 
 ### v3.6.3 Integration Result Review and Freeze
 
-* review actual consumer results and freeze only supported claims
+* review the v3.6.2 results, N/A boundaries, upstream compatibility, and public
+  claims; freeze only supported integration statements
 
 ### v3.7.0 Multi-Runtime Integration Package
 

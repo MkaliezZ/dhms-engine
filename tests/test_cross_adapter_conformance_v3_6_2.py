@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 
 from examples.conformance.cross_adapter_v3_6_2.run_conformance import (
@@ -30,6 +31,7 @@ REQUIRED_CASE_IDS = {
     "13_SYNC_ASYNC_PARITY",
     "14_ONE_TERMINAL_SETTLEMENT",
 }
+FIXTURE_SHA256 = "1f66c9e20ff28ebeeae128b8aaf38a5b251582496a753acded9530b819056d7b"
 
 
 def _results():
@@ -48,7 +50,7 @@ def test_canonical_fixture_is_provider_neutral_bounded_and_deterministic() -> No
     assert "agentfuse-v3.6.2-synthetic-sentinel" not in serialized
     assert "/Users/" not in serialized
     assert "C:\\" not in serialized
-    assert FIXTURE_PATH.read_bytes() == FIXTURE_PATH.read_bytes()
+    assert hashlib.sha256(FIXTURE_PATH.read_bytes()).hexdigest() == FIXTURE_SHA256
 
 
 def test_all_python_owned_adapter_cases_conform_without_hidden_failures() -> None:

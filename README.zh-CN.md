@@ -1,6 +1,6 @@
 # DHMS / AgentFuse 中文概览
 
-当前 Python package：`dhms-agentfuse 3.6.0`。
+当前 Python package：`dhms-agentfuse 3.6.1`。
 
 当前公共 API：`RuntimeGuardDecision`、`evaluate()`、`aevaluate()`、`invoke()`、`ainvoke()`。
 
@@ -15,6 +15,7 @@ AgentFuse 仍是 experimental pre-dispatch policy and authorization boundary。�
 ## 关键引用
 
 - [AgentFuse Public Decision API 3.6.0](docs/dhms_agentfuse_public_decision_api_v3_6_0.md)
+- [AgentFuse Consumer Integration Contract 3.6.1](docs/dhms_agentfuse_consumer_integration_contract_v3_6_1.md)
 - [KerniQ v0.6.1 freeze](https://github.com/MkaliezZ/qodex/commit/0486704d613ea203672d75bee455346cceafb225)
 - [KerniQ v0.7 freeze](https://github.com/MkaliezZ/qodex/commit/2aa335dd21453ecf5d3ad44c2279b2c9362bef9f)
 - [Hermes #53021 external proof](examples/external_integrations/hermes_53021/README.md)

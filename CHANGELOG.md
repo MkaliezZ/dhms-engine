@@ -1,5 +1,14 @@
 # Changelog
 
+## dhms-agentfuse 3.6.1 - Unreleased
+
+* Added a provider-neutral consumer integration contract for immutable
+  `RuntimeGuardDecision` values.
+* Added deterministic reference-consumer proof for blocked, executed,
+  interrupted, and handler-failure host lifecycles.
+* Clarified that a policy decision is separate from approval, host dispatch,
+  execution outcome, process completion, and goal achievement.
+
 ## dhms-agentfuse 3.6.0 — Unreleased
 
 * Added immutable `RuntimeGuardDecision`.

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.6.2 Cross-Adapter Conformance Kit`
+* Current package milestone: `v3.6.3 Integration Result Review and Freeze`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -3026,13 +3026,18 @@ DHMS AgentFuse currently does not claim:
 
 ## Forward Integration Roadmap
 
+### v3.6.0 Public Decision API
+
+* complete: immutable provider-neutral `RuntimeGuardDecision` and decision-only
+  `evaluate()` / `aevaluate()` APIs
+
 ### v3.6.1 Consumer Integration Contract
 
 * define the host contract around immutable `RuntimeGuardDecision` values
 * prove that policy decision, approval, dispatch, execution outcome, process
   completion, and goal achievement remain separate facts
 * add only provider-neutral local reference-consumer proof and documentation
-* current/completed milestone in v3.6.1
+* complete
 
 ### v3.6.2 Cross-Adapter Conformance Kit
 
@@ -3042,12 +3047,13 @@ DHMS AgentFuse currently does not claim:
   DSH plugin path
 * pin copied DSH fixture provenance by source commit and SHA-256
 * keep RuntimeGuard core and Evidence Schema v0.1 unchanged
-* current/completed milestone in v3.6.2
+* complete
 
 ### v3.6.3 Integration Result Review and Freeze
 
-* review the v3.6.2 results, N/A boundaries, upstream compatibility, and public
-  claims; freeze only supported integration statements
+* reviewed and froze the v3.6.0-v3.6.2 result chain, N/A boundaries, upstream
+  runtime versions, fixture provenance, and bounded public claims
+* complete/current milestone in v3.6.3
 
 ### v3.7.0 Multi-Runtime Integration Package
 
@@ -3082,4 +3088,4 @@ external trial/integration evidence.
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_6_1_CONSUMER_INTEGRATION_CONTRACT_REVIEW`
+`READY_FOR_V3_6_3_REVIEW`

@@ -2,7 +2,7 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](pyproject.toml)
-[![AgentFuse](https://img.shields.io/badge/AgentFuse-3.7.1-green.svg)](pyproject.toml)
+[![AgentFuse](https://img.shields.io/badge/AgentFuse-3.7.2-green.svg)](pyproject.toml)
 [![Historical Evidence](https://img.shields.io/badge/historical%20evidence-v3.5.2-purple.svg)](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 [![Docs](https://img.shields.io/badge/docs-available-informational.svg)](docs/)
 
@@ -17,7 +17,7 @@ Chinese overview: [README.zh-CN.md](README.zh-CN.md)
 ## Current Status
 
 ```text
-PACKAGE=dhms-agentfuse 3.7.1
+PACKAGE=dhms-agentfuse 3.7.2
 PUBLIC_API=RuntimeGuardDecision|evaluate|aevaluate|invoke|ainvoke
 INTEGRATION_API=IntegrationProfile|list_integrations|get_integration
 EVIDENCE_SCHEMA=agentfuse-evidence-schema-v0.1
@@ -85,6 +85,15 @@ The full [v3.7.1 trial guide](docs/dhms_agentfuse_five_minute_integration_trial_
 describes the public consumer imports, clean-wheel proof, and boundaries. The
 trial is designed as an approximately-five-minute workflow; it does not claim
 external human timing or adoption validation.
+
+AgentFuse v3.7.2 adds a bounded GitHub Actions compatibility matrix for the
+exact Python/LangGraph cells recorded in
+[`validation/compatibility_v3_7_2/compatibility_matrix.json`](validation/compatibility_v3_7_2/compatibility_matrix.json).
+The matrix builds one wheel and reuses it across repository-external public-API
+probes. Tested cells are evidence only for those exact combinations; the
+declared `langgraph>=1.2,<2.0` dependency range is not proof that every eligible
+version is compatible. See the
+[v3.7.2 compatibility guide](docs/dhms_agentfuse_compatibility_matrix_and_ci_v3_7_2.md).
 
 Run the latest external threat-model proof:
 
@@ -256,6 +265,7 @@ Key checkpoints:
 - [AgentFuse Integration Result Review and Freeze 3.6.3](docs/dhms_agentfuse_integration_result_review_and_freeze_v3_6_3.md)
 - [AgentFuse Multi-Runtime Integration Package 3.7.0](docs/dhms_agentfuse_multi_runtime_integration_package_v3_7_0.md)
 - [AgentFuse Five-Minute Integration Trial 3.7.1](docs/dhms_agentfuse_five_minute_integration_trial_v3_7_1.md)
+- [AgentFuse Compatibility Matrix and CI 3.7.2](docs/dhms_agentfuse_compatibility_matrix_and_ci_v3_7_2.md)
 - [AgentFuse protocol package index](docs/dhms_agentfuse_protocol_package_index_v0_7_0.md)
 - [Development roadmap](docs/dhms_agentfuse_development_roadmap.md)
 - [Documentation directory](docs/)

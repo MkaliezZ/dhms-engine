@@ -7,6 +7,9 @@ on:
     branches: [agent-harness-v1]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -31,3 +34,95 @@ jobs:
 
       - name: Compile package
         run: python -m compileall -q dhms_agentfuse
+
+  build-wheel:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.compatibility-matrix.outputs.matrix }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Prepare reviewed compatibility matrix
+        id: compatibility-matrix
+        run: |
+          matrix="$(jq -c '{include: [.cells[] | {python: .python, langgraph: .langgraph, role: (.roles | join("+"))}]}' validation/compatibility_v3_7_2/compatibility_matrix.json)"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
+      - name: Build one AgentFuse wheel
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip wheel --no-deps --wheel-dir wheelhouse .
+          test -f wheelhouse/dhms_agentfuse-3.7.2-py3-none-any.whl
+
+      - name: Inspect wheel contents
+        run: |
+          python -c 'from pathlib import Path; import zipfile; wheel = next(Path("wheelhouse").glob("dhms_agentfuse-3.7.2-py3-none-any.whl")); names = zipfile.ZipFile(wheel).namelist(); missing = [name for name in ("dhms_agentfuse/__init__.py", "dhms_agentfuse/langgraph_runtime_guard.py") if name not in names]; missing and (_ for _ in ()).throw(RuntimeError(f"missing wheel members: {missing}"))'
+
+      - name: Upload wheel artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agentfuse-wheel-v3-7-2
+          path: wheelhouse/dhms_agentfuse-3.7.2-py3-none-any.whl
+          if-no-files-found: error
+
+  compatibility:
+    name: compatibility (py${{ matrix.python }}, langgraph${{ matrix.langgraph }})
+    needs: build-wheel
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.build-wheel.outputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+
+      - name: Download reviewed AgentFuse wheel
+        uses: actions/download-artifact@v4
+        with:
+          name: agentfuse-wheel-v3-7-2
+          path: ${{ runner.temp }}/agentfuse-wheel
+
+      - name: Install exact compatibility cell
+        env:
+          COMPAT_LANGGRAPH: ${{ matrix.langgraph }}
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "$RUNNER_TEMP/agentfuse-wheel/dhms_agentfuse-3.7.2-py3-none-any.whl" "langgraph==$COMPAT_LANGGRAPH"
+
+      - name: Run repository-external compatibility probe
+        env:
+          COMPAT_LANGGRAPH: ${{ matrix.langgraph }}
+          COMPAT_PYTHON: ${{ matrix.python }}
+        run: |
+          probe_dir="$RUNNER_TEMP/agentfuse-compat-py$COMPAT_PYTHON-langgraph$COMPAT_LANGGRAPH"
+          result_file="$RUNNER_TEMP/agentfuse-compat-result-py$COMPAT_PYTHON-langgraph$COMPAT_LANGGRAPH.json"
+          mkdir -p "$probe_dir"
+          cp validation/compatibility_v3_7_2/probe.py "$probe_dir/probe.py"
+          cd "$probe_dir"
+          env -u PYTHONPATH python probe.py \
+            --expected-python-version "$COMPAT_PYTHON" \
+            --expected-langgraph-version "$COMPAT_LANGGRAPH" \
+            --expected-package-version "3.7.2" \
+            --forbid-import-root "$GITHUB_WORKSPACE" \
+            --json-only > "$result_file"
+          python -c 'import json, pathlib, sys; result = json.loads(pathlib.Path(sys.argv[1]).read_text()); result["verdict"] == "PASS" or (_ for _ in ()).throw(RuntimeError("compatibility probe failed")); result["source_isolation"]["import_origin_outside_forbidden_root"] is True or (_ for _ in ()).throw(RuntimeError("source fallback detected"))' "$result_file"
+
+      - name: Upload compatibility result
+        uses: actions/upload-artifact@v4
+        with:
+          name: agentfuse-compat-py${{ matrix.python }}-langgraph${{ matrix.langgraph }}
+          path: ${{ runner.temp }}/agentfuse-compat-result-py${{ matrix.python }}-langgraph${{ matrix.langgraph }}.json
+          if-no-files-found: error

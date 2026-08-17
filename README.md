@@ -2,7 +2,7 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](pyproject.toml)
-[![AgentFuse](https://img.shields.io/badge/AgentFuse-3.6.3-green.svg)](pyproject.toml)
+[![AgentFuse](https://img.shields.io/badge/AgentFuse-3.7.0-green.svg)](pyproject.toml)
 [![Historical Evidence](https://img.shields.io/badge/historical%20evidence-v3.5.2-purple.svg)](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 [![Docs](https://img.shields.io/badge/docs-available-informational.svg)](docs/)
 
@@ -17,8 +17,9 @@ Chinese overview: [README.zh-CN.md](README.zh-CN.md)
 ## Current Status
 
 ```text
-PACKAGE=dhms-agentfuse 3.6.3
+PACKAGE=dhms-agentfuse 3.7.0
 PUBLIC_API=RuntimeGuardDecision|evaluate|aevaluate|invoke|ainvoke
+INTEGRATION_API=IntegrationProfile|list_integrations|get_integration
 EVIDENCE_SCHEMA=agentfuse-evidence-schema-v0.1
 HISTORICAL_EVIDENCE_MILESTONE=v3.5.2
 CURRENT_BRANCH=agent-harness-v1
@@ -31,12 +32,12 @@ Current externally relevant evidence:
 - **Hermes #53021 external threat-model proof** — a standalone proof models a deny-by-default session terminal allowlist and verifies pre-dispatch blocking, retry identity, deterministic re-evaluation, and safe receipts. It does not modify Hermes and is not a production Hermes integration.
 - **Historical v3.5.2 external-project wiring demo** — real `langgraph_bigtool.create_agent()` API wiring remains a historical evidence checkpoint; it is not the current package version.
 
-The [v3.6.3 integration result freeze](docs/dhms_agentfuse_integration_result_review_and_freeze_v3_6_3.md)
-records the reviewed v3.6.0-v3.6.2 line: 14 provider-neutral cases produced 52
-PASS, 4 justified N/A, and 0 FAIL across four bounded paths. It is local
-engineering evidence, not deployment validation, certification, or a future
-upstream compatibility promise. The next planned milestone is v3.7.0
-Multi-Runtime Integration Package; it has not started.
+The [v3.7.0 Multi-Runtime Integration Package](docs/dhms_agentfuse_multi_runtime_integration_package_v3_7_0.md)
+exposes immutable metadata profiles for the reviewed RuntimeGuard, reference,
+LangGraph, and external DSH mappings. The registry packages tested capabilities
+and evidence boundaries; it does not execute tools, discover runtimes, or claim
+that different hosts share one universal lifecycle. The underlying 14-case
+v3.6.2 matrix remains frozen at 52 PASS, 4 justified N/A, and 0 FAIL.
 
 ## Quickstart
 
@@ -54,6 +55,20 @@ AGENTFUSE_RUNTIME_GUARD_MVP_DEMO_PASS
 AGENTFUSE_LANGGRAPH_RUNTIME_GUARD_DEMO_PASS
 AGENTFUSE_CROSS_ADAPTER_CONFORMANCE_V3_6_2_PASS
 ```
+
+Inspect the reviewed integration mappings without runtime discovery:
+
+```python
+from dhms_agentfuse.integrations import get_integration, list_integrations
+
+profiles = list_integrations()
+langgraph = get_integration("langgraph-tool-node")
+assert langgraph.tested_version == "1.2.11"
+```
+
+The returned profiles are metadata-only and immutable. Capability names mean
+the tested path can observe or represent that fact; they do not transfer host
+lifecycle ownership to AgentFuse.
 
 Run the latest external threat-model proof:
 
@@ -112,7 +127,7 @@ Risk classification must come from trusted application configuration or another 
 - request and response identity validation
 - source, schema, policy revision, and protocol checks
 
-Trusted values may be placed in `ToolCallRequest.safe_metadata` for a custom policy to inspect. AgentFuse 3.6.3 does not define or universally validate another runtime's approval schema.
+Trusted values may be placed in `ToolCallRequest.safe_metadata` for a custom policy to inspect. AgentFuse 3.7.0 does not define or universally validate another runtime's approval schema.
 
 ### AgentFuse owns
 
@@ -223,6 +238,7 @@ Key checkpoints:
 - [AgentFuse Consumer Integration Contract 3.6.1](docs/dhms_agentfuse_consumer_integration_contract_v3_6_1.md)
 - [AgentFuse Cross-Adapter Conformance Kit 3.6.2](docs/dhms_agentfuse_cross_adapter_conformance_v3_6_2.md)
 - [AgentFuse Integration Result Review and Freeze 3.6.3](docs/dhms_agentfuse_integration_result_review_and_freeze_v3_6_3.md)
+- [AgentFuse Multi-Runtime Integration Package 3.7.0](docs/dhms_agentfuse_multi_runtime_integration_package_v3_7_0.md)
 - [AgentFuse protocol package index](docs/dhms_agentfuse_protocol_package_index_v0_7_0.md)
 - [Development roadmap](docs/dhms_agentfuse_development_roadmap.md)
 - [Documentation directory](docs/)

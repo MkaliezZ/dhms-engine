@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dhms-agentfuse"
-version = "3.6.3"
+version = "3.7.0"
 description = "DHMS AgentFuse local editable package for execution fuse protocol evidence."
 readme = "README.md"
 requires-python = ">=3.10"

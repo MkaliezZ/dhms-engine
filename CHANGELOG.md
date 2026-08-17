@@ -1,5 +1,14 @@
 # Changelog
 
+## dhms-agentfuse 3.7.0 - Unreleased
+
+* Added an immutable, metadata-only integration profile for each reviewed
+  RuntimeGuard, reference-consumer, LangGraph, and external DSH mapping.
+* Added deterministic `list_integrations()` and `get_integration()` registry
+  operations without runtime discovery, execution, or external dependencies.
+* Preserved the frozen v3.6.2 fixture provenance, capability differences, N/A
+  boundaries, host ownership, and tested-version limitations.
+
 ## dhms-agentfuse 3.6.3 - Unreleased
 
 * Froze the reviewed v3.6.0-v3.6.2 integration evidence chain and its bounded

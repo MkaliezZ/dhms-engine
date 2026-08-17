@@ -4,10 +4,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+from pathlib import Path
+import subprocess
+import sys
 
 from examples.conformance.cross_adapter_v3_6_2.run_conformance import (
     ADAPTER_IDS,
     FIXTURE_PATH,
+    _failed,
     load_fixture_document,
     render_matrix,
     run_conformance,
@@ -126,6 +130,35 @@ def test_generated_report_and_matrix_exclude_raw_protected_arguments() -> None:
     assert "RAW_" not in rendered
     assert "PASS" in rendered
     assert "NOT_APPLICABLE" in rendered
+
+
+def test_failure_report_redacts_raw_protected_argument() -> None:
+    document = load_fixture_document()
+    result = _failed(
+        document,
+        document["cases"][0],
+        "review-adapter",
+        RuntimeError("echoed agentfuse-v3.6.2-synthetic-sentinel"),
+    )
+
+    assert result.verdict == "FAIL"
+    assert result.safe_output is True
+    assert "agentfuse-v3.6.2-synthetic-sentinel" not in result.verdict_reason
+    assert "<redacted-sensitive-value>" in result.verdict_reason
+
+
+def test_json_only_cli_emits_one_machine_readable_document() -> None:
+    runner = Path(__file__).parents[1] / "examples/conformance/cross_adapter_v3_6_2/run_conformance.py"
+    completed = subprocess.run(
+        [sys.executable, str(runner), "--json-only"],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    report = json.loads(completed.stdout)
+
+    assert completed.stderr == ""
+    assert report["counts"] == {"PASS": 41, "FAIL": 0, "NOT_APPLICABLE": 1}
 
 
 def test_generated_matrix_order_and_values_are_repeatable() -> None:

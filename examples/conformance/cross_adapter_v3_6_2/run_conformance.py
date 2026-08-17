@@ -183,6 +183,8 @@ def _not_applicable(
 
 
 def _failed(document: Mapping[str, Any], case: Mapping[str, Any], adapter_id: str, error: BaseException) -> ConformanceResult:
+    raw_reason = f"{type(error).__name__}: {error}"
+    safe_reason = raw_reason.replace(_SYNTHETIC_SENTINEL, "<redacted-sensitive-value>")
     return _result(
         document,
         case,
@@ -193,11 +195,11 @@ def _failed(document: Mapping[str, Any], case: Mapping[str, Any], adapter_id: st
         handler_started=None,
         execution_outcome=None,
         interruption_observed=None,
-        safe_output=True,
+        safe_output=_SYNTHETIC_SENTINEL not in safe_reason,
         terminal_settlement_count=None,
         identity_preserved=None,
         verdict="FAIL",
-        verdict_reason=f"{type(error).__name__}: {error}",
+        verdict_reason=safe_reason,
     )
 
 
@@ -560,7 +562,8 @@ def main() -> None:
         print(render_matrix(results))
     if report["counts"]["FAIL"]:
         raise SystemExit("AGENTFUSE_CROSS_ADAPTER_CONFORMANCE_V3_6_2_FAIL")
-    print(FINAL_VERDICT)
+    if not args.json_only:
+        print(FINAL_VERDICT)
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.5.2 Real langgraph-bigtool API Wiring Demo`
+* Current package milestone: `v3.6.1 Consumer Integration Contract`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -3024,6 +3024,57 @@ DHMS AgentFuse currently does not claim:
 * autonomous execution authorization
 * a standard adopted by industry yet
 
+## Forward Integration Roadmap
+
+### v3.6.1 Consumer Integration Contract
+
+* define the host contract around immutable `RuntimeGuardDecision` values
+* prove that policy decision, approval, dispatch, execution outcome, process
+  completion, and goal achievement remain separate facts
+* add only provider-neutral local reference-consumer proof and documentation
+* current/completed milestone in v3.6.1
+
+### v3.6.2 Cross-Adapter Conformance Kit
+
+* plan reusable conformance assertions for independently owned adapters
+* do not add new providers, executors, or runtime authority without external
+  integration evidence
+
+### v3.6.3 Integration Result Review and Freeze
+
+* review actual consumer results and freeze only supported claims
+
+### v3.7.0 Multi-Runtime Integration Package
+
+* package independently proven adapter mappings only
+
+### v3.7.1 Five-Minute Integration Trial
+
+* provide a bounded trial for an independently owned consumer runtime
+
+### v3.7.2 Compatibility Matrix and CI
+
+* add compatibility evidence only for tested, maintained consumer mappings
+
+### v3.7.3 Integration Release Seal
+
+* seal reviewed integration claims without expanding execution capability
+
+### v3.8.x Policy Provenance and Trust Contract
+
+Conditional: do not begin without a concrete external consumer need or real
+external trial/integration evidence.
+
+### v3.9.x Operational Hardening
+
+* consider only after proven integration use establishes a concrete operational
+  need
+
+### v4.0 Stable Integration API Candidate
+
+* gated on real external use and compatibility stability
+* not scheduled and not a production-readiness claim
+
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_5_2_PUBLIC_POST_AND_EXTERNAL_FEEDBACK_TRIGGER`
+`READY_FOR_V3_6_1_CONSUMER_INTEGRATION_CONTRACT_REVIEW`

@@ -102,7 +102,7 @@ The DSH repository contains a byte-identical fixture snapshot plus provenance:
 - fixture SHA-256:
   `1f66c9e20ff28ebeeae128b8aaf38a5b251582496a753acded9530b819056d7b`
 - DSH plugin conformance commit:
-  `2600c8f67ed7fbd828779e2cd649793b7ef9016e`
+  `70abcc6b5efcbb3e5b832692ef6b804b4fac5468`
 - tested DeepSeek Harness commit:
   `99f6f02fecdb7dff40c3fbc9470f5907c29f74ca`
 - tested upstream package version: `0.1.0-rc.7`

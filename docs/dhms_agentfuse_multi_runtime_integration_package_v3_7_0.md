@@ -153,9 +153,11 @@ subprocess, scan installed packages, access the network, or inspect arbitrary
 files. Plain import/documentation references are strings, not live classes or
 handlers.
 
-The existing top-level package dependency on LangGraph is unchanged. The
-registry itself does not dynamically import LangGraph merely to describe its
-profile.
+The declared package dependency range for LangGraph is unchanged. The existing
+top-level `LangGraphRuntimeGuardAdapter` export is loaded lazily, so importing
+the metadata registry does not import LangGraph merely to describe its profile.
+Requesting that adapter export still loads the same implementation and does not
+change adapter behavior.
 
 ## Example
 

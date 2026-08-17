@@ -1,5 +1,7 @@
 """Safe public exports for the DHMS AgentFuse Minimal API skeleton."""
 
+from typing import TYPE_CHECKING, Any
+
 from .adapter_skeleton import AgentFuseAdapterSkeleton
 from .api import (
     ALLOWLISTED_SQL,
@@ -22,7 +24,6 @@ from .evidence_schema import (
     safe_read_only_summary_evidence,
     sql_mutation_block_evidence,
 )
-from .langgraph_runtime_guard import LangGraphRuntimeGuardAdapter
 from .models import AgentFuseTrace, ExecutionGateDecision, RuntimeRequest, SafetyDecision, ToolCallProposal
 from .runtime_guard import (
     GuardedInvocation,
@@ -32,6 +33,19 @@ from .runtime_guard import (
     RuntimePolicyDecision,
     ToolCallRequest,
 )
+
+if TYPE_CHECKING:
+    from .langgraph_runtime_guard import LangGraphRuntimeGuardAdapter
+
+
+def __getattr__(name: str) -> Any:
+    """Load the optional runtime-specific export only when requested."""
+
+    if name == "LangGraphRuntimeGuardAdapter":
+        from .langgraph_runtime_guard import LangGraphRuntimeGuardAdapter
+
+        return LangGraphRuntimeGuardAdapter
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 __all__ = [
     "ALLOWLISTED_SQL",

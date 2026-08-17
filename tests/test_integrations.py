@@ -240,7 +240,9 @@ import sys
 from dhms_agentfuse.integrations import list_integrations
 loaded = sorted(
     name for name in sys.modules
-    if name.lower().startswith(("dsh", "deepseek", "@deepseek-ai"))
+    if name.lower().startswith(
+        ("dsh", "deepseek", "@deepseek-ai", "langgraph", "langchain_core")
+    )
 )
 print(json.dumps({"count": len(list_integrations()), "external_modules": loaded}))
 """

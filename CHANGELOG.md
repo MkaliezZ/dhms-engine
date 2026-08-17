@@ -1,5 +1,14 @@
 # Changelog
 
+## dhms-agentfuse 3.7.1 - Unreleased
+
+* Added a bounded public-API LangGraph `ToolNode` consumer trial at the frozen
+  `langgraph 1.2.11` version.
+* Added deterministic allow-once and block-zero-handler trial results plus
+  JSON-only output and clean-wheel isolation validation guidance.
+* Kept RuntimeGuard, Evidence Schema v0.1, integration profiles, registry, and
+  LangGraph adapter behavior unchanged.
+
 ## dhms-agentfuse 3.7.0 - Unreleased
 
 * Added an immutable, metadata-only integration profile for each reviewed

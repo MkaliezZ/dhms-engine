@@ -1,10 +1,10 @@
 # DHMS / AgentFuse 中文概览
 
-当前 Python package：`dhms-agentfuse 3.7.0`。
+当前 Python package：`dhms-agentfuse 3.7.1`。
 
 当前 RuntimeGuard 公共 API：`RuntimeGuardDecision`、`evaluate()`、`aevaluate()`、`invoke()`、`ainvoke()`。新的 metadata-only integration API 位于 `dhms_agentfuse.integrations`：`IntegrationProfile`、`list_integrations()`、`get_integration()`。
 
-v3.7.0 将已审查的 Python RuntimeGuard、reference consumer、LangGraph 和外部 DSH mapping 打包为静态、不可变的 integration profile。它只描述测试过的 capability、版本、evidence 与 host ownership boundary，不执行工具、不自动发现 runtime，也不建立 universal runtime abstraction。底层 v3.6.2 conformance result 仍冻结为 52 PASS、4 个有边界理由的 N/A、0 FAIL。KerniQ 已完成并冻结两条独立 bounded integration：v0.6.1 Project Command 与 v0.7 Coding Pack Export。最新 external proof 为 Hermes #53021 的受限 session policy proof。历史 evidence milestone `v3.5.2` 仍保留，但不代表当前 package version。
+v3.7.1 在已审查的 LangGraph ToolNode mapping 上增加了一个 bounded consumer trial：不需要 LLM、API key 或运行时网络服务；allow 选择的 handler 执行一次，block 选择的 handler 执行零次。该 trial 使用公开 AgentFuse import，并以 `langgraph 1.2.11` 为测试版本。它被设计为约五分钟的集成路径，不代表外部用户已在五分钟内完成，也不代表外部 adoption。v3.7.0 的静态、不可变 integration profile 和底层 v3.6.2 conformance result（52 PASS、4 个有边界理由的 N/A、0 FAIL）保持不变。
 
 完整且最新的项目说明、责任边界、non-claims、KerniQ 证据引用与 external proof 请以英文主 README 为准：
 
@@ -19,6 +19,7 @@ AgentFuse 仍是 experimental pre-dispatch policy and authorization boundary。�
 - [AgentFuse Cross-Adapter Conformance Kit 3.6.2](docs/dhms_agentfuse_cross_adapter_conformance_v3_6_2.md)
 - [AgentFuse Integration Result Review and Freeze 3.6.3](docs/dhms_agentfuse_integration_result_review_and_freeze_v3_6_3.md)
 - [AgentFuse Multi-Runtime Integration Package 3.7.0](docs/dhms_agentfuse_multi_runtime_integration_package_v3_7_0.md)
+- [AgentFuse Five-Minute Integration Trial 3.7.1](docs/dhms_agentfuse_five_minute_integration_trial_v3_7_1.md)
 - [KerniQ v0.6.1 freeze](https://github.com/MkaliezZ/qodex/commit/0486704d613ea203672d75bee455346cceafb225)
 - [KerniQ v0.7 freeze](https://github.com/MkaliezZ/qodex/commit/2aa335dd21453ecf5d3ad44c2279b2c9362bef9f)
 - [Hermes #53021 external proof](examples/external_integrations/hermes_53021/README.md)

@@ -1,5 +1,13 @@
 # Changelog
 
+## dhms-agentfuse 3.6.3 - Unreleased
+
+* Froze the reviewed v3.6.0-v3.6.2 integration evidence chain and its bounded
+  supported claims, non-claims, runtime versions, fixture provenance, and N/A
+  boundaries.
+* Confirmed the reviewed matrix remains 52 PASS, 4 justified N/A, and 0 FAIL.
+* Kept RuntimeGuard, Evidence Schema v0.1, and the LangGraph adapter unchanged.
+
 ## dhms-agentfuse 3.6.2 - Unreleased
 
 * Added 14 provider-neutral conformance fixtures for policy and host-lifecycle

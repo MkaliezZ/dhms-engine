@@ -2,7 +2,7 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](pyproject.toml)
-[![AgentFuse](https://img.shields.io/badge/AgentFuse-3.6.2-green.svg)](pyproject.toml)
+[![AgentFuse](https://img.shields.io/badge/AgentFuse-3.6.3-green.svg)](pyproject.toml)
 [![Historical Evidence](https://img.shields.io/badge/historical%20evidence-v3.5.2-purple.svg)](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 [![Docs](https://img.shields.io/badge/docs-available-informational.svg)](docs/)
 
@@ -17,7 +17,7 @@ Chinese overview: [README.zh-CN.md](README.zh-CN.md)
 ## Current Status
 
 ```text
-PACKAGE=dhms-agentfuse 3.6.2
+PACKAGE=dhms-agentfuse 3.6.3
 PUBLIC_API=RuntimeGuardDecision|evaluate|aevaluate|invoke|ainvoke
 EVIDENCE_SCHEMA=agentfuse-evidence-schema-v0.1
 HISTORICAL_EVIDENCE_MILESTONE=v3.5.2
@@ -31,11 +31,12 @@ Current externally relevant evidence:
 - **Hermes #53021 external threat-model proof** — a standalone proof models a deny-by-default session terminal allowlist and verifies pre-dispatch blocking, retry identity, deterministic re-evaluation, and safe receipts. It does not modify Hermes and is not a production Hermes integration.
 - **Historical v3.5.2 external-project wiring demo** — real `langgraph_bigtool.create_agent()` API wiring remains a historical evidence checkpoint; it is not the current package version.
 
-Current package proof: the [v3.6.2 cross-adapter conformance kit](docs/dhms_agentfuse_cross_adapter_conformance_v3_6_2.md)
-runs 14 provider-neutral cases across the Python RuntimeGuard path, the
-reference consumer, the installed LangGraph adapter, and a provenance-pinned
-snapshot consumed by the independent DSH plugin repository. Conformance is a
-bounded local engineering result, not deployment validation or certification.
+The [v3.6.3 integration result freeze](docs/dhms_agentfuse_integration_result_review_and_freeze_v3_6_3.md)
+records the reviewed v3.6.0-v3.6.2 line: 14 provider-neutral cases produced 52
+PASS, 4 justified N/A, and 0 FAIL across four bounded paths. It is local
+engineering evidence, not deployment validation, certification, or a future
+upstream compatibility promise. The next planned milestone is v3.7.0
+Multi-Runtime Integration Package; it has not started.
 
 ## Quickstart
 
@@ -111,7 +112,7 @@ Risk classification must come from trusted application configuration or another 
 - request and response identity validation
 - source, schema, policy revision, and protocol checks
 
-Trusted values may be placed in `ToolCallRequest.safe_metadata` for a custom policy to inspect. AgentFuse 3.6.2 does not define or universally validate another runtime's approval schema.
+Trusted values may be placed in `ToolCallRequest.safe_metadata` for a custom policy to inspect. AgentFuse 3.6.3 does not define or universally validate another runtime's approval schema.
 
 ### AgentFuse owns
 
@@ -221,6 +222,7 @@ Key checkpoints:
 - [AgentFuse Public Decision API 3.6.0](docs/dhms_agentfuse_public_decision_api_v3_6_0.md)
 - [AgentFuse Consumer Integration Contract 3.6.1](docs/dhms_agentfuse_consumer_integration_contract_v3_6_1.md)
 - [AgentFuse Cross-Adapter Conformance Kit 3.6.2](docs/dhms_agentfuse_cross_adapter_conformance_v3_6_2.md)
+- [AgentFuse Integration Result Review and Freeze 3.6.3](docs/dhms_agentfuse_integration_result_review_and_freeze_v3_6_3.md)
 - [AgentFuse protocol package index](docs/dhms_agentfuse_protocol_package_index_v0_7_0.md)
 - [Development roadmap](docs/dhms_agentfuse_development_roadmap.md)
 - [Documentation directory](docs/)

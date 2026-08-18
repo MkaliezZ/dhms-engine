@@ -87,12 +87,12 @@ def test_probe_runs_real_allow_and_block_path_deterministically() -> None:
     first = probe.run_probe(
         expected_python_version=expected_python,
         expected_langgraph_version=observed_langgraph,
-        expected_package_version="3.7.2",
+        expected_package_version="3.7.3",
     )
     second = probe.run_probe(
         expected_python_version=expected_python,
         expected_langgraph_version=observed_langgraph,
-        expected_package_version="3.7.2",
+        expected_package_version="3.7.3",
     )
     assert first == second
     assert first["profile_frozen_tested_version"] == "1.2.11"
@@ -126,7 +126,7 @@ def test_probe_json_only_is_one_document_and_uses_explicit_runtime_validation() 
             "--expected-langgraph-version",
             observed_langgraph,
             "--expected-package-version",
-            "3.7.2",
+            "3.7.3",
             "--json-only",
         ],
         cwd=COMPATIBILITY_DIR,

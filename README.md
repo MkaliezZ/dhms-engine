@@ -22,26 +22,30 @@ Chinese overview: [README.zh-CN.md](README.zh-CN.md)
 
 ## Install
 
-PyPI publication is not currently available. Install the tagged public-beta
-package from GitHub:
+Install the Experimental Public Beta from PyPI:
 
 ```bash
-python -m pip install \
-  "dhms-agentfuse @ git+https://github.com/MkaliezZ/dhms-engine.git@v3.7.3"
+python -m pip install dhms-agentfuse
 ```
 
-The [v3.7.3 GitHub Release](https://github.com/MkaliezZ/dhms-engine/releases/tag/v3.7.3)
-also provides a wheel and source distribution.
+For a version-pinned installation, use
+`python -m pip install dhms-agentfuse==3.7.3`. The
+[v3.7.3 GitHub Release](https://github.com/MkaliezZ/dhms-engine/releases/tag/v3.7.3)
+and tagged source remain available as distribution references.
+
+```python
+from dhms_agentfuse import RuntimeGuard
+```
 
 ## Five-Minute Beta Trial
 
 No LLM provider, API key, or runtime external service is required:
 
 ```bash
+python -m pip install dhms-agentfuse==3.7.3 "langgraph==1.2.11"
 git clone --branch v3.7.3 --depth 1 \
   https://github.com/MkaliezZ/dhms-engine.git agentfuse-beta
 cd agentfuse-beta
-python -m pip install -e . "langgraph==1.2.11"
 python examples/integration_trial/five_minute_v3_7_1/run_trial.py
 ```
 
@@ -157,8 +161,8 @@ AGENTFUSE_HERMES_53021_EXTERNAL_PROOF_PASS
 ```
 
 If your system `python` is older than Python 3.10, use a Python 3.11 runtime.
-The install instructions above intentionally use the tagged GitHub source;
-this README does not claim a PyPI release.
+The primary public install is the published `dhms-agentfuse` package on PyPI;
+the tagged GitHub source remains a reproducible fallback.
 
 ## Runtime Guard
 

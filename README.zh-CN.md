@@ -11,11 +11,17 @@ integration，以及只读 integration metadata。
 
 ## 安装
 
-当前没有宣称 PyPI 发布。请从 v3.7.3 GitHub tag 安装：
+从 PyPI 安装 Experimental Public Beta：
 
 ```bash
-python -m pip install \
-  "dhms-agentfuse @ git+https://github.com/MkaliezZ/dhms-engine.git@v3.7.3"
+python -m pip install dhms-agentfuse
+```
+
+需要固定版本时使用 `python -m pip install dhms-agentfuse==3.7.3`。v3.7.3
+GitHub Release 和 tag 继续作为分发参考。
+
+```python
+from dhms_agentfuse import RuntimeGuard
 ```
 
 ## 五分钟 Beta Trial
@@ -23,10 +29,10 @@ python -m pip install \
 Canonical trial 不需要 LLM provider、API key 或 runtime external service：
 
 ```bash
+python -m pip install dhms-agentfuse==3.7.3 "langgraph==1.2.11"
 git clone --branch v3.7.3 --depth 1 \
   https://github.com/MkaliezZ/dhms-engine.git agentfuse-beta
 cd agentfuse-beta
-python -m pip install -e . "langgraph==1.2.11"
 python examples/integration_trial/five_minute_v3_7_1/run_trial.py
 ```
 

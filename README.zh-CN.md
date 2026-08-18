@@ -1,10 +1,10 @@
 # DHMS / AgentFuse 中文概览
 
-当前 Python package：`dhms-agentfuse 3.7.1`。
+当前 Python package：`dhms-agentfuse 3.7.2`。
 
 当前 RuntimeGuard 公共 API：`RuntimeGuardDecision`、`evaluate()`、`aevaluate()`、`invoke()`、`ainvoke()`。新的 metadata-only integration API 位于 `dhms_agentfuse.integrations`：`IntegrationProfile`、`list_integrations()`、`get_integration()`。
 
-v3.7.1 在已审查的 LangGraph ToolNode mapping 上增加了一个 bounded consumer trial：不需要 LLM、API key 或运行时网络服务；allow 选择的 handler 执行一次，block 选择的 handler 执行零次。该 trial 使用公开 AgentFuse import，并以 `langgraph 1.2.11` 为测试版本。它被设计为约五分钟的集成路径，不代表外部用户已在五分钟内完成，也不代表外部 adoption。v3.7.0 的静态、不可变 integration profile 和底层 v3.6.2 conformance result（52 PASS、4 个有边界理由的 N/A、0 FAIL）保持不变。
+v3.7.2 增加了 bounded、wheel-first 的 LangGraph compatibility matrix。CI 构建一个 `dhms-agentfuse 3.7.2` wheel，并在 Python 3.10/3.11 与 manifest 中列出的精确 LangGraph 版本组合上复用该 wheel，从仓库外运行 public-API probe。测试通过只证明这些精确组合，不代表 `langgraph>=1.2,<2.0` 整个依赖范围都兼容。v3.7.1 的 `langgraph 1.2.11` consumer trial、v3.7.0 的静态 integration profile，以及 v3.6.2 frozen conformance result（52 PASS、4 个有边界理由的 N/A、0 FAIL）保持不变。
 
 完整且最新的项目说明、责任边界、non-claims、KerniQ 证据引用与 external proof 请以英文主 README 为准：
 
@@ -20,6 +20,7 @@ AgentFuse 仍是 experimental pre-dispatch policy and authorization boundary。�
 - [AgentFuse Integration Result Review and Freeze 3.6.3](docs/dhms_agentfuse_integration_result_review_and_freeze_v3_6_3.md)
 - [AgentFuse Multi-Runtime Integration Package 3.7.0](docs/dhms_agentfuse_multi_runtime_integration_package_v3_7_0.md)
 - [AgentFuse Five-Minute Integration Trial 3.7.1](docs/dhms_agentfuse_five_minute_integration_trial_v3_7_1.md)
+- [AgentFuse Compatibility Matrix and CI 3.7.2](docs/dhms_agentfuse_compatibility_matrix_and_ci_v3_7_2.md)
 - [KerniQ v0.6.1 freeze](https://github.com/MkaliezZ/qodex/commit/0486704d613ea203672d75bee455346cceafb225)
 - [KerniQ v0.7 freeze](https://github.com/MkaliezZ/qodex/commit/2aa335dd21453ecf5d3ad44c2279b2c9362bef9f)
 - [Hermes #53021 external proof](examples/external_integrations/hermes_53021/README.md)

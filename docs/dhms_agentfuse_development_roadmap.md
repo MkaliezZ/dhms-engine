@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.7.1 Five-Minute Integration Trial`
+* Current package milestone: `v3.7.2 Compatibility Matrix and CI`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -3065,16 +3065,18 @@ DHMS AgentFuse currently does not claim:
 
 * prove a bounded public-package LangGraph consumer trial with no provider or
   external-service requirement
-* current milestone in v3.7.1
+* complete/frozen milestone in v3.7.1
 
 ### v3.7.2 Compatibility Matrix and CI
 
-* add compatibility evidence only for tested, maintained consumer mappings
-* next planned milestone; not started by v3.7.1
+* add exact-version, built-wheel compatibility evidence for the maintained
+  LangGraph consumer mapping
+* current milestone in v3.7.2
 
 ### v3.7.3 Integration Release Seal
 
 * seal reviewed integration claims without expanding execution capability
+* next planned milestone; not started by v3.7.2
 
 ### v3.8.x Policy Provenance and Trust Contract
 
@@ -3093,4 +3095,4 @@ external trial/integration evidence.
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_7_1_REVIEW`
+`READY_FOR_V3_7_2_REVIEW`

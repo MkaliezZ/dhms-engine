@@ -1,5 +1,17 @@
 # Changelog
 
+## dhms-agentfuse 3.7.2 - Unreleased
+
+* Added a manifest-driven wheel compatibility matrix for exact Python and
+  LangGraph combinations, including the declared runtime floor and frozen
+  `langgraph 1.2.11` evidence baseline.
+* Added a repository-external public-API compatibility probe with deterministic
+  JSON results, source-fallback protection, and explicit runtime validation.
+* Extended AgentFuse CI to build one wheel and reuse it across all matrix cells
+  while preserving the existing editable-install regression job.
+* Kept RuntimeGuard, Evidence Schema v0.1, integration profiles and registry,
+  the LangGraph adapter, and the declared dependency range unchanged.
+
 ## dhms-agentfuse 3.7.1 - Unreleased
 
 * Added a bounded public-API LangGraph `ToolNode` consumer trial at the frozen

@@ -1,0 +1,112 @@
+{
+  "release_version": "3.7.3",
+  "package_version": "3.7.3",
+  "canonical_source_commit": "ae3d75287415d8c80a1726a73dbee1ef3deb6421",
+  "canonical_source_commit_role": "frozen v3.7.2 runtime-source baseline inherited by v3.7.3",
+  "evidence_schema_version": "agentfuse-evidence-schema-v0.1",
+  "review_evidence": {
+    "pull_request": 11,
+    "reviewed_head": "bbc4bf8bf9d66c347c05939385ff0b82a3949df0",
+    "ci_run": 32051700104,
+    "wheel_artifact": 9294922822,
+    "wheel_sha256": "317bf6967b4ce881754b9c1c313c0bfe8abbc014e1e98bfe852cd8c49f3903b4",
+    "observed_dependencies": {
+      "langchain-core": "1.5.5"
+    },
+    "matrix": [
+      {
+        "python": "3.10",
+        "langgraph": "1.2.11",
+        "result_artifact": 9294931622,
+        "verdict": "PASS"
+      },
+      {
+        "python": "3.11",
+        "langgraph": "1.2.0",
+        "result_artifact": 9294932517,
+        "verdict": "PASS"
+      },
+      {
+        "python": "3.11",
+        "langgraph": "1.2.11",
+        "result_artifact": 9294930572,
+        "verdict": "PASS"
+      }
+    ]
+  },
+  "post_merge_evidence": {
+    "merge_commit": "ae3d75287415d8c80a1726a73dbee1ef3deb6421",
+    "ci_run": 32095927125,
+    "wheel_artifact": 9309921770,
+    "wheel_sha256": "cc6e95a10ea529e6cd29bc279c3ecf2c621351ef31563ab0d6affd6acffecce0",
+    "observed_dependencies": {
+      "langchain-core": "1.5.6"
+    },
+    "matrix": [
+      {
+        "python": "3.10",
+        "langgraph": "1.2.11",
+        "result_artifact": 9309929120,
+        "verdict": "PASS"
+      },
+      {
+        "python": "3.11",
+        "langgraph": "1.2.0",
+        "result_artifact": 9309929013,
+        "verdict": "PASS"
+      },
+      {
+        "python": "3.11",
+        "langgraph": "1.2.11",
+        "result_artifact": 9309928624,
+        "verdict": "PASS"
+      }
+    ]
+  },
+  "matrix_invariants": {
+    "allow_handler_count": 1,
+    "block_handler_count": 0,
+    "block_dispatch": false,
+    "source_isolation": true
+  },
+  "artifact_interpretation": {
+    "separate_builds_passed_same_bounded_invariants": true,
+    "byte_identical_reproducible_build_claim": false,
+    "arbitrary_future_transitive_compatibility_claim": false
+  },
+  "integration_profiles": [
+    "python-runtime-guard",
+    "provider-neutral-reference",
+    "langgraph-tool-node",
+    "dsh-tools-pre-execute"
+  ],
+  "protected_runtime_files": {
+    "dhms_agentfuse/runtime_guard.py": "c533a481ae0693809b3d7a5a37926a08ede57d04c49c8dc84b608af7130634eb",
+    "dhms_agentfuse/evidence_schema.py": "bfe65fef8d70287d7e7c52759630c1192dfd9d450d0ea43cbc5ffbff2b63de6e",
+    "dhms_agentfuse/integrations/model.py": "519942441174b1f6e7705b014eb25ab14b7c54cfd418d2cd28d8f80d54f59aee",
+    "dhms_agentfuse/integrations/registry.py": "35741ee551f6268bd2d951391c2799c9e7242a7486c858447f4cf2fcfab73b57",
+    "dhms_agentfuse/langgraph_runtime_guard.py": "2b966e4be5092f4c0ab4c0b6caa218fec35d66280eff98b94252ecce73cd7c09"
+  },
+  "compatibility_manifest": {
+    "path": "validation/compatibility_v3_7_2/compatibility_matrix.json",
+    "sha256": "c8b70f3d29112fd20312e0fb7ab48f1628eeef3179c28844623fdad4642898ad"
+  },
+  "supported_claims": [
+    "experimental public beta",
+    "fail-closed pre-dispatch policy boundary for guarded invocation paths",
+    "tested LangGraph ToolNode integration on exact recorded combinations",
+    "zero protected handler execution on tested block paths",
+    "clean-wheel public consumer path"
+  ],
+  "non_claims": [
+    "production readiness or production security",
+    "universal runtime interception or protection",
+    "compatibility with all Python, LangGraph, or transitive dependency versions",
+    "official LangGraph or DSH certification",
+    "sandbox, malware detection, DLP, compliance certification, or enterprise readiness",
+    "exactly-once physical execution or global replay protection",
+    "external adoption or product-market fit"
+  ],
+  "next_mode": "public_beta",
+  "external_signal_required_for_next_product_architecture": true
+}

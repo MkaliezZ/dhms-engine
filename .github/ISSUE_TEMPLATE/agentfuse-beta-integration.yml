@@ -1,0 +1,54 @@
+name: AgentFuse Beta Integration Request
+description: Share one agent repository and one protected tool for a bounded public-beta integration discussion.
+title: "[AgentFuse Beta] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for trying the AgentFuse Experimental Public Beta.
+
+        Share your agent repo and one protected tool. We can help map the first AgentFuse integration without requiring you to understand AgentFuse internals.
+
+  - type: input
+    id: repository_url
+    attributes:
+      label: Repository URL
+      description: Link to the agent or runtime repository.
+      placeholder: https://github.com/owner/repository
+    validations:
+      required: true
+
+  - type: input
+    id: runtime_framework
+    attributes:
+      label: Runtime or framework
+      description: Which runtime or framework owns tool dispatch?
+      placeholder: LangGraph, custom Python runtime, or another framework
+    validations:
+      required: true
+
+  - type: input
+    id: protected_tool
+    attributes:
+      label: Protected tool or action
+      description: Name one side-effect-capable tool or action you want to guard.
+      placeholder: send_email, execute_sql, write_file, or deploy_service
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired_boundary
+    attributes:
+      label: What should be blocked or approved before dispatch?
+      description: Describe the smallest decision boundary you need.
+      placeholder: Block production writes unless trusted application policy explicitly allows them.
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Optional notes
+      description: Add lifecycle, approval, retry, or integration details if useful.
+    validations:
+      required: false

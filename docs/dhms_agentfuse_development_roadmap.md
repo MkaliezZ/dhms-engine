@@ -4,7 +4,7 @@
 
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
-* Current package milestone: `v3.7.2 Compatibility Matrix and CI`
+* Current package milestone: `v3.7.3 Integration Release Seal + Public Beta`
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
@@ -3071,17 +3071,26 @@ DHMS AgentFuse currently does not claim:
 
 * add exact-version, built-wheel compatibility evidence for the maintained
   LangGraph consumer mapping
-* current milestone in v3.7.2
+* complete/frozen milestone in v3.7.2
 
-### v3.7.3 Integration Release Seal
+### v3.7.3 Integration Release Seal + Public Beta
 
 * seal reviewed integration claims without expanding execution capability
-* next planned milestone; not started by v3.7.2
+* publish the tagged package, bounded trial, compatibility evidence, and beta
+  integration-request entry through GitHub
+* current release milestone in v3.7.3
+
+### Next Product Development
+
+No internal architecture milestone begins solely because it is numerically
+next. After v3.7.3, concrete external integration friction is the primary input
+to the product roadmap.
 
 ### v3.8.x Policy Provenance and Trust Contract
 
-Conditional: do not begin without a concrete external consumer need or real
-external trial/integration evidence.
+Not automatically next. Consider only if a concrete external consumer need or
+real external trial/integration evidence supports provenance work. The existing
+external-consumer and real-trial gate remains mandatory.
 
 ### v3.9.x Operational Hardening
 
@@ -3095,4 +3104,4 @@ external trial/integration evidence.
 
 ## Final Roadmap Verdict
 
-`READY_FOR_V3_7_2_REVIEW`
+`READY_FOR_V3_7_3_PUBLIC_BETA_REVIEW`

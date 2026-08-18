@@ -2,11 +2,11 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](pyproject.toml)
-[![AgentFuse](https://img.shields.io/badge/AgentFuse-3.7.2-green.svg)](pyproject.toml)
+[![AgentFuse](https://img.shields.io/badge/AgentFuse-3.7.3-green.svg)](pyproject.toml)
 [![Historical Evidence](https://img.shields.io/badge/historical%20evidence-v3.5.2-purple.svg)](docs/dhms_real_langgraph_bigtool_api_wiring_demo_v3_5_2.md)
 [![Docs](https://img.shields.io/badge/docs-available-informational.svg)](docs/)
 
-**AgentFuse is an experimental in-process pre-dispatch policy and authorization boundary for AI agent tools.**
+**AgentFuse is a fail-closed pre-dispatch execution boundary for side-effect-capable AI agent tools.**
 
 An integrating runtime validates its own action, approval, identity, risk, and business-policy contracts, maps trusted context into a `ToolCallRequest`, and asks AgentFuse for a canonical `allow` or `block` decision. AgentFuse can return that decision without dispatch or enforce it before a handler supplied through the guarded invocation path.
 
@@ -14,10 +14,53 @@ AgentFuse is not a process sandbox, malware detector, intrinsic danger classifie
 
 Chinese overview: [README.zh-CN.md](README.zh-CN.md)
 
+> **Experimental Public Beta**
+>
+> The supported public paths are `RuntimeGuard`, the explicit LangGraph
+> `ToolNode` integration, and immutable integration metadata. A protected call
+> reaches its handler only when the trusted policy boundary returns `allow`.
+
+## Install
+
+PyPI publication is not currently available. Install the tagged public-beta
+package from GitHub:
+
+```bash
+python -m pip install \
+  "dhms-agentfuse @ git+https://github.com/MkaliezZ/dhms-engine.git@v3.7.3"
+```
+
+The [v3.7.3 GitHub Release](https://github.com/MkaliezZ/dhms-engine/releases/tag/v3.7.3)
+also provides a wheel and source distribution.
+
+## Five-Minute Beta Trial
+
+No LLM provider, API key, or runtime external service is required:
+
+```bash
+git clone --branch v3.7.3 --depth 1 \
+  https://github.com/MkaliezZ/dhms-engine.git agentfuse-beta
+cd agentfuse-beta
+python -m pip install -e . "langgraph==1.2.11"
+python examples/integration_trial/five_minute_v3_7_1/run_trial.py
+```
+
+The bounded trial runs one allowed handler exactly once and one blocked handler
+zero times. See the [full five-minute trial guide](docs/dhms_agentfuse_five_minute_integration_trial_v3_7_1.md).
+
+## AgentFuse Public Beta
+
+Maintain an agent runtime or an agent with side-effect-capable tools?
+[Open a Beta Integration Request](https://github.com/MkaliezZ/dhms-engine/issues/new?template=agentfuse-beta-integration.yml)
+with your repository, runtime/framework, and one protected tool. The form is
+designed to take under one minute and starts a bounded integration discussion;
+it does not promise indefinite engineering support.
+
 ## Current Status
 
 ```text
-PACKAGE=dhms-agentfuse 3.7.2
+PACKAGE=dhms-agentfuse 3.7.3
+STATUS=experimental-public-beta
 PUBLIC_API=RuntimeGuardDecision|evaluate|aevaluate|invoke|ainvoke
 INTEGRATION_API=IntegrationProfile|list_integrations|get_integration
 EVIDENCE_SCHEMA=agentfuse-evidence-schema-v0.1
@@ -39,7 +82,12 @@ and evidence boundaries; it does not execute tools, discover runtimes, or claim
 that different hosts share one universal lifecycle. The underlying 14-case
 v3.6.2 matrix remains frozen at 52 PASS, 4 justified N/A, and 0 FAIL.
 
-## Quickstart
+The [v3.7.3 Integration Release Seal](docs/dhms_agentfuse_integration_release_seal_v3_7_3.md)
+and its [machine-readable record](release/agentfuse_v3_7_3_release_seal.json)
+freeze the exact review and post-merge compatibility evidence behind this
+public beta without changing runtime behavior.
+
+## Maintainer Checks
 
 ```bash
 pip install -e .
@@ -108,7 +156,9 @@ Expected verdict:
 AGENTFUSE_HERMES_53021_EXTERNAL_PROOF_PASS
 ```
 
-If your system `python` is older than Python 3.10, use a Python 3.11 runtime. This repository documents an editable local package; this README does not claim a PyPI release.
+If your system `python` is older than Python 3.10, use a Python 3.11 runtime.
+The install instructions above intentionally use the tagged GitHub source;
+this README does not claim a PyPI release.
 
 ## Runtime Guard
 
@@ -152,7 +202,7 @@ Risk classification must come from trusted application configuration or another 
 - request and response identity validation
 - source, schema, policy revision, and protocol checks
 
-Trusted values may be placed in `ToolCallRequest.safe_metadata` for a custom policy to inspect. AgentFuse 3.7.1 does not define or universally validate another runtime's approval schema.
+Trusted values may be placed in `ToolCallRequest.safe_metadata` for a custom policy to inspect. AgentFuse 3.7.3 does not define or universally validate another runtime's approval schema.
 
 ### AgentFuse owns
 

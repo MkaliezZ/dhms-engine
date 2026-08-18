@@ -1,5 +1,17 @@
 # Changelog
 
+## dhms-agentfuse 3.7.3 - 2026-08-18
+
+* Sealed the exact v3.7.2 review and post-merge compatibility evidence in a
+  concise machine-readable release record and public release document.
+* Opened the Experimental Public Beta with a truthful tagged-source install,
+  a visible five-minute LangGraph trial, and a low-friction integration request
+  form.
+* Rotated the existing wheel-first CI to package 3.7.3 while preserving the
+  exact three-cell Python/LangGraph compatibility matrix.
+* Kept RuntimeGuard, Evidence Schema v0.1, integration profiles and registry,
+  the LangGraph adapter, and policy semantics unchanged.
+
 ## dhms-agentfuse 3.7.2 - Unreleased
 
 * Added a manifest-driven wheel compatibility matrix for exact Python and

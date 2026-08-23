@@ -45,9 +45,13 @@ Send a JSON object to `POST /evaluate`:
 }
 ```
 
-Raw `arguments` are not accepted. The digest is treated as opaque boundary
-metadata and is not copied into the response. The demo policy is intentionally
-small:
+Use synthetic or otherwise safe-to-share values in `context`. Raw tool
+arguments are not accepted or stored by this prototype. The example retains
+only the context key names as safe decision metadata and does not echo context
+values in its response.
+
+The argument digest is treated as opaque boundary metadata and is not copied
+into the response. The demo policy is intentionally small:
 
 - `read_profile` is allowed;
 - `delete_file` and `transfer_money` are blocked; and
@@ -76,7 +80,8 @@ Blocked response:
 the host to continue its own lifecycle; it does not claim that dispatch or
 execution occurred. A `block` response carries `not_executed` because the
 AgentFuse decision contains canonical non-execution evidence and this service
-never dispatches a handler.
+never dispatches a handler. The HTTP prototype does not manage or report the
+host runtime's final execution outcome.
 
 ## Run Locally
 

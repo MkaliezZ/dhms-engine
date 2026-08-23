@@ -74,9 +74,10 @@ The host runtime remains authoritative for these observations. An `allow`
 decision permits host dispatch; it does not by itself prove that a handler
 started or completed successfully.
 
-## Validation Scenario 3 - Runtime Failure After Approval
+## Validation Scenario 3 - Allowed Action Failed After Dispatch
 
-An allowed action can still fail after the execution boundary:
+After an `allow` decision, the host runtime may dispatch the action. That
+action can still fail after crossing the execution boundary:
 
 ```text
 decision: allow
@@ -85,9 +86,10 @@ handler: failed
 execution_status: execution_failed
 ```
 
-This is not a policy denial. Keeping the policy decision and execution outcome
-separate lets an operator distinguish a blocked action from a runtime, handler,
-or downstream failure.
+This is not a policy denial. The host runtime owns the execution lifecycle and
+final outcome. Keeping the policy decision and execution outcome separate lets
+an operator distinguish a blocked action from a runtime, handler, or downstream
+failure.
 
 ## Security / Architecture Review Questions
 

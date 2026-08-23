@@ -158,6 +158,16 @@ for the exact contract and boundaries. Provider-neutral denial fixtures are
 also available in
 [`examples/trial/denial_lifecycle_regression_fixtures/`](examples/trial/denial_lifecycle_regression_fixtures/).
 
+## Additional Evaluation Paths
+
+- The [Design Partner Trial](examples/design_partner_trial/) runs blocked,
+  allowed, and allowed-but-failed scenarios so evaluators can compare the
+  policy decision, dispatch boundary, execution outcome, and generated
+  evidence.
+- The [HTTP Policy Service prototype](examples/http_policy_service/) exposes an
+  experimental language-neutral decision boundary while leaving tool dispatch
+  and execution outcomes with the host runtime.
+
 ## Early Validation Program
 
 ### Free technical validation for early adopters

@@ -15,6 +15,40 @@ python -m pip install dhms-agentfuse==3.7.3
 
 Chinese technical overview: [README.zh-CN.md](README.zh-CN.md)
 
+## Execution Assurance
+
+Modern agent systems can already use permissions, approvals, and guardrails.
+After an incident, teams still need to answer a separate set of questions:
+
+- Did the agent actually execute the action?
+- Was the tool call dispatched?
+- Did the side-effect path begin?
+
+AgentFuse focuses on that execution boundary for explicit guarded paths. It
+keeps a policy decision separate from the host runtime's execution outcome, so
+a block can be represented as `not_executed` evidence rather than as a generic
+tool failure.
+
+```text
+decision
+    |
+    v
+dispatch boundary
+    |
+    +---- blocked
+    |        |
+    |        v
+    |   not_executed evidence
+    |
+    +---- allowed
+             |
+             v
+       host runtime execution
+```
+
+This is execution assurance, not a claim that AgentFuse replaces the host
+runtime's approvals, retries, handlers, or physical outcome recording.
+
 ## The Problem
 
 Agents increasingly use tools that read data, write files, call APIs, send
@@ -80,8 +114,8 @@ certification, production deployment, or upstream framework adoption.
 | Runtime or ecosystem | Verified surface | Public beta status |
 | --- | --- | --- |
 | [LangGraph](docs/dhms_agentfuse_five_minute_integration_trial_v3_7_1.md) | Packaged `LangGraphRuntimeGuardAdapter` for an explicit `ToolNode` path, with identity-preserving terminal results and tested allow/block behavior at recorded versions. | Built-in public-beta adapter; not universal LangGraph interception. |
-| [Microsoft Agent Framework sample](https://github.com/microsoft/agent-framework/pull/7719) | Optional `FunctionMiddleware` sample and focused contract tests for pre-dispatch block, guard failure, cancellation, and host-owned handler failure. | Experimental external sample; not part of the upstream package. |
-| [PraisonAI](https://github.com/MervinPraison/PraisonAI/pull/4023) | Generic `tool_call_id` middleware plumbing is upstream; an [optional AgentFuse plugin](https://github.com/MervinPraison/PraisonAI-Plugins/pull/18) maps decisions to host-native `ToolResponse` results. | Experimental plugin contribution under review; no adoption claim. |
+| [Microsoft Agent Framework community sample](https://github.com/microsoft/agent-framework/pull/7719) | Community-maintained optional `FunctionMiddleware` compatibility sample and focused contract tests for pre-dispatch block, guard failure, cancellation, and host-owned handler failure. | Experimental external sample; not part of the upstream package and not Microsoft-maintained. |
+| [PraisonAI](https://github.com/MervinPraison/PraisonAI/pull/4023) | Generic `tool_call_id` middleware plumbing is upstream; an [optional AgentFuse plugin](https://github.com/MervinPraison/PraisonAI-Plugins/pull/18) maps decisions to host-native `ToolResponse` results. | Upstream middleware change merged; optional AgentFuse plugin remains separate and experimental; no adoption claim. |
 | [Pydantic ecosystem](https://github.com/pydantic/pydantic-ai-harness/issues/642) | A validated fork proof maps `RuntimeGuard` to the existing `ToolGuardrail` boundary while preserving host-native block semantics and sibling continuation. | Experimental fork proof; not an upstream integration. |
 | [DSH](docs/dhms_agentfuse_multi_runtime_integration_package_v3_7_0.md#dsh-tools-pre-execute) | Separate TypeScript [pre-execute plugin](https://github.com/MkaliezZ/dsh-agentfuse-plugin) for one pinned DeepSeek Harness path, with conformance provenance exposed as package metadata. | Reviewed experimental external adapter; not official DeepSeek certification. |
 
@@ -236,6 +270,7 @@ the exact reviewed evidence and compatibility cells.
 - [Consumer integration contract](docs/dhms_agentfuse_consumer_integration_contract_v3_6_1.md)
 - [Multi-runtime integration package](docs/dhms_agentfuse_multi_runtime_integration_package_v3_7_0.md)
 - [Five-minute integration trial](docs/dhms_agentfuse_five_minute_integration_trial_v3_7_1.md)
+- [Enterprise Validation Pack](docs/agentfuse_enterprise_validation_pack.md)
 - [Compatibility matrix and CI](docs/dhms_agentfuse_compatibility_matrix_and_ci_v3_7_2.md)
 - [v3.7.3 release seal](docs/dhms_agentfuse_integration_release_seal_v3_7_3.md)
 - [Historical evidence archive](docs/)

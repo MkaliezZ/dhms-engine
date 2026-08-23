@@ -1,0 +1,10 @@
+{
+  "scenario_id": "failed_execution",
+  "title": "Allowed but failed execution",
+  "tool_call_id": "trial-failure-001",
+  "tool_name": "update_customer_note",
+  "arguments": {
+    "note_reference": "synthetic-note"
+  },
+  "handler_behavior": "raise"
+}

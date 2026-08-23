@@ -1,0 +1,10 @@
+{
+  "scenario_id": "allowed_tool_call",
+  "title": "Allowed tool request",
+  "tool_call_id": "trial-allow-001",
+  "tool_name": "read_customer_profile",
+  "arguments": {
+    "profile_reference": "synthetic-profile"
+  },
+  "handler_behavior": "return"
+}

@@ -558,6 +558,7 @@ class RuntimeGuard:
         return_value: Any,
         *,
         handler_started: bool | None = True,
+        outcome: str = "executed",
     ) -> RuntimeGuardResult:
         return RuntimeGuardResult(
             tool_call_id=tool_call.tool_call_id,
@@ -566,7 +567,7 @@ class RuntimeGuard:
             reason_code=decision.reason_code,
             dispatch_occurred=True,
             handler_started=handler_started,
-            outcome="executed",
+            outcome=outcome,
             tool_failure=False,
             side_effect_occurred=None,
             evidence=decision.evidence,
@@ -582,6 +583,7 @@ class RuntimeGuard:
         handler_started: bool | None,
         failure_category: str,
         side_effect_occurred: bool | None,
+        outcome: str = "execution_failed",
     ) -> RuntimeGuardResult:
         return RuntimeGuardResult(
             tool_call_id=tool_call.tool_call_id,
@@ -590,7 +592,7 @@ class RuntimeGuard:
             reason_code=decision.reason_code,
             dispatch_occurred=dispatch_occurred,
             handler_started=handler_started,
-            outcome="execution_failed",
+            outcome=outcome,
             tool_failure=True,
             side_effect_occurred=side_effect_occurred,
             evidence=decision.evidence,

@@ -50,6 +50,10 @@ handler entry from that boundary. A host adapter that only invokes an opaque
 runtime continuation can prove that continuation dispatch occurred, but it
 must report handler entry as unknown unless the integration exposes a direct
 observation. Unknown is not equivalent to either `true` or `false`.
+`executed` means AgentFuse directly observed entry into the protected handler
+path it owns. `host_completed` means an opaque host continuation returned
+successfully; it does not prove physical handler entry or side-effect
+completion.
 
 The lifecycle facts are separate:
 

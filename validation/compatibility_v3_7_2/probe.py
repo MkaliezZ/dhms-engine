@@ -195,7 +195,10 @@ def _validate_result(result: dict[str, Any]) -> None:
     _require(result["integration_id"] == INTEGRATION_ID, "unexpected integration profile")
     _require(result["profile_frozen_tested_version"] == "1.2.11", "profile provenance changed")
     _require(allow["decision"] == "allow", "allow decision changed")
-    _require(allow["execution_outcome"] == "executed", "allow outcome was not executed")
+    _require(
+        allow["execution_outcome"] == "host_completed",
+        "allow host continuation did not complete",
+    )
     _require(allow["handler_started"] is None, "opaque handler state must remain unknown")
     _require(allow["handler_count"] == 1, "allowed handler count was not one")
     _require(allow["tool_call_identity_preserved"] is True, "allow identity changed")

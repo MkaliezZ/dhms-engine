@@ -122,8 +122,8 @@ def _validate(summary: dict[str, Any]) -> None:
     }
     receipts = {receipt["tool_name"]: receipt for receipt in summary["receipts"]}
     assert receipts["delete_file"]["outcome"] == "not_executed"
-    assert receipts["read_project_summary"]["outcome"] == "executed"
-    assert receipts["execute_production_sql"]["outcome"] == "execution_failed"
+    assert receipts["read_project_summary"]["outcome"] == "host_completed"
+    assert receipts["execute_production_sql"]["outcome"] == "host_failed"
     assert receipts["execute_production_sql"]["side_effect_occurred"] is None
     assert summary["every_call_has_terminal_message"] is True
     assert summary["original_call_order_preserved"] is True

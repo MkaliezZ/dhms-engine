@@ -46,7 +46,7 @@ def test_allow_and_block_use_real_public_langgraph_path() -> None:
     )
     assert importlib.metadata.version("langgraph") == "1.2.11"
     assert allow["policy_decision"] == "allow"
-    assert allow["execution_outcome"] == "executed"
+    assert allow["execution_outcome"] == "host_completed"
     assert allow["protected_handler_count"] == 1
     assert allow["tool_call_identity_preserved"] is True
     assert block["policy_decision"] == "block"

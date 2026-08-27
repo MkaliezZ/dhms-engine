@@ -34,10 +34,12 @@ conformance helpers, or DSH code.
 
 The allow case calls a trusted synthetic summary tool. The policy decision is
 `allow`, an external in-memory counter observes one selected handler start, and
-the terminal receipt records `executed`. Starting with AgentFuse 3.7.4, the
-LangGraph receipt itself leaves `handler_started` unknown because the adapter
-only observes the opaque host continuation. This is a selected successful host
-outcome, not a claim that `allow` always means successful physical execution.
+the terminal receipt records `host_completed`. Starting with AgentFuse 3.7.4,
+the LangGraph receipt itself leaves `handler_started` unknown because the
+adapter only observes the opaque host continuation. `host_completed` means that
+continuation returned successfully; it does not claim that the physical handler
+started or that a side effect completed. Direct `RuntimeGuard.invoke()` success,
+where AgentFuse owns and observes the handler call, remains `executed`.
 
 The block case calls a registered synthetic mutation tool through the same
 wrapped `ToolNode`. The policy decision is `block`, the receipt records

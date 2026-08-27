@@ -98,7 +98,7 @@ def test_probe_runs_real_allow_and_block_path_deterministically() -> None:
     assert first["profile_frozen_tested_version"] == "1.2.11"
     assert first["cases"]["allow"] == {
         "decision": "allow",
-        "execution_outcome": "executed",
+        "execution_outcome": "host_completed",
         "handler_started": None,
         "handler_count": 1,
         "tool_call_identity_preserved": True,

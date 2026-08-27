@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import asyncio
 import json
-from typing import Any
+from typing import Annotated, Any
 
 from langchain_core.messages import AIMessage, ToolMessage
-from langchain_core.tools import tool
+from langchain_core.tools import InjectedToolCallId, tool
 from langgraph.graph import MessagesState, StateGraph
 
 from dhms_agentfuse import LangGraphRuntimeGuardAdapter, RuntimeGuard
@@ -91,7 +91,8 @@ def test_real_langgraph_allowed_handler_executes_once() -> None:
     assert receipt.handler_started is None
     assert receipt.handler_invoked is None
     assert receipt.execution == "unknown"
-    assert receipt.outcome == "executed"
+    assert receipt.outcome == "host_completed"
+    assert receipt.to_safe_dict()["outcome"] == "host_completed"
 
 
 def test_terminal_tool_result_preserves_original_call_id() -> None:
@@ -122,11 +123,54 @@ def test_allowed_handler_failure_remains_transcript_complete() -> None:
     assert messages[0].status == "error"
     assert messages[0].tool_call_id == "call-failure"
     assert receipt.decision == "allow"
-    assert receipt.outcome == "execution_failed"
+    assert receipt.execution == "unknown"
+    assert receipt.outcome == "host_failed"
     assert receipt.dispatch_occurred is True
     assert receipt.handler_started is None
     assert receipt.failure_category == "host_execution_exception"
     assert receipt.side_effect_occurred is None
+    assert receipt.to_safe_dict()["outcome"] == "host_failed"
+
+
+def test_host_error_message_does_not_claim_physical_handler_failure() -> None:
+    @tool
+    def host_error(
+        value: str,
+        tool_call_id: Annotated[str, InjectedToolCallId],
+    ) -> ToolMessage:
+        """Return a deterministic host-native error result."""
+
+        return ToolMessage(
+            content="safe host error",
+            tool_call_id=tool_call_id,
+            name="host_error",
+            status="error",
+        )
+
+    adapter = LangGraphRuntimeGuardAdapter(RuntimeGuard(allow_tools={"host_error"}))
+    builder = StateGraph(MessagesState)
+    builder.add_node("tools", adapter.create_tool_node([host_error]))
+    builder.set_entry_point("tools")
+    builder.set_finish_point("tools")
+    graph = builder.compile()
+    graph.invoke(
+        {
+            "messages": [
+                AIMessage(
+                    content="",
+                    tool_calls=[_call("host_error", "call-host-error")],
+                )
+            ]
+        }
+    )
+    receipt = adapter.receipt_for("call-host-error")
+
+    assert receipt.dispatch_occurred is True
+    assert receipt.handler_started is None
+    assert receipt.execution == "unknown"
+    assert receipt.outcome == "host_failed"
+    assert receipt.failure_category == "host_execution_error"
+    assert receipt.to_safe_dict()["outcome"] == "host_failed"
 
 
 def test_denial_is_not_represented_as_successful_execution() -> None:
@@ -200,7 +244,8 @@ def test_real_langgraph_async_tool_path_is_guarded() -> None:
     assert messages[0].tool_call_id == "call-async"
     receipt = adapter.receipt_for("call-async")
     assert receipt.handler_started is None
-    assert receipt.outcome == "executed"
+    assert receipt.execution == "unknown"
+    assert receipt.outcome == "host_completed"
 
 
 def test_unregistered_allowed_tool_does_not_claim_handler_started() -> None:
@@ -232,6 +277,8 @@ def test_unregistered_allowed_tool_does_not_claim_handler_started() -> None:
 
     assert isinstance(output["messages"][-1], ToolMessage)
     assert receipt.handler_started is False
+    assert receipt.execution == "not_started"
+    assert receipt.outcome == "not_executed"
     assert receipt.failure_category == "unregistered_tool"
     assert receipt.side_effect_occurred is False
 
@@ -274,8 +321,11 @@ def test_tool_input_validation_error_does_not_claim_handler_started() -> None:
     assert counters["read"] == 0
     assert receipt.dispatch_occurred is True
     assert receipt.handler_started is False
+    assert receipt.execution == "not_started"
+    assert receipt.outcome == "input_rejected"
     assert receipt.failure_category == "tool_input_error"
     assert receipt.side_effect_occurred is False
+    assert receipt.to_safe_dict()["outcome"] == "input_rejected"
 
 
 def test_graph_interrupt_is_control_flow_not_execution_failure() -> None:

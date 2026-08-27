@@ -471,7 +471,7 @@ def run_langgraph(document: Mapping[str, Any], case: Mapping[str, Any]) -> Confo
             assert not first.dispatch_occurred and not first.handler_started
         elif scenario == "handler_failure":
             assert counter == 1 and first.decision == "allow"
-            assert first.outcome == "execution_failed" and first.tool_failure
+            assert first.outcome == "host_failed" and first.tool_failure
         elif scenario == "interrupt":
             assert counter == 1 and first.decision == "allow"
             assert first.outcome == "interrupted" and not first.tool_failure
@@ -499,11 +499,17 @@ def run_langgraph(document: Mapping[str, Any], case: Mapping[str, Any]) -> Confo
         safe = _safe(*safe_values)
         assert safe
         terminal_count = None if scenario == "interrupt" else len(messages)
+        execution_outcome = first.outcome
+        if counter > 0 and first.outcome == "host_completed":
+            execution_outcome = "executed"
+        elif counter > 0 and first.outcome == "host_failed":
+            execution_outcome = "execution_failed"
         return _result(
             document, case, adapter_id,
             policy_decision=first.decision, policy_reason=first.reason_code,
             dispatch_observed=first.dispatch_occurred, handler_started=first.handler_started,
-            execution_outcome=first.outcome, interruption_observed=first.outcome == "interrupted",
+            execution_outcome=execution_outcome,
+            interruption_observed=first.outcome == "interrupted",
             safe_output=safe, terminal_settlement_count=terminal_count,
             identity_preserved=(
                 [receipt.tool_call_id for receipt in receipts]

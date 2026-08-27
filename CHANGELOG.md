@@ -4,7 +4,8 @@
 
 * Made LangGraph receipts distinguish observed host-continuation dispatch from
   unknown physical handler entry, including success, interruption, and opaque
-  host failure paths.
+  host failure paths. Opaque success now records `host_completed`, while direct
+  `RuntimeGuard` handler success remains `executed`.
 * Added canonical SHA-256 validation, immutable policy-candidate evidence,
   identity-chain checks, and explicit provenance for historical interception
   assertions.

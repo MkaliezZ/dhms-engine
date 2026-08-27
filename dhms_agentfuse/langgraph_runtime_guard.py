@@ -115,6 +115,7 @@ class LangGraphRuntimeGuardAdapter:
                 handler_started=False,
                 failure_category="unregistered_tool",
                 side_effect_occurred=False,
+                outcome="not_executed",
             )
             self._store(receipt)
             return self._terminal_message(receipt)
@@ -136,6 +137,7 @@ class LangGraphRuntimeGuardAdapter:
                 handler_started=False,
                 failure_category="tool_input_error",
                 side_effect_occurred=False,
+                outcome="input_rejected",
             )
             self._store(receipt)
             return self._terminal_message(receipt)
@@ -147,6 +149,7 @@ class LangGraphRuntimeGuardAdapter:
                 handler_started=None,
                 failure_category="host_execution_exception",
                 side_effect_occurred=None,
+                outcome="host_failed",
             )
             self._store(receipt)
             return self._terminal_message(receipt)
@@ -158,6 +161,7 @@ class LangGraphRuntimeGuardAdapter:
                 handler_started=None,
                 failure_category="host_execution_error",
                 side_effect_occurred=None,
+                outcome="host_failed",
             )
         else:
             return_value = result.content if isinstance(result, ToolMessage) else None
@@ -166,6 +170,7 @@ class LangGraphRuntimeGuardAdapter:
                 decision,
                 return_value,
                 handler_started=None,
+                outcome="host_completed",
             )
         self._store(receipt)
         return result
@@ -189,6 +194,7 @@ class LangGraphRuntimeGuardAdapter:
                 handler_started=False,
                 failure_category="unregistered_tool",
                 side_effect_occurred=False,
+                outcome="not_executed",
             )
             self._store(receipt)
             return self._terminal_message(receipt)
@@ -210,6 +216,7 @@ class LangGraphRuntimeGuardAdapter:
                 handler_started=False,
                 failure_category="tool_input_error",
                 side_effect_occurred=False,
+                outcome="input_rejected",
             )
             self._store(receipt)
             return self._terminal_message(receipt)
@@ -221,6 +228,7 @@ class LangGraphRuntimeGuardAdapter:
                 handler_started=None,
                 failure_category="host_execution_exception",
                 side_effect_occurred=None,
+                outcome="host_failed",
             )
             self._store(receipt)
             return self._terminal_message(receipt)
@@ -232,6 +240,7 @@ class LangGraphRuntimeGuardAdapter:
                 handler_started=None,
                 failure_category="host_execution_error",
                 side_effect_occurred=None,
+                outcome="host_failed",
             )
         else:
             return_value = result.content if isinstance(result, ToolMessage) else None
@@ -240,6 +249,7 @@ class LangGraphRuntimeGuardAdapter:
                 decision,
                 return_value,
                 handler_started=None,
+                outcome="host_completed",
             )
         self._store(receipt)
         return result

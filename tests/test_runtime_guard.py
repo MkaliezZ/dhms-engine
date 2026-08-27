@@ -158,7 +158,10 @@ def test_sync_allow_invokes_handler_once_and_returns_value() -> None:
     )
 
     assert calls == 1
+    assert result.handler_started is True
+    assert result.execution == "started"
     assert result.outcome == "executed"
+    assert result.to_safe_dict()["outcome"] == "executed"
     assert result.return_value == "result:safe"
     assert result.evidence.non_execution is None
 
@@ -238,6 +241,8 @@ def test_async_policy_exception_fails_closed() -> None:
 
     assert result.reason_code == "policy_exception"
     assert result.handler_started is False
+    assert result.execution == "not_started"
+    assert result.outcome == "not_executed"
 
 
 def test_async_invalid_policy_return_fails_closed() -> None:

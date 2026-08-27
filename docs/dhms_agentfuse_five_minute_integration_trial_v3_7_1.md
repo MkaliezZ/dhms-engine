@@ -33,9 +33,11 @@ conformance helpers, or DSH code.
 ## Trial Cases
 
 The allow case calls a trusted synthetic summary tool. The policy decision is
-`allow`, the successful selected handler starts once, and its terminal receipt
-records `executed`. This is a selected successful handler outcome, not a claim
-that `allow` always means successful physical execution.
+`allow`, an external in-memory counter observes one selected handler start, and
+the terminal receipt records `executed`. Starting with AgentFuse 3.7.4, the
+LangGraph receipt itself leaves `handler_started` unknown because the adapter
+only observes the opaque host continuation. This is a selected successful host
+outcome, not a claim that `allow` always means successful physical execution.
 
 The block case calls a registered synthetic mutation tool through the same
 wrapped `ToolNode`. The policy decision is `block`, the receipt records
@@ -76,6 +78,11 @@ RuntimeGuard and wrapped adapter. LangGraph owns ToolNode and graph execution
 semantics, including interruption, checkpoint, and resume behavior where used.
 The `IntegrationProfile` only identifies the reviewed mapping; it does not
 enforce policy.
+
+For the LangGraph adapter, `dispatch_occurred=true` means AgentFuse called the
+host-provided execution continuation. Physical handler entry is not inferred
+from that call; the receipt uses `null` when LangGraph does not expose stronger
+evidence at the wrapper boundary.
 
 The trial requires no API key, LLM provider, model call, or runtime network
 service. Its handlers only increment local in-memory counters; no filesystem,

@@ -132,7 +132,7 @@ def _validate(result: dict[str, Any]) -> None:
     assert result["runtime"]["observed_version"] == "1.2.11"
     assert allow["policy_decision"] == "allow"
     assert allow["execution_outcome"] == "executed"
-    assert allow["protected_handler_started"] is True
+    assert allow["protected_handler_started"] is None
     assert allow["protected_handler_count"] == 1
     assert allow["tool_call_identity_preserved"] is True
     assert block["policy_decision"] == "block"

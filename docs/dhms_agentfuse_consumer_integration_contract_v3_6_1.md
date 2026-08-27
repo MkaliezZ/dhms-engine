@@ -45,6 +45,12 @@ dispatch, retries, recovery, process completion, and goal completion. AgentFuse
 does not decide whether a process or agent run failed merely because one call
 was blocked.
 
+`RuntimeGuard.invoke()` directly owns the supplied handler call and can record
+handler entry from that boundary. A host adapter that only invokes an opaque
+runtime continuation can prove that continuation dispatch occurred, but it
+must report handler entry as unknown unless the integration exposes a direct
+observation. Unknown is not equivalent to either `true` or `false`.
+
 The lifecycle facts are separate:
 
 ```text
@@ -89,7 +95,9 @@ These are conceptual comparisons, not integration claims.
 
 * **LangGraph:** `GraphInterrupt` is control-flow pause semantics, not an
   ordinary tool failure. LangGraph owns pause and resume behavior. This
-  milestone does not change or certify a LangGraph integration.
+  milestone does not change or certify a LangGraph integration. In the current
+  adapter, dispatch means the host-provided continuation was invoked; it does
+  not by itself prove that the physical tool handler began.
 * **Claude Code headless permission denial:** a permission denial can coexist
   with successful process completion. The denial is a separate lifecycle fact.
   This milestone adds no Claude Code adapter or integration claim.

@@ -2,8 +2,12 @@
 
 from __future__ import annotations
 
+import hashlib
+import re
+
 import pytest
 
+from dhms_agentfuse import RuntimeGuard, ToolCallRequest
 from dhms_agentfuse.evidence_schema import (
     LayeredBoundaryDecision,
     NonExecutionEvidence,
@@ -14,6 +18,10 @@ from dhms_agentfuse.evidence_schema import (
     safe_read_only_summary_evidence,
     sql_mutation_block_evidence,
 )
+
+
+def _digest(material: str) -> str:
+    return f"sha256:{hashlib.sha256(material.encode('utf-8')).hexdigest()}"
 
 
 def _resolved_policy() -> PolicyResolutionEvidence:
@@ -130,10 +138,10 @@ def test_safe_trace_metadata_excludes_raw_inputs() -> None:
         tool_name="dangerous_sql_mutation_tool",
         decision="block",
         policy_id="policy:block:sql",
-        policy_hash="sha256:block-sql",
+        policy_hash=_digest("policy:block:sql"),
         reason_code="policy_denied",
         boundary_type="call",
-        args_hash="sha256:redacted-args",
+        args_hash=_digest("redacted-args"),
         evidence_ref="evidence:block:sql:001",
     )
 
@@ -144,10 +152,10 @@ def test_safe_trace_metadata_excludes_raw_inputs() -> None:
             tool_name="dangerous_sql_mutation_tool",
             decision="block",
             policy_id="policy:block:sql",
-            policy_hash="sha256:block-sql",
+            policy_hash=_digest("policy:block:sql"),
             reason_code="policy_denied",
             boundary_type="call",
-            args_hash="sha256:redacted-args",
+            args_hash=_digest("redacted-args"),
             evidence_ref="evidence:block:sql:001",
             raw_inputs_in_trace=True,
         )
@@ -158,13 +166,82 @@ def test_call_level_boundary_can_be_decisive_gate() -> None:
         boundary_type="call",
         decision="block",
         policy_id="policy:block:call",
-        policy_hash="sha256:block-call",
+        policy_hash=_digest("policy:block:call"),
         reason_code="policy_denied",
         decisive_gate=True,
     )
 
     assert decision.boundary_type == "call"
     assert decision.decisive_gate is True
+
+
+@pytest.mark.parametrize(
+    "invalid_digest",
+    [
+        "sha256:block-sql",
+        "sha256:" + "A" * 64,
+        "sha256:" + "0" * 63,
+        "sha256:" + "g" * 64,
+    ],
+)
+def test_noncanonical_sha256_values_are_rejected(invalid_digest: str) -> None:
+    with pytest.raises(ValueError, match="64 lowercase hexadecimal"):
+        LayeredBoundaryDecision(
+            boundary_type="call",
+            decision="block",
+            policy_id="policy:block:call",
+            policy_hash=invalid_digest,
+            reason_code="policy_denied",
+            decisive_gate=True,
+        )
+
+
+def test_noncanonical_args_hash_is_rejected() -> None:
+    with pytest.raises(ValueError, match="args_hash.*64 lowercase hexadecimal"):
+        SafeTraceMetadata(
+            tool_name="safe_read",
+            decision="allow",
+            policy_id="policy:safe-read",
+            policy_hash=_digest("policy:safe-read"),
+            reason_code="allowed",
+            boundary_type="call",
+            args_hash="sha256:not-a-digest",
+            evidence_ref="evidence:safe-read:001",
+        )
+
+
+def test_runtime_generated_sha256_values_are_canonical() -> None:
+    request = ToolCallRequest(
+        tool_call_id="canonical-runtime-hash",
+        tool_name="safe_read",
+        arguments={"protected": "not-returned"},
+    )
+    decision = RuntimeGuard(allow_tools={"safe_read"}).evaluate(request)
+    pattern = re.compile(r"sha256:[0-9a-f]{64}")
+
+    assert pattern.fullmatch(decision.evidence.boundary_decision.policy_hash)
+    assert pattern.fullmatch(decision.evidence.trace_metadata.args_hash)
+
+
+def test_policy_candidate_keys_are_immutable_but_serialize_as_a_list() -> None:
+    candidates = ["tool:safe_read_only_summary_tool"]
+    policy = PolicyResolutionEvidence(
+        policy_resolution_outcome="resolved",
+        match_stage="exact",
+        matched_policy_key=candidates[0],
+        match_kind="exact",
+        priority=100,
+        candidate_policy_keys=candidates,
+        fallback_reason=None,
+    )
+    candidates.append("tool:later-mutation")
+
+    assert policy.candidate_policy_keys == ("tool:safe_read_only_summary_tool",)
+    assert policy.to_dict()["candidate_policy_keys"] == [
+        "tool:safe_read_only_summary_tool"
+    ]
+    with pytest.raises(AttributeError):
+        policy.candidate_policy_keys.append("tool:mutation")  # type: ignore[attr-defined]
 
 
 def test_deterministic_examples_are_json_serializable() -> None:
@@ -181,3 +258,13 @@ def test_deterministic_examples_are_json_serializable() -> None:
         "agentfuse-evidence-schema-v0.1",
         "agentfuse-evidence-schema-v0.1",
     ]
+    serialized = [example.to_dict() for example in examples]
+    pattern = re.compile(r"sha256:[0-9a-f]{64}")
+    assert all(pattern.fullmatch(item["boundary_decision"]["policy_hash"]) for item in serialized)
+    assert all(pattern.fullmatch(item["trace_metadata"]["args_hash"]) for item in serialized)
+    assert serialized[0]["boundary_decision"]["policy_hash"] == _digest(
+        "policy-safe-read-only-summary"
+    )
+    assert serialized[0]["trace_metadata"]["args_hash"] == _digest(
+        "args-safe-read-only-summary-synthetic"
+    )

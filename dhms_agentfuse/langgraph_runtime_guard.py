@@ -19,7 +19,13 @@ from .runtime_guard import RuntimeGuard, RuntimeGuardResult, ToolCallRequest
 
 
 class LangGraphRuntimeGuardAdapter:
-    """Create a real ToolNode whose dispatch is mediated by a RuntimeGuard."""
+    """Create a real ToolNode whose host continuation is mediated by RuntimeGuard.
+
+    ``dispatch_occurred`` records whether this adapter invoked LangGraph's
+    host-provided execution continuation. The continuation is opaque here, so
+    physical handler entry remains unknown unless the adapter directly proves
+    otherwise.
+    """
 
     def __init__(self, guard: RuntimeGuard) -> None:
         self.guard = guard
@@ -115,14 +121,18 @@ class LangGraphRuntimeGuardAdapter:
         try:
             result = execute(request)
         except GraphInterrupt:
-            receipt = self.guard._interrupted_result(tool_call, decision)
+            receipt = self.guard._interrupted_result(
+                tool_call,
+                decision,
+                handler_started=None,
+            )
             self._store(receipt)
             raise
         except ToolInvocationError:
             receipt = self.guard._failure_result(
                 tool_call,
                 decision,
-                dispatch_occurred=False,
+                dispatch_occurred=True,
                 handler_started=False,
                 failure_category="tool_input_error",
                 side_effect_occurred=False,
@@ -134,8 +144,8 @@ class LangGraphRuntimeGuardAdapter:
                 tool_call,
                 decision,
                 dispatch_occurred=True,
-                handler_started=True,
-                failure_category="handler_exception",
+                handler_started=None,
+                failure_category="host_execution_exception",
                 side_effect_occurred=None,
             )
             self._store(receipt)
@@ -145,13 +155,18 @@ class LangGraphRuntimeGuardAdapter:
                 tool_call,
                 decision,
                 dispatch_occurred=True,
-                handler_started=True,
-                failure_category="handler_exception",
+                handler_started=None,
+                failure_category="host_execution_error",
                 side_effect_occurred=None,
             )
         else:
             return_value = result.content if isinstance(result, ToolMessage) else None
-            receipt = self.guard._success_result(tool_call, decision, return_value)
+            receipt = self.guard._success_result(
+                tool_call,
+                decision,
+                return_value,
+                handler_started=None,
+            )
         self._store(receipt)
         return result
 
@@ -180,14 +195,18 @@ class LangGraphRuntimeGuardAdapter:
         try:
             result = await execute(request)
         except GraphInterrupt:
-            receipt = self.guard._interrupted_result(tool_call, decision)
+            receipt = self.guard._interrupted_result(
+                tool_call,
+                decision,
+                handler_started=None,
+            )
             self._store(receipt)
             raise
         except ToolInvocationError:
             receipt = self.guard._failure_result(
                 tool_call,
                 decision,
-                dispatch_occurred=False,
+                dispatch_occurred=True,
                 handler_started=False,
                 failure_category="tool_input_error",
                 side_effect_occurred=False,
@@ -199,8 +218,8 @@ class LangGraphRuntimeGuardAdapter:
                 tool_call,
                 decision,
                 dispatch_occurred=True,
-                handler_started=True,
-                failure_category="handler_exception",
+                handler_started=None,
+                failure_category="host_execution_exception",
                 side_effect_occurred=None,
             )
             self._store(receipt)
@@ -210,13 +229,18 @@ class LangGraphRuntimeGuardAdapter:
                 tool_call,
                 decision,
                 dispatch_occurred=True,
-                handler_started=True,
-                failure_category="handler_exception",
+                handler_started=None,
+                failure_category="host_execution_error",
                 side_effect_occurred=None,
             )
         else:
             return_value = result.content if isinstance(result, ToolMessage) else None
-            receipt = self.guard._success_result(tool_call, decision, return_value)
+            receipt = self.guard._success_result(
+                tool_call,
+                decision,
+                return_value,
+                handler_started=None,
+            )
         self._store(receipt)
         return result
 

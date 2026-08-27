@@ -72,18 +72,26 @@ def _call(name: str, call_id: str) -> dict[str, Any]:
 
 def test_real_langgraph_blocked_handler_count_remains_zero() -> None:
     counters, messages, adapter = _run_graph([_call("delete_file", "call-blocked")])
+    receipt = adapter.receipt_for("call-blocked")
 
     assert counters["delete_file"] == 0
     assert messages[0].tool_call_id == "call-blocked"
-    assert adapter.receipt_for("call-blocked").outcome == "not_executed"
+    assert receipt.dispatch_occurred is False
+    assert receipt.handler_started is False
+    assert receipt.outcome == "not_executed"
 
 
 def test_real_langgraph_allowed_handler_executes_once() -> None:
     counters, messages, adapter = _run_graph([_call("read_summary", "call-allowed")])
+    receipt = adapter.receipt_for("call-allowed")
 
     assert counters["read_summary"] == 1
     assert messages[0].status == "success"
-    assert adapter.receipt_for("call-allowed").outcome == "executed"
+    assert receipt.dispatch_occurred is True
+    assert receipt.handler_started is None
+    assert receipt.handler_invoked is None
+    assert receipt.execution == "unknown"
+    assert receipt.outcome == "executed"
 
 
 def test_terminal_tool_result_preserves_original_call_id() -> None:
@@ -115,6 +123,9 @@ def test_allowed_handler_failure_remains_transcript_complete() -> None:
     assert messages[0].tool_call_id == "call-failure"
     assert receipt.decision == "allow"
     assert receipt.outcome == "execution_failed"
+    assert receipt.dispatch_occurred is True
+    assert receipt.handler_started is None
+    assert receipt.failure_category == "host_execution_exception"
     assert receipt.side_effect_occurred is None
 
 
@@ -187,7 +198,9 @@ def test_real_langgraph_async_tool_path_is_guarded() -> None:
     messages = [message for message in output["messages"] if isinstance(message, ToolMessage)]
     assert counters["async_read"] == 1
     assert messages[0].tool_call_id == "call-async"
-    assert adapter.receipt_for("call-async").outcome == "executed"
+    receipt = adapter.receipt_for("call-async")
+    assert receipt.handler_started is None
+    assert receipt.outcome == "executed"
 
 
 def test_unregistered_allowed_tool_does_not_claim_handler_started() -> None:
@@ -259,6 +272,7 @@ def test_tool_input_validation_error_does_not_claim_handler_started() -> None:
     receipt = adapter.receipt_for("call-invalid-input")
 
     assert counters["read"] == 0
+    assert receipt.dispatch_occurred is True
     assert receipt.handler_started is False
     assert receipt.failure_category == "tool_input_error"
     assert receipt.side_effect_occurred is False
@@ -271,6 +285,7 @@ def test_graph_interrupt_is_control_flow_not_execution_failure() -> None:
     assert summary["dispatch_started"] is True
     assert summary["outcome"] == "interrupted"
     assert summary["execution_failed"] is False
+    assert summary["handler_started"] is None
     assert summary["non_execution_evidence_present"] is False
     assert summary["structured_interrupt_preserved"] is True
     assert summary["interrupt_payload_redacted"] is True

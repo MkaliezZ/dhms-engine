@@ -1,5 +1,17 @@
 # Changelog
 
+## dhms-agentfuse 3.7.4 - Unreleased
+
+* Made LangGraph receipts distinguish observed host-continuation dispatch from
+  unknown physical handler entry, including success, interruption, and opaque
+  host failure paths.
+* Added canonical SHA-256 validation, immutable policy-candidate evidence,
+  identity-chain checks, and explicit provenance for historical interception
+  assertions.
+* Declared historical LangChain proof helpers as an optional dependency and
+  made the v3.7.3 release seal validate canonical Git bytes across checkout
+  line-ending conventions.
+
 ## dhms-agentfuse 3.7.3 - 2026-08-18
 
 * Sealed the exact v3.7.2 review and post-merge compatibility evidence in a

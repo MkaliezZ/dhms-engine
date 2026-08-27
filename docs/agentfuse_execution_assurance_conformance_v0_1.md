@@ -170,6 +170,13 @@ Required evidence semantics:
 - `execution_status`: records `not_executed`, `executed`, or `failed`; and
 - `safe_metadata`: carries only non-sensitive correlation or decision data.
 
+These logical facts may be assembled from more than one observation source.
+For example, an adapter receipt may prove host-continuation dispatch while a
+runtime-owned counter proves handler entry. If a particular record cannot
+observe handler entry, it must represent that field as unknown rather than
+coercing it to `true` or `false`; a conformance claim still needs separate host
+evidence for the required scenario.
+
 Safe metadata MAY include:
 
 - tool name;
@@ -210,6 +217,11 @@ A LangGraph integration can enforce the decision at a `ToolNode`, middleware,
 or other explicit pre-tool boundary. It may return a host-native tool message
 or state update, provided the original tool-call identity remains available
 and the test can distinguish a policy block from a handler failure.
+
+Calling LangGraph's host-provided continuation proves adapter dispatch, not
+physical handler entry. A wrapper that cannot observe the host's internal
+handler boundary should report that field as unknown and use separate runtime
+instrumentation when making a conformance claim.
 
 Conformance applies only to the integrated node or middleware path. It does not
 imply interception of every tool path in a graph.

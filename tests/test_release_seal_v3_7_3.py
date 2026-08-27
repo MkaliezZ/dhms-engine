@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
 
 from dhms_agentfuse.evidence_schema import SCHEMA_VERSION
 
@@ -19,13 +20,21 @@ def _seal() -> dict[str, object]:
     return json.loads(SEAL_PATH.read_text())
 
 
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def _git_blob(commit: str, relative_path: str) -> bytes:
+    return subprocess.check_output(
+        ["git", "show", f"{commit}:{relative_path}"],
+        cwd=ROOT,
+    )
+
+
+def _sha256(content: bytes) -> str:
+    return hashlib.sha256(content).hexdigest()
 
 
 def test_release_seal_records_exact_frozen_evidence() -> None:
     seal = _seal()
-    pyproject = (ROOT / "pyproject.toml").read_text()
+    release_ref = f"v{seal['release_version']}"
+    pyproject = _git_blob(release_ref, "pyproject.toml").decode("utf-8")
 
     assert seal["release_version"] == "3.7.3"
     assert seal["package_version"] == "3.7.3"
@@ -106,17 +115,29 @@ def test_release_seal_records_exact_frozen_evidence() -> None:
 
 def test_release_seal_protects_runtime_core_and_compatibility_manifest() -> None:
     seal = _seal()
+    canonical_commit = str(seal["canonical_source_commit"])
 
     for relative_path, expected_digest in seal["protected_runtime_files"].items():
-        assert _sha256(ROOT / relative_path) == expected_digest
+        assert _sha256(_git_blob(canonical_commit, relative_path)) == expected_digest
 
     manifest = seal["compatibility_manifest"]
-    assert _sha256(ROOT / manifest["path"]) == manifest["sha256"]
+    assert _sha256(_git_blob(canonical_commit, manifest["path"])) == manifest["sha256"]
     assert seal["artifact_interpretation"] == {
         "separate_builds_passed_same_bounded_invariants": True,
         "byte_identical_reproducible_build_claim": False,
         "arbitrary_future_transitive_compatibility_claim": False,
     }
+
+
+def test_release_seal_hashes_canonical_git_bytes_not_checkout_line_endings() -> None:
+    seal = _seal()
+    canonical_commit = str(seal["canonical_source_commit"])
+    relative_path = "dhms_agentfuse/runtime_guard.py"
+    canonical_bytes = _git_blob(canonical_commit, relative_path)
+    crlf_checkout_bytes = canonical_bytes.replace(b"\n", b"\r\n")
+
+    assert _sha256(canonical_bytes) == seal["protected_runtime_files"][relative_path]
+    assert _sha256(crlf_checkout_bytes) != seal["protected_runtime_files"][relative_path]
 
 
 def test_public_beta_issue_form_has_minimal_required_inputs() -> None:

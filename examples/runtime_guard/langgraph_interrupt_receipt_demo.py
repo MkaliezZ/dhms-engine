@@ -111,7 +111,7 @@ def _validate(summary: dict[str, Any]) -> None:
     assert summary["tool_call_id"] == TOOL_CALL_ID
     assert summary["decision"] == "allow"
     assert summary["dispatch_started"] is True
-    assert summary["handler_started"] is True
+    assert summary["handler_started"] is None
     assert summary["outcome"] == "interrupted"
     assert summary["execution_failed"] is False
     assert summary["side_effect_occurred"] is None

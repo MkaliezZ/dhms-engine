@@ -12,6 +12,12 @@ from dhms_agentfuse.controlled_proposal_gate import evaluate_controlled_proposal
 
 
 DHMS_INTERCEPTION_VERSION = "v3.1.1-real-langchain-dependency-agent-harness-validation"
+EVIDENCE_PROVENANCE_VALUES = {
+    "observed",
+    "derived",
+    "asserted_by_contract",
+    "unknown",
+}
 
 TOOL_CONVERSIONS = {
     "local_read_only_summary": {
@@ -157,9 +163,8 @@ def create_dhms_langchain_agent_harness() -> Dict[str, Any]:
     }
     if not langchain_is_available:
         result["dependency_note"] = (
-            "LangChain is not installed in this runtime and no repository dependency "
-            "file is available to update. Install langchain externally to exercise "
-            "the real harness creation path."
+            "The historical LangChain proof harness is optional. Install "
+            "dhms-agentfuse[langchain] to exercise its real create_agent path."
         )
         return result
 
@@ -270,6 +275,36 @@ def _interception_trace(harness: Dict[str, Any]) -> Dict[str, bool]:
     }
 
 
+def _interception_trace_provenance() -> Dict[str, str]:
+    observed = {
+        "real_langchain_installed_or_imported",
+        "real_create_agent_imported",
+        "real_langchain_agent_harness_created",
+        "real_langchain_agent_object_created",
+        "real_langchain_ai_message_path_validated",
+        "langchain_message_or_tool_call_observed",
+        "routed_through_controlled_proposal_gate",
+        "fake_or_local_model_used",
+    }
+    derived = {"converted_to_dhms_proposal"}
+    provenance: Dict[str, str] = {}
+    for field_name in _interception_trace({
+        "langchain_available": False,
+        "real_create_agent_imported": False,
+        "langchain_agent_harness_created": False,
+        "real_langchain_agent_object_created": False,
+        "real_langchain_ai_message_path_validated": False,
+        "fake_or_local_model_used": False,
+    }):
+        if field_name in observed:
+            provenance[field_name] = "observed"
+        elif field_name in derived:
+            provenance[field_name] = "derived"
+        else:
+            provenance[field_name] = "asserted_by_contract"
+    return provenance
+
+
 def intercept_langchain_tool_call(raw_tool_call: Dict[str, Any], source: str) -> Dict[str, Any]:
     """Observe and gate one LangChain-style tool call before execution."""
 
@@ -298,6 +333,7 @@ def intercept_langchain_tool_call(raw_tool_call: Dict[str, Any], source: str) ->
         "execution_authorized": False,
         "runtime_behaviors_added": 0,
         "interception_trace": _interception_trace(harness),
+        "interception_trace_provenance": _interception_trace_provenance(),
     }
 
 

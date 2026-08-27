@@ -122,6 +122,9 @@ def evaluate_proposal(proposal: ToolCallProposal) -> SafetyDecision:
 
 
 def apply_execution_gate(proposal: ToolCallProposal, decision: SafetyDecision) -> ExecutionGateDecision:
+    if decision.proposal_id != proposal.proposal_id:
+        raise ValueError("safety decision proposal_id must match proposal proposal_id")
+
     if decision.decision == "ALLOWLIST_CANDIDATE_HELD":
         return ExecutionGateDecision(
             gate_id=_stable_id("gate", proposal.proposal_id, decision.decision),
@@ -168,6 +171,13 @@ def build_agentfuse_trace(
     safety_decision: SafetyDecision,
     gate_decision: ExecutionGateDecision,
 ) -> AgentFuseTrace:
+    if proposal.request_id != request.request_id:
+        raise ValueError("proposal request_id must match request request_id")
+    if safety_decision.proposal_id != proposal.proposal_id:
+        raise ValueError("safety decision proposal_id must match proposal proposal_id")
+    if gate_decision.proposal_id != proposal.proposal_id:
+        raise ValueError("gate decision proposal_id must match proposal proposal_id")
+
     return AgentFuseTrace(
         trace_id=_stable_id("trace", request.request_id, proposal.proposal_id, safety_decision.decision_id),
         request=request,

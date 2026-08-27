@@ -160,8 +160,14 @@ def create_deterministic_agent_loop_driver() -> Any:
 def create_dhms_guarded_langchain_agent_loop_harness(state: Dict[str, Any]) -> Dict[str, Any]:
     """Create the real LangChain agent-loop harness for the guarded scenario."""
 
-    import langchain  # type: ignore
-    from langchain.agents import create_agent  # type: ignore
+    try:
+        import langchain  # type: ignore
+        from langchain.agents import create_agent  # type: ignore
+    except ImportError as exc:  # pragma: no cover - clean-wheel optional path
+        raise ImportError(
+            "This historical LangChain proof helper requires the optional "
+            "dependency; install dhms-agentfuse[langchain]."
+        ) from exc
 
     state["langchain_available"] = True
     state["real_create_agent_imported"] = True

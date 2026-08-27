@@ -87,19 +87,19 @@ def test_probe_runs_real_allow_and_block_path_deterministically() -> None:
     first = probe.run_probe(
         expected_python_version=expected_python,
         expected_langgraph_version=observed_langgraph,
-        expected_package_version="3.7.3",
+        expected_package_version="3.7.4",
     )
     second = probe.run_probe(
         expected_python_version=expected_python,
         expected_langgraph_version=observed_langgraph,
-        expected_package_version="3.7.3",
+        expected_package_version="3.7.4",
     )
     assert first == second
     assert first["profile_frozen_tested_version"] == "1.2.11"
     assert first["cases"]["allow"] == {
         "decision": "allow",
         "execution_outcome": "executed",
-        "handler_started": True,
+        "handler_started": None,
         "handler_count": 1,
         "tool_call_identity_preserved": True,
     }
@@ -126,7 +126,7 @@ def test_probe_json_only_is_one_document_and_uses_explicit_runtime_validation() 
             "--expected-langgraph-version",
             observed_langgraph,
             "--expected-package-version",
-            "3.7.3",
+            "3.7.4",
             "--json-only",
         ],
         cwd=COMPATIBILITY_DIR,
@@ -167,3 +167,6 @@ def test_workflow_uses_one_manifest_driven_wheel_matrix() -> None:
     assert 'COMPAT_LANGGRAPH: ${{ matrix.langgraph }}' in workflow
     assert 'COMPAT_PYTHON: ${{ matrix.python }}' in workflow
     assert '"langgraph==${{ matrix.langgraph }}"' not in workflow
+    assert workflow.count("agentfuse-wheel-v3-7-4") == 2
+    assert workflow.count("dhms_agentfuse-3.7.4-py3-none-any.whl") == 4
+    assert "fetch-depth: 0" in workflow

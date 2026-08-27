@@ -182,7 +182,7 @@ class RuntimeGuardResult:
     decision: str
     reason_code: str
     dispatch_occurred: bool
-    handler_started: bool
+    handler_started: bool | None
     outcome: str
     tool_failure: bool
     side_effect_occurred: bool | None
@@ -191,12 +191,14 @@ class RuntimeGuardResult:
     failure_category: str | None = None
 
     @property
-    def handler_invoked(self) -> bool:
+    def handler_invoked(self) -> bool | None:
         return self.handler_started
 
     @property
     def execution(self) -> str:
-        return "not_started" if self.outcome == "not_executed" else "started"
+        if self.handler_started is None:
+            return "unknown"
+        return "started" if self.handler_started else "not_started"
 
     def to_safe_dict(self) -> dict[str, Any]:
         return {
@@ -467,7 +469,7 @@ class RuntimeGuard:
             matched_policy_key=resolved.matched_policy_key,
             match_kind=resolved.match_kind,
             priority=100 if resolved.resolution_outcome == "resolved" else None,
-            candidate_policy_keys=list(resolved.candidate_policy_keys),
+            candidate_policy_keys=resolved.candidate_policy_keys,
             fallback_reason=resolved.fallback_reason,
         )
         policy_hash = _policy_hash(resolved.policy_id)
@@ -554,6 +556,8 @@ class RuntimeGuard:
         tool_call: ToolCallRequest,
         decision: RuntimeGuardDecision,
         return_value: Any,
+        *,
+        handler_started: bool | None = True,
     ) -> RuntimeGuardResult:
         return RuntimeGuardResult(
             tool_call_id=tool_call.tool_call_id,
@@ -561,7 +565,7 @@ class RuntimeGuard:
             decision="allow",
             reason_code=decision.reason_code,
             dispatch_occurred=True,
-            handler_started=True,
+            handler_started=handler_started,
             outcome="executed",
             tool_failure=False,
             side_effect_occurred=None,
@@ -575,7 +579,7 @@ class RuntimeGuard:
         decision: RuntimeGuardDecision,
         *,
         dispatch_occurred: bool,
-        handler_started: bool,
+        handler_started: bool | None,
         failure_category: str,
         side_effect_occurred: bool | None,
     ) -> RuntimeGuardResult:
@@ -597,6 +601,8 @@ class RuntimeGuard:
         self,
         tool_call: ToolCallRequest,
         decision: RuntimeGuardDecision,
+        *,
+        handler_started: bool | None,
     ) -> RuntimeGuardResult:
         return RuntimeGuardResult(
             tool_call_id=tool_call.tool_call_id,
@@ -604,7 +610,7 @@ class RuntimeGuard:
             decision="allow",
             reason_code=decision.reason_code,
             dispatch_occurred=True,
-            handler_started=True,
+            handler_started=handler_started,
             outcome="interrupted",
             tool_failure=False,
             side_effect_occurred=None,

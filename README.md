@@ -2,12 +2,14 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](pyproject.toml)
-[![AgentFuse](https://img.shields.io/badge/AgentFuse-3.7.3-green.svg)](pyproject.toml)
+[![AgentFuse](https://img.shields.io/badge/AgentFuse-3.7.4-green.svg)](pyproject.toml)
 [![Status](https://img.shields.io/badge/status-experimental%20public%20beta-orange.svg)](docs/dhms_agentfuse_integration_release_seal_v3_7_3.md)
 
 **AgentFuse is the vendor-neutral execution policy layer for AI agents: keep your existing runtime, evaluate tool calls before dispatch, preserve tool-call identity, and produce structured execution evidence.**
 
-AgentFuse 3.7.3 is an **Experimental Public Beta**.
+AgentFuse 3.7.4 is the current source milestone for the **Experimental Public
+Beta**. The latest sealed package remains 3.7.3 until a separate release is
+published.
 
 ```bash
 python -m pip install dhms-agentfuse==3.7.3
@@ -113,7 +115,7 @@ certification, production deployment, or upstream framework adoption.
 
 | Runtime or ecosystem | Verified surface | Public beta status |
 | --- | --- | --- |
-| [LangGraph](docs/dhms_agentfuse_five_minute_integration_trial_v3_7_1.md) | Packaged `LangGraphRuntimeGuardAdapter` for an explicit `ToolNode` path, with identity-preserving terminal results and tested allow/block behavior at recorded versions. | Built-in public-beta adapter; not universal LangGraph interception. |
+| [LangGraph](docs/dhms_agentfuse_five_minute_integration_trial_v3_7_1.md) | Packaged `LangGraphRuntimeGuardAdapter` for an explicit `ToolNode` path, with identity-preserving terminal results and tested allow/block behavior at recorded versions. Adapter dispatch means the host continuation was invoked; host-internal handler state is `unknown` when that boundary cannot establish it. | Built-in public-beta adapter; not universal LangGraph interception. |
 | [Microsoft Agent Framework community sample](https://github.com/microsoft/agent-framework/pull/7719) | Community-maintained optional `FunctionMiddleware` compatibility sample and focused contract tests for pre-dispatch block, guard failure, cancellation, and host-owned handler failure. | Experimental external sample; not part of the upstream package and not Microsoft-maintained. |
 | [PraisonAI](https://github.com/MervinPraison/PraisonAI/pull/4023) | Generic `tool_call_id` middleware plumbing is upstream; an [optional AgentFuse plugin](https://github.com/MervinPraison/PraisonAI-Plugins/pull/18) maps decisions to host-native `ToolResponse` results. | Upstream middleware change merged; optional AgentFuse plugin remains separate and experimental; no adoption claim. |
 | [Pydantic ecosystem](https://github.com/pydantic/pydantic-ai-harness/issues/642) | A validated fork proof maps `RuntimeGuard` to the existing `ToolGuardrail` boundary while preserving host-native block semantics and sibling continuation. | Experimental fork proof; not an upstream integration. |
@@ -131,6 +133,11 @@ langgraph = get_integration("langgraph-tool-node")
 
 Integration profiles describe reviewed mappings. They do not discover
 runtimes, install plugins, or make different host lifecycles equivalent.
+
+Historical LangChain proof helpers are not part of the current RuntimeGuard
+surface. They remain available through the optional
+`dhms-agentfuse[langchain]` dependency rather than making full LangChain a core
+package requirement.
 
 ## Five-Minute Trial
 
@@ -212,7 +219,10 @@ assert decision.evidence.non_execution.status == "not_executed"
 
 `evaluate()` and `aevaluate()` do not accept a handler and perform no protected
 side effect. `invoke()` and `ainvoke()` use the same decision path and can call
-a supplied handler only after an `allow` decision.
+a supplied handler only after an `allow` decision. Because `RuntimeGuard.invoke`
+owns that direct call, it can record handler entry. An external adapter such as
+the LangGraph continuation wrapper records directly observed dispatch facts
+and leaves host-internal handler state `unknown` when it cannot establish it.
 
 For the complete lifecycle split, see the
 [Consumer Integration Contract](docs/dhms_agentfuse_consumer_integration_contract_v3_6_1.md).

@@ -234,8 +234,14 @@ def _message_type_names(agent_result: Any) -> List[str]:
 def run_guarded_tool_adapter_scenario(scenario: Dict[str, Any]) -> Dict[str, Any]:
     """Invoke a real LangChain agent loop for one guarded adapter scenario."""
 
-    import langchain  # type: ignore
-    from langchain.agents import create_agent  # type: ignore
+    try:
+        import langchain  # type: ignore
+        from langchain.agents import create_agent  # type: ignore
+    except ImportError as exc:  # pragma: no cover - clean-wheel optional path
+        raise ImportError(
+            "This historical LangChain proof helper requires the optional "
+            "dependency; install dhms-agentfuse[langchain]."
+        ) from exc
 
     state = create_guarded_tool_adapter_state(scenario)
     state["side_effect_sentinel_before"] = state["side_effect_sentinel"]

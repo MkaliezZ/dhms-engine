@@ -7,8 +7,10 @@ authorize side effects.
 
 from __future__ import annotations
 
+import hashlib
+import re
 from dataclasses import asdict, dataclass, field
-from typing import Any
+from typing import Any, Sequence
 
 
 SCHEMA_VERSION = "agentfuse-evidence-schema-v0.1"
@@ -32,6 +34,7 @@ NON_EXECUTION_REASONS = {
 EXECUTION_STATES = {"not_started"}
 BOUNDARY_TYPES = {"server", "tool", "call"}
 BOUNDARY_DECISIONS = {"allow", "block", "escalate", "transform"}
+_CANONICAL_SHA256 = re.compile(r"sha256:[0-9a-f]{64}")
 
 
 def _ensure_non_empty_string(value: str | None, field_name: str) -> None:
@@ -39,12 +42,25 @@ def _ensure_non_empty_string(value: str | None, field_name: str) -> None:
         raise ValueError(f"{field_name} must be a non-empty string")
 
 
-def _ensure_string_list(values: list[str], field_name: str) -> None:
-    if not isinstance(values, list):
-        raise ValueError(f"{field_name} must be a list")
+def _ensure_string_sequence(values: Sequence[str], field_name: str) -> None:
+    if not isinstance(values, (list, tuple)):
+        raise ValueError(f"{field_name} must be a list or tuple")
     for value in values:
         if not isinstance(value, str) or not value:
             raise ValueError(f"{field_name} must contain non-empty strings")
+
+
+def _ensure_canonical_sha256(value: str, field_name: str) -> None:
+    if not isinstance(value, str) or _CANONICAL_SHA256.fullmatch(value) is None:
+        raise ValueError(
+            f"{field_name} must be 'sha256:' followed by 64 lowercase hexadecimal characters"
+        )
+
+
+def _example_sha256(material: str) -> str:
+    """Hash named stable example material rather than using digest-shaped labels."""
+
+    return f"sha256:{hashlib.sha256(material.encode('utf-8')).hexdigest()}"
 
 
 @dataclass(frozen=True)
@@ -56,7 +72,7 @@ class PolicyResolutionEvidence:
     matched_policy_key: str | None
     match_kind: str
     priority: int | None
-    candidate_policy_keys: list[str] = field(default_factory=list)
+    candidate_policy_keys: tuple[str, ...] = field(default_factory=tuple)
     fallback_reason: str | None = None
 
     def __post_init__(self) -> None:
@@ -68,7 +84,8 @@ class PolicyResolutionEvidence:
             raise ValueError(f"unknown match_kind: {self.match_kind}")
         if self.priority is not None and not isinstance(self.priority, int):
             raise ValueError("priority must be an int or None")
-        _ensure_string_list(self.candidate_policy_keys, "candidate_policy_keys")
+        _ensure_string_sequence(self.candidate_policy_keys, "candidate_policy_keys")
+        object.__setattr__(self, "candidate_policy_keys", tuple(self.candidate_policy_keys))
 
         if self.policy_resolution_outcome == "resolved":
             if self.fallback_reason is not None:
@@ -81,7 +98,9 @@ class PolicyResolutionEvidence:
             raise ValueError("ambiguous policy resolution requires at least two candidate policy keys")
 
     def to_dict(self) -> dict[str, Any]:
-        return asdict(self)
+        value = asdict(self)
+        value["candidate_policy_keys"] = list(self.candidate_policy_keys)
+        return value
 
 
 @dataclass(frozen=True)
@@ -138,6 +157,7 @@ class LayeredBoundaryDecision:
             raise ValueError(f"unknown boundary decision: {self.decision}")
         for field_name in ("policy_id", "policy_hash", "reason_code"):
             _ensure_non_empty_string(getattr(self, field_name), field_name)
+        _ensure_canonical_sha256(self.policy_hash, "policy_hash")
         if self.decisive_gate and self.boundary_type != "call":
             raise ValueError("only a call-level boundary can be the decisive gate")
 
@@ -176,6 +196,8 @@ class SafeTraceMetadata:
             raise ValueError(f"unknown trace decision: {self.decision}")
         if self.boundary_type not in BOUNDARY_TYPES:
             raise ValueError(f"unknown trace boundary_type: {self.boundary_type}")
+        _ensure_canonical_sha256(self.policy_hash, "policy_hash")
+        _ensure_canonical_sha256(self.args_hash, "args_hash")
         if self.raw_inputs_in_trace:
             raise ValueError("safe trace metadata must not include raw inputs by default")
         if not self.model_visible_trace_sanitized:
@@ -208,9 +230,20 @@ class AgentFuseEvidenceRecord:
             raise ValueError("boundary decision must match trace decision")
         if self.boundary_decision.boundary_type != self.trace_metadata.boundary_type:
             raise ValueError("boundary type must match trace boundary type")
+        if self.boundary_decision.policy_id != self.trace_metadata.policy_id:
+            raise ValueError("boundary policy_id must match trace policy_id")
+        if self.boundary_decision.policy_hash != self.trace_metadata.policy_hash:
+            raise ValueError("boundary policy_hash must match trace policy_hash")
 
     def to_dict(self) -> dict[str, Any]:
-        return asdict(self)
+        return {
+            "record_id": self.record_id,
+            "schema_version": self.schema_version,
+            "policy_resolution": self.policy_resolution.to_dict(),
+            "boundary_decision": self.boundary_decision.to_dict(),
+            "trace_metadata": self.trace_metadata.to_dict(),
+            "non_execution": self.non_execution.to_dict() if self.non_execution else None,
+        }
 
 
 def safe_read_only_summary_evidence() -> AgentFuseEvidenceRecord:
@@ -222,14 +255,14 @@ def safe_read_only_summary_evidence() -> AgentFuseEvidenceRecord:
         matched_policy_key="capability:local_read_only_summary",
         match_kind="capability",
         priority=100,
-        candidate_policy_keys=["capability:local_read_only_summary"],
+        candidate_policy_keys=("capability:local_read_only_summary",),
         fallback_reason=None,
     )
     boundary = LayeredBoundaryDecision(
         boundary_type="call",
         decision="allow",
         policy_id="policy-safe-read-only-summary",
-        policy_hash="sha256:safe-read-only-summary-v0",
+        policy_hash=_example_sha256("policy-safe-read-only-summary"),
         reason_code="release_candidate",
         decisive_gate=True,
     )
@@ -240,7 +273,7 @@ def safe_read_only_summary_evidence() -> AgentFuseEvidenceRecord:
         policy_hash=boundary.policy_hash,
         reason_code=boundary.reason_code,
         boundary_type=boundary.boundary_type,
-        args_hash="sha256:inert-summary-args",
+        args_hash=_example_sha256("args-safe-read-only-summary-synthetic"),
         evidence_ref="evidence:safe-read-only-summary:001",
     )
     return AgentFuseEvidenceRecord(
@@ -261,14 +294,14 @@ def sql_mutation_block_evidence() -> AgentFuseEvidenceRecord:
         matched_policy_key="capability:sql_mutation",
         match_kind="capability",
         priority=10,
-        candidate_policy_keys=["capability:sql_mutation"],
+        candidate_policy_keys=("capability:sql_mutation",),
         fallback_reason=None,
     )
     boundary = LayeredBoundaryDecision(
         boundary_type="call",
         decision="block",
         policy_id="policy-block-sql-mutation",
-        policy_hash="sha256:block-sql-mutation-v0",
+        policy_hash=_example_sha256("policy-block-sql-mutation"),
         reason_code="policy_denied",
         decisive_gate=True,
     )
@@ -279,7 +312,7 @@ def sql_mutation_block_evidence() -> AgentFuseEvidenceRecord:
         policy_hash=boundary.policy_hash,
         reason_code=boundary.reason_code,
         boundary_type=boundary.boundary_type,
-        args_hash="sha256:redacted-sql-mutation-args",
+        args_hash=_example_sha256("args-redacted-sql-mutation-example"),
         evidence_ref="evidence:sql-mutation-block:001",
     )
     non_execution = NonExecutionEvidence(
@@ -312,14 +345,14 @@ def ambiguous_pattern_overlap_evidence() -> AgentFuseEvidenceRecord:
         matched_policy_key=None,
         match_kind="glob",
         priority=None,
-        candidate_policy_keys=["glob:sql_*", "glob:*_mutation_tool"],
+        candidate_policy_keys=("glob:sql_*", "glob:*_mutation_tool"),
         fallback_reason="multiple_matches_failed_tie_break",
     )
     boundary = LayeredBoundaryDecision(
         boundary_type="call",
         decision="block",
         policy_id="policy-ambiguous-pattern-overlap",
-        policy_hash="sha256:ambiguous-pattern-overlap-v0",
+        policy_hash=_example_sha256("policy-ambiguous-pattern-overlap"),
         reason_code="ambiguous_policy",
         decisive_gate=True,
     )
@@ -330,7 +363,7 @@ def ambiguous_pattern_overlap_evidence() -> AgentFuseEvidenceRecord:
         policy_hash=boundary.policy_hash,
         reason_code=boundary.reason_code,
         boundary_type=boundary.boundary_type,
-        args_hash="sha256:redacted-ambiguous-policy-args",
+        args_hash=_example_sha256("args-redacted-ambiguous-policy-example"),
         evidence_ref="evidence:ambiguous-pattern-overlap:001",
     )
     non_execution = NonExecutionEvidence(
@@ -363,14 +396,14 @@ def mcp_file_network_boundary_evidence() -> AgentFuseEvidenceRecord:
         matched_policy_key="capability:mcp_file_network_restricted",
         match_kind="capability",
         priority=50,
-        candidate_policy_keys=["capability:mcp_file_network_restricted"],
+        candidate_policy_keys=("capability:mcp_file_network_restricted",),
         fallback_reason=None,
     )
     boundary = LayeredBoundaryDecision(
         boundary_type="call",
         decision="block",
         policy_id="policy-mcp-file-network-boundary",
-        policy_hash="sha256:mcp-file-network-boundary-v0",
+        policy_hash=_example_sha256("policy-mcp-file-network-boundary"),
         reason_code="policy_denied",
         decisive_gate=True,
     )
@@ -381,7 +414,7 @@ def mcp_file_network_boundary_evidence() -> AgentFuseEvidenceRecord:
         policy_hash=boundary.policy_hash,
         reason_code=boundary.reason_code,
         boundary_type=boundary.boundary_type,
-        args_hash="sha256:redacted-mcp-file-network-args",
+        args_hash=_example_sha256("args-redacted-mcp-file-network-example"),
         evidence_ref="evidence:mcp-file-network-boundary:001",
     )
     non_execution = NonExecutionEvidence(

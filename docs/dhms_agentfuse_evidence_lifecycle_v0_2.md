@@ -67,7 +67,7 @@ established relative to dispatch:
 | State | Meaning |
 | --- | --- |
 | `pre_dispatch` | The block was proven before dispatch started. Implies strict non-execution (see invariants). |
-| `post_dispatch` | The denial was established after dispatch had already started. |
+| `post_dispatch` | The denial was established after dispatch had already begun. This claim is definitive: it requires `dispatch_state=started` and cannot mean that dispatch never started or is unknown. |
 | `unknown` | The stage could not be determined from available evidence. |
 
 ## Dispatch, execution, and side-effect states
@@ -82,6 +82,16 @@ Side-effect reality is intentionally not a boolean. `proven_none` is an
 affirmative proof of no side effect, `observed` means a side effect was
 applied, `possible` means a side effect may have occurred without proof either
 way, and `unknown` means the fact is missing or ambiguous.
+
+Side-effect evidence is scoped to the governed tool call. A confirmed
+`dispatch_state=not_started` cannot coexist with `observed` or `possible`
+side effects for that call, because an unstarted dispatch cannot have applied
+them. `unknown` remains representable in that combination: a not-started
+dispatch does not affirmatively prove the absence of side effects, so
+uncertainty must not be converted into `proven_none`. Conversely,
+`dispatch_state=started` with `execution_state=not_executed` and
+`side_effect_state=observed` remains valid: a side effect can occur during
+dispatch before handler execution is considered complete.
 
 ## Claude Code #77185 as a counterexample pattern
 
@@ -112,15 +122,28 @@ claim to solve the underlying race in any runtime.
   is the strict case that corresponds to `NonExecutionEvidence`.
 - A `started` dispatch cannot carry `block_stage=pre_dispatch` (contrapositive
   of the above).
+- `post_dispatch` is definitive proof that dispatch had begun, so it requires
+  `dispatch_state=started`.
 - `executed` or `partially_executed` execution cannot coexist with
   `dispatch_state=not_started`.
 - An `observed` side effect cannot claim strict pre-dispatch non-execution.
+- A confirmed `dispatch_state=not_started` cannot coexist with `observed` or
+  `possible` side effects scoped to the governed tool call.
 - Missing or ambiguous facts remain `unknown`; the schema provides no path
   that converts missing evidence into proof of non-execution.
 
-`LifecycleEvidenceRecord` additionally requires that `non_execution` evidence
-appear only on strict pre-dispatch records, that strict pre-dispatch blocked
-or escalated records include it, and that allowed records omit it.
+`LifecycleEvidenceRecord` is intentionally limited to denial-like decisions:
+`boundary_decision.decision` must be `block` or `escalate`. `allow` and
+`transform` records are rejected, because `block_stage` describes the stage at
+which a denial applies and modeling general allowed-call lifecycles is outside
+this milestone. Within that scope, the record additionally requires that
+`non_execution` evidence appear only on strict pre-dispatch records, and that
+strict pre-dispatch blocked or escalated records include it.
+
+The four canonical public state collections (`BLOCK_STAGES`,
+`DISPATCH_STATES`, `EXECUTION_LIFECYCLE_STATES`, `SIDE_EFFECT_STATES`) are
+immutable `frozenset` values, so validation semantics cannot be altered
+through the public API.
 
 ## Compatibility guarantees
 
@@ -134,6 +157,15 @@ or escalated records include it, and that allowed records omit it.
 - The v0.2 schema version string is
   `agentfuse-evidence-lifecycle-schema-v0.2`.
 
+## Known limitation (existing, out of scope)
+
+The v0.2 combined record does not cryptographically bind lifecycle evidence
+to the v0.1 evidence identity fields, so lifecycle evidence from one call
+could in principle be composed with v0.1 evidence carrying another call's IDs.
+This composition weakness already exists in v0.1 and is classified as an
+out-of-scope existing limitation. This milestone adds no call-identity
+architecture and no cross-component cryptographic binding.
+
 ## Non-goals
 
 - No runtime behavior change: no change to dispatch, policy evaluation,
@@ -142,6 +174,9 @@ or escalated records include it, and that allowed records omit it.
   tracing infrastructure.
 - No attempt to solve or mitigate the Claude Code #77185 race itself; only
   its truthful evidence representation is modeled.
+- No general allowed-call lifecycle modeling: the v0.2 combined record is
+  limited to `block`/`escalate` denial-like paths, and no
+  `block_stage=not_applicable` state is introduced.
 - No v3.8.x product-line start, no package version bump for this schema work
   alone, and no change to the 3.7.3 public decision API.
 - No claim of external adoption, external trial, or validation by any

@@ -27,10 +27,14 @@ from .evidence_schema import (
 
 LIFECYCLE_SCHEMA_VERSION = "agentfuse-evidence-lifecycle-schema-v0.2"
 
-BLOCK_STAGES = {"pre_dispatch", "post_dispatch", "unknown"}
-DISPATCH_STATES = {"not_started", "started", "unknown"}
-EXECUTION_LIFECYCLE_STATES = {"not_executed", "executed", "partially_executed", "unknown"}
-SIDE_EFFECT_STATES = {"proven_none", "observed", "possible", "unknown"}
+# Immutable canonical state collections: these define validation semantics and
+# must not be mutable through the public API.
+BLOCK_STAGES = frozenset({"pre_dispatch", "post_dispatch", "unknown"})
+DISPATCH_STATES = frozenset({"not_started", "started", "unknown"})
+EXECUTION_LIFECYCLE_STATES = frozenset(
+    {"not_executed", "executed", "partially_executed", "unknown"}
+)
+SIDE_EFFECT_STATES = frozenset({"proven_none", "observed", "possible", "unknown"})
 
 
 def _ensure_non_empty_string(value: str | None, field_name: str) -> None:
@@ -85,12 +89,31 @@ class ExecutionLifecycleEvidence:
             if self.side_effect_state != "proven_none":
                 raise ValueError("pre_dispatch block requires side_effect_state='proven_none'")
 
+        # 'post_dispatch' is definitive: the denial became established after
+        # dispatch had already begun, so an unstarted or unknown dispatch
+        # contradicts the stage claim itself.
+        if self.block_stage == "post_dispatch" and self.dispatch_state != "started":
+            raise ValueError("post_dispatch block requires dispatch_state='started'")
+
         # Invariant C: execution that happened cannot coexist with unstarted dispatch.
         if self.execution_state in {"executed", "partially_executed"}:
             if self.dispatch_state == "not_started":
                 raise ValueError(
                     f"execution_state='{self.execution_state}' is incompatible with dispatch_state='not_started'"
                 )
+
+        # Side-effect evidence is scoped to this governed tool call: a
+        # confirmed unstarted dispatch cannot coexist with observed or possible
+        # side effects. 'unknown' remains representable because a not-started
+        # dispatch does not prove the absence of side effects.
+        if self.dispatch_state == "not_started" and self.side_effect_state in {
+            "observed",
+            "possible",
+        }:
+            raise ValueError(
+                "dispatch_state='not_started' is incompatible with "
+                f"side_effect_state='{self.side_effect_state}'"
+            )
 
         # Invariant E holds by construction: every state set contains 'unknown'
         # and no validation path converts missing facts into proof values.
@@ -101,7 +124,12 @@ class ExecutionLifecycleEvidence:
 
 @dataclass(frozen=True)
 class LifecycleEvidenceRecord:
-    """Combined v0.2 record: v0.1 policy evidence plus execution-reality evidence."""
+    """Combined v0.2 record for denial-like paths: v0.1 policy evidence plus execution-reality evidence.
+
+    Intentionally limited to ``block`` and ``escalate`` decisions: block_stage
+    describes the stage at which a denial applies, so allowed or transformed
+    calls are out of scope for this v0.2 record.
+    """
 
     record_id: str
     schema_version: str
@@ -115,24 +143,23 @@ class LifecycleEvidenceRecord:
         _ensure_non_empty_string(self.record_id, "record_id")
         if self.schema_version != LIFECYCLE_SCHEMA_VERSION:
             raise ValueError(f"schema_version must be {LIFECYCLE_SCHEMA_VERSION}")
+        if self.boundary_decision.decision not in {"block", "escalate"}:
+            raise ValueError(
+                "lifecycle evidence records require a denial-like boundary decision "
+                "('block' or 'escalate')"
+            )
         if self.boundary_decision.decision != self.trace_metadata.decision:
             raise ValueError("boundary decision must match trace decision")
         if self.boundary_decision.boundary_type != self.trace_metadata.boundary_type:
             raise ValueError("boundary type must match trace boundary type")
 
         if self.non_execution is not None:
-            if self.boundary_decision.decision == "allow":
-                raise ValueError("allowed records must not include non-execution evidence")
             if not is_strict_pre_dispatch(self.lifecycle):
                 raise ValueError(
                     "non-execution evidence requires strict pre_dispatch lifecycle evidence"
                 )
 
-        if (
-            self.boundary_decision.decision in {"block", "escalate"}
-            and self.non_execution is None
-            and is_strict_pre_dispatch(self.lifecycle)
-        ):
+        if self.non_execution is None and is_strict_pre_dispatch(self.lifecycle):
             raise ValueError(
                 "strict pre-dispatch blocked or escalated calls require non-execution evidence"
             )

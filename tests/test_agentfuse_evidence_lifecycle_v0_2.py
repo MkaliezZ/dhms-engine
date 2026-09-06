@@ -192,10 +192,10 @@ def test_contradiction_pre_dispatch_block_with_started_dispatch_is_rejected():
 def test_contradiction_executed_with_not_started_dispatch_is_rejected():
     with pytest.raises(ValueError, match="incompatible with dispatch_state='not_started'"):
         ExecutionLifecycleEvidence(
-            block_stage="post_dispatch",
+            block_stage="unknown",
             dispatch_state="not_started",
             execution_state="executed",
-            side_effect_state="observed",
+            side_effect_state="unknown",
         )
 
 
@@ -217,6 +217,74 @@ def test_contradiction_partially_executed_with_not_started_dispatch_is_rejected(
             execution_state="partially_executed",
             side_effect_state="possible",
         )
+
+
+def test_post_dispatch_with_not_started_dispatch_is_rejected():
+    with pytest.raises(ValueError, match="post_dispatch block requires dispatch_state='started'"):
+        ExecutionLifecycleEvidence(
+            block_stage="post_dispatch",
+            dispatch_state="not_started",
+            execution_state="not_executed",
+            side_effect_state="unknown",
+        )
+
+
+def test_post_dispatch_with_unknown_dispatch_is_rejected():
+    with pytest.raises(ValueError, match="post_dispatch block requires dispatch_state='started'"):
+        ExecutionLifecycleEvidence(
+            block_stage="post_dispatch",
+            dispatch_state="unknown",
+            execution_state="unknown",
+            side_effect_state="unknown",
+        )
+
+
+def test_not_started_dispatch_with_observed_side_effect_is_rejected():
+    with pytest.raises(
+        ValueError, match="side_effect_state='observed'"
+    ):
+        ExecutionLifecycleEvidence(
+            block_stage="unknown",
+            dispatch_state="not_started",
+            execution_state="not_executed",
+            side_effect_state="observed",
+        )
+
+
+def test_not_started_dispatch_with_possible_side_effect_is_rejected():
+    with pytest.raises(
+        ValueError, match="side_effect_state='possible'"
+    ):
+        ExecutionLifecycleEvidence(
+            block_stage="unknown",
+            dispatch_state="not_started",
+            execution_state="not_executed",
+            side_effect_state="possible",
+        )
+
+
+def test_not_started_dispatch_with_unknown_side_effect_remains_representable():
+    lifecycle = ExecutionLifecycleEvidence(
+        block_stage="unknown",
+        dispatch_state="not_started",
+        execution_state="not_executed",
+        side_effect_state="unknown",
+    )
+
+    assert lifecycle.side_effect_state == "unknown"
+    assert lifecycle.side_effect_state != "proven_none"
+
+
+def test_post_dispatch_started_not_executed_observed_edge_case_remains_valid():
+    lifecycle = ExecutionLifecycleEvidence(
+        block_stage="post_dispatch",
+        dispatch_state="started",
+        execution_state="not_executed",
+        side_effect_state="observed",
+    )
+
+    assert lifecycle.execution_state == "not_executed"
+    assert lifecycle.side_effect_state == "observed"
 
 
 def test_unknown_state_values_outside_canonical_sets_are_rejected():
@@ -267,12 +335,12 @@ def test_combined_record_requires_non_execution_for_strict_pre_dispatch_block():
         )
 
 
-def test_combined_record_rejects_allow_with_non_execution_evidence():
+def test_combined_record_rejects_allow_decision_regardless_of_lifecycle():
     strict = pre_dispatch_policy_denial_lifecycle_evidence()
     allow_boundary = replace(strict.boundary_decision, decision="allow")
     allow_trace = replace(strict.trace_metadata, decision="allow")
 
-    with pytest.raises(ValueError, match="must not include non-execution evidence"):
+    with pytest.raises(ValueError, match="denial-like boundary decision"):
         LifecycleEvidenceRecord(
             record_id="agentfuse-evidence-lifecycle-contradiction-003",
             schema_version=LIFECYCLE_SCHEMA_VERSION,
@@ -282,6 +350,40 @@ def test_combined_record_rejects_allow_with_non_execution_evidence():
             lifecycle=strict.lifecycle,
             non_execution=strict.non_execution,
         )
+
+
+def test_combined_record_rejects_transform_decision():
+    race = post_dispatch_denial_race_lifecycle_evidence()
+    transform_boundary = replace(race.boundary_decision, decision="transform")
+    transform_trace = replace(race.trace_metadata, decision="transform")
+
+    with pytest.raises(ValueError, match="denial-like boundary decision"):
+        LifecycleEvidenceRecord(
+            record_id="agentfuse-evidence-lifecycle-contradiction-004",
+            schema_version=LIFECYCLE_SCHEMA_VERSION,
+            policy_resolution=race.policy_resolution,
+            boundary_decision=transform_boundary,
+            trace_metadata=transform_trace,
+            lifecycle=race.lifecycle,
+        )
+
+
+def test_combined_record_accepts_escalate_for_denial_like_lifecycle():
+    ambiguous = ambiguous_post_dispatch_lifecycle_evidence()
+    escalate_boundary = replace(ambiguous.boundary_decision, decision="escalate")
+    escalate_trace = replace(ambiguous.trace_metadata, decision="escalate")
+
+    record = LifecycleEvidenceRecord(
+        record_id="agentfuse-evidence-lifecycle-escalate-001",
+        schema_version=LIFECYCLE_SCHEMA_VERSION,
+        policy_resolution=ambiguous.policy_resolution,
+        boundary_decision=escalate_boundary,
+        trace_metadata=escalate_trace,
+        lifecycle=ambiguous.lifecycle,
+    )
+
+    assert record.boundary_decision.decision == "escalate"
+    assert record.non_execution is None
 
 
 def test_lifecycle_examples_are_deterministic_and_json_serializable():
@@ -304,3 +406,55 @@ def test_lifecycle_examples_are_deterministic_and_json_serializable():
 
 def test_module_reexports_reference_the_same_class():
     assert ModuleExecutionLifecycleEvidence is ExecutionLifecycleEvidence
+
+
+def test_public_canonical_state_collections_are_immutable():
+    for collection in (
+        BLOCK_STAGES,
+        DISPATCH_STATES,
+        EXECUTION_LIFECYCLE_STATES,
+        SIDE_EFFECT_STATES,
+    ):
+        assert isinstance(collection, frozenset)
+        with pytest.raises((AttributeError, TypeError)):
+            collection.add("nonsense")
+
+
+def test_attempted_container_mutation_does_not_alter_validation_semantics():
+    for collection in (
+        BLOCK_STAGES,
+        DISPATCH_STATES,
+        EXECUTION_LIFECYCLE_STATES,
+        SIDE_EFFECT_STATES,
+    ):
+        with pytest.raises((AttributeError, TypeError)):
+            collection.add("nonsense")
+
+    with pytest.raises(ValueError, match="unknown block_stage"):
+        ExecutionLifecycleEvidence(
+            block_stage="nonsense",
+            dispatch_state="unknown",
+            execution_state="unknown",
+            side_effect_state="unknown",
+        )
+    with pytest.raises(ValueError, match="unknown dispatch_state"):
+        ExecutionLifecycleEvidence(
+            block_stage="unknown",
+            dispatch_state="nonsense",
+            execution_state="unknown",
+            side_effect_state="unknown",
+        )
+    with pytest.raises(ValueError, match="unknown execution_state"):
+        ExecutionLifecycleEvidence(
+            block_stage="unknown",
+            dispatch_state="unknown",
+            execution_state="nonsense",
+            side_effect_state="unknown",
+        )
+    with pytest.raises(ValueError, match="unknown side_effect_state"):
+        ExecutionLifecycleEvidence(
+            block_stage="unknown",
+            dispatch_state="unknown",
+            execution_state="unknown",
+            side_effect_state="nonsense",
+        )

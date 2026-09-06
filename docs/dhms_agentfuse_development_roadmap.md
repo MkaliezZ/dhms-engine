@@ -3086,6 +3086,17 @@ No internal architecture milestone begins solely because it is numerically
 next. After v3.7.3, concrete external integration friction is the primary input
 to the product roadmap.
 
+### Bounded Schema Work: Evidence Lifecycle v0.2
+
+* externally triggered by public technical feedback (LangChain Forum side-effect
+  boolean feedback and the Claude Code #77185 denial-race counterexample
+  pattern), not by numerical roadmap progression
+* additive Evidence Lifecycle Schema v0.2 modeling block stage and
+  dispatch/execution/side-effect reality separately from the policy decision
+* evidence modeling only: no runtime behavior change, no v3.8.x product-line
+  start, and no package version bump for this schema work alone
+* see `docs/dhms_agentfuse_evidence_lifecycle_v0_2.md`
+
 ### v3.8.x Policy Provenance and Trust Contract
 
 Not automatically next. Consider only if a concrete external consumer need or

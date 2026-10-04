@@ -10,10 +10,12 @@ The report describes two attempts sharing a logical action ID. The original
 dispatch had unknown execution state and an observed receiver effect; the
 same-ID retry was rejected before receiver invocation.
 
-This repository contains a deterministic **external-reported trace fixture**
-derived from that public comment. The retained artifact itself has not been
-imported or independently replayed. The fixture contains no receiver payload,
-receipt, database, authentication material, or invented runtime details.
+The initial milestone added a deterministic **external-reported trace fixture**
+derived from that public comment. At that stage, the retained artifact had not
+been imported or independently replayed. That comment-derived fixture contains
+no receiver payload, receipt, database, authentication material, or invented
+runtime details. The following flags describe that initial fixture; the exact
+redacted issue #15 replay is documented separately below.
 
 ```text
 EXTERNAL_REPORTED_TRACE_FIXTURE=true
@@ -186,3 +188,70 @@ python -m pytest -q
 python -m compileall -q dhms_agentfuse
 git diff --check
 ```
+
+## Exact External Issue #15 Replay
+
+On 2026-10-05, the sole JSON artifact in
+[MkaliezZ/dhms-engine#15](https://github.com/MkaliezZ/dhms-engine/issues/15),
+authored by `impartshadow` on 2026-10-04, was fetched directly from the issue
+body and preserved as
+`tests/fixtures/attempt_lifecycle_v0_3_external_issue_15.json`. No source fields
+or values were changed. The fixture is 1,495 bytes with a final newline;
+its SHA-256 is
+`7fd524dd3910c77da89f1376f40b1b89d7f5d2e96980512b5621ded25386dd41`.
+That digest pins the fetched redacted snapshot, not artifact authenticity.
+
+A test-local pure mapper parses the external `shadow.redacted-attempt-trace.v1`
+artifact and creates two existing `AttemptLifecycleEvidenceRecord` values.
+Their logical action reference and distinct attempt references are preserved.
+Output `record_id` values are local fixture labels, not claimed external IDs.
+No production schema, public API or runtime behavior was changed.
+
+The allowed original attempt's external `block_stage=none` maps conservatively
+to AgentFuse `unknown`: no AgentFuse denial stage is asserted, and this does
+not mean a block occurred. Its lifecycle remains `started / unknown / observed`.
+The blocked retry retains `pre_dispatch / not_started / not_executed / proven_none`
+and passes `is_strict_pre_dispatch`.
+
+Both mapped records have `non_execution=None`. The host-native
+`ACTION_ALREADY_RECORDED` metadata do not supply the complete v0.1 metadata;
+no approval ID, call ID, result reference or canonical reason is fabricated.
+The existing separate synthetic test still proves that valid AgentFuse
+`NonExecutionEvidence` can be attached when all required metadata exist.
+
+Receiver evidence stays under attempt 1 in the exact external fixture and
+supports its `observed` state. Runtime evidence, redactions, retry-native
+non-execution evidence and `derived_host_policy` remain unchanged source data.
+They are not added to AgentFuse records. Correlation retains both intact
+attempts: retry `proven_none` neither erases the original effect nor inherits it.
+The host's `reconcile_do_not_redispatch` conclusion remains host-owned; the
+original unknown completion and observed effect do not establish safe automatic
+redispatch. AgentFuse supplies no retry or reconciliation operation.
+
+Here, independent artifact replay means parsing and mapping the exact external
+**redacted** artifact through existing types and checking attempt/lifecycle
+invariants. It does not mean executing CrewAI, SQLite or the receiver, physically
+reproducing #5802, proving authenticity, or establishing adoption.
+
+```text
+ISSUE15_ARTIFACT_IMPORTED=true
+EXACT_REDACTED_FIXTURE_PRESERVED=true
+REDACTED_EXTERNAL_ARTIFACT_REPLAY=true
+RAW_EXTERNAL_ARTIFACT_REPLAY=false
+ORIGINAL_RUNTIME_REPLAYED=false
+ARTIFACT_AUTHENTICITY_PROVEN=false
+RUNTIME_ATTESTATION_PROVEN=false
+EXTERNAL_SCHEMA_VALIDATION_PROVEN=true
+EXTERNAL_VALIDATION_PROVEN=false
+ADOPTION_PROVEN=false
+```
+
+`EXTERNAL_SCHEMA_VALIDATION_PROVEN` means only that a real external user's
+redacted crash/recovery artifact was independently mapped against AgentFuse
+attempt-scoped lifecycle schema v0.3 and the required attempt/lifecycle
+invariants passed. It carries no broader external validation claim.
+
+Validation uses Python 3.11 with the current package installed in a separate
+virtual environment. The commands above cover the unchanged 29 v0.2 tests,
+the unchanged 36 v0.3 cases plus 14 exact-artifact cases (50 total), the full
+230-test suite, compileall and diff checks. All passed.

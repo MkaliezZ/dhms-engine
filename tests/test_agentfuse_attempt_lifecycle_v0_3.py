@@ -1,6 +1,8 @@
-"""Attempt correlation and the publicly reported #5802 mapping, not replay."""
+"""Attempt correlation and exact redacted artifact mapping, without runtime replay."""
 
 from dataclasses import FrozenInstanceError, replace
+from copy import deepcopy
+import hashlib
 import itertools
 import json
 from pathlib import Path
@@ -268,3 +270,206 @@ def test_existing_denial_record_still_rejects_allow(reported_attempts):
             lifecycle=reported_attempts[0].lifecycle,
             non_execution=None,
         )
+
+
+# Exact external issue #15 replay. The SHA-256 was computed from the sole JSON
+# block fetched from the issue body, not from our earlier comment-derived fixture.
+ISSUE15_FIXTURE_PATH = Path(__file__).parent / "fixtures/attempt_lifecycle_v0_3_external_issue_15.json"
+ISSUE15_ARTIFACT_SHA256 = "7fd524dd3910c77da89f1376f40b1b89d7f5d2e96980512b5621ded25386dd41"
+
+
+@pytest.fixture
+def issue15_artifact():
+    return json.loads(ISSUE15_FIXTURE_PATH.read_text(encoding="utf-8"))
+
+
+def _map_issue15_attempts(artifact):
+    """Test-local projection of exact source facts, without host operations.
+
+    Local record IDs label the mapping output. Source-native decision, runtime,
+    receiver and rejection metadata stay in the external fixture. In particular,
+    no v0.1 NonExecutionEvidence metadata are synthesized.
+    """
+
+    return tuple(
+        AttemptLifecycleEvidenceRecord(
+            record_id=f"fixture:external-issue-15:{attempt['attempt_ref']}",
+            schema_version=ATTEMPT_LIFECYCLE_SCHEMA_VERSION,
+            logical_action_ref=artifact["logical_action_ref"],
+            attempt_ref=attempt["attempt_ref"],
+            lifecycle=ExecutionLifecycleEvidence(
+                block_stage="unknown" if attempt["block_stage"] == "none" else attempt["block_stage"],
+                dispatch_state=attempt["dispatch_state"],
+                execution_state=attempt["execution_state"],
+                side_effect_state=attempt["side_effect_state"],
+            ),
+            non_execution=None,
+        )
+        for attempt in artifact["attempts"]
+    )
+
+
+@pytest.fixture
+def issue15_records(issue15_artifact):
+    return _map_issue15_attempts(issue15_artifact)
+
+
+def test_issue15_fixture_matches_exact_fetched_json_block():
+    raw = ISSUE15_FIXTURE_PATH.read_bytes()
+    assert hashlib.sha256(raw).hexdigest() == ISSUE15_ARTIFACT_SHA256
+    assert raw.endswith(b"\n")
+
+
+def test_issue15_external_schema_context_and_redactions_are_preserved(issue15_artifact):
+    assert issue15_artifact["schema"] == "shadow.redacted-attempt-trace.v1"
+    assert issue15_artifact["source_context"] == "crewAIInc/crewAI#5802"
+    assert issue15_artifact["redactions"] == [
+        "filesystem paths", "credentials", "host identifiers", "unrelated ledger entries"
+    ]
+    assert set(issue15_artifact) == {
+        "schema", "logical_action_ref", "source_context", "attempts",
+        "derived_host_policy", "redactions",
+    }
+
+
+def test_issue15_two_distinct_attempt_refs_and_logical_action_are_preserved(issue15_artifact, issue15_records):
+    assert issue15_artifact["logical_action_ref"] == "agent-contracts-reality-pilot-001"
+    assert len(issue15_artifact["attempts"]) == len(issue15_records) == 2
+    assert [record.attempt_ref for record in issue15_records] == [
+        attempt["attempt_ref"] for attempt in issue15_artifact["attempts"]
+    ]
+    assert issue15_records[0].attempt_ref != issue15_records[1].attempt_ref
+    assert all(
+        record.logical_action_ref == issue15_artifact["logical_action_ref"]
+        for record in issue15_records
+    )
+
+
+def test_issue15_original_none_stage_maps_to_unknown_without_denial_or_success(issue15_artifact, issue15_records):
+    source = issue15_artifact["attempts"][0]
+    original = issue15_records[0]
+    assert source["policy_decision"] == "allow"
+    assert source["block_stage"] == "none"
+    assert original.lifecycle.to_dict() == {
+        "block_stage": "unknown",
+        "dispatch_state": "started",
+        "execution_state": "unknown",
+        "side_effect_state": "observed",
+    }
+    assert original.non_execution is None
+    assert not is_strict_pre_dispatch(original.lifecycle)
+    assert "boundary_decision" not in original.to_dict()
+
+
+def test_issue15_blocked_retry_maps_to_strict_lifecycle_without_v01_metadata(issue15_artifact, issue15_records):
+    source = issue15_artifact["attempts"][1]
+    retry = issue15_records[1]
+    assert source["policy_decision"] == "deny"
+    assert retry.lifecycle.to_dict() == {
+        "block_stage": "pre_dispatch",
+        "dispatch_state": "not_started",
+        "execution_state": "not_executed",
+        "side_effect_state": "proven_none",
+    }
+    assert is_strict_pre_dispatch(retry.lifecycle)
+    assert retry.non_execution is None
+
+
+def test_issue15_mapping_preserves_all_other_lifecycle_values_exactly(issue15_artifact, issue15_records):
+    for source, record in zip(issue15_artifact["attempts"], issue15_records):
+        for field in ("dispatch_state", "execution_state", "side_effect_state"):
+            assert getattr(record.lifecycle, field) == source[field]
+        expected_stage = "unknown" if source["block_stage"] == "none" else source["block_stage"]
+        assert record.lifecycle.block_stage == expected_stage
+
+
+def test_issue15_host_native_rejection_is_not_fabricated_into_agentfuse_denial(issue15_artifact, issue15_records):
+    native = issue15_artifact["attempts"][1]["non_execution_evidence"]
+    assert native == {
+        "reason": "ACTION_ALREADY_RECORDED",
+        "receiver_effect_count_before": 1,
+        "receiver_effect_count_after": 1,
+    }
+    for record in issue15_records:
+        serialized = record.to_dict()
+        assert serialized["non_execution"] is None
+        assert not {"approval_id", "call_id", "result_ref", "reason", "policy_decision"} & serialized.keys()
+        assert "policy_denied" not in json.dumps(serialized)
+
+
+def test_issue15_receiver_source_evidence_belongs_only_to_original_attempt(issue15_artifact, issue15_records):
+    original_source, retry_source = issue15_artifact["attempts"]
+    assert original_source["attempt_ref"] == "agent-contracts-reality-pilot-001:attempt:1"
+    assert original_source["receiver_evidence"] == {
+        "effect_count": 1,
+        "effect_key": "agent-contracts-reality-pilot-001",
+    }
+    assert "receiver_evidence" not in retry_source
+    for record in issue15_records:
+        assert "receiver_evidence" not in record.to_dict()
+    assert issue15_records[0].lifecycle.side_effect_state == "observed"
+    assert issue15_records[1].lifecycle.side_effect_state == "proven_none"
+
+
+def test_issue15_runtime_source_facts_do_not_become_execution_success(issue15_artifact, issue15_records):
+    assert issue15_artifact["attempts"][0]["runtime_evidence"] == {
+        "recovered_status": "UNKNOWN",
+        "reconciliation_required": True,
+        "terminal_acknowledgement": "lost_after_receiver_commit",
+    }
+    assert issue15_records[0].lifecycle.execution_state == "unknown"
+    assert issue15_records[0].lifecycle.execution_state != "executed"
+    assert all("runtime_evidence" not in record.to_dict() for record in issue15_records)
+
+
+def test_issue15_correlation_keeps_two_intact_records_in_one_action(issue15_artifact, issue15_records):
+    groups = correlate_attempt_lifecycle_records(issue15_records)
+    assert tuple(groups) == (issue15_artifact["logical_action_ref"],)
+    correlated = groups[issue15_artifact["logical_action_ref"]]
+    assert len(correlated) == 2
+    assert correlated[0] is issue15_records[0]
+    assert correlated[1] is issue15_records[1]
+
+
+def test_issue15_retry_proven_none_does_not_erase_or_inherit_original_effect(issue15_artifact, issue15_records):
+    before = tuple(record.to_dict() for record in issue15_records)
+    correlated = correlate_attempt_lifecycle_records(issue15_records)[issue15_artifact["logical_action_ref"]]
+    assert tuple(record.to_dict() for record in correlated) == before
+    assert correlated[0].lifecycle.side_effect_state == "observed"
+    assert correlated[0].lifecycle.execution_state == "unknown"
+    assert correlated[1].lifecycle.side_effect_state == "proven_none"
+    assert correlated[1].lifecycle.execution_state == "not_executed"
+    assert correlated[0].non_execution is correlated[1].non_execution is None
+
+
+def test_issue15_derived_reconciliation_policy_remains_host_source_only(issue15_artifact, issue15_records):
+    assert issue15_artifact["derived_host_policy"] == {
+        "decision": "reconcile_do_not_redispatch",
+        "reason": "a prior attempt has observed receiver-side effect evidence while runtime completion remains unknown",
+    }
+    # The first attempt fails the necessary evidence condition for redispatch;
+    # neither the projection nor AgentFuse performs the host's reconciliation.
+    assert not all(is_strict_pre_dispatch(record.lifecycle) for record in issue15_records)
+    serialized = json.dumps([record.to_dict() for record in issue15_records])
+    assert "reconcile_do_not_redispatch" not in serialized
+    assert "derived_host_policy" not in serialized
+
+
+def test_issue15_pure_mapping_never_rewrites_external_artifact(issue15_artifact):
+    snapshot = deepcopy(issue15_artifact)
+    first = _map_issue15_attempts(issue15_artifact)
+    second = _map_issue15_attempts(issue15_artifact)
+    assert issue15_artifact == snapshot
+    assert first == second
+    assert first[0] is not second[0]
+    assert issue15_artifact["attempts"][0]["block_stage"] == "none"
+
+
+def test_issue15_projection_has_only_existing_record_fields_and_no_operations(issue15_records):
+    for record in issue15_records:
+        assert set(record.to_dict()) == {
+            "record_id", "schema_version", "logical_action_ref", "attempt_ref",
+            "lifecycle", "non_execution",
+        }
+        for operation in ("retry", "redispatch", "reconcile", "should_retry"):
+            assert not hasattr(record, operation)

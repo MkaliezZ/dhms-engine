@@ -1,0 +1,38 @@
+{
+  "source": {
+    "discussion_url": "https://github.com/crewAIInc/crewAI/issues/6221#issuecomment-5975614702",
+    "reporter": "impartshadow",
+    "retained_artifact_issue": "crewAIInc/crewAI#5802",
+    "external_reported_trace_fixture": true,
+    "real_external_trace_mapping_reported": true,
+    "independent_artifact_replay": false
+  },
+  "records": [
+    {
+      "record_id": "fixture:external-reported-trace:attempt:1",
+      "schema_version": "agentfuse-attempt-lifecycle-evidence-schema-v0.3",
+      "logical_action_ref": "agent-contracts-reality-pilot-001",
+      "attempt_ref": "agent-contracts-reality-pilot-001:attempt:1",
+      "lifecycle": {
+        "block_stage": "unknown",
+        "dispatch_state": "started",
+        "execution_state": "unknown",
+        "side_effect_state": "observed"
+      },
+      "non_execution": null
+    },
+    {
+      "record_id": "fixture:external-reported-trace:attempt:2",
+      "schema_version": "agentfuse-attempt-lifecycle-evidence-schema-v0.3",
+      "logical_action_ref": "agent-contracts-reality-pilot-001",
+      "attempt_ref": "agent-contracts-reality-pilot-001:attempt:2",
+      "lifecycle": {
+        "block_stage": "pre_dispatch",
+        "dispatch_state": "not_started",
+        "execution_state": "not_executed",
+        "side_effect_state": "proven_none"
+      },
+      "non_execution": null
+    }
+  ]
+}

@@ -3,6 +3,11 @@
 from typing import TYPE_CHECKING, Any
 
 from .adapter_skeleton import AgentFuseAdapterSkeleton
+from .attempt_lifecycle import (
+    ATTEMPT_LIFECYCLE_SCHEMA_VERSION,
+    AttemptLifecycleEvidenceRecord,
+    correlate_attempt_lifecycle_records,
+)
 from .api import (
     ALLOWLISTED_SQL,
     apply_execution_gate,
@@ -64,9 +69,11 @@ def __getattr__(name: str) -> Any:
 
 __all__ = [
     "ALLOWLISTED_SQL",
+    "ATTEMPT_LIFECYCLE_SCHEMA_VERSION",
     "AgentFuseAdapterSkeleton",
     "AgentFuseEvidenceRecord",
     "AgentFuseTrace",
+    "AttemptLifecycleEvidenceRecord",
     "BLOCK_STAGES",
     "DISPATCH_STATES",
     "EXECUTION_LIFECYCLE_STATES",
@@ -95,6 +102,7 @@ __all__ = [
     "build_agentfuse_trace",
     "create_runtime_request",
     "create_tool_call_proposal",
+    "correlate_attempt_lifecycle_records",
     "example_evidence_records",
     "evaluate_proposal",
     "is_strict_pre_dispatch",

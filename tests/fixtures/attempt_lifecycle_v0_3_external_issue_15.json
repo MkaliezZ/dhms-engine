@@ -1,0 +1,47 @@
+{
+  "schema": "shadow.redacted-attempt-trace.v1",
+  "logical_action_ref": "agent-contracts-reality-pilot-001",
+  "source_context": "crewAIInc/crewAI#5802",
+  "attempts": [
+    {
+      "attempt_ref": "agent-contracts-reality-pilot-001:attempt:1",
+      "policy_decision": "allow",
+      "block_stage": "none",
+      "dispatch_state": "started",
+      "execution_state": "unknown",
+      "side_effect_state": "observed",
+      "runtime_evidence": {
+        "recovered_status": "UNKNOWN",
+        "reconciliation_required": true,
+        "terminal_acknowledgement": "lost_after_receiver_commit"
+      },
+      "receiver_evidence": {
+        "effect_count": 1,
+        "effect_key": "agent-contracts-reality-pilot-001"
+      }
+    },
+    {
+      "attempt_ref": "agent-contracts-reality-pilot-001:attempt:2",
+      "policy_decision": "deny",
+      "block_stage": "pre_dispatch",
+      "dispatch_state": "not_started",
+      "execution_state": "not_executed",
+      "side_effect_state": "proven_none",
+      "non_execution_evidence": {
+        "reason": "ACTION_ALREADY_RECORDED",
+        "receiver_effect_count_before": 1,
+        "receiver_effect_count_after": 1
+      }
+    }
+  ],
+  "derived_host_policy": {
+    "decision": "reconcile_do_not_redispatch",
+    "reason": "a prior attempt has observed receiver-side effect evidence while runtime completion remains unknown"
+  },
+  "redactions": [
+    "filesystem paths",
+    "credentials",
+    "host identifiers",
+    "unrelated ledger entries"
+  ]
+}

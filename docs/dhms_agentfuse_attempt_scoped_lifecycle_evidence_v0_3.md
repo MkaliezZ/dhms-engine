@@ -255,3 +255,64 @@ Validation uses Python 3.11 with the current package installed in a separate
 virtual environment. The commands above cover the unchanged 29 v0.2 tests,
 the unchanged 36 v0.3 cases plus 14 exact-artifact cases (50 total), the full
 230-test suite, compileall and diff checks. All passed.
+
+## External Operator Rerun: Issue #15 Freeze
+
+Evidence classification: `EXTERNAL_OPERATOR_RERUN`.
+Status: frozen for this reported path and merged shape only.
+
+Sources in [issue #15](https://github.com/MkaliezZ/dhms-engine/issues/15):
+
+- [`impartshadow` rerun report, comment 5983874570](https://github.com/MkaliezZ/dhms-engine/issues/15#issuecomment-5983874570),
+  posted 2026-10-04 at 20:04:13 UTC.
+- [Maintainer confirmation, comment 5984122387](https://github.com/MkaliezZ/dhms-engine/issues/15#issuecomment-5984122387),
+  posted by `MkaliezZ` at 20:34:01 UTC that day.
+
+The operator explicitly reports a new run against merged commit
+`4f8c0facfa7ff23a1f5df2e2c1dfc3fdc0a3eef9`, using the actual Reality Layer
+`4213c479` plus agent-contracts crash/recovery pilot in an isolated checkout
+with a fresh SQLite receiver. Fresh outcomes were then projected through
+`AttemptLifecycleEvidenceRecord` and `correlate_attempt_lifecycle_records`.
+This is a new external operator rerun of the merged attempt-scoped shape,
+distinct from reading the schema or our earlier replay of the redacted JSON.
+
+The reported results are:
+
+| Boundary | Operator-reported outcome |
+| --- | --- |
+| Commit-before-ack crash | Receiver observed exactly one effect. |
+| Recovered original attempt | Runtime status remained `UNKNOWN`; reconciliation remained `REQUIRED`. Projection: `unknown / started / unknown / observed`. |
+| Same-action retry | Host rejected `ACTION_ALREADY_RECORDED`; no second effect. Separate attempt projection: `pre_dispatch / not_started / not_executed / proven_none`. |
+| Correlation | One logical action retained two distinct attempt references; neither record borrowed nor fabricated v0.1 non-execution metadata. |
+| Focused checks | Operator reported 79 passing merged v0.2/v0.3 focused cases; this is the operator's result, not a new local test run in this documentation task. |
+
+Receiver evidence stays scoped to the original attempt. The retry's strict
+non-execution evidence cannot be borrowed to label the original attempt as
+unexecuted or effect-free; the original's observed effect cannot be attributed
+to the retry. The operator also reports that the September 30 retained ledger
+and receiver were left untouched, still at `UNKNOWN`/`REQUIRED` with one effect.
+The fresh rerun and that retained evidence are distinct.
+
+The mapping limitation remains explicit: the host-native trace knows that no
+denial applied (`block_stage=none`), while the neutral projection uses
+`block_stage=unknown`. A neutral lifecycle projection is not a lossless
+replacement for the host-native trace. The original host trace and receiver
+evidence must remain alongside it to preserve that distinction. No source-native
+rejection metadata are turned into fabricated AgentFuse `NonExecutionEvidence`.
+
+The maintainer's subsequent reply acknowledges the rerun and these same
+boundaries. It is confirmation of the recorded interpretation, not another
+independent runtime test or certification. The source evidence for this entry
+is the operator's public report; this documentation task did not independently
+execute the fresh crash/recovery setup.
+
+This evidence does **not** prove independent AgentFuse certification,
+production integration, general runtime enforcement, runtime retry permission,
+or that every agent, runtime or framework satisfies the reported property.
+Retry and reconciliation remain host-owned. No new proof claim is introduced:
+the earlier bounded schema/artifact-mapping claim is unchanged, and
+`EXTERNAL_VALIDATION_PROVEN=false` and `ADOPTION_PROVEN=false` remain unchanged.
+
+This validation line is frozen at the cited operator report and maintainer
+confirmation. The freeze records those facts and limits only; it authorizes
+no new schema, implementation, adapter, release or subsequent milestone.

@@ -5,6 +5,8 @@
 * Current branch: `agent-harness-v1`
 * Current line: `DHMS Execution Fuse Protocol`
 * Current package milestone: `v3.7.3 Integration Release Seal + Public Beta`
+* External validation evidence: [frozen issue #15 operator rerun](dhms_agentfuse_attempt_scoped_lifecycle_evidence_v0_3.md#external-operator-rerun-issue-15-freeze)
+  (`EXTERNAL_OPERATOR_RERUN`, limited to the reported path and merged shape).
 * Completed v0.6 line:
   * v0.6.0 protocol spec
   * v0.6.1 benchmark
